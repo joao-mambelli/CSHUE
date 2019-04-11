@@ -27,9 +27,9 @@
                       AttachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
                       AttachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
                       AttachedBehavior:ScrollAnimationBehavior.PointsToScroll="32">
-            <StackPanel Margin="24,0,20,0">
+            <StackPanel Margin="24,0,20,30">
                 <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
-                <TabControl Margin="0,2,0,30" Style="{DynamicResource Windows10TabControl}">
+                <TabControl Margin="0,2,0,9" Style="{DynamicResource Windows10TabControl}">
                     <TabItem Style="{DynamicResource Windows10TabItem}"
                              Header="Primary"
                              Foreground="{DynamicResource SystemBaseHighColorBrush}">
@@ -195,35 +195,54 @@
                 </TabControl>
 
                 <TextBlock Margin="0,20,0,2" FontSize="20" Text="CSHUE" />
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Run CSHUE when my computer starts" />
                 </CheckBox>
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="30,7,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
+                    <TextBlock Text="Run minimized" />
+                </CheckBox>
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Minimize to system tray" />
                 </CheckBox>
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
                 </CheckBox>
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Also trigger player events when spectating" />
                 </CheckBox>
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Remember lights states" />
                 </CheckBox>
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Automatically activate between" />
                 </CheckBox>
 
                 <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
-                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                <CheckBox Margin="0,15,0,9"
+                          Style="{DynamicResource Windows10CheckBox}"
+                          HorizontalAlignment="Left">
                     <TextBlock Text="Run CS:GO on CSHUE startup" />
                 </CheckBox>
                 <TextBox Height="35"
-                         Margin="0,2,0,30"
+                         Margin="0,2,0,9"
                          BorderThickness="2"
                          VerticalContentAlignment="Center"
                          Style="{StaticResource HintTextBox}"
-                         Tag="aaaa">
+                         Tag="Launch Options">
 
                 </TextBox>
             </StackPanel>

@@ -3,11 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:AttachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
       mc:Ignorable="d" 
-      Title="Donate"
-      d:DesignWidth="800"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
-      FontSize="14">
+      FontSize="14"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Donate">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="57" />
@@ -16,9 +17,16 @@
 
         <TextBlock Margin="24,0,0,0" FontSize="40" Text="Donate" />
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Style="{DynamicResource Windows10ScrollViewer}" ContextMenuService.IsEnabled="False">
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Style="{DynamicResource Windows10ScrollViewer}"
+                      ContextMenuService.IsEnabled="False"
+                      AttachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
+                      AttachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
+                      AttachedBehavior:ScrollAnimationBehavior.PointsToScroll="32">
             <StackPanel Margin="24,0,20,0">
-                <TextBlock TextWrapping="Wrap"
+                <TextBlock Margin="0,20,0,2"
+                           TextWrapping="Wrap"
                            TextAlignment="Justify"
                            Text="&#x9;I don't expect much finantial return from this application, but who knows, right? Donations are always appreciated.&#xa;&#xa;&#x9;I'm linking to a PayPal donation page. You will be able to donate from 1 to 9,999,999.99 dolars, any higher than this, please, email me a time and place and we meet there. You will also be able to choose &#x201c;Make this a monthly donation&#x201d; if you want to, well, make this a monthly donation." />
 
@@ -26,7 +34,7 @@
                         ToolTipService.HasDropShadow="True"
                         ToolTipService.HorizontalOffset="-150"
                         ToolTipService.ShowDuration="30000"
-                        Margin="30" VerticalAlignment="Top"
+                        Margin="0,2,0,30" VerticalAlignment="Top"
                         Height="31" Width="90"
                         Style="{DynamicResource Windows10Button}"
                         Content="Donate" Click="Donate_Click">

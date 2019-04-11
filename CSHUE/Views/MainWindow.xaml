@@ -26,7 +26,8 @@
         ResizeMode="CanResize"
         Background="Transparent"
         fw:PointerTracker.Enabled="False"
-        xmlns:local="clr-namespace:CSHUE.ViewModels">
+        d:DesignHeight="450" d:DesignWidth="800"
+        Foreground="{DynamicResource SystemBaseHighColorBrush}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" />
     </WindowChrome.WindowChrome>

@@ -5,12 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CSHUE.Views"
       mc:Ignorable="d" 
-      d:DesignWidth="800"
-      Title="About"
-      Foreground="{DynamicResource SystemBaseHighColorBrush}"
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      FontSize="14">
+      xmlns:AttachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
+      Foreground="{DynamicResource SystemBaseHighColorBrush}"
+      FontSize="14"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="About">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="57" />
@@ -19,15 +20,22 @@
 
         <TextBlock Margin="24,0,0,0" FontSize="40" Text="About" />
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Style="{DynamicResource Windows10ScrollViewer}" ContextMenuService.IsEnabled="False">
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Style="{DynamicResource Windows10ScrollViewer}"
+                      ContextMenuService.IsEnabled="False"
+                      AttachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
+                      AttachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
+                      AttachedBehavior:ScrollAnimationBehavior.PointsToScroll="32">
             <StackPanel Margin="24,0,20,0">
-                <TextBlock TextWrapping="Wrap"
+                <TextBlock Margin="0,20,0,30"
+                           TextWrapping="Wrap"
                            TextAlignment="Justify"
                            Text="&#x9;My name is João but you can call me John. I'm 21 and I live in Rio Claro, São Paulo, Brazil. Currently studing Computer Science in Universidade Estadual Paulista (UNESP). For now I do internship for an IT company. C#, XAML and C are the languages I like the most, I moved recently from WinForms to WPF and I'm loving the greater variety of things you can do with it. I didn't want to use UWP because there's still a lot of people using Windows 7, but I tried to make the UI as good as in UWP.&#xa;&#xa;&#x9;As a hardcore CS:GO player I love the game, play it since its early beta versions. I've been playing CS since I was a little kid, when I got my first PC, around 2008. I remember when my friend got home with a CS:S DVD to install it. Before that I didn't even know that FPS was something possible. I simply fell in love with it. The simplicity of the gameplay is what got me.&#xa;&#xa;&#x9;I decided to make this application because I recently got Philips Hue bulbs and didn't find any good solutions for using it with CS:GO, I wanted something easy to use and very customizable." />
 
-                <TextBlock Margin="0,50,0,0" FontSize="20" Text="Follow me" VerticalAlignment="Bottom"/>
+                <TextBlock Margin="0,20,0,2" FontSize="20" Text="Follow me" VerticalAlignment="Bottom"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+                <StackPanel Orientation="Horizontal" Margin="0,2,0,30">
                     <StackPanel.Resources>
                         <Style x:Key="{x:Type Hyperlink}" TargetType="{x:Type Hyperlink}">
                             <Setter Property="Foreground" Value="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>

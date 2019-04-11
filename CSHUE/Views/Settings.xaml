@@ -4,9 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CSHUE.Views"
-      mc:Ignorable="d" 
-      d:DesignWidth="800"
+      xmlns:AttachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
+      xmlns:Styles="clr-namespace:CSHUE.Styles"
+      mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
+      FontSize="14"
+      d:DesignWidth="800"
       Title="Settings">
 
     <Grid>
@@ -17,14 +20,21 @@
 
         <TextBlock Margin="24,0,0,0" FontSize="40" Text="Settings" />
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Style="{DynamicResource Windows10ScrollViewer}" ContextMenuService.IsEnabled="False">
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Style="{DynamicResource Windows10ScrollViewer}"
+                      ContextMenuService.IsEnabled="False"
+                      AttachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
+                      AttachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
+                      AttachedBehavior:ScrollAnimationBehavior.PointsToScroll="32">
             <StackPanel Margin="24,0,20,0">
-                <TabControl Style="{DynamicResource Windows10TabControl}">
+                <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
+                <TabControl Margin="0,2,0,30" Style="{DynamicResource Windows10TabControl}">
                     <TabItem Style="{DynamicResource Windows10TabItem}"
-                             Header="Primary"
-                             Foreground="{DynamicResource SystemBaseHighColorBrush}">
+                             Header="Primary">
                         <StackPanel>
                             <TextBlock Margin="0,15,0,2" Text="Main Menu" />
+
                             <Button Height="40" HorizontalAlignment="Stretch"
                                     Style="{DynamicResource Windows10Button}">
                                 <Button.Background>
@@ -140,7 +150,8 @@
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <TextBlock Text="Duration:" />
-                                <TextBox Width="20" Margin="5,0,0,0" MaxLength="2" PreviewTextInput="AcceptsNumber" 
+                                <TextBox Width="20" Margin="5,0,0,0" MaxLength="2"
+                                         PreviewTextInput="AcceptsNumber" 
                                          TextAlignment="Center"/>
                                 <TextBlock Text="s" Margin="3,0,0,0"/>
                             </StackPanel>
@@ -156,7 +167,8 @@
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <TextBlock Text="Duration:" />
-                                <TextBox Width="20" Margin="5,0,0,0" MaxLength="2" PreviewTextInput="AcceptsNumber" 
+                                <TextBox Width="20" Margin="5,0,0,0" MaxLength="2"
+                                         PreviewTextInput="AcceptsNumber" 
                                          TextAlignment="Center"/>
                                 <TextBlock Text="s" Margin="3,0,0,0"/>
                             </StackPanel>
@@ -180,6 +192,39 @@
                         </StackPanel>
                     </TabItem>
                 </TabControl>
+
+                <TextBlock Margin="0,20,0,2" FontSize="20" Text="CSHUE" />
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Run CSHUE when my computer starts" />
+                </CheckBox>
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Minimize to system tray" />
+                </CheckBox>
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
+                </CheckBox>
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Also trigger player events when spectating" />
+                </CheckBox>
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Remember lights states" />
+                </CheckBox>
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Automatically activate between" />
+                </CheckBox>
+
+                <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
+                <CheckBox Margin="0,15,0,9" Style="{DynamicResource Windows10CheckBox}">
+                    <TextBlock Text="Run CS:GO on CSHUE startup" />
+                </CheckBox>
+                <TextBox Height="35"
+                         Margin="0,2,0,30"
+                         BorderThickness="2"
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource HintTextBox}"
+                         Tag="aaaa">
+
+                </TextBox>
             </StackPanel>
         </ScrollViewer>
     </Grid>

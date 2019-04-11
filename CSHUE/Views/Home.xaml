@@ -4,21 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CSHUE.Views"
-      mc:Ignorable="d" 
+      xmlns:AttachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
+      mc:Ignorable="d"
+      Foreground="{DynamicResource SystemBaseHighColorBrush}"
+      FontSize="14"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="57" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="White">
-
-        </Grid>
+        <TextBlock Margin="24,0,0,0" FontSize="40" Text="Home" />
     </Grid>
 </Page>

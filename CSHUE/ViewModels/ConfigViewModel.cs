@@ -35,6 +35,17 @@ namespace CSHUE.ViewModels
                 "}"
             };
 
+        private string _failText;
+        private string FailText
+        {
+            get => _failText;
+            set
+            {
+                _failText = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void CreateConfigFile()
         {
             bool fail = false;
@@ -54,11 +65,13 @@ namespace CSHUE.ViewModels
                     }
                     else
                     {
+                        FailText = "Fail to locate Steam path.";
                         fail = true;
                     }
                 }
                 else
                 {
+                    FailText = "Fail to locate Steam path.";
                     fail = true;
                 }
             }
@@ -73,6 +86,7 @@ namespace CSHUE.ViewModels
                 }
                 catch
                 {
+                    FailText = "Fail to locate CS:GO path.";
                     fail = true;
                 }
 
@@ -82,6 +96,7 @@ namespace CSHUE.ViewModels
 
                     if (m.Groups[1].Value == "")
                     {
+                        FailText = "Fail to locate CS:GO path.";
                         fail = true;
                     }
                     else
@@ -93,7 +108,7 @@ namespace CSHUE.ViewModels
 
             if (fail)
             {
-                MessageBox.Show("Failed to locate CS:GO folder. Please select it manually.");
+                MessageBox.Show($"{FailText} Please select the CS:GO cfg folder manually.");
 
                 using (var fbd = new CommonOpenFileDialog())
                 {

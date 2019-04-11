@@ -31,7 +31,8 @@
                 <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
                 <TabControl Margin="0,2,0,30" Style="{DynamicResource Windows10TabControl}">
                     <TabItem Style="{DynamicResource Windows10TabItem}"
-                             Header="Primary">
+                             Header="Primary"
+                             Foreground="{DynamicResource SystemBaseHighColorBrush}">
                         <StackPanel>
                             <TextBlock Margin="0,15,0,2" Text="Main Menu" />
 

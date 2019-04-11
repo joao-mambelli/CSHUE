@@ -15,7 +15,8 @@
                         <UniformGrid x:Name="HeaderPanel" IsItemsHost="True" Rows="1"/>
                         <Border x:Name="Border" Grid.Row="1" Background="{DynamicResource SystemBaseLowColorBrush}"
                                 Padding="10">
-                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              ContentSource="SelectedContent"/>
                         </Border>
                     </Grid>
                 </ControlTemplate>
@@ -29,25 +30,21 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid x:Name="Content">
-                        <Border Name="Border" Background="{DynamicResource SystemBaseLowColorBrush}">
+                        <Border Name="Border" Background="Transparent">
                             <ContentPresenter x:Name="ContentSite"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    ContentSource="Header"/>
+                                              TextElement.Foreground ="{DynamicResource SystemBaseHighColorBrush}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              ContentSource="Header"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseMediumColorBrush}" />
-                            <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource SystemAltHighColorBrush}" />
+                        <Trigger SourceName="Content" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseLowColorBrush}" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition SourceName="Content" Property="IsMouseOver" Value="True"/>
-                                <Condition Property="IsSelected" Value="False"/>
-                            </MultiTrigger.Conditions>
+                        <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseMediumLowColorBrush}" />
-                        </MultiTrigger>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

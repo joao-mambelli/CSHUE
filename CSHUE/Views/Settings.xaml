@@ -215,6 +215,13 @@
                           HorizontalAlignment="Left">
                     <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
                 </CheckBox>
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,9">
+                    <TextBlock Text="CS:GO process checking period:" />
+                    <TextBox Width="20" Margin="5,0,0,0" MaxLength="2"
+                             PreviewTextInput="AcceptsNumber" 
+                             TextAlignment="Center"/>
+                    <TextBlock Text="s" Margin="3,0,0,0"/>
+                </StackPanel>
                 <CheckBox Margin="0,15,0,9"
                           Style="{DynamicResource Windows10CheckBox}"
                           HorizontalAlignment="Left">

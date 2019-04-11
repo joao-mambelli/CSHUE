@@ -143,7 +143,7 @@ namespace CSHUE.AttachedBehaviors
             verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(scrollViewer.VerticalOffset, KeyTime.FromPercent(0)));
             verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(CurrentToValue, KeyTime.FromPercent(1.0), new SineEase()
             {
-                EasingMode = EasingMode.EaseInOut
+                EasingMode = EasingMode.EaseOut
             }));
 
             storyboard = new Storyboard();

@@ -1,44 +1,45 @@
-﻿using System.Windows;
-using Microsoft.Win32;
-using System.IO;
-using System.Text.RegularExpressions;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using System.ComponentModel;
+﻿using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
+using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace CSHUE.ViewModels
 {
     public class ConfigViewModel : BaseViewModel
     {
-        public MainWindowViewModel mainWindowViewModel = null;
+        public MainWindowViewModel MainWindowViewModel = null;
 
-        private string[] lines =
-            {
-                "\"CSHUE\"",
-                "{",
-                "\t\"uri\" \"http://localhost:3000\"",
-                "\t\"timeout\" \"5.0\"",
-                "\t\"throttle\" \"0.1\"",
-                "\t\"data\"",
-                "\t{",
-                "\t\t\"provider\"\t\t\t\t\t\"1\"",
-                "\t\t\"map\"\t\t\t\t\t\t\"1\"",
-                "\t\t\"round\"\t\t\t\t\t\t\"1\"",
-                "\t\t\"player_id\"\t\t\t\t\t\"1\"",
-                "\t\t\"player_state\"\t\t\t\t\"1\"",
-                "\t\t\"player_weapons\"\t\t\t\"1\"",
-                "\t\t\"player_match_stats\"\t\t\"1\"",
-                "\t\t\"allplayers_match_stats\"\t\"1\"",
-                "\t\t\"allplayers_id\"\t\t\t\t\"1\"",
-                "\t\t\"allplayers_state\"\t\t\t\"1\"",
-                "\t}",
-                "}"
-            };
+        private readonly string[] _lines =
+        {
+            "\"CSHUE\"",
+            "{",
+            "\t\"uri\" \"http://localhost:3000\"",
+            "\t\"timeout\" \"5.0\"",
+            "\t\"throttle\" \"0.1\"",
+            "\t\"data\"",
+            "\t{",
+            "\t\t\"provider\"\t\t\t\t\t\"1\"",
+            "\t\t\"map\"\t\t\t\t\t\t\"1\"",
+            "\t\t\"round\"\t\t\t\t\t\t\"1\"",
+            "\t\t\"player_id\"\t\t\t\t\t\"1\"",
+            "\t\t\"player_state\"\t\t\t\t\"1\"",
+            "\t\t\"player_weapons\"\t\t\t\"1\"",
+            "\t\t\"player_match_stats\"\t\t\"1\"",
+            "\t\t\"allplayers_match_stats\"\t\"1\"",
+            "\t\t\"allplayers_id\"\t\t\t\t\"1\"",
+            "\t\t\"allplayers_state\"\t\t\t\"1\"",
+            "\t}",
+            "}"
+        };
 
         private string _failText;
+
         private string FailText
         {
-            get => _failText;
+            get =>
+                _failText;
             set
             {
                 _failText = value;
@@ -48,17 +49,17 @@ namespace CSHUE.ViewModels
 
         public void CreateConfigFile()
         {
-            bool fail = false;
+            var fail = false;
 
-            string path = "";
-            string cfgpath = "";
-            string file = "";
+            var path = "";
+            var cfgpath = "";
+            var file = "";
 
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+            using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
             {
                 if (key != null)
                 {
-                    object o = key.GetValue("InstallPath");
+                    var o = key.GetValue("InstallPath");
                     if (o != null)
                     {
                         path = o as string;
@@ -92,16 +93,23 @@ namespace CSHUE.ViewModels
 
                 if (!fail)
                 {
-                    Match m = Regex.Match(file, "\"installdir\".*\"(.*)\"");
+                    var m = Regex.Match(file,
+                        "\"installdir\".*\"(.*)\"");
 
-                    if (m.Groups[1].Value == "")
+                    if (m.Groups[1]
+                            .Value ==
+                        "")
                     {
                         FailText = "Fail to locate CS:GO path.";
                         fail = true;
                     }
                     else
                     {
-                        cfgpath = path + "common\\" + m.Groups[1].Value + "\\csgo\\cfg\\gamestate_integration_cshue.cfg";
+                        cfgpath = path +
+                                  "common\\" +
+                                  m.Groups[1]
+                                      .Value +
+                                  "\\csgo\\cfg\\gamestate_integration_cshue.cfg";
                     }
                 }
             }
@@ -126,21 +134,22 @@ namespace CSHUE.ViewModels
                     fbd.Multiselect = false;
                     fbd.ShowPlacesList = true;
 
-                    CommonFileDialogResult result = fbd.ShowDialog();
+                    var result = fbd.ShowDialog();
 
-                    if (result == CommonFileDialogResult.Ok && !string.IsNullOrWhiteSpace(fbd.FileName))
-                    {
-                        cfgpath = fbd.FileName + "\\gamestate_integration_cshue.cfg";
+                    if (result != CommonFileDialogResult.Ok || string.IsNullOrWhiteSpace(fbd.FileName))
+                        return;
+                    cfgpath = fbd.FileName + "\\gamestate_integration_cshue.cfg";
 
-                        File.WriteAllLines(cfgpath, lines);
+                    File.WriteAllLines(cfgpath,
+                        _lines);
 
-                        MessageBox.Show("File created at:\n" + cfgpath);
-                    }
+                    MessageBox.Show("File created at:\n" + cfgpath);
                 }
             }
             else
             {
-                File.WriteAllLines(cfgpath, lines);
+                File.WriteAllLines(cfgpath,
+                    _lines);
 
                 MessageBox.Show("File created at:\n" + cfgpath);
 
@@ -150,30 +159,30 @@ namespace CSHUE.ViewModels
 
         public void CheckConfigFile()
         {
-            bool fail = false;
+            var fail = false;
 
-            string path = "";
-            string cfgpath = "";
-            string file = "";
+            var path = "";
+            var cfgpath = "";
+            var file = "";
 
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+            using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
             {
                 if (key != null)
                 {
-                    object o = key.GetValue("InstallPath");
+                    var o = key.GetValue("InstallPath");
                     if (o != null)
                     {
                         path = o as string;
                     }
                     else
                     {
-                        mainWindowViewModel.WarningText = "Couldn't find Steam path.";
+                        MainWindowViewModel.WarningText = "Couldn't find Steam path.";
                         fail = true;
                     }
                 }
                 else
                 {
-                    mainWindowViewModel.WarningText = "Couldn't find Steam path.";
+                    MainWindowViewModel.WarningText = "Couldn't find Steam path.";
                     fail = true;
                 }
             }
@@ -188,39 +197,48 @@ namespace CSHUE.ViewModels
                 }
                 catch
                 {
-                    mainWindowViewModel.WarningText = "Couldn't find CS:GO path.";
+                    MainWindowViewModel.WarningText = "Couldn't find CS:GO path.";
                     fail = true;
                 }
 
                 if (!fail)
                 {
-                    Match m = Regex.Match(file, "\"installdir\".*\"(.*)\"");
+                    var m = Regex.Match(file,
+                        "\"installdir\".*\"(.*)\"");
 
-                    if (m.Groups[1].Value == "")
+                    if (m.Groups[1]
+                            .Value ==
+                        "")
                     {
-                        mainWindowViewModel.WarningText = "Couldn't find CS:GO path.";
+                        MainWindowViewModel.WarningText = "Couldn't find CS:GO path.";
                         fail = true;
                     }
                     else
                     {
-                        cfgpath = path + "common\\" + m.Groups[1].Value + "\\csgo\\cfg\\gamestate_integration_cshue.cfg";
+                        cfgpath = path +
+                                  "common\\" +
+                                  m.Groups[1]
+                                      .Value +
+                                  "\\csgo\\cfg\\gamestate_integration_cshue.cfg";
                     }
                 }
             }
 
             if (!fail && !File.Exists(cfgpath))
             {
-                mainWindowViewModel.WarningText = "Couldn't find CS:GO Game State Integration file.";
+                MainWindowViewModel.WarningText = "Couldn't find CS:GO Game State Integration file.";
                 fail = true;
             }
 
-            if (!fail && !lines.SequenceEqual(File.ReadAllLines(cfgpath)))
+            if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath)))
             {
-                mainWindowViewModel.WarningText = "CS:GO Game State Integration file is corrupted.";
+                MainWindowViewModel.WarningText = "CS:GO Game State Integration file is corrupted.";
                 fail = true;
             }
 
-            mainWindowViewModel.WarningVisibility = !fail ? Visibility.Hidden : Visibility.Visible;
+            MainWindowViewModel.WarningVisibility = !fail
+                ? Visibility.Hidden
+                : Visibility.Visible;
         }
     }
 }

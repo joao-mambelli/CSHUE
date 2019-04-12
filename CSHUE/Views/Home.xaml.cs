@@ -1,19 +1,19 @@
-﻿using System.Windows.Controls;
-using CSHUE.ViewModels;
+﻿using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : Page
+    // ReSharper disable once InheritdocConsiderUsage
+    public partial class Home
     {
-        public HomeViewModel viewModel = null;
+        public HomeViewModel ViewModel = null;
 
         public Home()
         {
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = ViewModel;
         }
     }
 }

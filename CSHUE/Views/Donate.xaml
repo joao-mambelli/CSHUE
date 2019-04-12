@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:AttachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
+      xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
       mc:Ignorable="d" 
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -21,9 +21,9 @@
                       VerticalScrollBarVisibility="Auto"
                       Style="{DynamicResource Windows10ScrollViewer}"
                       ContextMenuService.IsEnabled="False"
-                      AttachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
-                      AttachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
-                      AttachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
+                      attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
+                      attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
+                      attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
             <StackPanel Margin="24,0,20,30">
                 <TextBlock Margin="0,20,0,2"
                            TextWrapping="Wrap"

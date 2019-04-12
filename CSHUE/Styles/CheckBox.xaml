@@ -65,13 +65,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style TargetType="CheckBox" x:Key="BasicCheckBox" BasedOn="{StaticResource TweakedCheckBox}">
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Margin" Value="5"/>
-    </Style>
-    <Style TargetType="CheckBox" x:Key="BasicMarginlessCheckBox" BasedOn="{StaticResource TweakedCheckBox}">
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Margin" Value="0"/>
-    </Style>
 </ResourceDictionary>

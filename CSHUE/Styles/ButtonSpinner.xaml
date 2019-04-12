@@ -5,6 +5,7 @@
 
     <Style x:Key="Windows10ButtonSpinnerRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -14,7 +15,9 @@
                         <Path Name="Path"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
-                              Fill="{DynamicResource SystemBaseHighColorBrush}"
+                              SnapsToDevicePixels="False"
+                              StrokeThickness="0.8"
+                              Stroke="{DynamicResource SystemBaseHighColorBrush}"
                               Data="{Binding Path=Content,RelativeSource={RelativeSource TemplatedParent}}" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -23,7 +26,7 @@
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseMediumColorBrush}" />
-                            <Setter TargetName="Path" Property="Fill" Value="{DynamicResource SystemAltHighColorBrush}" />
+                            <Setter TargetName="Path" Property="Stroke" Value="{DynamicResource SystemAltHighColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -74,7 +77,7 @@
                                               Background="{DynamicResource SystemBaseLowColorBrush}"
                                               BorderThickness="0"
                                               IsTabStop="{TemplateBinding IsTabStop}"
-                                              Content="M 0 4 L 8 4 L 4 0 Z">
+                                              Content="M 0 4 L 4 0 M 4 0 L 8 4">
                                 </RepeatButton>
 
                                 <RepeatButton x:Name="PART_DecreaseButton"
@@ -83,7 +86,7 @@
                                               Background="{DynamicResource SystemBaseLowColorBrush}"
                                               BorderThickness="0"
                                               IsTabStop="{TemplateBinding IsTabStop}"
-                                              Content="M 0 0 L 4 4 L 8 0 Z" >
+                                              Content="M 0 0 L 4 4 M 4 4 L 8 0" >
                                 </RepeatButton>
 
                             </Grid>

@@ -31,8 +31,7 @@ namespace CSHUE.Views
             InitializeComponent();
             DataContext = _viewModel;
             SystemEvents.UserPreferenceChanged += PreferenceChangedHandler;
-            PreferenceChangedHandler(new object(),
-                new UserPreferenceChangedEventArgs(new UserPreferenceCategory()));
+            PreferenceChangedHandler(new object(), new UserPreferenceChangedEventArgs(new UserPreferenceCategory()));
             Home.MouseLeave += Control_MouseLeave;
             Config.MouseLeave += Control_MouseLeave;
             Donate.MouseLeave += Control_MouseLeave;
@@ -47,13 +46,13 @@ namespace CSHUE.Views
             Page.Navigated += Page_Navigated;
         }
 
-        private void Window_SourceInitialized(object sender,
-            EventArgs e)
+        private void Window_SourceInitialized(object sender, EventArgs e)
         {
             var mWindowHandle = new WindowInteropHelper(this).Handle;
             HwndSource.FromHwnd(mWindowHandle)
                 ?.AddHook(WindowProc);
             _viewModel.CreateInstances();
+            _viewModel.Navigate(Page, "Home");
             _viewModel.ConfigViewModel.CheckConfigFile();
         }
 
@@ -70,21 +69,13 @@ namespace CSHUE.Views
 
         private void WmGetMinMaxInfo(IntPtr lParam)
         {
-            MaxHeight = Screen.FromHandle(new WindowInteropHelper(Window).Handle)
-                .WorkingArea.Height;
+            MaxHeight = Screen.FromHandle(new WindowInteropHelper(Window).Handle).WorkingArea.Height;
             GetCursorPos(out var lMousePosition);
-            var lPrimaryScreen = MonitorFromPoint(new Point(0,
-                    0),
-                MonitorOptions.MonitorDefaulttoprimary);
+            var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
             var lPrimaryScreenInfo = new Monitorinfo();
-            if (GetMonitorInfo(lPrimaryScreen,
-                    lPrimaryScreenInfo) ==
-                false)
-                return;
-            var lCurrentScreen = MonitorFromPoint(lMousePosition,
-                MonitorOptions.MonitorDefaulttonearest);
-            var lMmi = (Minmaxinfo) Marshal.PtrToStructure(lParam,
-                typeof(Minmaxinfo));
+            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false) return;
+            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
+            var lMmi = (Minmaxinfo) Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
             if (lPrimaryScreen.Equals(lCurrentScreen))
             {
                 lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
@@ -100,19 +91,15 @@ namespace CSHUE.Views
                 lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcMonitor.Bottom - lPrimaryScreenInfo.rcMonitor.Top;
             }
 
-            Marshal.StructureToPtr(lMmi,
-                lParam,
-                true);
+            Marshal.StructureToPtr(lMmi, lParam, true);
         }
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool GetCursorPos(out Point lpPoint);
 
-        [DllImport("user32.dll",
-            SetLastError = true)]
-        private static extern IntPtr MonitorFromPoint(Point pt,
-            MonitorOptions dwFlags);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr MonitorFromPoint(Point pt, MonitorOptions dwFlags);
 
         private enum MonitorOptions : uint
         {
@@ -122,8 +109,7 @@ namespace CSHUE.Views
         }
 
         [DllImport("user32.dll")]
-        private static extern bool GetMonitorInfo(IntPtr hMonitor,
-            Monitorinfo lpmi);
+        private static extern bool GetMonitorInfo(IntPtr hMonitor, Monitorinfo lpmi);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Point
@@ -131,8 +117,7 @@ namespace CSHUE.Views
             public int X;
             public int Y;
 
-            public Point(int x,
-                int y)
+            public Point(int x, int y)
             {
                 X = x;
                 Y = y;
@@ -149,8 +134,7 @@ namespace CSHUE.Views
             private readonly Point ptMaxTrackSize;
         }
 
-        [StructLayout(LayoutKind.Sequential,
-            CharSet = CharSet.Auto)]
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         private class Monitorinfo
         {
             // ReSharper disable once UnusedMember.Local
@@ -166,26 +150,21 @@ namespace CSHUE.Views
         [StructLayout(LayoutKind.Sequential)]
         public struct Rect
         {
-            public int Left,
-                Top,
-                Right,
-                Bottom;
+            public int Left, Top, Right, Bottom;
         }
 
         private bool _buttonClickable;
         private bool? _isModeDark;
         private bool? _isTransparencyTrue;
 
-        private void PreferenceChangedHandler(object sender,
-            UserPreferenceChangedEventArgs e)
+        private void PreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
         {
             try
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(
                     "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
                 {
-                    if (key == null)
-                        return;
+                    if (key == null) return;
                     var changeMenuColor = false;
                     if (key.GetValue("AppsUseLightTheme") != null)
                     {
@@ -204,22 +183,14 @@ namespace CSHUE.Views
                         _isModeDark = darkMode;
                     }
 
-                    if (key.GetValue("EnableTransparency") == null)
-                        return;
+                    if (key.GetValue("EnableTransparency") == null) return;
                     var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
                     if (_isTransparencyTrue != true && transparency)
-                        Menus.SetResourceReference(BackgroundProperty,
-                            "SystemAltMediumColorBrush");
+                        Menus.SetResourceReference(BackgroundProperty, "SystemAltMediumColorBrush");
                     else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
                         Menus.Background = new SolidColorBrush(_isModeDark == true
-                            ? Color.FromArgb(255,
-                                31,
-                                31,
-                                31)
-                            : Color.FromArgb(255,
-                                230,
-                                230,
-                                230));
+                            ? Color.FromArgb(255, 31, 31, 31)
+                            : Color.FromArgb(255, 230, 230, 230));
                     _isTransparencyTrue = transparency;
                 }
             }
@@ -229,131 +200,91 @@ namespace CSHUE.Views
             }
         }
 
-        private void Window_Deactivated(object sender,
-            EventArgs e)
+        private void Window_Deactivated(object sender, EventArgs e)
         {
-            BorderBrush = new SolidColorBrush(Color.FromArgb(64,
-                102,
-                102,
-                102));
+            BorderBrush = new SolidColorBrush(Color.FromArgb(64, 102, 102, 102));
         }
 
-        private void Window_Activated(object sender,
-            EventArgs e)
+        private void Window_Activated(object sender, EventArgs e)
         {
             using (var key = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\DWM"))
             {
-                if (key == null)
-                    return;
+                if (key == null) return;
                 var o = key.GetValue("ColorPrevalence");
                 if (o != null && Convert.ToBoolean(o))
                     BorderBrush = AccentColors.ImmersiveSystemAccentBrush;
                 else
-                    BorderBrush = new SolidColorBrush(Color.FromArgb(255,
-                        102,
-                        102,
-                        102));
+                    BorderBrush = new SolidColorBrush(Color.FromArgb(255, 102, 102, 102));
             }
         }
 
-        private void Control_MouseLeave(object sender,
-            MouseEventArgs e)
+        private void Control_MouseLeave(object sender, MouseEventArgs e)
         {
             ((Grid) sender).ClearValue(BackgroundProperty);
             _buttonClickable = false;
         }
 
-        private void Page_Navigated(object sender,
-            NavigationEventArgs e)
+        private void Page_Navigated(object sender, NavigationEventArgs e)
         {
             Page.NavigationService.RemoveBackEntry();
         }
 
-        private void Control_MouseLeftButtonDown(object sender,
-            MouseButtonEventArgs e)
+        private void Control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ((Grid) sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
-                ? Color.FromArgb(102,
-                    255,
-                    255,
-                    255)
-                : Color.FromArgb(102,
-                    0,
-                    0,
-                    0));
+                ? Color.FromArgb(102, 255, 255, 255)
+                : Color.FromArgb(102, 0, 0, 0));
             _buttonClickable = true;
         }
 
-        private void Control_MouseLeftButtonUp(object sender,
-            MouseButtonEventArgs e)
+        private void Control_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!_buttonClickable)
-                return;
+            if (!_buttonClickable) return;
             ((Grid) sender).ClearValue(BackgroundProperty);
-            _viewModel.Navigate(Page,
-                sender);
+            _viewModel.Navigate(Page, sender);
             foreach (var f in Menus.Children.OfType<StackPanel>())
-            foreach (var g in f.Children.OfType<Grid>())
-            foreach (var h in g.Children.OfType<StackPanel>())
-            foreach (var i in h.Children.OfType<Grid>())
-                if (i.Name == ((Grid) sender).Name + "Indicator")
-                    i.Visibility = Visibility.Visible;
-                else if (i.Name.Contains("Indicator"))
-                    i.Visibility = Visibility.Hidden;
+                foreach (var g in f.Children.OfType<Grid>())
+                    foreach (var h in g.Children.OfType<StackPanel>())
+                        foreach (var i in h.Children.OfType<Grid>())
+                            if (i.Name == ((Grid) sender).Name + "Indicator")
+                                i.Visibility = Visibility.Visible;
+                            else if (i.Name.Contains("Indicator"))
+                                i.Visibility = Visibility.Hidden;
         }
 
-        private void TopControls_MouseLeftButtonDown(object sender,
-            MouseButtonEventArgs e)
+        private void TopControls_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _buttonClickable = true;
             if (((Grid) sender).Name == "CloseButton")
             {
-                ((Grid) sender).Background = new SolidColorBrush(Color.FromArgb(255,
-                    241,
-                    112,
-                    123));
-                if (VisualTreeHelper.GetChild((Grid) sender,
-                    0) is PackIcon child)
+                ((Grid) sender).Background = new SolidColorBrush(Color.FromArgb(255, 241, 112, 123));
+                if (VisualTreeHelper.GetChild((Grid) sender, 0) is PackIcon child)
                     child.Foreground = new SolidColorBrush(Colors.Black);
             }
             else
-            {
                 ((Grid) sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentDark1);
-            }
         }
 
-        private void TopControls_MouseLeftButtonUp(object sender,
-            MouseButtonEventArgs e)
+        private void TopControls_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (!_buttonClickable)
                 return;
-            GetType()
-                .GetMethod(((Grid) sender).Name + "_Click")
-                ?.Invoke(this,
-                    null);
+            GetType() .GetMethod(((Grid) sender).Name + "_Click") ?.Invoke(this, null);
         }
 
-        private static void TopControls_MouseEnter(object sender,
-            MouseEventArgs e)
+        private static void TopControls_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (((Grid) sender).Name == "CloseButton")
-                ((Grid) sender).Background = new SolidColorBrush(Color.FromArgb(255,
-                    232,
-                    17,
-                    35));
-            else
-                ((Grid) sender).Background = AccentColors.ImmersiveSystemAccentBrush;
+            ((Grid) sender).Background = ((Grid) sender).Name == "CloseButton"
+                ? new SolidColorBrush(Color.FromArgb(255, 232, 17, 35))
+                : AccentColors.ImmersiveSystemAccentBrush;
         }
 
-        private void TopControls_MouseLeave(object sender,
-            MouseEventArgs e)
+        private void TopControls_MouseLeave(object sender, MouseEventArgs e)
         {
             _buttonClickable = false;
             ((Grid) sender).Background = new SolidColorBrush(Colors.Transparent);
-            if (((Grid) sender).Name != "CloseButton")
-                return;
-            if (VisualTreeHelper.GetChild((Grid) sender,
-                0) is PackIcon child)
+            if (((Grid) sender).Name != "CloseButton") return;
+            if (VisualTreeHelper.GetChild((Grid) sender, 0) is PackIcon child)
                 child.ClearValue(ForegroundProperty);
         }
 
@@ -373,9 +304,7 @@ namespace CSHUE.Views
 
         protected override void OnStateChanged(EventArgs e)
         {
-            BorderThickness = new Thickness(WindowState == WindowState.Maximized
-                ? 0
-                : 1);
+            BorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 1);
             WindowChrome.SetWindowChrome(Window,
                 new WindowChrome
                 {

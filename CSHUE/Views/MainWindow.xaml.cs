@@ -143,7 +143,9 @@ namespace CSHUE.Views
             public readonly Rect rcWork = new Rect();
             // ReSharper disable once UnusedMember.Global
 #pragma warning disable 414
+#pragma warning disable 169
             private readonly int dwFlags = 0;
+#pragma warning restore 169
 #pragma warning restore 414
         }
 

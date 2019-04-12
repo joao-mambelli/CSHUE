@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -149,9 +150,19 @@
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <TextBlock Text="Duration:" />
-                                <TextBox Width="20" Margin="5,0,0,0" MaxLength="2"
-                                         PreviewTextInput="AcceptsNumber" 
-                                         TextAlignment="Center"/>
+                                <xctk:ByteUpDown Value="1"
+                                                 Background="{DynamicResource SystemAltLowColorBrush}"
+                                                 Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                                 ButtonSpinnerLocation="Left"
+                                                 BorderThickness="0"
+                                                 Width="39"
+                                                 Margin="5,0,0,0"
+                                                 TextAlignment="Center"
+                                                 Minimum="1"
+                                                 Maximum="60"
+                                                 DefaultValue="1"
+                                                 DisplayDefaultValueOnEmptyText="True">
+                                </xctk:ByteUpDown>
                                 <TextBlock Text="s" Margin="3,0,0,0"/>
                             </StackPanel>
                             <TextBlock Margin="0,15,0,2" Text="Player Gets Killed" />
@@ -166,9 +177,18 @@
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <TextBlock Text="Duration:" />
-                                <TextBox Width="20" Margin="5,0,0,0" MaxLength="2"
-                                         PreviewTextInput="AcceptsNumber" 
-                                         TextAlignment="Center"/>
+                                <xctk:ByteUpDown Value="1"
+                                                 Background="{DynamicResource SystemAltLowColorBrush}"
+                                                 Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                                 ButtonSpinnerLocation="Left"
+                                                 BorderThickness="0"
+                                                 Width="39"
+                                                 Margin="5,0,0,0"
+                                                 TextAlignment="Center"
+                                                 Minimum="1"
+                                                 Maximum="60"
+                                                 DefaultValue="1"
+                                                 DisplayDefaultValueOnEmptyText="True" />
                                 <TextBlock Text="s" Margin="3,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
@@ -215,9 +235,18 @@
                 </CheckBox>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,9">
                     <TextBlock Text="CS:GO process checking period:" />
-                    <TextBox Width="20" Margin="5,0,0,0" MaxLength="2"
-                             PreviewTextInput="AcceptsNumber" 
-                             TextAlignment="Center"/>
+                    <xctk:ByteUpDown Value="1"
+                                     Background="{DynamicResource SystemBaseLowColorBrush}"
+                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                     ButtonSpinnerLocation="Left"
+                                     BorderThickness="0"
+                                     Width="39"
+                                     Margin="5,0,0,0"
+                                     TextAlignment="Center"
+                                     Minimum="1"
+                                     Maximum="60"
+                                     DefaultValue="1"
+                                     DisplayDefaultValueOnEmptyText="True" />
                     <TextBlock Text="s" Margin="3,0,0,0"/>
                 </StackPanel>
                 <CheckBox Margin="0,15,0,9"

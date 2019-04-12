@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/ScrollViewer.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/TabControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/NumericUpDown.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/ButtonSpinner.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

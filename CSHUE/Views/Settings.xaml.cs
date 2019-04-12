@@ -1,9 +1,5 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Text.RegularExpressions;
 using System.Windows.Input;
-using System.Windows.Media;
 using CSHUE.ViewModels;
 
 namespace CSHUE.Views
@@ -11,17 +7,19 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class Settings : Page
+    // ReSharper disable once InheritdocConsiderUsage
+    public partial class Settings
     {
-        public SettingsViewModel viewModel = null;
+        public SettingsViewModel ViewModel = null;
 
         public Settings()
         {
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = ViewModel;
         }
 
-        private void AcceptsNumber(object sender, TextCompositionEventArgs e)
+        private void AcceptsNumber(object sender,
+            TextCompositionEventArgs e)
         {
             var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);

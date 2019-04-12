@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Controls;
 using System.Diagnostics;
 using CSHUE.ViewModels;
 
@@ -8,32 +7,40 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for Donate.xaml
     /// </summary>
-    public partial class Donate : Page
+    // ReSharper disable once InheritdocConsiderUsage
+    public partial class Donate
     {
-        public DonateViewModel viewModel = null;
+        public DonateViewModel ViewModel = null;
 
         public Donate()
         {
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = ViewModel;
         }
 
-        private void Donate_Click(object sender, EventArgs e)
+        private void Donate_Click(object sender,
+            EventArgs e)
         {
-            string url = "";
+            var url = "";
 
-            string business = "joao7yt@gmail.com";  // your paypal email
-            string description = "CSHUE%20Donation";            // '%20' represents a space. remember HTML!
-            string country = "US";                  // AU, US, etc.
-            string currency = "USD";                 // AUD, USD, etc.
+            const string business = "joao7yt@gmail.com";
+            const string description = "CSHUE%20Donation";
+            const string country = "US";
+            const string currency = "USD";
 
             url += "https://www.paypal.com/cgi-bin/webscr" +
-                "?cmd=" + "_donations" +
-                "&business=" + business +
-                "&lc=" + country +
-                "&item_name=" + description +
-                "&currency_code=" + currency +
-                "&bn=" + "PP%2dDonationsBF";
+                   "?cmd=" +
+                   "_donations" +
+                   "&business=" +
+                   business +
+                   "&lc=" +
+                   country +
+                   "&item_name=" +
+                   description +
+                   "&currency_code=" +
+                   currency +
+                   "&bn=" +
+                   "PP%2dDonationsBF";
 
             Process.Start(url);
         }

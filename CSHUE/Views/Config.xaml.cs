@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Controls;
 using CSHUE.ViewModels;
 
 namespace CSHUE.Views
@@ -7,19 +6,21 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for Config.xaml
     /// </summary>
-    public partial class Config : Page
+    // ReSharper disable once InheritdocConsiderUsage
+    public partial class Config
     {
-        public ConfigViewModel viewModel = null;
+        public ConfigViewModel ViewModel = null;
 
         public Config()
         {
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = ViewModel;
         }
 
-        private void Config_Click(object sender, EventArgs e)
+        private void Config_Click(object sender,
+            EventArgs e)
         {
-            viewModel.CreateConfigFile();
+            ViewModel.CreateConfigFile();
         }
     }
 }

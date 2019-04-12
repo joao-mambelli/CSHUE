@@ -94,9 +94,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AttachedBehaviors\ScrollAnimationBehavior.cs" />
-    <Compile Include="Styles\TextBox.xaml.cs">
-      <DependentUpon>TextBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />

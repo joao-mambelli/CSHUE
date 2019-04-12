@@ -7,15 +7,19 @@ namespace CSHUE.ViewModels
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this,
+                new PropertyChangedEventArgs(propertyName));
         }
 
         private Visibility _warningVisibility = Visibility.Visible;
+
         public Visibility WarningVisibility
         {
-            get => _warningVisibility;
+            get =>
+                _warningVisibility;
             set
             {
                 _warningVisibility = value;
@@ -24,9 +28,11 @@ namespace CSHUE.ViewModels
         }
 
         private string _warningText;
+
         public string WarningText
         {
-            get => _warningText;
+            get =>
+                _warningText;
             set
             {
                 _warningText = value;

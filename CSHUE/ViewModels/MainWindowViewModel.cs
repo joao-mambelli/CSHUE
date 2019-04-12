@@ -1,45 +1,72 @@
-﻿using System.Windows;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Controls;
-using System;
+﻿using System.Windows.Controls;
 using CSHUE.Views;
 
 namespace CSHUE.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public ConfigViewModel configViewModel = null;
-        public DonateViewModel donateViewModel = null;
-        public AboutViewModel aboutViewModel = null;
-        public HomeViewModel homeViewModel = null;
-        public SettingsViewModel settingsViewModel = null;
+        public ConfigViewModel ConfigViewModel;
+        public DonateViewModel DonateViewModel;
+        public AboutViewModel AboutViewModel;
+        public HomeViewModel HomeViewModel;
+        public SettingsViewModel SettingsViewModel;
 
-        public void Navigate(Frame page, object sender)
+        public void Navigate(Frame page,
+            object sender)
         {
             if (((Grid) sender).Name == "Config")
-                page.Navigate(new Config() { viewModel = configViewModel });
+                page.Navigate(new Config
+                {
+                    ViewModel = ConfigViewModel
+                });
 
-            if (((Grid)sender).Name == "Donate")
-                page.Navigate(new Donate() { viewModel = donateViewModel });
+            if (((Grid) sender).Name == "Donate")
+                page.Navigate(new Donate
+                {
+                    ViewModel = DonateViewModel
+                });
 
-            if (((Grid)sender).Name == "Home")
-                page.Navigate(new Home() { viewModel = homeViewModel });
+            if (((Grid) sender).Name == "Home")
+                page.Navigate(new Home
+                {
+                    ViewModel = HomeViewModel
+                });
 
-            if (((Grid)sender).Name == "Settings")
-                page.Navigate(new Settings() { viewModel = settingsViewModel });
+            if (((Grid) sender).Name == "Settings")
+                page.Navigate(new Settings
+                {
+                    ViewModel = SettingsViewModel
+                });
 
-            if (((Grid)sender).Name == "About")
-                page.Navigate(new About() { viewModel = aboutViewModel });
+            if (((Grid) sender).Name == "About")
+                page.Navigate(new About
+                {
+                    ViewModel = AboutViewModel
+                });
         }
 
         public void CreateInstances()
         {
-            configViewModel = new ConfigViewModel() { mainWindowViewModel = this };
-            donateViewModel = new DonateViewModel() { mainWindowViewModel = this };
-            homeViewModel = new HomeViewModel() { mainWindowViewModel = this };
-            settingsViewModel = new SettingsViewModel() { mainWindowViewModel = this };
-            aboutViewModel = new AboutViewModel() { mainWindowViewModel = this };
+            ConfigViewModel = new ConfigViewModel
+            {
+                MainWindowViewModel = this
+            };
+            DonateViewModel = new DonateViewModel
+            {
+                MainWindowViewModel = this
+            };
+            HomeViewModel = new HomeViewModel
+            {
+                MainWindowViewModel = this
+            };
+            SettingsViewModel = new SettingsViewModel
+            {
+                MainWindowViewModel = this
+            };
+            AboutViewModel = new AboutViewModel
+            {
+                MainWindowViewModel = this
+            };
         }
     }
 }

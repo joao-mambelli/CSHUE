@@ -18,18 +18,21 @@ namespace CSHUE.AttachedBehaviors
 
         public static DependencyProperty VerticalOffsetProperty =
             DependencyProperty.RegisterAttached("VerticalOffset",
-                                                typeof(double),
-                                                typeof(ScrollAnimationBehavior),
-                                                new UIPropertyMetadata(0.0, OnVerticalOffsetChanged));
+                typeof(double),
+                typeof(ScrollAnimationBehavior),
+                new UIPropertyMetadata(0.0,
+                    OnVerticalOffsetChanged));
 
-        public static void SetVerticalOffset(FrameworkElement target, double value)
+        public static void SetVerticalOffset(FrameworkElement target,
+            double value)
         {
-            target.SetValue(VerticalOffsetProperty, value);
+            target.SetValue(VerticalOffsetProperty,
+                value);
         }
 
         public static double GetVerticalOffset(FrameworkElement target)
         {
-            return (double)target.GetValue(VerticalOffsetProperty);
+            return (double) target.GetValue(VerticalOffsetProperty);
         }
 
         #endregion
@@ -38,18 +41,24 @@ namespace CSHUE.AttachedBehaviors
 
         public static DependencyProperty TimeDurationProperty =
             DependencyProperty.RegisterAttached("TimeDuration",
-                                                typeof(TimeSpan),
-                                                typeof(ScrollAnimationBehavior),
-                                                new PropertyMetadata(new TimeSpan(0, 0, 0, 0, 0)));
+                typeof(TimeSpan),
+                typeof(ScrollAnimationBehavior),
+                new PropertyMetadata(new TimeSpan(0,
+                    0,
+                    0,
+                    0,
+                    0)));
 
-        public static void SetTimeDuration(FrameworkElement target, TimeSpan value)
+        public static void SetTimeDuration(FrameworkElement target,
+            TimeSpan value)
         {
-            target.SetValue(TimeDurationProperty, value);
+            target.SetValue(TimeDurationProperty,
+                value);
         }
 
         public static TimeSpan GetTimeDuration(FrameworkElement target)
         {
-            return (TimeSpan)target.GetValue(TimeDurationProperty);
+            return (TimeSpan) target.GetValue(TimeDurationProperty);
         }
 
         #endregion
@@ -58,30 +67,31 @@ namespace CSHUE.AttachedBehaviors
 
         public static DependencyProperty PointsToScrollProperty =
             DependencyProperty.RegisterAttached("PointsToScroll",
-                                                typeof(double),
-                                                typeof(ScrollAnimationBehavior),
-                                                new PropertyMetadata(0.0));
+                typeof(double),
+                typeof(ScrollAnimationBehavior),
+                new PropertyMetadata(0.0));
 
-        public static void SetPointsToScroll(FrameworkElement target, double value)
+        public static void SetPointsToScroll(FrameworkElement target,
+            double value)
         {
-            target.SetValue(PointsToScrollProperty, value);
+            target.SetValue(PointsToScrollProperty,
+                value);
         }
 
         public static double GetPointsToScroll(FrameworkElement target)
         {
-            return (double)target.GetValue(PointsToScrollProperty);
+            return (double) target.GetValue(PointsToScrollProperty);
         }
 
         #endregion
 
         #region OnVerticalOffset Changed
 
-        private static void OnVerticalOffsetChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        private static void OnVerticalOffsetChanged(DependencyObject target,
+            DependencyPropertyChangedEventArgs e)
         {
             if (target is ScrollViewer scrollViewer)
-            {
-                scrollViewer.ScrollToVerticalOffset((double)e.NewValue);
-            }
+                scrollViewer.ScrollToVerticalOffset((double) e.NewValue);
         }
 
         #endregion
@@ -89,33 +99,37 @@ namespace CSHUE.AttachedBehaviors
         #region IsEnabled Property
 
         public static DependencyProperty IsEnabledProperty =
-                                                DependencyProperty.RegisterAttached("IsEnabled",
-                                                typeof(bool),
-                                                typeof(ScrollAnimationBehavior),
-                                                new UIPropertyMetadata(false, OnIsEnabledChanged));
+            DependencyProperty.RegisterAttached("IsEnabled",
+                typeof(bool),
+                typeof(ScrollAnimationBehavior),
+                new UIPropertyMetadata(false,
+                    OnIsEnabledChanged));
 
-        public static void SetIsEnabled(FrameworkElement target, bool value)
+        public static void SetIsEnabled(FrameworkElement target,
+            bool value)
         {
-            target.SetValue(IsEnabledProperty, value);
+            target.SetValue(IsEnabledProperty,
+                value);
         }
 
         public static bool GetIsEnabled(FrameworkElement target)
         {
-            return (bool)target.GetValue(IsEnabledProperty);
+            return (bool) target.GetValue(IsEnabledProperty);
         }
 
         #endregion
 
         #region OnIsEnabledChanged Changed
 
-        private static void OnIsEnabledChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnIsEnabledChanged(DependencyObject sender,
+            DependencyPropertyChangedEventArgs e)
         {
             var target = sender;
 
             if (target != null && target is ScrollViewer)
             {
-                ScrollViewer scroller = target as ScrollViewer;
-                scroller.Loaded += new RoutedEventHandler(ScrollerLoaded);
+                var scroller = target as ScrollViewer;
+                scroller.Loaded += ScrollerLoaded;
             }
 
             /*if (target != null && target is ListBox)
@@ -129,29 +143,34 @@ namespace CSHUE.AttachedBehaviors
 
         #region AnimateScroll Helper
 
-        private static double CurrentToValue = 0;
+        private static double _currentToValue;
 
-        private static Storyboard storyboard;
+        private static Storyboard _storyboard;
 
-        static void AnimateScroll(ScrollViewer scrollViewer)
+        private static void AnimateScroll(ScrollViewer scrollViewer)
         {
-            DoubleAnimationUsingKeyFrames verticalAnimation = new DoubleAnimationUsingKeyFrames
+            var verticalAnimation = new DoubleAnimationUsingKeyFrames
             {
                 Duration = new Duration(GetTimeDuration(scrollViewer))
             };
 
-            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(scrollViewer.VerticalOffset, KeyTime.FromPercent(0)));
-            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(CurrentToValue, KeyTime.FromPercent(1.0), new SineEase()
-            {
-                EasingMode = EasingMode.EaseOut
-            }));
+            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(scrollViewer.VerticalOffset,
+                KeyTime.FromPercent(0)));
+            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(_currentToValue,
+                KeyTime.FromPercent(1.0),
+                new SineEase
+                {
+                    EasingMode = EasingMode.EaseOut
+                }));
 
-            storyboard = new Storyboard();
+            _storyboard = new Storyboard();
 
-            storyboard.Children.Add(verticalAnimation);
-            Storyboard.SetTarget(verticalAnimation, scrollViewer);
-            Storyboard.SetTargetProperty(verticalAnimation, new PropertyPath(VerticalOffsetProperty));
-            storyboard.Begin();
+            _storyboard.Children.Add(verticalAnimation);
+            Storyboard.SetTarget(verticalAnimation,
+                scrollViewer);
+            Storyboard.SetTargetProperty(verticalAnimation,
+                new PropertyPath(VerticalOffsetProperty));
+            _storyboard.Begin();
         }
 
         #endregion
@@ -182,17 +201,18 @@ namespace CSHUE.AttachedBehaviors
 
         private static void SetEventHandlersForScrollViewer(ScrollViewer scroller)
         {
-            scroller.PreviewMouseWheel += new MouseWheelEventHandler(ScrollViewerPreviewMouseWheel);
-            scroller.PreviewKeyDown += new KeyEventHandler(ScrollViewerPreviewKeyDown);
+            scroller.PreviewMouseWheel += ScrollViewerPreviewMouseWheel;
+            scroller.PreviewKeyDown += ScrollViewerPreviewKeyDown;
         }
 
         #endregion
 
         #region scrollerLoaded Event Handler
 
-        private static void ScrollerLoaded(object sender, RoutedEventArgs e)
+        private static void ScrollerLoaded(object sender,
+            RoutedEventArgs e)
         {
-            ScrollViewer scroller = sender as ScrollViewer;
+            var scroller = sender as ScrollViewer;
 
             SetEventHandlersForScrollViewer(scroller);
         }
@@ -220,27 +240,26 @@ namespace CSHUE.AttachedBehaviors
 
         #region ScrollViewerPreviewMouseWheel Event Handler
 
-        private static void ScrollViewerPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private static void ScrollViewerPreviewMouseWheel(object sender,
+            MouseWheelEventArgs e)
         {
-            var TempToValue = CurrentToValue;
+            var tempToValue = _currentToValue;
 
-            double mouseWheelChange = (double)e.Delta;
-            ScrollViewer scroller = (ScrollViewer)sender;
+            double mouseWheelChange = e.Delta;
+            var scroller = (ScrollViewer) sender;
             var offset = mouseWheelChange * 2 / 3;
 
-            if (storyboard == null || storyboard.GetCurrentState() == ClockState.Filling)
-                CurrentToValue = scroller.VerticalOffset;
+            if (_storyboard == null || _storyboard.GetCurrentState() == ClockState.Filling)
+                _currentToValue = scroller.VerticalOffset;
 
-            CurrentToValue = offset > CurrentToValue ?
-                0 :
-                (CurrentToValue - offset > scroller.ScrollableHeight ?
-                    scroller.ScrollableHeight :
-                    CurrentToValue - offset);
+            _currentToValue = offset > _currentToValue
+                ? 0
+                : _currentToValue - offset > scroller.ScrollableHeight
+                    ? scroller.ScrollableHeight
+                    : _currentToValue - offset;
 
-            if (CurrentToValue != scroller.VerticalOffset && CurrentToValue != TempToValue)
-            {
+            if (Math.Abs(_currentToValue - scroller.VerticalOffset) > 0 && Math.Abs(_currentToValue - tempToValue) > 0)
                 AnimateScroll(scroller);
-            }
 
             e.Handled = true;
         }
@@ -249,44 +268,43 @@ namespace CSHUE.AttachedBehaviors
 
         #region ScrollViewerPreviewKeyDown Handler
 
-        private static void ScrollViewerPreviewKeyDown(object sender, KeyEventArgs e)
+        private static void ScrollViewerPreviewKeyDown(object sender,
+            KeyEventArgs e)
         {
-            ScrollViewer scroller = (ScrollViewer)sender;
+            var scroller = (ScrollViewer) sender;
             var offset = GetPointsToScroll(scroller);
 
-            Key keyPressed = e.Key;
-            bool isKeyHandled = false;
+            var keyPressed = e.Key;
+            var isKeyHandled = false;
 
-            if (storyboard == null || storyboard.GetCurrentState() == ClockState.Filling)
-                CurrentToValue = scroller.VerticalOffset;
+            if (_storyboard == null || _storyboard.GetCurrentState() == ClockState.Filling)
+                _currentToValue = scroller.VerticalOffset;
 
             if (keyPressed == Key.Down || keyPressed == Key.PageDown)
             {
                 offset = offset * -1;
 
-                CurrentToValue = offset > CurrentToValue ?
-                    0 :
-                    (CurrentToValue - offset > scroller.ScrollableHeight ?
-                        scroller.ScrollableHeight :
-                        CurrentToValue - offset);
+                _currentToValue = offset > _currentToValue
+                    ? 0
+                    : _currentToValue - offset > scroller.ScrollableHeight
+                        ? scroller.ScrollableHeight
+                        : _currentToValue - offset;
 
                 isKeyHandled = true;
             }
-            else if(keyPressed == Key.Up || keyPressed == Key.PageUp)
+            else if (keyPressed == Key.Up || keyPressed == Key.PageUp)
             {
-                CurrentToValue = offset > CurrentToValue ?
-                    0 :
-                    (CurrentToValue - offset > scroller.ScrollableHeight ?
-                        scroller.ScrollableHeight :
-                        CurrentToValue - offset);
+                _currentToValue = offset > _currentToValue
+                    ? 0
+                    : _currentToValue - offset > scroller.ScrollableHeight
+                        ? scroller.ScrollableHeight
+                        : _currentToValue - offset;
 
                 isKeyHandled = true;
             }
 
-            if (CurrentToValue != scroller.VerticalOffset)
-            {
+            if (Math.Abs(_currentToValue - scroller.VerticalOffset) > 0)
                 AnimateScroll(scroller);
-            }
 
             e.Handled = isKeyHandled;
         }

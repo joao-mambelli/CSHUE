@@ -11,38 +11,78 @@ namespace CSHUE.ViewModels
         public HomeViewModel HomeViewModel;
         public SettingsViewModel SettingsViewModel;
 
-        public void Navigate(Frame page,
-            object sender)
+        public void Navigate(Frame page, object sender)
         {
-            if (((Grid) sender).Name == "Config")
-                page.Navigate(new Config
-                {
-                    ViewModel = ConfigViewModel
-                });
+            switch (((Grid)sender).Name)
+            {
+                case "Config":
+                    page.Navigate(new Config
+                    {
+                        ViewModel = ConfigViewModel
+                    });
+                    break;
+                case "Donate":
+                    page.Navigate(new Donate
+                    {
+                        ViewModel = DonateViewModel
+                    });
+                    break;
+                case "Settings":
+                    page.Navigate(new Settings
+                    {
+                        ViewModel = SettingsViewModel
+                    });
+                    break;
+                case "About":
+                    page.Navigate(new About
+                    {
+                        ViewModel = AboutViewModel
+                    });
+                    break;
+                default:
+                    page.Navigate(new Home
+                    {
+                        ViewModel = HomeViewModel
+                    });
+                    break;
+            }
+        }
 
-            if (((Grid) sender).Name == "Donate")
-                page.Navigate(new Donate
-                {
-                    ViewModel = DonateViewModel
-                });
-
-            if (((Grid) sender).Name == "Home")
-                page.Navigate(new Home
-                {
-                    ViewModel = HomeViewModel
-                });
-
-            if (((Grid) sender).Name == "Settings")
-                page.Navigate(new Settings
-                {
-                    ViewModel = SettingsViewModel
-                });
-
-            if (((Grid) sender).Name == "About")
-                page.Navigate(new About
-                {
-                    ViewModel = AboutViewModel
-                });
+        public void Navigate(Frame page, string pageName)
+        {
+            switch (pageName)
+            {
+                case "Config":
+                    page.Navigate(new Config
+                    {
+                        ViewModel = ConfigViewModel
+                    });
+                    break;
+                case "Donate":
+                    page.Navigate(new Donate
+                    {
+                        ViewModel = DonateViewModel
+                    });
+                    break;
+                case "Settings":
+                    page.Navigate(new Settings
+                    {
+                        ViewModel = SettingsViewModel
+                    });
+                    break;
+                case "About":
+                    page.Navigate(new About
+                    {
+                        ViewModel = AboutViewModel
+                    });
+                    break;
+                default:
+                    page.Navigate(new Home
+                    {
+                        ViewModel = HomeViewModel
+                    });
+                    break;
+            }
         }
 
         public void CreateInstances()

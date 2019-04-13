@@ -25,16 +25,21 @@
                       attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
-            <StackPanel Margin="24,0,20,30">
-                <TextBlock Margin="0,20,0,2"
-                           TextWrapping="Wrap"
-                           TextAlignment="Justify"
-                           Text="&#x9;So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game's cfg folder, a gamestate_integration_cshue.cfg.&#xa;&#xa;&#x9;If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine. Doesn't matter where you installed it, my precious application will be able to find it MUAHAHA... Ahem... Here's the button:" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="500" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="24,0,20,30">
+                    <TextBlock Margin="0,20,0,2"
+                               TextWrapping="Wrap"
+                               TextAlignment="Justify"
+                               Text="&#x9;So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game's cfg folder, a gamestate_integration_cshue.cfg.&#xa;&#xa;&#x9;If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine. Doesn't matter where you installed it, my precious application will be able to find it MUAHAHA... Ahem... Here's the button:" />
 
-                <Button Margin="0,2,0,9" VerticalAlignment="Top" Height="31" Width="90"
-                        Style="{DynamicResource Windows10Button}"
-                        Content="Create .cfg" Click="Config_Click"/>
-            </StackPanel>
+                    <Button Margin="0,2,0,9" VerticalAlignment="Top" Height="31" Width="90"
+                            Style="{DynamicResource Windows10Button}"
+                            Content="Create .cfg" Click="Config_Click"/>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

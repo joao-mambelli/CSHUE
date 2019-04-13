@@ -26,259 +26,270 @@
                       attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
-            <StackPanel Margin="24,0,20,30">
-                <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
-                <TabControl Margin="0,2,0,9" Style="{DynamicResource Windows10TabControl}">
-                    <TabItem Style="{DynamicResource Windows10TabItem}"
-                             Header="Primary"
-                             Foreground="{DynamicResource SystemBaseHighColorBrush}">
-                        <StackPanel>
-                            <TextBlock Margin="0,15,0,2" Text="Main Menu" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="500" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="24,0,20,30">
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
 
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Blue" Offset="0" />
-                                        <GradientStop Color="Blue" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Terrorists Win" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Orange" Offset="0" />
-                                        <GradientStop Color="Orange" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Counter-Terrorists Win" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Blue" Offset="0" />
-                                        <GradientStop Color="Blue" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Round Starts" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Green" Offset="0" />
-                                        <GradientStop Color="Green" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Bomb Has Been Planted" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Red" Offset="0" />
-                                        <GradientStop Color="Red" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                        </StackPanel>
-                    </TabItem>
+                    <TabControl Margin="0,2,0,9"
+                                Style="{DynamicResource Windows10TabControl}">
+                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                                 Header="Primary"
+                                 Foreground="{DynamicResource SystemBaseHighColorBrush}">
+                            <StackPanel>
+                                <TextBlock Margin="0,15,0,2" Text="Main Menu" />
 
-                    <TabItem Style="{DynamicResource Windows10TabItem}"
-                             Header="Secondary"
-                             Foreground="{DynamicResource SystemBaseHighColorBrush}">
-                        <StackPanel>
-                            <TextBlock Margin="0,15,0,2" Text="Bomb Explodes" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Red" Offset="0" />
-                                        <GradientStop Color="Red" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Bomb Blink" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Red" Offset="0" />
-                                        <GradientStop Color="Red" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Freeze Time" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Green" Offset="0" />
-                                        <GradientStop Color="Green" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Margin="0,15,0,2" Text="Warmup" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Green" Offset="0" />
-                                        <GradientStop Color="Green" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                        </StackPanel>
-                    </TabItem>
-
-                    <TabItem Style="{DynamicResource Windows10TabItem}"
-                             Header="Tertiary"
-                             Foreground="{DynamicResource SystemBaseHighColorBrush}">
-                        <StackPanel>
-                            <TextBlock Margin="0,15,0,2" Text="Player Gets a Kill" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Green" Offset="0" />
-                                        <GradientStop Color="Green" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                <TextBlock Text="Duration:" />
-                                <xctk:ByteUpDown Value="1"
-                                                 Background="{DynamicResource SystemAltLowColorBrush}"
-                                                 Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                                 ButtonSpinnerLocation="Left"
-                                                 BorderThickness="0"
-                                                 Width="39"
-                                                 Margin="5,0,0,0"
-                                                 TextAlignment="Center"
-                                                 Minimum="1"
-                                                 Maximum="60"
-                                                 DefaultValue="1"
-                                                 DisplayDefaultValueOnEmptyText="True">
-                                </xctk:ByteUpDown>
-                                <TextBlock Text="s" Margin="3,0,0,0"/>
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Blue" Offset="0" />
+                                            <GradientStop Color="Blue" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Terrorists Win" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Orange" Offset="0" />
+                                            <GradientStop Color="Orange" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Counter-Terrorists Win" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Blue" Offset="0" />
+                                            <GradientStop Color="Blue" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Round Starts" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Green" Offset="0" />
+                                            <GradientStop Color="Green" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Bomb Has Been Planted" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Red" Offset="0" />
+                                            <GradientStop Color="Red" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
                             </StackPanel>
-                            <TextBlock Margin="0,15,0,2" Text="Player Gets Killed" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="Red" Offset="0" />
-                                        <GradientStop Color="Red" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                <TextBlock Text="Duration:" />
-                                <xctk:ByteUpDown Value="1"
-                                                 Background="{DynamicResource SystemAltLowColorBrush}"
-                                                 Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                                 ButtonSpinnerLocation="Left"
-                                                 BorderThickness="0"
-                                                 Width="39"
-                                                 Margin="5,0,0,0"
-                                                 TextAlignment="Center"
-                                                 Minimum="1"
-                                                 Maximum="60"
-                                                 DefaultValue="1"
-                                                 DisplayDefaultValueOnEmptyText="True" />
-                                <TextBlock Text="s" Margin="3,0,0,0"/>
+                        </TabItem>
+
+                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                                 Header="Secondary"
+                                 Foreground="{DynamicResource SystemBaseHighColorBrush}">
+                            <StackPanel>
+                                <TextBlock Margin="0,15,0,2" Text="Bomb Explodes" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Red" Offset="0" />
+                                            <GradientStop Color="Red" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Bomb Blink" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Red" Offset="0" />
+                                            <GradientStop Color="Red" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Freeze Time" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Green" Offset="0" />
+                                            <GradientStop Color="Green" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBlock Margin="0,15,0,2" Text="Warmup" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Green" Offset="0" />
+                                            <GradientStop Color="Green" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
                             </StackPanel>
-                        </StackPanel>
-                    </TabItem>
+                        </TabItem>
 
-                    <TabItem Style="{DynamicResource Windows10TabItem}"
-                             Header="Quarternary"
-                             Foreground="{DynamicResource SystemBaseHighColorBrush}">
-                        <StackPanel>
-                            <TextBlock Margin="0,15,0,2" Text="Player Gets Flashed" />
-                            <Button Height="40" HorizontalAlignment="Stretch"
-                                    Style="{DynamicResource Windows10Button}">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="White" Offset="0" />
-                                        <GradientStop Color="White" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                        </StackPanel>
-                    </TabItem>
-                </TabControl>
+                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                                 Header="Tertiary"
+                                 Foreground="{DynamicResource SystemBaseHighColorBrush}">
+                            <StackPanel>
+                                <TextBlock Margin="0,15,0,2" Text="Player Gets a Kill" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Green" Offset="0" />
+                                            <GradientStop Color="Green" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <TextBlock Text="Duration:" />
+                                    <xctk:ByteUpDown Value="1"
+                                                     Background="{DynamicResource SystemAltLowColorBrush}"
+                                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                                     ButtonSpinnerLocation="Left"
+                                                     BorderThickness="0"
+                                                     Width="39"
+                                                     Margin="5,0,0,0"
+                                                     TextAlignment="Center"
+                                                     Minimum="1"
+                                                     Maximum="60"
+                                                     DefaultValue="1"
+                                                     DisplayDefaultValueOnEmptyText="True">
+                                    </xctk:ByteUpDown>
+                                    <TextBlock Text="s" Margin="3,0,0,0"/>
+                                </StackPanel>
+                                <TextBlock Margin="0,15,0,2" Text="Player Gets Killed" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="Red" Offset="0" />
+                                            <GradientStop Color="Red" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <TextBlock Text="Duration:" />
+                                    <xctk:ByteUpDown Value="1"
+                                                     Background="{DynamicResource SystemAltLowColorBrush}"
+                                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                                     ButtonSpinnerLocation="Left"
+                                                     BorderThickness="0"
+                                                     Width="39"
+                                                     Margin="5,0,0,0"
+                                                     TextAlignment="Center"
+                                                     Minimum="1"
+                                                     Maximum="60"
+                                                     DefaultValue="1"
+                                                     DisplayDefaultValueOnEmptyText="True" />
+                                    <TextBlock Text="s" Margin="3,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
 
-                <TextBlock Margin="0,20,0,2" FontSize="20" Text="CSHUE" />
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Run CSHUE when my computer starts" />
-                </CheckBox>
-                <CheckBox Margin="30,7,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Run minimized" />
-                </CheckBox>
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Minimize to system tray" />
-                </CheckBox>
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
-                </CheckBox>
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,9">
-                    <TextBlock Text="CS:GO process checking period:" />
-                    <xctk:ByteUpDown Value="1"
-                                     Background="{DynamicResource SystemBaseLowColorBrush}"
-                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                     ButtonSpinnerLocation="Left"
-                                     BorderThickness="0"
-                                     Width="39"
-                                     Margin="5,0,0,0"
-                                     TextAlignment="Center"
-                                     Minimum="1"
-                                     Maximum="60"
-                                     DefaultValue="1"
-                                     DisplayDefaultValueOnEmptyText="True" />
-                    <TextBlock Text="s" Margin="3,0,0,0"/>
+                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                                 Header="Quarternary"
+                                 Foreground="{DynamicResource SystemBaseHighColorBrush}">
+                            <StackPanel>
+                                <TextBlock Margin="0,15,0,2" Text="Player Gets Flashed" />
+                                <Button Height="40" HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource Windows10Button}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="White" Offset="0" />
+                                            <GradientStop Color="White" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="CSHUE" />
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding IsRunWhenStartsChecked, Mode=TwoWay}"
+                              d:DataContext="{d:DesignData }">
+                        <TextBlock Text="Run CSHUE when my computer starts" />
+                    </CheckBox>
+                    <CheckBox Margin="30,7,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left"
+                              IsEnabled="{Binding IsRunWhenStartsChecked}"
+                              d:DataContext="{d:DesignData }">
+                        <TextBlock Text="Run minimized" />
+                    </CheckBox>
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left">
+                        <TextBlock Text="Minimize to system tray" />
+                    </CheckBox>
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left">
+                        <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
+                    </CheckBox>
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,9">
+                        <TextBlock Text="CS:GO process checking period:" />
+                        <xctk:ByteUpDown Value="1"
+                                         Background="{DynamicResource SystemBaseLowColorBrush}"
+                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                         ButtonSpinnerLocation="Left"
+                                         BorderThickness="0"
+                                         Width="39"
+                                         Margin="5,0,0,0"
+                                         TextAlignment="Center"
+                                         Minimum="1"
+                                         Maximum="60"
+                                         DefaultValue="1"
+                                         DisplayDefaultValueOnEmptyText="True" />
+                        <TextBlock Text="s" Margin="3,0,0,0"/>
+                    </StackPanel>
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left">
+                        <TextBlock Text="Also trigger player events when spectating" />
+                    </CheckBox>
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left">
+                        <TextBlock Text="Remember lights states" />
+                    </CheckBox>
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left">
+                        <TextBlock Text="Automatically activate between" />
+                    </CheckBox>
+
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
+                    <CheckBox Margin="0,15,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left">
+                        <TextBlock Text="Run CS:GO on CSHUE startup" />
+                    </CheckBox>
+                    <TextBox Height="35"
+                             Margin="0,2,0,9"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource HintTextBox}"
+                             Tag="Launch Options">
+
+                    </TextBox>
                 </StackPanel>
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Also trigger player events when spectating" />
-                </CheckBox>
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Remember lights states" />
-                </CheckBox>
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Automatically activate between" />
-                </CheckBox>
-
-                <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
-                <CheckBox Margin="0,15,0,9"
-                          Style="{DynamicResource Windows10CheckBox}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="Run CS:GO on CSHUE startup" />
-                </CheckBox>
-                <TextBox Height="35"
-                         Margin="0,2,0,9"
-                         VerticalContentAlignment="Center"
-                         Style="{StaticResource HintTextBox}"
-                         Tag="Launch Options">
-
-                </TextBox>
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

@@ -26,32 +26,36 @@
                       attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
-            <StackPanel Margin="24,0,20,30">
-                <TextBlock Margin="0,20,0,9"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="500" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="24,0,20,30">
+                    <TextBlock Margin="0,20,0,9"
                            TextWrapping="Wrap"
                            TextAlignment="Justify"
                            Text="&#x9;My name is João but you can call me John. I'm 21 and I live in Rio Claro, São Paulo, Brazil. Currently studing Computer Science in Universidade Estadual Paulista (UNESP). For now I do internship for an IT company. C#, XAML and C are the languages I like the most, I moved recently from WinForms to WPF and I'm loving the greater variety of things you can do with it. I didn't want to use UWP because there's still a lot of people using Windows 7, but I tried to make the UI as good as in UWP.&#xa;&#xa;&#x9;As a hardcore CS:GO player I love the game, play it since its early beta versions. I've been playing CS since I was a little kid, when I got my first PC, around 2008. I remember when my friend got home with a CS:S DVD to install it. Before that I didn't even know that FPS was something possible. I simply fell in love with it. The simplicity of the gameplay is what got me.&#xa;&#xa;&#x9;I decided to make this application because I recently got Philips Hue bulbs and didn't find any good solutions for using it with CS:GO, I wanted something easy to use and very customizable." />
 
-                <TextBlock Margin="0,20,0,2" FontSize="20" Text="Follow me" VerticalAlignment="Bottom"/>
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="Follow me" VerticalAlignment="Bottom"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,2,0,9">
-                    <StackPanel.Resources>
-                        <Style TargetType="{x:Type Hyperlink}">
-                            <Setter Property="Foreground" Value="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
-                            <Setter Property="TextDecorations" Value=""/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="Gray"/>
-                                </Trigger>
-                                <Trigger Property="IsEnabled" Value="True">
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,9">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Hyperlink}">
+                                <Setter Property="Foreground" Value="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
+                                <Setter Property="TextDecorations" Value=""/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="Gray"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Resources>
 
-                    <StackPanel Width="90">
-                        <TextBlock Margin="0,6,0,5">
+                        <StackPanel Width="90">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://steamcommunity.com/id/joao7yt/" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="Steam"/>
@@ -59,7 +63,7 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="0,6,0,5">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://www.reddit.com/user/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="Reddit" />
@@ -67,7 +71,7 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="0,6,0,5">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://www.linkedin.com/in/joao-mambelli/" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="LinkedinBox" />
@@ -75,10 +79,10 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Width="90">
-                        <TextBlock Margin="0,6,0,5">
+                        <StackPanel Width="90">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://www.youtube.com/user/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="Youtube"/>
@@ -86,7 +90,7 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="0,6,0,5">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://www.instagram.com/joomambaa/" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="Instagram" />
@@ -94,7 +98,7 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="0,6,0,5">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://www.facebook.com/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="FacebookBox" />
@@ -102,10 +106,10 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Width="90">
-                        <TextBlock Margin="0,6,0,5">
+                        <StackPanel Width="90">
+                            <TextBlock Margin="0,6,0,5">
                             <Hyperlink NavigateUri="https://github.com/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                     <materialDesign:PackIcon Kind="GithubCircle"/>
@@ -113,9 +117,10 @@
                                 </StackPanel>
                             </Hyperlink>
                         </TextBlock>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

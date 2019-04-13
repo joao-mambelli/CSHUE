@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using System.Windows.Input;
-using CSHUE.ViewModels;
+﻿using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {
@@ -11,11 +9,12 @@ namespace CSHUE.Views
     public partial class Settings
     {
         public SettingsViewModel ViewModel = null;
+        private readonly SettingsViewModel _viewModel = new SettingsViewModel();
 
         public Settings()
         {
             InitializeComponent();
-            DataContext = ViewModel;
+            DataContext = _viewModel;
         }
     }
 }

@@ -50,7 +50,7 @@
                             <Setter TargetName="Border" Property="BorderThickness" Value="0" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="Gray" />
+                            <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

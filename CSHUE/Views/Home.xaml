@@ -11,10 +11,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="57" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,0,0,0" FontSize="40" Text="Home" />
+        <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=Home, Source={StaticResource Resources}}" />
     </Grid>
 </Page>

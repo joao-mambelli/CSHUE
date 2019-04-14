@@ -136,7 +136,7 @@
                         <Grid>
                             <Grid Background="Transparent" Name="Back" Opacity=".6"/>
                             <Grid Background="Transparent" Name="Highlight">
-                                <ContentPresenter VerticalAlignment="Center" Margin="12,-1,0,0"/>
+                                <ContentPresenter VerticalAlignment="Center" Margin="12,-2,0,0"/>
                             </Grid>
                         </Grid>
                     </Border>

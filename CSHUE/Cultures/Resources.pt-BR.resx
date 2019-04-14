@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Meu nome é João, mas sou conhecido como Syd; apelido de faculdade. Tenho 21 e moro em Rio Claro, São Paulo. Atualmente estou estudando Ciências da Computação na Universidade Estadual Paulista (UNESP). Por enquanto estou fazendo estágio numa empresa de TI. C#, XAML e C são as linguagens que eu gosto mais, me mudei recentemente do bom e velho WinForms para o WPF, e tô curtindo a grande variedade de coisas que posso fazer com isso. Eu não quis usar o UWP pois ainda tem bastante gente usando o Windows 7, mas tentei ao máximo deixar a IU parecida com as aplicações feitas em UWP. Me inspirei na IU da aplicação Configurações do Windows 10.
+
+Como um jogador hardcore de CS:GO, eu amo o jogo, jogo desde suas versões beta. Eu jogo CS desde que era um moleque, quando ganhei meu primeiro PC, por volta de 2008. Eu me lembro quando meu amigo foi em casa com o DVD do CS:S pra instalar ele pra mim. Antes daquilo eu nem imaginava que FPS era algo possível. Simplismente me amarrei no joguinho. A simplicidade da gameplay foi o que me prendeu.
+
+Eu decidi fazer esse aplicativo pois, recentemente, adquiri lâmpadas da Philips Hue e não encontrei nenhum bom aplicativo pra controlá-las com base no que está acontecendo no CS:GO, eu queria algo fácil de usar e bem customizável.</value>
+  </data>
+  <data name="ConfigText" xml:space="preserve">
+    <value>Para que o CSHUE possa saber o que está acontecendo no seu CS:GO, um arquivo .cfg específico tem que estar presente na pasta cfg do jogo, um gamestate_integration_cshue.cfg.
+
+Se o botão abaixo for pressionado, o CSHUE vai, automaticamente, tentar encontrar onde seu CS:GO está instalado na sua maquina, criando, então, o arquivo necessário. Não importa onde você instalou ele, meu precioso aplicativo vai encontrá-lo MUAHAHA... Ham-ham... Aqui está o botão:</value>
+  </data>
+  <data name="CreateCfg" xml:space="preserve">
+    <value>Criar .cfg</value>
+  </data>
+  <data name="CSGOGSI" xml:space="preserve">
+    <value>CS:GO GSI</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Doação</value>
+  </data>
+  <data name="DonateButton" xml:space="preserve">
+    <value>Doar</value>
+  </data>
+  <data name="DonateText" xml:space="preserve">
+    <value>Eu não espero muito retorno financeiro desse aplicativo, mas quem sabe, né? Doações são sempre bem vindas.
+
+Estou linkando uma página de doação do PayPal. Você vai poder escolher doar um valor entre 1 e 9.999.999,99 reais, qualquer valor mais alto que isso, por favor, entrar em contato por email; só dizer uma hora e um local que a gente se encontra lá. Você também poderá escolher "Fazer desta uma doação mensal" se você quiser, bem, fazer desta uma doação mensal.</value>
+  </data>
+  <data name="DonationCountry" xml:space="preserve">
+    <value>BR</value>
+  </data>
+  <data name="DonationCurrency" xml:space="preserve">
+    <value>BRL</value>
+  </data>
+  <data name="DonationDescription" xml:space="preserve">
+    <value>Doa%E7%E3o%20referente%20ao%20CSHUE</value>
+  </data>
+  <data name="DonationDetails" xml:space="preserve">
+    <value>Abre o url acima em um navegador.
+O url é composto por:
+	meu email do PayPal: joao7yt@gmail.com
+	uma descrição: Doação referente ao CSHUE
+	um código de país: BR
+	um cídogo de moeda: BRL</value>
+  </data>
+  <data name="DonationLink" xml:space="preserve">
+    <value>https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;
+business=joao7yt@gmail.com&amp;lc=BR&amp;
+item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
+&amp;currency_code=BRL&amp;bn=PP%2dDonationsBF</value>
+  </data>
+  <data name="FileCreated" xml:space="preserve">
+    <value>Arquivo criado em</value>
+  </data>
+  <data name="FollowMe" xml:space="preserve">
+    <value>Siga-me</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="WarningCSGO" xml:space="preserve">
+    <value>Não foi possível encontrar a pasta do CS:GO.</value>
+  </data>
+  <data name="WarningGSI" xml:space="preserve">
+    <value>Não foi possível encontrar o arquivo de Game State Integration do CS:GO.</value>
+  </data>
+  <data name="WarningGSICorrupted" xml:space="preserve">
+    <value>O arquivo de Game State Integration do CS:GO está corrompido.</value>
+  </data>
+  <data name="WarningSteam" xml:space="preserve">
+    <value>Não foi possível encontrar a pasta da Steam.</value>
+  </data>
+</root>

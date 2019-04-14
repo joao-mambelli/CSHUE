@@ -11,7 +11,6 @@
         BorderThickness="1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        xmlns:p="clr-namespace:CSHUE.Properties"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
@@ -63,7 +62,7 @@
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                             </materialDesign:PackIcon.LayoutTransform>
                         </materialDesign:PackIcon>
-                        <TextBlock Text="Home" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=Home, Source={StaticResource Resources}}" VerticalAlignment="Center" />
                     </StackPanel>
                 </Grid>
 
@@ -79,15 +78,57 @@
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                             </materialDesign:PackIcon.LayoutTransform>
                         </materialDesign:PackIcon>
-                        <TextBlock Text="CS:GO GSI" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=CSGOGSI, Source={StaticResource Resources}}" VerticalAlignment="Center"/>
                     </StackPanel>
                     <materialDesign:PackIcon Kind="AlertCircleOutline"
                                              Margin="12"
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Right"
                                              Foreground="Orange"
-                                             Visibility="{Binding WarningVisibility, UpdateSourceTrigger=PropertyChanged}"
-                                             ToolTip="{Binding WarningText, UpdateSourceTrigger=PropertyChanged}"
+                                             Visibility="{Binding WarningCSGOVisibility}"
+                                             ToolTip="{Binding Path=WarningCSGO, Source={StaticResource Resources}}"
+                                             ToolTipService.InitialShowDelay="100"
+                                             ToolTipService.HorizontalOffset="-70"
+                                             Background="Transparent">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
+                    <materialDesign:PackIcon Kind="AlertCircleOutline"
+                                             Margin="12"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Foreground="Orange"
+                                             Visibility="{Binding WarningGSIVisibility}"
+                                             ToolTip="{Binding Path=WarningGSI, Source={StaticResource Resources}}"
+                                             ToolTipService.InitialShowDelay="100"
+                                             ToolTipService.HorizontalOffset="-70"
+                                             Background="Transparent">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
+                    <materialDesign:PackIcon Kind="AlertCircleOutline"
+                                             Margin="12"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Foreground="Orange"
+                                             Visibility="{Binding WarningGSICorruptedVisibility}"
+                                             ToolTip="{Binding Path=WarningGSICorrupted, Source={StaticResource Resources}}"
+                                             ToolTipService.InitialShowDelay="100"
+                                             ToolTipService.HorizontalOffset="-70"
+                                             Background="Transparent">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
+                    <materialDesign:PackIcon Kind="AlertCircleOutline"
+                                             Margin="12"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Foreground="Orange"
+                                             Visibility="{Binding WarningSteamVisibility}"
+                                             ToolTip="{Binding Path=WarningSteam, Source={StaticResource Resources}}"
                                              ToolTipService.InitialShowDelay="100"
                                              ToolTipService.HorizontalOffset="-70"
                                              Background="Transparent">
@@ -111,7 +152,7 @@
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                             </materialDesign:PackIcon.LayoutTransform>
                         </materialDesign:PackIcon>
-                        <TextBlock Foreground="Gray" Text="Donate" VerticalAlignment="Center"/>
+                        <TextBlock Foreground="Gray" Text="{Binding Path=Donate, Source={StaticResource Resources}}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
 
@@ -127,7 +168,7 @@
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                             </materialDesign:PackIcon.LayoutTransform>
                         </materialDesign:PackIcon>
-                        <TextBlock Foreground="Gray" Text="About" VerticalAlignment="Center"/>
+                        <TextBlock Foreground="Gray" Text="{Binding Path=About, Source={StaticResource Resources}}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
 
@@ -143,7 +184,7 @@
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                             </materialDesign:PackIcon.LayoutTransform>
                         </materialDesign:PackIcon>
-                        <TextBlock Text="Settings" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=Settings, Source={StaticResource Resources}}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

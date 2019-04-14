@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using CSHUE.ViewModels;
+using CSHUE.Cultures;
 
 namespace CSHUE.Views
 {
@@ -24,14 +25,11 @@ namespace CSHUE.Views
             var url = "";
 
             const string business = "joao7yt@gmail.com";
-            const string description = "CSHUE%20Donation";
-            const string country = "US";
-            const string currency = "USD";
+            var description = Cultures.Resources.DonationDescription;
+            var country = Cultures.Resources.DonationCountry;
+            var currency = Cultures.Resources.DonationCurrency;
 
-            url += "https://www.paypal.com/cgi-bin/webscr" +
-                   "?cmd=" +
-                   "_donations" +
-                   "&business=" +
+            url += "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=" +
                    business +
                    "&lc=" +
                    country +
@@ -39,8 +37,7 @@ namespace CSHUE.Views
                    description +
                    "&currency_code=" +
                    currency +
-                   "&bn=" +
-                   "PP%2dDonationsBF";
+                   "&bn=PP%2dDonationsBF";
 
             Process.Start(url);
         }

@@ -7,6 +7,7 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:p="clr-namespace:CSHUE.Properties"
       xmlns:h="clr-namespace:CSHUE.Helpers"
+      xmlns:cultures="clr-namespace:CSHUE.Cultures"
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -16,11 +17,11 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="57" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,0,0,0" FontSize="40" Text="Settings" />
+        <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=Settings, Source={StaticResource Resources}}" />
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -31,7 +32,7 @@
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="500" />
+                    <ColumnDefinition MaxWidth="502" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="24,0,20,30">
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
@@ -282,16 +283,15 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Automatically activate between" />
                     </CheckBox>
-                    <!--<TextBlock Text="Language" Margin="0,15,0,4"/>
+                    <TextBlock Text="Language" Margin="0,15,0,4"/>
                     <ComboBox Margin="0,4,0,9"
-                              Name="Languages"
                               Width="280"
                               HorizontalAlignment="Left"
+                              SelectionChanged="Language_SelectionChanged"
+                              ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
                               Style="{DynamicResource Windows10ComboBox}"
                               SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <system:String>English (US)</system:String>
-                        <system:String>Português (BR)</system:String>
-                    </ComboBox>-->
+                    </ComboBox>
 
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
                     <CheckBox Margin="0,15,0,9"

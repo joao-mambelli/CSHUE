@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using CSHUE.Cultures;
 using CSHUE.ViewModels;
 
 namespace CSHUE.Views
@@ -25,6 +26,11 @@ namespace CSHUE.Views
         {
             InitializeComponent();
             DataContext = _viewModel;
+        }
+
+        private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex));
         }
     }
 }

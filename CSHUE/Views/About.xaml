@@ -13,11 +13,11 @@
       Title="About">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="57" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,0,0,0" FontSize="40" Text="About" />
+        <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=About, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -28,15 +28,14 @@
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="500" />
+                    <ColumnDefinition MaxWidth="502" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="24,0,20,30">
                     <TextBlock Margin="0,20,0,9"
                            TextWrapping="Wrap"
                            TextAlignment="Justify"
-                           Text="&#x9;My name is João but you can call me John. I'm 21 and I live in Rio Claro, São Paulo, Brazil. Currently studing Computer Science in Universidade Estadual Paulista (UNESP). For now I do internship for an IT company. C#, XAML and C are the languages I like the most, I moved recently from WinForms to WPF and I'm loving the greater variety of things you can do with it. I didn't want to use UWP because there's still a lot of people using Windows 7, but I tried to make the UI as good as in UWP.&#xa;&#xa;&#x9;As a hardcore CS:GO player I love the game, play it since its early beta versions. I've been playing CS since I was a little kid, when I got my first PC, around 2008. I remember when my friend got home with a CS:S DVD to install it. Before that I didn't even know that FPS was something possible. I simply fell in love with it. The simplicity of the gameplay is what got me.&#xa;&#xa;&#x9;I decided to make this application because I recently got Philips Hue bulbs and didn't find any good solutions for using it with CS:GO, I wanted something easy to use and very customizable." />
-
-                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="Follow me" VerticalAlignment="Bottom"/>
+                           Text="{Binding Path=AboutText, Source={StaticResource Resources}}" />
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=FollowMe, Source={StaticResource Resources}}" VerticalAlignment="Bottom"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,2,0,9">
                         <StackPanel.Resources>

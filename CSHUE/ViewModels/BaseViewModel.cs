@@ -13,26 +13,50 @@ namespace CSHUE.ViewModels
                 new PropertyChangedEventArgs(propertyName));
         }
 
-        private Visibility _warningVisibility = Visibility.Visible;
-        public Visibility WarningVisibility
+        private Visibility _warningCSGOVisibility;
+        public Visibility WarningCSGOVisibility
         {
             get =>
-                _warningVisibility;
+                _warningCSGOVisibility;
             set
             {
-                _warningVisibility = value;
+                _warningCSGOVisibility = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _warningText;
-        public string WarningText
+        private Visibility _warningSteamVisibility;
+        public Visibility WarningSteamVisibility
         {
             get =>
-                _warningText;
+                _warningSteamVisibility;
             set
             {
-                _warningText = value;
+                _warningSteamVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _warningGSIVisibility;
+        public Visibility WarningGSIVisibility
+        {
+            get =>
+                _warningGSIVisibility;
+            set
+            {
+                _warningGSIVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _warningGSICorruptedVisibility;
+        public Visibility WarningGSICorruptedVisibility
+        {
+            get =>
+                _warningGSICorruptedVisibility;
+            set
+            {
+                _warningGSICorruptedVisibility = value;
                 OnPropertyChanged();
             }
         }

@@ -11,11 +11,11 @@
       Title="Donate">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="57" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,0,0,0" FontSize="40" Text="Donate" />
+        <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=Donate, Source={StaticResource Resources}}" />
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -26,13 +26,13 @@
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="500" />
+                    <ColumnDefinition MaxWidth="502" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="24,0,20,30">
                     <TextBlock Margin="0,20,0,2"
                            TextWrapping="Wrap"
                            TextAlignment="Justify"
-                           Text="&#x9;I don't expect much finantial return from this application, but who knows, right? Donations are always appreciated.&#xa;&#xa;&#x9;I'm linking to a PayPal donation page. You will be able to donate from 1 to 9,999,999.99 dolars, any higher than this, please, email me a time and place and we meet there. You will also be able to choose &#x201c;Make this a monthly donation&#x201d; if you want to, well, make this a monthly donation." />
+                           Text="{Binding Path=DonateText, Source={StaticResource Resources}}" />
 
                     <Button ToolTipService.InitialShowDelay="100"
                         ToolTipService.HasDropShadow="True"
@@ -41,13 +41,13 @@
                         Margin="0,2,0,9" VerticalAlignment="Top"
                         Height="31" Width="90"
                         Style="{DynamicResource Windows10Button}"
-                        Content="Donate" Click="Donate_Click">
+                        Content="{Binding Path=DonateButton, Source={StaticResource Resources}}" Click="Donate_Click">
                         <Button.ToolTip>
                             <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}" Background="{DynamicResource SystemAltHighColorBrush}">
                                 <StackPanel>
-                                    <TextBlock Text="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&#x26;&#xa;business=joao7yt@gmail.com&#x26;lc=US&#x26;&#xa;item_name=CSHUE%20Donation&#x26;currency_code=USD&#x26;&#xa;bn=PP%2dDonationsBF&#xa;" />
+                                    <TextBlock Text="{Binding Path=DonationLink, Source={StaticResource Resources}}" />
                                     <Separator />
-                                    <TextBlock FontStyle="Italic" Text="Opens the above url in a browser.&#xa;The url is composed of:&#xa;&#x9;my PayPal email: joao7yt@gmail.com&#xa;&#x9;a purpose description: CSHUE Donation&#xa;&#x9;a country code: US&#xa;&#x9;a currency code: USD"/>
+                                    <TextBlock FontStyle="Italic" Text="{Binding Path=DonationDetails, Source={StaticResource Resources}}"/>
                                 </StackPanel>
                             </ToolTip>
                         </Button.ToolTip>

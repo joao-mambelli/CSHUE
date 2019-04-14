@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using CSHUE.Cultures;
 
 namespace CSHUE.ViewModels
 {
@@ -143,7 +144,7 @@ namespace CSHUE.ViewModels
                     File.WriteAllLines(cfgpath,
                         _lines);
 
-                    MessageBox.Show("File created at:\n" + cfgpath);
+                    MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath, "CSHUE");
                 }
             }
             else
@@ -151,7 +152,7 @@ namespace CSHUE.ViewModels
                 File.WriteAllLines(cfgpath,
                     _lines);
 
-                MessageBox.Show("File created at:\n" + cfgpath);
+                MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath, "CSHUE");
 
                 CheckConfigFile();
             }
@@ -159,6 +160,11 @@ namespace CSHUE.ViewModels
 
         public void CheckConfigFile()
         {
+            MainWindowViewModel.WarningGSIVisibility = Visibility.Collapsed;
+            MainWindowViewModel.WarningGSICorruptedVisibility = Visibility.Collapsed;
+            MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
+            MainWindowViewModel.WarningCSGOVisibility = Visibility.Collapsed;
+
             var fail = false;
 
             var path = "";
@@ -176,13 +182,13 @@ namespace CSHUE.ViewModels
                     }
                     else
                     {
-                        MainWindowViewModel.WarningText = "Couldn't find Steam path.";
+                        MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
                         fail = true;
                     }
                 }
                 else
                 {
-                    MainWindowViewModel.WarningText = "Couldn't find Steam path.";
+                    MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
                     fail = true;
                 }
             }
@@ -197,7 +203,7 @@ namespace CSHUE.ViewModels
                 }
                 catch
                 {
-                    MainWindowViewModel.WarningText = "Couldn't find CS:GO path.";
+                    MainWindowViewModel.WarningCSGOVisibility = Visibility.Visible;
                     fail = true;
                 }
 
@@ -210,7 +216,7 @@ namespace CSHUE.ViewModels
                             .Value ==
                         "")
                     {
-                        MainWindowViewModel.WarningText = "Couldn't find CS:GO path.";
+                        MainWindowViewModel.WarningCSGOVisibility = Visibility.Visible;
                         fail = true;
                     }
                     else
@@ -226,19 +232,15 @@ namespace CSHUE.ViewModels
 
             if (!fail && !File.Exists(cfgpath))
             {
-                MainWindowViewModel.WarningText = "Couldn't find CS:GO Game State Integration file.";
+                MainWindowViewModel.WarningGSIVisibility = Visibility.Visible;
                 fail = true;
             }
 
             if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath)))
             {
-                MainWindowViewModel.WarningText = "CS:GO Game State Integration file is corrupted.";
+                MainWindowViewModel.WarningGSICorruptedVisibility = Visibility.Visible;
                 fail = true;
             }
-
-            MainWindowViewModel.WarningVisibility = !fail
-                ? Visibility.Hidden
-                : Visibility.Visible;
         }
     }
 }

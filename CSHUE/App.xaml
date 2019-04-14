@@ -13,7 +13,10 @@
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/NumericUpDown.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/ComboBox.xaml" />
+
                 <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
+
+                <ResourceDictionary Source="ResourceDictionary1.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

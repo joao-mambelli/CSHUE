@@ -12,11 +12,11 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="57" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,0,0,0" FontSize="40" Text="CS:GO GSI" />
+        <TextBlock Margin="24,4,0,0" FontSize="28" Text="CS:GO GSI" />
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -27,17 +27,17 @@
                       attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="500" />
+                    <ColumnDefinition MaxWidth="502" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="24,0,20,30">
                     <TextBlock Margin="0,20,0,2"
                                TextWrapping="Wrap"
                                TextAlignment="Justify"
-                               Text="&#x9;So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game's cfg folder, a gamestate_integration_cshue.cfg.&#xa;&#xa;&#x9;If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine. Doesn't matter where you installed it, my precious application will be able to find it MUAHAHA... Ahem... Here's the button:" />
+                               Text="{Binding Path=ConfigText, Source={StaticResource Resources}}"/>
 
                     <Button Margin="0,2,0,9" VerticalAlignment="Top" Height="31" Width="90"
                             Style="{DynamicResource Windows10Button}"
-                            Content="Create .cfg" Click="Config_Click"/>
+                            Content="{Binding Path=CreateCfg, Source={StaticResource Resources}}" Click="Config_Click"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

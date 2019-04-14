@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cultures="clr-namespace:CSHUE.Cultures">
+    <ObjectDataProvider x:Key="Resources" ObjectType="{x:Type cultures:CultureResources}" MethodName="GetResourceInstance"/>
+    <ObjectDataProvider x:Key="CultureResourcesDS" ObjectType="{x:Type cultures:CultureResources}"/>
+</ResourceDictionary>

@@ -1,23 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shell;
+using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
-using Application = System.Windows.Application;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace CSHUE.Views
@@ -59,6 +56,8 @@ namespace CSHUE.Views
                 WindowState = WindowState.Maximized;
                 OnStateChanged(new EventArgs());
             }
+
+            CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(Properties.Settings.Default.Language));
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)

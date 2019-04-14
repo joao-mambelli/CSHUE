@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 
 namespace CSHUE
 {
@@ -7,5 +8,6 @@ namespace CSHUE
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

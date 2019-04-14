@@ -1,7 +1,105 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CSHUE.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RunOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Activated" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Top" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Left" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Height" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">450</Value>
+    </Setting>
+    <Setting Name="Width" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">650</Value>
+    </Setting>
+    <Setting Name="Maximized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MainMenu" Type="CSHUE.Helpers.EventProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TerroristsWin" Type="CSHUE.Helpers.EventProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CounterTerroristsWin" Type="CSHUE.Helpers.EventProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RoundStarts" Type="CSHUE.Helpers.EventProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BombPlanted" Type="CSHUE.Helpers.EventProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PlayerGetsFlashed" Type="CSHUE.Helpers.EventProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BombExplodes" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BombBlink" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FreezeTime" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Warmup" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PlayerGetsKill" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PlayerGetsKilled" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PlayerGetsKillDuration" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1.5</Value>
+    </Setting>
+    <Setting Name="PlayerGetsKilledDuration" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="RunOnStartupMinimized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MinimizeToSystemTray" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoMinimize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CsgoCheckingPeriod" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="TriggerSpecEvents" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RememberLightsStates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoActivate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoActivateStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">18:00</Value>
+    </Setting>
+    <Setting Name="AutoActivateEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">06:00</Value>
+    </Setting>
+    <Setting Name="RunCsgo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LaunchOptions" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Language" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

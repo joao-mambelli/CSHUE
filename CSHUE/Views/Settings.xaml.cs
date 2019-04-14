@@ -1,4 +1,14 @@
-﻿using CSHUE.ViewModels;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Markup;
+using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {

@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:p="clr-namespace:CSHUE.Properties"
+      xmlns:h="clr-namespace:CSHUE.Helpers"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -156,20 +159,20 @@
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                     <TextBlock Text="Duration:" />
-                                    <xctk:ByteUpDown Value="1"
-                                                     Background="{DynamicResource SystemAltLowColorBrush}"
-                                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                                     ButtonSpinnerLocation="Left"
-                                                     BorderThickness="0"
-                                                     Width="39"
-                                                     Margin="5,0,0,0"
-                                                     TextAlignment="Center"
-                                                     Minimum="1"
-                                                     Maximum="60"
-                                                     DefaultValue="1"
-                                                     DisplayDefaultValueOnEmptyText="True">
-                                    </xctk:ByteUpDown>
-                                    <TextBlock Text="s" Margin="3,0,0,0"/>
+                                    <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKillDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{DynamicResource SystemAltLowColorBrush}"
+                                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                                        ButtonSpinnerLocation="Left"
+                                                        BorderThickness="0"
+                                                        Width="42"
+                                                        Margin="5,0,0,0"
+                                                        TextAlignment="Center"
+                                                        Increment=".5"
+                                                        Minimum="1"
+                                                        Maximum="60"
+                                                        DefaultValue="1.5"
+                                                        DisplayDefaultValueOnEmptyText="True" />
+                                        <TextBlock Text="s" Margin="3,0,0,0"/>
                                 </StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="Player Gets Killed" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
@@ -183,18 +186,19 @@
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                     <TextBlock Text="Duration:" />
-                                    <xctk:ByteUpDown Value="1"
-                                                     Background="{DynamicResource SystemAltLowColorBrush}"
-                                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                                     ButtonSpinnerLocation="Left"
-                                                     BorderThickness="0"
-                                                     Width="39"
-                                                     Margin="5,0,0,0"
-                                                     TextAlignment="Center"
-                                                     Minimum="1"
-                                                     Maximum="60"
-                                                     DefaultValue="1"
-                                                     DisplayDefaultValueOnEmptyText="True" />
+                                    <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKilledDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{DynamicResource SystemAltLowColorBrush}"
+                                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                                        ButtonSpinnerLocation="Left"
+                                                        BorderThickness="0"
+                                                        Width="42"
+                                                        Margin="5,0,0,0"
+                                                        TextAlignment="Center"
+                                                        Increment=".5"
+                                                        Minimum="1"
+                                                        Maximum="60"
+                                                        DefaultValue="3.0"
+                                                        DisplayDefaultValueOnEmptyText="True" />
                                     <TextBlock Text="s" Margin="3,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
@@ -222,30 +226,31 @@
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding IsRunWhenStartsChecked, Mode=TwoWay}"
-                              d:DataContext="{d:DesignData }">
-                        <TextBlock Text="Run CSHUE when my computer starts" />
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Text="Run minimized" />
                     </CheckBox>
                     <CheckBox Margin="30,7,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsEnabled="{Binding IsRunWhenStartsChecked}"
-                              d:DataContext="{d:DesignData }">
-                        <TextBlock Text="Run minimized" />
+                              IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup}"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Text="Run CSHUE when my computer starts" />
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
-                              HorizontalAlignment="Left">
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=MinimizeToSystemTray, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Minimize to system tray" />
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
-                              HorizontalAlignment="Left">
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
                     </CheckBox>
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,9">
                         <TextBlock Text="CS:GO process checking period:" />
-                        <xctk:ByteUpDown Value="1"
+                        <xctk:ByteUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=CsgoCheckingPeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          Background="{DynamicResource SystemBaseLowColorBrush}"
                                          Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                          ButtonSpinnerLocation="Left"
@@ -255,37 +260,52 @@
                                          TextAlignment="Center"
                                          Minimum="1"
                                          Maximum="60"
-                                         DefaultValue="1"
+                                         DefaultValue="7"
                                          DisplayDefaultValueOnEmptyText="True" />
                         <TextBlock Text="s" Margin="3,0,0,0"/>
                     </StackPanel>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
-                              HorizontalAlignment="Left">
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Also trigger player events when spectating" />
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
-                              HorizontalAlignment="Left">
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Remember lights states" />
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
-                              HorizontalAlignment="Left">
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Automatically activate between" />
                     </CheckBox>
+                    <!--<TextBlock Text="Language" Margin="0,15,0,4"/>
+                    <ComboBox Margin="0,4,0,9"
+                              Name="Languages"
+                              Width="280"
+                              HorizontalAlignment="Left"
+                              Style="{DynamicResource Windows10ComboBox}"
+                              SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <system:String>English (US)</system:String>
+                        <system:String>Português (BR)</system:String>
+                    </ComboBox>-->
 
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
-                              HorizontalAlignment="Left">
+                              HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="Run CS:GO on CSHUE startup" />
                     </CheckBox>
                     <TextBox Height="35"
                              Margin="0,2,0,9"
                              VerticalContentAlignment="Center"
                              Style="{StaticResource HintTextBox}"
-                             Tag="Launch Options">
+                             Tag="Launch Options"
+                             Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                     </TextBox>
                 </StackPanel>

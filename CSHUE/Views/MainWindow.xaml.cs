@@ -1,11 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shell;
@@ -13,6 +17,7 @@ using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
+using Application = System.Windows.Application;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace CSHUE.Views
@@ -44,6 +49,16 @@ namespace CSHUE.Views
             CloseButton.MouseEnter += TopControls_MouseEnter;
             CloseButton.MouseLeave += TopControls_MouseLeave;
             Page.Navigated += Page_Navigated;
+
+            Top = Properties.Settings.Default.Top;
+            Left = Properties.Settings.Default.Left;
+            Height = Properties.Settings.Default.Height;
+            Width = Properties.Settings.Default.Width;
+            if (Properties.Settings.Default.Maximized)
+            {
+                WindowState = WindowState.Maximized;
+                OnStateChanged(new EventArgs());
+            }
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
@@ -304,7 +319,7 @@ namespace CSHUE.Views
                 : WindowState.Normal;
         }
 
-        protected override void OnStateChanged(EventArgs e)
+        protected sealed override void OnStateChanged(EventArgs e)
         {
             BorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 1);
             WindowChrome.SetWindowChrome(Window,
@@ -325,6 +340,29 @@ namespace CSHUE.Views
         public void CloseButton_Click()
         {
             Close();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized
+                || WindowState == WindowState.Minimized)
+            {
+                Properties.Settings.Default.Top = RestoreBounds.Top;
+                Properties.Settings.Default.Left = RestoreBounds.Left;
+                Properties.Settings.Default.Height = RestoreBounds.Height;
+                Properties.Settings.Default.Width = RestoreBounds.Width;
+                Properties.Settings.Default.Maximized = WindowState == WindowState.Maximized;
+            }
+            else
+            {
+                Properties.Settings.Default.Top = Top;
+                Properties.Settings.Default.Left = Left;
+                Properties.Settings.Default.Height = Height;
+                Properties.Settings.Default.Width = Width;
+                Properties.Settings.Default.Maximized = false;
+            }
+
+            Properties.Settings.Default.Save();
         }
     }
 }

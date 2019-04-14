@@ -8,10 +8,10 @@
         Height="450"
         Width="650"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
         BorderThickness="1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:p="clr-namespace:CSHUE.Properties"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
@@ -27,7 +27,8 @@
         Background="Transparent"
         fw:PointerTracker.Enabled="False"
         d:DesignHeight="450" d:DesignWidth="800"
-        Foreground="{DynamicResource SystemBaseHighColorBrush}">
+        Foreground="{DynamicResource SystemBaseHighColorBrush}"
+        Closing="Window_Closing">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" />
     </WindowChrome.WindowChrome>
@@ -62,7 +63,7 @@
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                             </materialDesign:PackIcon.LayoutTransform>
                         </materialDesign:PackIcon>
-                        <TextBlock Text="Home" VerticalAlignment="Center"/>
+                        <TextBlock Text="Home" VerticalAlignment="Center" />
                     </StackPanel>
                 </Grid>
 

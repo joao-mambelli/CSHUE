@@ -280,6 +280,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CS:GO cfg Folder Selection.
+        /// </summary>
+        public static string FolderSelection {
+            get {
+                return ResourceManager.GetString("FolderSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Follow me.
         /// </summary>
         public static string FollowMe {
@@ -456,6 +465,15 @@ namespace CSHUE.Cultures {
         public static string SecondsAbbreviation {
             get {
                 return ResourceManager.GetString("SecondsAbbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select the CS:GO cfg folder manually..
+        /// </summary>
+        public static string SelectFolder {
+            get {
+                return ResourceManager.GetString("SelectFolder", resourceCulture);
             }
         }
         

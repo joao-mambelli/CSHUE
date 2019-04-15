@@ -37,6 +37,9 @@
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseMediumColorBrush}" />
                             <Setter TargetName="Path" Property="Stroke" Value="{DynamicResource SystemAltHighColorBrush}" />
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Path" Property="Stroke" Value="{DynamicResource SystemBaseMediumLowColorBrush}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

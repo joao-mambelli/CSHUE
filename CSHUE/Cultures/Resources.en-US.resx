@@ -289,4 +289,10 @@ bn=PP%2dDonationsBF</value>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Please select the CS:GO cfg folder manually.</value>
+  </data>
+  <data name="FolderSelection" xml:space="preserve">
+    <value>CS:GO cfg Folder Selection</value>
+  </data>
 </root>

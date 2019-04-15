@@ -289,4 +289,10 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="Default" xml:space="preserve">
     <value>Padrão</value>
   </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Por favor, selecione manualmente a pasta cfg do CS:GO.</value>
+  </data>
+  <data name="FolderSelection" xml:space="preserve">
+    <value>Seleção da Pasta cfg do CS:GO</value>
+  </data>
 </root>

@@ -10,7 +10,8 @@
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
       d:DesignWidth="800"
-      Title="About">
+      Title="About"
+      FontFamily="Segoe UI Semilight">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />

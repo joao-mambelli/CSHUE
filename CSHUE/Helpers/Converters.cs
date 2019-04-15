@@ -14,5 +14,10 @@ namespace CSHUE.Helpers
         {
             return CultureResources.SupportedCultures.ElementAt(index);
         }
+
+        public static int GetIndexFromCultureInfo(CultureInfo cultureInfo)
+        {
+            return CultureResources.SupportedCultures.IndexOf(cultureInfo);
+        }
     }
 }

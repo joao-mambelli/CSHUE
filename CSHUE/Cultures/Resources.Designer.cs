@@ -79,6 +79,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        public static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically activate between.
         /// </summary>
         public static string AutomaticallyActivate {

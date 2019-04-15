@@ -13,14 +13,14 @@ namespace CSHUE.ViewModels
                 new PropertyChangedEventArgs(propertyName));
         }
 
-        private Visibility _warningCSGOVisibility;
-        public Visibility WarningCSGOVisibility
+        private Visibility _warningCsgoVisibility;
+        public Visibility WarningCsgoVisibility
         {
             get =>
-                _warningCSGOVisibility;
+                _warningCsgoVisibility;
             set
             {
-                _warningCSGOVisibility = value;
+                _warningCsgoVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -37,26 +37,26 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private Visibility _warningGSIVisibility;
-        public Visibility WarningGSIVisibility
+        private Visibility _warningGsiVisibility;
+        public Visibility WarningGsiVisibility
         {
             get =>
-                _warningGSIVisibility;
+                _warningGsiVisibility;
             set
             {
-                _warningGSIVisibility = value;
+                _warningGsiVisibility = value;
                 OnPropertyChanged();
             }
         }
 
-        private Visibility _warningGSICorruptedVisibility;
-        public Visibility WarningGSICorruptedVisibility
+        private Visibility _warningGsiCorruptedVisibility;
+        public Visibility WarningGsiCorruptedVisibility
         {
             get =>
-                _warningGSICorruptedVisibility;
+                _warningGsiCorruptedVisibility;
             set
             {
-                _warningGSICorruptedVisibility = value;
+                _warningGsiCorruptedVisibility = value;
                 OnPropertyChanged();
             }
         }

@@ -8,9 +8,13 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Markup;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
+using ComboBox = System.Windows.Controls.ComboBox;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxResult = System.Windows.MessageBoxResult;
 
 namespace CSHUE.Views
 {
@@ -37,20 +41,44 @@ namespace CSHUE.Views
         {
             if (((ComboBox)sender).SelectedIndex == -1)
             {
-                CultureResources.ChangeCulture(
-                    CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
-                        ? CultureInfo.InstalledUICulture
-                        : new CultureInfo("en-US"));
+                var culture = CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
+                    ? CultureInfo.InstalledUICulture
+                    : new CultureInfo("en-US");
 
-                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(Cultures.Resources.Culture);
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+
+                Cultures.Resources.Culture = culture;
+
+                CultureResources.ChangeCulture(culture);
+
+                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(culture);
             }
             else
-                CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex));
+            {
+                var culture = Helpers.Converters.GetCultureInfoFromIndex(((ComboBox) sender).SelectedIndex);
+
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+
+                Cultures.Resources.Culture = culture;
+
+                CultureResources.ChangeCulture(culture);
+            }
         }
 
         private void Default_Click(object sender, RoutedEventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to reset all the settings to default?", "CSHUE",
+                    MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
             Properties.Settings.Default.Reset();
+            ViewModel.MainWindowViewModel.ConfigViewModel.CheckConfigFile();
         }
     }
 }

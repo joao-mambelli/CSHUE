@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
+using Application = System.Windows.Forms.Application;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace CSHUE.Views
@@ -74,15 +76,36 @@ namespace CSHUE.Views
         {
             if (Properties.Settings.Default.Language == -1)
             {
-                CultureResources.ChangeCulture(
-                    CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
-                        ? CultureInfo.InstalledUICulture
-                        : new CultureInfo("en-US"));
+                var culture = CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
+                    ? CultureInfo.InstalledUICulture
+                    : new CultureInfo("en-US");
 
-                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(Cultures.Resources.Culture);
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+
+                Cultures.Resources.Culture = culture;
+
+                CultureResources.ChangeCulture(culture);
+
+                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(culture);
             }
             else
-                CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(Properties.Settings.Default.Language));
+            {
+                var culture = Helpers.Converters.GetCultureInfoFromIndex(Properties.Settings.Default.Language);
+
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+
+                Cultures.Resources.Culture = culture;
+
+                CultureResources.ChangeCulture(culture);
+            }
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)

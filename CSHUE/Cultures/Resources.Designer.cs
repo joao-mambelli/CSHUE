@@ -79,6 +79,42 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically activate between.
+        /// </summary>
+        public static string AutomaticallyActivate {
+            get {
+                return ResourceManager.GetString("AutomaticallyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bomb Blink.
+        /// </summary>
+        public static string BombBlink {
+            get {
+                return ResourceManager.GetString("BombBlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bomb Explodes.
+        /// </summary>
+        public static string BombExplodes {
+            get {
+                return ResourceManager.GetString("BombExplodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bomb Has Been Planted.
+        /// </summary>
+        public static string BombHasBeenPlanted {
+            get {
+                return ResourceManager.GetString("BombHasBeenPlanted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game&apos;s cfg folder, a gamestate_integration_cshue.cfg.
         ///
         ///If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file. Doesn&apos;t matter where you installed it, my precious application is going to find it MUAHAHA... Ahem... Here&apos;s the button:.
@@ -90,11 +126,29 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Counter-Terrorists Win.
+        /// </summary>
+        public static string CounterTerroristsWin {
+            get {
+                return ResourceManager.GetString("CounterTerroristsWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create .cfg.
         /// </summary>
         public static string CreateCfg {
             get {
                 return ResourceManager.GetString("CreateCfg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CS:GO process checking period:.
+        /// </summary>
+        public static string CsgoCheckingPeriod {
+            get {
+                return ResourceManager.GetString("CsgoCheckingPeriod", resourceCulture);
             }
         }
         
@@ -190,6 +244,24 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration:.
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Events.
+        /// </summary>
+        public static string Events {
+            get {
+                return ResourceManager.GetString("Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File created at.
         /// </summary>
         public static string FileCreated {
@@ -208,6 +280,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Freeze Time.
+        /// </summary>
+        public static string FreezeTime {
+            get {
+                return ResourceManager.GetString("FreezeTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -217,11 +298,200 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch Options.
+        /// </summary>
+        public static string LaunchOptions {
+            get {
+                return ResourceManager.GetString("LaunchOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Menu.
+        /// </summary>
+        public static string MainMenu {
+            get {
+                return ResourceManager.GetString("MainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize CSHUE when CS:GO is detected.
+        /// </summary>
+        public static string MinimizeDetected {
+            get {
+                return ResourceManager.GetString("MinimizeDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize to system tray.
+        /// </summary>
+        public static string MinimizeSystemTray {
+            get {
+                return ResourceManager.GetString("MinimizeSystemTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Gets Flashed.
+        /// </summary>
+        public static string PlayerGetsFlashed {
+            get {
+                return ResourceManager.GetString("PlayerGetsFlashed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Gets a Kill.
+        /// </summary>
+        public static string PlayerGetsKill {
+            get {
+                return ResourceManager.GetString("PlayerGetsKill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Gets Killed.
+        /// </summary>
+        public static string PlayerGetsKilled {
+            get {
+                return ResourceManager.GetString("PlayerGetsKilled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary.
+        /// </summary>
+        public static string Primary {
+            get {
+                return ResourceManager.GetString("Primary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quarternary.
+        /// </summary>
+        public static string Quarternary {
+            get {
+                return ResourceManager.GetString("Quarternary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember lights states.
+        /// </summary>
+        public static string RememberLights {
+            get {
+                return ResourceManager.GetString("RememberLights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Round Starts.
+        /// </summary>
+        public static string RoundStarts {
+            get {
+                return ResourceManager.GetString("RoundStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run CS:GO on CSHUE startup.
+        /// </summary>
+        public static string RunCsgoOnStartup {
+            get {
+                return ResourceManager.GetString("RunCsgoOnStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run minimized.
+        /// </summary>
+        public static string RunMinimized {
+            get {
+                return ResourceManager.GetString("RunMinimized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run CSHUE when my computer starts.
+        /// </summary>
+        public static string RunOnStartup {
+            get {
+                return ResourceManager.GetString("RunOnStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary.
+        /// </summary>
+        public static string Secondary {
+            get {
+                return ResourceManager.GetString("Secondary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        public static string SecondsAbbreviation {
+            get {
+                return ResourceManager.GetString("SecondsAbbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terrorists Win.
+        /// </summary>
+        public static string TerroristsWin {
+            get {
+                return ResourceManager.GetString("TerroristsWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tertiary.
+        /// </summary>
+        public static string Tertiary {
+            get {
+                return ResourceManager.GetString("Tertiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also trigger player events when spectating.
+        /// </summary>
+        public static string TriggerSpectating {
+            get {
+                return ResourceManager.GetString("TriggerSpectating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warmup.
+        /// </summary>
+        public static string Warmup {
+            get {
+                return ResourceManager.GetString("Warmup", resourceCulture);
             }
         }
         

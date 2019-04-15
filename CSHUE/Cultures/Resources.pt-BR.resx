@@ -196,4 +196,94 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="WarningSteam" xml:space="preserve">
     <value>Não foi possível encontrar a pasta da Steam.</value>
   </data>
+  <data name="AutomaticallyActivate" xml:space="preserve">
+    <value>Ativar automaticamente entre</value>
+  </data>
+  <data name="BombBlink" xml:space="preserve">
+    <value>A Bomba Pisca</value>
+  </data>
+  <data name="BombExplodes" xml:space="preserve">
+    <value>A Bomba Explode</value>
+  </data>
+  <data name="BombHasBeenPlanted" xml:space="preserve">
+    <value>A Bomba Foi Armada</value>
+  </data>
+  <data name="CounterTerroristsWin" xml:space="preserve">
+    <value>Vitória dos Contraterroristas</value>
+  </data>
+  <data name="CsgoCheckingPeriod" xml:space="preserve">
+    <value>Período de verificação do processo do CS:GO:</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duração:</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Eventos</value>
+  </data>
+  <data name="FreezeTime" xml:space="preserve">
+    <value>Tempo de Congelamento</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="LaunchOptions" xml:space="preserve">
+    <value>Opções de Inicialização</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Menu Principal</value>
+  </data>
+  <data name="MinimizeDetected" xml:space="preserve">
+    <value>Minimizar o CSHUE quando o CS:GO é detectado</value>
+  </data>
+  <data name="MinimizeSystemTray" xml:space="preserve">
+    <value>Minimizar para a bandeja do sistema</value>
+  </data>
+  <data name="PlayerGetsFlashed" xml:space="preserve">
+    <value>Jogador é Cegado</value>
+  </data>
+  <data name="PlayerGetsKill" xml:space="preserve">
+    <value>Jogador Mata</value>
+  </data>
+  <data name="PlayerGetsKilled" xml:space="preserve">
+    <value>Jogador é Morto</value>
+  </data>
+  <data name="Primary" xml:space="preserve">
+    <value>Primários</value>
+  </data>
+  <data name="Quarternary" xml:space="preserve">
+    <value>Quaternários</value>
+  </data>
+  <data name="RememberLights" xml:space="preserve">
+    <value>Lembrar do estado das luzes</value>
+  </data>
+  <data name="RoundStarts" xml:space="preserve">
+    <value>Rodada Começa</value>
+  </data>
+  <data name="RunCsgoOnStartup" xml:space="preserve">
+    <value>Iniciar o CS:GO ao iniciar o CSHUE</value>
+  </data>
+  <data name="RunMinimized" xml:space="preserve">
+    <value>Iniciar minimizado</value>
+  </data>
+  <data name="RunOnStartup" xml:space="preserve">
+    <value>Iniciar o CSHUE ao ligar o computador</value>
+  </data>
+  <data name="Secondary" xml:space="preserve">
+    <value>Secundários</value>
+  </data>
+  <data name="SecondsAbbreviation" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TerroristsWin" xml:space="preserve">
+    <value>Vitória dos Terroristas</value>
+  </data>
+  <data name="Tertiary" xml:space="preserve">
+    <value>Terciários</value>
+  </data>
+  <data name="TriggerSpectating" xml:space="preserve">
+    <value>Também engatilhar eventos de jogador quando estiver assistindo</value>
+  </data>
+  <data name="Warmup" xml:space="preserve">
+    <value>Aquecimento</value>
+  </data>
 </root>

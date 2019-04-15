@@ -286,4 +286,7 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="Warmup" xml:space="preserve">
     <value>Aquecimento</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
 </root>

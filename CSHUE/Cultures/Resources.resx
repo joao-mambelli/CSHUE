@@ -286,4 +286,7 @@ bn=PP%2dDonationsBF</value>
   <data name="Warmup" xml:space="preserve">
     <value>Warmup</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
 </root>

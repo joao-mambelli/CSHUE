@@ -26,11 +26,28 @@ namespace CSHUE.Views
         {
             InitializeComponent();
             DataContext = _viewModel;
+
+            ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
         }
 
-        private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private static void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex));
+            if (((ComboBox)sender).SelectedIndex == -1)
+            {
+                CultureResources.ChangeCulture(
+                    CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
+                        ? CultureInfo.InstalledUICulture
+                        : new CultureInfo("en-US"));
+
+                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(Cultures.Resources.Culture);
+            }
+            else
+                CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex));
+        }
+
+        private void Default_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Reset();
         }
     }
 }

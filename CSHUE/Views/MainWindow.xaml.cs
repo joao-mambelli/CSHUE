@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -30,6 +31,17 @@ namespace CSHUE.Views
 
         public MainWindow()
         {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (Properties.Settings.Default.Top == -1
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                && Properties.Settings.Default.Left == -1)
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            else
+            {
+                Top = Properties.Settings.Default.Top;
+                Left = Properties.Settings.Default.Left;
+            }
+
             InitializeComponent();
             DataContext = _viewModel;
             SystemEvents.UserPreferenceChanged += PreferenceChangedHandler;
@@ -47,8 +59,6 @@ namespace CSHUE.Views
             CloseButton.MouseLeave += TopControls_MouseLeave;
             Page.Navigated += Page_Navigated;
 
-            Top = Properties.Settings.Default.Top;
-            Left = Properties.Settings.Default.Left;
             Height = Properties.Settings.Default.Height;
             Width = Properties.Settings.Default.Width;
             if (Properties.Settings.Default.Maximized)
@@ -57,7 +67,22 @@ namespace CSHUE.Views
                 OnStateChanged(new EventArgs());
             }
 
-            CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(Properties.Settings.Default.Language));
+            SetLanguage();
+        }
+
+        private static void SetLanguage()
+        {
+            if (Properties.Settings.Default.Language == -1)
+            {
+                CultureResources.ChangeCulture(
+                    CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
+                        ? CultureInfo.InstalledUICulture
+                        : new CultureInfo("en-US"));
+
+                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(Cultures.Resources.Culture);
+            }
+            else
+                CultureResources.ChangeCulture(Helpers.Converters.GetCultureInfoFromIndex(Properties.Settings.Default.Language));
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)

@@ -6,14 +6,13 @@
       xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:p="clr-namespace:CSHUE.Properties"
-      xmlns:h="clr-namespace:CSHUE.Helpers"
       xmlns:cultures="clr-namespace:CSHUE.Cultures"
-      xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
       d:DesignWidth="800"
-      Title="Settings">
+      Title="Settings"
+      FontFamily="Segoe UI Semilight">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -285,9 +284,9 @@
                     </CheckBox>
                     <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}" Margin="0,15,0,4"/>
                     <ComboBox Margin="0,4,0,9"
+                              Name="ComboBoxLanguage"
                               Width="280"
                               HorizontalAlignment="Left"
-                              SelectionChanged="Language_SelectionChanged"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
                               Style="{DynamicResource Windows10ComboBox}"
                               SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -308,6 +307,12 @@
                              Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                     </TextBox>
+                    <Button Margin="0,20,0,9" VerticalAlignment="Top"
+                            Height="31" Width="90"
+                            HorizontalAlignment="Right"
+                            Style="{DynamicResource Windows10Button}"
+                            Content="{Binding Path=Default, Source={StaticResource Resources}}" Click="Default_Click">
+                     </Button>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

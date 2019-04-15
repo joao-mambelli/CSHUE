@@ -295,4 +295,7 @@ bn=PP%2dDonationsBF</value>
   <data name="FolderSelection" xml:space="preserve">
     <value>CS:GO cfg Folder Selection</value>
   </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
@@ -19,6 +20,8 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class Settings
     {
+        TimeSpan aaa = new TimeSpan(18, 0, 0);
+
         public SettingsViewModel ViewModel = null;
         private readonly SettingsViewModel _viewModel = new SettingsViewModel();
 

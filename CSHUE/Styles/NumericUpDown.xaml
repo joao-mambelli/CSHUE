@@ -120,7 +120,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Windows10NumericUpDown" TargetType="{x:Type xctk:InputBase}">
+    <Style x:Key="Windows10NumericUpDownLeft" TargetType="{x:Type xctk:InputBase}">
         <Setter Property="Background" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBackgroundKey}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBorderKey}}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -191,13 +191,85 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type xctk:DecimalUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
-    <Style TargetType="{x:Type xctk:DoubleUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
-    <Style TargetType="{x:Type xctk:IntegerUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
-    <Style TargetType="{x:Type xctk:ShortUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
-    <Style TargetType="{x:Type xctk:LongUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
-    <Style TargetType="{x:Type xctk:ByteUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
-    <Style TargetType="{x:Type xctk:SingleUpDown}" BasedOn="{StaticResource Windows10NumericUpDown}" />
+    <Style x:Key="Windows10NumericUpDownRight" TargetType="{x:Type xctk:InputBase}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBackgroundKey}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBorderKey}}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource SystemBaseHighColorBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="WatermarkTemplate" Value="{StaticResource DefaultWatermarkTemplate}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <xctk:ButtonSpinner x:Name="PART_Spinner"
+                                        IsTabStop="False"
+                                        Background="{DynamicResource SystemBaseLowColorBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        AllowSpin="True"
+                                        ShowButtonSpinner="True"
+                                        ButtonSpinnerLocation="Right">
+                        <xctk:WatermarkTextBox x:Name="PART_TextBox"
+                                               BorderThickness="0"
+                                               Background="Transparent"
+                                               SnapsToDevicePixels="False"
+                                               ContextMenu="{TemplateBinding ContextMenu}"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontStretch="{TemplateBinding FontStretch}"
+                                               FontStyle="{TemplateBinding FontStyle}"
+                                               FontWeight="{TemplateBinding FontWeight}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                               IsUndoEnabled="True"
+                                               IsTabStop="True"
+                                               MinWidth="20"
+                                               AcceptsReturn="False"
+                                               Padding="{TemplateBinding Padding}"
+                                               AutoSelectBehavior="OnFocus"
+                                               AutoMoveFocus="True"
+                                               TextAlignment="Center"
+                                               TextWrapping="NoWrap"
+                                               TabIndex="{TemplateBinding TabIndex}"
+                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                        </xctk:WatermarkTextBox>
+                    </xctk:ButtonSpinner>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="False" />
+                                <Condition Binding="{Binding AllowTextInput, RelativeSource={RelativeSource Self}}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsReadOnly" Value="True" TargetName="PART_TextBox" />
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="IsReadOnly" Value="True" TargetName="PART_TextBox" />
+                        </DataTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource SystemBaseLowColorBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="PART_TextBox" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_TextBox}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type xctk:DecimalUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:DoubleUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:IntegerUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:ShortUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:LongUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:ByteUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:SingleUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:TimeSpanUpDown}" BasedOn="{StaticResource Windows10NumericUpDownRight}" />
 
 </ResourceDictionary>
 

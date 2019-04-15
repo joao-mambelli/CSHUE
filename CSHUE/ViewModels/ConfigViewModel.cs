@@ -53,40 +53,19 @@ namespace CSHUE.ViewModels
             var fail = false;
 
             var path = "";
-            var cfgpath = "";
+            var cfgpath = Properties.Settings.Default.CsgoFolder;
             var file = "";
 
-            using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+            if (string.IsNullOrEmpty(cfgpath))
             {
-                if (key != null)
+                using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
                 {
-                    var o = key.GetValue("InstallPath");
-                    if (o != null)
+                    if (key != null)
                     {
-                        path = o as string;
-                    }
-                    else
-                    {
-                        FailText = Resources.WarningSteam;
-                        fail = true;
-                    }
-                }
-                else
-                {
-                    using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
-                    {
-                        if (key1 != null)
+                        var o = key.GetValue("InstallPath");
+                        if (o != null)
                         {
-                            var o = key1.GetValue("InstallPath");
-                            if (o != null)
-                            {
-                                path = o as string;
-                            }
-                            else
-                            {
-                                FailText = Resources.WarningSteam;
-                                fail = true;
-                            }
+                            path = o as string;
                         }
                         else
                         {
@@ -94,45 +73,69 @@ namespace CSHUE.ViewModels
                             fail = true;
                         }
                     }
-                }
-            }
-
-            if (!fail)
-            {
-                path += "\\steamapps\\";
-
-                try
-                {
-                    file = File.ReadAllText(path + "appmanifest_730.acf");
-                }
-                catch
-                {
-                    FailText = Resources.WarningCSGO;
-                    fail = true;
+                    else
+                    {
+                        using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                        {
+                            if (key1 != null)
+                            {
+                                var o = key1.GetValue("InstallPath");
+                                if (o != null)
+                                {
+                                    path = o as string;
+                                }
+                                else
+                                {
+                                    FailText = Resources.WarningSteam;
+                                    fail = true;
+                                }
+                            }
+                            else
+                            {
+                                FailText = Resources.WarningSteam;
+                                fail = true;
+                            }
+                        }
+                    }
                 }
 
                 if (!fail)
                 {
-                    var m = Regex.Match(file,
-                        "\"installdir\".*\"(.*)\"");
+                    path += "\\steamapps\\";
 
-                    if (m.Groups[1].Value == "")
+                    try
+                    {
+                        file = File.ReadAllText(path + "appmanifest_730.acf");
+                    }
+                    catch
                     {
                         FailText = Resources.WarningCSGO;
                         fail = true;
                     }
-                    else
+
+                    if (!fail)
                     {
-                        cfgpath = path +
-                                  "common\\" +
-                                  m.Groups[1]
-                                      .Value +
-                                  "\\csgo\\cfg\\gamestate_integration_cshue.cfg";
+                        var m = Regex.Match(file,
+                            "\"installdir\".*\"(.*)\"");
+
+                        if (m.Groups[1].Value == "")
+                        {
+                            FailText = Resources.WarningCSGO;
+                            fail = true;
+                        }
+                        else
+                        {
+                            cfgpath = path +
+                                      "common\\" +
+                                      m.Groups[1]
+                                          .Value +
+                                      "\\csgo\\cfg";
+                        }
                     }
                 }
             }
 
-            if (fail)
+            if (fail || !Directory.Exists(cfgpath))
             {
                 MessageBox.Show($"{FailText} {Resources.SelectFolder}");
 
@@ -156,19 +159,21 @@ namespace CSHUE.ViewModels
 
                     if (result != CommonFileDialogResult.Ok || string.IsNullOrWhiteSpace(fbd.FileName))
                         return;
-                    cfgpath = fbd.FileName + "\\gamestate_integration_cshue.cfg";
+                    Properties.Settings.Default.CsgoFolder = fbd.FileName;
+                    cfgpath = fbd.FileName;
 
-                    File.WriteAllLines(cfgpath,
-                        _lines);
+                    File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
-                    MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath, "CSHUE");
+                    MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg", "CSHUE");
+
+                    CheckConfigFile();
                 }
             }
             else
             {
-                File.WriteAllLines(cfgpath, _lines);
+                File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
-                MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath, "CSHUE");
+                MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg", "CSHUE");
 
                 CheckConfigFile();
             }
@@ -176,48 +181,27 @@ namespace CSHUE.ViewModels
 
         public void CheckConfigFile()
         {
-            MainWindowViewModel.WarningGSIVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningGSICorruptedVisibility = Visibility.Collapsed;
+            MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+            MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
             MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningCSGOVisibility = Visibility.Collapsed;
+            MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
 
             var fail = false;
 
             var path = "";
-            var cfgpath = "";
+            var cfgpath = Properties.Settings.Default.CsgoFolder;
             var file = "";
 
-            using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+            if (string.IsNullOrEmpty(cfgpath))
             {
-                if (key != null)
+                using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
                 {
-                    var o = key.GetValue("InstallPath");
-                    if (o != null)
+                    if (key != null)
                     {
-                        path = o as string;
-                    }
-                    else
-                    {
-                        MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
-                        fail = true;
-                    }
-                }
-                else
-                {
-                    using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
-                    {
-                        if (key1 != null)
+                        var o = key.GetValue("InstallPath");
+                        if (o != null)
                         {
-                            var o = key1.GetValue("InstallPath");
-                            if (o != null)
-                            {
-                                path = o as string;
-                            }
-                            else
-                            {
-                                MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
-                                fail = true;
-                            }
+                            path = o as string;
                         }
                         else
                         {
@@ -225,55 +209,79 @@ namespace CSHUE.ViewModels
                             fail = true;
                         }
                     }
-                }
-            }
-
-            if (!fail)
-            {
-                path += "\\steamapps\\";
-
-                try
-                {
-                    file = File.ReadAllText(path + "appmanifest_730.acf");
-                }
-                catch
-                {
-                    MainWindowViewModel.WarningCSGOVisibility = Visibility.Visible;
-                    fail = true;
+                    else
+                    {
+                        using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                        {
+                            if (key1 != null)
+                            {
+                                var o = key1.GetValue("InstallPath");
+                                if (o != null)
+                                {
+                                    path = o as string;
+                                }
+                                else
+                                {
+                                    MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
+                                    fail = true;
+                                }
+                            }
+                            else
+                            {
+                                MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
+                                fail = true;
+                            }
+                        }
+                    }
                 }
 
                 if (!fail)
                 {
-                    var m = Regex.Match(file,
-                        "\"installdir\".*\"(.*)\"");
+                    path += "\\steamapps\\";
 
-                    if (m.Groups[1]
-                            .Value ==
-                        "")
+                    try
                     {
-                        MainWindowViewModel.WarningCSGOVisibility = Visibility.Visible;
+                        file = File.ReadAllText(path + "appmanifest_730.acf");
+                    }
+                    catch
+                    {
+                        MainWindowViewModel.WarningCsgoVisibility = Visibility.Visible;
                         fail = true;
                     }
-                    else
+
+                    if (!fail)
                     {
-                        cfgpath = path +
-                                  "common\\" +
-                                  m.Groups[1]
-                                      .Value +
-                                  "\\csgo\\cfg\\gamestate_integration_cshue.cfg";
+                        var m = Regex.Match(file,
+                            "\"installdir\".*\"(.*)\"");
+
+                        if (m.Groups[1]
+                                .Value ==
+                            "")
+                        {
+                            MainWindowViewModel.WarningCsgoVisibility = Visibility.Visible;
+                            fail = true;
+                        }
+                        else
+                        {
+                            cfgpath = path +
+                                      "common\\" +
+                                      m.Groups[1]
+                                          .Value +
+                                      "\\csgo\\cfg";
+                        }
                     }
                 }
             }
 
-            if (!fail && !File.Exists(cfgpath))
+            if (!fail && !File.Exists(cfgpath + "\\gamestate_integration_cshue.cfg"))
             {
-                MainWindowViewModel.WarningGSIVisibility = Visibility.Visible;
+                MainWindowViewModel.WarningGsiVisibility = Visibility.Visible;
                 fail = true;
             }
 
-            if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath)))
+            if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath + "\\gamestate_integration_cshue.cfg")))
             {
-                MainWindowViewModel.WarningGSICorruptedVisibility = Visibility.Visible;
+                MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Visible;
             }
         }
     }

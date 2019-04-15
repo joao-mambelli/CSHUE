@@ -196,4 +196,94 @@ bn=PP%2dDonationsBF</value>
   <data name="WarningSteam" xml:space="preserve">
     <value>Couldn't find Steam path.</value>
   </data>
+  <data name="AutomaticallyActivate" xml:space="preserve">
+    <value>Automatically activate between</value>
+  </data>
+  <data name="BombBlink" xml:space="preserve">
+    <value>Bomb Blink</value>
+  </data>
+  <data name="BombExplodes" xml:space="preserve">
+    <value>Bomb Explodes</value>
+  </data>
+  <data name="BombHasBeenPlanted" xml:space="preserve">
+    <value>Bomb Has Been Planted</value>
+  </data>
+  <data name="CounterTerroristsWin" xml:space="preserve">
+    <value>Counter-Terrorists Win</value>
+  </data>
+  <data name="CsgoCheckingPeriod" xml:space="preserve">
+    <value>CS:GO process checking period:</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration:</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="FreezeTime" xml:space="preserve">
+    <value>Freeze Time</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LaunchOptions" xml:space="preserve">
+    <value>Launch Options</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="MinimizeDetected" xml:space="preserve">
+    <value>Minimize CSHUE when CS:GO is detected</value>
+  </data>
+  <data name="MinimizeSystemTray" xml:space="preserve">
+    <value>Minimize to system tray</value>
+  </data>
+  <data name="PlayerGetsFlashed" xml:space="preserve">
+    <value>Player Gets Flashed</value>
+  </data>
+  <data name="PlayerGetsKill" xml:space="preserve">
+    <value>Player Gets a Kill</value>
+  </data>
+  <data name="PlayerGetsKilled" xml:space="preserve">
+    <value>Player Gets Killed</value>
+  </data>
+  <data name="Primary" xml:space="preserve">
+    <value>Primary</value>
+  </data>
+  <data name="Quarternary" xml:space="preserve">
+    <value>Quarternary</value>
+  </data>
+  <data name="RememberLights" xml:space="preserve">
+    <value>Remember lights states</value>
+  </data>
+  <data name="RoundStarts" xml:space="preserve">
+    <value>Round Starts</value>
+  </data>
+  <data name="RunCsgoOnStartup" xml:space="preserve">
+    <value>Run CS:GO on CSHUE startup</value>
+  </data>
+  <data name="RunMinimized" xml:space="preserve">
+    <value>Run minimized</value>
+  </data>
+  <data name="RunOnStartup" xml:space="preserve">
+    <value>Run CSHUE when my computer starts</value>
+  </data>
+  <data name="Secondary" xml:space="preserve">
+    <value>Secondary</value>
+  </data>
+  <data name="SecondsAbbreviation" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TerroristsWin" xml:space="preserve">
+    <value>Terrorists Win</value>
+  </data>
+  <data name="Tertiary" xml:space="preserve">
+    <value>Tertiary</value>
+  </data>
+  <data name="TriggerSpectating" xml:space="preserve">
+    <value>Also trigger player events when spectating</value>
+  </data>
+  <data name="Warmup" xml:space="preserve">
+    <value>Warmup</value>
+  </data>
 </root>

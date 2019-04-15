@@ -35,15 +35,15 @@
                     <ColumnDefinition MaxWidth="502" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="24,0,20,30">
-                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="Events" />
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=Events, Source={StaticResource Resources}}" />
 
                     <TabControl Margin="0,2,0,9"
                                 Style="{DynamicResource Windows10TabControl}">
                         <TabItem Style="{DynamicResource Windows10TabItem}"
-                                 Header="Primary"
+                                 Header="{Binding Path=Primary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2" Text="Main Menu" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=MainMenu, Source={StaticResource Resources}}" />
 
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
@@ -54,7 +54,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Terrorists Win" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=TerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -64,7 +64,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Counter-Terrorists Win" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=CounterTerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -74,7 +74,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Round Starts" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -84,7 +84,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Bomb Has Been Planted" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -98,10 +98,10 @@
                         </TabItem>
 
                         <TabItem Style="{DynamicResource Windows10TabItem}"
-                                 Header="Secondary"
+                                 Header="{Binding Path=Secondary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2" Text="Bomb Explodes" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -111,7 +111,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Bomb Blink" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombBlink, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -121,7 +121,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Freeze Time" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -131,7 +131,7 @@
                                         </LinearGradientBrush>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Margin="0,15,0,2" Text="Warmup" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=Warmup, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -145,10 +145,10 @@
                         </TabItem>
 
                         <TabItem Style="{DynamicResource Windows10TabItem}"
-                                 Header="Tertiary"
+                                 Header="{Binding Path=Tertiary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2" Text="Player Gets a Kill" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsKill, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -159,7 +159,7 @@
                                     </Button.Background>
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <TextBlock Text="Duration:" />
+                                    <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}" />
                                     <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKillDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -173,9 +173,9 @@
                                                         Maximum="60"
                                                         DefaultValue="1.5"
                                                         DisplayDefaultValueOnEmptyText="True" />
-                                        <TextBlock Text="s" Margin="3,0,0,0"/>
+                                    <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
                                 </StackPanel>
-                                <TextBlock Margin="0,15,0,2" Text="Player Gets Killed" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsKilled, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -186,7 +186,7 @@
                                     </Button.Background>
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <TextBlock Text="Duration:" />
+                                    <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}" />
                                     <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKilledDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -200,16 +200,16 @@
                                                         Maximum="60"
                                                         DefaultValue="3.0"
                                                         DisplayDefaultValueOnEmptyText="True" />
-                                    <TextBlock Text="s" Margin="3,0,0,0"/>
+                                    <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
 
                         <TabItem Style="{DynamicResource Windows10TabItem}"
-                                 Header="Quarternary"
+                                 Header="{Binding Path=Quarternary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2" Text="Player Gets Flashed" />
+                                <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
@@ -228,29 +228,29 @@
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Run minimized" />
+                        <TextBlock Text="{Binding Path=RunOnStartup, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="30,7,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Run CSHUE when my computer starts" />
+                        <TextBlock Text="{Binding Path=RunMinimized, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=MinimizeToSystemTray, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Minimize to system tray" />
+                        <TextBlock Text="{Binding Path=MinimizeSystemTray, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Minimize CSHUE when CS:GO is detected" />
+                        <TextBlock Text="{Binding Path=MinimizeDetected, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
-                    <StackPanel Orientation="Horizontal" Margin="0,15,0,9">
-                        <TextBlock Text="CS:GO process checking period:" />
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Path=CsgoCheckingPeriod, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                         <xctk:ByteUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=CsgoCheckingPeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          Background="{DynamicResource SystemBaseLowColorBrush}"
                                          Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -263,27 +263,27 @@
                                          Maximum="60"
                                          DefaultValue="7"
                                          DisplayDefaultValueOnEmptyText="True" />
-                        <TextBlock Text="s" Margin="3,0,0,0"/>
-                    </StackPanel>
+                        <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
+                    </WrapPanel>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Also trigger player events when spectating" />
+                        <TextBlock Text="{Binding Path=TriggerSpectating, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Remember lights states" />
+                        <TextBlock Text="{Binding Path=RememberLights, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Automatically activate between" />
+                        <TextBlock Text="{Binding Path=AutomaticallyActivate, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
-                    <TextBlock Text="Language" Margin="0,15,0,4"/>
+                    <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}" Margin="0,15,0,4"/>
                     <ComboBox Margin="0,4,0,9"
                               Width="280"
                               HorizontalAlignment="Left"
@@ -298,13 +298,13 @@
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="Run CS:GO on CSHUE startup" />
+                        <TextBlock Text="{Binding Path=RunCsgoOnStartup, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <TextBox Height="35"
                              Margin="0,2,0,9"
                              VerticalContentAlignment="Center"
                              Style="{StaticResource HintTextBox}"
-                             Tag="Launch Options"
+                             Tag="{Binding Path=LaunchOptions, Source={StaticResource Resources}}"
                              Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                     </TextBox>

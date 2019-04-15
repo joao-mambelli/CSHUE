@@ -205,7 +205,11 @@ namespace CSHUE.Views
                 using (var key = Registry.CurrentUser.OpenSubKey(
                     "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
                 {
-                    if (key == null) return;
+                    if (key == null)
+                    {
+                        Menus.Background = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
+                        return;
+                    }
                     var changeMenuColor = false;
                     if (key.GetValue("AppsUseLightTheme") != null)
                     {
@@ -224,7 +228,11 @@ namespace CSHUE.Views
                         _isModeDark = darkMode;
                     }
 
-                    if (key.GetValue("EnableTransparency") == null) return;
+                    if (key.GetValue("EnableTransparency") == null)
+                    {
+                        Menus.SetResourceReference(BackgroundProperty, "SystemAltMediumColorBrush");
+                        return;
+                    }
                     var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
                     if (_isTransparencyTrue != true && transparency)
                         Menus.SetResourceReference(BackgroundProperty, "SystemAltMediumColorBrush");

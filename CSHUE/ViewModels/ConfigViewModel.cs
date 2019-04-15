@@ -67,14 +67,33 @@ namespace CSHUE.ViewModels
                     }
                     else
                     {
-                        FailText = "Fail to locate Steam path.";
+                        FailText = Resources.WarningSteam;
                         fail = true;
                     }
                 }
                 else
                 {
-                    FailText = "Fail to locate Steam path.";
-                    fail = true;
+                    using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                    {
+                        if (key1 != null)
+                        {
+                            var o = key1.GetValue("InstallPath");
+                            if (o != null)
+                            {
+                                path = o as string;
+                            }
+                            else
+                            {
+                                FailText = Resources.WarningSteam;
+                                fail = true;
+                            }
+                        }
+                        else
+                        {
+                            FailText = Resources.WarningSteam;
+                            fail = true;
+                        }
+                    }
                 }
             }
 
@@ -88,7 +107,7 @@ namespace CSHUE.ViewModels
                 }
                 catch
                 {
-                    FailText = "Fail to locate CS:GO path.";
+                    FailText = Resources.WarningCSGO;
                     fail = true;
                 }
 
@@ -97,11 +116,9 @@ namespace CSHUE.ViewModels
                     var m = Regex.Match(file,
                         "\"installdir\".*\"(.*)\"");
 
-                    if (m.Groups[1]
-                            .Value ==
-                        "")
+                    if (m.Groups[1].Value == "")
                     {
-                        FailText = "Fail to locate CS:GO path.";
+                        FailText = Resources.WarningCSGO;
                         fail = true;
                     }
                     else
@@ -117,11 +134,11 @@ namespace CSHUE.ViewModels
 
             if (fail)
             {
-                MessageBox.Show($"{FailText} Please select the CS:GO cfg folder manually.");
+                MessageBox.Show($"{FailText} {Resources.SelectFolder}");
 
                 using (var fbd = new CommonOpenFileDialog())
                 {
-                    fbd.Title = "CS:GO Folder Selection";
+                    fbd.Title = Resources.FolderSelection;
                     fbd.IsFolderPicker = true;
                     fbd.InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}";
 
@@ -149,8 +166,7 @@ namespace CSHUE.ViewModels
             }
             else
             {
-                File.WriteAllLines(cfgpath,
-                    _lines);
+                File.WriteAllLines(cfgpath, _lines);
 
                 MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath, "CSHUE");
 
@@ -188,8 +204,27 @@ namespace CSHUE.ViewModels
                 }
                 else
                 {
-                    MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
-                    fail = true;
+                    using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                    {
+                        if (key1 != null)
+                        {
+                            var o = key1.GetValue("InstallPath");
+                            if (o != null)
+                            {
+                                path = o as string;
+                            }
+                            else
+                            {
+                                MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
+                                fail = true;
+                            }
+                        }
+                        else
+                        {
+                            MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
+                            fail = true;
+                        }
+                    }
                 }
             }
 
@@ -239,7 +274,6 @@ namespace CSHUE.ViewModels
             if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath)))
             {
                 MainWindowViewModel.WarningGSICorruptedVisibility = Visibility.Visible;
-                fail = true;
             }
         }
     }

@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Markup;
 using System.Windows.Navigation;
 using CSHUE.Cultures;
@@ -83,6 +84,7 @@ namespace CSHUE.Views
                 No = Cultures.Resources.No,
                 Message = Cultures.Resources.AreYouSure
             };
+            messageBox.Owner = Window.GetWindow(this);
             messageBox.ShowDialog();
 
             if (messageBox.DialogResult != true) return;

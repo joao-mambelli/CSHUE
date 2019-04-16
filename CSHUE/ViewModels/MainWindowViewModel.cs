@@ -11,8 +11,6 @@ namespace CSHUE.ViewModels
         public HomeViewModel HomeViewModel;
         public SettingsViewModel SettingsViewModel;
 
-        public Frame frame;
-
         public void Navigate(Frame page, object sender)
         {
             switch (((Grid)sender).Name)

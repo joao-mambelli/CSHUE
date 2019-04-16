@@ -22,5 +22,7 @@ namespace CSHUE.Views
         {
             ViewModel.CreateConfigFile();
         }
+
+
     }
 }

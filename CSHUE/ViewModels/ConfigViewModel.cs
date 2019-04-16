@@ -143,6 +143,7 @@ namespace CSHUE.ViewModels
                     Yes = Resources.Ok,
                     Message = $"{FailText} {Resources.SelectFolder}"
                 };
+                messageBox.Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 messageBox.ShowDialog();
 
                 using (var fbd = new CommonOpenFileDialog())
@@ -175,6 +176,7 @@ namespace CSHUE.ViewModels
                         Yes = Resources.Ok,
                         Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg"
                     };
+                    messageBox.Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                     messageBox.ShowDialog();
 
                     CheckConfigFile();
@@ -189,6 +191,7 @@ namespace CSHUE.ViewModels
                     Yes = Resources.Ok,
                     Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg"
                 };
+                messageBox.Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 messageBox.ShowDialog();
 
                 CheckConfigFile();

@@ -61,8 +61,6 @@ namespace CSHUE.Views
             CloseButton.MouseLeave += TopControls_MouseLeave;
             Page.Navigated += Page_Navigated;
 
-            _viewModel.frame = Page;
-
             Height = Properties.Settings.Default.Height;
             Width = Properties.Settings.Default.Width;
             if (Properties.Settings.Default.Maximized)

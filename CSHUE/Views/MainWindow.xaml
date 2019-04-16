@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gpl="clr-namespace:GradientPathLib;assembly=GradientPathLib"
         mc:Ignorable="d"
         Title="CSHUE"
         Height="450"
@@ -234,6 +235,34 @@
             </Grid>
 
             <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+
+
+
+            <gpl:GradientPath Name="GradientPath"
+                              StrokeThickness="10"
+                              Grid.Row="1"
+                              Tolerance="1"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              GradientMode="Parallel">
+                <gpl:GradientPath.Data>
+                    <PathGeometry>
+                        <PathFigure>
+                            <PathFigure.Segments>
+                                <PathSegmentCollection>
+                                    <BezierSegment Point1="0,0" Point2="140,70" Point3="0,140"  />
+                                    <BezierSegment Point1="0,140" Point2="-140,70" Point3="0,0"  />
+                                    <ArcSegment Point="100,100"></ArcSegment>
+                                </PathSegmentCollection>
+                            </PathFigure.Segments>
+                        </PathFigure>
+                    </PathGeometry>
+                </gpl:GradientPath.Data>
+                <gpl:GradientPath.GradientStops>
+                    <GradientStop Offset="0" Color="White" />
+                    <GradientStop Offset="1" Color="Green" />
+                </gpl:GradientPath.GradientStops>
+            </gpl:GradientPath>
         </Grid>
     </Grid>
 </Window>

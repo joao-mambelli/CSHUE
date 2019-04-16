@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -17,8 +16,6 @@ using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
-using Application = System.Windows.Forms.Application;
-using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace CSHUE.Views
 {
@@ -63,11 +60,6 @@ namespace CSHUE.Views
 
             Height = Properties.Settings.Default.Height;
             Width = Properties.Settings.Default.Width;
-            if (Properties.Settings.Default.Maximized)
-            {
-                WindowState = WindowState.Maximized;
-                OnStateChanged(new EventArgs());
-            }
 
             SetLanguage();
         }
@@ -116,6 +108,9 @@ namespace CSHUE.Views
             _viewModel.CreateInstances();
             _viewModel.Navigate(Page, "Home");
             _viewModel.ConfigViewModel.CheckConfigFile();
+
+            if (Properties.Settings.Default.Maximized)
+                WindowState = WindowState.Maximized;
         }
 
         private IntPtr WindowProc(IntPtr hwnd,
@@ -131,7 +126,7 @@ namespace CSHUE.Views
 
         private void WmGetMinMaxInfo(IntPtr lParam)
         {
-            MaxHeight = Screen.FromHandle(new WindowInteropHelper(Window).Handle).WorkingArea.Height;
+            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(Window).Handle).WorkingArea.Height;
             GetCursorPos(out var lMousePosition);
             var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
             var lPrimaryScreenInfo = new Monitorinfo();

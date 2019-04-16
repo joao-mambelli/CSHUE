@@ -165,6 +165,7 @@
                                                         ButtonSpinnerLocation="Left"
                                                         BorderThickness="0"
                                                         Width="42"
+                                                        Name="Test"
                                                         Margin="5,0,0,0"
                                                         TextAlignment="Center"
                                                         Increment=".5"

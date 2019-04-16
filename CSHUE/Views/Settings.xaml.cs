@@ -10,8 +10,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Markup;
+using System.Windows.Navigation;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
+using MaterialDesignThemes.Wpf;
+using Xceed.Wpf.Toolkit.Core.Converters;
 using ComboBox = System.Windows.Controls.ComboBox;
 using MessageBox = System.Windows.MessageBox;
 using MessageBoxResult = System.Windows.MessageBoxResult;
@@ -24,8 +27,6 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class Settings
     {
-        TimeSpan aaa = new TimeSpan(18, 0, 0);
-
         public SettingsViewModel ViewModel = null;
         private readonly SettingsViewModel _viewModel = new SettingsViewModel();
 
@@ -37,7 +38,7 @@ namespace CSHUE.Views
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
         }
 
-        private static void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((ComboBox)sender).SelectedIndex == -1)
             {
@@ -69,14 +70,22 @@ namespace CSHUE.Views
 
                 Cultures.Resources.Culture = culture;
 
-                CultureResources.ChangeCulture(culture);
+                Process.Start(System.Windows.Application.ResourceAssembly.Location);
+                System.Windows.Application.Current.Shutdown();
             }
         }
 
         private void Default_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to reset all the settings to default?", "CSHUE",
-                    MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+            Window messageBox = new CustomMessageBox
+            {
+                Yes = Cultures.Resources.Yes,
+                No = Cultures.Resources.No,
+                Message = Cultures.Resources.AreYouSure
+            };
+            messageBox.ShowDialog();
+
+            if (messageBox.DialogResult != true) return;
             Properties.Settings.Default.Reset();
             ViewModel.MainWindowViewModel.ConfigViewModel.CheckConfigFile();
         }

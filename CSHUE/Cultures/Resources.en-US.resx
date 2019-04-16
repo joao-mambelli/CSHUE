@@ -298,4 +298,16 @@ bn=PP%2dDonationsBF</value>
   <data name="And" xml:space="preserve">
     <value>and</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure you want to reset all the settings to default?</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

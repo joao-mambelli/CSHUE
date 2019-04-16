@@ -36,18 +36,7 @@ namespace CSHUE.ViewModels
             "}"
         };
 
-        private string _failText;
-
-        private string FailText
-        {
-            get =>
-                _failText;
-            set
-            {
-                _failText = value;
-                OnPropertyChanged();
-            }
-        }
+        private string FailText { get; set; }
 
         public void CreateConfigFile()
         {
@@ -59,44 +48,21 @@ namespace CSHUE.ViewModels
 
             if (string.IsNullOrEmpty(cfgpath))
             {
-                using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+                using (var key32 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
                 {
-                    if (key != null)
-                    {
-                        var o = key.GetValue("InstallPath");
-                        if (o != null)
-                        {
-                            path = o as string;
-                        }
-                        else
-                        {
-                            FailText = Resources.WarningSteam;
-                            fail = true;
-                        }
-                    }
+                    object o = null;
+                    if (key64 != null)
+                        o = key64.GetValue("InstallPath");
+                    else if (key32 != null)
+                        o = key32.GetValue("InstallPath");
+
+                    if (o != null)
+                        path = o as string;
                     else
                     {
-                        using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
-                        {
-                            if (key1 != null)
-                            {
-                                var o = key1.GetValue("InstallPath");
-                                if (o != null)
-                                {
-                                    path = o as string;
-                                }
-                                else
-                                {
-                                    FailText = Resources.WarningSteam;
-                                    fail = true;
-                                }
-                            }
-                            else
-                            {
-                                FailText = Resources.WarningSteam;
-                                fail = true;
-                            }
-                        }
+                        FailText = Resources.WarningSteam;
+                        fail = true;
                     }
                 }
 
@@ -116,8 +82,7 @@ namespace CSHUE.ViewModels
 
                     if (!fail)
                     {
-                        var m = Regex.Match(file,
-                            "\"installdir\".*\"(.*)\"");
+                        var m = Regex.Match(file, "\"installdir\".*\"(.*)\"");
 
                         if (m.Groups[1].Value == "")
                         {
@@ -126,11 +91,7 @@ namespace CSHUE.ViewModels
                         }
                         else
                         {
-                            cfgpath = path +
-                                      "common\\" +
-                                      m.Groups[1]
-                                          .Value +
-                                      "\\csgo\\cfg";
+                            cfgpath = path + "common\\" + m.Groups[1].Value + "\\csgo\\cfg";
                         }
                     }
                 }
@@ -141,27 +102,27 @@ namespace CSHUE.ViewModels
                 Window messageBox = new CustomMessageBox
                 {
                     Yes = Resources.Ok,
-                    Message = $"{FailText} {Resources.SelectFolder}"
+                    Message = $"{FailText} {Resources.SelectFolder}",
+                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 };
-                messageBox.Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 messageBox.ShowDialog();
 
-                using (var fbd = new CommonOpenFileDialog())
+                using (var fbd = new CommonOpenFileDialog
                 {
-                    fbd.Title = Resources.FolderSelection;
-                    fbd.IsFolderPicker = true;
-                    fbd.InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}";
-
-                    fbd.AddToMostRecentlyUsedList = false;
-                    fbd.AllowNonFileSystemItems = false;
-                    fbd.DefaultDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}";
-                    fbd.EnsureFileExists = true;
-                    fbd.EnsurePathExists = true;
-                    fbd.EnsureReadOnly = false;
-                    fbd.EnsureValidNames = true;
-                    fbd.Multiselect = false;
-                    fbd.ShowPlacesList = true;
-
+                    Title = Resources.FolderSelection,
+                    IsFolderPicker = true,
+                    InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}",
+                    AddToMostRecentlyUsedList = false,
+                    AllowNonFileSystemItems = false,
+                    DefaultDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}",
+                    EnsureFileExists = true,
+                    EnsurePathExists = true,
+                    EnsureReadOnly = false,
+                    EnsureValidNames = true,
+                    Multiselect = false,
+                    ShowPlacesList = true
+                })
+                {
                     var result = fbd.ShowDialog();
 
                     if (result != CommonFileDialogResult.Ok || string.IsNullOrWhiteSpace(fbd.FileName))
@@ -171,30 +132,30 @@ namespace CSHUE.ViewModels
 
                     File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
+                    CheckConfigFile();
+
                     messageBox = new CustomMessageBox
                     {
                         Yes = Resources.Ok,
-                        Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg"
+                        Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
+                        Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     };
-                    messageBox.Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                     messageBox.ShowDialog();
-
-                    CheckConfigFile();
                 }
             }
             else
             {
                 File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
+                CheckConfigFile();
+
                 Window messageBox = new CustomMessageBox
                 {
                     Yes = Resources.Ok,
-                    Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg"
+                    Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
+                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 };
-                messageBox.Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 messageBox.ShowDialog();
-
-                CheckConfigFile();
             }
         }
 
@@ -213,44 +174,21 @@ namespace CSHUE.ViewModels
 
             if (string.IsNullOrEmpty(cfgpath))
             {
-                using (var key = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+                using (var key32 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
                 {
-                    if (key != null)
-                    {
-                        var o = key.GetValue("InstallPath");
-                        if (o != null)
-                        {
-                            path = o as string;
-                        }
-                        else
-                        {
-                            MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
-                            fail = true;
-                        }
-                    }
+                    object o = null;
+                    if (key64 != null)
+                        o = key64.GetValue("InstallPath");
+                    else if (key32 != null)
+                        o = key32.GetValue("InstallPath");
+
+                    if (o != null)
+                        path = o as string;
                     else
                     {
-                        using (var key1 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
-                        {
-                            if (key1 != null)
-                            {
-                                var o = key1.GetValue("InstallPath");
-                                if (o != null)
-                                {
-                                    path = o as string;
-                                }
-                                else
-                                {
-                                    MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
-                                    fail = true;
-                                }
-                            }
-                            else
-                            {
-                                MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
-                                fail = true;
-                            }
-                        }
+                        MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
+                        fail = true;
                     }
                 }
 
@@ -282,11 +220,7 @@ namespace CSHUE.ViewModels
                         }
                         else
                         {
-                            cfgpath = path +
-                                      "common\\" +
-                                      m.Groups[1]
-                                          .Value +
-                                      "\\csgo\\cfg";
+                            cfgpath = path + "common\\" + m.Groups[1].Value + "\\csgo\\cfg";
                         }
                     }
                 }

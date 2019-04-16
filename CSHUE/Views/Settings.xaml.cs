@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Windows.Markup;
-using System.Windows.Navigation;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
-using MaterialDesignThemes.Wpf;
-using Xceed.Wpf.Toolkit.Core.Converters;
-using ComboBox = System.Windows.Controls.ComboBox;
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxResult = System.Windows.MessageBoxResult;
 
 namespace CSHUE.Views
 {
@@ -61,7 +47,7 @@ namespace CSHUE.Views
             }
             else
             {
-                var culture = Helpers.Converters.GetCultureInfoFromIndex(((ComboBox) sender).SelectedIndex);
+                var culture = Helpers.Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
@@ -82,9 +68,9 @@ namespace CSHUE.Views
             {
                 Yes = Cultures.Resources.Yes,
                 No = Cultures.Resources.No,
-                Message = Cultures.Resources.AreYouSure
+                Message = Cultures.Resources.AreYouSure,
+                Owner = Window.GetWindow(this)
             };
-            messageBox.Owner = Window.GetWindow(this);
             messageBox.ShowDialog();
 
             if (messageBox.DialogResult != true) return;

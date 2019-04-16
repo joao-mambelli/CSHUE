@@ -5,6 +5,7 @@ using System.Windows;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using CSHUE.Cultures;
+using CSHUE.Views;
 
 namespace CSHUE.ViewModels
 {
@@ -137,7 +138,12 @@ namespace CSHUE.ViewModels
 
             if (fail || !Directory.Exists(cfgpath))
             {
-                MessageBox.Show($"{FailText} {Resources.SelectFolder}");
+                Window messageBox = new CustomMessageBox
+                {
+                    Yes = Resources.Ok,
+                    Message = $"{FailText} {Resources.SelectFolder}"
+                };
+                messageBox.ShowDialog();
 
                 using (var fbd = new CommonOpenFileDialog())
                 {
@@ -164,7 +170,12 @@ namespace CSHUE.ViewModels
 
                     File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
-                    MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg", "CSHUE");
+                    messageBox = new CustomMessageBox
+                    {
+                        Yes = Resources.Ok,
+                        Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg"
+                    };
+                    messageBox.ShowDialog();
 
                     CheckConfigFile();
                 }
@@ -173,7 +184,12 @@ namespace CSHUE.ViewModels
             {
                 File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
-                MessageBox.Show($"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg", "CSHUE");
+                Window messageBox = new CustomMessageBox
+                {
+                    Yes = Resources.Ok,
+                    Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg"
+                };
+                messageBox.ShowDialog();
 
                 CheckConfigFile();
             }

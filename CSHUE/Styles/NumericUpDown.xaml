@@ -124,7 +124,7 @@
         <Setter Property="Background" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBackgroundKey}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBorderKey}}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource SystemBaseHighColorBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -180,7 +180,7 @@
                             <Setter Property="IsReadOnly" Value="True" TargetName="PART_TextBox" />
                         </DataTrigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            <Setter Property="Foreground" Value="{DynamicResource SystemBaseLowColorBrush}" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="PART_TextBox" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_TextBox}" />

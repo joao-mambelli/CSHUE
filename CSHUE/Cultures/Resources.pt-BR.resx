@@ -298,4 +298,16 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="And" xml:space="preserve">
     <value>e</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Você tem certeza de que deseja redefinir todas as configurações para padrão?</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

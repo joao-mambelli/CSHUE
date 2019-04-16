@@ -9,8 +9,8 @@
         BorderThickness="1"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
-        MinWidth="400"
-        MinHeight="170"
+        MinWidth="100"
+        MinHeight="100"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
         fw:AcrylicWindow.Enabled="True"
@@ -38,8 +38,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <Grid Height="32" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock Text="   CSHUE" VerticalAlignment="Center" FontSize="15" />
+        </Grid>
+
         <TextBlock Text="{Binding Message}"
-                   Margin="20,35,20,55"
+                   Margin="20,45,20,65"
                    TextWrapping="Wrap"
                    MaxWidth="500">
 
@@ -48,7 +52,7 @@
                     HorizontalAlignment="Right"
                     Visibility="{Binding YesNoVisibility}">
             <Button Style="{DynamicResource Windows10Button}"
-                    Margin="20,20,0,20" 
+                    Margin="15,25,0,15" 
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31" Width="90"
@@ -57,7 +61,7 @@
 
             </Button>
             <Button Style="{DynamicResource Windows10Button}"
-                    Margin="20"
+                    Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31" Width="90"
@@ -70,7 +74,7 @@
                     HorizontalAlignment="Right"
                     Visibility="{Binding OkVisibility}">
             <Button Style="{DynamicResource Windows10Button}"
-                    Margin="20"
+                    Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31" Width="90"

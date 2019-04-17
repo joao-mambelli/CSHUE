@@ -11,6 +11,7 @@
         BorderThickness="1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
@@ -234,6 +235,12 @@
             </Grid>
 
             <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+
+            <Image Grid.Row="1"
+                   Width="128"
+                   Height="128"
+                   gif:AnimationBehavior.SourceUri="/Images/Loading-Light.gif"
+                   gif:AnimationBehavior.RepeatBehavior="Forever"/>
         </Grid>
     </Grid>
 </Window>

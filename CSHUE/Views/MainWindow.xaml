@@ -11,7 +11,6 @@
         BorderThickness="1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
@@ -236,11 +235,108 @@
 
             <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
 
-            <Image Grid.Row="1"
+            <!--<Image Grid.Row="1"
                    Width="128"
                    Height="128"
-                   gif:AnimationBehavior.SourceUri="/Images/Loading-Light.gif"
-                   gif:AnimationBehavior.RepeatBehavior="Forever"/>
+                   gif:AnimationBehavior.SourceUri="/Images/Loading-Dark.gif"
+                   gif:AnimationBehavior.RepeatBehavior="Forever"/>-->
+
+            <Canvas Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Path Stroke="White"
+                      StrokeThickness="7">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="0 -100">
+                                <ArcSegment x:Name="Arc"
+                                            Size="100 100"
+                                            SweepDirection="ClockWise" />
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+
+                    <Path.RenderTransform>
+                        <RotateTransform x:Name="Rotate" />
+                    </Path.RenderTransform>
+
+                    <Path.Triggers>
+                        <EventTrigger RoutedEvent="Path.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard TargetName="Arc"
+                                            AutoReverse="True"
+                                            RepeatBehavior="Forever">
+                                    <PointAnimationUsingPath
+                                        Storyboard.TargetProperty="Point"
+                                        Duration="0:0:9"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5">
+                                        <PointAnimationUsingPath.PathGeometry>
+                                            <PathGeometry
+                                                Figures="M 8.715574274 -99.619469809 A 100 100 0 1 1 -100 0" />
+                                        </PointAnimationUsingPath.PathGeometry>
+                                    </PointAnimationUsingPath>
+
+                                    <BooleanAnimationUsingKeyFrames
+                                        Storyboard.TargetProperty="IsLargeArc"
+                                        Duration="0:0:9"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5">
+                                        <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False" />
+                                        <DiscreteBooleanKeyFrame KeyTime="0:0:5.95" Value="True" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard TargetName="Rotate"
+                                            RepeatBehavior="Forever">
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        From="0"
+                                        To="300"
+                                        Duration="0:0:9" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        From="300"
+                                        To="600"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        BeginTime="0:0:9"
+                                        Duration="0:0:9" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        From="600"
+                                        To="900"
+                                        BeginTime="0:0:18"
+                                        Duration="0:0:9" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        From="900"
+                                        To="1200"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        BeginTime="0:0:27"
+                                        Duration="0:0:9" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        From="1200"
+                                        To="1500"
+                                        BeginTime="0:0:36"
+                                        Duration="0:0:9" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        From="1500"
+                                        To="1800"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        BeginTime="0:0:45"
+                                        Duration="0:0:9" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Path.Triggers>
+                </Path>
+            </Canvas>
         </Grid>
     </Grid>
 </Window>

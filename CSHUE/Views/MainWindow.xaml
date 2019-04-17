@@ -268,7 +268,7 @@
                                             RepeatBehavior="Forever">
                                     <PointAnimationUsingPath
                                         Storyboard.TargetProperty="Point"
-                                        Duration="0:0:9"
+                                        Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5">
                                         <PointAnimationUsingPath.PathGeometry>
@@ -279,11 +279,11 @@
 
                                     <BooleanAnimationUsingKeyFrames
                                         Storyboard.TargetProperty="IsLargeArc"
-                                        Duration="0:0:9"
+                                        Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5">
                                         <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False" />
-                                        <DiscreteBooleanKeyFrame KeyTime="0:0:5.95" Value="True" />
+                                        <DiscreteBooleanKeyFrame KeyTime="0:0:0.4616666" Value="True" />
                                     </BooleanAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -292,45 +292,107 @@
                                             RepeatBehavior="Forever">
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
                                         From="0"
-                                        To="300"
-                                        Duration="0:0:9" />
+                                        To="120" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
-                                        From="300"
-                                        To="600"
+                                        BeginTime="0:0:0.7"
+                                        Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        BeginTime="0:0:9"
-                                        Duration="0:0:9" />
+                                        From="120"
+                                        To="570" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
-                                        From="600"
-                                        To="900"
-                                        BeginTime="0:0:18"
-                                        Duration="0:0:9" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        From="900"
-                                        To="1200"
+                                        BeginTime="0:0:1.4"
+                                        Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        BeginTime="0:0:27"
-                                        Duration="0:0:9" />
+                                        From="570"
+                                        To="690" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
-                                        From="1200"
-                                        To="1500"
-                                        BeginTime="0:0:36"
-                                        Duration="0:0:9" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        From="1500"
-                                        To="1800"
+                                        BeginTime="0:0:2.1"
+                                        Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        BeginTime="0:0:45"
-                                        Duration="0:0:9" />
+                                        From="690"
+                                        To="1140" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:2.8"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="1140"
+                                        To="1260" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:3.5"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="1260"
+                                        To="1710" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:4.2"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="1710"
+                                        To="1830" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:4.9"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="1830"
+                                        To="2280" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:5.6"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="2280"
+                                        To="2400" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:6.3"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="2400"
+                                        To="2850" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:7.0"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="2850"
+                                        To="2970" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:7.7"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="2970"
+                                        To="3420" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:8.4"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="3420"
+                                        To="3600" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

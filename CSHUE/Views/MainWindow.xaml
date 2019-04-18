@@ -235,29 +235,28 @@
 
             <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
 
-            <!--<Image Grid.Row="1"
-                   Width="128"
-                   Height="128"
-                   gif:AnimationBehavior.SourceUri="/Images/Loading-Dark.gif"
-                   gif:AnimationBehavior.RepeatBehavior="Forever"/>-->
-
             <Canvas Grid.Row="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
+
+                <Canvas.RenderTransform>
+                    <RotateTransform x:Name="RotateCanvas" />
+                </Canvas.RenderTransform>
+
                 <Path Stroke="White"
-                      StrokeThickness="7">
+                      StrokeThickness="8">
                     <Path.Data>
                         <PathGeometry>
-                            <PathFigure StartPoint="0 -100">
+                            <PathFigure StartPoint="0,-64">
                                 <ArcSegment x:Name="Arc"
-                                            Size="100 100"
-                                            SweepDirection="ClockWise" />
+                                            Size="64,64"
+                                            SweepDirection="Counterclockwise" />
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
 
                     <Path.RenderTransform>
-                        <RotateTransform x:Name="Rotate" />
+                        <RotateTransform x:Name="RotatePath" />
                     </Path.RenderTransform>
 
                     <Path.Triggers>
@@ -272,8 +271,7 @@
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5">
                                         <PointAnimationUsingPath.PathGeometry>
-                                            <PathGeometry
-                                                Figures="M 8.715574274 -99.619469809 A 100 100 0 1 1 -100 0" />
+                                            <PathGeometry Figures="M -4.01859324988,-63.8737106194 A 64,64 0 1 0 64,0" />
                                         </PointAnimationUsingPath.PathGeometry>
                                     </PointAnimationUsingPath>
 
@@ -288,7 +286,7 @@
                                 </Storyboard>
                             </BeginStoryboard>
                             <BeginStoryboard>
-                                <Storyboard TargetName="Rotate"
+                                <Storyboard TargetName="RotatePath"
                                             RepeatBehavior="Forever">
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
@@ -296,103 +294,57 @@
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
                                         From="0"
-                                        To="120" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:0.7"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="120"
-                                        To="570" />
+                                        To="276" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:1.4"
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="570"
-                                        To="690" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:2.1"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="690"
-                                        To="1140" />
+                                        From="276"
+                                        To="552" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:2.8"
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="1140"
-                                        To="1260" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:3.5"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="1260"
-                                        To="1710" />
+                                        From="552"
+                                        To="828" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:4.2"
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="1710"
-                                        To="1830" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:4.9"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="1830"
-                                        To="2280" />
+                                        From="828"
+                                        To="1104" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:5.6"
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="2280"
-                                        To="2400" />
+                                        From="1104"
+                                        To="1380" />
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:6.3"
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="2400"
-                                        To="2850" />
+                                        From="1380"
+                                        To="1380" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard TargetName="RotateCanvas"
+                                            RepeatBehavior="Forever">
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:7.0"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="2850"
-                                        To="2970" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:7.7"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="2970"
-                                        To="3420" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetProperty="Angle"
-                                        BeginTime="0:0:8.4"
-                                        Duration="0:0:0.7"
-                                        AccelerationRatio=".5"
-                                        DecelerationRatio=".5"
-                                        From="3420"
-                                        To="3600" />
+                                        Duration="0:0:7.0"
+                                        From="0"
+                                        To="1500" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

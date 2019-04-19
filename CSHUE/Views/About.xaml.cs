@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Linq;
+using System.Windows;
 using System.Windows.Navigation;
 using CSHUE.ViewModels;
 
@@ -10,12 +12,14 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class About
     {
-        public AboutViewModel ViewModel = null;
+        public AboutViewModel ViewModel = new AboutViewModel();
 
         public About()
         {
             InitializeComponent();
             DataContext = ViewModel;
+
+            ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
         }
 
         private void Hyperlink_RequestNavigate(object sender,

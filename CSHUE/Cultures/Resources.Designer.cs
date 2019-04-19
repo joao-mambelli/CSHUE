@@ -586,6 +586,28 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press the link button on your
+        ///Philips Hue Hub..
+        /// </summary>
+        public static string WarningLink {
+            get {
+                return ResourceManager.GetString("WarningLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Philips Hue Hub found.
+        ///Make sure the Hub is connected to the same network as yours.
+        ///
+        ///Connect the Hub then wait for CSHUE to automatically detect it..
+        /// </summary>
+        public static string WarningNoHub {
+            get {
+                return ResourceManager.GetString("WarningNoHub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t find Steam path..
         /// </summary>
         public static string WarningSteam {

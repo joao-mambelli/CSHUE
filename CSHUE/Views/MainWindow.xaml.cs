@@ -26,7 +26,7 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class MainWindow
     {
-        private readonly MainWindowViewModel _viewModel = new MainWindowViewModel();
+        public readonly MainWindowViewModel ViewModel = new MainWindowViewModel();
 
         public MainWindow()
         {
@@ -42,7 +42,7 @@ namespace CSHUE.Views
             }
 
             InitializeComponent();
-            DataContext = _viewModel;
+            DataContext = ViewModel;
             SystemEvents.UserPreferenceChanged += PreferenceChangedHandler;
             PreferenceChangedHandler(new object(), new UserPreferenceChangedEventArgs(new UserPreferenceCategory()));
             Home.MouseLeave += Control_MouseLeave;
@@ -105,12 +105,14 @@ namespace CSHUE.Views
             var mWindowHandle = new WindowInteropHelper(this).Handle;
             HwndSource.FromHwnd(mWindowHandle)
                 ?.AddHook(WindowProc);
-            _viewModel.CreateInstances();
-            _viewModel.Navigate(Page, "Home");
-            _viewModel.ConfigViewModel.CheckConfigFile();
+            ViewModel.CreateInstances();
+            ViewModel.Navigate(Page, "Home");
+            ViewModel.ConfigPage.ViewModel.CheckConfigFile();
 
             if (Properties.Settings.Default.Maximized)
                 WindowState = WindowState.Maximized;
+
+            ViewModel.HueAsync();
         }
 
         private IntPtr WindowProc(IntPtr hwnd,
@@ -308,7 +310,7 @@ namespace CSHUE.Views
         {
             if (!_buttonClickable) return;
             ((Grid) sender).ClearValue(BackgroundProperty);
-            _viewModel.Navigate(Page, sender);
+            ViewModel.Navigate(Page, sender);
             foreach (var f in Menus.Children.OfType<StackPanel>())
                 foreach (var g in f.Children.OfType<Grid>())
                     foreach (var h in g.Children.OfType<StackPanel>())
@@ -413,6 +415,8 @@ namespace CSHUE.Views
             }
 
             Properties.Settings.Default.Save();
+
+            Environment.Exit(0);
         }
     }
 }

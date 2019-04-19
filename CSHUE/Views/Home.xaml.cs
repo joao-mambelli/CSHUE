@@ -1,4 +1,7 @@
-﻿using CSHUE.ViewModels;
+﻿using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {
@@ -8,12 +11,14 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class Home
     {
-        public HomeViewModel ViewModel = null;
+        public HomeViewModel ViewModel = new HomeViewModel();
 
         public Home()
         {
             InitializeComponent();
             DataContext = ViewModel;
+
+            ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
         }
     }
 }

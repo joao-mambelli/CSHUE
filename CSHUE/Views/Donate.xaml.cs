@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows;
 using CSHUE.ViewModels;
 using CSHUE.Cultures;
 
@@ -11,12 +13,14 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class Donate
     {
-        public DonateViewModel ViewModel = null;
+        public DonateViewModel ViewModel = new DonateViewModel();
 
         public Donate()
         {
             InitializeComponent();
             DataContext = ViewModel;
+
+            ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
         }
 
         private void Donate_Click(object sender,

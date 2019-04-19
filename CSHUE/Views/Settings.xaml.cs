@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,13 +15,14 @@ namespace CSHUE.Views
     // ReSharper disable once InheritdocConsiderUsage
     public partial class Settings
     {
-        public SettingsViewModel ViewModel = null;
-        private readonly SettingsViewModel _viewModel = new SettingsViewModel();
+        public SettingsViewModel ViewModel = new SettingsViewModel();
 
         public Settings()
         {
             InitializeComponent();
-            DataContext = _viewModel;
+            DataContext = ViewModel;
+
+            ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
 
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
         }
@@ -57,12 +59,12 @@ namespace CSHUE.Views
 
                 Cultures.Resources.Culture = culture;
 
-                Process.Start(System.Windows.Application.ResourceAssembly.Location);
-                System.Windows.Application.Current.Shutdown();
+                Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
             }
         }
 
-        private void Default_Click(object sender, RoutedEventArgs e)
+        private async void Default_Click(object sender, RoutedEventArgs e)
         {
             Window messageBox = new CustomMessageBox
             {
@@ -74,8 +76,14 @@ namespace CSHUE.Views
             messageBox.ShowDialog();
 
             if (messageBox.DialogResult != true) return;
+
+            ComboBoxLanguage.SelectionChanged -= ComboBoxLanguage_SelectionChanged;
             Properties.Settings.Default.Reset();
-            ViewModel.MainWindowViewModel.ConfigViewModel.CheckConfigFile();
+            ViewModel.MainWindowViewModel.ConfigPage.ViewModel.CheckConfigFile();
+            await MainWindowViewModel.SetDefaultLightsSettings();
+
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }

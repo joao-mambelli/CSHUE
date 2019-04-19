@@ -310,4 +310,14 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="WarningLink" xml:space="preserve">
+    <value>Pressione o link do seu
+Philips Hue Hub.</value>
+  </data>
+  <data name="WarningNoHub" xml:space="preserve">
+    <value>Nenhum Philips Hue Hub encontrado.
+Verifique se o Hub está conectado à mesma rede que você.
+
+Conecte o Hub e espere que o CSHUE o detecte automaticamente.</value>
+  </data>
 </root>

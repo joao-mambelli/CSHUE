@@ -7,12 +7,14 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:p="clr-namespace:CSHUE.Properties"
       xmlns:cultures="clr-namespace:CSHUE.Cultures"
+      xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
       d:DesignWidth="800"
       Title="Settings"
-      FontFamily="Segoe UI Semilight">
+      FontFamily="Segoe UI Semilight"
+      d:DataContext="{d:DesignInstance Type=viewModels:SettingsViewModel}">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -310,4 +310,14 @@ bn=PP%2dDonationsBF</value>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="WarningLink" xml:space="preserve">
+    <value>Press the link button on your
+Philips Hue Hub.</value>
+  </data>
+  <data name="WarningNoHub" xml:space="preserve">
+    <value>No Philips Hue Hub found.
+Make sure the Hub is connected to the same network as yours.
+
+Connect the Hub then wait for CSHUE to automatically detect it.</value>
+  </data>
 </root>

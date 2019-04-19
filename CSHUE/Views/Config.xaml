@@ -4,12 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
+      xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Config"
-      FontFamily="Segoe UI Semilight">
+      FontFamily="Segoe UI Semilight"
+      d:DataContext="{d:DesignInstance Type=viewModels:ConfigViewModel}">
 
     <Grid>
         <Grid.RowDefinitions>

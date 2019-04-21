@@ -188,7 +188,7 @@ namespace CSHUE.ViewModels
 
             Client.Initialize(_appKey);
 
-            SetDefaultLightsSettings();
+            await SetDefaultLightsSettings();
 
             Csgo();
         }

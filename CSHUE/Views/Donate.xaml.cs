@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using CSHUE.ViewModels;
-using CSHUE.Cultures;
 
 namespace CSHUE.Views
 {

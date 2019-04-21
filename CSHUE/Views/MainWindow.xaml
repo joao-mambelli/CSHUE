@@ -237,6 +237,146 @@
             </Grid>
 
             <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+<<<<<<< HEAD
+=======
+
+            <Canvas
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Canvas.RenderTransform>
+                    <RotateTransform
+                        x:Name="RotateCanvas" />
+                </Canvas.RenderTransform>
+
+                <Path
+                    Stroke="White"
+                    StrokeThickness="8">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure
+                                StartPoint="0,-64">
+                                <ArcSegment
+                                    x:Name="Arc"
+                                    Size="64,64"
+                                    SweepDirection="Counterclockwise" />
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+
+                    <Path.RenderTransform>
+                        <RotateTransform
+                            x:Name="RotatePath" />
+                    </Path.RenderTransform>
+
+                    <Path.Triggers>
+                        <EventTrigger
+                            RoutedEvent="Path.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard
+                                    TargetName="Arc"
+                                    AutoReverse="True"
+                                    RepeatBehavior="Forever">
+                                    <PointAnimationUsingPath
+                                        Storyboard.TargetProperty="Point"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5">
+                                        <PointAnimationUsingPath.PathGeometry>
+                                            <PathGeometry
+                                                Figures="M -4.01859324988,-63.8737106194 A 64,64 0 1 0 64,0" />
+                                        </PointAnimationUsingPath.PathGeometry>
+                                    </PointAnimationUsingPath>
+
+                                    <BooleanAnimationUsingKeyFrames
+                                        Storyboard.TargetProperty="IsLargeArc"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5">
+                                        <DiscreteBooleanKeyFrame
+                                            KeyTime="0:0:0"
+                                            Value="False" />
+
+                                        <DiscreteBooleanKeyFrame
+                                            KeyTime="0:0:0.4616666"
+                                            Value="True" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard
+                                    TargetName="RotatePath"
+                                    RepeatBehavior="Forever">
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="0"
+                                        To="276" />
+
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:1.4"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="276"
+                                        To="552" />
+
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:2.8"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="552"
+                                        To="828" />
+
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:4.2"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="828"
+                                        To="1104" />
+
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:5.6"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="1104"
+                                        To="1380" />
+
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        BeginTime="0:0:6.3"
+                                        Duration="0:0:0.7"
+                                        AccelerationRatio=".5"
+                                        DecelerationRatio=".5"
+                                        From="1380"
+                                        To="1380" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard
+                                    TargetName="RotateCanvas"
+                                    RepeatBehavior="Forever">
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Angle"
+                                        Duration="0:0:7.0"
+                                        From="0"
+                                        To="1500" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Path.Triggers>
+                </Path>
+            </Canvas>
+>>>>>>> 1d618735f2317237c22402d8932f3fcc9ea36a9c
         </Grid>
     </Grid>
 </Window>

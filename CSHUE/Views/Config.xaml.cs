@@ -8,7 +8,6 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for Config.xaml
     /// </summary>
-    // ReSharper disable once InheritdocConsiderUsage
     public partial class Config
     {
         public ConfigViewModel ViewModel = new ConfigViewModel();

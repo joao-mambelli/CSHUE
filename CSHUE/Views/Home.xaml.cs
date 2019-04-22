@@ -7,7 +7,6 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    // ReSharper disable once InheritdocConsiderUsage
     public partial class Home
     {
         public HomeViewModel ViewModel = new HomeViewModel();

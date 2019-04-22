@@ -22,17 +22,13 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    // ReSharper disable once UnusedMember.Global
-    // ReSharper disable once InheritdocConsiderUsage
     public partial class MainWindow
     {
         public readonly MainWindowViewModel ViewModel = new MainWindowViewModel();
 
         public MainWindow()
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (Properties.Settings.Default.Top == -1
-                // ReSharper disable once CompareOfFloatsByEqualityOperator
                 && Properties.Settings.Default.Left == -1)
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             else
@@ -61,7 +57,38 @@ namespace CSHUE.Views
             Height = Properties.Settings.Default.Height;
             Width = Properties.Settings.Default.Width;
 
+            ViewModel.CreateInstances();
+
             SetLanguage();
+
+            if (Properties.Settings.Default.RunOnStartup)
+                if (Properties.Settings.Default.RunOnStartupMinimized)
+                    ViewModel.SettingsPage.ViewModel.AddStartup(true);
+                else
+                    ViewModel.SettingsPage.ViewModel.AddStartup(false);
+            else
+                ViewModel.SettingsPage.ViewModel.RemoveStartup();
+
+            string[] arguments = Environment.GetCommandLineArgs();
+            foreach (string s in arguments)
+            {
+                if (s == "-silent")
+                {
+                    if (Properties.Settings.Default.RunOnStartupMinimized && Properties.Settings.Default.MinimizeToSystemTray)
+                    {
+                        WindowState = WindowState.Minimized;
+                        Hide();
+                        notifyIcon.Visibility = Visibility.Visible;
+                    }
+                    else if (Properties.Settings.Default.RunOnStartupMinimized)
+                        WindowState = WindowState.Minimized;
+                }
+            }
+
+            ViewModel.Navigate(Page, "Home");
+            ViewModel.ConfigPage.ViewModel.CheckConfigFile();
+
+            ViewModel.HueAsync();
         }
 
         private static void SetLanguage()
@@ -105,14 +132,9 @@ namespace CSHUE.Views
             var mWindowHandle = new WindowInteropHelper(this).Handle;
             HwndSource.FromHwnd(mWindowHandle)
                 ?.AddHook(WindowProc);
-            ViewModel.CreateInstances();
-            ViewModel.Navigate(Page, "Home");
-            ViewModel.ConfigPage.ViewModel.CheckConfigFile();
 
             if (Properties.Settings.Default.Maximized)
                 WindowState = WindowState.Maximized;
-
-            ViewModel.HueAsync();
         }
 
         private IntPtr WindowProc(IntPtr hwnd,
@@ -196,16 +218,10 @@ namespace CSHUE.Views
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         private class Monitorinfo
         {
-            // ReSharper disable once UnusedMember.Local
             private readonly int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
-            // ReSharper disable once UnusedMember.Global
-#pragma warning disable 414
-#pragma warning disable 169
             private readonly int dwFlags = 0;
-#pragma warning restore 169
-#pragma warning restore 414
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -357,13 +373,11 @@ namespace CSHUE.Views
                 child.ClearValue(ForegroundProperty);
         }
 
-        // ReSharper disable once UnusedMember.Global
         public void MinimizeButton_Click()
         {
             WindowState = WindowState.Minimized;
         }
 
-        // ReSharper disable once UnusedMember.Global
         public void MaximizeButton_Click()
         {
             WindowState = WindowState == WindowState.Normal
@@ -385,10 +399,21 @@ namespace CSHUE.Views
                 WindowState == WindowState.Normal
                     ? "CropSquare"
                     : "WindowRestore");
+
+            if (WindowState == WindowState.Minimized && Properties.Settings.Default.MinimizeToSystemTray)
+            {
+                Hide();
+                notifyIcon.Visibility = Visibility.Visible;
+            }
+            else if (WindowState != WindowState.Minimized)
+            {
+                Show();
+                notifyIcon.Visibility = Visibility.Collapsed;
+            }
+
             base.OnStateChanged(e);
         }
 
-        // ReSharper disable once UnusedMember.Global
         public void CloseButton_Click()
         {
             Close();
@@ -396,6 +421,8 @@ namespace CSHUE.Views
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            notifyIcon.Visibility = Visibility.Collapsed;
+
             if (WindowState == WindowState.Maximized
                 || WindowState == WindowState.Minimized)
             {
@@ -414,9 +441,50 @@ namespace CSHUE.Views
                 Properties.Settings.Default.Maximized = false;
             }
 
+            Properties.Settings.Default.MainMenu = null;
+            Properties.Settings.Default.PlayerGetsKill = null;
+            Properties.Settings.Default.PlayerGetsKilled = null;
+            Properties.Settings.Default.PlayerGetsFlashed = null;
+            Properties.Settings.Default.TerroristsWin = null;
+            Properties.Settings.Default.CounterTerroristsWin = null;
+            Properties.Settings.Default.RoundStarts = null;
+            Properties.Settings.Default.FreezeTime = null;
+            Properties.Settings.Default.Warmup = null;
+            Properties.Settings.Default.BombExplodes = null;
+            Properties.Settings.Default.BombPlanted = null;
+            Properties.Settings.Default.BombBlink = null;
             Properties.Settings.Default.Save();
 
             Environment.Exit(0);
+        }
+
+        private void NotifyIcon_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            Show();
+            WindowState = WindowState.Normal;
+        }
+
+        private void MenuNavigate_Click(object sender, RoutedEventArgs e)
+        {
+            NotifyIcon_TrayMouseDoubleClick(sender, e);
+
+            ViewModel.Navigate(Page, ((MenuItem)sender).Tag.ToString());
+        }
+
+        private void MenuExit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            ((ContextMenu)sender).Items[1] = new MenuItem()
+            {
+                Header = Cultures.Resources.CSGOGSI,
+                Style = (Style)FindResource("Windows10MenuItemAlert"),
+                Tag = "Config"
+            };
+            ((MenuItem)((ContextMenu)sender).Items[1]).Click += MenuNavigate_Click;
         }
     }
 }

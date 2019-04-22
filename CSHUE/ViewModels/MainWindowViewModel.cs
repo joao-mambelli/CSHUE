@@ -79,17 +79,24 @@ namespace CSHUE.ViewModels
             SettingsPage = new Settings();
             AboutPage = new About();
 
-            var list = new List<BridgeSelector>()
-            {
-                new BridgeSelector(),
-                new BridgeSelector(),
-                new BridgeSelector()
-            };
-
-            new Selector()
+            new Selector
             {
                 Ok = "aaa",
-                List = list
+                List = new List<BridgeSelector>
+                {
+                    new BridgeSelector
+                    {
+                        ContentText = "111"
+                    },
+                    new BridgeSelector
+                    {
+                        ContentText = "222"
+                    },
+                    new BridgeSelector
+                    {
+                        ContentText = "333"
+                    }
+                }
             }.ShowDialog();
         }
 

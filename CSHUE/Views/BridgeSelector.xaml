@@ -6,11 +6,9 @@
              xmlns:local="clr-namespace:CSHUE.Views"
              mc:Ignorable="d" 
              Height="40"
-             Width="70">
-    <Grid Background="White">
-        <StackPanel Orientation="Horizontal">
-            <Label Content="aaaa"></Label>
-            <Button Content="bbbb"></Button>
-        </StackPanel>
+             Width="70"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid Background="Transparent">
+        <RadioButton Content="{Binding ContentText}" />
     </Grid>
 </UserControl>

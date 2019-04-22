@@ -323,4 +323,7 @@ Connect the Hub then wait for CSHUE to automatically detect it.</value>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Open Folder</value>
+  </data>
 </root>

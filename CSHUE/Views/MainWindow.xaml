@@ -238,48 +238,49 @@
             </Grid>
 
             <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
-
-            <tb:TaskbarIcon
-                x:Name="notifyIcon"
-                Visibility="Collapsed"
-                ToolTipText="CSHUE"
-                IconSource="/icon.ico"
-                MenuActivation="LeftOrRightClick"
-                TrayMouseDoubleClick="NotifyIcon_TrayMouseDoubleClick">
-                <tb:TaskbarIcon.ContextMenu>
-                    <ContextMenu
-                        Background="{DynamicResource SystemAltHighColorBrush}"
-                        BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
-                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                        Style="{DynamicResource Windows10ContextMenu}"
-                        Opened="ContextMenu_Opened">
-                        <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
-                                  Style="{DynamicResource Windows10MenuItem}"
-                                  Click="MenuNavigate_Click"
-                                  Tag="Home"/>
-                        <MenuItem Header="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
-                                  Style="{DynamicResource Windows10MenuItemAlert}"
-                                  Click="MenuNavigate_Click"
-                                  Tag="Config"/>
-                        <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"
-                                  Style="{DynamicResource Windows10MenuItem}"
-                                  Click="MenuNavigate_Click"
-                                  Tag="Donate"/>
-                        <MenuItem Header="{Binding Path=About, Source={StaticResource Resources}}"
-                                  Style="{DynamicResource Windows10MenuItem}"
-                                  Click="MenuNavigate_Click"
-                                  Tag="About"/>
-                        <MenuItem Header="{Binding Path=Settings, Source={StaticResource Resources}}"
-                                  Style="{DynamicResource Windows10MenuItem}"
-                                  Click="MenuNavigate_Click"
-                                  Tag="Settings"/>
-                        <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
-                        <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
-                                  Style="{DynamicResource Windows10MenuItem}"
-                                  Click="MenuExit_Click"/>
-                    </ContextMenu>
-                </tb:TaskbarIcon.ContextMenu>
-            </tb:TaskbarIcon>
         </Grid>
+
+        <tb:TaskbarIcon
+            Grid.Column="0"
+            x:Name="NotifyIcon"
+            Visibility="Collapsed"
+            ToolTipText="CSHUE"
+            IconSource="/icon.ico"
+            MenuActivation="LeftOrRightClick"
+            TrayMouseDoubleClick="NotifyIcon_TrayMouseDoubleClick">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu
+                    Background="{DynamicResource SystemAltHighColorBrush}"
+                    BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
+                    Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                    Style="{DynamicResource Windows10ContextMenu}"
+                    Opened="ContextMenu_Opened">
+                    <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItem}"
+                              Click="MenuNavigate_Click"
+                              Tag="Home"/>
+                    <MenuItem Header="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItemAlert}"
+                              Click="MenuNavigate_Click"
+                              Tag="Config"/>
+                    <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItem}"
+                              Click="MenuNavigate_Click"
+                              Tag="Donate"/>
+                    <MenuItem Header="{Binding Path=About, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItem}"
+                              Click="MenuNavigate_Click"
+                              Tag="About"/>
+                    <MenuItem Header="{Binding Path=Settings, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItem}"
+                              Click="MenuNavigate_Click"
+                              Tag="Settings"/>
+                    <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
+                    <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItem}"
+                              Click="MenuExit_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
     </Grid>
 </Window>

@@ -10,19 +10,19 @@ namespace CSHUE.ViewModels
 
         public void AddStartup(bool silent)
         {
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            var rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
             if (silent)
-                rk.SetValue("CSHUE", "\"" + Process.GetCurrentProcess().MainModule.FileName + "\" -silent");
+                rk?.SetValue("CSHUE", "\"" + Process.GetCurrentProcess().MainModule.FileName + "\" -silent");
             else
-                rk.SetValue("CSHUE", "\"" + Process.GetCurrentProcess().MainModule.FileName + "\"");
+                rk?.SetValue("CSHUE", "\"" + Process.GetCurrentProcess().MainModule.FileName + "\"");
         }
 
         public void RemoveStartup()
         {
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            var rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            rk.DeleteValue("CSHUE", false);
+            rk?.DeleteValue("CSHUE", false);
         }
 
         private GradientStopCollection _gradientStopsMainMenu;

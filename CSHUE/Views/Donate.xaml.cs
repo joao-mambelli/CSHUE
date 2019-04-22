@@ -9,7 +9,6 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for Donate.xaml
     /// </summary>
-    // ReSharper disable once InheritdocConsiderUsage
     public partial class Donate
     {
         public DonateViewModel ViewModel = new DonateViewModel();

@@ -13,6 +13,20 @@ namespace CSHUE.ViewModels
                 new PropertyChangedEventArgs(propertyName));
         }
 
+        public Visibility WarningVisibility
+        {
+            get
+            {
+                if (WarningCsgoVisibility == Visibility.Visible
+                    || WarningSteamVisibility == Visibility.Visible
+                    || WarningGsiVisibility == Visibility.Visible
+                    || WarningGsiCorruptedVisibility == Visibility.Visible)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
         private Visibility _warningCsgoVisibility;
         public Visibility WarningCsgoVisibility
         {

@@ -216,7 +216,6 @@ namespace CSHUE.ViewModels
 
                     Thread.Sleep(60000);
                 }
-                // ReSharper disable once FunctionNeverReturns
             }) {IsBackground = true}.Start();
         }
 
@@ -275,6 +274,8 @@ namespace CSHUE.ViewModels
             {
                 while (true)
                 {
+                    ConfigPage.ViewModel.CheckConfigFile();
+
                     var pname = Process.GetProcessesByName("csgo");
 
                     if (pname.Length > 0)
@@ -324,7 +325,6 @@ namespace CSHUE.ViewModels
 
                     Thread.Sleep(Properties.Settings.Default.CsgoCheckingPeriod * 1000);
                 }
-                // ReSharper disable once FunctionNeverReturns
             }) { IsBackground = true }.Start();
         }
 
@@ -1069,6 +1069,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.MainMenu.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.MainMenu = Properties.Settings.Default.MainMenu;
 
             if (Properties.Settings.Default.PlayerGetsKill.Lights == null)
             {
@@ -1088,6 +1089,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.PlayerGetsKill.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.PlayerGetsKill = Properties.Settings.Default.PlayerGetsKill;
 
             if (Properties.Settings.Default.PlayerGetsKilled.Lights == null)
             {
@@ -1107,6 +1109,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.PlayerGetsKilled.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.PlayerGetsKilled = Properties.Settings.Default.PlayerGetsKilled;
 
             if (Properties.Settings.Default.PlayerGetsFlashed.Lights == null)
             {
@@ -1125,6 +1128,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.PlayerGetsFlashed.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.PlayerGetsFlashed = Properties.Settings.Default.PlayerGetsFlashed;
 
             if (Properties.Settings.Default.TerroristsWin.Lights == null)
             {
@@ -1143,6 +1147,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.TerroristsWin.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.TerroristsWin = Properties.Settings.Default.TerroristsWin;
 
             if (Properties.Settings.Default.CounterTerroristsWin.Lights == null)
             {
@@ -1161,6 +1166,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.CounterTerroristsWin.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.CounterTerroristsWin = Properties.Settings.Default.CounterTerroristsWin;
 
             if (Properties.Settings.Default.RoundStarts.Lights == null)
             {
@@ -1179,6 +1185,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.RoundStarts.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.RoundStarts = Properties.Settings.Default.RoundStarts;
 
             if (Properties.Settings.Default.FreezeTime.Lights == null)
             {
@@ -1198,6 +1205,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.FreezeTime.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.FreezeTime = Properties.Settings.Default.FreezeTime;
 
             if (Properties.Settings.Default.Warmup.Lights == null)
             {
@@ -1217,6 +1225,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.Warmup.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.Warmup = Properties.Settings.Default.Warmup;
 
             if (Properties.Settings.Default.BombExplodes.Lights == null)
             {
@@ -1236,6 +1245,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.BombExplodes.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.BombExplodes = Properties.Settings.Default.BombExplodes;
 
             if (Properties.Settings.Default.BombPlanted.Lights == null)
             {
@@ -1254,6 +1264,7 @@ namespace CSHUE.ViewModels
                 foreach (var i in allLights)
                     Properties.Settings.Default.BombPlanted.SelectedLights.Add(i.UniqueId);
             }
+            Properties.Settings.Default.BombPlanted = Properties.Settings.Default.BombPlanted;
 
             if (Properties.Settings.Default.BombBlink.Lights == null)
             {
@@ -1275,6 +1286,7 @@ namespace CSHUE.ViewModels
                     allLights.FirstOrDefault().UniqueId
                 };
             }
+            Properties.Settings.Default.BombBlink = Properties.Settings.Default.BombBlink;
         }
     }
 }

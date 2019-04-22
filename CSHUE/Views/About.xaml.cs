@@ -9,7 +9,6 @@ namespace CSHUE.Views
     /// <summary>
     /// Interaction logic for About.xaml
     /// </summary>
-    // ReSharper disable once InheritdocConsiderUsage
     public partial class About
     {
         public AboutViewModel ViewModel = new AboutViewModel();

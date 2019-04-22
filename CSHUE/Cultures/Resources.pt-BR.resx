@@ -320,4 +320,7 @@ Verifique se o Hub está conectado à mesma rede que você.
 
 Conecte o Hub e espere que o CSHUE o detecte automaticamente.</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Sair</value>
+  </data>
 </root>

@@ -49,50 +49,35 @@
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Blue" Offset="0" />
-                                            <GradientStop Color="Blue" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsMainMenu}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=TerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Orange" Offset="0" />
-                                            <GradientStop Color="Orange" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsTerroristsWin}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=CounterTerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Blue" Offset="0" />
-                                            <GradientStop Color="Blue" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsCounterTerroristsWin}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Green" Offset="0" />
-                                            <GradientStop Color="Green" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsRoundStarts}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Red" Offset="0" />
-                                            <GradientStop Color="Red" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsBombPlanted}"/>
                                     </Button.Background>
                                 </Button>
                             </StackPanel>
@@ -106,40 +91,28 @@
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Red" Offset="0" />
-                                            <GradientStop Color="Red" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsBombExplodes}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombBlink, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Red" Offset="0" />
-                                            <GradientStop Color="Red" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsBombBlink}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Green" Offset="0" />
-                                            <GradientStop Color="Green" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsFreezeTime}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=Warmup, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Green" Offset="0" />
-                                            <GradientStop Color="Green" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsWarmup}"/>
                                     </Button.Background>
                                 </Button>
                             </StackPanel>
@@ -153,10 +126,7 @@
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Green" Offset="0" />
-                                            <GradientStop Color="Green" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsPlayerGetsKill}"/>
                                     </Button.Background>
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
@@ -167,7 +137,6 @@
                                                         ButtonSpinnerLocation="Left"
                                                         BorderThickness="0"
                                                         Width="42"
-                                                        Name="Test"
                                                         Margin="5,0,0,0"
                                                         TextAlignment="Center"
                                                         Increment=".5"
@@ -181,10 +150,7 @@
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="Red" Offset="0" />
-                                            <GradientStop Color="Red" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsPlayerGetsKilled}"/>
                                     </Button.Background>
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
@@ -215,10 +181,7 @@
                                 <Button Height="40" HorizontalAlignment="Stretch"
                                         Style="{DynamicResource Windows10Button}">
                                     <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="White" Offset="0" />
-                                            <GradientStop Color="White" Offset="1" />
-                                        </LinearGradientBrush>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsPlayerGetsFlashed}"/>
                                     </Button.Background>
                                 </Button>
                             </StackPanel>
@@ -229,7 +192,9 @@
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="RunOnStartupCheckBox_Checked"
+                              Unchecked="RunOnStartupCheckBox_Checked">
                         <TextBlock Text="{Binding Path=RunOnStartup, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="30,7,0,9"

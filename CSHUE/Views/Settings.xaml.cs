@@ -7,9 +7,7 @@ using System.Windows.Controls;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using CSHUE.Helpers;
-using System.Collections.Generic;
 using System.Windows.Media;
-using System;
 
 namespace CSHUE.Views
 {
@@ -88,23 +86,23 @@ namespace CSHUE.Views
         {
             if (propertyName == "MainMenu")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsMainMenu = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsMainMenu.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = !selectedLights.Any()
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -131,23 +129,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "PlayerGetsFlashed")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsPlayerGetsFlashed = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsPlayerGetsFlashed.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -174,23 +172,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "TerroristsWin")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsTerroristsWin = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsTerroristsWin.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -217,23 +215,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "CounterTerroristsWin")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsCounterTerroristsWin = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsCounterTerroristsWin.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -260,23 +258,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "RoundStarts")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsRoundStarts = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsRoundStarts.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -303,23 +301,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "BombPlanted")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsBombPlanted = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsBombPlanted.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -350,23 +348,23 @@ namespace CSHUE.Views
         {
             if (propertyName == "PlayerGetsKill")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsPlayerGetsKill = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsPlayerGetsKill.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -393,23 +391,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "PlayerGetsKilled")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsPlayerGetsKilled = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsPlayerGetsKilled.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -436,23 +434,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "FreezeTime")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsFreezeTime = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsFreezeTime.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -479,23 +477,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "Warmup")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsWarmup = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsWarmup.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -522,23 +520,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "BombExplodes")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsBombExplodes = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsBombExplodes.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -565,23 +563,23 @@ namespace CSHUE.Views
             }
             else if (propertyName == "BombBlink")
             {
-                if (Event != null && Event.SelectedLights != null)
+                if (Event?.SelectedLights != null)
                 {
-                    var SelectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ViewModel.GradientStopsBombBlink = new GradientStopCollection();
-                        for (var i = 0; i < (SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()); i++)
+                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                         {
                             ViewModel.GradientStopsBombBlink.Add(new GradientStop
                             {
-                                Color = SelectedLights.Count() < 1
+                                Color = selectedLights.Count < 1
                                     ? Colors.Black
-                                    : (SelectedLights.Count() < 2
-                                        ? Color.FromArgb(255, SelectedLights[0].Color.Red, SelectedLights[0].Color.Green, SelectedLights[0].Color.Blue)
-                                        : Color.FromArgb(255, SelectedLights[i].Color.Red, SelectedLights[i].Color.Green, SelectedLights[i].Color.Blue)),
-                                Offset = i * 1 / (float)((SelectedLights.Count() < 2 ? 2 : SelectedLights.Count()) - 1)
+                                    : (selectedLights.Count < 2
+                                        ? Color.FromArgb(255, selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                        : Color.FromArgb(255, selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue)),
+                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                             });
                         }
                     });
@@ -626,11 +624,11 @@ namespace CSHUE.Views
 
                 CultureResources.ChangeCulture(culture);
 
-                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(culture);
+                Properties.Settings.Default.Language = Converters.GetIndexFromCultureInfo(culture);
             }
             else
             {
-                var culture = Helpers.Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex);
+                var culture = Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
@@ -670,10 +668,7 @@ namespace CSHUE.Views
         private void RunOnStartupCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.RunOnStartup)
-                if (Properties.Settings.Default.RunOnStartupMinimized)
-                    ViewModel.AddStartup(true);
-                else
-                    ViewModel.AddStartup(false);
+                ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
             else
                 ViewModel.RemoveStartup();
         }

@@ -69,8 +69,8 @@ namespace CSHUE.Views
             else
                 ViewModel.SettingsPage.ViewModel.RemoveStartup();
 
-            string[] arguments = Environment.GetCommandLineArgs();
-            foreach (string s in arguments)
+            var arguments = Environment.GetCommandLineArgs();
+            foreach (var s in arguments)
             {
                 if (s == "-silent")
                 {
@@ -405,11 +405,6 @@ namespace CSHUE.Views
                 Hide();
                 notifyIcon.Visibility = Visibility.Visible;
             }
-            else if (WindowState != WindowState.Minimized)
-            {
-                Show();
-                notifyIcon.Visibility = Visibility.Collapsed;
-            }
 
             base.OnStateChanged(e);
         }
@@ -462,6 +457,7 @@ namespace CSHUE.Views
         {
             Show();
             WindowState = WindowState.Normal;
+            notifyIcon.Visibility = Visibility.Collapsed;
         }
 
         private void MenuNavigate_Click(object sender, RoutedEventArgs e)

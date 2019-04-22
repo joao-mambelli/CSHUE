@@ -78,6 +78,19 @@ namespace CSHUE.ViewModels
             HomePage = new Home();
             SettingsPage = new Settings();
             AboutPage = new About();
+
+            var list = new List<BridgeSelector>()
+            {
+                new BridgeSelector(),
+                new BridgeSelector(),
+                new BridgeSelector()
+            };
+
+            new Selector()
+            {
+                Ok = "aaa",
+                List = list
+            }.ShowDialog();
         }
 
         private WindowState _windowState = WindowState.Normal;

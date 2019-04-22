@@ -99,14 +99,13 @@ namespace CSHUE.ViewModels
 
             if (fail || !Directory.Exists(cfgpath))
             {
-                Window messageBox = new CustomMessageBox
+                new CustomMessageBox
                 {
                     Yes = Resources.Ok,
                     No = null,
                     Message = $"{FailText} {Resources.SelectFolder}",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                };
-                messageBox.ShowDialog();
+                }.ShowDialog();
 
                 using (var fbd = new CommonOpenFileDialog
                 {
@@ -135,15 +134,14 @@ namespace CSHUE.ViewModels
 
                     CheckConfigFile();
 
-                    messageBox = new CustomMessageBox
+                    new CustomMessageBox
                     {
                         Yes = Resources.Ok,
                         No = Resources.OpenFolder,
                         Folder = cfgpath,
                         Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                    };
-                    messageBox.ShowDialog();
+                    }.ShowDialog();
                 }
             }
             else
@@ -152,15 +150,14 @@ namespace CSHUE.ViewModels
 
                 CheckConfigFile();
 
-                Window messageBox = new CustomMessageBox
+                new CustomMessageBox
                 {
                     Yes = Resources.Ok,
                     No = Resources.OpenFolder,
                     Folder = cfgpath,
                     Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                };
-                messageBox.ShowDialog();
+                }.ShowDialog();
             }
         }
 

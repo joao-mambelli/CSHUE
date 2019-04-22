@@ -20,6 +20,14 @@ namespace CSHUE.Views
     /// </summary>
     public partial class BridgeSelector : UserControl
     {
+        public string ContentText
+        {
+            get => (string)GetValue(ContentTextProperty);
+            set => SetValue(ContentTextProperty, value);
+        }
+        public static readonly DependencyProperty ContentTextProperty =
+            DependencyProperty.Register("ContentText", typeof(string), typeof(BridgeSelector));
+
         public BridgeSelector()
         {
             InitializeComponent();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,18 +60,26 @@ namespace CSHUE.Views
         public static readonly DependencyProperty OkVisibilityProperty =
             DependencyProperty.Register("OkVisibility", typeof(Visibility), typeof(CustomMessageBox));
 
+        public Visibility OkOpenFolderVisibility
+        {
+            get => (Visibility)GetValue(OkOpenFolderVisibilityProperty);
+            set => SetValue(OkOpenFolderVisibilityProperty, value);
+        }
+        public static readonly DependencyProperty OkOpenFolderVisibilityProperty =
+            DependencyProperty.Register("OkOpenFolderVisibility", typeof(Visibility), typeof(CustomMessageBox));
+
         public CustomMessageBox()
         {
             InitializeComponent();
         }
 
-        private void buttonYes_Click(object sender, RoutedEventArgs e)
+        private void ButtonYes_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
             Close();
         }
 
-        private void buttonNo_Click(object sender, RoutedEventArgs e)
+        private void ButtonNo_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
@@ -78,16 +87,31 @@ namespace CSHUE.Views
 
         private void CustomMessageBox_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(Yes) && !string.IsNullOrEmpty(No))
+            if (Yes == Cultures.Resources.Yes && No == Cultures.Resources.No)
             {
                 YesNoVisibility = Visibility.Visible;
                 OkVisibility = Visibility.Hidden;
+                OkOpenFolderVisibility = Visibility.Hidden;
             }
-            else
+            else if (Yes == Cultures.Resources.Ok && No == null)
             {
                 YesNoVisibility = Visibility.Hidden;
                 OkVisibility = Visibility.Visible;
+                OkOpenFolderVisibility = Visibility.Hidden;
+            }
+            else if (Yes == Cultures.Resources.Ok && No == Cultures.Resources.OpenFolder)
+            {
+                YesNoVisibility = Visibility.Hidden;
+                OkVisibility = Visibility.Hidden;
+                OkOpenFolderVisibility = Visibility.Visible;
             }
         }
+
+        private void ButtonOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Folder);
+        }
+
+        public string Folder { get; set; }
     }
 }

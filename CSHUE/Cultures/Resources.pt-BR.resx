@@ -323,4 +323,7 @@ Conecte o Hub e espere que o CSHUE o detecte automaticamente.</value>
   <data name="Exit" xml:space="preserve">
     <value>Sair</value>
   </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Abrir Pasta</value>
+  </data>
 </root>

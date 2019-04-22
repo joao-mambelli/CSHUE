@@ -78,7 +78,7 @@ namespace CSHUE.Views
                     {
                         WindowState = WindowState.Minimized;
                         Hide();
-                        notifyIcon.Visibility = Visibility.Visible;
+                        NotifyIcon.Visibility = Visibility.Visible;
                     }
                     else if (Properties.Settings.Default.RunOnStartupMinimized)
                         WindowState = WindowState.Minimized;
@@ -89,6 +89,8 @@ namespace CSHUE.Views
             ViewModel.ConfigPage.ViewModel.CheckConfigFile();
 
             ViewModel.HueAsync();
+
+            ViewModel.SettingsPage.ViewModel.UpdateGradients();
         }
 
         private static void SetLanguage()
@@ -403,7 +405,7 @@ namespace CSHUE.Views
             if (WindowState == WindowState.Minimized && Properties.Settings.Default.MinimizeToSystemTray)
             {
                 Hide();
-                notifyIcon.Visibility = Visibility.Visible;
+                NotifyIcon.Visibility = Visibility.Visible;
             }
 
             base.OnStateChanged(e);
@@ -416,7 +418,7 @@ namespace CSHUE.Views
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            notifyIcon.Visibility = Visibility.Collapsed;
+            NotifyIcon.Visibility = Visibility.Collapsed;
 
             if (WindowState == WindowState.Maximized
                 || WindowState == WindowState.Minimized)
@@ -457,7 +459,7 @@ namespace CSHUE.Views
         {
             Show();
             WindowState = WindowState.Normal;
-            notifyIcon.Visibility = Visibility.Collapsed;
+            NotifyIcon.Visibility = Visibility.Collapsed;
         }
 
         private void MenuNavigate_Click(object sender, RoutedEventArgs e)

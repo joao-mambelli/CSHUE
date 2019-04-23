@@ -73,10 +73,10 @@ namespace CSHUE.Views
 
         private async void Default_Click(object sender, RoutedEventArgs e)
         {
-            Window messageBox = new CustomMessageBox
+            var messageBox = new CustomMessageBox
             {
-                Yes = Cultures.Resources.Yes,
-                No = Cultures.Resources.No,
+                Text1 = Cultures.Resources.Yes,
+                Text2 = Cultures.Resources.No,
                 Message = Cultures.Resources.AreYouSure,
                 Owner = Window.GetWindow(this)
             };

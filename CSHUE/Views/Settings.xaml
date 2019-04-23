@@ -303,7 +303,7 @@
 
                     </TextBox>
                     <Button Margin="0,20,0,9" VerticalAlignment="Top"
-                            Height="31" Width="90"
+                            Height="31" MinWidth="90"
                             HorizontalAlignment="Right"
                             Style="{DynamicResource Windows10Button}"
                             Content="{Binding Path=Default, Source={StaticResource Resources}}" Click="Default_Click">

@@ -101,8 +101,8 @@ namespace CSHUE.ViewModels
             {
                 new CustomMessageBox
                 {
-                    Yes = Resources.Ok,
-                    No = null,
+                    Text1 = Resources.Ok,
+                    Text2 = null,
                     Message = $"{FailText} {Resources.SelectFolder}",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
@@ -136,8 +136,8 @@ namespace CSHUE.ViewModels
 
                     new CustomMessageBox
                     {
-                        Yes = Resources.Ok,
-                        No = Resources.OpenFolder,
+                        Text1 = Resources.Ok,
+                        Text2 = Resources.OpenFolder,
                         Folder = cfgpath,
                         Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
@@ -152,8 +152,8 @@ namespace CSHUE.ViewModels
 
                 new CustomMessageBox
                 {
-                    Yes = Resources.Ok,
-                    No = Resources.OpenFolder,
+                    Text1 = Resources.Ok,
+                    Text2 = Resources.OpenFolder,
                     Folder = cfgpath,
                     Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()

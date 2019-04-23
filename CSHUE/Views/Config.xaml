@@ -38,7 +38,7 @@
                                TextAlignment="Justify"
                                Text="{Binding Path=ConfigText, Source={StaticResource Resources}}"/>
 
-                    <Button Margin="0,2,0,9" VerticalAlignment="Top" Height="31" Width="90"
+                    <Button Margin="0,2,0,9" VerticalAlignment="Top" Height="31" MinWidth="90" HorizontalAlignment="Center"
                             Style="{DynamicResource Windows10Button}"
                             Content="{Binding Path=CreateCfg, Source={StaticResource Resources}}" Click="Config_Click"/>
                 </StackPanel>

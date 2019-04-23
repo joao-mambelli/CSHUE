@@ -18,5 +18,10 @@ namespace CSHUE.Views
 
             ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
         }
+
+        private void Retry_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.MainWindowViewModel.HueAsync();
+        }
     }
 }

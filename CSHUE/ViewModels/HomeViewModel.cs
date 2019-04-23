@@ -18,6 +18,18 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private Visibility _retryVisibility = Visibility.Hidden;
+        public Visibility RetryVisibility
+        {
+            get =>
+                _retryVisibility;
+            set
+            {
+                _retryVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Visibility _warningNoHub = Visibility.Collapsed;
         public Visibility WarningNoHub
         {
@@ -40,6 +52,87 @@ namespace CSHUE.ViewModels
                 _warningLink = value;
                 OnPropertyChanged();
             }
+        }
+
+        private Visibility _warningValidating = Visibility.Collapsed;
+        public Visibility WarningValidating
+        {
+            get =>
+                _warningValidating;
+            set
+            {
+                _warningValidating = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _warningNoReachableHubs = Visibility.Collapsed;
+        public Visibility WarningNoReachableHubs
+        {
+            get =>
+                _warningNoReachableHubs;
+            set
+            {
+                _warningNoReachableHubs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _warningHubNotAvailable = Visibility.Collapsed;
+        public Visibility WarningHubNotAvailable
+        {
+            get =>
+                _warningHubNotAvailable;
+            set
+            {
+                _warningHubNotAvailable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void SetWarningNoHub()
+        {
+            WarningNoHub = Visibility.Visible;
+            WarningLink = Visibility.Collapsed;
+            WarningValidating = Visibility.Collapsed;
+            WarningNoReachableHubs = Visibility.Collapsed;
+            WarningHubNotAvailable = Visibility.Collapsed;
+        }
+
+        public void SetWarningLink()
+        {
+            WarningNoHub = Visibility.Collapsed;
+            WarningLink = Visibility.Visible;
+            WarningValidating = Visibility.Collapsed;
+            WarningNoReachableHubs = Visibility.Collapsed;
+            WarningHubNotAvailable = Visibility.Collapsed;
+        }
+
+        public void SetWarningValidating()
+        {
+            WarningNoHub = Visibility.Collapsed;
+            WarningLink = Visibility.Collapsed;
+            WarningValidating = Visibility.Visible;
+            WarningNoReachableHubs = Visibility.Collapsed;
+            WarningHubNotAvailable = Visibility.Collapsed;
+        }
+
+        public void SetWarningNoReachableHubs()
+        {
+            WarningNoHub = Visibility.Collapsed;
+            WarningLink = Visibility.Collapsed;
+            WarningValidating = Visibility.Collapsed;
+            WarningNoReachableHubs = Visibility.Visible;
+            WarningHubNotAvailable = Visibility.Collapsed;
+        }
+
+        public void SetWarningHubNotAvailable()
+        {
+            WarningNoHub = Visibility.Collapsed;
+            WarningLink = Visibility.Collapsed;
+            WarningValidating = Visibility.Collapsed;
+            WarningNoReachableHubs = Visibility.Collapsed;
+            WarningHubNotAvailable = Visibility.Visible;
         }
     }
 }

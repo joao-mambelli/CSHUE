@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {
@@ -11,6 +13,8 @@ namespace CSHUE.Views
     /// </summary>
     public partial class Selector : Window
     {
+        public SelectorViewModel ViewModel = new SelectorViewModel();
+
         public string Ok
         {
             get => (string)GetValue(OkProperty);
@@ -24,18 +28,33 @@ namespace CSHUE.Views
             InitializeComponent();
         }
 
+        public string SelectedBridge { get; set; }
+
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
+            foreach (var c in List)
+            {
+                if (!c.IsChecked) continue;
+
+                SelectedBridge = c.Ip;
+                break;
+            }
+
             DialogResult = true;
             Close();
         }
 
-        public List<BridgeSelector> List
+        public List<SelectorViewModel> List
         {
-            get => (List<BridgeSelector>)GetValue(ListProperty);
+            get => (List<SelectorViewModel>)GetValue(ListProperty);
             set => SetValue(ListProperty, value);
         }
         public static readonly DependencyProperty ListProperty =
-            DependencyProperty.Register("List", typeof(List<BridgeSelector>), typeof(Selector));
+            DependencyProperty.Register("List", typeof(List<SelectorViewModel>), typeof(Selector));
+
+        private void Selector_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            List.ElementAt(0).IsChecked = true;
+        }
     }
 }

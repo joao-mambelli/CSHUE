@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -78,26 +80,6 @@ namespace CSHUE.ViewModels
             HomePage = new Home();
             SettingsPage = new Settings();
             AboutPage = new About();
-
-            new Selector
-            {
-                Ok = "aaa",
-                List = new List<BridgeSelector>
-                {
-                    new BridgeSelector
-                    {
-                        ContentText = "111"
-                    },
-                    new BridgeSelector
-                    {
-                        ContentText = "222"
-                    },
-                    new BridgeSelector
-                    {
-                        ContentText = "333"
-                    }
-                }
-            }.ShowDialog();
         }
 
         private WindowState _windowState = WindowState.Normal;
@@ -123,14 +105,17 @@ namespace CSHUE.ViewModels
         {
             HomePage.ViewModel.LoadingVisibility = Visibility.Visible;
 
-            if (_bridgeIp == "")
-                _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
-
-            if (_bridgeIp == "-1") return;
+            while (_bridgeIp == "")
+            {
+                if (_bridgeIp == "")
+                    _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
+            }
 
             Client = new LocalHueClient(_bridgeIp);
-            
+
             await GetAppKeyAsync();
+
+            SettingsPage.ViewModel.UpdateGradients();
 
             HomePage.ViewModel.LoadingVisibility = Visibility.Hidden;
         }
@@ -149,7 +134,6 @@ namespace CSHUE.ViewModels
             {
                 bridgeIPs = null;
             }
-
 
             if (bridgeIPs == null || bridgeIPs.Count < 1)
             {
@@ -173,7 +157,122 @@ namespace CSHUE.ViewModels
                 return bridgeIPs.First().IpAddress;
             }
 
-            return bridgeIPs.Count > 1 ? "-1" : bridgeIPs.First().IpAddress;
+            if (bridgeIPs.Count == 1)
+            {
+                var valid = false;
+                try
+                {
+                    await new HttpClient().GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
+                    valid = true;
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                if (!valid)
+                {
+                    HomePage.ViewModel.WarningNoHub = Visibility.Visible;
+                    HomePage.ViewModel.WarningLink = Visibility.Collapsed;
+
+                    while (!valid)
+                    {
+                        try
+                        {
+                            await new HttpClient().GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
+                            valid = true;
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+                }
+
+                return bridgeIPs.First().IpAddress;
+            }
+
+            return await Application.Current.Dispatcher.Invoke(async () =>
+            {
+                var selector = new Selector
+                {
+                    Ok = Cultures.Resources.Ok,
+                    List = new List<SelectorViewModel>(),
+                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
+                    Title = Cultures.Resources.BridgeSelector
+                };
+
+                foreach (var b in bridgeIPs)
+                {
+                    var valid = false;
+                    try
+                    {
+                        await new HttpClient().GetAsync(string.Format($"http://{b.IpAddress}/")).ConfigureAwait(false);
+                        valid = true;
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+
+                    if (valid)
+                    {
+                        selector.List.Add(new SelectorViewModel
+                        {
+                            ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
+                            Ip = b.IpAddress
+                        });
+                    }
+                }
+
+                if (selector.List.Count < 1)
+                {
+                    HomePage.ViewModel.WarningNoHub = Visibility.Visible;
+                    HomePage.ViewModel.WarningLink = Visibility.Collapsed;
+
+                    var valid = false;
+                    while (!valid)
+                    {
+                        try
+                        {
+                            await new HttpClient().GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
+                            valid = true;
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+
+                    return bridgeIPs.First().IpAddress;
+                }
+
+                selector.ShowDialog();
+
+                try
+                {
+                    await new HttpClient().GetAsync(string.Format($"http://{selector.SelectedBridge}/")).ConfigureAwait(false);
+                }
+                catch
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        new CustomMessageBox
+                        {
+                            Yes = Cultures.Resources.Ok,
+                            No = null,
+                            Message = $"{Cultures.Resources.CouldNotConnect}",
+                            Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+                        }.ShowDialog();
+                    });
+                    return "";
+                }
+                return selector.SelectedBridge;
+            });
         }
 
         public async Task GetAppKeyAsync()
@@ -241,25 +340,19 @@ namespace CSHUE.ViewModels
 
         public void CheckTime()
         {
-            if (Properties.Settings.Default.AutoActivate)
-            {
-                var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm", CultureInfo.InvariantCulture);
-                var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm", CultureInfo.InvariantCulture);
+            if (!Properties.Settings.Default.AutoActivate) return;
+            
+            var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm", CultureInfo.InvariantCulture);
+            var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm", CultureInfo.InvariantCulture);
 
-                if (end.Hour > start.Hour || (end.Hour == start.Hour && end.Minute > start.Minute))
+            if (end.Hour > start.Hour || (end.Hour == start.Hour && end.Minute > start.Minute))
+            {
+                if (DateTime.Now.Hour > start.Hour || (DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute))
                 {
-                    if (DateTime.Now.Hour > start.Hour || (DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute))
+                    if (DateTime.Now.Hour < end.Hour || (DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute))
                     {
-                        if (DateTime.Now.Hour < end.Hour || (DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute))
-                        {
-                            if (Properties.Settings.Default.Activated == false)
-                                Properties.Settings.Default.Activated = true;
-                        }
-                        else
-                        {
-                            if (Properties.Settings.Default.Activated)
-                                Properties.Settings.Default.Activated = false;
-                        }
+                        if (Properties.Settings.Default.Activated == false)
+                            Properties.Settings.Default.Activated = true;
                     }
                     else
                     {
@@ -269,21 +362,26 @@ namespace CSHUE.ViewModels
                 }
                 else
                 {
-                    if (DateTime.Now.Hour > start.Hour || (DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute))
-                    {
-                        if (Properties.Settings.Default.Activated == false)
-                            Properties.Settings.Default.Activated = true;
-                    }
-                    else if (DateTime.Now.Hour < end.Hour || (DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute))
-                    {
-                        if (Properties.Settings.Default.Activated == false)
-                            Properties.Settings.Default.Activated = true;
-                    }
-                    else
-                    {
-                        if (Properties.Settings.Default.Activated)
-                            Properties.Settings.Default.Activated = false;
-                    }
+                    if (Properties.Settings.Default.Activated)
+                        Properties.Settings.Default.Activated = false;
+                }
+            }
+            else
+            {
+                if (DateTime.Now.Hour > start.Hour || (DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute))
+                {
+                    if (Properties.Settings.Default.Activated == false)
+                        Properties.Settings.Default.Activated = true;
+                }
+                else if (DateTime.Now.Hour < end.Hour || (DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute))
+                {
+                    if (Properties.Settings.Default.Activated == false)
+                        Properties.Settings.Default.Activated = true;
+                }
+                else
+                {
+                    if (Properties.Settings.Default.Activated)
+                        Properties.Settings.Default.Activated = false;
                 }
             }
         }

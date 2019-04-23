@@ -326,4 +326,10 @@ Connect the Hub then wait for CSHUE to automatically detect it.</value>
   <data name="OpenFolder" xml:space="preserve">
     <value>Open Folder</value>
   </data>
+  <data name="BridgeSelector" xml:space="preserve">
+    <value>Bridge Selector</value>
+  </data>
+  <data name="CouldNotConnect" xml:space="preserve">
+    <value>Couldn't connect to the Philips Hue Bridge. Please try again.</value>
+  </data>
 </root>

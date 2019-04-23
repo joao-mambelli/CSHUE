@@ -326,4 +326,10 @@ Conecte o Hub e espere que o CSHUE o detecte automaticamente.</value>
   <data name="OpenFolder" xml:space="preserve">
     <value>Abrir Pasta</value>
   </data>
+  <data name="BridgeSelector" xml:space="preserve">
+    <value>Seletor de Bridge</value>
+  </data>
+  <data name="CouldNotConnect" xml:space="preserve">
+    <value>Não foi possível conectar com a Philisp Hue Bridge. Por favor, tente novamente.</value>
+  </data>
 </root>

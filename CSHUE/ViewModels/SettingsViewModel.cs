@@ -270,18 +270,18 @@ namespace CSHUE.ViewModels
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsMainMenu = new GradientStopCollection()
-                    {
-                        new GradientStop()
                         {
-                            Color = Colors.Black,
-                            Offset = 0
-                        },
-                        new GradientStop()
-                        {
-                            Color = Colors.Black,
-                            Offset = 1
-                        }
-                    };
+                            new GradientStop()
+                            {
+                                Color = Colors.Black,
+                                Offset = 0
+                            },
+                            new GradientStop()
+                            {
+                                Color = Colors.Black,
+                                Offset = 1
+                            }
+                        };
                     });
                 }
             }

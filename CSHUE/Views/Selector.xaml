@@ -76,7 +76,7 @@
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" Width="90"
+                    Height="31" MinWidth="90" HorizontalAlignment="Right"
                     Content="{Binding Ok}"
                     Click="ButtonOk_Click">
 

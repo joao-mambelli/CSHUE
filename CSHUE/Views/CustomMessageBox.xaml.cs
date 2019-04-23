@@ -8,21 +8,21 @@ namespace CSHUE.Views
     /// </summary>
     public partial class CustomMessageBox : Window
     {
-        public string Yes
+        public string Text1
         {
-            get => (string)GetValue(YesProperty);
-            set => SetValue(YesProperty, value);
+            get => (string)GetValue(Text1Property);
+            set => SetValue(Text1Property, value);
         }
-        public static readonly DependencyProperty YesProperty =
-            DependencyProperty.Register("Yes", typeof(string), typeof(CustomMessageBox));
+        public static readonly DependencyProperty Text1Property =
+            DependencyProperty.Register("Text1", typeof(string), typeof(CustomMessageBox));
 
-        public string No
+        public string Text2
         {
-            get => (string)GetValue(NoProperty);
-            set => SetValue(NoProperty, value);
+            get => (string)GetValue(Text2Property);
+            set => SetValue(Text2Property, value);
         }
-        public static readonly DependencyProperty NoProperty =
-            DependencyProperty.Register("No", typeof(string), typeof(CustomMessageBox));
+        public static readonly DependencyProperty Text2Property =
+            DependencyProperty.Register("Text2", typeof(string), typeof(CustomMessageBox));
 
         public string Message
         {
@@ -32,42 +32,42 @@ namespace CSHUE.Views
         public static readonly DependencyProperty MessageProperty =
             DependencyProperty.Register("Message", typeof(string), typeof(CustomMessageBox));
 
-        public Visibility YesNoVisibility
+        public Visibility Button1Button2Visibility
         {
-            get => (Visibility)GetValue(YesNoVisibilityProperty);
-            set => SetValue(YesNoVisibilityProperty, value);
+            get => (Visibility)GetValue(Button1Button2VisibilityProperty);
+            set => SetValue(Button1Button2VisibilityProperty, value);
         }
-        public static readonly DependencyProperty YesNoVisibilityProperty =
-            DependencyProperty.Register("YesNoVisibility", typeof(Visibility), typeof(CustomMessageBox));
+        public static readonly DependencyProperty Button1Button2VisibilityProperty =
+            DependencyProperty.Register("Button1Button2Visibility", typeof(Visibility), typeof(CustomMessageBox));
 
-        public Visibility OkVisibility
+        public Visibility Button1Visibility
         {
-            get => (Visibility)GetValue(OkVisibilityProperty);
-            set => SetValue(OkVisibilityProperty, value);
+            get => (Visibility)GetValue(Button1VisibilityProperty);
+            set => SetValue(Button1VisibilityProperty, value);
         }
-        public static readonly DependencyProperty OkVisibilityProperty =
-            DependencyProperty.Register("OkVisibility", typeof(Visibility), typeof(CustomMessageBox));
+        public static readonly DependencyProperty Button1VisibilityProperty =
+            DependencyProperty.Register("Button1Visibility", typeof(Visibility), typeof(CustomMessageBox));
 
-        public Visibility OkOpenFolderVisibility
+        public Visibility Button1OpenFolderVisibility
         {
-            get => (Visibility)GetValue(OkOpenFolderVisibilityProperty);
-            set => SetValue(OkOpenFolderVisibilityProperty, value);
+            get => (Visibility)GetValue(Button1OpenFolderVisibilityProperty);
+            set => SetValue(Button1OpenFolderVisibilityProperty, value);
         }
-        public static readonly DependencyProperty OkOpenFolderVisibilityProperty =
-            DependencyProperty.Register("OkOpenFolderVisibility", typeof(Visibility), typeof(CustomMessageBox));
+        public static readonly DependencyProperty Button1OpenFolderVisibilityProperty =
+            DependencyProperty.Register("Button1OpenFolderVisibility", typeof(Visibility), typeof(CustomMessageBox));
 
         public CustomMessageBox()
         {
             InitializeComponent();
         }
 
-        private void ButtonYes_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
             Close();
         }
 
-        private void ButtonNo_Click(object sender, RoutedEventArgs e)
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
@@ -75,23 +75,23 @@ namespace CSHUE.Views
 
         private void CustomMessageBox_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (Yes == Cultures.Resources.Yes && No == Cultures.Resources.No)
+            if (Text1 == Cultures.Resources.Ok && Text2 == null)
             {
-                YesNoVisibility = Visibility.Visible;
-                OkVisibility = Visibility.Hidden;
-                OkOpenFolderVisibility = Visibility.Hidden;
+                Button1Button2Visibility = Visibility.Hidden;
+                Button1Visibility = Visibility.Visible;
+                Button1OpenFolderVisibility = Visibility.Hidden;
             }
-            else if (Yes == Cultures.Resources.Ok && No == null)
+            else if (Text1 == Cultures.Resources.Ok && Text2 == Cultures.Resources.OpenFolder)
             {
-                YesNoVisibility = Visibility.Hidden;
-                OkVisibility = Visibility.Visible;
-                OkOpenFolderVisibility = Visibility.Hidden;
+                Button1Button2Visibility = Visibility.Hidden;
+                Button1Visibility = Visibility.Hidden;
+                Button1OpenFolderVisibility = Visibility.Visible;
             }
-            else if (Yes == Cultures.Resources.Ok && No == Cultures.Resources.OpenFolder)
+            else
             {
-                YesNoVisibility = Visibility.Hidden;
-                OkVisibility = Visibility.Hidden;
-                OkOpenFolderVisibility = Visibility.Visible;
+                Button1Button2Visibility = Visibility.Visible;
+                Button1Visibility = Visibility.Hidden;
+                Button1OpenFolderVisibility = Visibility.Hidden;
             }
         }
 

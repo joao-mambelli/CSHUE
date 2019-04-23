@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:views="clr-namespace:CSHUE.Views"
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -21,174 +22,34 @@
         <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=Home, Source={StaticResource Resources}}" />
 
         <StackPanel
-            Name="Panel"
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Visibility="{Binding LoadingVisibility}">
-            <Canvas
-                Width="50"
-                Height="50">
-                <!--Both values should be customSize/2-->
-                <Canvas.RenderTransform>
-                    <RotateTransform
-                        x:Name="RotateCanvas"
-                        CenterX="25"
-                        CenterY="25" />
-                    <!--Both values should be customSize/2-->
-                </Canvas.RenderTransform>
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <views:LoadingSpinner IsHanging="{Binding IsHanging}"/>
 
-                <Path
-                    Stroke="{DynamicResource SystemBaseHighColorBrush}"
-                    StrokeThickness="5">
-                    <!--Choose your custom color-->
-                    <!--Choose your custom thickness-->
-                    <Path.Data>
-                        <PathGeometry>
-                            <PathFigure
-                                StartPoint="25,0">
-                                <!--Should be "customSize/2,0"-->
-                                <ArcSegment
-                                x:Name="Arc"
-                                SweepDirection="Counterclockwise"
-                                IsLargeArc="True"
-                                Size="25,25"
-                                Point="50,25"/>
-                                <!--Size should be "customSize/2,customSize/2"-->
-                                <!--Point should be "customSize,customSize/2"-->
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-
-                    <Path.RenderTransform>
-                        <RotateTransform
-                        x:Name="RotatePath"
-                        CenterX="25"
-                        CenterY="25" />
-                        <!--Both values should be customSize/2-->
-                    </Path.RenderTransform>
-
-                    <Path.Triggers>
-                        <EventTrigger
-                        RoutedEvent="Path.Loaded">
-                            <BeginStoryboard>
-                                <Storyboard
-                                TargetName="Arc"
-                                AutoReverse="True"
-                                RepeatBehavior="Forever">
-                                    <PointAnimationUsingPath
-                                    Storyboard.TargetProperty="Point"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5">
-                                        <PointAnimationUsingPath.PathGeometry>
-                                            <PathGeometry
-                                            Figures="M 23.4302370118,0.04933178929 A 25,25 0 1 0 50,25" />
-                                            <!--M "tartPoint"
-                                                To find the start point
-                                                for your custom size, use
-                                                (customSize + (sin(183.6 degrees) * customSize))/2
-                                                for the first number and
-                                                (customSize + (sin(183.6 degrees) * customSize))/2
-                                                for the second one.
-                                            A "size" "rotation" "isLargeArc" "sweepDirection" "endPoint"
-                                                "A" is short for Arc.
-                                                The size should be "customSize/2,customSize/2".
-                                                The end point should be "customSize,customSize/2". -->
-                                        </PointAnimationUsingPath.PathGeometry>
-                                    </PointAnimationUsingPath>
-
-                                    <BooleanAnimationUsingKeyFrames
-                                    Storyboard.TargetProperty="IsLargeArc"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5">
-                                        <DiscreteBooleanKeyFrame
-                                        KeyTime="0:0:0"
-                                        Value="False" />
-
-                                        <DiscreteBooleanKeyFrame
-                                        KeyTime="0:0:0.4616666"
-                                        Value="True" />
-                                    </BooleanAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                            <BeginStoryboard>
-                                <Storyboard
-                                TargetName="RotatePath"
-                                RepeatBehavior="Forever">
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5"
-                                    From="0"
-                                    To="276" />
-
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    BeginTime="0:0:1.4"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5"
-                                    From="276"
-                                    To="552" />
-
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    BeginTime="0:0:2.8"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5"
-                                    From="552"
-                                    To="828" />
-
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    BeginTime="0:0:4.2"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5"
-                                    From="828"
-                                    To="1104" />
-
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    BeginTime="0:0:5.6"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5"
-                                    From="1104"
-                                    To="1380" />
-
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    BeginTime="0:0:6.3"
-                                    Duration="0:0:0.7"
-                                    AccelerationRatio=".5"
-                                    DecelerationRatio=".5"
-                                    From="1380"
-                                    To="1380" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                            <BeginStoryboard>
-                                <Storyboard
-                                TargetName="RotateCanvas"
-                                RepeatBehavior="Forever">
-                                    <DoubleAnimation
-                                    Storyboard.TargetProperty="Angle"
-                                    Duration="0:0:7.0"
-                                    From="0"
-                                    To="1500" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Path.Triggers>
-                </Path>
-            </Canvas>
-
-            <Grid>
+            <Grid Visibility="{Binding LoadingVisibility}">
                 <TextBlock
+                    Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
+                    Visibility="{Binding WarningLink}"
+                    HorizontalAlignment="Center"
+                    Margin="0,30,0,0"
+                    MaxWidth="200"
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"/>
+
+                <TextBlock
+                    Text="{Binding Path=WarningValidating, Source={StaticResource Resources}}"
+                    Visibility="{Binding WarningValidating}"
+                    HorizontalAlignment="Center"
+                    Margin="0,30,0,0"
+                    MaxWidth="200"
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"/>
+            </Grid>
+
+            <StackPanel Visibility="{Binding RetryVisibility}">
+                <Grid>
+                    <TextBlock
                         Text="{Binding Path=WarningNoHub, Source={StaticResource Resources}}"
                         Visibility="{Binding WarningNoHub}"
                         HorizontalAlignment="Center"
@@ -197,15 +58,29 @@
                         TextWrapping="Wrap"
                         TextAlignment="Center"/>
 
-                <TextBlock
-                        Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
-                        Visibility="{Binding WarningLink}"
+                    <TextBlock
+                        Text="{Binding Path=WarningNoReachableHubs, Source={StaticResource Resources}}"
+                        Visibility="{Binding WarningNoReachableHubs}"
                         HorizontalAlignment="Center"
                         Margin="0,30,0,0"
                         MaxWidth="200"
                         TextWrapping="Wrap"
                         TextAlignment="Center"/>
-            </Grid>
+
+                    <TextBlock
+                        Text="{Binding Path=WarningHubNotAvailable, Source={StaticResource Resources}}"
+                        Visibility="{Binding WarningHubNotAvailable}"
+                        HorizontalAlignment="Center"
+                        Margin="0,30,0,0"
+                        MaxWidth="200"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"/>
+                </Grid>
+
+                <Button Margin="0,30,0,9" VerticalAlignment="Top" Height="31" MinWidth="90" HorizontalAlignment="Center"
+                        Style="{DynamicResource Windows10Button}"
+                        Content="{Binding Path=Retry, Source={StaticResource Resources}}" Click="Retry_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

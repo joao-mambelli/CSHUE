@@ -86,9 +86,10 @@ namespace CSHUE.Views
             }
 
             ViewModel.Navigate(Page, "Home");
-            ViewModel.ConfigPage.ViewModel.CheckConfigFile();
 
             ViewModel.HueAsync();
+
+            ViewModel.Csgo();
 
             ViewModel.SettingsPage.ViewModel.UpdateGradients();
         }

@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using CSGSI;
 using CSGSI.Nodes;
+using CSHUE.Cultures;
 using CSHUE.Helpers;
 using CSHUE.Views;
 using Microsoft.Win32;
@@ -104,11 +105,15 @@ namespace CSHUE.ViewModels
         public async void HueAsync()
         {
             HomePage.ViewModel.LoadingVisibility = Visibility.Visible;
+            HomePage.ViewModel.RetryVisibility = Visibility.Collapsed;
 
-            while (_bridgeIp == "")
+            _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
+
+            if (_bridgeIp == "")
             {
-                if (_bridgeIp == "")
-                    _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
+                HomePage.ViewModel.LoadingVisibility = Visibility.Collapsed;
+                HomePage.ViewModel.RetryVisibility = Visibility.Visible;
+                return;
             }
 
             Client = new LocalHueClient(_bridgeIp);
@@ -117,7 +122,8 @@ namespace CSHUE.ViewModels
 
             SettingsPage.ViewModel.UpdateGradients();
 
-            HomePage.ViewModel.LoadingVisibility = Visibility.Hidden;
+            HomePage.ViewModel.LoadingVisibility = Visibility.Collapsed;
+            HomePage.ViewModel.RetryVisibility = Visibility.Collapsed;
         }
 
         public async Task<string> GetBridgeIpAsync()
@@ -137,141 +143,90 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs == null || bridgeIPs.Count < 1)
             {
-                HomePage.ViewModel.WarningNoHub = Visibility.Visible;
-                HomePage.ViewModel.WarningLink = Visibility.Collapsed;
+                HomePage.ViewModel.SetWarningNoHub();
 
-                while (bridgeIPs == null || bridgeIPs.Count < 1)
-                {
-                    try
-                    {
-                        bridgeIPs = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5)).ConfigureAwait(false)).ToList();
-                    }
-                    catch
-                    {
-                        bridgeIPs = null;
-                    }
-
-                    Thread.Sleep(1000);
-                }
-
-                return bridgeIPs.First().IpAddress;
+                return "";
             }
 
             if (bridgeIPs.Count == 1)
             {
-                var valid = false;
+                HomePage.ViewModel.SetWarningValidating();
+                Thread.Sleep(3000);
+
                 try
                 {
-                    await new HttpClient().GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
-                    valid = true;
+                    await new HttpClient { Timeout = new TimeSpan(3000) }.GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
+
+                    return bridgeIPs.First().IpAddress;
                 }
                 catch
                 {
-                    // ignored
+                    HomePage.ViewModel.SetWarningNoReachableHubs();
+
+                    return "";
                 }
-
-                if (!valid)
-                {
-                    HomePage.ViewModel.WarningNoHub = Visibility.Visible;
-                    HomePage.ViewModel.WarningLink = Visibility.Collapsed;
-
-                    while (!valid)
-                    {
-                        try
-                        {
-                            await new HttpClient().GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
-                            valid = true;
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-
-                        Thread.Sleep(1000);
-                    }
-                }
-
-                return bridgeIPs.First().IpAddress;
             }
 
             return await Application.Current.Dispatcher.Invoke(async () =>
             {
                 var selector = new Selector
                 {
-                    Ok = Cultures.Resources.Ok,
+                    Ok = Resources.Ok,
                     List = new List<SelectorViewModel>(),
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
-                    Title = Cultures.Resources.BridgeSelector
+                    Title = Resources.HubSelector
                 };
 
                 foreach (var b in bridgeIPs)
                 {
-                    var valid = false;
+                    HomePage.ViewModel.SetWarningValidating();
+                    Thread.Sleep(3000);
+
                     try
                     {
-                        await new HttpClient().GetAsync(string.Format($"http://{b.IpAddress}/")).ConfigureAwait(false);
-                        valid = true;
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
+                        await new HttpClient { Timeout = new TimeSpan(3000) }.GetAsync(string.Format($"http://{b.IpAddress}/")).ConfigureAwait(false);
 
-                    if (valid)
-                    {
                         selector.List.Add(new SelectorViewModel
                         {
                             ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
                             Ip = b.IpAddress
                         });
                     }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
 
                 if (selector.List.Count < 1)
                 {
-                    HomePage.ViewModel.WarningNoHub = Visibility.Visible;
-                    HomePage.ViewModel.WarningLink = Visibility.Collapsed;
+                    HomePage.ViewModel.SetWarningNoReachableHubs();
 
-                    var valid = false;
-                    while (!valid)
-                    {
-                        try
-                        {
-                            await new HttpClient().GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
-                            valid = true;
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
+                    return "";
+                }
 
-                        Thread.Sleep(1000);
-                    }
-
-                    return bridgeIPs.First().IpAddress;
+                if (selector.List.Count == 1)
+                {
+                    return selector.List.ElementAt(0).Ip;
                 }
 
                 selector.ShowDialog();
 
+                HomePage.ViewModel.SetWarningValidating();
+                Thread.Sleep(3000);
+
                 try
                 {
-                    await new HttpClient().GetAsync(string.Format($"http://{selector.SelectedBridge}/")).ConfigureAwait(false);
+                    await new HttpClient { Timeout = new TimeSpan(3000) }.GetAsync(string.Format($"http://{selector.SelectedBridge}/")).ConfigureAwait(false);
+
+                    return selector.SelectedBridge;
                 }
                 catch
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        new CustomMessageBox
-                        {
-                            Yes = Cultures.Resources.Ok,
-                            No = null,
-                            Message = $"{Cultures.Resources.CouldNotConnect}",
-                            Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                        }.ShowDialog();
-                    });
+                    HomePage.ViewModel.SetWarningHubNotAvailable();
+
                     return "";
                 }
-                return selector.SelectedBridge;
             });
         }
 
@@ -281,8 +236,7 @@ namespace CSHUE.ViewModels
             {
                 var key = "";
 
-                HomePage.ViewModel.WarningNoHub = Visibility.Collapsed;
-                HomePage.ViewModel.WarningLink = Visibility.Visible;
+                HomePage.ViewModel.SetWarningLink();
 
                 while (key == "")
                 {
@@ -308,8 +262,6 @@ namespace CSHUE.ViewModels
             Client.Initialize(_appKey);
 
             await SetDefaultLightsSettings();
-
-            Csgo();
         }
 
         public void Csgo()
@@ -398,7 +350,7 @@ namespace CSHUE.ViewModels
 
                     if (pname.Length > 0)
                     {
-                        if (_globalLightsBackup == null)
+                        if (_globalLightsBackup == null && _appKey != "")
                             _globalLightsBackup = (await Client.GetLightsAsync()).ToList();
 
                         if (WindowState != WindowState.Minimized

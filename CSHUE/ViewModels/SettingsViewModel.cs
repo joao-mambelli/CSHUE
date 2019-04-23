@@ -618,18 +618,18 @@ namespace CSHUE.ViewModels
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsFreezeTime = new GradientStopCollection()
-                    {
-                        new GradientStop()
                         {
-                            Color = Colors.Black,
-                            Offset = 0
-                        },
-                        new GradientStop()
-                        {
-                            Color = Colors.Black,
-                            Offset = 1
-                        }
-                    };
+                            new GradientStop()
+                            {
+                                Color = Colors.Black,
+                                Offset = 0
+                            },
+                            new GradientStop()
+                            {
+                                Color = Colors.Black,
+                                Offset = 1
+                            }
+                        };
                     });
                 }
             }
@@ -661,18 +661,18 @@ namespace CSHUE.ViewModels
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsWarmup = new GradientStopCollection()
-                    {
-                        new GradientStop()
                         {
-                            Color = Colors.Black,
-                            Offset = 0
-                        },
-                        new GradientStop()
-                        {
-                            Color = Colors.Black,
-                            Offset = 1
-                        }
-                    };
+                            new GradientStop()
+                            {
+                                Color = Colors.Black,
+                                Offset = 0
+                            },
+                            new GradientStop()
+                            {
+                                Color = Colors.Black,
+                                Offset = 1
+                            }
+                        };
                     });
                 }
             }

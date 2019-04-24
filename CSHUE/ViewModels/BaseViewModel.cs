@@ -22,8 +22,8 @@ namespace CSHUE.ViewModels
                     || WarningGsiVisibility == Visibility.Visible
                     || WarningGsiCorruptedVisibility == Visibility.Visible)
                     return Visibility.Visible;
-                else
-                    return Visibility.Collapsed;
+
+                return Visibility.Collapsed;
             }
         }
 
@@ -71,6 +71,18 @@ namespace CSHUE.ViewModels
             set
             {
                 _warningGsiCorruptedVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _inProcess = Visibility.Collapsed;
+        public Visibility InProcess
+        {
+            get =>
+                _inProcess;
+            set
+            {
+                _inProcess = value;
                 OnPropertyChanged();
             }
         }

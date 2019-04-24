@@ -1,42 +1,43 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 
 namespace CSHUE.Views
 {
     /// <summary>
-    /// Interação lógica para LoadingSpinner.xam
+    /// Interaction logic for Loading.xaml
     /// </summary>
-    public partial class LoadingSpinner : ContentControl
+    public partial class LoadingSpinner : UserControl
     {
-        static LoadingSpinner()
+        public LoadingSpinner()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LoadingSpinner), new FrameworkPropertyMetadata(typeof(LoadingSpinner)));
+            InitializeComponent();
+        }
+        
+        public bool IsLoading
+        {
+            get => (bool)GetValue(IsLoadingProperty);
+            set => SetValue(IsLoadingProperty, value);
         }
 
-        public bool IsHanging
-        {
-            get { return (bool)GetValue(IsHangingProperty); }
-            set { SetValue(IsHangingProperty, value); }
-        }
+        public static readonly DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register(
+                "IsLoading",
+                typeof(bool),
+                typeof(LoadingSpinner),
+                new PropertyMetadata(default(bool), OnIsLoadingPropertyChanged));
 
-        public static readonly DependencyProperty IsHangingProperty =
-            DependencyProperty.Register("IsHanging", typeof(bool), typeof(LoadingSpinner), new UIPropertyMetadata(IsHangingPropertyChangedCallback));
-
-        static void IsHangingPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsLoadingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as LoadingSpinner).OnIsHangingPropertyChanged(d, e);
-        }
+            VisualStateManager.GoToState((LoadingSpinner)d, (bool)e.NewValue ? "Loading" : "Hanging", true);
 
-        private void OnIsHangingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (Convert.ToBoolean(e.NewValue))
+            if ((bool) e.NewValue)
             {
-                VisualStateManager.GoToState(this, "Hanging", true);
+                ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
             }
             else
             {
-                VisualStateManager.GoToState(this, "Loading", true);
+                ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseMediumColorBrush");
             }
         }
     }

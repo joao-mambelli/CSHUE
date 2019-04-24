@@ -18,6 +18,18 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get =>
+                _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Visibility _retryVisibility = Visibility.Hidden;
         public Visibility RetryVisibility
         {
@@ -97,6 +109,8 @@ namespace CSHUE.ViewModels
             WarningValidating = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Collapsed;
+
+            SetRetry();
         }
 
         public void SetWarningLink()
@@ -106,6 +120,8 @@ namespace CSHUE.ViewModels
             WarningValidating = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Collapsed;
+
+            SetLoading();
         }
 
         public void SetWarningValidating()
@@ -115,6 +131,8 @@ namespace CSHUE.ViewModels
             WarningValidating = Visibility.Visible;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Collapsed;
+
+            SetLoading();
         }
 
         public void SetWarningNoReachableHubs()
@@ -124,6 +142,8 @@ namespace CSHUE.ViewModels
             WarningValidating = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Visible;
             WarningHubNotAvailable = Visibility.Collapsed;
+
+            SetRetry();
         }
 
         public void SetWarningHubNotAvailable()
@@ -133,6 +153,34 @@ namespace CSHUE.ViewModels
             WarningValidating = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Visible;
+
+            SetRetry();
+        }
+
+        public void SetLoading()
+        {
+            IsLoading = true;
+            LoadingVisibility = Visibility.Visible;
+            RetryVisibility = Visibility.Collapsed;
+            MainWindowViewModel.InProcess = Visibility.Visible;
+            InProcess = Visibility.Visible;
+        }
+
+        public void SetRetry()
+        {
+            IsLoading = false;
+            LoadingVisibility = Visibility.Collapsed;
+            RetryVisibility = Visibility.Visible;
+            MainWindowViewModel.InProcess = Visibility.Visible;
+            InProcess = Visibility.Visible;
+        }
+
+        public void SetDone()
+        {
+            LoadingVisibility = Visibility.Collapsed;
+            RetryVisibility = Visibility.Collapsed;
+            MainWindowViewModel.InProcess = Visibility.Collapsed;
+            InProcess = Visibility.Collapsed;
         }
     }
 }

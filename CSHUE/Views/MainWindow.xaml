@@ -69,6 +69,20 @@
                         </materialDesign:PackIcon>
                         <TextBlock Text="{Binding Path=Home, Source={StaticResource Resources}}" Margin="2,0,0,0" VerticalAlignment="Center" />
                     </StackPanel>
+                    <materialDesign:PackIcon Kind="AlertCircleOutline"
+                                             Margin="12"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Foreground="Orange"
+                                             Visibility="{Binding InProcess}"
+                                             ToolTip="{Binding Path=WarningNotConnected, Source={StaticResource Resources}}"
+                                             ToolTipService.InitialShowDelay="100"
+                                             ToolTipService.HorizontalOffset="-50"
+                                             Background="Transparent">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
                 </Grid>
 
                 <Grid Name="Config"
@@ -256,11 +270,11 @@
                     Style="{DynamicResource Windows10ContextMenu}"
                     Opened="ContextMenu_Opened">
                     <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItem}"
+                              Style="{DynamicResource Windows10MenuItemAlertHome}"
                               Click="MenuNavigate_Click"
                               Tag="Home"/>
                     <MenuItem Header="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItemAlert}"
+                              Style="{DynamicResource Windows10MenuItemAlertConfig}"
                               Click="MenuNavigate_Click"
                               Tag="Config"/>
                     <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"

@@ -343,4 +343,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="WarningValidating" xml:space="preserve">
     <value>Validating Hub.</value>
   </data>
+  <data name="WarningNotConnected" xml:space="preserve">
+    <value>No Hub connection.</value>
+  </data>
 </root>

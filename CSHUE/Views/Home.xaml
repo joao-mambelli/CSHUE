@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:views="clr-namespace:CSHUE.Views"
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
+      xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -21,66 +22,81 @@
 
         <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=Home, Source={StaticResource Resources}}" />
 
-        <StackPanel
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-            <views:LoadingSpinner IsHanging="{Binding IsHanging}"/>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Style="{DynamicResource Windows10ScrollViewer}"
+                      ContextMenuService.IsEnabled="False"
+                      attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"                         
+                      attachedBehaviors:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
+                      attachedBehaviors:ScrollAnimationBehavior.PointsToScroll="128">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="502" />
+                </Grid.ColumnDefinitions>
 
-            <Grid Visibility="{Binding LoadingVisibility}">
-                <TextBlock
-                    Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
-                    Visibility="{Binding WarningLink}"
+                <StackPanel
+                    Margin="24,0,20,30"
+                    VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Margin="0,30,0,0"
-                    MaxWidth="200"
-                    TextWrapping="Wrap"
-                    TextAlignment="Center"/>
+                    Visibility="{Binding InProcess}">
+                    <views:LoadingSpinner IsLoading="{Binding IsLoading}" />
 
-                <TextBlock
-                    Text="{Binding Path=WarningValidating, Source={StaticResource Resources}}"
-                    Visibility="{Binding WarningValidating}"
-                    HorizontalAlignment="Center"
-                    Margin="0,30,0,0"
-                    MaxWidth="200"
-                    TextWrapping="Wrap"
-                    TextAlignment="Center"/>
+                    <Grid Visibility="{Binding LoadingVisibility}">
+                        <TextBlock
+                            Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
+                            Visibility="{Binding WarningLink}"
+                            HorizontalAlignment="Center"
+                            Margin="0,30,0,0"
+                            MaxWidth="500"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"/>
+
+                        <TextBlock
+                            Text="{Binding Path=WarningValidating, Source={StaticResource Resources}}"
+                            Visibility="{Binding WarningValidating}"
+                            HorizontalAlignment="Center"
+                            Margin="0,30,0,0"
+                            MaxWidth="500"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"/>
+                    </Grid>
+
+                    <StackPanel Visibility="{Binding RetryVisibility}">
+                        <Grid>
+                            <TextBlock
+                                Text="{Binding Path=WarningNoHub, Source={StaticResource Resources}}"
+                                Visibility="{Binding WarningNoHub}"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,0"
+                                MaxWidth="500"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center"/>
+
+                            <TextBlock
+                                Text="{Binding Path=WarningNoReachableHubs, Source={StaticResource Resources}}"
+                                Visibility="{Binding WarningNoReachableHubs}"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,0"
+                                MaxWidth="500"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center"/>
+
+                            <TextBlock
+                                Text="{Binding Path=WarningHubNotAvailable, Source={StaticResource Resources}}"
+                                Visibility="{Binding WarningHubNotAvailable}"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,0"
+                                MaxWidth="500"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center"/>
+                        </Grid>
+
+                        <Button Margin="0,30,0,9" VerticalAlignment="Top" Height="31" MinWidth="90" HorizontalAlignment="Center"
+                            Style="{DynamicResource Windows10Button}"
+                            Content="{Binding Path=Retry, Source={StaticResource Resources}}" Click="Retry_Click"/>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
-
-            <StackPanel Visibility="{Binding RetryVisibility}">
-                <Grid>
-                    <TextBlock
-                        Text="{Binding Path=WarningNoHub, Source={StaticResource Resources}}"
-                        Visibility="{Binding WarningNoHub}"
-                        HorizontalAlignment="Center"
-                        Margin="0,30,0,0"
-                        MaxWidth="385"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"/>
-
-                    <TextBlock
-                        Text="{Binding Path=WarningNoReachableHubs, Source={StaticResource Resources}}"
-                        Visibility="{Binding WarningNoReachableHubs}"
-                        HorizontalAlignment="Center"
-                        Margin="0,30,0,0"
-                        MaxWidth="200"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"/>
-
-                    <TextBlock
-                        Text="{Binding Path=WarningHubNotAvailable, Source={StaticResource Resources}}"
-                        Visibility="{Binding WarningHubNotAvailable}"
-                        HorizontalAlignment="Center"
-                        Margin="0,30,0,0"
-                        MaxWidth="200"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"/>
-                </Grid>
-
-                <Button Margin="0,30,0,9" VerticalAlignment="Top" Height="31" MinWidth="90" HorizontalAlignment="Center"
-                        Style="{DynamicResource Windows10Button}"
-                        Content="{Binding Path=Retry, Source={StaticResource Resources}}" Click="Retry_Click"/>
-            </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

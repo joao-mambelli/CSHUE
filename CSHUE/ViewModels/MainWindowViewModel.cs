@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -96,7 +97,7 @@ namespace CSHUE.ViewModels
         }
         
         private string _bridgeIp = "";
-        private string _appKey;
+        private string _appKey = "";
         private static ILocalHueClient Client { get; set; }
         private List<Light> _globalLightsBackup;
         private bool _alreadySetLights;
@@ -104,17 +105,11 @@ namespace CSHUE.ViewModels
 
         public async void HueAsync()
         {
-            HomePage.ViewModel.LoadingVisibility = Visibility.Visible;
-            HomePage.ViewModel.RetryVisibility = Visibility.Collapsed;
+            HomePage.ViewModel.SetLoading();
 
             _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
 
-            if (_bridgeIp == "")
-            {
-                HomePage.ViewModel.LoadingVisibility = Visibility.Collapsed;
-                HomePage.ViewModel.RetryVisibility = Visibility.Visible;
-                return;
-            }
+            if (_bridgeIp == "") return;
 
             Client = new LocalHueClient(_bridgeIp);
 
@@ -122,8 +117,7 @@ namespace CSHUE.ViewModels
 
             SettingsPage.ViewModel.UpdateGradients();
 
-            HomePage.ViewModel.LoadingVisibility = Visibility.Collapsed;
-            HomePage.ViewModel.RetryVisibility = Visibility.Collapsed;
+            HomePage.ViewModel.SetDone();
         }
 
         public async Task<string> GetBridgeIpAsync()
@@ -151,13 +145,13 @@ namespace CSHUE.ViewModels
             if (bridgeIPs.Count == 1)
             {
                 HomePage.ViewModel.SetWarningValidating();
-                Thread.Sleep(3000);
 
                 try
                 {
-                    await new HttpClient { Timeout = new TimeSpan(3000) }.GetAsync(string.Format($"http://{bridgeIPs.First().IpAddress}/")).ConfigureAwait(false);
-
-                    return bridgeIPs.First().IpAddress;
+                    var request = WebRequest.Create($"http://{bridgeIPs.First().IpAddress}/debug/clip.html");
+                    request.Timeout = 7000;
+                    if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                        return bridgeIPs.First().IpAddress;
                 }
                 catch
                 {
@@ -167,7 +161,7 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            return await Application.Current.Dispatcher.Invoke(async () =>
+            return Application.Current.Dispatcher.Invoke(() =>
             {
                 var selector = new Selector
                 {
@@ -177,20 +171,22 @@ namespace CSHUE.ViewModels
                     Title = Resources.HubSelector
                 };
 
+                WebRequest request;
+
                 foreach (var b in bridgeIPs)
                 {
                     HomePage.ViewModel.SetWarningValidating();
-                    Thread.Sleep(3000);
 
                     try
                     {
-                        await new HttpClient { Timeout = new TimeSpan(3000) }.GetAsync(string.Format($"http://{b.IpAddress}/")).ConfigureAwait(false);
-
-                        selector.List.Add(new SelectorViewModel
-                        {
-                            ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
-                            Ip = b.IpAddress
-                        });
+                        request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
+                        request.Timeout = 7000;
+                        if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                            selector.List.Add(new SelectorViewModel
+                            {
+                                ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
+                                Ip = b.IpAddress
+                            });
                     }
                     catch
                     {
@@ -213,13 +209,13 @@ namespace CSHUE.ViewModels
                 selector.ShowDialog();
 
                 HomePage.ViewModel.SetWarningValidating();
-                Thread.Sleep(3000);
 
                 try
                 {
-                    await new HttpClient { Timeout = new TimeSpan(3000) }.GetAsync(string.Format($"http://{selector.SelectedBridge}/")).ConfigureAwait(false);
-
-                    return selector.SelectedBridge;
+                    request = WebRequest.Create($"http://{selector.SelectedBridge}/debug/clip.html");
+                    request.Timeout = 7000;
+                    if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                        return selector.SelectedBridge;
                 }
                 catch
                 {
@@ -227,6 +223,8 @@ namespace CSHUE.ViewModels
 
                     return "";
                 }
+
+                return "";
             });
         }
 
@@ -366,29 +364,7 @@ namespace CSHUE.ViewModels
                         if (!_alreadyMinimized)
                             _alreadyMinimized = false;
 
-                        if (_globalLightsBackup != null
-                            && Properties.Settings.Default.RememberLightsStates
-                            && !_alreadySetLights)
-                        {
-                            _alreadySetLights = true;
-
-                            for (var i = 0; i < _globalLightsBackup.Count; i++)
-                            {
-                                if (_globalLightsBackup.ElementAt(i).State.IsReachable == true)
-                                {
-                                    var command = new LightCommand
-                                    {
-                                        On = _globalLightsBackup.ElementAt(i).State.On,
-                                        Hue = _globalLightsBackup.ElementAt(i).State.Hue,
-                                        Saturation = _globalLightsBackup.ElementAt(i).State.Saturation,
-                                        Brightness = _globalLightsBackup.ElementAt(i).State.Brightness
-                                    };
-
-                                    await Client.SendCommandAsync(command, new List<string> {$"{i + 1}"})
-                                        .ConfigureAwait(false);
-                                }
-                            }
-                        }
+                        RestoreLights();
 
                         _globalLightsBackup = null;
                     }
@@ -396,6 +372,33 @@ namespace CSHUE.ViewModels
                     Thread.Sleep(Properties.Settings.Default.CsgoCheckingPeriod * 1000);
                 }
             }) { IsBackground = true }.Start();
+        }
+
+        public async void RestoreLights()
+        {
+            if (_globalLightsBackup != null
+                && Properties.Settings.Default.RememberLightsStates
+                && !_alreadySetLights)
+            {
+                _alreadySetLights = true;
+
+                for (var i = 0; i < _globalLightsBackup.Count; i++)
+                {
+                    if (_globalLightsBackup.ElementAt(i).State.IsReachable == true)
+                    {
+                        var command = new LightCommand
+                        {
+                            On = _globalLightsBackup.ElementAt(i).State.On,
+                            Hue = _globalLightsBackup.ElementAt(i).State.Hue,
+                            Saturation = _globalLightsBackup.ElementAt(i).State.Saturation,
+                            Brightness = _globalLightsBackup.ElementAt(i).State.Brightness
+                        };
+
+                        await Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
+                            .ConfigureAwait(false);
+                    }
+                }
+            }
         }
 
         public void RunCsgo()
@@ -442,7 +445,9 @@ namespace CSHUE.ViewModels
 
         public void OnNewGameState(GameState gs)
         {
-            if (!Properties.Settings.Default.Activated) return;
+            if (!Properties.Settings.Default.Activated
+                || Client == null
+                || _globalLightsBackup == null) return;
 
             _lastgs = gs;
 

@@ -1,61 +1,55 @@
-﻿<ContentControl x:Class="CSHUE.Views.LoadingSpinner"
+﻿<UserControl x:Class="CSHUE.Views.LoadingSpinner"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CSHUE.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Width="50"
+             Height="50">
     <Grid>
         <Canvas
-                Name="LoadingCanvas"
-                Width="50"
-                Height="50">
-            <!--Both values should be customSize/2-->
+            Width="50"
+            Height="50">
             <Canvas.RenderTransform>
                 <RotateTransform
-                        x:Name="RotateCanvas"
-                        CenterX="25"
-                        CenterY="25" />
-                <!--Both values should be customSize/2-->
+                    x:Name="RotateCanvas"
+                    CenterX="25"
+                    CenterY="25" />
             </Canvas.RenderTransform>
 
             <Path
-                    Stroke="{DynamicResource SystemBaseHighColorBrush}"
-                    StrokeThickness="5">
-                <!--Choose your custom color-->
-                <!--Choose your custom thickness-->
+                x:Name="Path"
+                Stroke="{DynamicResource SystemBaseHighColorBrush}"
+                StrokeThickness="5">
                 <Path.Data>
                     <PathGeometry>
                         <PathFigure
-                                StartPoint="25,0">
-                            <!--Should be "customSize/2,0"-->
+                            StartPoint="25,0">
                             <ArcSegment
-                                    x:Name="Arc"
-                                    SweepDirection="Counterclockwise"
-                                    IsLargeArc="True"
-                                    Size="25,25"
-                                    Point="50,25"/>
-                            <!--Size should be "customSize/2,customSize/2"-->
-                            <!--Point should be "customSize,customSize/2"-->
+                                x:Name="Arc"
+                                SweepDirection="Counterclockwise"
+                                IsLargeArc="True"
+                                Size="25,25"
+                                Point="50,25"/>
                         </PathFigure>
                     </PathGeometry>
                 </Path.Data>
 
                 <Path.RenderTransform>
                     <RotateTransform
-                            x:Name="RotatePath"
-                            CenterX="25"
-                            CenterY="25" />
-                    <!--Both values should be customSize/2-->
+                        x:Name="RotatePath"
+                        CenterX="25"
+                        CenterY="25" />
                 </Path.RenderTransform>
             </Path>
+        </Canvas>
 
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="Animations">
-                    <VisualState x:Name="Loading">
-                        <Storyboard RepeatBehavior="Forever">
-                            <PointAnimationUsingPath
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Loading">
+                    <Storyboard RepeatBehavior="Forever">
+                        <PointAnimationUsingPath
                                     Storyboard.TargetName="Arc"
                                     Storyboard.TargetProperty="Point"
                                     AutoReverse="True"
@@ -63,13 +57,13 @@
                                     Duration="0:0:0.7"
                                     AccelerationRatio=".5"
                                     DecelerationRatio=".5">
-                                <PointAnimationUsingPath.PathGeometry>
-                                    <PathGeometry
+                            <PointAnimationUsingPath.PathGeometry>
+                                <PathGeometry
                                             Figures="M 23.4302370118,0.04933178929 A 25,25 0 1 0 50,25" />
-                                </PointAnimationUsingPath.PathGeometry>
-                            </PointAnimationUsingPath>
+                            </PointAnimationUsingPath.PathGeometry>
+                        </PointAnimationUsingPath>
 
-                            <BooleanAnimationUsingKeyFrames
+                        <BooleanAnimationUsingKeyFrames
                                     Storyboard.TargetName="Arc"
                                     Storyboard.TargetProperty="IsLargeArc"
                                     AutoReverse="True"
@@ -77,17 +71,17 @@
                                     Duration="0:0:0.7"
                                     AccelerationRatio=".5"
                                     DecelerationRatio=".5">
-                                <DiscreteBooleanKeyFrame
+                            <DiscreteBooleanKeyFrame
                                         KeyTime="0:0:0"
                                         Value="False" />
 
-                                <DiscreteBooleanKeyFrame
+                            <DiscreteBooleanKeyFrame
                                         KeyTime="0:0:0.4616666"
                                         Value="True" />
-                            </BooleanAnimationUsingKeyFrames>
+                        </BooleanAnimationUsingKeyFrames>
 
-                            <Storyboard RepeatBehavior="Forever">
-                                <DoubleAnimation
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         Duration="0:0:0.7"
@@ -96,7 +90,7 @@
                                         From="0"
                                         To="276"/>
 
-                                <DoubleAnimation
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:1.4"
@@ -106,7 +100,7 @@
                                         From="276"
                                         To="552" />
 
-                                <DoubleAnimation
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:2.8"
@@ -116,7 +110,7 @@
                                         From="552"
                                         To="828" />
 
-                                <DoubleAnimation
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:4.2"
@@ -126,7 +120,7 @@
                                         From="828"
                                         To="1104" />
 
-                                <DoubleAnimation
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:5.6"
@@ -136,7 +130,7 @@
                                         From="1104"
                                         To="1380" />
 
-                                <DoubleAnimation
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         BeginTime="0:0:6.3"
@@ -146,21 +140,27 @@
                                         From="1380"
                                         To="1380" />
 
-                                <DoubleAnimation
+                            <DoubleAnimation
                                         Storyboard.TargetName="RotateCanvas"
                                         Storyboard.TargetProperty="Angle"
                                         Duration="0:0:7.0"
                                         From="0"
                                         To="1500" />
-                            </Storyboard>
                         </Storyboard>
-                    </VisualState>
+                    </Storyboard>
+                </VisualState>
 
-                    <VisualState x:Name="Hanging">
-
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-        </Canvas>
+                <VisualState x:Name="Hanging">
+                    <Storyboard RepeatBehavior="Forever">
+                        <DoubleAnimation
+                            Storyboard.TargetName="RotateCanvas"
+                            Storyboard.TargetProperty="Angle"
+                            Duration="0:0:2"
+                            From="360"
+                            To="0" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
-</ContentControl>
+</UserControl>

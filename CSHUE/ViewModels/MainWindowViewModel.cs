@@ -751,16 +751,16 @@ namespace CSHUE.ViewModels
             _isPlanted = true;
             SetLightsAsync(Properties.Settings.Default.BombPlanted).Wait();
 
-            Task.Run(async () =>
+            new Thread(() =>
             {
                 for (var i = 0; i < 80 && _isPlanted; i++)
                 {
                     if (_flashedZeroed)
                         BlinkingBombAsync();
 
-                    await Task.Delay(Convert.ToInt32(1000.0 - (i * 21) + (i * i * 0.14)));
+                    Thread.Sleep(Convert.ToInt32(1000.0 - (i * 21) + (i * i * 0.14)));
                 }
-            });
+            }) { IsBackground = true }.Start();
         }
 
         public void BombExplodes()
@@ -837,14 +837,14 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            Task.Run(async () =>
+            new Thread(() =>
             {
-                await Task.Delay((int)(Properties.Settings.Default.PlayerGetsKillDuration * 1000));
+                Thread.Sleep((int)(Properties.Settings.Default.PlayerGetsKillDuration * 1000));
 
                 BackLights(_lastgs);
 
                 _blockLightChange = false;
-            });
+            }) { IsBackground = true }.Start();
         }
 
         public void Killed(GameState gs)
@@ -877,12 +877,12 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            Task.Run(async () =>
+            new Thread(() =>
             {
-                await Task.Delay((int)(Properties.Settings.Default.PlayerGetsKilledDuration * 1000));
+                Thread.Sleep((int)(Properties.Settings.Default.PlayerGetsKilledDuration * 1000));
 
                 BackLights(_lastgs);
-            });
+            }) { IsBackground = true }.Start();
         }
 
         public async void BlinkingBombAsync()

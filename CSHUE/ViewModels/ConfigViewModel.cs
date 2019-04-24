@@ -177,11 +177,6 @@ namespace CSHUE.ViewModels
 
         public void CheckConfigFile()
         {
-            MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
-
             var fail = false;
 
             var path = "";
@@ -203,6 +198,9 @@ namespace CSHUE.ViewModels
                         path = o as string;
                     else
                     {
+                        MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+                        MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
+                        MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
                         MainWindowViewModel.WarningSteamVisibility = Visibility.Visible;
                         fail = true;
                     }
@@ -218,6 +216,9 @@ namespace CSHUE.ViewModels
                     }
                     catch
                     {
+                        MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+                        MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
+                        MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
                         MainWindowViewModel.WarningCsgoVisibility = Visibility.Visible;
                         fail = true;
                     }
@@ -231,6 +232,9 @@ namespace CSHUE.ViewModels
                                 .Value ==
                             "")
                         {
+                            MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+                            MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
+                            MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
                             MainWindowViewModel.WarningCsgoVisibility = Visibility.Visible;
                             fail = true;
                         }
@@ -244,13 +248,27 @@ namespace CSHUE.ViewModels
 
             if (!fail && !File.Exists(cfgpath + "\\gamestate_integration_cshue.cfg"))
             {
+                MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
                 MainWindowViewModel.WarningGsiVisibility = Visibility.Visible;
                 fail = true;
             }
 
             if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath + "\\gamestate_integration_cshue.cfg")))
             {
+                MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
                 MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Visible;
+            }
+
+            if (!fail)
+            {
+                MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
             }
         }
     }

@@ -413,33 +413,26 @@ namespace CSHUE.ViewModels
         {
             if (Process.GetProcessesByName("csgo").Length > 0) return;
 
-            var steampath = "";
-
-            using (var key32 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
-            using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+            if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder))
             {
-                object o = null;
-                if (key64 != null)
-                    o = key64.GetValue("InstallPath");
-                else if (key32 != null)
-                    o = key32.GetValue("InstallPath");
+                using (var key32 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+                {
+                    object o = null;
+                    if (key64 != null)
+                        o = key64.GetValue("InstallPath");
+                    else if (key32 != null)
+                        o = key32.GetValue("InstallPath");
 
-                if (o != null)
-                    steampath = o as string;
+                    if (o != null)
+                        Properties.Settings.Default.SteamFolder = o as string;
+                }
             }
 
-            steampath += "\\Steam.exe";
+            if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder)
+                || !File.Exists(Properties.Settings.Default.SteamFolder + "\\Steam.exe")) return;
 
-            var p = new Process
-            {
-                StartInfo =
-                {
-                    FileName = steampath,
-                    Arguments = "steam://run/730//" + Properties.Settings.Default.LaunchOptions + "/",
-                    UseShellExecute = false
-                }
-            };
-            p.Start();
+            Process.Start("steam://run/730//" + Properties.Settings.Default.LaunchOptions + "/");
         }
 
         private GameState _lastgs;

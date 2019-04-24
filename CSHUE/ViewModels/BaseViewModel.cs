@@ -86,5 +86,17 @@ namespace CSHUE.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private bool _resetting;
+        public bool Resetting
+        {
+            get =>
+                _resetting;
+            set
+            {
+                _resetting = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

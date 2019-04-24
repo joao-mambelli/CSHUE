@@ -66,7 +66,7 @@ namespace CSHUE.Views
 
                 Cultures.Resources.Culture = culture;
 
-                Process.Start(Application.ResourceAssembly.Location);
+                Process.Start(Application.ResourceAssembly.Location, "-reset");
                 Application.Current.Shutdown();
             }
         }
@@ -89,7 +89,7 @@ namespace CSHUE.Views
             ViewModel.MainWindowViewModel.ConfigPage.ViewModel.CheckConfigFile();
             await MainWindowViewModel.SetDefaultLightsSettings();
 
-            Process.Start(Application.ResourceAssembly.Location);
+            Process.Start(Application.ResourceAssembly.Location, "-reset");
             Application.Current.Shutdown();
         }
 

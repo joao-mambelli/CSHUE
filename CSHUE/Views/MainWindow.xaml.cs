@@ -15,6 +15,7 @@ using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.ApplicationServices;
 using SourceChord.FluentWPF;
 
 namespace CSHUE.Views
@@ -82,6 +83,11 @@ namespace CSHUE.Views
                     }
                     else if (Properties.Settings.Default.RunOnStartupMinimized)
                         WindowState = WindowState.Minimized;
+                }
+
+                if (s == "-reset")
+                {
+                    ViewModel.Resetting = true;
                 }
             }
 

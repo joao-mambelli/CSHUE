@@ -57,68 +57,152 @@
                         </StackPanel.Resources>
 
                         <StackPanel Width="90">
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://steamcommunity.com/id/joao7yt/" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="Steam"/>
-                                    <TextBlock Margin="7,0,0,0" Text="Steam" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://www.reddit.com/user/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="Reddit" />
-                                    <TextBlock Margin="7,0,0,0" Text="Reddit" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://www.linkedin.com/in/joao-mambelli/" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="LinkedinBox" />
-                                    <TextBlock Margin="7,0,0,0" Text="LinkedIn" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-100"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://steamcommunity.com/id/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="Steam"/>
+                                        <TextBlock Margin="7,0,0,0" Text="Steam" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://steamcommunity.com/id/joao7yt"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-100"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://www.reddit.com/user/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="Reddit" />
+                                        <TextBlock Margin="7,0,0,0" Text="Reddit" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://www.reddit.com/user/joao7yt/"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-100"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://www.linkedin.com/in/joao-mambelli" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="LinkedinBox" />
+                                        <TextBlock Margin="7,0,0,0" Text="LinkedIn" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://www.linkedin.com/in/joao-mambelli"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
                         </StackPanel>
 
                         <StackPanel Width="90">
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://www.youtube.com/user/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="Youtube"/>
-                                    <TextBlock Margin="7,0,0,0" Text="YouTube" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://www.instagram.com/joomambaa/" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="Instagram" />
-                                    <TextBlock Margin="7,0,0,0" Text="Instagram" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://www.facebook.com/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="FacebookBox" />
-                                    <TextBlock Margin="7,0,0,0" Text="Facebook" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-100"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://www.youtube.com/user/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="Youtube"/>
+                                        <TextBlock Margin="7,0,0,0" Text="YouTube" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://www.youtube.com/user/joao7yt"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-100"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://www.instagram.com/joomambaa" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="Instagram" />
+                                        <TextBlock Margin="7,0,0,0" Text="Instagram" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://www.instagram.com/joomambaa"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-100"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://www.facebook.com/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="FacebookBox" />
+                                        <TextBlock Margin="7,0,0,0" Text="Facebook" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://www.facebook.com/joao7yt"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
                         </StackPanel>
 
                         <StackPanel Width="90">
-                            <TextBlock Margin="0,6,0,5">
-                            <Hyperlink NavigateUri="https://github.com/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <materialDesign:PackIcon Kind="GithubCircle"/>
-                                    <TextBlock Margin="7,0,0,0" Text="GitHub" LineHeight="15"/>
-                                </StackPanel>
-                            </Hyperlink>
-                        </TextBlock>
+                            <TextBlock Margin="0,6,0,5"
+                                       ToolTipService.InitialShowDelay="100"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.HorizontalOffset="-80"
+                                       ToolTipService.ShowDuration="3000">
+                                <Hyperlink NavigateUri="https://github.com/joao7yt" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="GithubCircle"/>
+                                        <TextBlock Margin="7,0,0,0" Text="GitHub" LineHeight="15"/>
+                                    </StackPanel>
+                                </Hyperlink>
+                                
+                                <TextBlock.ToolTip>
+                                    <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                        <Label
+                                            Content="https://github.com/joao7yt"
+                                            Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

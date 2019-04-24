@@ -346,4 +346,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="WarningNotConnected" xml:space="preserve">
     <value>No Hub connection.</value>
   </data>
+  <data name="SelectSteamFolder" xml:space="preserve">
+    <value>Please select the Steam folder manually.</value>
+  </data>
 </root>

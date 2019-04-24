@@ -48,27 +48,30 @@ namespace CSHUE.ViewModels
 
             if (string.IsNullOrEmpty(cfgpath))
             {
-                using (var key32 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
-                using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
+                if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder))
                 {
-                    object o = null;
-                    if (key64 != null)
-                        o = key64.GetValue("InstallPath");
-                    else if (key32 != null)
-                        o = key32.GetValue("InstallPath");
-
-                    if (o != null)
-                        path = o as string;
-                    else
+                    using (var key32 = Registry.LocalMachine.OpenSubKey("Software\\Valve\\Steam"))
+                    using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
                     {
-                        FailText = Resources.WarningSteam;
-                        fail = true;
+                        object o = null;
+                        if (key64 != null)
+                            o = key64.GetValue("InstallPath");
+                        else if (key32 != null)
+                            o = key32.GetValue("InstallPath");
+
+                        if (o != null)
+                            Properties.Settings.Default.SteamFolder = o as string;
+                        else
+                        {
+                            FailText = Resources.WarningSteam;
+                            fail = true;
+                        }
                     }
                 }
 
                 if (!fail)
                 {
-                    path += "\\steamapps\\";
+                    path += Properties.Settings.Default.SteamFolder + "\\steamapps\\";
 
                     try
                     {
@@ -97,13 +100,13 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            if (fail || !Directory.Exists(cfgpath))
+            if (fail)
             {
                 new CustomMessageBox
                 {
                     Text1 = Resources.Ok,
                     Text2 = null,
-                    Message = $"{FailText} {Resources.SelectFolder}",
+                    Message = $"{FailText} {(string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder) ? Resources.SelectSteamFolder : Resources.SelectFolder)}",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
 
@@ -127,7 +130,16 @@ namespace CSHUE.ViewModels
 
                     if (result != CommonFileDialogResult.Ok || string.IsNullOrWhiteSpace(fbd.FileName))
                         return;
+
+                    if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder))
+                    {
+                        Properties.Settings.Default.SteamFolder = fbd.FileName;
+                        CreateConfigFile();
+                        return;
+                    }
+
                     Properties.Settings.Default.CsgoFolder = fbd.FileName;
+
                     cfgpath = fbd.FileName;
 
                     File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
@@ -146,6 +158,8 @@ namespace CSHUE.ViewModels
             }
             else
             {
+                Directory.CreateDirectory(cfgpath);
+
                 File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
 
                 CheckConfigFile();

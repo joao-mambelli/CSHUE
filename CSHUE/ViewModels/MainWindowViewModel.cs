@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,7 +6,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -336,6 +334,7 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private bool _previewState;
         public void CheckCsgoProcessLoop()
         {
             new Thread(async () =>
@@ -353,21 +352,28 @@ namespace CSHUE.ViewModels
 
                         if (WindowState != WindowState.Minimized
                             && Properties.Settings.Default.AutoMinimize
-                            && !_alreadyMinimized)
+                            && !_alreadyMinimized
+                            && !_previewState
+                            && !Resetting)
                         {
                             _alreadyMinimized = true;
                             WindowState = WindowState.Minimized;
                         }
+                        
+                        _previewState = true;
                     }
                     else
                     {
                         if (!_alreadyMinimized)
                             _alreadyMinimized = false;
 
-                        RestoreLights();
+                        if (_previewState)
+                            RestoreLights();
 
-                        _globalLightsBackup = null;
+                        _previewState = false;
                     }
+
+                    Resetting = false;
 
                     Thread.Sleep(Properties.Settings.Default.CsgoCheckingPeriod * 1000);
                 }
@@ -398,6 +404,8 @@ namespace CSHUE.ViewModels
                             .ConfigureAwait(false);
                     }
                 }
+
+                _globalLightsBackup = null;
             }
         }
 
@@ -427,7 +435,7 @@ namespace CSHUE.ViewModels
                 StartInfo =
                 {
                     FileName = steampath,
-                    Arguments = "steam://run/730/" + "/" + Properties.Settings.Default.LaunchOptions + "/",
+                    Arguments = "steam://run/730//" + Properties.Settings.Default.LaunchOptions + "/",
                     UseShellExecute = false
                 }
             };
@@ -461,7 +469,8 @@ namespace CSHUE.ViewModels
                 MainMenu();
                 return;
             }
-            else if (gs.Map.Name != "" && _mainMenuState == false)
+
+            if (gs.Map.Name != "" && _mainMenuState == false)
             {
                 _mainMenuState = true;
 
@@ -473,18 +482,6 @@ namespace CSHUE.ViewModels
                     case BombState.Exploded:
                         BombExplodes();
                         break;
-                    case BombState.Undefined:
-                        break;
-                    case BombState.Dropped:
-                        break;
-                    case BombState.Carried:
-                        break;
-                    case BombState.Planting:
-                        break;
-                    case BombState.Defusing:
-                        break;
-                    case BombState.Defused:
-                        break;
                     default:
                     {
                         switch (gs.Round.Phase)
@@ -494,10 +491,6 @@ namespace CSHUE.ViewModels
                                 break;
                             case RoundPhase.Live:
                                 RoundStarts();
-                                break;
-                            case RoundPhase.Undefined:
-                                break;
-                            case RoundPhase.FreezeTime:
                                 break;
                             default:
                                 RoundPhaseChanged(gs);
@@ -798,10 +791,6 @@ namespace CSHUE.ViewModels
                     _isPlanted = false;
                     SetLightsAsync(Properties.Settings.Default.CounterTerroristsWin).Wait();
                     break;
-                case RoundWinTeam.Undefined:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(winner), winner, null);
             }
         }
 
@@ -835,18 +824,6 @@ namespace CSHUE.ViewModels
                 case BombState.Exploded:
                     SetLightsAsync(Properties.Settings.Default.PlayerGetsKill, Properties.Settings.Default.BombExplodes, Properties.Settings.Default.BombPlanted).Wait();
                     break;
-                case BombState.Undefined:
-                    break;
-                case BombState.Dropped:
-                    break;
-                case BombState.Carried:
-                    break;
-                case BombState.Planting:
-                    break;
-                case BombState.Defusing:
-                    break;
-                case BombState.Defused:
-                    break;
                 default:
                 {
                     switch (gs.Round.WinTeam)
@@ -856,8 +833,6 @@ namespace CSHUE.ViewModels
                             break;
                         case RoundWinTeam.CT:
                             SetLightsAsync(Properties.Settings.Default.PlayerGetsKill, Properties.Settings.Default.CounterTerroristsWin).Wait();
-                            break;
-                        case RoundWinTeam.Undefined:
                             break;
                         default:
                             if (gs.Round.Phase == RoundPhase.Live)
@@ -889,18 +864,6 @@ namespace CSHUE.ViewModels
                 case BombState.Exploded:
                     SetLightsAsync(Properties.Settings.Default.PlayerGetsKilled, Properties.Settings.Default.BombExplodes, Properties.Settings.Default.BombPlanted).Wait();
                     break;
-                case BombState.Undefined:
-                    break;
-                case BombState.Dropped:
-                    break;
-                case BombState.Carried:
-                    break;
-                case BombState.Planting:
-                    break;
-                case BombState.Defusing:
-                    break;
-                case BombState.Defused:
-                    break;
                 default:
                 {
                     switch (gs.Round.WinTeam)
@@ -910,8 +873,6 @@ namespace CSHUE.ViewModels
                             break;
                         case RoundWinTeam.CT:
                             SetLightsAsync(Properties.Settings.Default.PlayerGetsKilled, Properties.Settings.Default.CounterTerroristsWin).Wait();
-                            break;
-                        case RoundWinTeam.Undefined:
                             break;
                         default:
                             if (gs.Round.Phase == RoundPhase.Live)
@@ -1034,18 +995,6 @@ namespace CSHUE.ViewModels
                     _isPlanted = false;
                     SetLightsAsync(Properties.Settings.Default.BombExplodes, Properties.Settings.Default.BombPlanted).Wait();
                     return true;
-                case BombState.Undefined:
-                    break;
-                case BombState.Dropped:
-                    break;
-                case BombState.Carried:
-                    break;
-                case BombState.Planting:
-                    break;
-                case BombState.Defusing:
-                    break;
-                case BombState.Defused:
-                    break;
                 default:
                 {
                     switch (gs.Round.WinTeam)
@@ -1058,8 +1007,6 @@ namespace CSHUE.ViewModels
                             _isPlanted = false;
                             SetLightsAsync(Properties.Settings.Default.CounterTerroristsWin).Wait();
                             return true;
-                        case RoundWinTeam.Undefined:
-                            break;
                         default:
                         {
                             switch (gs.Round.Phase)
@@ -1072,28 +1019,13 @@ namespace CSHUE.ViewModels
                                     _isPlanted = false;
                                     SetLightsAsync(Properties.Settings.Default.FreezeTime, Properties.Settings.Default.RoundStarts).Wait();
                                     return true;
-                                case RoundPhase.Undefined:
-                                    break;
-                                case RoundPhase.Over:
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException();
                             }
 
-                            break;
+                            return false;
                         }
                     }
-
-                    break;
                 }
             }
-
-            if (gs.Map.Phase != MapPhase.Warmup) return false;
-
-            _isPlanted = false;
-            SetLightsAsync(Properties.Settings.Default.Warmup, Properties.Settings.Default.RoundStarts).Wait();
-
-            return true;
         }
 
         public static async Task SetDefaultLightsSettings()

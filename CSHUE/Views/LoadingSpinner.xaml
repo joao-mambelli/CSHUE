@@ -2,11 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CSHUE.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:CSHUE.Views"
              mc:Ignorable="d" 
              Width="50"
              Height="50">
+    <UserControl.Resources>
+        <views:DatabindingDebugConverter x:Key="DebugConverter" />
+    </UserControl.Resources>
+
     <Grid>
         <Canvas
             Width="50"
@@ -15,7 +19,7 @@
                 <RotateTransform
                     x:Name="RotateCanvas"
                     CenterX="25"
-                    CenterY="25" />
+                    CenterY="25"/>
             </Canvas.RenderTransform>
 
             <Path
@@ -31,7 +35,7 @@
                                 SweepDirection="Counterclockwise"
                                 IsLargeArc="True"
                                 Size="25,25"
-                                Point="50,25"/>
+                                Point="25,50"/>
                         </PathFigure>
                     </PathGeometry>
                 </Path.Data>
@@ -49,7 +53,7 @@
             <VisualStateGroup>
                 <VisualState x:Name="Loading">
                     <Storyboard RepeatBehavior="Forever">
-                        <PointAnimationUsingPath
+                        <!--<PointAnimationUsingPath
                                     Storyboard.TargetName="Arc"
                                     Storyboard.TargetProperty="Point"
                                     AutoReverse="True"
@@ -78,17 +82,17 @@
                             <DiscreteBooleanKeyFrame
                                         KeyTime="0:0:0.4616666"
                                         Value="True" />
-                        </BooleanAnimationUsingKeyFrames>
+                        </BooleanAnimationUsingKeyFrames>-->
 
                         <Storyboard RepeatBehavior="Forever">
-                            <DoubleAnimation
+                            <!--<DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
                                         Storyboard.TargetProperty="Angle"
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="0"
-                                        To="276"/>
+                                        From="{Binding Path=(views:LoadingSpinner.Angle)}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle2)}"/>
 
                             <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
@@ -97,8 +101,8 @@
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="276"
-                                        To="552" />
+                                        From="{Binding Path=(views:LoadingSpinner.Angle2)}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle3)}" />
 
                             <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
@@ -107,8 +111,8 @@
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="552"
-                                        To="828" />
+                                        From="{Binding Path=(views:LoadingSpinner.Angle3)}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle4)}" />
 
                             <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
@@ -117,8 +121,8 @@
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="828"
-                                        To="1104" />
+                                        From="{Binding Path=(views:LoadingSpinner.Angle4)}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle5)}" />
 
                             <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
@@ -127,8 +131,8 @@
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="1104"
-                                        To="1380" />
+                                        From="{Binding Path=(views:LoadingSpinner.Angle5)}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle6)}" />
 
                             <DoubleAnimation
                                         Storyboard.TargetName="RotatePath"
@@ -137,15 +141,15 @@
                                         Duration="0:0:0.7"
                                         AccelerationRatio=".5"
                                         DecelerationRatio=".5"
-                                        From="1380"
-                                        To="1380" />
+                                        From="{Binding Path=(views:LoadingSpinner.Angle6)}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle7)}" />-->
 
                             <DoubleAnimation
                                         Storyboard.TargetName="RotateCanvas"
                                         Storyboard.TargetProperty="Angle"
                                         Duration="0:0:7.0"
-                                        From="0"
-                                        To="1500" />
+                                        From="{Binding Path=(views:LoadingSpinner.Angle), NotifyOnTargetUpdated=True, Converter={StaticResource DebugConverter}}"
+                                        To="{Binding Path=(views:LoadingSpinner.Angle8), NotifyOnTargetUpdated=True}" />
                         </Storyboard>
                     </Storyboard>
                 </VisualState>
@@ -156,8 +160,8 @@
                             Storyboard.TargetName="RotateCanvas"
                             Storyboard.TargetProperty="Angle"
                             Duration="0:0:2"
-                            From="360"
-                            To="0" />
+                            From="{Binding Path=(views:LoadingSpinner.Angle), NotifyOnTargetUpdated=True}"
+                            To="{Binding Path=(views:LoadingSpinner.Angle1), NotifyOnTargetUpdated=True}" />
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>

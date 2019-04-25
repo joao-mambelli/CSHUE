@@ -135,6 +135,8 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs == null || bridgeIPs.Count < 1)
             {
+                Thread.Sleep(2000);
+
                 HomePage.ViewModel.SetWarningNoHub();
 
                 return "";

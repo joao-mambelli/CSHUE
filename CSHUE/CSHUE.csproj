@@ -142,12 +142,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\SelectorViewModel.cs" />
+    <Compile Include="ViewModels\HubSelectorViewModel.cs" />
     <Compile Include="Views\LoadingSpinner.xaml.cs">
       <DependentUpon>LoadingSpinner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Selector.xaml.cs">
-      <DependentUpon>Selector.xaml</DependentUpon>
+    <Compile Include="Views\HubSelector.xaml.cs">
+      <DependentUpon>HubSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
@@ -192,7 +192,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Selector.xaml">
+    <Page Include="Views\HubSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

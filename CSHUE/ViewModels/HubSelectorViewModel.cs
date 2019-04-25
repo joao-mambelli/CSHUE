@@ -1,12 +1,8 @@
 ﻿namespace CSHUE.ViewModels
 {
-    public class SelectorViewModel : BaseViewModel
+    public class HubSelectorViewModel : BaseViewModel
     {
-        public MainWindowViewModel MainWindowViewModel = null;
-
         public string ContentText { get; set; }
-
-        public string Title { get; set; }
 
         private bool _isChecked;
         public bool IsChecked

@@ -1,29 +1,24 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {
     /// <summary>
-    /// Interaction logic for Selector.xaml
+    /// Interaction logic for HubSelector.xaml
     /// </summary>
-    public partial class Selector : Window
+    public partial class HubSelector
     {
-        public SelectorViewModel ViewModel = new SelectorViewModel();
-
         public string Ok
         {
             get => (string)GetValue(OkProperty);
             set => SetValue(OkProperty, value);
         }
         public static readonly DependencyProperty OkProperty =
-            DependencyProperty.Register("Ok", typeof(string), typeof(Selector));
+            DependencyProperty.Register("Ok", typeof(string), typeof(HubSelector));
 
-        public Selector()
+        public HubSelector()
         {
             InitializeComponent();
         }
@@ -44,15 +39,15 @@ namespace CSHUE.Views
             Close();
         }
 
-        public List<SelectorViewModel> List
+        public List<HubSelectorViewModel> List
         {
-            get => (List<SelectorViewModel>)GetValue(ListProperty);
+            get => (List<HubSelectorViewModel>)GetValue(ListProperty);
             set => SetValue(ListProperty, value);
         }
         public static readonly DependencyProperty ListProperty =
-            DependencyProperty.Register("List", typeof(List<SelectorViewModel>), typeof(Selector));
+            DependencyProperty.Register("List", typeof(List<HubSelectorViewModel>), typeof(HubSelector));
 
-        private void Selector_OnLoaded(object sender, RoutedEventArgs e)
+        private void HubSelector_OnLoaded(object sender, RoutedEventArgs e)
         {
             List.ElementAt(0).IsChecked = true;
         }

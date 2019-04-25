@@ -161,10 +161,10 @@ namespace CSHUE.ViewModels
 
             return Application.Current.Dispatcher.Invoke(() =>
             {
-                var selector = new Selector
+                var hubSelector = new HubSelector
                 {
                     Ok = Resources.Ok,
-                    List = new List<SelectorViewModel>(),
+                    List = new List<HubSelectorViewModel>(),
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
                     Title = Resources.HubSelector
                 };
@@ -180,7 +180,7 @@ namespace CSHUE.ViewModels
                         request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
                         request.Timeout = 7000;
                         if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                            selector.List.Add(new SelectorViewModel
+                            hubSelector.List.Add(new HubSelectorViewModel
                             {
                                 ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
                                 Ip = b.IpAddress
@@ -192,28 +192,28 @@ namespace CSHUE.ViewModels
                     }
                 }
 
-                if (selector.List.Count < 1)
+                if (hubSelector.List.Count < 1)
                 {
                     HomePage.ViewModel.SetWarningNoReachableHubs();
 
                     return "";
                 }
 
-                if (selector.List.Count == 1)
+                if (hubSelector.List.Count == 1)
                 {
-                    return selector.List.ElementAt(0).Ip;
+                    return hubSelector.List.ElementAt(0).Ip;
                 }
 
-                selector.ShowDialog();
+                hubSelector.ShowDialog();
 
                 HomePage.ViewModel.SetWarningValidating();
 
                 try
                 {
-                    request = WebRequest.Create($"http://{selector.SelectedBridge}/debug/clip.html");
+                    request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
                     request.Timeout = 7000;
                     if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                        return selector.SelectedBridge;
+                        return hubSelector.SelectedBridge;
                 }
                 catch
                 {
@@ -283,7 +283,7 @@ namespace CSHUE.ViewModels
 
                     Thread.Sleep(60000);
                 }
-            }) {IsBackground = true}.Start();
+            }) { IsBackground = true }.Start();
         }
 
         public void CheckTime()

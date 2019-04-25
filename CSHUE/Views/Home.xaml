@@ -41,7 +41,7 @@
                     Visibility="{Binding InProcess}">
                     <views:LoadingSpinner IsLoading="{Binding IsLoading}" />
 
-                    <Grid Visibility="{Binding LoadingVisibility}">
+                    <!--<Grid Visibility="{Binding LoadingVisibility}">
                         <TextBlock
                             Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
                             Visibility="{Binding WarningLink}"
@@ -59,10 +59,10 @@
                             MaxWidth="500"
                             TextWrapping="Wrap"
                             TextAlignment="Center"/>
-                    </Grid>
+                    </Grid>-->
 
-                    <StackPanel Visibility="{Binding RetryVisibility}">
-                        <Grid>
+                    <StackPanel >
+                        <!--<Grid>
                             <TextBlock
                                 Text="{Binding Path=WarningNoHub, Source={StaticResource Resources}}"
                                 Visibility="{Binding WarningNoHub}"
@@ -89,7 +89,7 @@
                                 MaxWidth="500"
                                 TextWrapping="Wrap"
                                 TextAlignment="Center"/>
-                        </Grid>
+                        </Grid>-->
 
                         <Button Margin="0,30,0,9" VerticalAlignment="Top" Height="31" MinWidth="90" HorizontalAlignment="Center"
                             Style="{DynamicResource Windows10Button}"

@@ -75,13 +75,22 @@
                                              HorizontalAlignment="Right"
                                              Foreground="Orange"
                                              Visibility="{Binding InProcess}"
-                                             ToolTip="{Binding Path=WarningNotConnected, Source={StaticResource Resources}}"
                                              ToolTipService.InitialShowDelay="100"
                                              ToolTipService.HorizontalOffset="-50"
+                                             ToolTipService.HasDropShadow="True"
+                                             ToolTipService.ShowDuration="3000"
                                              Background="Transparent">
                         <materialDesign:PackIcon.LayoutTransform>
                             <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                         </materialDesign:PackIcon.LayoutTransform>
+
+                        <materialDesign:PackIcon.ToolTip>
+                            <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                <Label
+                                    Content="{Binding Path=WarningNotConnected, Source={StaticResource Resources}}"
+                                    Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                            </ToolTip>
+                        </materialDesign:PackIcon.ToolTip>
                     </materialDesign:PackIcon>
                 </Grid>
 
@@ -105,13 +114,22 @@
                                              HorizontalAlignment="Right"
                                              Foreground="Orange"
                                              Visibility="{Binding WarningCsgoVisibility}"
-                                             ToolTip="{Binding Path=WarningCSGO, Source={StaticResource Resources}}"
                                              ToolTipService.InitialShowDelay="100"
                                              ToolTipService.HorizontalOffset="-70"
+                                             ToolTipService.HasDropShadow="True"
+                                             ToolTipService.ShowDuration="3000"
                                              Background="Transparent">
                         <materialDesign:PackIcon.LayoutTransform>
                             <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                         </materialDesign:PackIcon.LayoutTransform>
+
+                        <materialDesign:PackIcon.ToolTip>
+                            <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                <Label
+                                    Content="{Binding Path=WarningCSGO, Source={StaticResource Resources}}"
+                                    Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                            </ToolTip>
+                        </materialDesign:PackIcon.ToolTip>
                     </materialDesign:PackIcon>
                     <materialDesign:PackIcon Kind="AlertCircleOutline"
                                              Margin="12"
@@ -119,13 +137,22 @@
                                              HorizontalAlignment="Right"
                                              Foreground="Orange"
                                              Visibility="{Binding WarningGsiVisibility}"
-                                             ToolTip="{Binding Path=WarningGSI, Source={StaticResource Resources}}"
                                              ToolTipService.InitialShowDelay="100"
                                              ToolTipService.HorizontalOffset="-70"
+                                             ToolTipService.HasDropShadow="True"
+                                             ToolTipService.ShowDuration="3000"
                                              Background="Transparent">
                         <materialDesign:PackIcon.LayoutTransform>
                             <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                         </materialDesign:PackIcon.LayoutTransform>
+
+                        <materialDesign:PackIcon.ToolTip>
+                            <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                <Label
+                                    Content="{Binding Path=WarningGSI, Source={StaticResource Resources}}"
+                                    Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                            </ToolTip>
+                        </materialDesign:PackIcon.ToolTip>
                     </materialDesign:PackIcon>
                     <materialDesign:PackIcon Kind="AlertCircleOutline"
                                              Margin="12"
@@ -133,13 +160,22 @@
                                              HorizontalAlignment="Right"
                                              Foreground="Orange"
                                              Visibility="{Binding WarningGsiCorruptedVisibility}"
-                                             ToolTip="{Binding Path=WarningGSICorrupted, Source={StaticResource Resources}}"
                                              ToolTipService.InitialShowDelay="100"
                                              ToolTipService.HorizontalOffset="-70"
+                                             ToolTipService.HasDropShadow="True"
+                                             ToolTipService.ShowDuration="3000"
                                              Background="Transparent">
                         <materialDesign:PackIcon.LayoutTransform>
                             <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                         </materialDesign:PackIcon.LayoutTransform>
+
+                        <materialDesign:PackIcon.ToolTip>
+                            <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                <Label
+                                    Content="{Binding Path=WarningGSICorrupted, Source={StaticResource Resources}}"
+                                    Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                            </ToolTip>
+                        </materialDesign:PackIcon.ToolTip>
                     </materialDesign:PackIcon>
                     <materialDesign:PackIcon Kind="AlertCircleOutline"
                                              Margin="12"
@@ -147,13 +183,22 @@
                                              HorizontalAlignment="Right"
                                              Foreground="Orange"
                                              Visibility="{Binding WarningSteamVisibility}"
-                                             ToolTip="{Binding Path=WarningSteam, Source={StaticResource Resources}}"
                                              ToolTipService.InitialShowDelay="100"
                                              ToolTipService.HorizontalOffset="-70"
+                                             ToolTipService.HasDropShadow="True"
+                                             ToolTipService.ShowDuration="3000"
                                              Background="Transparent">
                         <materialDesign:PackIcon.LayoutTransform>
                             <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
                         </materialDesign:PackIcon.LayoutTransform>
+
+                        <materialDesign:PackIcon.ToolTip>
+                            <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
+                                <Label
+                                    Content="{Binding Path=WarningSteam, Source={StaticResource Resources}}"
+                                    Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
+                            </ToolTip>
+                        </materialDesign:PackIcon.ToolTip>
                     </materialDesign:PackIcon>
                 </Grid>
             </StackPanel>

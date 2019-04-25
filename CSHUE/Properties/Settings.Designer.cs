@@ -418,5 +418,17 @@ namespace CSHUE.Properties {
                 this["CsgoFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SteamFolder {
+            get {
+                return ((string)(this["SteamFolder"]));
+            }
+            set {
+                this["SteamFolder"] = value;
+            }
+        }
     }
 }

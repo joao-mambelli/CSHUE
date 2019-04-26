@@ -109,6 +109,10 @@ namespace CSHUE.ViewModels
             Client = new LocalHueClient(_bridgeIp);
 
             await GetAppKeyAsync();
+            while (Properties.Settings.Default.AppKey == "")
+            {
+                await GetAppKeyAsync();
+            }
 
             SettingsPage.ViewModel.UpdateGradients();
 
@@ -239,16 +243,24 @@ namespace CSHUE.ViewModels
                     }
                     catch
                     {
-                        Properties.Settings.Default.AppKey = "";
+                        Thread.Sleep(1000);
                     }
-
-                    Thread.Sleep(1000);
                 }
+
+                Properties.Settings.Default.Save();
             }
 
             Client.Initialize(Properties.Settings.Default.AppKey);
 
-            await SetDefaultLightsSettings();
+            try
+            {
+                await SetDefaultLightsSettings();
+            }
+            catch
+            {
+                Properties.Settings.Default.AppKey = "";
+                Properties.Settings.Default.Save();
+            }
         }
 
         public void Csgo()

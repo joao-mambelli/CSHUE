@@ -103,8 +103,6 @@ namespace CSHUE.ViewModels
 
         public async void HueAsync()
         {
-            HomePage.ViewModel.SetLoading();
-
             _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
 
             if (_bridgeIp == "") return;
@@ -143,12 +141,6 @@ namespace CSHUE.ViewModels
             if (bridgeIPs.Count == 1)
             {
                 HomePage.ViewModel.SetWarningValidating();
-
-                Thread.Sleep(350 * 3);
-
-                HomePage.ViewModel.SetWarningNoReachableHubs();
-
-                return "";
 
                 try
                 {

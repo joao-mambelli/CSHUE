@@ -79,6 +79,18 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private Visibility _warningSearching = Visibility.Collapsed;
+        public Visibility WarningSearching
+        {
+            get =>
+                _warningSearching;
+            set
+            {
+                _warningSearching = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Visibility _warningNoReachableHubs = Visibility.Collapsed;
         public Visibility WarningNoReachableHubs
         {
@@ -108,6 +120,7 @@ namespace CSHUE.ViewModels
             WarningNoHub = Visibility.Visible;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
+            WarningSearching = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Collapsed;
 
@@ -119,6 +132,7 @@ namespace CSHUE.ViewModels
             WarningNoHub = Visibility.Collapsed;
             WarningLink = Visibility.Visible;
             WarningValidating = Visibility.Collapsed;
+            WarningSearching = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Collapsed;
 
@@ -130,6 +144,19 @@ namespace CSHUE.ViewModels
             WarningNoHub = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Visible;
+            WarningSearching = Visibility.Collapsed;
+            WarningNoReachableHubs = Visibility.Collapsed;
+            WarningHubNotAvailable = Visibility.Collapsed;
+
+            SetLoading();
+        }
+
+        public void SetWarningSearching()
+        {
+            WarningNoHub = Visibility.Collapsed;
+            WarningLink = Visibility.Collapsed;
+            WarningValidating = Visibility.Collapsed;
+            WarningSearching = Visibility.Visible;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Collapsed;
 
@@ -141,6 +168,7 @@ namespace CSHUE.ViewModels
             WarningNoHub = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
+            WarningSearching = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Visible;
             WarningHubNotAvailable = Visibility.Collapsed;
 
@@ -152,6 +180,7 @@ namespace CSHUE.ViewModels
             WarningNoHub = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
+            WarningSearching = Visibility.Collapsed;
             WarningNoReachableHubs = Visibility.Collapsed;
             WarningHubNotAvailable = Visibility.Visible;
 

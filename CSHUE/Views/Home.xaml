@@ -59,6 +59,15 @@
                             MaxWidth="500"
                             TextWrapping="Wrap"
                             TextAlignment="Center"/>
+
+                        <TextBlock
+                            Text="{Binding Path=WarningSearching, Source={StaticResource Resources}}"
+                            Visibility="{Binding WarningSearching}"
+                            HorizontalAlignment="Center"
+                            Margin="0,30,0,0"
+                            MaxWidth="500"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"/>
                     </Grid>
 
                     <StackPanel Visibility="{Binding RetryVisibility}">

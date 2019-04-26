@@ -135,8 +135,6 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs == null || bridgeIPs.Count < 1)
             {
-                Thread.Sleep(2000);
-
                 HomePage.ViewModel.SetWarningNoHub();
 
                 return "";
@@ -145,6 +143,12 @@ namespace CSHUE.ViewModels
             if (bridgeIPs.Count == 1)
             {
                 HomePage.ViewModel.SetWarningValidating();
+
+                Thread.Sleep(350 * 3);
+
+                HomePage.ViewModel.SetWarningNoReachableHubs();
+
+                return "";
 
                 try
                 {

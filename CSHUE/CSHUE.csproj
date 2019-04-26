@@ -143,6 +143,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\HubSelectorViewModel.cs" />
+    <Compile Include="Views\DebugDataBindingConverter.cs" />
     <Compile Include="Views\LoadingSpinner.xaml.cs">
       <DependentUpon>LoadingSpinner.xaml</DependentUpon>
     </Compile>

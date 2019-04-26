@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CSHUE.Views;
 
 namespace CSHUE.ViewModels
 {
@@ -18,14 +19,14 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private bool _isLoading;
-        public bool IsLoading
+        private LoadingSpinner.SpinnerStates _state;
+        public LoadingSpinner.SpinnerStates State
         {
             get =>
-                _isLoading;
+                _state;
             set
             {
-                _isLoading = value;
+                _state = value;
                 OnPropertyChanged();
             }
         }
@@ -159,7 +160,7 @@ namespace CSHUE.ViewModels
 
         public void SetLoading()
         {
-            IsLoading = true;
+            State = LoadingSpinner.SpinnerStates.Loading;
             LoadingVisibility = Visibility.Visible;
             RetryVisibility = Visibility.Collapsed;
             MainWindowViewModel.InProcess = Visibility.Visible;
@@ -168,7 +169,7 @@ namespace CSHUE.ViewModels
 
         public void SetRetry()
         {
-            IsLoading = false;
+            State = LoadingSpinner.SpinnerStates.Hanging;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Visible;
             MainWindowViewModel.InProcess = Visibility.Visible;
@@ -177,6 +178,7 @@ namespace CSHUE.ViewModels
 
         public void SetDone()
         {
+            State = LoadingSpinner.SpinnerStates.Disabled;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Collapsed;
             MainWindowViewModel.InProcess = Visibility.Collapsed;

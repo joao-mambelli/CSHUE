@@ -233,6 +233,7 @@
             <VisualStateGroup>
                 <VisualState x:Name="Loading" Storyboard="{StaticResource ResourceKey=Loading}"/>
                 <VisualState x:Name="Hanging" Storyboard="{StaticResource ResourceKey=Hanging}"/>
+                <VisualState x:Name="Disabled"/>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

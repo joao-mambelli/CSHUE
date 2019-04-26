@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Shapes;
 using CSHUE.ViewModels;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace CSHUE.Views
 {
@@ -20,19 +21,25 @@ namespace CSHUE.Views
         {
             InitializeComponent();
         }
-        
-        public bool IsLoading
-        {
-            get => (bool)GetValue(IsLoadingProperty);
-            set => SetValue(IsLoadingProperty, value);
-        }
 
-        public static readonly DependencyProperty IsLoadingProperty =
+        public SpinnerStates State
+        {
+            get => (SpinnerStates)GetValue(StateProperty);
+            set => SetValue(StateProperty, value);
+        }
+        public static readonly DependencyProperty StateProperty =
             DependencyProperty.Register(
-                "IsLoading",
-                typeof(bool),
+                "State",
+                typeof(SpinnerStates),
                 typeof(LoadingSpinner),
-                new PropertyMetadata(default(bool), OnIsLoadingPropertyChanged));
+                new PropertyMetadata(SpinnerStates.Disabled, OnStatePropertyChanged));
+
+        public enum SpinnerStates
+        {
+            Loading,
+            Hanging,
+            Disabled
+        }
 
         public double AngleCanvas
         {
@@ -136,15 +143,15 @@ namespace CSHUE.Views
         public static readonly DependencyProperty IsLargeArcProperty =
             DependencyProperty.Register("IsLargeArc", typeof(bool), typeof(LoadingSpinner));
 
-        public TimeSpan KeyTime
+        public KeyTime KeyTime
         {
-            get => (TimeSpan) GetValue(KeyTimeProperty);
+            get => (KeyTime) GetValue(KeyTimeProperty);
             set => SetValue(KeyTimeProperty, value);
         }
         public static readonly DependencyProperty KeyTimeProperty =
-            DependencyProperty.Register("KeyTime", typeof(TimeSpan), typeof(LoadingSpinner));
+            DependencyProperty.Register("KeyTime", typeof(KeyTime), typeof(LoadingSpinner));
 
-        private static void OnIsLoadingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LoadingSpinner)d).AngleCanvas = ((LoadingSpinner) d).RotateCanvas.Angle;
             ((LoadingSpinner)d).AnglePath1 = ((LoadingSpinner)d).RotatePath.Angle;
@@ -155,7 +162,7 @@ namespace CSHUE.Views
             ((LoadingSpinner)d).AnglePath6 = ((LoadingSpinner)d).RotatePath.Angle + 1380;
             ((LoadingSpinner) d).StartPoint = ((LoadingSpinner) d).Arc.Point;
 
-            if ((bool)e.NewValue)
+            if ((SpinnerStates)e.NewValue == SpinnerStates.Loading)
             {
                 if (((LoadingSpinner)d).Arc.Point.Y > 25)
                 {
@@ -179,8 +186,10 @@ namespace CSHUE.Views
                 }
 
                 ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
+
+                VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
             }
-            else
+            else if ((SpinnerStates)e.NewValue == SpinnerStates.Hanging)
             {
                 if (((LoadingSpinner)d).Arc.Point.X > 25)
                 {
@@ -200,9 +209,11 @@ namespace CSHUE.Views
 
                 ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseMediumColorBrush");
                 ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
-            }
 
-            VisualStateManager.GoToState((LoadingSpinner)d, (bool)e.NewValue ? "Loading" : "Hanging", true);
+                VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
+            }
+            else
+                VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
         }
     }
 }

@@ -349,4 +349,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="SelectSteamFolder" xml:space="preserve">
     <value>Please select the Steam folder manually.</value>
   </data>
+  <data name="WarningSearching" xml:space="preserve">
+    <value>Searching for Hubs.</value>
+  </data>
 </root>

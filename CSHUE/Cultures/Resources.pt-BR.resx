@@ -349,4 +349,7 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="SelectSteamFolder" xml:space="preserve">
     <value>Por favor, selecione manualmente a pasta da Steam.</value>
   </data>
+  <data name="WarningSearching" xml:space="preserve">
+    <value>Buscando Hubs.</value>
+  </data>
 </root>

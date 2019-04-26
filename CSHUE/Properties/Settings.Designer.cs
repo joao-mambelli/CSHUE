@@ -430,5 +430,17 @@ namespace CSHUE.Properties {
                 this["SteamFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AppKey {
+            get {
+                return ((string)(this["AppKey"]));
+            }
+            set {
+                this["AppKey"] = value;
+            }
+        }
     }
 }

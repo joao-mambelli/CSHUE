@@ -688,6 +688,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Searching for Hubs..
+        /// </summary>
+        public static string WarningSearching {
+            get {
+                return ResourceManager.GetString("WarningSearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t find Steam path..
         /// </summary>
         public static string WarningSteam {

@@ -95,7 +95,6 @@ namespace CSHUE.ViewModels
         }
         
         private string _bridgeIp = "";
-        private string _appKey = "";
         private static ILocalHueClient Client { get; set; }
         private List<Light> _globalLightsBackup;
         private bool _alreadySetLights;
@@ -124,6 +123,8 @@ namespace CSHUE.ViewModels
 
             try
             {
+                HomePage.ViewModel.SetWarningSearching();
+
                 bridgeIPs = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5)).ConfigureAwait(false)).ToList();
             }
             catch
@@ -226,34 +227,26 @@ namespace CSHUE.ViewModels
 
         public async Task GetAppKeyAsync()
         {
-            if (!File.Exists("appKey"))
+            if (string.IsNullOrEmpty(Properties.Settings.Default.AppKey))
             {
-                var key = "";
-
                 HomePage.ViewModel.SetWarningLink();
 
-                while (key == "")
+                while (Properties.Settings.Default.AppKey == "")
                 {
                     try
                     {
-                        key = await Client.RegisterAsync("CSHUE", "Desktop").ConfigureAwait(false);
+                        Properties.Settings.Default.AppKey = await Client.RegisterAsync("CSHUE", "Desktop").ConfigureAwait(false);
                     }
                     catch
                     {
-                        key = "";
+                        Properties.Settings.Default.AppKey = "";
                     }
 
                     Thread.Sleep(1000);
                 }
-
-                _appKey = key;
-
-                File.WriteAllText("appKey", _appKey);
             }
-            else
-                _appKey = File.ReadAllText("appKey");
 
-            Client.Initialize(_appKey);
+            Client.Initialize(Properties.Settings.Default.AppKey);
 
             await SetDefaultLightsSettings();
         }
@@ -345,7 +338,7 @@ namespace CSHUE.ViewModels
 
                     if (pname.Length > 0)
                     {
-                        if (_globalLightsBackup == null && _appKey != "")
+                        if (_globalLightsBackup == null && !string.IsNullOrEmpty(Properties.Settings.Default.AppKey))
                             _globalLightsBackup = (await Client.GetLightsAsync()).ToList();
 
                         if (WindowState != WindowState.Minimized

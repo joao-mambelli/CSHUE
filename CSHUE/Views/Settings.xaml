@@ -45,37 +45,46 @@
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=MainMenu, Source={StaticResource Resources}}" />
-
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="MainMenu">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsMainMenu}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=TerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="TerroristsWin">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsTerroristsWin}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=CounterTerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="CounterTerroristsWin">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsCounterTerroristsWin}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="RoundStarts">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsRoundStarts}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="BombPlanted">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsBombPlanted}"/>
                                     </Button.Background>
@@ -89,28 +98,36 @@
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="BombExplodes">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsBombExplodes}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombBlink, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="BombBlink">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsBombBlink}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="FreezeTime">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsFreezeTime}"/>
                                     </Button.Background>
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=Warmup, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="Warmup">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsWarmup}"/>
                                     </Button.Background>
@@ -124,7 +141,9 @@
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsKill, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="PlayerGetsKill">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsPlayerGetsKill}"/>
                                     </Button.Background>
@@ -143,12 +162,15 @@
                                                         Minimum="1"
                                                         Maximum="60"
                                                         DefaultValue="1.5"
-                                                        DisplayDefaultValueOnEmptyText="True" />
+                                                        DisplayDefaultValueOnEmptyText="True"
+                                                        ValueChanged="Save"/>
                                     <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
                                 </StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsKilled, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="PlayerGetsKilled">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsPlayerGetsKilled}"/>
                                     </Button.Background>
@@ -167,7 +189,8 @@
                                                         Minimum="1"
                                                         Maximum="60"
                                                         DefaultValue="3.0"
-                                                        DisplayDefaultValueOnEmptyText="True" />
+                                                        DisplayDefaultValueOnEmptyText="True"
+                                                        ValueChanged="Save"/>
                                     <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
@@ -179,7 +202,9 @@
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}">
+                                        Style="{DynamicResource Windows10Button}"
+                                        Click="Button_OnClick"
+                                        Tag="PlayerGetsFlashed">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" GradientStops="{Binding GradientStopsPlayerGetsFlashed}"/>
                                     </Button.Background>
@@ -201,7 +226,9 @@
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup}"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="Save"
+                              Unchecked="Save">
                         <TextBlock Text="{Binding Path=RunMinimized, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
@@ -213,7 +240,9 @@
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="Save"
+                              Unchecked="Save">
                         <TextBlock Text="{Binding Path=MinimizeDetected, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <WrapPanel Margin="0,15,0,9">
@@ -228,25 +257,32 @@
                                          Minimum="1"
                                          Maximum="60"
                                          DefaultValue="7"
-                                         DisplayDefaultValueOnEmptyText="True" />
+                                         DisplayDefaultValueOnEmptyText="True"
+                                         ValueChanged="Save"/>
                         <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
                     </WrapPanel>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="Save"
+                              Unchecked="Save">
                         <TextBlock Text="{Binding Path=TriggerSpectating, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="Save"
+                              Unchecked="Save">
                         <TextBlock Text="{Binding Path=RememberLights, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="Save"
+                              Unchecked="Save">
                         <TextBlock Text="{Binding Path=AutomaticallyActivate, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <WrapPanel Margin="30,7,0,9" IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}">
@@ -260,7 +296,8 @@
                                              Width="55"
                                              TextAlignment="Center"
                                              DefaultValue="18:00"
-                                             DisplayDefaultValueOnEmptyText="True" />
+                                             DisplayDefaultValueOnEmptyText="True"
+                                             ValueChanged="Save"/>
                         <TextBlock Text="{Binding Path=And, Source={StaticResource Resources}}"
                                    Margin="5,0,5,0"
                                    Style="{DynamicResource DisableTextBlock}"/>
@@ -274,7 +311,8 @@
                                              Width="55"
                                              TextAlignment="Center"
                                              DefaultValue="18:00"
-                                             DisplayDefaultValueOnEmptyText="True" />
+                                             DisplayDefaultValueOnEmptyText="True" 
+                                             ValueChanged="Save"/>
                     </WrapPanel>
 
                     <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}" Margin="0,15,0,4"/>
@@ -284,14 +322,17 @@
                               HorizontalAlignment="Left"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
                               Style="{DynamicResource Windows10ComboBox}"
-                              SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionChanged="Save">
                     </ComboBox>
 
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
-                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="Save"
+                              Unchecked="Save">
                         <TextBlock Text="{Binding Path=RunCsgoOnStartup, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <TextBox Height="35"
@@ -299,12 +340,13 @@
                              VerticalContentAlignment="Center"
                              Style="{StaticResource HintTextBox}"
                              Tag="{Binding Path=LaunchOptions, Source={StaticResource Resources}}"
-                             Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                             Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             TextInput="Save">
 
                     </TextBox>
                     <Button Margin="0,20,0,9" VerticalAlignment="Top"
                             Height="31" MinWidth="90"
-                            HorizontalAlignment="Right"
+                            HorizontalAlignment="Left"
                             Style="{DynamicResource Windows10Button}"
                             Content="{Binding Path=Default, Source={StaticResource Resources}}" Click="Default_Click">
                      </Button>

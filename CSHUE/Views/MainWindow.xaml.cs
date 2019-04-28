@@ -15,7 +15,6 @@ using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.ApplicationServices;
 using SourceChord.FluentWPF;
 
 namespace CSHUE.Views
@@ -83,15 +82,26 @@ namespace CSHUE.Views
                     }
                     else if (Properties.Settings.Default.RunOnStartupMinimized)
                         WindowState = WindowState.Minimized;
+
+                    ViewModel.Navigate(Page, "Home");
+                }
+
+                if (s == "-lang")
+                {
+                    ViewModel.Navigate(Page, "Settings");
                 }
 
                 if (s == "-reset")
                 {
                     ViewModel.Resetting = true;
+                    ViewModel.Navigate(Page, "Home");
+                }
+                
+                if (s != "-reset" && s != "-lang" && s != "-silent")
+                {
+                    ViewModel.Navigate(Page, "Home");
                 }
             }
-
-            ViewModel.Navigate(Page, "Home");
 
             ViewModel.HueAsync();
 
@@ -154,7 +164,20 @@ namespace CSHUE.Views
         {
             if (msg == 0x0024)
                 WmGetMinMaxInfo(lParam);
+            if (msg == NativeMethods.WmShowme)
+                ShowMe();
             return IntPtr.Zero;
+        }
+
+        private void ShowMe()
+        {
+            Show();
+            if (WindowState == WindowState.Minimized)
+                WindowState = WindowState.Normal;
+            NotifyIcon.Visibility = Visibility.Collapsed;
+            var top = Topmost;
+            Topmost = true;
+            Topmost = top;
         }
 
         private void WmGetMinMaxInfo(IntPtr lParam)
@@ -252,7 +275,7 @@ namespace CSHUE.Views
                 {
                     if (key == null)
                     {
-                        Menus.Background = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
+                        Menus.Background = new SolidColorBrush(Color.FromRgb(230, 230, 230));
                         return;
                     }
                     var changeMenuColor = false;
@@ -283,8 +306,8 @@ namespace CSHUE.Views
                         Menus.SetResourceReference(BackgroundProperty, "SystemAltMediumColorBrush");
                     else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
                         Menus.Background = new SolidColorBrush(_isModeDark == true
-                            ? Color.FromArgb(255, 31, 31, 31)
-                            : Color.FromArgb(255, 230, 230, 230));
+                            ? Color.FromRgb(31, 31, 31)
+                            : Color.FromRgb(230, 230, 230));
                     _isTransparencyTrue = transparency;
                 }
             }
@@ -308,7 +331,7 @@ namespace CSHUE.Views
                 if (o != null && Convert.ToBoolean(o))
                     BorderBrush = AccentColors.ImmersiveSystemAccentBrush;
                 else
-                    BorderBrush = new SolidColorBrush(Color.FromArgb(255, 102, 102, 102));
+                    BorderBrush = new SolidColorBrush(Color.FromRgb(102, 102, 102));
             }
         }
 
@@ -351,7 +374,7 @@ namespace CSHUE.Views
             _buttonClickable = true;
             if (((Grid) sender).Name == "CloseButton")
             {
-                ((Grid) sender).Background = new SolidColorBrush(Color.FromArgb(255, 241, 112, 123));
+                ((Grid) sender).Background = new SolidColorBrush(Color.FromRgb(241, 112, 123));
                 if (VisualTreeHelper.GetChild((Grid) sender, 0) is PackIcon child)
                     child.Foreground = new SolidColorBrush(Colors.Black);
             }
@@ -369,7 +392,7 @@ namespace CSHUE.Views
         private static void TopControls_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Grid) sender).Background = ((Grid) sender).Name == "CloseButton"
-                ? new SolidColorBrush(Color.FromArgb(255, 232, 17, 35))
+                ? new SolidColorBrush(Color.FromRgb(232, 17, 35))
                 : AccentColors.ImmersiveSystemAccentBrush;
         }
 
@@ -447,18 +470,6 @@ namespace CSHUE.Views
                 Properties.Settings.Default.Maximized = false;
             }
 
-            Properties.Settings.Default.MainMenu = null;
-            Properties.Settings.Default.PlayerGetsKill = null;
-            Properties.Settings.Default.PlayerGetsKilled = null;
-            Properties.Settings.Default.PlayerGetsFlashed = null;
-            Properties.Settings.Default.TerroristsWin = null;
-            Properties.Settings.Default.CounterTerroristsWin = null;
-            Properties.Settings.Default.RoundStarts = null;
-            Properties.Settings.Default.FreezeTime = null;
-            Properties.Settings.Default.Warmup = null;
-            Properties.Settings.Default.BombExplodes = null;
-            Properties.Settings.Default.BombPlanted = null;
-            Properties.Settings.Default.BombBlink = null;
             Properties.Settings.Default.Save();
 
             Environment.Exit(0);

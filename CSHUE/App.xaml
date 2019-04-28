@@ -16,6 +16,8 @@
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/ContextMenu.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Styles/ToggleButton.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
 

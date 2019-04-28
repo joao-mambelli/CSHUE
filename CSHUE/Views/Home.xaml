@@ -105,6 +105,8 @@
                             Content="{Binding Path=Retry, Source={StaticResource Resources}}" Click="Retry_Click"/>
                     </StackPanel>
                 </StackPanel>
+
+                <ToggleButton Style="{DynamicResource Windows10ToggleButton}"/>
             </Grid>
         </ScrollViewer>
     </Grid>

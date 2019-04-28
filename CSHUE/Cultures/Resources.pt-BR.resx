@@ -352,4 +352,22 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="WarningSearching" xml:space="preserve">
     <value>Buscando Hubs.</value>
   </data>
+  <data name="NoLightsFound" xml:space="preserve">
+    <value>Nenhuma luz encontrada.</value>
+  </data>
+  <data name="LightSelector" xml:space="preserve">
+    <value>Seletor de Luz</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Brilho:</value>
+  </data>
+  <data name="UseMainEventColor" xml:space="preserve">
+    <value>Usar sua cor do evento {0}</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>atual</value>
+  </data>
 </root>

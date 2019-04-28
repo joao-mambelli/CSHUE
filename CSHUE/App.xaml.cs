@@ -1,4 +1,8 @@
-﻿using System.Globalization;
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 
 namespace CSHUE
@@ -8,6 +12,56 @@ namespace CSHUE
     /// </summary>
     public partial class App : Application
     {
-        
+        private static readonly Mutex Mutex = new Mutex(true, "CSHUE");
+        public static bool Resetting = false;
+
+        /// <summary>
+        /// Application Entry Point.
+        /// </summary>
+        [STAThreadAttribute]
+        [System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
+        public static void Main()
+        {
+            bool allow = false;
+            foreach (var s in Environment.GetCommandLineArgs())
+            {
+                if (s == "-reset" || s == "-lang")
+                {
+                    if (s == "-reset")
+                    {
+                        Resetting = true;
+                    }
+
+                    allow = true;
+                }
+            }
+
+            if (allow || Mutex.WaitOne(TimeSpan.Zero, true))
+            {
+                var app = new App();
+                app.InitializeComponent();
+                app.Run();
+                Mutex.ReleaseMutex();
+            }
+            else
+            {
+                NativeMethods.PostMessage(
+                    (IntPtr)NativeMethods.HwndBroadcast,
+                    NativeMethods.WmShowme,
+                    IntPtr.Zero,
+                    IntPtr.Zero);
+            }
+        }
+    }
+
+    internal class NativeMethods
+    {
+        public const int HwndBroadcast = 0xffff;
+        public static readonly int WmShowme = RegisterWindowMessage("WM_SHOWME");
+        [DllImport("user32")]
+        public static extern bool PostMessage(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam);
+        [DllImport("user32")]
+        public static extern int RegisterWindowMessage(string message);
     }
 }

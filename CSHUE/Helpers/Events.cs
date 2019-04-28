@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Drawing;
+using System.Windows.Media;
 
 namespace CSHUE.Helpers
 {
@@ -71,7 +71,7 @@ namespace CSHUE.Helpers
         /// <param name="src">The color to convert.</param>
         public static implicit operator Color(SerializableColor src)
         {
-            return Color.FromArgb(src.Red, src.Green, src.Blue);
+            return Color.FromRgb(src.Red, src.Green, src.Blue);
         }
 
         /// <summary>

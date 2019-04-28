@@ -44,7 +44,7 @@
                         ToolTipService.HasDropShadow="True"
                         ToolTipService.HorizontalOffset="-150"
                         ToolTipService.ShowDuration="30000"
-                        Margin="0,2,0,9" VerticalAlignment="Top"
+                        Margin="0,10,0,9" VerticalAlignment="Top"
                         Height="31" MinWidth="90" HorizontalAlignment="Center"
                         Style="{DynamicResource Windows10Button}"
                         Content="{Binding Path=DonateButton, Source={StaticResource Resources}}" Click="Donate_Click">

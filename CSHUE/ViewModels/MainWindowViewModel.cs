@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using System.Windows.Media;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -95,7 +95,7 @@ namespace CSHUE.ViewModels
         }
         
         private string _bridgeIp = "";
-        private static ILocalHueClient Client { get; set; }
+        public static ILocalHueClient Client { get; set; }
         private List<Light> _globalLightsBackup;
         private bool _alreadySetLights;
         private bool _alreadyMinimized;
@@ -166,10 +166,8 @@ namespace CSHUE.ViewModels
             {
                 var hubSelector = new HubSelector
                 {
-                    Ok = Resources.Ok,
                     List = new List<HubSelectorViewModel>(),
-                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
-                    Title = Resources.HubSelector
+                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 };
 
                 WebRequest request;
@@ -594,12 +592,12 @@ namespace CSHUE.ViewModels
             {
                 if (!config.SelectedLights.FindAll(x => x == l.Id).Any()) continue;
 
-                var color = Color.FromArgb(l.Color.Red, l.Color.Green, l.Color.Blue);
+                var color = Color.FromRgb(l.Color.Red, l.Color.Green, l.Color.Blue);
 
                 var command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                    Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                     Saturation = GetSaturation(l.Color.Red,
                                                 l.Color.Green,
                                                 l.Color.Blue),
@@ -629,12 +627,12 @@ namespace CSHUE.ViewModels
                 Color color;
                 if (!l.OnlyBrightness)
                 {
-                    color = Color.FromArgb(l.Color.Red, l.Color.Green, l.Color.Blue);
+                    color = Color.FromRgb(l.Color.Red, l.Color.Green, l.Color.Blue);
 
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                         Saturation = GetSaturation(l.Color.Red,
                                                 l.Color.Green,
                                                 l.Color.Blue),
@@ -647,14 +645,14 @@ namespace CSHUE.ViewModels
                     continue;
                 }
 
-                color = Color.FromArgb(main.Lights.Find(x => x.Id == l.Id).Color.Red,
+                color = Color.FromRgb(main.Lights.Find(x => x.Id == l.Id).Color.Red,
                     main.Lights.Find(x => x.Id == l.Id).Color.Green,
                     main.Lights.Find(x => x.Id == l.Id).Color.Blue);
 
                 command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                    Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                     Saturation = GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color.Red,
                                                 main.Lights.Find(x => x.Id == l.Id).Color.Green,
                                                 main.Lights.Find(x => x.Id == l.Id).Color.Blue),
@@ -684,12 +682,12 @@ namespace CSHUE.ViewModels
                 Color color;
                 if (!l.OnlyBrightness)
                 {
-                    color = Color.FromArgb(l.Color.Red, l.Color.Green, l.Color.Blue);
+                    color = Color.FromRgb(l.Color.Red, l.Color.Green, l.Color.Blue);
 
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                         Saturation = GetSaturation(l.Color.Red,
                                                 l.Color.Green,
                                                 l.Color.Blue),
@@ -704,14 +702,14 @@ namespace CSHUE.ViewModels
 
                 if (!config2.Lights.Find(x => x.Id == l.Id).OnlyBrightness)
                 {
-                    color = Color.FromArgb(config2.Lights.Find(x => x.Id == l.Id).Color.Red,
+                    color = Color.FromRgb(config2.Lights.Find(x => x.Id == l.Id).Color.Red,
                         config2.Lights.Find(x => x.Id == l.Id).Color.Green,
                         config2.Lights.Find(x => x.Id == l.Id).Color.Blue);
 
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                         Saturation = GetSaturation(config2.Lights.Find(x => x.Id == l.Id).Color.Red,
                                                 config2.Lights.Find(x => x.Id == l.Id).Color.Green,
                                                 config2.Lights.Find(x => x.Id == l.Id).Color.Blue),
@@ -724,14 +722,14 @@ namespace CSHUE.ViewModels
                     continue;
                 }
 
-                color = Color.FromArgb(main.Lights.Find(x => x.Id == l.Id).Color.Red,
+                color = Color.FromRgb(main.Lights.Find(x => x.Id == l.Id).Color.Red,
                     main.Lights.Find(x => x.Id == l.Id).Color.Green,
                     main.Lights.Find(x => x.Id == l.Id).Color.Blue);
 
                 command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                    Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                     Saturation = GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color.Red,
                                                 main.Lights.Find(x => x.Id == l.Id).Color.Green,
                                                 main.Lights.Find(x => x.Id == l.Id).Color.Blue),
@@ -897,11 +895,11 @@ namespace CSHUE.ViewModels
             {
                 if (!Properties.Settings.Default.BombBlink.SelectedLights.FindAll(x => x == l.Id).Any()) continue;
 
-                var color = Color.FromArgb(l.Color.Red,
+                var color = Color.FromRgb(l.Color.Red,
                                                 l.Color.Green,
                                                 l.Color.Blue);
 
-                var back = Color.FromArgb(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Red,
+                var back = Color.FromRgb(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Red,
                     Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Green,
                     Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Blue);
 
@@ -911,7 +909,7 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(color.GetHue() / 360 * 65535),
+                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
                         Saturation = GetSaturation(l.Color.Red,
                                                 l.Color.Green,
                                                 l.Color.Blue),
@@ -924,7 +922,7 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(back.GetHue() / 360 * 65535),
+                        Hue = (int)Math.Round(GetHue(back) / 360 * 65535),
                         Saturation = GetSaturation(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Red,
                             Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Green,
                             Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Blue),
@@ -942,7 +940,7 @@ namespace CSHUE.ViewModels
                 command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(back.GetHue() / 360 * 65535),
+                    Hue = (int)Math.Round(GetHue(back) / 360 * 65535),
                     Saturation = GetSaturation(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Red,
                         Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Green,
                         Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Blue),
@@ -1062,7 +1060,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.MainMenu.Lights.Add(new UniqueLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(0, 0, 255),
+                        Color = Color.FromRgb(0, 0, 255),
                         Brightness = 192
                     });
             }
@@ -1080,7 +1078,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.PlayerGetsKill.Lights.Add(new UniqueBrightnessLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(0, 255, 0),
+                        Color = Color.FromRgb(0, 255, 0),
                         Brightness = 255,
                         OnlyBrightness = true
                     });
@@ -1099,7 +1097,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.PlayerGetsKilled.Lights.Add(new UniqueBrightnessLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 0, 0),
+                        Color = Color.FromRgb(255, 0, 0),
                         Brightness = 128,
                         OnlyBrightness = true
                     });
@@ -1118,7 +1116,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.PlayerGetsFlashed.Lights.Add(new UniqueLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 255, 255),
+                        Color = Color.FromRgb(255, 255, 255),
                         Brightness = 255
                     });
             }
@@ -1136,7 +1134,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.TerroristsWin.Lights.Add(new UniqueLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 200, 0),
+                        Color = Color.FromRgb(255, 200, 0),
                         Brightness = 192
                     });
             }
@@ -1154,7 +1152,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.CounterTerroristsWin.Lights.Add(new UniqueLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(0, 0, 255),
+                        Color = Color.FromRgb(0, 0, 255),
                         Brightness = 192
                     });
             }
@@ -1172,7 +1170,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.RoundStarts.Lights.Add(new UniqueLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(0, 255, 0),
+                        Color = Color.FromRgb(0, 255, 0),
                         Brightness = 192
                     });
             }
@@ -1190,7 +1188,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.FreezeTime.Lights.Add(new UniqueBrightnessLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 255, 255),
+                        Color = Color.FromRgb(255, 255, 255),
                         Brightness = 128,
                         OnlyBrightness = true
                     });
@@ -1209,7 +1207,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.Warmup.Lights.Add(new UniqueBrightnessLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 255, 255),
+                        Color = Color.FromRgb(255, 255, 255),
                         Brightness = 128,
                         OnlyBrightness = true
                     });
@@ -1228,7 +1226,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.BombExplodes.Lights.Add(new UniqueBrightnessLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 0, 0),
+                        Color = Color.FromRgb(255, 0, 0),
                         Brightness = 255,
                         OnlyBrightness = true
                     });
@@ -1247,7 +1245,7 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.BombPlanted.Lights.Add(new UniqueLight()
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromArgb(255, 0, 0),
+                        Color = Color.FromRgb(255, 0, 0),
                         Brightness = 128
                     });
             }
@@ -1265,7 +1263,7 @@ namespace CSHUE.ViewModels
                     new UniqueBrightnessLight()
                     {
                         Id = allLights.First().UniqueId,
-                        Color = Color.FromArgb(255, 0, 0),
+                        Color = Color.FromRgb(255, 0, 0),
                         Brightness = 255,
                         OnlyBrightness = true
                     }
@@ -1279,5 +1277,7 @@ namespace CSHUE.ViewModels
                 };
             }
         }
+
+        private static float GetHue(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B).GetHue();
     }
 }

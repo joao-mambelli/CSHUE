@@ -10,14 +10,6 @@ namespace CSHUE.Views
     /// </summary>
     public partial class HubSelector
     {
-        public string Ok
-        {
-            get => (string)GetValue(OkProperty);
-            set => SetValue(OkProperty, value);
-        }
-        public static readonly DependencyProperty OkProperty =
-            DependencyProperty.Register("Ok", typeof(string), typeof(HubSelector));
-
         public HubSelector()
         {
             InitializeComponent();

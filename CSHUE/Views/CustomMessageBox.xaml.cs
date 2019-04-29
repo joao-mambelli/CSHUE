@@ -1,12 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Windows;
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
     /// <summary>
     /// Interaction logic for CustomMessageBox.xaml
     /// </summary>
-    public partial class CustomMessageBox : Window
+    public partial class CustomMessageBox
     {
         public string Text1
         {

@@ -1,11 +1,7 @@
-﻿using System.Drawing;
-using System;
-using System.IO;
+﻿using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Color = System.Drawing.Color;
-using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace CSHUE.Helpers
 {
@@ -31,8 +27,8 @@ namespace CSHUE.Helpers
         public struct PickResult
         {
             public Area Area { get; set; }
-            public double? Hue { get; set; }
-            public double? Sat { get; set; }
+            public double Hue { get; set; }
+            public double Sat { get; set; }
         }
 
         public PickResult Pick(double x, double y)
@@ -53,21 +49,13 @@ namespace CSHUE.Helpers
         public WriteableBitmap CreateImage()
         {
             var img = new WriteableBitmap(Size, Size, 72, 72, PixelFormats.Bgra32, null);
-            byte[,,] pixels = new byte[Size, Size, 4];
-            for (int y = 0; y < Size; y++)
+            var pixels = new byte[Size, Size, 4];
+            for (var y = 0; y < Size; y++)
             {
-                for (int x = 0; x < Size; x++)
+                for (var x = 0; x < Size; x++)
                 {
-                    Color color;
                     var result = Pick(x, y);
-                    if (result.Area == Area.Outside)
-                    {
-                        color = Color.Transparent;
-                    }
-                    else
-                    {
-                        color = HSB(result.Hue.Value, result.Sat.Value);
-                    }
+                    var color = result.Area == Area.Outside ? Colors.Transparent : Hsb(result.Hue, result.Sat);
                     pixels[y, x, 3] = color.A;
                     pixels[y, x, 2] = color.R;
                     pixels[y, x, 1] = color.G;
@@ -75,60 +63,42 @@ namespace CSHUE.Helpers
                 }
             }
 
-            byte[] pixels1d = new byte[Size * Size * 4];
-            int index = 0;
-            for (int row = 0; row < Size; row++)
+            var pixels1D = new byte[Size * Size * 4];
+            var index = 0;
+            for (var row = 0; row < Size; row++)
             {
-                for (int col = 0; col < Size; col++)
+                for (var col = 0; col < Size; col++)
                 {
-                    for (int i = 0; i < 4; i++)
-                        pixels1d[index++] = pixels[row, col, i];
+                    for (var i = 0; i < 4; i++)
+                        pixels1D[index++] = pixels[row, col, i];
                 }
             }
 
-            Int32Rect rect = new Int32Rect(0, 0, Size, Size);
-            int stride = 4 * Size;
-            img.WritePixels(rect, pixels1d, stride, 0);
+            var rect = new Int32Rect(0, 0, Size, Size);
+            var stride = 4 * Size;
+            img.WritePixels(rect, pixels1D, stride, 0);
 
             return img;
         }
 
-        private Color HSB(double hue, double sat)
+        private static Color Hsb(double hue, double sat)
         {
-            var step = Math.PI / 3;
-            var interm = sat * (1 - Math.Abs((hue / step) % 2.0 - 1));
+            var interm = sat * (1 - Math.Abs(hue / (Math.PI / 3) % 2.0 - 1));
             var shift = 1 - sat;
-            if (hue < 1 * step) return RGB(shift + sat, shift + interm, shift + 0);
-            if (hue < 2 * step) return RGB(shift + interm, shift + sat, shift + 0);
-            if (hue < 3 * step) return RGB(shift + 0, shift + sat, shift + interm);
-            if (hue < 4 * step) return RGB(shift + 0, shift + interm, shift + sat);
-            if (hue < 5 * step) return RGB(shift + interm, shift + 0, shift + sat);
-            return RGB(shift + sat, shift + 0, shift + interm);
+            if (hue < 1 * (Math.PI / 3)) return Rgb(shift + sat, shift + interm, shift + 0);
+            if (hue < 2 * (Math.PI / 3)) return Rgb(shift + interm, shift + sat, shift + 0);
+            if (hue < 3 * (Math.PI / 3)) return Rgb(shift + 0, shift + sat, shift + interm);
+            if (hue < 4 * (Math.PI / 3)) return Rgb(shift + 0, shift + interm, shift + sat);
+            return hue < 5 * (Math.PI / 3) ? Rgb(shift + interm, shift + 0, shift + sat) : Rgb(shift + sat, shift + 0, shift + interm);
         }
 
-        private Color RGB(double red, double green, double blue)
+        private static Color Rgb(double red, double green, double blue)
         {
-            return Color.FromArgb(
-                255,
-                Math.Min(255, (int)(red * 256)),
-                Math.Min(255, (int)(green * 256)),
-                Math.Min(255, (int)(blue * 256)));
+            return Color.FromRgb(
+                Math.Min((byte)255, (byte)(red * 256)),
+                Math.Min((byte)255, (byte)(green * 256)),
+                Math.Min((byte)255, (byte)(blue * 256)));
         }
-
-        public PointD GetWheelPosition(double hue, double sat)
-        {
-            return new PointD
-            {
-                X = CenterX + Radius * Math.Sin(hue) * sat,
-                Y = CenterY - Radius * Math.Cos(hue) * sat
-            };
-        }
-    }
-
-    public class PointD
-    {
-        public double X { get; set; }
-        public double Y { get; set; }
     }
 }
 

@@ -11,19 +11,16 @@ namespace CSHUE.Cultures
     /// </summary>
     public class CultureResources
     {
-        private static readonly bool BFoundInstalledCultures = false;
-
-        private static List<CultureInfo> pSupportedCultures = new List<CultureInfo>();
+        private static readonly bool BFoundInstalledCultures;
         /// <summary>
         /// List of available cultures, enumerated at startup
         /// </summary>
-        public static List<CultureInfo> SupportedCultures => pSupportedCultures;
+        public static List<CultureInfo> SupportedCultures { get; } = new List<CultureInfo>();
 
-        private static List<string> pSupportedCulturesFullNames = new List<string>();
         /// <summary>
         /// List of available cultures, enumerated at startup
         /// </summary>
-        public static List<string> SupportedCulturesFullNames => pSupportedCulturesFullNames;
+        public static List<string> SupportedCulturesFullNames { get; } = new List<string>();
 
         static CultureResources()
         {
@@ -36,11 +33,10 @@ namespace CSHUE.Cultures
                     var tCulture = CultureInfo.GetCultureInfo(dirinfo.Name);
 
                     if (dirinfo.GetFiles(
-                            Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath) + ".resources.dll").Length > 0)
-                    {
-                        pSupportedCulturesFullNames.Add(tCulture.NativeName);
-                        pSupportedCultures.Add(tCulture);
-                    }
+                            Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath) +
+                            ".resources.dll").Length <= 0) continue;
+                    SupportedCulturesFullNames.Add(tCulture.NativeName);
+                    SupportedCultures.Add(tCulture);
                 }
                 catch (ArgumentException)
                 {
@@ -69,7 +65,7 @@ namespace CSHUE.Cultures
         /// <param name="culture">Culture to change to</param>
         public static void ChangeCulture(CultureInfo culture)
         {
-            if (!pSupportedCultures.Contains(culture)) return;
+            if (!SupportedCultures.Contains(culture)) return;
             Resources.Culture = culture;
             ResourceProvider.Refresh();
         }

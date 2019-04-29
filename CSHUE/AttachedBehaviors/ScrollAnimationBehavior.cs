@@ -23,18 +23,6 @@ namespace CSHUE.AttachedBehaviors
                 new UIPropertyMetadata(0.0,
                     OnVerticalOffsetChanged));
 
-        public static void SetVerticalOffset(FrameworkElement target,
-            double value)
-        {
-            target.SetValue(VerticalOffsetProperty,
-                value);
-        }
-
-        public static double GetVerticalOffset(FrameworkElement target)
-        {
-            return (double) target.GetValue(VerticalOffsetProperty);
-        }
-
         #endregion
 
         #region TimeDuration Property
@@ -112,11 +100,6 @@ namespace CSHUE.AttachedBehaviors
                 value);
         }
 
-        public static bool GetIsEnabled(FrameworkElement target)
-        {
-            return (bool) target.GetValue(IsEnabledProperty);
-        }
-
         #endregion
 
         #region OnIsEnabledChanged Changed
@@ -126,9 +109,8 @@ namespace CSHUE.AttachedBehaviors
         {
             var target = sender;
 
-            if (target != null && target is ScrollViewer)
+            if (target is ScrollViewer scroller)
             {
-                var scroller = target as ScrollViewer;
                 scroller.Loaded += ScrollerLoaded;
             }
 
@@ -199,7 +181,7 @@ namespace CSHUE.AttachedBehaviors
 
         #region SetEventHandlersForScrollViewer Helper
 
-        private static void SetEventHandlersForScrollViewer(ScrollViewer scroller)
+        private static void SetEventHandlersForScrollViewer(IInputElement scroller)
         {
             scroller.PreviewMouseWheel += ScrollViewerPreviewMouseWheel;
             scroller.PreviewKeyDown += ScrollViewerPreviewKeyDown;
@@ -280,27 +262,31 @@ namespace CSHUE.AttachedBehaviors
             if (_storyboard == null || _storyboard.GetCurrentState() == ClockState.Filling)
                 _currentToValue = scroller.VerticalOffset;
 
-            if (keyPressed == Key.Down || keyPressed == Key.PageDown)
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (keyPressed)
             {
-                offset = offset * -1;
+                case Key.Down:
+                case Key.PageDown:
+                    offset = offset * -1;
 
-                _currentToValue = offset > _currentToValue
-                    ? 0
-                    : _currentToValue - offset > scroller.ScrollableHeight
-                        ? scroller.ScrollableHeight
-                        : _currentToValue - offset;
+                    _currentToValue = offset > _currentToValue
+                        ? 0
+                        : _currentToValue - offset > scroller.ScrollableHeight
+                            ? scroller.ScrollableHeight
+                            : _currentToValue - offset;
 
-                isKeyHandled = true;
-            }
-            else if (keyPressed == Key.Up || keyPressed == Key.PageUp)
-            {
-                _currentToValue = offset > _currentToValue
-                    ? 0
-                    : _currentToValue - offset > scroller.ScrollableHeight
-                        ? scroller.ScrollableHeight
-                        : _currentToValue - offset;
+                    isKeyHandled = true;
+                    break;
+                case Key.Up:
+                case Key.PageUp:
+                    _currentToValue = offset > _currentToValue
+                        ? 0
+                        : _currentToValue - offset > scroller.ScrollableHeight
+                            ? scroller.ScrollableHeight
+                            : _currentToValue - offset;
 
-                isKeyHandled = true;
+                    isKeyHandled = true;
+                    break;
             }
 
             if (Math.Abs(_currentToValue - scroller.VerticalOffset) > 0)

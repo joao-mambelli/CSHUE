@@ -6,6 +6,7 @@ using CSHUE.Helpers;
 using CSHUE.ViewModels;
 using Q42.HueApi;
 using System.Windows.Media;
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
@@ -93,7 +94,7 @@ namespace CSHUE.Views
                             Brightness = Property.Lights.Find(x => x.Id == l.UniqueId).Brightness
                         },
                         UniqueId = l.UniqueId,
-                        IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId),
+                        IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId)
                     });
                 }
                 else if (BrightnessProperty != null)

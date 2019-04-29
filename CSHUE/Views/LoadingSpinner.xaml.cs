@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.Runtime.Remoting.Channels;
-using System.Threading;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Shapes;
-using CSHUE.ViewModels;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+// ReSharper disable CompareOfFloatsByEqualityOperator
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
@@ -164,14 +160,7 @@ namespace CSHUE.Views
 
             if ((SpinnerStates)e.NewValue == SpinnerStates.Loading)
             {
-                if (((LoadingSpinner)d).Arc.Point.Y > 25)
-                {
-                    ((LoadingSpinner)d).IsLargeArc = false;
-                }
-                else
-                {
-                    ((LoadingSpinner)d).IsLargeArc = true;
-                }
+                ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > 25);
 
                 if (((LoadingSpinner)d).Arc.Point.X >= 25)
                 {

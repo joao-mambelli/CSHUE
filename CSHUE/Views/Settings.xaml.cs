@@ -9,6 +9,7 @@ using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using CSHUE.Helpers;
 using Q42.HueApi;
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {

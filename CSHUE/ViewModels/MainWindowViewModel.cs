@@ -12,12 +12,13 @@ using System.Windows;
 using System.Windows.Controls;
 using CSGSI;
 using CSGSI.Nodes;
-using CSHUE.Cultures;
 using CSHUE.Helpers;
 using CSHUE.Views;
 using Microsoft.Win32;
 using Q42.HueApi;
 using Q42.HueApi.Interfaces;
+// ReSharper disable FunctionNeverReturns
+// ReSharper disable SwitchStatementMissingSomeCases
 
 namespace CSHUE.ViewModels
 {
@@ -143,88 +144,88 @@ namespace CSHUE.ViewModels
                 return "";
             }
 
-            if (bridgeIPs.Count == 1)
+            if (bridgeIPs.Count > 1)
             {
-                HomePage.ViewModel.SetWarningValidating();
-
-                try
+                return Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var request = WebRequest.Create($"http://{bridgeIPs.First().IpAddress}/debug/clip.html");
-                    request.Timeout = 7000;
-                    if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                        return bridgeIPs.First().IpAddress;
-                }
-                catch
-                {
-                    HomePage.ViewModel.SetWarningNoReachableHubs();
+                    var hubSelector = new HubSelector
+                    {
+                        List = new List<HubSelectorViewModel>(),
+                        Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+                    };
 
-                    return "";
-                }
-            }
+                    WebRequest request;
 
-            return Application.Current.Dispatcher.Invoke(() =>
-            {
-                var hubSelector = new HubSelector
-                {
-                    List = new List<HubSelectorViewModel>(),
-                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                };
+                    foreach (var b in bridgeIPs)
+                    {
+                        HomePage.ViewModel.SetWarningValidating();
 
-                WebRequest request;
+                        try
+                        {
+                            request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
+                            request.Timeout = 7000;
+                            if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                                hubSelector.List.Add(new HubSelectorViewModel
+                                {
+                                    ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
+                                    Ip = b.IpAddress
+                                });
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+                    }
 
-                foreach (var b in bridgeIPs)
-                {
+                    if (hubSelector.List.Count < 1)
+                    {
+                        HomePage.ViewModel.SetWarningNoReachableHubs();
+
+                        return "";
+                    }
+
+                    if (hubSelector.List.Count == 1)
+                    {
+                        return hubSelector.List.ElementAt(0).Ip;
+                    }
+
+                    hubSelector.ShowDialog();
+
                     HomePage.ViewModel.SetWarningValidating();
 
                     try
                     {
-                        request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
+                        request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
                         request.Timeout = 7000;
                         if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                            hubSelector.List.Add(new HubSelectorViewModel
-                            {
-                                ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
-                                Ip = b.IpAddress
-                            });
+                            return hubSelector.SelectedBridge;
                     }
                     catch
                     {
-                        // ignored
+                        HomePage.ViewModel.SetWarningHubNotAvailable();
+
+                        return "";
                     }
-                }
-
-                if (hubSelector.List.Count < 1)
-                {
-                    HomePage.ViewModel.SetWarningNoReachableHubs();
 
                     return "";
-                }
+                });
+            }
 
-                if (hubSelector.List.Count == 1)
-                {
-                    return hubSelector.List.ElementAt(0).Ip;
-                }
+            HomePage.ViewModel.SetWarningValidating();
 
-                hubSelector.ShowDialog();
+            try
+            {
+                var request = WebRequest.Create($"http://{bridgeIPs.First().IpAddress}/debug/clip.html");
+                request.Timeout = 7000;
+                if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                    return bridgeIPs.First().IpAddress;
+            }
+            catch
+            {
+                HomePage.ViewModel.SetWarningNoReachableHubs();
+            }
 
-                HomePage.ViewModel.SetWarningValidating();
-
-                try
-                {
-                    request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
-                    request.Timeout = 7000;
-                    if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                        return hubSelector.SelectedBridge;
-                }
-                catch
-                {
-                    HomePage.ViewModel.SetWarningHubNotAvailable();
-
-                    return "";
-                }
-
-                return "";
-            });
+            return "";
         }
 
         public async Task GetAppKeyAsync()
@@ -294,11 +295,11 @@ namespace CSHUE.ViewModels
             var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm", CultureInfo.InvariantCulture);
             var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm", CultureInfo.InvariantCulture);
 
-            if (end.Hour > start.Hour || (end.Hour == start.Hour && end.Minute > start.Minute))
+            if (end.Hour > start.Hour || end.Hour == start.Hour && end.Minute > start.Minute)
             {
-                if (DateTime.Now.Hour > start.Hour || (DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute))
+                if (DateTime.Now.Hour > start.Hour || DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute)
                 {
-                    if (DateTime.Now.Hour < end.Hour || (DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute))
+                    if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
                     {
                         if (Properties.Settings.Default.Activated == false)
                             Properties.Settings.Default.Activated = true;
@@ -317,12 +318,12 @@ namespace CSHUE.ViewModels
             }
             else
             {
-                if (DateTime.Now.Hour > start.Hour || (DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute))
+                if (DateTime.Now.Hour > start.Hour || DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute)
                 {
                     if (Properties.Settings.Default.Activated == false)
                         Properties.Settings.Default.Activated = true;
                 }
-                else if (DateTime.Now.Hour < end.Hour || (DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute))
+                else if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
                 {
                     if (Properties.Settings.Default.Activated == false)
                         Properties.Settings.Default.Activated = true;
@@ -383,31 +384,27 @@ namespace CSHUE.ViewModels
 
         public async void RestoreLights()
         {
-            if (_globalLightsBackup != null
-                && Properties.Settings.Default.RememberLightsStates
-                && !_alreadySetLights)
+            if (_globalLightsBackup == null || !Properties.Settings.Default.RememberLightsStates ||
+                _alreadySetLights) return;
+
+            _alreadySetLights = true;
+            for (var i = 0; i < _globalLightsBackup.Count; i++)
             {
-                _alreadySetLights = true;
+                if (_globalLightsBackup.ElementAt(i).State.IsReachable != true) continue;
 
-                for (var i = 0; i < _globalLightsBackup.Count; i++)
+                var command = new LightCommand
                 {
-                    if (_globalLightsBackup.ElementAt(i).State.IsReachable == true)
-                    {
-                        var command = new LightCommand
-                        {
-                            On = _globalLightsBackup.ElementAt(i).State.On,
-                            Hue = _globalLightsBackup.ElementAt(i).State.Hue,
-                            Saturation = _globalLightsBackup.ElementAt(i).State.Saturation,
-                            Brightness = _globalLightsBackup.ElementAt(i).State.Brightness
-                        };
+                    On = _globalLightsBackup.ElementAt(i).State.On,
+                    Hue = _globalLightsBackup.ElementAt(i).State.Hue,
+                    Saturation = _globalLightsBackup.ElementAt(i).State.Saturation,
+                    Brightness = _globalLightsBackup.ElementAt(i).State.Brightness
+                };
 
-                        await Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
-                            .ConfigureAwait(false);
-                    }
-                }
-
-                _globalLightsBackup = null;
+                await Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
+                    .ConfigureAwait(false);
             }
+
+            _globalLightsBackup = null;
         }
 
         public void RunCsgo()
@@ -759,7 +756,7 @@ namespace CSHUE.ViewModels
                     if (_flashedZeroed)
                         BlinkingBombAsync();
 
-                    Thread.Sleep(Convert.ToInt32(1000.0 - (i * 21) + (i * i * 0.14)));
+                    Thread.Sleep(Convert.ToInt32(1000.0 - i * 21 + i * i * 0.14));
                 }
             }) { IsBackground = true }.Start();
         }
@@ -1057,7 +1054,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.MainMenu.Lights = new List<UniqueLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.MainMenu.Lights.Add(new UniqueLight()
+                    Properties.Settings.Default.MainMenu.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(0, 0, 255),
@@ -1075,7 +1072,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.PlayerGetsKill.Lights = new List<UniqueBrightnessLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.PlayerGetsKill.Lights.Add(new UniqueBrightnessLight()
+                    Properties.Settings.Default.PlayerGetsKill.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(0, 255, 0),
@@ -1094,7 +1091,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.PlayerGetsKilled.Lights = new List<UniqueBrightnessLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.PlayerGetsKilled.Lights.Add(new UniqueBrightnessLight()
+                    Properties.Settings.Default.PlayerGetsKilled.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 0, 0),
@@ -1113,7 +1110,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.PlayerGetsFlashed.Lights = new List<UniqueLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.PlayerGetsFlashed.Lights.Add(new UniqueLight()
+                    Properties.Settings.Default.PlayerGetsFlashed.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 255, 255),
@@ -1131,7 +1128,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.TerroristsWin.Lights = new List<UniqueLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.TerroristsWin.Lights.Add(new UniqueLight()
+                    Properties.Settings.Default.TerroristsWin.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 200, 0),
@@ -1149,7 +1146,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.CounterTerroristsWin.Lights = new List<UniqueLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.CounterTerroristsWin.Lights.Add(new UniqueLight()
+                    Properties.Settings.Default.CounterTerroristsWin.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(0, 0, 255),
@@ -1167,7 +1164,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.RoundStarts.Lights = new List<UniqueLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.RoundStarts.Lights.Add(new UniqueLight()
+                    Properties.Settings.Default.RoundStarts.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(0, 255, 0),
@@ -1185,7 +1182,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.FreezeTime.Lights = new List<UniqueBrightnessLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.FreezeTime.Lights.Add(new UniqueBrightnessLight()
+                    Properties.Settings.Default.FreezeTime.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 255, 255),
@@ -1204,7 +1201,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.Warmup.Lights = new List<UniqueBrightnessLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.Warmup.Lights.Add(new UniqueBrightnessLight()
+                    Properties.Settings.Default.Warmup.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 255, 255),
@@ -1223,7 +1220,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.BombExplodes.Lights = new List<UniqueBrightnessLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.BombExplodes.Lights.Add(new UniqueBrightnessLight()
+                    Properties.Settings.Default.BombExplodes.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 0, 0),
@@ -1242,7 +1239,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.BombPlanted.Lights = new List<UniqueLight>();
                 foreach (var i in allLights)
-                    Properties.Settings.Default.BombPlanted.Lights.Add(new UniqueLight()
+                    Properties.Settings.Default.BombPlanted.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
                         Color = Color.FromRgb(255, 0, 0),
@@ -1260,7 +1257,7 @@ namespace CSHUE.ViewModels
             {
                 Properties.Settings.Default.BombBlink.Lights = new List<UniqueBrightnessLight>
                 {
-                    new UniqueBrightnessLight()
+                    new UniqueBrightnessLight
                     {
                         Id = allLights.First().UniqueId,
                         Color = Color.FromRgb(255, 0, 0),

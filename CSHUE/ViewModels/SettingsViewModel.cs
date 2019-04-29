@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using CSHUE.Helpers;
+// ReSharper disable SwitchStatementMissingSomeCases
 
 namespace CSHUE.ViewModels
 {
@@ -233,31 +234,31 @@ namespace CSHUE.ViewModels
 
         private void UpdateGradient(string propertyName, EventProperty Event)
         {
-            if (propertyName == "MainMenu")
+            switch (propertyName)
             {
-                if (Event?.SelectedLights != null)
-                {
-                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
-
-                    Application.Current.Dispatcher.Invoke(() =>
+                case "MainMenu" when Event?.SelectedLights != null:
                     {
-                        GradientStopsMainMenu = new GradientStopCollection();
-                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+
+                        Application.Current.Dispatcher.Invoke(() =>
                         {
-                            GradientStopsMainMenu.Add(new GradientStop
+                            GradientStopsMainMenu = new GradientStopCollection();
+                            for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                             {
-                                Color = !selectedLights.Any()
-                                    ? Colors.Black
-                                    : selectedLights.Count < 2
-                                        ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
-                                        : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
-                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
-                            });
-                        }
-                    });
-                }
-                else
-                {
+                                GradientStopsMainMenu.Add(new GradientStop
+                                {
+                                    Color = !selectedLights.Any()
+                                        ? Colors.Black
+                                        : selectedLights.Count < 2
+                                            ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                            : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
+                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                });
+                            }
+                        });
+                        break;
+                    }
+                case "MainMenu":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsMainMenu = new GradientStopCollection
@@ -274,33 +275,30 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "PlayerGetsFlashed")
-            {
-                if (Event?.SelectedLights != null)
-                {
-                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
-
-                    Application.Current.Dispatcher.Invoke(() =>
+                    break;
+                case "PlayerGetsFlashed" when Event?.SelectedLights != null:
                     {
-                        GradientStopsPlayerGetsFlashed = new GradientStopCollection();
-                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+
+                        Application.Current.Dispatcher.Invoke(() =>
                         {
-                            GradientStopsPlayerGetsFlashed.Add(new GradientStop
+                            GradientStopsPlayerGetsFlashed = new GradientStopCollection();
+                            for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                             {
-                                Color = selectedLights.Count < 1
-                                    ? Colors.Black
-                                    : selectedLights.Count < 2
-                                        ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
-                                        : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
-                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
-                            });
-                        }
-                    });
-                }
-                else
-                {
+                                GradientStopsPlayerGetsFlashed.Add(new GradientStop
+                                {
+                                    Color = selectedLights.Count < 1
+                                        ? Colors.Black
+                                        : selectedLights.Count < 2
+                                            ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                            : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
+                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                });
+                            }
+                        });
+                        break;
+                    }
+                case "PlayerGetsFlashed":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsPlayerGetsFlashed = new GradientStopCollection
@@ -317,33 +315,30 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "TerroristsWin")
-            {
-                if (Event?.SelectedLights != null)
-                {
-                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
-
-                    Application.Current.Dispatcher.Invoke(() =>
+                    break;
+                case "TerroristsWin" when Event?.SelectedLights != null:
                     {
-                        GradientStopsTerroristsWin = new GradientStopCollection();
-                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+
+                        Application.Current.Dispatcher.Invoke(() =>
                         {
-                            GradientStopsTerroristsWin.Add(new GradientStop
+                            GradientStopsTerroristsWin = new GradientStopCollection();
+                            for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                             {
-                                Color = selectedLights.Count < 1
-                                    ? Colors.Black
-                                    : selectedLights.Count < 2
-                                        ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
-                                        : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
-                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
-                            });
-                        }
-                    });
-                }
-                else
-                {
+                                GradientStopsTerroristsWin.Add(new GradientStop
+                                {
+                                    Color = selectedLights.Count < 1
+                                        ? Colors.Black
+                                        : selectedLights.Count < 2
+                                            ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                            : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
+                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                });
+                            }
+                        });
+                        break;
+                    }
+                case "TerroristsWin":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsTerroristsWin = new GradientStopCollection
@@ -360,33 +355,30 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "CounterTerroristsWin")
-            {
-                if (Event?.SelectedLights != null)
-                {
-                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
-
-                    Application.Current.Dispatcher.Invoke(() =>
+                    break;
+                case "CounterTerroristsWin" when Event?.SelectedLights != null:
                     {
-                        GradientStopsCounterTerroristsWin = new GradientStopCollection();
-                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+
+                        Application.Current.Dispatcher.Invoke(() =>
                         {
-                            GradientStopsCounterTerroristsWin.Add(new GradientStop
+                            GradientStopsCounterTerroristsWin = new GradientStopCollection();
+                            for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                             {
-                                Color = selectedLights.Count < 1
-                                    ? Colors.Black
-                                    : selectedLights.Count < 2
-                                        ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
-                                        : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
-                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
-                            });
-                        }
-                    });
-                }
-                else
-                {
+                                GradientStopsCounterTerroristsWin.Add(new GradientStop
+                                {
+                                    Color = selectedLights.Count < 1
+                                        ? Colors.Black
+                                        : selectedLights.Count < 2
+                                            ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                            : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
+                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                });
+                            }
+                        });
+                        break;
+                    }
+                case "CounterTerroristsWin":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsCounterTerroristsWin = new GradientStopCollection
@@ -403,33 +395,30 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "RoundStarts")
-            {
-                if (Event?.SelectedLights != null)
-                {
-                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
-
-                    Application.Current.Dispatcher.Invoke(() =>
+                    break;
+                case "RoundStarts" when Event?.SelectedLights != null:
                     {
-                        GradientStopsRoundStarts = new GradientStopCollection();
-                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+
+                        Application.Current.Dispatcher.Invoke(() =>
                         {
-                            GradientStopsRoundStarts.Add(new GradientStop
+                            GradientStopsRoundStarts = new GradientStopCollection();
+                            for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                             {
-                                Color = selectedLights.Count < 1
-                                    ? Colors.Black
-                                    : selectedLights.Count < 2
-                                        ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
-                                        : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
-                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
-                            });
-                        }
-                    });
-                }
-                else
-                {
+                                GradientStopsRoundStarts.Add(new GradientStop
+                                {
+                                    Color = selectedLights.Count < 1
+                                        ? Colors.Black
+                                        : selectedLights.Count < 2
+                                            ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                            : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
+                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                });
+                            }
+                        });
+                        break;
+                    }
+                case "RoundStarts":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsRoundStarts = new GradientStopCollection
@@ -446,33 +435,30 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "BombPlanted")
-            {
-                if (Event?.SelectedLights != null)
-                {
-                    var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
-
-                    Application.Current.Dispatcher.Invoke(() =>
+                    break;
+                case "BombPlanted" when Event?.SelectedLights != null:
                     {
-                        GradientStopsBombPlanted = new GradientStopCollection();
-                        for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+
+                        Application.Current.Dispatcher.Invoke(() =>
                         {
-                            GradientStopsBombPlanted.Add(new GradientStop
+                            GradientStopsBombPlanted = new GradientStopCollection();
+                            for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
                             {
-                                Color = selectedLights.Count < 1
-                                    ? Colors.Black
-                                    : selectedLights.Count < 2
-                                        ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
-                                        : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
-                                Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
-                            });
-                        }
-                    });
-                }
-                else
-                {
+                                GradientStopsBombPlanted.Add(new GradientStop
+                                {
+                                    Color = selectedLights.Count < 1
+                                        ? Colors.Black
+                                        : selectedLights.Count < 2
+                                            ? Color.FromRgb(selectedLights[0].Color.Red, selectedLights[0].Color.Green, selectedLights[0].Color.Blue)
+                                            : Color.FromRgb(selectedLights[i].Color.Red, selectedLights[i].Color.Green, selectedLights[i].Color.Blue),
+                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                });
+                            }
+                        });
+                        break;
+                    }
+                case "BombPlanted":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsBombPlanted = new GradientStopCollection
@@ -489,15 +475,15 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
+                    break;
             }
         }
 
         private void UpdateGradient(string propertyName, EventBrightnessProperty Event)
         {
-            if (propertyName == "PlayerGetsKill")
+            switch (propertyName)
             {
-                if (Event?.SelectedLights != null)
+                case "PlayerGetsKill" when Event?.SelectedLights != null:
                 {
                     var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
@@ -521,9 +507,9 @@ namespace CSHUE.ViewModels
                             });
                         }
                     });
+                    break;
                 }
-                else
-                {
+                case "PlayerGetsKill":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsPlayerGetsKill = new GradientStopCollection
@@ -540,11 +526,8 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "PlayerGetsKilled")
-            {
-                if (Event?.SelectedLights != null)
+                    break;
+                case "PlayerGetsKilled" when Event?.SelectedLights != null:
                 {
                     var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
 
@@ -568,9 +551,9 @@ namespace CSHUE.ViewModels
                             });
                         }
                     });
+                    break;
                 }
-                else
-                {
+                case "PlayerGetsKilled":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsPlayerGetsKilled = new GradientStopCollection
@@ -587,11 +570,8 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "FreezeTime")
-            {
-                if (Event?.SelectedLights != null)
+                    break;
+                case "FreezeTime" when Event?.SelectedLights != null:
                 {
                     var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
                     var selectedMainLights =
@@ -618,9 +598,9 @@ namespace CSHUE.ViewModels
                             });
                         }
                     });
+                    break;
                 }
-                else
-                {
+                case "FreezeTime":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsFreezeTime = new GradientStopCollection
@@ -637,11 +617,8 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "Warmup")
-            {
-                if (Event?.SelectedLights != null)
+                    break;
+                case "Warmup" when Event?.SelectedLights != null:
                 {
                     var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
                     var selectedMainLights =
@@ -668,9 +645,9 @@ namespace CSHUE.ViewModels
                             });
                         }
                     });
+                    break;
                 }
-                else
-                {
+                case "Warmup":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsWarmup = new GradientStopCollection
@@ -687,11 +664,8 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "BombExplodes")
-            {
-                if (Event?.SelectedLights != null)
+                    break;
+                case "BombExplodes" when Event?.SelectedLights != null:
                 {
                     var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
                     var selectedMainLights =
@@ -718,9 +692,9 @@ namespace CSHUE.ViewModels
                             });
                         }
                     });
+                    break;
                 }
-                else
-                {
+                case "BombExplodes":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsBombExplodes = new GradientStopCollection
@@ -737,11 +711,8 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
-            }
-            else if (propertyName == "BombBlink")
-            {
-                if (Event?.SelectedLights != null)
+                    break;
+                case "BombBlink" when Event?.SelectedLights != null:
                 {
                     var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
                     var selectedMainLights =
@@ -768,9 +739,9 @@ namespace CSHUE.ViewModels
                             });
                         }
                     });
+                    break;
                 }
-                else
-                {
+                case "BombBlink":
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         GradientStopsBombBlink = new GradientStopCollection
@@ -787,7 +758,7 @@ namespace CSHUE.ViewModels
                             }
                         };
                     });
-                }
+                    break;
             }
         }
     }

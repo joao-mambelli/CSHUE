@@ -84,7 +84,7 @@ namespace CSHUE.Views
                 {
                     List.Add(new LightSelectorViewModel
                     {
-                        Content = new ColorChooser
+                        Content = new LightSettingCell
                         {
                             Text = l.Name,
                             Color = Color.FromRgb(Property.Lights.Find(x => x.Id == l.UniqueId).Color.Red,
@@ -118,7 +118,7 @@ namespace CSHUE.Views
 
                     List.Add(new LightSelectorViewModel
                     {
-                        Content = new ColorChooser
+                        Content = new LightSettingCell
                         {
                             Text = l.Name,
                             Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Red,

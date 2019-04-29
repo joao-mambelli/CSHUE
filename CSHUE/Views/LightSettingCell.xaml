@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CSHUE.Views.ColorChooser"
+﻿<UserControl x:Class="CSHUE.Views.LightSettingCell"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,7 +27,8 @@
                 <Button HorizontalAlignment="Stretch"
                         Style="{DynamicResource Windows10Button}"
                         Height="50" MinWidth="90"
-                        IsEnabled="{Binding OnlyBrightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FalseToTrueConverter}}">
+                        IsEnabled="{Binding OnlyBrightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FalseToTrueConverter}}"
+                        Click="Button_OnClick">
                     <Button.Background>
                         <SolidColorBrush Color="{Binding Color}" Opacity="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Converter={StaticResource BoolToOpacityConverter}}"/>
                     </Button.Background>

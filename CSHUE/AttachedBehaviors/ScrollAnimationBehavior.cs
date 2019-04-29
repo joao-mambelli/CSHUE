@@ -158,7 +158,7 @@ namespace CSHUE.AttachedBehaviors
                 KeyTime.FromPercent(0)));
             verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(_currentToValue,
                 KeyTime.FromPercent(1.0),
-                new SineEase
+                new CubicEase
                 {
                     EasingMode = EasingMode.EaseOut
                 }));

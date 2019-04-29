@@ -16,9 +16,9 @@ using System.Windows.Shapes;
 namespace CSHUE.Views
 {
     /// <summary>
-    /// Interaction logic for ColorChooser.xaml
+    /// Interaction logic for LightSettingCell.xaml
     /// </summary>
-    public partial class ColorChooser : UserControl
+    public partial class LightSettingCell : UserControl
     {
         public string Text
         {
@@ -26,7 +26,7 @@ namespace CSHUE.Views
             set => SetValue(TextProperty, value);
         }
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(ColorChooser));
+            DependencyProperty.Register("Text", typeof(string), typeof(LightSettingCell));
 
         public Color Color
         {
@@ -34,7 +34,7 @@ namespace CSHUE.Views
             set => SetValue(ColorProperty, value);
         }
         public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(Color), typeof(ColorChooser));
+            DependencyProperty.Register("Color", typeof(Color), typeof(LightSettingCell));
 
         public byte Brightness
         {
@@ -42,7 +42,7 @@ namespace CSHUE.Views
             set => SetValue(BrightnessProperty, value);
         }
         public static readonly DependencyProperty BrightnessProperty =
-            DependencyProperty.Register("Brightness", typeof(byte), typeof(ColorChooser));
+            DependencyProperty.Register("Brightness", typeof(byte), typeof(LightSettingCell));
 
         public bool OnlyBrightness
         {
@@ -50,7 +50,7 @@ namespace CSHUE.Views
             set => SetValue(OnlyBrightnessProperty, value);
         }
         public static readonly DependencyProperty OnlyBrightnessProperty =
-            DependencyProperty.Register("OnlyBrightness", typeof(bool), typeof(ColorChooser));
+            DependencyProperty.Register("OnlyBrightness", typeof(bool), typeof(LightSettingCell));
 
         public Visibility OnlyBrightnessVisibility
         {
@@ -58,7 +58,7 @@ namespace CSHUE.Views
             set => SetValue(OnlyBrightnessVisibilityProperty, value);
         }
         public static readonly DependencyProperty OnlyBrightnessVisibilityProperty =
-            DependencyProperty.Register("OnlyBrightnessVisibility", typeof(Visibility), typeof(ColorChooser),
+            DependencyProperty.Register("OnlyBrightnessVisibility", typeof(Visibility), typeof(LightSettingCell),
                 new UIPropertyMetadata(Visibility.Collapsed));
 
         public string MainEventText
@@ -67,11 +67,21 @@ namespace CSHUE.Views
             set => SetValue(MainEventTextProperty, value);
         }
         public static readonly DependencyProperty MainEventTextProperty =
-            DependencyProperty.Register("MainEventText", typeof(string), typeof(ColorChooser));
+            DependencyProperty.Register("MainEventText", typeof(string), typeof(LightSettingCell));
 
-        public ColorChooser()
+        public LightSettingCell()
         {
             InitializeComponent();
+        }
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+            new ColorPicker
+            {
+                Text1 = Cultures.Resources.Ok,
+                Text2 = Cultures.Resources.Cancel,
+                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+            }.ShowDialog();
         }
     }
 }

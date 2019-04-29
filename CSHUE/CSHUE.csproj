@@ -142,12 +142,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Helpers\ColorWheel.cs" />
     <Compile Include="ViewModels\LightSelectorViewModel.cs" />
     <Compile Include="ViewModels\HubSelectorViewModel.cs" />
-    <Compile Include="Views\ColorChooser.xaml.cs">
-      <DependentUpon>ColorChooser.xaml</DependentUpon>
+    <Compile Include="Views\LightSettingCell.xaml.cs">
+      <DependentUpon>LightSettingCell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DebugDataBindingConverter.cs" />
+    <Compile Include="Views\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LightSelector.xaml.cs">
       <DependentUpon>LightSelector.xaml</DependentUpon>
     </Compile>
@@ -204,9 +207,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ColorChooser.xaml">
+    <Page Include="Views\LightSettingCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LightSelector.xaml">
       <Generator>MSBuild:Compile</Generator>

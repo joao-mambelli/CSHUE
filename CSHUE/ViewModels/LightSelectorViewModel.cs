@@ -5,7 +5,7 @@ namespace CSHUE.ViewModels
 {
     public class LightSelectorViewModel : BaseViewModel
     {
-        public ColorChooser Content { get; set; }
+        public LightSettingCell Content { get; set; }
 
         private bool _isChecked;
         private Visibility _singleOptionVisibility = Visibility.Collapsed;

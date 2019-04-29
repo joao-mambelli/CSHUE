@@ -9,7 +9,6 @@
              xmlns:views="clr-namespace:CSHUE.Views">
     <Grid>
         <Grid.Resources>
-            <views:DebugDataBindingConverter x:Key="DebugBinding"/>
             <Storyboard x:Key="Hanging" RepeatBehavior="Forever">
                 <DoubleAnimation
                     Storyboard.TargetName="RotateCanvas"

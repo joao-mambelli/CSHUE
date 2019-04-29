@@ -70,14 +70,22 @@
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard x:Name="checkedSB">
                                     <Storyboard Storyboard.TargetProperty="Margin" Storyboard.TargetName="Slider">
-                                        <ThicknessAnimation To="29,0,0,0" Duration="00:00:00.2"/>
+                                        <ThicknessAnimation To="29,0,0,0" Duration="00:00:00.2">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
                                 <BeginStoryboard x:Name="uncheckedSB">
                                     <Storyboard Storyboard.TargetProperty="Margin" Storyboard.TargetName="Slider">
-                                        <ThicknessAnimation To="5,0,0,0" Duration="00:00:00.2"/>
+                                        <ThicknessAnimation To="5,0,0,0" Duration="00:00:00.2">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.ExitActions>

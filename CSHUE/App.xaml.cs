@@ -1,19 +1,17 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows;
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         private static readonly Mutex Mutex = new Mutex(true, "CSHUE");
-        public static bool Resetting = false;
+        public static bool Resetting;
 
         /// <summary>
         /// Application Entry Point.
@@ -23,18 +21,16 @@ namespace CSHUE
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main()
         {
-            bool allow = false;
+            var allow = false;
             foreach (var s in Environment.GetCommandLineArgs())
             {
-                if (s == "-reset" || s == "-lang")
+                if (s != "-reset" && s != "-lang") continue;
+                if (s == "-reset")
                 {
-                    if (s == "-reset")
-                    {
-                        Resetting = true;
-                    }
-
-                    allow = true;
+                    Resetting = true;
                 }
+
+                allow = true;
             }
 
             if (allow || Mutex.WaitOne(TimeSpan.Zero, true))

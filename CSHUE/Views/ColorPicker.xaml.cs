@@ -1,20 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
+﻿using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
 using CSHUE.Helpers;
-using Application = System.Windows.Application;
-using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
     /// <summary>
     /// Interaction logic for ColorPicker.xaml
     /// </summary>
-    public partial class ColorPicker : Window
+    public partial class ColorPicker
     {
         public string Text1
         {
@@ -49,15 +44,12 @@ namespace CSHUE.Views
             Close();
         }
 
-        private ColorWheel _wheel = new ColorWheel(size);
-
         private void ColorPicker_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ImageBrush.ImageSource = _wheel.CreateImage();
+            ImageBrush.ImageSource = new ColorWheel(Size).CreateImage();
         }
 
-        private static int size = 250;
-        private bool donothing;
+        private const int Size = 250;
         private bool _movementStartedInside;
         private void ColorWheel_OnMouseDown(object sender, MouseButtonEventArgs e)
         {

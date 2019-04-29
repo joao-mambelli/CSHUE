@@ -16,6 +16,9 @@ using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
+// ReSharper disable CompareOfFloatsByEqualityOperator
+// ReSharper disable UnusedMember.Global
+// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
@@ -62,44 +65,37 @@ namespace CSHUE.Views
             SetLanguage();
 
             if (Properties.Settings.Default.RunOnStartup)
-                if (Properties.Settings.Default.RunOnStartupMinimized)
-                    ViewModel.SettingsPage.ViewModel.AddStartup(true);
-                else
-                    ViewModel.SettingsPage.ViewModel.AddStartup(false);
+                ViewModel.SettingsPage.ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
             else
                 ViewModel.SettingsPage.ViewModel.RemoveStartup();
 
             var arguments = Environment.GetCommandLineArgs();
             foreach (var s in arguments)
             {
-                if (s == "-silent")
+                switch (s)
                 {
-                    if (Properties.Settings.Default.RunOnStartupMinimized && Properties.Settings.Default.MinimizeToSystemTray)
-                    {
-                        WindowState = WindowState.Minimized;
-                        Hide();
-                        NotifyIcon.Visibility = Visibility.Visible;
-                    }
-                    else if (Properties.Settings.Default.RunOnStartupMinimized)
-                        WindowState = WindowState.Minimized;
+                    case "-silent":
+                        if (Properties.Settings.Default.RunOnStartupMinimized && Properties.Settings.Default.MinimizeToSystemTray)
+                        {
+                            WindowState = WindowState.Minimized;
+                            Hide();
+                            NotifyIcon.Visibility = Visibility.Visible;
+                        }
+                        else if (Properties.Settings.Default.RunOnStartupMinimized)
+                            WindowState = WindowState.Minimized;
 
-                    ViewModel.Navigate(Page, "Home");
-                }
-
-                if (s == "-lang")
-                {
-                    ViewModel.Navigate(Page, "Settings");
-                }
-
-                if (s == "-reset")
-                {
-                    ViewModel.Resetting = true;
-                    ViewModel.Navigate(Page, "Home");
-                }
-                
-                if (s != "-reset" && s != "-lang" && s != "-silent")
-                {
-                    ViewModel.Navigate(Page, "Home");
+                        ViewModel.Navigate(Page, "Home");
+                        break;
+                    case "-lang":
+                        ViewModel.Navigate(Page, "Settings");
+                        break;
+                    case "-reset":
+                        ViewModel.Resetting = true;
+                        ViewModel.Navigate(Page, "Home");
+                        break;
+                    default:
+                        ViewModel.Navigate(Page, "Home");
+                        break;
                 }
             }
 
@@ -250,10 +246,13 @@ namespace CSHUE.Views
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         private class Monitorinfo
         {
+            // ReSharper disable once UnusedMember.Local
             private readonly int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
+            #pragma warning disable 169
             private readonly int dwFlags = 0;
+            #pragma warning restore 169
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -386,7 +385,7 @@ namespace CSHUE.Views
         {
             if (!_buttonClickable)
                 return;
-            GetType() .GetMethod(((Grid) sender).Name + "_Click") ?.Invoke(this, null);
+            GetType().GetMethod(((Grid) sender).Name + "_Click")?.Invoke(this, null);
         }
 
         private static void TopControls_MouseEnter(object sender, MouseEventArgs e)
@@ -496,7 +495,7 @@ namespace CSHUE.Views
 
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
-            ((ContextMenu)sender).Items[0] = new MenuItem()
+            ((ContextMenu)sender).Items[0] = new MenuItem
             {
                 Header = Cultures.Resources.Home,
                 Style = (Style)FindResource("Windows10MenuItemAlertHome"),
@@ -504,7 +503,7 @@ namespace CSHUE.Views
             };
             ((MenuItem)((ContextMenu)sender).Items[0]).Click += MenuNavigate_Click;
 
-            ((ContextMenu)sender).Items[1] = new MenuItem()
+            ((ContextMenu)sender).Items[1] = new MenuItem
             {
                 Header = Cultures.Resources.CSGOGSI,
                 Style = (Style)FindResource("Windows10MenuItemAlertConfig"),

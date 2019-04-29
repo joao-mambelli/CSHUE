@@ -93,7 +93,7 @@
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31" MinWidth="90" HorizontalAlignment="Right"
-                    Content="{Binding Ok}"
+                    Content="{Binding Path=Ok, Source={StaticResource Resources}}"
                     Click="ButtonOk_Click">
 
             </Button>

@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              Width="50"
-             Height="50"
-             xmlns:views="clr-namespace:CSHUE.Views">
+             Height="50">
     <Grid>
         <Grid.Resources>
             <Storyboard x:Key="Hanging" RepeatBehavior="Forever">

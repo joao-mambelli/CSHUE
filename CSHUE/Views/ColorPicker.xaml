@@ -9,8 +9,8 @@
         BorderThickness="1"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
-        Width="400"
-        Height="300"
+        Width="600"
+        Height="380"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         fw:AcrylicWindow.Enabled="True"
@@ -41,15 +41,28 @@
             <TextBlock Text="CSHUE" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0" />
         </Grid>
 
-        <Ellipse Width="250" Height="250"
+        <StackPanel VerticalAlignment="Center">
+            <Slider Minimum="0"
+                    Maximum="360"
+                    Style="{DynamicResource Windows10Slider}"
+                    Value="{Binding Hue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Slider Minimum="0"
+                    Maximum="100"
+                    Style="{DynamicResource Windows10Slider}"
+                    Value="{Binding Sat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <Ellipse Width="248" Height="248"
                  MouseDown="ColorWheel_OnMouseDown"
-                 MouseUp="ColorWheel_OnMouseUp"
-                 HorizontalAlignment="Right">
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Bottom"
+                 x:Name="ColorWheel"
+                 Margin="0 0 30 70">
             <Ellipse.Fill>
                 <ImageBrush x:Name="ImageBrush" Stretch="None"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Ellipse x:Name="Indicator" Width="11" Height="11" Stroke="White" StrokeThickness="1"
+        <Ellipse x:Name="Indicator" Width="11" Height="11" Stroke="Black" StrokeThickness="1"
                  SnapsToDevicePixels="False"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"

@@ -41,15 +41,28 @@
             <TextBlock Text="CSHUE" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0" />
         </Grid>
 
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal"
+                    Height="270">
             <Slider Minimum="0"
+                    x:Name="HueSlider"
                     Maximum="360"
+                    Orientation="Vertical"
+                    Width="21"
+                    Margin="30 0 0 0"
                     Style="{DynamicResource Windows10Slider}"
-                    Value="{Binding Hue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    ValueChanged="HueSlider_OnValueChanged">
+                <Slider.Background>
+                    <ImageBrush x:Name="HueSliderBrush"/>
+                </Slider.Background>
+            </Slider>
             <Slider Minimum="0"
+                    x:Name="SatSlider"
                     Maximum="100"
+                    Orientation="Vertical"
+                    Width="21"
+                    Margin="30 0 0 0"
                     Style="{DynamicResource Windows10Slider}"
-                    Value="{Binding Sat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    ValueChanged="SatSlider_OnValueChanged"/>
         </StackPanel>
 
         <Ellipse Width="248" Height="248"

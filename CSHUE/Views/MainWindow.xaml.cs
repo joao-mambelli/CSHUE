@@ -368,6 +368,16 @@ namespace CSHUE.Views
                                 i.Visibility = Visibility.Hidden;
         }
 
+        private void Test_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            new ColorPicker
+            {
+                Text1 = Cultures.Resources.Cancel,
+                Text2 = Cultures.Resources.Ok,
+                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+            }.ShowDialog();
+        }
+
         private void TopControls_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _buttonClickable = true;

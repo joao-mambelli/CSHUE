@@ -204,6 +204,12 @@
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom">
+                <Grid Name="Test"
+                      Height="48"
+                      MouseLeftButtonUp="Test_MouseLeftButtonUp"
+                      Style="{DynamicResource Windows10Menu}">
+                </Grid>
+
                 <Grid Name="Donate"
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"

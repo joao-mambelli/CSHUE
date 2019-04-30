@@ -68,8 +68,8 @@ namespace CSHUE.Views
         {
             new ColorPicker
             {
-                Text1 = Cultures.Resources.Ok,
-                Text2 = Cultures.Resources.Cancel,
+                Text1 = Cultures.Resources.Cancel,
+                Text2 = Cultures.Resources.Ok,
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
             }.ShowDialog();
         }

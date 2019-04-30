@@ -130,7 +130,7 @@ namespace CSHUE.ViewModels
             {
                 HomePage.ViewModel.SetWarningSearching();
 
-                bridgeIPs = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5)).ConfigureAwait(false)).ToList();
+                bridgeIPs = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5.5)).ConfigureAwait(false)).ToList();
             }
             catch
             {

@@ -121,8 +121,12 @@ namespace CSHUE.ViewModels
 
             HomePage.ViewModel.SetDone();
 
-            await HomePage.ViewModel.RefreshLights();
+            HomePage.StartLightsChecking();
+
+            AllowStartLightsChecking = true;
         }
+
+        public bool AllowStartLightsChecking;
 
         public async Task<string> GetBridgeIpAsync()
         {

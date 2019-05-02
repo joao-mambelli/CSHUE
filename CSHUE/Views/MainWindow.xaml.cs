@@ -105,8 +105,6 @@ namespace CSHUE.Views
             ViewModel.Csgo();
 
             ViewModel.SettingsPage.ViewModel.UpdateGradients();
-
-            ViewModel.HomePage.StartLightsChecking();
         }
 
         private static void SetLanguage()
@@ -454,7 +452,9 @@ namespace CSHUE.Views
             else
             {
                 ViewModel.WindowMinimized = false;
-                ViewModel.HomePage.StartLightsChecking();
+
+                if (ViewModel.AllowStartLightsChecking)
+                    ViewModel.HomePage.StartLightsChecking();
             }
 
             base.OnStateChanged(e);

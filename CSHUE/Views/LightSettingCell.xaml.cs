@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using CSHUE.ViewModels;
+
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
@@ -10,6 +12,8 @@ namespace CSHUE.Views
     /// </summary>
     public partial class LightSettingCell
     {
+        public LightSelectorViewModel LightSelectorViewModel = null;
+
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -66,12 +70,25 @@ namespace CSHUE.Views
 
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
-            new ColorPicker
+            LightSelectorViewModel.IsColorPickerOpened = true;
+            var colorPicker = new ColorPicker
             {
                 Text1 = Cultures.Resources.Cancel,
                 Text2 = Cultures.Resources.Ok,
-                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-            }.ShowDialog();
+                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
+                Color = Color,
+                Index = Index,
+                Brightness = Brightness
+            };
+            colorPicker.ShowDialog();
+            LightSelectorViewModel.IsColorPickerOpened = false;
+
+            if (colorPicker.DialogResult == true)
+            {
+                Color = colorPicker.Color;
+            }
         }
+
+        public int Index { get; set; }
     }
 }

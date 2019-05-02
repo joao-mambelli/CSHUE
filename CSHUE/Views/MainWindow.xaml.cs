@@ -251,7 +251,9 @@ namespace CSHUE.Views
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
             #pragma warning disable 169
+            #pragma warning disable 414
             private readonly int dwFlags = 0;
+            #pragma warning restore 414
             #pragma warning restore 169
         }
 
@@ -366,16 +368,6 @@ namespace CSHUE.Views
                                 i.Visibility = Visibility.Visible;
                             else if (i.Name.Contains("Indicator"))
                                 i.Visibility = Visibility.Hidden;
-        }
-
-        private void Test_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            new ColorPicker
-            {
-                Text1 = Cultures.Resources.Cancel,
-                Text2 = Cultures.Resources.Ok,
-                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-            }.ShowDialog();
         }
 
         private void TopControls_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

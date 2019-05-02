@@ -8,14 +8,15 @@
         WindowStyle="None"
         BorderThickness="1"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
-        Width="600"
-        Height="380"
+        Height="427"
+        SizeToContent="Width"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         fw:AcrylicWindow.Enabled="True"
         fw:AcrylicWindow.ShowTitleBar="False"
-        FontSize="17"
+        FontSize="14"
         AllowsTransparency="True"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -25,7 +26,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Loaded="ColorPicker_OnLoaded">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="32" />
+        <WindowChrome CaptionHeight="37" />
     </WindowChrome.WindowChrome>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
@@ -37,49 +38,137 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Height="32" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <TextBlock Text="CSHUE" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0" />
+        <Grid Height="40" VerticalAlignment="Top"
+              x:Name="SelectedColor">
+            <TextBlock Text="{Binding Path=ColorPicker, Source={StaticResource Resources}}" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0"
+                       Foreground="Black"/>
         </Grid>
 
-        <StackPanel VerticalAlignment="Center" Orientation="Horizontal"
-                    Height="270">
-            <Slider Minimum="0"
-                    x:Name="HueSlider"
-                    Maximum="360"
-                    Orientation="Vertical"
-                    Width="21"
-                    Margin="30 0 0 0"
-                    Style="{DynamicResource Windows10Slider}"
-                    ValueChanged="HueSlider_OnValueChanged">
-                <Slider.Background>
-                    <ImageBrush x:Name="HueSliderBrush"/>
-                </Slider.Background>
-            </Slider>
-            <Slider Minimum="0"
-                    x:Name="SatSlider"
-                    Maximum="100"
-                    Orientation="Vertical"
-                    Width="21"
-                    Margin="30 0 0 0"
-                    Style="{DynamicResource Windows10Slider}"
-                    ValueChanged="SatSlider_OnValueChanged"/>
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal"
+                    Height="320" Margin="20 50 0 0">
+            <StackPanel>
+                <Label Content="{Binding Path=Hue, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 -4"/>
+                <Slider Minimum="0"
+                        Height="270"
+                        Width="30"
+                        HorizontalAlignment="Center"
+                        x:Name="HueSlider"
+                        Maximum="360"
+                        Orientation="Vertical"
+                        Style="{DynamicResource Windows10Slider}"
+                        ValueChanged="HueSlider_OnValueChanged">
+                    <Slider.Background>
+                        <ImageBrush ImageSource="{Binding HueSliderBrush}"/>
+                    </Slider.Background>
+                </Slider>
+                <StackPanel Orientation="Horizontal" Margin="15 0 0 0">
+                    <xctk:IntegerUpDown Value="{Binding Value, ElementName=HueSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Background="{DynamicResource SystemAltLowColorBrush}"
+                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                        ButtonSpinnerLocation="Left"
+                                        BorderThickness="0"
+                                        Width="44"
+                                        Height="21"
+                                        TextAlignment="Center"
+                                        Increment="1"
+                                        Minimum="0"
+                                        Maximum="360"
+                                        DefaultValue="0"
+                                        DisplayDefaultValueOnEmptyText="True"/>
+                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}" Content="°"
+                           VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="{Binding Path=Saturation, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 -4"/>
+                <Slider Minimum="0"
+                        Height="270"
+                        Width="30"
+                        HorizontalAlignment="Center"
+                        x:Name="SatSlider"
+                        Maximum="100"
+                        Orientation="Vertical"
+                        Style="{DynamicResource Windows10Slider}"
+                        ValueChanged="SatSlider_OnValueChanged">
+                    <Slider.Background>
+                        <ImageBrush ImageSource="{Binding SatSliderBrush}"/>
+                    </Slider.Background>
+                </Slider>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="21 0 0 0">
+                    <xctk:IntegerUpDown Value="{Binding Value, ElementName=SatSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Background="{DynamicResource SystemAltLowColorBrush}"
+                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                        ButtonSpinnerLocation="Left"
+                                        BorderThickness="0"
+                                        Width="44"
+                                        Height="21"
+                                        TextAlignment="Center"
+                                        Increment="1"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        DefaultValue="100"
+                                        DisplayDefaultValueOnEmptyText="True"/>
+                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}" Content="%"
+                           VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <Grid Width="290" Height="290" Margin="0 0 20 0">
+                <Ellipse Width="290" Height="290"
+                         MouseDown="OutsideColorWheel_OnMouseDown"
+                         VerticalAlignment="Center"
+                         x:Name="OutsideColorWheel"
+                         Stroke="{DynamicResource SystemAltHighColorBrush}"
+                         StrokeThickness="2">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="OutsideColorWheelBrush" Stretch="None"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Canvas VerticalAlignment="Center"
+                        Width="290" Height="290">
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="131.905995173" Y1="0.54986612574" X2="157.094004827" Y2="288.450133874" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="131.905995173" Y1="288.450133874" X2="157.094004827" Y2="0.54986612574" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="107.100647983" Y1="4.92371810123" X2="181.899352017" Y2="284.076281899" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="107.100647983" Y1="284.076281899" X2="181.899352017" Y2="4.92371810123" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="83.4316611785" Y1="13.5385247732" X2="205.568338822" Y2="275.461475227" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="83.4316611785" Y1="275.461475227" X2="205.568338822" Y2="13.5385247732" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="61.6182049473" Y1="26.1325296002" X2="227.381795053" Y2="262.867470400" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="61.6182049473" Y1="262.867470400" X2="227.381795053" Y2="26.1325296002" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="42.3230701185" Y1="42.3230701185" X2="246.676929881" Y2="246.676929881" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="42.3230701185" Y1="246.676929881" X2="246.676929881" Y2="42.3230701185" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="26.1325296002" Y1="61.6182049473" X2="262.867470400" Y2="227.381795053" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="26.1325296002" Y1="227.381795053" X2="262.867470400" Y2="61.6182049473" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="13.5385247732" Y1="83.4316611785" X2="275.461475227" Y2="205.568338822" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="13.5385247732" Y1="205.568338822" X2="275.461475227" Y2="83.4316611785" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="4.92371810123" Y1="107.100647983" X2="284.076281899" Y2="181.899352017" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="4.92371810123" Y1="181.899352017" X2="284.076281899" Y2="107.100647983" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="0.54986612574" Y1="131.905995173" X2="288.450133874" Y2="157.094004827" />
+                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="0.54986612574" Y1="157.094004827" X2="288.450133874" Y2="131.905995173" />
+                </Canvas>
+                <Ellipse Width="236" Height="236"
+                         MouseDown="ColorWheel_OnMouseDown"
+                         VerticalAlignment="Center"
+                         x:Name="ColorWheel"
+                         Stroke="{DynamicResource SystemAltHighColorBrush}"
+                         StrokeThickness="1">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="ColorWheelBrush" Stretch="None"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Grid Width="11" Height="11"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Margin="{Binding MousePosition}">
+                    <Ellipse Stroke="Black" StrokeThickness="1"
+                             SnapsToDevicePixels="False"
+                             IsHitTestVisible="False"/>
+                </Grid>
+            </Grid>
         </StackPanel>
 
-        <Ellipse Width="248" Height="248"
-                 MouseDown="ColorWheel_OnMouseDown"
-                 HorizontalAlignment="Right"
-                 VerticalAlignment="Bottom"
-                 x:Name="ColorWheel"
-                 Margin="0 0 30 70">
-            <Ellipse.Fill>
-                <ImageBrush x:Name="ImageBrush" Stretch="None"/>
-            </Ellipse.Fill>
-        </Ellipse>
-        <Ellipse x:Name="Indicator" Width="11" Height="11" Stroke="Black" StrokeThickness="1"
-                 SnapsToDevicePixels="False"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 Margin="{Binding MousePosition}"/>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button Style="{DynamicResource Windows10Button}"

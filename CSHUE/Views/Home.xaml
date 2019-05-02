@@ -6,6 +6,7 @@
       xmlns:views="clr-namespace:CSHUE.Views"
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
       xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
+      xmlns:p="clr-namespace:CSHUE.Properties"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -106,7 +107,8 @@
                     </StackPanel>
                 </StackPanel>
 
-                <ToggleButton Style="{DynamicResource Windows10ToggleButton}"/>
+                <ToggleButton IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{DynamicResource Windows10ToggleButton}"/>
             </Grid>
         </ScrollViewer>
     </Grid>

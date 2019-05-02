@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <!-- ReSharper disable NotOverriddenInSpecificCulture -->
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -370,5 +369,17 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>current</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>Hue</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
+  <data name="ColorPicker" xml:space="preserve">
+    <value>Color Picker</value>
+  </data>
+  <data name="PreviewLights" xml:space="preserve">
+    <value>Preview lights while changing events settings</value>
   </data>
 </root>

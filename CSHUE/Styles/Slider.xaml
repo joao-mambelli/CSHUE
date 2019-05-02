@@ -15,6 +15,20 @@
         </Setter>
     </Style>
 
+    <Style x:Key="SliderRepeatButtonVertical" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border BorderThickness="0" Background="Transparent" Width="{TemplateBinding Width}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SliderRepeatButton1Horizontal" TargetType="RepeatButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
@@ -28,6 +42,19 @@
         </Setter>
     </Style>
 
+    <Style x:Key="SliderRepeatButton1Vertical" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent" BorderThickness="0" Width="{TemplateBinding Width}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SliderThumbHorizontal" TargetType="Thumb">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
@@ -35,7 +62,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Rectangle Height="21" Width="13" Fill="{DynamicResource SystemBaseMediumLowColorBrush}"/>
+                    <Rectangle Height="{TemplateBinding Height}" Width="13" Fill="{DynamicResource SystemBaseMediumLowColorBrush}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -49,8 +76,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <Grid>
-                        <Rectangle Height="13" Width="21" Fill="{DynamicResource SystemAltHighColorBrush}"/>
-                        <Rectangle Height="13" Width="21" Fill="{DynamicResource SystemBaseLowColorBrush}"/>
+                        <Rectangle Height="13" Width="{TemplateBinding Width}" Fill="{DynamicResource SystemAltHighColorBrush}"/>
+                        <Rectangle Height="13" Width="{TemplateBinding Width}" Fill="{DynamicResource SystemBaseLowColorBrush}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -86,9 +113,15 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Track Grid.Column="1" x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButton1Vertical}" Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
                 <Track.Thumb>
                     <Thumb Style="{StaticResource SliderThumbVertical}"  />
                 </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButtonVertical}" Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
             </Track>
         </Grid>
     </ControlTemplate>
@@ -97,16 +130,18 @@
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Height" Value="21" />
+        <Setter Property="Width" Value="21" />
         <Setter Property="IsTabStop" Value="false" />
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="MinHeight" Value="21" />
+                <Setter Property="MinHeight" Value="30" />
                 <Setter Property="MinWidth" Value="104" />
                 <Setter Property="Template" Value="{StaticResource SliderHorizontal}" />
             </Trigger>
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="MinHeight" Value="104" />
-                <Setter Property="MinWidth" Value="21" />
+                <Setter Property="MinWidth" Value="30" />
                 <Setter Property="Template" Value="{StaticResource SliderVertical}" />
             </Trigger>
         </Style.Triggers>

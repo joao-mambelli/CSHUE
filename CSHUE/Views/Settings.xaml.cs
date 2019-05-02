@@ -210,6 +210,7 @@ namespace CSHUE.Views
                 brightnessProperty = Properties.Settings.Default.BombBlink;
             }
 
+            _lightsBackup = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
             new LightSelector
             {
                 AllLights = allLights,
@@ -218,10 +219,33 @@ namespace CSHUE.Views
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
                 Title = title
             }.ShowDialog();
+            RestoreLights();
 
             ViewModel.MainWindowViewModel.SettingsPage.ViewModel.UpdateGradients();
 
             Save(sender, e);
+        }
+
+        private List<Light> _lightsBackup;
+        private async void RestoreLights()
+        {
+            if (_lightsBackup == null) return;
+
+            for (var i = 0; i < _lightsBackup.Count; i++)
+            {
+                if (_lightsBackup.ElementAt(i).State.IsReachable != true) continue;
+
+                var command = new LightCommand
+                {
+                    On = _lightsBackup.ElementAt(i).State.On,
+                    Hue = _lightsBackup.ElementAt(i).State.Hue,
+                    Saturation = _lightsBackup.ElementAt(i).State.Saturation,
+                    Brightness = _lightsBackup.ElementAt(i).State.Brightness
+                };
+
+                await MainWindowViewModel.Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
+                    .ConfigureAwait(false);
+            }
         }
     }
 }

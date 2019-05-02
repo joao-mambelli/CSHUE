@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using CSHUE.Helpers;
@@ -15,9 +16,27 @@ namespace CSHUE.Views
     /// </summary>
     public partial class LightSelector
     {
+        public LightSelectorViewModel ViewModel = new LightSelectorViewModel();
+
+        private bool _isWindowOpened = true;
         public LightSelector()
         {
             InitializeComponent();
+
+            new Thread(() =>
+            {
+                while (_isWindowOpened && Properties.Settings.Default.PreviewLights)
+                {
+                    if (!ViewModel.IsColorPickerOpened)
+                        Dispatcher.Invoke(() =>
+                        {
+                            ViewModel.SetLightsAsync(List);
+                        });
+
+                    Thread.Sleep(500);
+                }
+            })
+            { IsBackground = true }.Start();
         }
 
         public List<Light> AllLights { get; set; }
@@ -71,6 +90,7 @@ namespace CSHUE.Views
             }
             
             DialogResult = true;
+            _isWindowOpened = false;
             Close();
         }
 
@@ -79,6 +99,7 @@ namespace CSHUE.Views
         {
             List = new List<LightSelectorViewModel>();
 
+            var i = 1;
             foreach (var l in AllLights)
             {
                 if (Property != null)
@@ -87,14 +108,17 @@ namespace CSHUE.Views
                     {
                         Content = new LightSettingCell
                         {
+                            LightSelectorViewModel = ViewModel,
                             Text = l.Name,
                             Color = Color.FromRgb(Property.Lights.Find(x => x.Id == l.UniqueId).Color.Red,
                                 Property.Lights.Find(x => x.Id == l.UniqueId).Color.Green,
                                 Property.Lights.Find(x => x.Id == l.UniqueId).Color.Blue),
-                            Brightness = Property.Lights.Find(x => x.Id == l.UniqueId).Brightness
+                            Brightness = Property.Lights.Find(x => x.Id == l.UniqueId).Brightness,
+                            Index = i
                         },
                         UniqueId = l.UniqueId,
-                        IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId)
+                        IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId),
+                        Index = i
                     });
                 }
                 else if (BrightnessProperty != null)
@@ -121,20 +145,25 @@ namespace CSHUE.Views
                     {
                         Content = new LightSettingCell
                         {
+                            LightSelectorViewModel = ViewModel,
                             Text = l.Name,
                             Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Red,
                                 BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Green,
                                 BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Blue),
                             Brightness = BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Brightness,
+                            Index = i,
                             OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).OnlyBrightness,
                             OnlyBrightnessVisibility = Visibility.Visible,
                             MainEventText = string.Format(Cultures.Resources.UseMainEventColor, (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent + (mainEvent != Cultures.Resources.Current ? "\"" : ""))
                         },
                         UniqueId = l.UniqueId,
                         IsChecked = BrightnessProperty.SelectedLights.Any(x => x == l.UniqueId),
-                        SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed
+                        SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed,
+                        Index = i
                     });
                 }
+
+                i++;
             }
 
             _loadDone = true;
@@ -143,6 +172,7 @@ namespace CSHUE.Views
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            _isWindowOpened = false;
         }
 
         private bool _radioButtonOnChanged;

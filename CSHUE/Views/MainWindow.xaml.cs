@@ -88,6 +88,7 @@ namespace CSHUE.Views
                         break;
                     case "-lang":
                         ViewModel.Navigate(Page, "Settings");
+                        UpdateIndicator("Settings");
                         break;
                     case "-reset":
                         ViewModel.Resetting = true;
@@ -104,6 +105,8 @@ namespace CSHUE.Views
             ViewModel.Csgo();
 
             ViewModel.SettingsPage.ViewModel.UpdateGradients();
+
+            ViewModel.HomePage.StartLightsChecking();
         }
 
         private static void SetLanguage()
@@ -360,11 +363,16 @@ namespace CSHUE.Views
             if (!_buttonClickable) return;
             ((Grid) sender).ClearValue(BackgroundProperty);
             ViewModel.Navigate(Page, sender);
+            UpdateIndicator(((Grid) sender).Name);
+        }
+
+        public void UpdateIndicator(string name)
+        {
             foreach (var f in Menus.Children.OfType<StackPanel>())
                 foreach (var g in f.Children.OfType<Grid>())
                     foreach (var h in g.Children.OfType<StackPanel>())
                         foreach (var i in h.Children.OfType<Grid>())
-                            if (i.Name == ((Grid) sender).Name + "Indicator")
+                            if (i.Name == name + "Indicator")
                                 i.Visibility = Visibility.Visible;
                             else if (i.Name.Contains("Indicator"))
                                 i.Visibility = Visibility.Hidden;
@@ -439,6 +447,16 @@ namespace CSHUE.Views
                 NotifyIcon.Visibility = Visibility.Visible;
             }
 
+            if (WindowState == WindowState.Minimized)
+            {
+                ViewModel.WindowMinimized = true;
+            }
+            else
+            {
+                ViewModel.WindowMinimized = false;
+                ViewModel.HomePage.StartLightsChecking();
+            }
+
             base.OnStateChanged(e);
         }
 
@@ -488,6 +506,8 @@ namespace CSHUE.Views
             NotifyIcon_TrayMouseDoubleClick(sender, e);
 
             ViewModel.Navigate(Page, ((MenuItem)sender).Tag.ToString());
+
+            UpdateIndicator(((MenuItem)sender).Tag.ToString());
         }
 
         private void MenuExit_Click(object sender, RoutedEventArgs e)

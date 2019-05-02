@@ -382,4 +382,22 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="PreviewLights" xml:space="preserve">
     <value>Preview lights while changing events settings</value>
   </data>
+  <data name="RunCsgo" xml:space="preserve">
+    <value>Run CS:GO</value>
+  </data>
+  <data name="Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="LightsStates" xml:space="preserve">
+    <value>Lights states</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="LightOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
 </root>

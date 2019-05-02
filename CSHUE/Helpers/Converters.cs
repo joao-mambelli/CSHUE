@@ -81,4 +81,64 @@ namespace CSHUE.Helpers
             return value != null && !(bool)value;
         }
     }
+
+    public class EmptyStringToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            {
+                return Visibility.Collapsed;
+            }
+
+            return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return value?.ToString();
+        }
+    }
+
+    public class BoolToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            if (value != null && (bool)value)
+            {
+                return Visibility.Visible;
+            }
+
+            return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return value != null && (Visibility)value == Visibility.Visible;
+        }
+    }
+
+    public class BoolToCollapsedConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            if (value != null && (bool)value)
+            {
+                return Visibility.Collapsed;
+            }
+
+            return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return value != null && (Visibility)value == Visibility.Collapsed;
+        }
+    }
 }

@@ -1,4 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using CSHUE.Cultures;
 using CSHUE.Views;
 
 namespace CSHUE.ViewModels
@@ -212,6 +218,68 @@ namespace CSHUE.ViewModels
             RetryVisibility = Visibility.Collapsed;
             MainWindowViewModel.InProcess = Visibility.Collapsed;
             InProcess = Visibility.Collapsed;
+        }
+
+        private List<LightStateViewModel> _list;
+        public List<LightStateViewModel> List
+        {
+            get =>
+                _list;
+            set
+            {
+                _list = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async Task RefreshLights()
+        {
+            if (MainWindowViewModel.Client == null) return;
+
+            List = new List<LightStateViewModel>();
+
+            var allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+
+            foreach (var l in allLights)
+            {
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    if (l.State.Hue != null && l.State.Saturation != null)
+                        List.Add(new LightStateViewModel
+                        {
+                            Content = new LightStateCell
+                            {
+                                Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")",
+                                Color = l.State.On
+                                    ? Hsv((double) l.State.Hue / 65535 * Math.PI * 2, 
+                                        (double) l.State.Saturation / 255, (double)l.State.Brightness / 255)
+                                    : Colors.Black
+                            }
+                        });
+                });
+            }
+        }
+
+        private static Color Hsv(double hue, double sat, double val)
+        {
+            var c = val * sat;
+            var x = c * (1 - Math.Abs(hue / (Math.PI / 3) % 2.0 - 1));
+            var m = val - c;
+            if (hue <= 1 * (Math.PI / 3))
+                return Color.FromRgb((byte)Math.Round((m + c) * 255), (byte)Math.Round((m + x) * 255), (byte)Math.Round(m * 255));
+            if (hue <= 2 * (Math.PI / 3))
+                return Color.FromRgb((byte)Math.Round((m + x) * 255), (byte)Math.Round((m + c) * 255), (byte)Math.Round(m * 255));
+            if (hue <= 3 * (Math.PI / 3))
+                return Color.FromRgb((byte)Math.Round(m * 255), (byte)Math.Round((m + c) * 255), (byte)Math.Round((m + x) * 255));
+            if (hue <= 4 * (Math.PI / 3))
+                return Color.FromRgb((byte)Math.Round(m * 255), (byte)Math.Round((m + x) * 255), (byte)Math.Round((m + c) * 255));
+            if (hue <= 5 * (Math.PI / 3))
+                return Color.FromRgb((byte)Math.Round((m + x) * 255), (byte)Math.Round(m * 255), (byte)Math.Round((m + c) * 255));
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (hue <= 6 * (Math.PI / 3))
+                return Color.FromRgb((byte)Math.Round((m + c) * 255), (byte)Math.Round(m * 255), (byte)Math.Round((m + x) * 255));
+
+            return Colors.Transparent;
         }
     }
 }

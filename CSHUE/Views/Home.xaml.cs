@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Windows;
 using CSHUE.ViewModels;
 // ReSharper disable InheritdocConsiderUsage
@@ -20,9 +21,32 @@ namespace CSHUE.Views
             ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
         }
 
+        public void StartLightsChecking()
+        {
+            new Thread(async () =>
+            {
+                while (!ViewModel.MainWindowViewModel.WindowMinimized)
+                {
+                    await ViewModel.RefreshLights();
+
+                    Application.Current.Dispatcher.Invoke(delegate {
+                        ListBox.ItemsSource = ViewModel.List;
+                    });
+
+                    Thread.Sleep(500);
+                }
+            })
+            { IsBackground = true }.Start();
+        }
+
         private void Retry_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.MainWindowViewModel.HueAsync();
+        }
+
+        private void RunCsgo_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.MainWindowViewModel.RunCsgo();
         }
     }
 }

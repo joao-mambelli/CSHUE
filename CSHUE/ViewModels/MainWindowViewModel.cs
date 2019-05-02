@@ -24,6 +24,8 @@ namespace CSHUE.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        public bool WindowMinimized;
+
         public Config ConfigPage;
         public Donate DonatePage;
         public About AboutPage;
@@ -118,6 +120,8 @@ namespace CSHUE.ViewModels
             SettingsPage.ViewModel.UpdateGradients();
 
             HomePage.ViewModel.SetDone();
+
+            await HomePage.ViewModel.RefreshLights();
         }
 
         public async Task<string> GetBridgeIpAsync()
@@ -349,7 +353,9 @@ namespace CSHUE.ViewModels
 
                     if (pname.Length > 0)
                     {
-                        if (_globalLightsBackup == null && !string.IsNullOrEmpty(Properties.Settings.Default.AppKey))
+                        if (_globalLightsBackup == null &&
+                            !string.IsNullOrEmpty(Properties.Settings.Default.AppKey) &&
+                            Client != null)
                             _globalLightsBackup = (await Client.GetLightsAsync()).ToList();
 
                         if (WindowState != WindowState.Minimized

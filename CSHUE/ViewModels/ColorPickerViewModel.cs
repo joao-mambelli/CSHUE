@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using Q42.HueApi;
 
@@ -37,7 +36,7 @@ namespace CSHUE.ViewModels
             {
                 On = true,
                 Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                Saturation = (int)Math.Round(((double)GetSaturation(color) / 100) * 255),
+                Saturation = (int)Math.Round((double)GetSaturation(color) / 100 * 255),
                 Brightness = brightness,
                 TransitionTime = TimeSpan.FromMilliseconds(400)
             };

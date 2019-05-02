@@ -382,4 +382,22 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="PreviewLights" xml:space="preserve">
     <value>Previsualizar luzes enquanto estiver alterando configurações de eventos</value>
   </data>
+  <data name="RunCsgo" xml:space="preserve">
+    <value>Executar CS:GO</value>
+  </data>
+  <data name="Activated" xml:space="preserve">
+    <value>Ativado</value>
+  </data>
+  <data name="LightsStates" xml:space="preserve">
+    <value>Estados das luzes</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Desligado</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Ligado</value>
+  </data>
+  <data name="LightOff" xml:space="preserve">
+    <value>Desligada</value>
+  </data>
 </root>

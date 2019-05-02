@@ -79,6 +79,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activated.
+        /// </summary>
+        public static string Activated {
+            get {
+                return ResourceManager.GetString("Activated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to and.
         /// </summary>
         public static string And {
@@ -424,11 +433,29 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string LightOff {
+            get {
+                return ResourceManager.GetString("LightOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light Selector.
         /// </summary>
         public static string LightSelector {
             get {
                 return ResourceManager.GetString("LightSelector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lights states.
+        /// </summary>
+        public static string LightsStates {
+            get {
+                return ResourceManager.GetString("LightsStates", resourceCulture);
             }
         }
         
@@ -478,11 +505,29 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
             }
         }
         
@@ -573,6 +618,15 @@ namespace CSHUE.Cultures {
         public static string RoundStarts {
             get {
                 return ResourceManager.GetString("RoundStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run CS:GO.
+        /// </summary>
+        public static string RunCsgo {
+            get {
+                return ResourceManager.GetString("RunCsgo", resourceCulture);
             }
         }
         

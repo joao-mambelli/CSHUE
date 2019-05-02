@@ -7,6 +7,7 @@
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
       xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
       xmlns:p="clr-namespace:CSHUE.Properties"
+      xmlns:helpers="clr-namespace:CSHUE.Helpers"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -14,7 +15,12 @@
       Title="Home"
       FontFamily="Segoe UI Semilight"
       d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}">
-
+    <Page.Resources>
+        <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
+        <helpers:VisibleToCollapsedConverter x:Key="VisibleToCollapsedConverter" />
+        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <helpers:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -107,8 +113,65 @@
                     </StackPanel>
                 </StackPanel>
 
-                <ToggleButton IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Style="{DynamicResource Windows10ToggleButton}"/>
+                <StackPanel Margin="24,0,20,80">
+                    <TextBlock Text="{Binding Path=Activated, Source={StaticResource Resources}}" Margin="0,15,0,4"/>
+                    <StackPanel Orientation="Horizontal">
+                        <ToggleButton IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Margin="0,4,0,9"
+                                      HorizontalAlignment="Left"
+                                      Style="{DynamicResource Windows10ToggleButton}"/>
+                        <Label Margin="7 0 0 0" Content="{Binding Path=On, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                               Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        <Label Margin="7 0 0 0" Content="{Binding Path=Off, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                               Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedConverter}}"/>
+                    </StackPanel>
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=LightsStates, Source={StaticResource Resources}}" VerticalAlignment="Bottom"
+                               Visibility="{Binding InProcess, Converter={StaticResource VisibleToCollapsedConverter}}"/>
+                    <ListBox ItemsSource="{Binding List}"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             x:Name="ListBox"
+                             HorizontalAlignment="Left"
+                             Visibility="{Binding InProcess, Converter={StaticResource VisibleToCollapsedConverter}}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Content}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+                <Button Margin="0,0,30,30" VerticalAlignment="Bottom"
+                        Height="31" MinWidth="90"
+                        HorizontalAlignment="Right"
+                        Style="{DynamicResource Windows10Button}"
+                        Content="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
+                        Click="RunCsgo_Click"
+                        ToolTipService.InitialShowDelay="100"
+                        ToolTipService.HasDropShadow="True"
+                        ToolTipService.HorizontalOffset="-50"
+                        ToolTipService.ShowDuration="10000">
+                    <Button.ToolTip>
+                        <ToolTip Visibility="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Converter={StaticResource EmptyStringToVisibilityConverter}}"
+                                 Foreground="{DynamicResource SystemBaseHighColorBrush}" Background="{DynamicResource SystemAltHighColorBrush}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions}" />
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
         </ScrollViewer>
     </Grid>

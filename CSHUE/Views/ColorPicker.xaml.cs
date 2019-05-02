@@ -199,7 +199,7 @@ namespace CSHUE.Views
             if (_movingPicker) return;
             MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,
                 0, ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-            Color = ViewModel.Hsb(Hue / 360 * 2 * Math.PI, Sat / 100);
+            Color = ViewModel.Hs(Hue / 360 * 2 * Math.PI, Sat / 100);
             SelectedColor.Background = new SolidColorBrush(Color);
         }
 
@@ -213,7 +213,7 @@ namespace CSHUE.Views
             if (_movingPicker) return;
             MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,
                 0, ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-            Color = ViewModel.Hsb(Hue / 360 * 2 * Math.PI, Sat / 100);
+            Color = ViewModel.Hs(Hue / 360 * 2 * Math.PI, Sat / 100);
             SelectedColor.Background = new SolidColorBrush(Color);
         }
 
@@ -309,7 +309,7 @@ namespace CSHUE.Views
                     colorWheelCenterRelativeMousePosition.Y * 2, 0, 0)
                 : new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0, 0,
                     ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-            Color = ViewModel.Hsb(Hue / 360 * 2 * Math.PI, Sat / 100);
+            Color = ViewModel.Hs(Hue / 360 * 2 * Math.PI, Sat / 100);
             SelectedColor.Background = new SolidColorBrush(Color);
         }
 

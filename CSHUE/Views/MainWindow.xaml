@@ -335,6 +335,11 @@
                               Click="MenuNavigate_Click"
                               Tag="Settings"/>
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
+                    <MenuItem Header="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
+                              Style="{DynamicResource Windows10MenuItem}"
+                              Click="RunCsgo_Click"
+                              Tag="Settings"/>
+                    <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
                     <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
                               Style="{DynamicResource Windows10MenuItem}"
                               Click="MenuExit_Click"/>

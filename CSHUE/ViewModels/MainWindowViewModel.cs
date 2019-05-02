@@ -156,11 +156,7 @@ namespace CSHUE.ViewModels
             {
                 return Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var hubSelector = new HubSelector
-                    {
-                        List = new List<HubSelectorViewModel>(),
-                        Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                    };
+                    var list = new List<HubSelectorViewModel>();
 
                     WebRequest request;
 
@@ -173,7 +169,7 @@ namespace CSHUE.ViewModels
                             request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
                             request.Timeout = 7000;
                             if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                                hubSelector.List.Add(new HubSelectorViewModel
+                                list.Add(new HubSelectorViewModel
                                 {
                                     ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
                                     Ip = b.IpAddress
@@ -185,18 +181,23 @@ namespace CSHUE.ViewModels
                         }
                     }
 
-                    if (hubSelector.List.Count < 1)
+                    if (list.Count < 1)
                     {
                         HomePage.ViewModel.SetWarningNoReachableHubs();
 
                         return "";
                     }
 
-                    if (hubSelector.List.Count == 1)
+                    if (list.Count == 1)
                     {
-                        return hubSelector.List.ElementAt(0).Ip;
+                        return list.ElementAt(0).Ip;
                     }
 
+                    var hubSelector = new HubSelector
+                    {
+                        List = list,
+                        Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+                    };
                     hubSelector.ShowDialog();
 
                     HomePage.ViewModel.SetWarningValidating();

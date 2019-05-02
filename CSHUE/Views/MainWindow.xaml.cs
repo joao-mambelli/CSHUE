@@ -533,5 +533,10 @@ namespace CSHUE.Views
             };
             ((MenuItem)((ContextMenu)sender).Items[1]).Click += MenuNavigate_Click;
         }
+
+        private void RunCsgo_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RunCsgo();
+        }
     }
 }

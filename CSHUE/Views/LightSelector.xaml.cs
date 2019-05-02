@@ -166,6 +166,8 @@ namespace CSHUE.Views
                 i++;
             }
 
+            ListBox.ItemsSource = List;
+
             _loadDone = true;
         }
 

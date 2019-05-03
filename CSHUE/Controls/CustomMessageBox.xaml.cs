@@ -2,7 +2,7 @@
 using System.Windows;
 // ReSharper disable InheritdocConsiderUsage
 
-namespace CSHUE.Views
+namespace CSHUE.Controls
 {
     /// <summary>
     /// Interaction logic for CustomMessageBox.xaml

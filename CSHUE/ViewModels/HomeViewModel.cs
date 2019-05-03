@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using CSHUE.Cultures;
 using CSHUE.Helpers;
-using CSHUE.Views;
+using CSHUE.Controls;
 
 namespace CSHUE.ViewModels
 {

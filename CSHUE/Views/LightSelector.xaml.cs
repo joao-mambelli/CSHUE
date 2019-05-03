@@ -7,6 +7,8 @@ using CSHUE.Helpers;
 using CSHUE.ViewModels;
 using Q42.HueApi;
 using System.Windows.Media;
+using CSHUE.Controls;
+
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views

@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using CSHUE.Cultures;
 using CSHUE.Views;
+using CSHUE.Controls;
 
 namespace CSHUE.ViewModels
 {

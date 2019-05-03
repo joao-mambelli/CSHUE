@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using CSHUE.Helpers;
-using CSHUE.Views;
+using CSHUE.Controls;
 using Q42.HueApi;
 
 namespace CSHUE.ViewModels

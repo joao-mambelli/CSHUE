@@ -3,11 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:views="clr-namespace:CSHUE.Views"
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
       xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
       xmlns:p="clr-namespace:CSHUE.Properties"
       xmlns:helpers="clr-namespace:CSHUE.Helpers"
+      xmlns:controls="clr-namespace:CSHUE.Controls"
       mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
@@ -60,7 +60,7 @@
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"
                     Visibility="{Binding InProcess}">
-                        <views:LoadingSpinner State="{Binding State}" />
+                        <controls:LoadingSpinner State="{Binding State}" />
 
                         <Grid Visibility="{Binding LoadingVisibility}">
                             <TextBlock

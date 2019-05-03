@@ -147,10 +147,10 @@
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
     <Compile Include="ViewModels\LightSelectorViewModel.cs" />
     <Compile Include="ViewModels\HubSelectorViewModel.cs" />
-    <Compile Include="Views\LightStateCell.xaml.cs">
+    <Compile Include="Controls\LightStateCell.xaml.cs">
       <DependentUpon>LightStateCell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LightSettingCell.xaml.cs">
+    <Compile Include="Controls\LightSettingCell.xaml.cs">
       <DependentUpon>LightSettingCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ColorPicker.xaml.cs">
@@ -159,13 +159,13 @@
     <Compile Include="Views\LightSelector.xaml.cs">
       <DependentUpon>LightSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoadingSpinner.xaml.cs">
+    <Compile Include="Controls\LoadingSpinner.xaml.cs">
       <DependentUpon>LoadingSpinner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HubSelector.xaml.cs">
       <DependentUpon>HubSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomMessageBox.xaml.cs">
+    <Compile Include="Controls\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
     <Page Include="ResourceDictionary.xaml">
@@ -212,11 +212,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LightStateCell.xaml">
+    <Page Include="Controls\LightStateCell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LightSettingCell.xaml">
+    <Page Include="Controls\LightSettingCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,7 +228,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LoadingSpinner.xaml">
+    <Page Include="Controls\LoadingSpinner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -307,7 +307,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CustomMessageBox.xaml">
+    <Page Include="Controls\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

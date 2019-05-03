@@ -18,7 +18,7 @@ namespace CSHUE.Helpers
 
             var angle = Math.Atan2(y - radius, x - radius) + Math.PI / 2;
             if (angle < 0) angle += 2 * Math.PI;
-            return Hs(angle, distanceFromCenter / radius);
+            return ColorConverters.Hs(angle, distanceFromCenter / radius);
         }
 
         public Color PickOutsideWheelPixelColor(int x, int y, int outerRadius, int innerRadius)
@@ -31,7 +31,7 @@ namespace CSHUE.Helpers
 
             var angle = Math.Atan2(y - outerRadius, x - outerRadius) + Math.PI / 2;
             if (angle < 0) angle += 2 * Math.PI;
-            return Hs(Math.Round(angle / ((double)1 / 18 * Math.PI), MidpointRounding.AwayFromZero) * ((double)1 / 18 * Math.PI), 1);
+            return ColorConverters.Hs(Math.Round(angle / ((double)1 / 18 * Math.PI), MidpointRounding.AwayFromZero) * ((double)1 / 18 * Math.PI), 1);
         }
 
         public WriteableBitmap CreateWheelImage(int radius)
@@ -122,25 +122,11 @@ namespace CSHUE.Helpers
             return img;
         }
 
-        private static Color Hs(double hue, double sat)
-        {
-            var x = sat * (1 - Math.Abs(hue / (Math.PI / 3) % 2.0 - 1));
-            var m = 1 - sat;
-            if (hue <= 1 * (Math.PI / 3)) return Color.FromRgb(255, (byte)Math.Round((m + x) * 255), (byte)Math.Round(m * 255));
-            if (hue <= 2 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round((m + x) * 255), 255, (byte)Math.Round(m * 255));
-            if (hue <= 3 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round(m * 255), 255, (byte)Math.Round((m + x) * 255));
-            if (hue <= 4 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round(m * 255), (byte)Math.Round((m + x) * 255), 255);
-            if (hue <= 5 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round((m + x) * 255), (byte)Math.Round(m * 255), 255);
-            if (hue <= 6 * (Math.PI / 3)) return Color.FromRgb(255, (byte)Math.Round(m * 255), (byte)Math.Round((m + x) * 255));
-
-            return Colors.Transparent;
-        }
-
         public Color PickHuePixelColor(int y, int height, double sat)
         {
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
-            return Hs(2 * Math.PI - ((double)y - 6) / (height - 12) * (2 * Math.PI), sat / 100);
+            return ColorConverters.Hs(2 * Math.PI - ((double)y - 6) / (height - 12) * (2 * Math.PI), sat / 100);
         }
 
         public WriteableBitmap CreateHueImage(int height, double sat)
@@ -186,7 +172,7 @@ namespace CSHUE.Helpers
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return Hs(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double)y - 6) / (height - 12));
+            return ColorConverters.Hs(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double)y - 6) / (height - 12));
         }
 
         public WriteableBitmap CreateSatImage(int height, double hue)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -246,8 +245,6 @@ namespace CSHUE.Views
             InitializeComponent();
             _proc = HookCallback;
 
-            ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
-
             new Thread(() =>
             {
                 while (_isWindowOpened && Properties.Settings.Default.PreviewLights)
@@ -272,8 +269,8 @@ namespace CSHUE.Views
             HueSlider.Value = 360;
             SatSlider.Value = 100;
             
-            HueSlider.Value = Math.Round(ViewModel.GetHue(Color));
-            SatSlider.Value = ViewModel.GetSaturation(Color);
+            HueSlider.Value = Math.Round(ColorConverters.GetHue(Color));
+            SatSlider.Value = Math.Round(ColorConverters.GetSaturation(Color) * 100);
             _movingPicker = false;
 
             MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,

@@ -205,6 +205,9 @@ namespace CSHUE.Views
                     VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
                     break;
                 }
+                case SpinnerStates.Disabled:
+                    VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
+                    break;
                 default:
                     VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
                     break;

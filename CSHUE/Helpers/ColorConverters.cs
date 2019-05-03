@@ -19,5 +19,28 @@ namespace CSHUE.Helpers
 
             return Colors.Transparent;
         }
+
+        public static double GetSaturation(Color color)
+        {
+            var r = (double)color.R / 255;
+            var g = (double)color.G / 255;
+            var b = (double)color.B / 255;
+
+            var max = r;
+
+            if (g > max) max = g;
+            if (b > max) max = b;
+
+            var min = r;
+
+            if (g < min) min = g;
+            if (b < min) min = b;
+
+            var delta = max - min;
+
+            return delta / max;
+        }
+
+        public static float GetHue(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B).GetHue();
     }
 }

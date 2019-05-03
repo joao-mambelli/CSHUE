@@ -323,60 +323,48 @@ namespace CSHUE.ViewModels
                 {
                     if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
                     {
-                        if (_lastSetState == false || _lastSetState == null)
-                        {
-                            Properties.Settings.Default.Activated = true;
-                            _lastSetState = true;
-                        }
+                        if (_lastSetState != false && _lastSetState != null) return;
+                        Properties.Settings.Default.Activated = true;
+                        _lastSetState = true;
                     }
                     else
                     {
-                        if (_lastSetState == true || _lastSetState == null)
-                        {
-                            Properties.Settings.Default.Activated = false;
-                            _lastSetState = false;
-                        }
+                        if (_lastSetState != true && _lastSetState != null) return;
+                        Properties.Settings.Default.Activated = false;
+                        _lastSetState = false;
                     }
                 }
                 else
                 {
-                    if (_lastSetState == true || _lastSetState == null)
-                    {
-                        Properties.Settings.Default.Activated = false;
-                        _lastSetState = false;
-                    }
+                    if (_lastSetState != true && _lastSetState != null) return;
+                    Properties.Settings.Default.Activated = false;
+                    _lastSetState = false;
                 }
             }
             else
             {
                 if (DateTime.Now.Hour > start.Hour || DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute)
                 {
-                    if (_lastSetState == false || _lastSetState == null)
-                    {
-                        Properties.Settings.Default.Activated = true;
-                        _lastSetState = true;
-                    }
+                    if (_lastSetState != false && _lastSetState != null) return;
+                    Properties.Settings.Default.Activated = true;
+                    _lastSetState = true;
                 }
                 else if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
                 {
-                    if (_lastSetState == false || _lastSetState == null)
-                    {
-                        Properties.Settings.Default.Activated = true;
-                        _lastSetState = true;
-                    }
+                    if (_lastSetState != false && _lastSetState != null) return;
+                    Properties.Settings.Default.Activated = true;
+                    _lastSetState = true;
                 }
                 else
                 {
-                    if (_lastSetState == true || _lastSetState == null)
-                    {
-                        Properties.Settings.Default.Activated = false;
-                        _lastSetState = false;
-                    }
+                    if (_lastSetState != true && _lastSetState != null) return;
+                    Properties.Settings.Default.Activated = false;
+                    _lastSetState = false;
                 }
             }
         }
 
-        private bool _previewState;
+        private bool _previousState;
         public void CheckCsgoProcessLoop()
         {
             new Thread(async () =>
@@ -397,24 +385,24 @@ namespace CSHUE.ViewModels
                         if (WindowState != WindowState.Minimized
                             && Properties.Settings.Default.AutoMinimize
                             && !_alreadyMinimized
-                            && !_previewState
+                            && !_previousState
                             && !Resetting)
                         {
                             _alreadyMinimized = true;
                             WindowState = WindowState.Minimized;
                         }
-                        
-                        _previewState = true;
+
+                        _previousState = true;
                     }
                     else
                     {
                         if (!_alreadyMinimized)
                             _alreadyMinimized = false;
 
-                        if (_previewState)
+                        if (_previousState)
                             RestoreLights();
 
-                        _previewState = false;
+                        _previousState = false;
                     }
 
                     Resetting = false;
@@ -636,10 +624,8 @@ namespace CSHUE.ViewModels
                 var command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                    Saturation = GetSaturation(l.Color.Red,
-                                                l.Color.Green,
-                                                l.Color.Blue),
+                    Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                    Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                     Brightness = l.Brightness
                 };
 
@@ -671,10 +657,8 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                        Saturation = GetSaturation(l.Color.Red,
-                                                l.Color.Green,
-                                                l.Color.Blue),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                         Brightness = l.Brightness
                     };
 
@@ -691,10 +675,8 @@ namespace CSHUE.ViewModels
                 command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                    Saturation = GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color.Red,
-                                                main.Lights.Find(x => x.Id == l.Id).Color.Green,
-                                                main.Lights.Find(x => x.Id == l.Id).Color.Blue),
+                    Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                    Saturation = (byte)Math.Round(ColorConverters.GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color) * 255),
                     Brightness = l.Brightness
                 };
 
@@ -726,10 +708,8 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                        Saturation = GetSaturation(l.Color.Red,
-                                                l.Color.Green,
-                                                l.Color.Blue),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                         Brightness = l.Brightness
                     };
 
@@ -748,10 +728,8 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                        Saturation = GetSaturation(config2.Lights.Find(x => x.Id == l.Id).Color.Red,
-                                                config2.Lights.Find(x => x.Id == l.Id).Color.Green,
-                                                config2.Lights.Find(x => x.Id == l.Id).Color.Blue),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(config2.Lights.Find(x => x.Id == l.Id).Color) * 255),
                         Brightness = l.Brightness
                     };
 
@@ -768,10 +746,8 @@ namespace CSHUE.ViewModels
                 command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                    Saturation = GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color.Red,
-                                                main.Lights.Find(x => x.Id == l.Id).Color.Green,
-                                                main.Lights.Find(x => x.Id == l.Id).Color.Blue),
+                    Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                    Saturation = (byte)Math.Round(ColorConverters.GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color) * 255),
                     Brightness = l.Brightness
                 };
 
@@ -948,10 +924,8 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(GetHue(color) / 360 * 65535),
-                        Saturation = GetSaturation(l.Color.Red,
-                                                l.Color.Green,
-                                                l.Color.Blue),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                         Brightness = l.Brightness,
                         TransitionTime = TimeSpan.FromMilliseconds(100)
                     };
@@ -961,10 +935,8 @@ namespace CSHUE.ViewModels
                     command = new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(GetHue(back) / 360 * 65535),
-                        Saturation = GetSaturation(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Red,
-                            Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Green,
-                            Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Blue),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(back) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color) * 255),
                         Brightness = l.Brightness,
                         TransitionTime = TimeSpan.FromMilliseconds(100)
                     };
@@ -979,10 +951,8 @@ namespace CSHUE.ViewModels
                 command = new LightCommand
                 {
                     On = true,
-                    Hue = (int)Math.Round(GetHue(back) / 360 * 65535),
-                    Saturation = GetSaturation(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Red,
-                        Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Green,
-                        Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color.Blue),
+                    Hue = (int)Math.Round(ColorConverters.GetHue(back) / 360 * 65535),
+                    Saturation = (byte)Math.Round(ColorConverters.GetSaturation(Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Color) * 255),
                     Brightness = Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Brightness,
                     TransitionTime = TimeSpan.FromMilliseconds(100)
                 };
@@ -993,27 +963,6 @@ namespace CSHUE.ViewModels
 
                 i++;
             }
-        }
-
-        private static int GetSaturation(int red, int green, int blue)
-        {
-            var r = (double)red / 255;
-            var g = (double)green / 255;
-            var b = (double)blue / 255;
-
-            var max = r;
-
-            if (g > max) max = g;
-            if (b > max) max = b;
-
-            var min = r;
-
-            if (g < min) min = g;
-            if (b < min) min = b;
-
-            var delta = max - min;
-
-            return (int)Math.Round(delta / max * 255);
         }
 
         public bool BackLights(GameState gs)
@@ -1092,6 +1041,8 @@ namespace CSHUE.ViewModels
             if (Properties.Settings.Default.BombBlink == null)
                 Properties.Settings.Default.BombBlink = new EventBrightnessProperty();
 
+            var rnd = new Random();
+
             if (Properties.Settings.Default.MainMenu.Lights == null)
             {
                 Properties.Settings.Default.MainMenu.Lights = new List<UniqueLight>();
@@ -1099,8 +1050,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.MainMenu.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(0, 0, 255),
-                        Brightness = 192
+                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256)),
+                        Brightness = (byte)rnd.Next(184, 201)
                     });
             }
             if (Properties.Settings.Default.MainMenu.SelectedLights == null)
@@ -1117,8 +1068,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.PlayerGetsKill.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(0, 255, 0),
-                        Brightness = 255,
+                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(240, 256),
                         OnlyBrightness = true
                     });
             }
@@ -1136,8 +1087,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.PlayerGetsKilled.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 0, 0),
-                        Brightness = 128,
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(120, 137),
                         OnlyBrightness = true
                     });
             }
@@ -1155,8 +1106,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.PlayerGetsFlashed.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 255, 255),
-                        Brightness = 255
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256)),
+                        Brightness = (byte)rnd.Next(240, 256)
                     });
             }
             if (Properties.Settings.Default.PlayerGetsFlashed.SelectedLights == null)
@@ -1173,8 +1124,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.TerroristsWin.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 200, 0),
-                        Brightness = 192
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(162, 179), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(184, 201)
                     });
             }
             if (Properties.Settings.Default.TerroristsWin.SelectedLights == null)
@@ -1191,8 +1142,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.CounterTerroristsWin.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(0, 0, 255),
-                        Brightness = 192
+                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256)),
+                        Brightness = (byte)rnd.Next(184, 201)
                     });
             }
             if (Properties.Settings.Default.CounterTerroristsWin.SelectedLights == null)
@@ -1209,8 +1160,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.RoundStarts.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(0, 255, 0),
-                        Brightness = 192
+                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(184, 201)
                     });
             }
             if (Properties.Settings.Default.RoundStarts.SelectedLights == null)
@@ -1227,8 +1178,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.FreezeTime.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 255, 255),
-                        Brightness = 128,
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256)),
+                        Brightness = (byte)rnd.Next(120, 137),
                         OnlyBrightness = true
                     });
             }
@@ -1246,8 +1197,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.Warmup.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 255, 255),
-                        Brightness = 128,
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256)),
+                        Brightness = (byte)rnd.Next(120, 137),
                         OnlyBrightness = true
                     });
             }
@@ -1265,8 +1216,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.BombExplodes.Lights.Add(new UniqueBrightnessLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 0, 0),
-                        Brightness = 255,
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(240, 256),
                         OnlyBrightness = true
                     });
             }
@@ -1284,8 +1235,8 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.BombPlanted.Lights.Add(new UniqueLight
                     {
                         Id = i.UniqueId,
-                        Color = Color.FromRgb(255, 0, 0),
-                        Brightness = 128
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(120, 137)
                     });
             }
             if (Properties.Settings.Default.BombPlanted.SelectedLights == null)
@@ -1302,8 +1253,8 @@ namespace CSHUE.ViewModels
                     new UniqueBrightnessLight
                     {
                         Id = allLights.First().UniqueId,
-                        Color = Color.FromRgb(255, 0, 0),
-                        Brightness = 255,
+                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
+                        Brightness = (byte)rnd.Next(240, 256),
                         OnlyBrightness = true
                     }
                 };
@@ -1316,7 +1267,5 @@ namespace CSHUE.ViewModels
                 };
             }
         }
-
-        private static float GetHue(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B).GetHue();
     }
 }

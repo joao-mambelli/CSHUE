@@ -221,8 +221,8 @@ namespace CSHUE.ViewModels
             InProcess = Visibility.Collapsed;
         }
 
-        private List<LightStateViewModel> _list;
-        public List<LightStateViewModel> List
+        private List<LightStateCell> _list;
+        public List<LightStateCell> List
         {
             get =>
                 _list;
@@ -237,7 +237,7 @@ namespace CSHUE.ViewModels
         {
             if (MainWindowViewModel.Client == null) return;
 
-            List = new List<LightStateViewModel>();
+            List = new List<LightStateCell>();
 
             var allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
 
@@ -246,18 +246,15 @@ namespace CSHUE.ViewModels
                 Application.Current.Dispatcher.Invoke(delegate
                 {
                     if (l.State.Hue != null && l.State.Saturation != null)
-                        List.Add(new LightStateViewModel
+                        List.Add(new LightStateCell
                         {
-                            Content = new LightStateCell
-                            {
-                                On = l.State.On,
-                                Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")",
-                                Color = l.State.On
-                                    ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2, 
-                                        (double) l.State.Saturation / 255)
-                                    : Colors.Black,
-                                Brightness = (double)(l.State.Brightness + 1) / 255
-                            }
+                            On = l.State.On,
+                            Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")",
+                            Color = l.State.On
+                                ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
+                                    (double)l.State.Saturation / 255)
+                                : Colors.Black,
+                            Brightness = (double)(l.State.Brightness + 1) / 255
                         });
                 });
             }

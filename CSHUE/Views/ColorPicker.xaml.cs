@@ -36,8 +36,7 @@ namespace CSHUE.Views
         }
 
         private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
-
-        private bool _approximate;
+        
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (MouseMessages.WmLbuttonup == (MouseMessages) wParam)
@@ -170,6 +169,8 @@ namespace CSHUE.Views
         public ColorPickerViewModel ViewModel = new ColorPickerViewModel();
 
         private bool _movingPicker;
+
+        private bool _approximate;
 
         #endregion
 

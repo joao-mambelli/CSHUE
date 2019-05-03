@@ -218,8 +218,8 @@
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Checked="RunOnStartupCheckBox_Checked"
-                              Unchecked="RunOnStartupCheckBox_Checked">
+                              Checked="RunOnStartupCheckBox_CheckedChanged"
+                              Unchecked="RunOnStartupCheckBox_CheckedChanged">
                         <TextBlock Text="{Binding Path=RunOnStartup, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="30,7,0,9"
@@ -234,6 +234,15 @@
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource Windows10CheckBox}"
                               HorizontalAlignment="Left"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Checked="ShowSystemTrayIconCheckBox_CheckedChanged"
+                              Unchecked="ShowSystemTrayIconCheckBox_CheckedChanged">
+                        <TextBlock Text="{Binding Path=ShowSystemTrayIcon, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
+                    </CheckBox>
+                    <CheckBox Margin="30,7,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left"
+                              IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=MinimizeToSystemTray, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="{Binding Path=MinimizeSystemTray, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>

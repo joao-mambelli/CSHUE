@@ -108,7 +108,7 @@ namespace CSHUE.Views
             Application.Current.Shutdown();
         }
 
-        private void RunOnStartupCheckBox_Checked(object sender, RoutedEventArgs e)
+        private void RunOnStartupCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.RunOnStartup)
                 ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
@@ -247,6 +247,15 @@ namespace CSHUE.Views
                 await MainWindowViewModel.Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
                     .ConfigureAwait(false);
             }
+        }
+
+        private void ShowSystemTrayIconCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.MainWindowViewModel == null) return;
+
+            ViewModel.MainWindowViewModel.NotifyIconVisibility = Properties.Settings.Default.ShowSystemTrayIcon
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
     }
 }

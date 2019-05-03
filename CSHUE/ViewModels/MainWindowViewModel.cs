@@ -297,10 +297,23 @@ namespace CSHUE.ViewModels
             }) { IsBackground = true }.Start();
         }
 
+        private bool? _lastSetState;
         public void CheckTime()
         {
-            if (!Properties.Settings.Default.AutoActivate) return;
-            
+            // For some reason the NumericUpDown was setting sometimes the variables as HH:mm:ss
+            // This was crashing the app, so this is a workarround.
+            if (Properties.Settings.Default.AutoActivateStart.Length > 5)
+            {
+                Properties.Settings.Default.AutoActivateStart =
+                    Properties.Settings.Default.AutoActivateStart.Substring(0, 5);
+            }
+
+            if (Properties.Settings.Default.AutoActivateEnd.Length > 5)
+            {
+                Properties.Settings.Default.AutoActivateEnd =
+                    Properties.Settings.Default.AutoActivateEnd.Substring(0, 5);
+            }
+
             var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm", CultureInfo.InvariantCulture);
             var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm", CultureInfo.InvariantCulture);
 
@@ -310,37 +323,55 @@ namespace CSHUE.ViewModels
                 {
                     if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
                     {
-                        if (Properties.Settings.Default.Activated == false)
+                        if (_lastSetState == false || _lastSetState == null)
+                        {
                             Properties.Settings.Default.Activated = true;
+                            _lastSetState = true;
+                        }
                     }
                     else
                     {
-                        if (Properties.Settings.Default.Activated)
+                        if (_lastSetState == true || _lastSetState == null)
+                        {
                             Properties.Settings.Default.Activated = false;
+                            _lastSetState = false;
+                        }
                     }
                 }
                 else
                 {
-                    if (Properties.Settings.Default.Activated)
+                    if (_lastSetState == true || _lastSetState == null)
+                    {
                         Properties.Settings.Default.Activated = false;
+                        _lastSetState = false;
+                    }
                 }
             }
             else
             {
                 if (DateTime.Now.Hour > start.Hour || DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute)
                 {
-                    if (Properties.Settings.Default.Activated == false)
+                    if (_lastSetState == false || _lastSetState == null)
+                    {
                         Properties.Settings.Default.Activated = true;
+                        _lastSetState = true;
+                    }
                 }
                 else if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
                 {
-                    if (Properties.Settings.Default.Activated == false)
+                    if (_lastSetState == false || _lastSetState == null)
+                    {
                         Properties.Settings.Default.Activated = true;
+                        _lastSetState = true;
+                    }
                 }
                 else
                 {
-                    if (Properties.Settings.Default.Activated)
+                    if (_lastSetState == true || _lastSetState == null)
+                    {
                         Properties.Settings.Default.Activated = false;
+                        _lastSetState = false;
+                    }
                 }
             }
         }

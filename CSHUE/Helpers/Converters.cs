@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 using CSHUE.Cultures;
 
 namespace CSHUE.Helpers
@@ -139,6 +140,43 @@ namespace CSHUE.Helpers
             object parameter, CultureInfo culture)
         {
             return value != null && (Visibility)value == Visibility.Collapsed;
+        }
+    }
+
+    public class BrightnessToWhiteConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            if (value != null)
+                return Color.FromRgb((byte)Math.Round((double)value * 255),
+                    (byte)Math.Round((double)value * 255),
+                    (byte)Math.Round((double)value * 255));
+
+            return Colors.Black;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return Colors.Black;
+        }
+    }
+
+    public class BrightnessToPercentageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            if (value != null) return (int)Math.Round((double)value * 100);
+            return 0;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            if (value != null) return (double)value / 100;
+            return 0;
         }
     }
 }

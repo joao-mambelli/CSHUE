@@ -158,51 +158,57 @@ namespace CSHUE.Views
             ((LoadingSpinner)d).AnglePath6 = ((LoadingSpinner)d).RotatePath.Angle + 1380;
             ((LoadingSpinner) d).StartPoint = ((LoadingSpinner) d).Arc.Point;
 
-            if ((SpinnerStates)e.NewValue == SpinnerStates.Loading)
+            switch ((SpinnerStates)e.NewValue)
             {
-                ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > 25);
-
-                if (((LoadingSpinner)d).Arc.Point.X >= 25)
+                case SpinnerStates.Loading:
                 {
-                    ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(0);
+                    ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > 25);
+
+                    if (((LoadingSpinner)d).Arc.Point.X >= 25)
+                    {
+                        ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(0);
+                    }
+                    else
+                    {
+                        var degree = 270 - -1 * (Math.Asin(-1 * ((((LoadingSpinner) d).Arc.Point.Y - 25) / 25)) * 180 / Math.PI - 90);
+                        var mili = (int)Math.Round(0.7 / degree * (degree - 90) * 1000);
+
+                        ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(mili);
+                    }
+
+                    ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
+
+                    VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
+                    break;
                 }
-                else
+                case SpinnerStates.Hanging:
                 {
-                    var degree = 270 - -1 * (Math.Asin(-1 * ((((LoadingSpinner) d).Arc.Point.Y - 25) / 25)) * 180 / Math.PI - 90);
-                    var mili = (int)Math.Round(0.7 / degree * (degree - 90) * 1000);
+                    if (((LoadingSpinner)d).Arc.Point.X > 25)
+                    {
+                        ((LoadingSpinner)d).SweepDirection = SweepDirection.Clockwise;
+                        ((LoadingSpinner)d).IsLargeArc = true;
+                    }
+                    else
+                    {
+                        ((LoadingSpinner)d).SweepDirection = SweepDirection.Counterclockwise;
+                        ((LoadingSpinner)d).IsLargeArc = false;
+                    }
 
-                    ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(mili);
+                    if (((LoadingSpinner)d).StartPoint.Y == 50)
+                    {
+                        ((LoadingSpinner)d).StartPoint = new Point(25.00001, 49.99999);
+                    }
+
+                    ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseMediumColorBrush");
+                    ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
+
+                    VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
+                    break;
                 }
-
-                ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
-
-                VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
+                default:
+                    VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
+                    break;
             }
-            else if ((SpinnerStates)e.NewValue == SpinnerStates.Hanging)
-            {
-                if (((LoadingSpinner)d).Arc.Point.X > 25)
-                {
-                    ((LoadingSpinner)d).SweepDirection = SweepDirection.Clockwise;
-                    ((LoadingSpinner)d).IsLargeArc = true;
-                }
-                else
-                {
-                    ((LoadingSpinner)d).SweepDirection = SweepDirection.Counterclockwise;
-                    ((LoadingSpinner)d).IsLargeArc = false;
-                }
-
-                if (((LoadingSpinner)d).StartPoint.Y == 50)
-                {
-                    ((LoadingSpinner)d).StartPoint = new Point(25.00001, 49.99999);
-                }
-
-                ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseMediumColorBrush");
-                ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
-
-                VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
-            }
-            else
-                VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
         }
     }
 }

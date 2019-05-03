@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Media;
-using CSHUE.Views;
-using Q42.HueApi;
+﻿using CSHUE.Views;
 
 namespace CSHUE.ViewModels
 {

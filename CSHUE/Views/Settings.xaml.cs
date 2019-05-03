@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using CSHUE.Helpers;

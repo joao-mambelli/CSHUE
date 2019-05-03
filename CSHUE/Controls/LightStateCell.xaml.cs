@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 // ReSharper disable InheritdocConsiderUsage
 
-namespace CSHUE.Views
+namespace CSHUE.Controls
 {
     /// <summary>
     /// Interaction logic for LightStateCell.xaml

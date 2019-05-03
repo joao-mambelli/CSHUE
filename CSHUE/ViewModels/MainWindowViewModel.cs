@@ -292,7 +292,7 @@ namespace CSHUE.ViewModels
                 {
                     CheckTime();
 
-                    Thread.Sleep(60000);
+                    Thread.Sleep(1000);
                 }
             }) { IsBackground = true }.Start();
         }
@@ -300,6 +300,12 @@ namespace CSHUE.ViewModels
         private bool? _lastSetState;
         public void CheckTime()
         {
+            if (!Properties.Settings.Default.AutoActivate)
+            {
+                _lastSetState = !Properties.Settings.Default.Activated;
+                return;
+            }
+
             // For some reason the NumericUpDown was setting sometimes the variables as HH:mm:ss
             // This was crashing the app, so this is a workarround.
             if (Properties.Settings.Default.AutoActivateStart.Length > 5)

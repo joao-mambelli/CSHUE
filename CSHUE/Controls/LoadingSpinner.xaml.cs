@@ -6,7 +6,7 @@ using System.Windows.Media.Animation;
 // ReSharper disable CompareOfFloatsByEqualityOperator
 // ReSharper disable InheritdocConsiderUsage
 
-namespace CSHUE.Views
+namespace CSHUE.Controls
 {
     /// <summary>
     /// Interaction logic for Loading.xaml

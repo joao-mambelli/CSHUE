@@ -2,10 +2,11 @@
 using System.Windows;
 using System.Windows.Media;
 using CSHUE.ViewModels;
+using CSHUE.Views;
 
 // ReSharper disable InheritdocConsiderUsage
 
-namespace CSHUE.Views
+namespace CSHUE.Controls
 {
     /// <summary>
     /// Interaction logic for LightSettingCell.xaml

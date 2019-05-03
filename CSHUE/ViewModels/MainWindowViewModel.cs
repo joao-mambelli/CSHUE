@@ -99,6 +99,19 @@ namespace CSHUE.ViewModels
         
         private string _bridgeIp = "";
         public static ILocalHueClient Client { get; set; }
+
+        private Visibility _notifyIconVisibility = Visibility.Collapsed;
+        public Visibility NotifyIconVisibility
+        {
+            get =>
+                _notifyIconVisibility;
+            set
+            {
+                _notifyIconVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         private List<Light> _globalLightsBackup;
         private bool _alreadySetLights;
         private bool _alreadyMinimized;

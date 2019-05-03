@@ -69,17 +69,21 @@ namespace CSHUE.Views
             else
                 ViewModel.SettingsPage.ViewModel.RemoveStartup();
 
+            if (Properties.Settings.Default.ShowSystemTrayIcon)
+                ViewModel.NotifyIconVisibility = Visibility.Visible;
+
             var arguments = Environment.GetCommandLineArgs();
             foreach (var s in arguments)
             {
                 switch (s)
                 {
                     case "-silent":
-                        if (Properties.Settings.Default.RunOnStartupMinimized && Properties.Settings.Default.MinimizeToSystemTray)
+                        if (Properties.Settings.Default.RunOnStartupMinimized &&
+                            Properties.Settings.Default.MinimizeToSystemTray &&
+                            Properties.Settings.Default.ShowSystemTrayIcon)
                         {
                             WindowState = WindowState.Minimized;
                             Hide();
-                            NotifyIcon.Visibility = Visibility.Visible;
                         }
                         else if (Properties.Settings.Default.RunOnStartupMinimized)
                             WindowState = WindowState.Minimized;
@@ -171,7 +175,6 @@ namespace CSHUE.Views
             Show();
             if (WindowState == WindowState.Minimized)
                 WindowState = WindowState.Normal;
-            NotifyIcon.Visibility = Visibility.Collapsed;
             var top = Topmost;
             Topmost = true;
             Topmost = top;
@@ -439,11 +442,9 @@ namespace CSHUE.Views
                     ? "CropSquare"
                     : "WindowRestore");
 
-            if (WindowState == WindowState.Minimized && Properties.Settings.Default.MinimizeToSystemTray)
-            {
+            if (WindowState == WindowState.Minimized && Properties.Settings.Default.MinimizeToSystemTray &&
+                Properties.Settings.Default.ShowSystemTrayIcon)
                 Hide();
-                NotifyIcon.Visibility = Visibility.Visible;
-            }
 
             if (WindowState == WindowState.Minimized)
             {
@@ -469,7 +470,7 @@ namespace CSHUE.Views
         {
             ViewModel.RestoreLights();
 
-            NotifyIcon.Visibility = Visibility.Collapsed;
+            ViewModel.NotifyIconVisibility = Visibility.Collapsed;
 
             if (WindowState == WindowState.Maximized
                 || WindowState == WindowState.Minimized)
@@ -498,12 +499,12 @@ namespace CSHUE.Views
         {
             Show();
             WindowState = WindowState.Normal;
-            NotifyIcon.Visibility = Visibility.Collapsed;
         }
 
         private void MenuNavigate_Click(object sender, RoutedEventArgs e)
         {
-            NotifyIcon_TrayMouseDoubleClick(sender, e);
+            Show();
+            WindowState = WindowState.Normal;
 
             ViewModel.Navigate(Page, ((MenuItem)sender).Tag.ToString());
 

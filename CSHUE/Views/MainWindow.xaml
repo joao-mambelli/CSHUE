@@ -302,7 +302,7 @@
         <tb:TaskbarIcon
             Grid.Column="0"
             x:Name="NotifyIcon"
-            Visibility="Collapsed"
+            Visibility="{Binding NotifyIconVisibility}"
             ToolTipText="CSHUE"
             IconSource="/icon.ico"
             MenuActivation="LeftOrRightClick"

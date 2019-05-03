@@ -145,7 +145,6 @@
     <Compile Include="Helpers\ColorConverters.cs" />
     <Compile Include="Helpers\ColorWheel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
-    <Compile Include="ViewModels\LightStateViewModel.cs" />
     <Compile Include="ViewModels\LightSelectorViewModel.cs" />
     <Compile Include="ViewModels\HubSelectorViewModel.cs" />
     <Compile Include="Views\LightStateCell.xaml.cs">

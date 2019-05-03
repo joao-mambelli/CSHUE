@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
+using CSHUE.Helpers;
 using CSHUE.Views;
 using Q42.HueApi;
 
@@ -62,35 +62,12 @@ namespace CSHUE.ViewModels
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(GetHue(l.Content.Color) / 360 * 65535),
-                        Saturation = GetSaturation(l.Content.Color),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(l.Content.Color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Content.Color) * 255),
                         Brightness = l.Content.Brightness
                     }, new List<string> { $"{i++}" }).ConfigureAwait(false);
                 }
             }
-        }
-
-        public float GetHue(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B).GetHue();
-
-        public int GetSaturation(Color color)
-        {
-            var r = (double)color.R / 255;
-            var g = (double)color.G / 255;
-            var b = (double)color.B / 255;
-
-            var max = r;
-
-            if (g > max) max = g;
-            if (b > max) max = b;
-
-            var min = r;
-
-            if (g < min) min = g;
-            if (b < min) min = b;
-
-            var delta = max - min;
-
-            return (int)Math.Round(delta / max * 255);
         }
     }
 }

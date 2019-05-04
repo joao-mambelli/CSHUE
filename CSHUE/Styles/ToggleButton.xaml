@@ -43,7 +43,7 @@
 
                         <Ellipse Height="10" Width="10"
                                  x:Name="Slider"
-                                 Fill="{TemplateBinding BorderBrush}"
+                                 Fill="White"
                                  HorizontalAlignment="Left"
                                  Margin="5,0,0,0"
                                  Opacity=".77"/>

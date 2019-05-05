@@ -273,6 +273,8 @@ namespace CSHUE.Views
             
             HueSlider.Value = Math.Round(ColorConverters.GetHue(Color));
             SatSlider.Value = Math.Round(ColorConverters.GetSaturation(Color) * 100);
+
+            SelectedColor.Background = new SolidColorBrush(Color);
             _movingPicker = false;
 
             MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,

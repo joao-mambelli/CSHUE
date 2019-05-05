@@ -1,4 +1,8 @@
 # CSHUE
+## Showcasing video
+
+[![](https://img.youtube.com/vi/qRO9WlA8LCc/0.jpg)](https://www.youtube.com/watch?v=qRO9WlA8LCc)
+
 ## About
 
 My name is João but you can call me John. I'm 21 and I live in Rio Claro, São Paulo, Brazil. Currently studing Computer Science in Universidade Estadual Paulista (UNESP). For now I do internship for an IT company. C#, XAML and C are the languages I like the most, I moved recently from the good old WinForms to WPF and I'm loving the greater variety of things you can do with it. I didn't want to use UWP because there's still a lot of people using Windows 7, but I tried to make the UI as good as in UWP. I got inspired by the Settings app from Windows 10.

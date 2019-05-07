@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 using System.Windows.Shell;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
@@ -437,10 +438,10 @@ namespace CSHUE.Views
                         ? 0
                         : 4)
                 });
-            Resources["MaximizeRestoreIcon"] = (PackIconKind) Enum.Parse(typeof(PackIconKind),
-                WindowState == WindowState.Normal
-                    ? "CropSquare"
-                    : "WindowRestore");
+
+            ((Path) Resources["MaximizeRestorePath"]).Data = Geometry.Parse(WindowState == WindowState.Maximized
+                ? "M 0.5 2.5 L 7.5 2.5 M 0.5 2.5 L 0.5 9.5 M 0.5 9.5 L 7.5 9.5 M 7.5 2.5 L 7.5 9.5 M 2.5 0.5 L 9.5 0.5 M 9.5 0.5 L 9.5 7.5 M 2.5 0.5 L 2.5 2.5 M 7.5 7.5 L 9.5 7.5"
+                : "M 0.5 0.5 L 9.5 0.5 M 0.5 0.5 L 0.5 9.5 M 0.5 9.5 L 9.5 9.5 M 9.5 0.5 L 9.5 9.5");
 
             if (WindowState == WindowState.Minimized && Properties.Settings.Default.MinimizeToSystemTray &&
                 Properties.Settings.Default.ShowSystemTrayIcon)

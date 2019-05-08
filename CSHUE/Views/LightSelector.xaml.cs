@@ -21,10 +21,12 @@ namespace CSHUE.Views
         public LightSelectorViewModel ViewModel = new LightSelectorViewModel();
 
         private bool _isWindowOpened = true;
-        public LightSelector()
+        public LightSelector(string title)
         {
             InitializeComponent();
             DataContext = ViewModel;
+
+            ViewModel.Title = title;
 
             new Thread(() =>
             {

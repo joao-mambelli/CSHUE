@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using System.Windows.Threading;
-using CSHUE.Controls;
 using CSHUE.Helpers;
 using Q42.HueApi;
 
@@ -44,6 +41,17 @@ namespace CSHUE.ViewModels
             set
             {
                 _list = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
                 OnPropertyChanged();
             }
         }

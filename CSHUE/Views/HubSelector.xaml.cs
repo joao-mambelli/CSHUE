@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using CSHUE.ViewModels;
@@ -20,7 +21,7 @@ namespace CSHUE.Views
 
             list.ElementAt(0).IsChecked = true;
 
-            ViewModel.List = list;
+            ViewModel.List = new ObservableCollection<HubInfoCellViewModel>(list);
         }
 
         public string SelectedBridge { get; set; }

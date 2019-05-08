@@ -47,5 +47,7 @@ namespace CSHUE.Controls
         {
             InitializeComponent();
         }
+
+        public string UniqueId { get; set; }
     }
 }

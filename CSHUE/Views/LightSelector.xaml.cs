@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -35,10 +36,10 @@ namespace CSHUE.Views
                     if (!ViewModel.IsColorPickerOpened)
                         Dispatcher.Invoke(() =>
                         {
-                            ViewModel.SetLightsAsync(ViewModel.List);
+                            ViewModel.SetLightsAsync();
                         });
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(5000);
                 }
             })
             { IsBackground = true }.Start();
@@ -56,8 +57,8 @@ namespace CSHUE.Views
             {
                 foreach (var l in Property.Lights)
                 {
-                    l.Brightness = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Brightness;
-                    l.Color = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Color;
+                    l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Brightness;
+                    l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Color;
                 }
 
                 Property.SelectedLights = new List<string>();
@@ -72,9 +73,9 @@ namespace CSHUE.Views
             {
                 foreach (var l in BrightnessProperty.Lights)
                 {
-                    l.Brightness = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Brightness;
-                    l.Color = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Color;
-                    l.OnlyBrightness = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.OnlyBrightness;
+                    l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Brightness;
+                    l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Color;
+                    l.OnlyBrightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.OnlyBrightness;
                 }
 
                 BrightnessProperty.SelectedLights = new List<string>();
@@ -94,7 +95,7 @@ namespace CSHUE.Views
         private bool _loadDone;
         private void LightSelector_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.List = new List<LightSettingCellViewModel>();
+            ViewModel.List = new ObservableCollection<LightSettingCellViewModel>();
 
             for (var i = 0; i < AllLights.Count; i++)
             {

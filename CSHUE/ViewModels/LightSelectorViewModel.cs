@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using CSHUE.Helpers;
 using Q42.HueApi;
@@ -10,11 +11,11 @@ namespace CSHUE.ViewModels
     {
         public bool IsColorPickerOpened { get; set; }
 
-        public async void SetLightsAsync(List<LightSettingCellViewModel> list)
+        public async void SetLightsAsync()
         {
-            for (var i = 0; i < list.Count; i++)
+            for (var i = 0; i < List.Count; i++)
             {
-                if (!list.ElementAt(i).IsChecked)
+                if (!List.ElementAt(i).IsChecked)
                 {
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
@@ -26,16 +27,16 @@ namespace CSHUE.ViewModels
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(ColorConverters.GetHue(list.ElementAt(i).Color) / 360 * 65535),
-                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(list.ElementAt(i).Color) * 255),
-                        Brightness = list.ElementAt(i).Brightness
+                        Hue = (int)Math.Round(ColorConverters.GetHue(List.ElementAt(i).Color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(List.ElementAt(i).Color) * 255),
+                        Brightness = List.ElementAt(i).Brightness
                     }, new List<string> { $"{i + 1}" }).ConfigureAwait(false);
                 }
             }
         }
 
-        private List<LightSettingCellViewModel> _list;
-        public List<LightSettingCellViewModel> List
+        private ObservableCollection<LightSettingCellViewModel> _list;
+        public ObservableCollection<LightSettingCellViewModel> List
         {
             get => _list;
             set

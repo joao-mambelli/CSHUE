@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace CSHUE.ViewModels
 {
     public class HubSelectorViewModel : BaseViewModel
     {
-        private List<HubInfoCellViewModel> _list;
-        public List<HubInfoCellViewModel> List
+        private ObservableCollection<HubInfoCellViewModel> _list;
+        public ObservableCollection<HubInfoCellViewModel> List
         {
             get => _list;
             set

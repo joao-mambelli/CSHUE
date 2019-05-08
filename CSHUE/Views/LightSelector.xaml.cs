@@ -39,7 +39,7 @@ namespace CSHUE.Views
                             ViewModel.SetLightsAsync();
                         });
 
-                    Thread.Sleep(5000);
+                    Thread.Sleep(500);
                 }
             })
             { IsBackground = true }.Start();
@@ -111,11 +111,11 @@ namespace CSHUE.Views
                                 Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
                                 Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
                             Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
-                            Index = i
+                            Index = i + 1
                         },
                         UniqueId = AllLights.ElementAt(i).UniqueId,
                         IsChecked = Property.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
-                        Index = i,
+                        Index = i + 1,
                         Color = Color.FromRgb(Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
                             Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
                             Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
@@ -152,7 +152,7 @@ namespace CSHUE.Views
                                 BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
                                 BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
                             Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
-                            Index = i,
+                            Index = i + 1,
                             OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
                             OnlyBrightnessVisibility = Visibility.Visible,
                             MainEventText = string.Format(Cultures.Resources.UseMainEventColor, (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent + (mainEvent != Cultures.Resources.Current ? "\"" : ""))
@@ -160,7 +160,7 @@ namespace CSHUE.Views
                         UniqueId = AllLights.ElementAt(i).UniqueId,
                         IsChecked = BrightnessProperty.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
                         SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed,
-                        Index = i,
+                        Index = i + 1,
                         Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
                             BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
                             BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),

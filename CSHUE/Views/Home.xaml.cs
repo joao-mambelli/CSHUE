@@ -29,10 +29,6 @@ namespace CSHUE.Views
                 {
                     await ViewModel.RefreshLights();
 
-                    Application.Current.Dispatcher.Invoke(delegate {
-                        ListBox.ItemsSource = ViewModel.List;
-                    });
-
                     Thread.Sleep(500);
                 }
             })

@@ -1,21 +1,18 @@
-﻿namespace CSHUE.ViewModels
+﻿using System.Collections.Generic;
+
+namespace CSHUE.ViewModels
 {
     public class HubSelectorViewModel : BaseViewModel
     {
-        public string ContentText { get; set; }
-
-        private bool _isChecked;
-        public bool IsChecked
+        private List<HubInfoCellViewModel> _list;
+        public List<HubInfoCellViewModel> List
         {
-            get =>
-                _isChecked;
+            get => _list;
             set
             {
-                _isChecked = value;
+                _list = value;
                 OnPropertyChanged();
             }
         }
-
-        public string Ip { get; set; }
     }
 }

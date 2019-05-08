@@ -9,6 +9,7 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
         xmlns:helpers="clr-namespace:CSHUE.Helpers"
+        xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="100"
         MinHeight="50"
@@ -20,12 +21,12 @@
         fw:AcrylicWindow.ShowTitleBar="False"
         FontSize="17"
         AllowsTransparency="True"
-        ResizeMode="CanResize"
+        ResizeMode="NoResize"
         Background="Transparent"
         fw:PointerTracker.Enabled="False"
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        d:DataContext="{d:DesignInstance Type=viewModels:LightSelectorViewModel}"
         Loaded="LightSelector_OnLoaded">
     <Window.Resources>
         <helpers:VisibleToCollapsedConverter x:Key="VisibleToCollapsedConverter" />
@@ -60,9 +61,9 @@
                 </Grid.ColumnDefinitions>
 
                 <ListBox ItemsSource="{Binding List}"
+                         x:Name="ListBox"
                          Background="Transparent"
                          BorderThickness="0"
-                         x:Name="ListBox"
                          Margin="20,0,20,0">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">

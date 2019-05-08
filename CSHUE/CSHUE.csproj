@@ -145,7 +145,9 @@
     <Compile Include="Helpers\ColorConverters.cs" />
     <Compile Include="Helpers\ColorWheel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
+    <Compile Include="ViewModels\HubInfoCellViewModel.cs" />
     <Compile Include="ViewModels\LightSelectorViewModel.cs" />
+    <Compile Include="ViewModels\LightSettingCellViewModel.cs" />
     <Compile Include="ViewModels\HubSelectorViewModel.cs" />
     <Compile Include="Controls\LightStateCell.xaml.cs">
       <DependentUpon>LightStateCell.xaml</DependentUpon>

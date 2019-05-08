@@ -129,7 +129,6 @@
                     <ListBox ItemsSource="{Binding List}"
                              Background="Transparent"
                              BorderThickness="0"
-                             x:Name="ListBox"
                              HorizontalAlignment="Left"
                              Visibility="{Binding InProcess, Converter={StaticResource VisibleToCollapsedConverter}}">
                         <ListBox.ItemContainerStyle>

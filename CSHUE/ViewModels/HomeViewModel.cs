@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,7 +14,7 @@ namespace CSHUE.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         public MainWindowViewModel MainWindowViewModel = null;
-        
+
         private Visibility _loadingVisibility = Visibility.Hidden;
         public Visibility LoadingVisibility
         {
@@ -221,8 +222,8 @@ namespace CSHUE.ViewModels
             InProcess = Visibility.Collapsed;
         }
 
-        private List<LightStateCell> _list;
-        public List<LightStateCell> List
+        private ObservableCollection<LightStateCell> _list = new ObservableCollection<LightStateCell>();
+        public ObservableCollection<LightStateCell> List
         {
             get =>
                 _list;
@@ -237,7 +238,7 @@ namespace CSHUE.ViewModels
         {
             if (MainWindowViewModel.Client == null) return;
 
-            List = new List<LightStateCell>();
+            var tempList = List.ToList();
 
             var allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
 
@@ -245,8 +246,23 @@ namespace CSHUE.ViewModels
             {
                 Application.Current.Dispatcher.Invoke(delegate
                 {
-                    if (l.State.Hue != null && l.State.Saturation != null)
-                        List.Add(new LightStateCell
+                    if (l.State.Hue == null || l.State.Saturation == null) return;
+
+                    var existingElement = tempList.Find(x => x.UniqueId == l.UniqueId);
+
+                    if (existingElement != null)
+                    {
+                        existingElement.On = l.State.On;
+                        existingElement.Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")";
+                        existingElement.Color = l.State.On
+                            ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2,
+                                (double) l.State.Saturation / 255)
+                            : Colors.Black;
+                        existingElement.Brightness = (double) (l.State.Brightness + 1) / 255;
+                    }
+                    else
+                    {
+                        tempList.Add(new LightStateCell
                         {
                             On = l.State.On,
                             Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")",
@@ -254,10 +270,14 @@ namespace CSHUE.ViewModels
                                 ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
                                     (double)l.State.Saturation / 255)
                                 : Colors.Black,
-                            Brightness = (double)(l.State.Brightness + 1) / 255
+                            Brightness = (double)(l.State.Brightness + 1) / 255,
+                            UniqueId = l.UniqueId
                         });
+                    }
                 });
             }
+
+            List = new ObservableCollection<LightStateCell>(tempList);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CSHUE.ViewModels
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = false
-                    }, new List<string> { $"{i + 1}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
                 }
                 else
                 {
@@ -30,7 +30,7 @@ namespace CSHUE.ViewModels
                         Hue = (int)Math.Round(ColorConverters.GetHue(List.ElementAt(i).Color) / 360 * 65535),
                         Saturation = (byte)Math.Round(ColorConverters.GetSaturation(List.ElementAt(i).Color) * 255),
                         Brightness = List.ElementAt(i).Brightness
-                    }, new List<string> { $"{i + 1}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
                 }
             }
         }

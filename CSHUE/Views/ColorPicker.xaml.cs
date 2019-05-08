@@ -253,7 +253,7 @@ namespace CSHUE.Views
                 {
                     ViewModel.SetLightAsync(Color, Brightness, Index);
 
-                    Thread.Sleep(5000);
+                    Thread.Sleep(500);
                 }
             })
             { IsBackground = true }.Start();

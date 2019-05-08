@@ -57,8 +57,8 @@ namespace CSHUE.Views
             {
                 foreach (var l in Property.Lights)
                 {
-                    l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Brightness;
-                    l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Color;
+                    l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Brightness;
+                    l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Color;
                 }
 
                 Property.SelectedLights = new List<string>();
@@ -73,9 +73,9 @@ namespace CSHUE.Views
             {
                 foreach (var l in BrightnessProperty.Lights)
                 {
-                    l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Brightness;
-                    l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.Color;
-                    l.OnlyBrightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Content.OnlyBrightness;
+                    l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Brightness;
+                    l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).Color;
+                    l.OnlyBrightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.Id).OnlyBrightness;
                 }
 
                 BrightnessProperty.SelectedLights = new List<string>();
@@ -101,26 +101,24 @@ namespace CSHUE.Views
             {
                 if (Property != null)
                 {
-                    ViewModel.List.Add(new LightSettingCellViewModel
+                    var lightSettingCellViewModel = new LightSettingCellViewModel
                     {
-                        Content = new LightSettingCell
-                        {
-                            LightSelectorViewModel = ViewModel,
-                            Text = AllLights.ElementAt(i).Name,
-                            Color = Color.FromRgb(Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
-                                Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
-                                Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
-                            Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
-                            Index = i + 1
-                        },
-                        UniqueId = AllLights.ElementAt(i).UniqueId,
-                        IsChecked = Property.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
-                        Index = i + 1,
+                        Text = AllLights.ElementAt(i).Name,
                         Color = Color.FromRgb(Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
                             Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
                             Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
-                        Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness
-                    });
+                        Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
+                        Index = i + 1,
+                        UniqueId = AllLights.ElementAt(i).UniqueId,
+                        IsChecked = Property.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId)
+                    };
+                    lightSettingCellViewModel.Content = new LightSettingCell
+                    {
+                        LightSelectorViewModel = ViewModel,
+                        DataContext = lightSettingCellViewModel
+                    };
+
+                    ViewModel.List.Add(lightSettingCellViewModel);
                 }
                 else if (BrightnessProperty != null)
                 {
@@ -142,30 +140,30 @@ namespace CSHUE.Views
                         singleOption = true;
                     }
 
-                    ViewModel.List.Add(new LightSettingCellViewModel
+                    var lightSettingCellViewModel = new LightSettingCellViewModel
                     {
-                        Content = new LightSettingCell
-                        {
-                            LightSelectorViewModel = ViewModel,
-                            Text = AllLights.ElementAt(i).Name,
-                            Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
-                                BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
-                                BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
-                            Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
-                            Index = i + 1,
-                            OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
-                            OnlyBrightnessVisibility = Visibility.Visible,
-                            MainEventText = string.Format(Cultures.Resources.UseMainEventColor, (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent + (mainEvent != Cultures.Resources.Current ? "\"" : ""))
-                        },
-                        UniqueId = AllLights.ElementAt(i).UniqueId,
-                        IsChecked = BrightnessProperty.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
-                        SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed,
-                        Index = i + 1,
+                        Text = AllLights.ElementAt(i).Name,
                         Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
                             BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
                             BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
-                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness
-                    });
+                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
+                        Index = i + 1,
+                        OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
+                        OnlyBrightnessVisibility = Visibility.Visible,
+                        MainEventText = string.Format(Cultures.Resources.UseMainEventColor,
+                            (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent +
+                            (mainEvent != Cultures.Resources.Current ? "\"" : "")),
+                        UniqueId = AllLights.ElementAt(i).UniqueId,
+                        IsChecked = BrightnessProperty.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
+                        SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed
+                    };
+                    lightSettingCellViewModel.Content = new LightSettingCell
+                    {
+                        LightSelectorViewModel = ViewModel,
+                        DataContext = lightSettingCellViewModel
+                    };
+
+                    ViewModel.List.Add(lightSettingCellViewModel);
                 }
             }
 

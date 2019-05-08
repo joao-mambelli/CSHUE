@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:helpers="clr-namespace:CSHUE.Helpers"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
              mc:Ignorable="d" 
              FontSize="14"
              FontFamily="Segoe UI Semilight"
              Width="350"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+             d:DataContext="{d:DesignInstance Type=viewModels:LightSettingCellViewModel}">
     <UserControl.Resources>
         <helpers:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
         <helpers:ByteToPercentageConverter x:Key="ByteToPercentageConverter" />

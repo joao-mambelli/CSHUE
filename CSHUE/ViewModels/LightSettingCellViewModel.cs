@@ -8,7 +8,25 @@ namespace CSHUE.ViewModels
     {
         public LightSettingCell Content { get; set; }
 
+        public string GroupName { get; set; } = "";
+
+        public string UniqueId { get; set; }
+
+        public int Index { get; set; }
+
         private Visibility _singleOptionVisibility = Visibility.Collapsed;
+        public Visibility SingleOptionVisibility
+        {
+            get => _singleOptionVisibility;
+            set
+            {
+                if (value == Visibility.Visible)
+                    GroupName = "Group";
+
+                _singleOptionVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
         private bool _isChecked;
         public bool IsChecked
@@ -22,26 +40,70 @@ namespace CSHUE.ViewModels
             }
         }
 
-        public string GroupName { get; set; } = "";
-
-        public Visibility SingleOptionVisibility
+        private Color _color;
+        public Color Color
         {
-            get => _singleOptionVisibility;
+            get => _color;
             set
             {
-                if (value == Visibility.Visible)
-                    GroupName = "Group";
-
-                _singleOptionVisibility = value;
+                _color = value;
+                OnPropertyChanged();
             }
         }
 
-        public string UniqueId { get; set; }
+        private byte _brightness;
+        public byte Brightness
+        {
+            get => _brightness;
+            set
+            {
+                _brightness = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int Index { get; set; }
+        private string _text;
+        public string Text
+        {
+            get => _text;
+            set
+            {
+                _text = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public Color Color { get; set; }
+        private bool _onlyBrightness;
+        public bool OnlyBrightness
+        {
+            get => _onlyBrightness;
+            set
+            {
+                _onlyBrightness = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public byte Brightness { get; set; }
+        private Visibility _onlyBrightnessVisibility = Visibility.Collapsed;
+        public Visibility OnlyBrightnessVisibility
+        {
+            get => _onlyBrightnessVisibility;
+            set
+            {
+                _onlyBrightnessVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mainEventText;
+        public string MainEventText
+        {
+            get => _mainEventText;
+            set
+            {
+                _mainEventText = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

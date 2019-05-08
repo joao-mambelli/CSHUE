@@ -212,13 +212,12 @@ namespace CSHUE.Views
             }
 
             _lightsBackup = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
-            new LightSelector
+            new LightSelector(title)
             {
                 AllLights = allLights,
                 Property = property,
                 BrightnessProperty = brightnessProperty,
-                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
-                Title = title
+                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
             }.ShowDialog();
             RestoreLights();
 

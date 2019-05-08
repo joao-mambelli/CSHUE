@@ -169,7 +169,7 @@ namespace CSHUE.ViewModels
             {
                 return Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var list = new List<HubSelectorViewModel>();
+                    var list = new List<HubInfoCellViewModel>();
 
                     WebRequest request;
 
@@ -182,9 +182,9 @@ namespace CSHUE.ViewModels
                             request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
                             request.Timeout = 7000;
                             if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                                list.Add(new HubSelectorViewModel
+                                list.Add(new HubInfoCellViewModel
                                 {
-                                    ContentText = $"ip: {b.IpAddress}, id: {b.BridgeId}",
+                                    Text = $"ip: {b.IpAddress}, id: {b.BridgeId}",
                                     Ip = b.IpAddress
                                 });
                         }
@@ -206,9 +206,8 @@ namespace CSHUE.ViewModels
                         return list.ElementAt(0).Ip;
                     }
 
-                    var hubSelector = new HubSelector
+                    var hubSelector = new HubSelector(list)
                     {
-                        List = list,
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     };
                     hubSelector.ShowDialog();

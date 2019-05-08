@@ -24,6 +24,7 @@ namespace CSHUE.Views
         public LightSelector()
         {
             InitializeComponent();
+            DataContext = ViewModel;
 
             new Thread(() =>
             {
@@ -32,7 +33,7 @@ namespace CSHUE.Views
                     if (!ViewModel.IsColorPickerOpened)
                         Dispatcher.Invoke(() =>
                         {
-                            ViewModel.SetLightsAsync(List);
+                            ViewModel.SetLightsAsync(ViewModel.List);
                         });
 
                     Thread.Sleep(500);
@@ -47,26 +48,18 @@ namespace CSHUE.Views
 
         public EventBrightnessProperty BrightnessProperty { get; set; } = null;
 
-        public List<LightSelectorViewModel> List
-        {
-            get => (List<LightSelectorViewModel>)GetValue(ListProperty);
-            set => SetValue(ListProperty, value);
-        }
-        public static readonly DependencyProperty ListProperty =
-            DependencyProperty.Register("List", typeof(List<LightSelectorViewModel>), typeof(LightSelector));
-
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             if (Property != null)
             {
                 foreach (var l in Property.Lights)
                 {
-                    l.Brightness = List.Find(x => x.UniqueId == l.Id).Content.Brightness;
-                    l.Color = List.Find(x => x.UniqueId == l.Id).Content.Color;
+                    l.Brightness = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Brightness;
+                    l.Color = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Color;
                 }
 
                 Property.SelectedLights = new List<string>();
-                foreach (var c in List)
+                foreach (var c in ViewModel.List)
                 {
                     if (!c.IsChecked) continue;
 
@@ -77,13 +70,13 @@ namespace CSHUE.Views
             {
                 foreach (var l in BrightnessProperty.Lights)
                 {
-                    l.Brightness = List.Find(x => x.UniqueId == l.Id).Content.Brightness;
-                    l.Color = List.Find(x => x.UniqueId == l.Id).Content.Color;
-                    l.OnlyBrightness = List.Find(x => x.UniqueId == l.Id).Content.OnlyBrightness;
+                    l.Brightness = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Brightness;
+                    l.Color = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.Color;
+                    l.OnlyBrightness = ViewModel.List.Find(x => x.UniqueId == l.Id).Content.OnlyBrightness;
                 }
 
                 BrightnessProperty.SelectedLights = new List<string>();
-                foreach (var c in List)
+                foreach (var c in ViewModel.List)
                 {
                     if (!c.IsChecked) continue;
                     
@@ -99,28 +92,31 @@ namespace CSHUE.Views
         private bool _loadDone;
         private void LightSelector_OnLoaded(object sender, RoutedEventArgs e)
         {
-            List = new List<LightSelectorViewModel>();
+            ViewModel.List = new List<LightSettingCellViewModel>();
 
-            var i = 1;
-            foreach (var l in AllLights)
+            for (var i = 0; i < AllLights.Count; i++)
             {
                 if (Property != null)
                 {
-                    List.Add(new LightSelectorViewModel
+                    ViewModel.List.Add(new LightSettingCellViewModel
                     {
                         Content = new LightSettingCell
                         {
                             LightSelectorViewModel = ViewModel,
-                            Text = l.Name,
-                            Color = Color.FromRgb(Property.Lights.Find(x => x.Id == l.UniqueId).Color.Red,
-                                Property.Lights.Find(x => x.Id == l.UniqueId).Color.Green,
-                                Property.Lights.Find(x => x.Id == l.UniqueId).Color.Blue),
-                            Brightness = Property.Lights.Find(x => x.Id == l.UniqueId).Brightness,
+                            Text = AllLights.ElementAt(i).Name,
+                            Color = Color.FromRgb(Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
+                                Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
+                                Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
+                            Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
                             Index = i
                         },
-                        UniqueId = l.UniqueId,
-                        IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId),
-                        Index = i
+                        UniqueId = AllLights.ElementAt(i).UniqueId,
+                        IsChecked = Property.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
+                        Index = i,
+                        Color = Color.FromRgb(Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
+                            Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
+                            Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
+                        Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness
                     });
                 }
                 else if (BrightnessProperty != null)
@@ -143,32 +139,32 @@ namespace CSHUE.Views
                         singleOption = true;
                     }
 
-                    List.Add(new LightSelectorViewModel
+                    ViewModel.List.Add(new LightSettingCellViewModel
                     {
                         Content = new LightSettingCell
                         {
                             LightSelectorViewModel = ViewModel,
-                            Text = l.Name,
-                            Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Red,
-                                BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Green,
-                                BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color.Blue),
-                            Brightness = BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Brightness,
+                            Text = AllLights.ElementAt(i).Name,
+                            Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
+                                BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
+                                BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
+                            Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
                             Index = i,
-                            OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).OnlyBrightness,
+                            OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
                             OnlyBrightnessVisibility = Visibility.Visible,
                             MainEventText = string.Format(Cultures.Resources.UseMainEventColor, (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent + (mainEvent != Cultures.Resources.Current ? "\"" : ""))
                         },
-                        UniqueId = l.UniqueId,
-                        IsChecked = BrightnessProperty.SelectedLights.Any(x => x == l.UniqueId),
+                        UniqueId = AllLights.ElementAt(i).UniqueId,
+                        IsChecked = BrightnessProperty.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
                         SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed,
-                        Index = i
+                        Index = i,
+                        Color = Color.FromRgb(BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Red,
+                            BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Green,
+                            BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color.Blue),
+                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness
                     });
                 }
-
-                i++;
             }
-
-            ListBox.ItemsSource = List;
 
             _loadDone = true;
         }

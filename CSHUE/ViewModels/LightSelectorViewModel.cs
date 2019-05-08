@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
-using CSHUE.Helpers;
+using System.Windows.Threading;
 using CSHUE.Controls;
+using CSHUE.Helpers;
 using Q42.HueApi;
 
 namespace CSHUE.ViewModels
@@ -11,62 +13,38 @@ namespace CSHUE.ViewModels
     {
         public bool IsColorPickerOpened { get; set; }
 
-        public LightSettingCell Content { get; set; }
-
-        private bool _isChecked;
-        private Visibility _singleOptionVisibility = Visibility.Collapsed;
-
-        public bool IsChecked
+        public async void SetLightsAsync(List<LightSettingCellViewModel> list)
         {
-            get =>
-                _isChecked;
-            set
+            for (var i = 0; i < list.Count; i++)
             {
-                _isChecked = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string GroupName { get; set; } = "";
-
-        public Visibility SingleOptionVisibility
-        {
-            get => _singleOptionVisibility;
-            set
-            {
-                if (value == Visibility.Visible)
-                    GroupName = "Group";
-
-                _singleOptionVisibility = value;
-            }
-        }
-
-        public string UniqueId { get; set; }
-
-        public int Index { get; set; }
-
-        public async void SetLightsAsync(List<LightSelectorViewModel> list)
-        {
-            var i = 1;
-            foreach (var l in list)
-            {
-                if (!l.IsChecked)
+                if (!list.ElementAt(i).IsChecked)
                 {
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = false
-                    }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{i + 1}" }).ConfigureAwait(false);
                 }
                 else
                 {
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(ColorConverters.GetHue(l.Content.Color) / 360 * 65535),
-                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Content.Color) * 255),
-                        Brightness = l.Content.Brightness
-                    }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                        Hue = (int)Math.Round(ColorConverters.GetHue(list.ElementAt(i).Color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(list.ElementAt(i).Color) * 255),
+                        Brightness = list.ElementAt(i).Brightness
+                    }, new List<string> { $"{i + 1}" }).ConfigureAwait(false);
                 }
+            }
+        }
+
+        private List<LightSettingCellViewModel> _list;
+        public List<LightSettingCellViewModel> List
+        {
+            get => _list;
+            set
+            {
+                _list = value;
+                OnPropertyChanged();
             }
         }
     }

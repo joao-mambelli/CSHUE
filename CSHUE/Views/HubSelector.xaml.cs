@@ -11,16 +11,23 @@ namespace CSHUE.Views
     /// </summary>
     public partial class HubSelector
     {
-        public HubSelector()
+        public HubSelectorViewModel ViewModel = new HubSelectorViewModel();
+
+        public HubSelector(List<HubInfoCellViewModel> list)
         {
             InitializeComponent();
+            DataContext = ViewModel;
+
+            list.ElementAt(0).IsChecked = true;
+
+            ViewModel.List = list;
         }
 
         public string SelectedBridge { get; set; }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var c in List)
+            foreach (var c in ViewModel.List)
             {
                 if (!c.IsChecked) continue;
 
@@ -30,19 +37,6 @@ namespace CSHUE.Views
 
             DialogResult = true;
             Close();
-        }
-
-        public List<HubSelectorViewModel> List
-        {
-            get => (List<HubSelectorViewModel>)GetValue(ListProperty);
-            set => SetValue(ListProperty, value);
-        }
-        public static readonly DependencyProperty ListProperty =
-            DependencyProperty.Register("List", typeof(List<HubSelectorViewModel>), typeof(HubSelector));
-
-        private void HubSelector_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            List.ElementAt(0).IsChecked = true;
         }
     }
 }

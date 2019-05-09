@@ -100,6 +100,16 @@ namespace CSHUE.Views
 
         #region Properties
 
+        public Color Color { get; set; }
+
+        public int Index { get; set; }
+
+        public byte Brightness { get; set; }
+
+        #endregion
+
+        #region Dependency Properties
+
         public string Text1
         {
             get => (string)GetValue(Text1Property);
@@ -156,12 +166,6 @@ namespace CSHUE.Views
         public static readonly DependencyProperty SatProperty =
             DependencyProperty.Register("Sat", typeof(double), typeof(LightSettingCell));
 
-        public Color Color { get; set; }
-
-        public int Index { get; set; }
-
-        public byte Brightness { get; set; }
-
         #endregion
 
         #region Globals
@@ -171,6 +175,8 @@ namespace CSHUE.Views
         private bool _movingPicker;
 
         private bool _approximate;
+
+        private bool _isWindowOpened = true;
 
         #endregion
 
@@ -241,7 +247,6 @@ namespace CSHUE.Views
 
         #region Initializers
 
-        private bool _isWindowOpened = true;
         public ColorPicker()
         {
             InitializeComponent();

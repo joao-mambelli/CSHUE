@@ -10,6 +10,14 @@ namespace CSHUE.Controls
     /// </summary>
     public partial class LightStateCell
     {
+        #region Properties
+
+        public string UniqueId { get; set; }
+
+        #endregion
+
+        #region Dependency Properties
+
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -31,6 +39,8 @@ namespace CSHUE.Controls
             get => (Color)GetValue(ColorProperty);
             set => SetValue(ColorProperty, value);
         }
+        public static readonly DependencyProperty ColorProperty =
+            DependencyProperty.Register("Color", typeof(Color), typeof(LightStateCell));
 
         public double Brightness
         {
@@ -40,14 +50,15 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty BrightnessProperty =
             DependencyProperty.Register("Brightness", typeof(double), typeof(LightStateCell));
 
-        public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(Color), typeof(LightStateCell));
+        #endregion
+
+        #region Initializers
 
         public LightStateCell()
         {
             InitializeComponent();
         }
 
-        public string UniqueId { get; set; }
+        #endregion
     }
 }

@@ -4,6 +4,8 @@ namespace CSHUE.ViewModels
 {
     public class HubSelectorViewModel : BaseViewModel
     {
+        #region Properties
+
         private ObservableCollection<HubInfoCellViewModel> _list;
         public ObservableCollection<HubInfoCellViewModel> List
         {
@@ -14,5 +16,7 @@ namespace CSHUE.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
     }
 }

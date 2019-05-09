@@ -2,6 +2,8 @@
 {
     public class HubInfoCellViewModel : BaseViewModel
     {
+        #region Properties
+
         private string _text;
         public string Text
         {
@@ -34,5 +36,7 @@
                 OnPropertyChanged();
             }
         }
+
+        #endregion
     }
 }

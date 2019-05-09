@@ -8,6 +8,8 @@ namespace CSHUE.Helpers
 {
     public class ColorWheel
     {
+        #region Methods
+
         public Color PickWheelPixelColor(int x, int y, int radius)
         {
             var distanceFromCenter = Math.Sqrt(Math.Pow(x - radius, 2) + Math.Pow(y - radius, 2));
@@ -43,7 +45,7 @@ namespace CSHUE.Helpers
             var dpiY = 96;
             if (dpiXProperty != null && dpiYProperty != null)
             {
-                dpiX = (int) dpiXProperty.GetValue(null, null);
+                dpiX = (int)dpiXProperty.GetValue(null, null);
                 dpiY = (int)dpiYProperty.GetValue(null, null);
             }
 
@@ -212,6 +214,8 @@ namespace CSHUE.Helpers
 
             return img;
         }
+
+        #endregion
     }
 }
 

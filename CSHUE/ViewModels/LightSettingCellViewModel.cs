@@ -6,6 +6,8 @@ namespace CSHUE.ViewModels
 {
     public class LightSettingCellViewModel : BaseViewModel
     {
+        #region Properties
+
         public LightSettingCell Content { get; set; }
 
         public string GroupName { get; set; } = "";
@@ -105,5 +107,7 @@ namespace CSHUE.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
     }
 }

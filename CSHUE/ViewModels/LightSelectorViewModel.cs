@@ -9,7 +9,35 @@ namespace CSHUE.ViewModels
 {
     public class LightSelectorViewModel : BaseViewModel
     {
+        #region Properties
+
         public bool IsColorPickerOpened { get; set; }
+
+        private ObservableCollection<LightSettingCellViewModel> _list;
+        public ObservableCollection<LightSettingCellViewModel> List
+        {
+            get => _list;
+            set
+            {
+                _list = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Methods
 
         public async void SetLightsAsync()
         {
@@ -35,26 +63,6 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private ObservableCollection<LightSettingCellViewModel> _list;
-        public ObservableCollection<LightSettingCellViewModel> List
-        {
-            get => _list;
-            set
-            {
-                _list = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _title;
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
+        #endregion
     }
 }

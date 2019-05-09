@@ -11,16 +11,36 @@ namespace CSHUE.Cultures
     /// </summary>
     public class CultureResources
     {
+        #region Fields
+
         private static readonly bool BFoundInstalledCultures;
-        /// <summary>
-        /// List of available cultures, enumerated at startup
-        /// </summary>
-        public static List<CultureInfo> SupportedCultures { get; } = new List<CultureInfo>();
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// List of available cultures, enumerated at startup
         /// </summary>
-        public static List<string> SupportedCulturesFullNames { get; } = new List<string>();
+        public static List<CultureInfo> SupportedCultures => new List<CultureInfo>();
+
+        /// <summary>
+        /// List of available cultures, enumerated at startup
+        /// </summary>
+        public static List<string> SupportedCulturesFullNames => new List<string>();
+
+        private static ObjectDataProvider _mProvider;
+        public static ObjectDataProvider ResourceProvider => _mProvider ?? (_mProvider = (ObjectDataProvider)System.Windows.Application.Current.FindResource("Resources"));
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The Resources ObjectDataProvider uses this method to get an instance of the WPFLocalize.Properties.Resources class
+        /// </summary>
+        /// <returns></returns>
+        public Resources GetResourceInstance() => new Resources();
 
         static CultureResources()
         {
@@ -47,18 +67,6 @@ namespace CSHUE.Cultures
         }
 
         /// <summary>
-        /// The Resources ObjectDataProvider uses this method to get an instance of the WPFLocalize.Properties.Resources class
-        /// </summary>
-        /// <returns></returns>
-        public Resources GetResourceInstance()
-        {
-            return new Resources();
-        }
-
-        private static ObjectDataProvider _mProvider;
-        public static ObjectDataProvider ResourceProvider => _mProvider ?? (_mProvider = (ObjectDataProvider) System.Windows.Application.Current.FindResource("Resources"));
-
-        /// <summary>
         /// Change the current culture used in the application.
         /// If the desired culture is available all localized elements are updated.
         /// </summary>
@@ -69,5 +77,7 @@ namespace CSHUE.Cultures
             Resources.Culture = culture;
             ResourceProvider.Refresh();
         }
+
+        #endregion
     }
 }

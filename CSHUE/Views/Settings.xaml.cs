@@ -19,7 +19,13 @@ namespace CSHUE.Views
     /// </summary>
     public partial class Settings
     {
+        #region Fields
+
         public SettingsViewModel ViewModel = new SettingsViewModel();
+
+        #endregion
+
+        #region Initializers
 
         public Settings()
         {
@@ -32,6 +38,10 @@ namespace CSHUE.Views
 
             Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
         }
+
+        #endregion
+
+        #region Events Handlers
 
         private void Default_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -116,11 +126,6 @@ namespace CSHUE.Views
                 ViewModel.RemoveStartup();
 
             Save(sender, e);
-        }
-
-        private void Save(object sender, RoutedEventArgs routedEventArgs)
-        {
-            Properties.Settings.Default.Save();
         }
 
         private async void Button_OnClick(object sender, RoutedEventArgs e)
@@ -211,7 +216,7 @@ namespace CSHUE.Views
                 brightnessProperty = Properties.Settings.Default.BombBlink;
             }
 
-            _lightsBackup = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+            ViewModel.LightsBackup = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
             new LightSelector(title)
             {
                 AllLights = allLights,
@@ -219,33 +224,11 @@ namespace CSHUE.Views
                 BrightnessProperty = brightnessProperty,
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
             }.ShowDialog();
-            RestoreLights();
+            ViewModel.RestoreLights();
 
             ViewModel.MainWindowViewModel.SettingsPage.ViewModel.UpdateGradients();
 
             Save(sender, e);
-        }
-
-        private List<Light> _lightsBackup;
-        private async void RestoreLights()
-        {
-            if (_lightsBackup == null) return;
-
-            for (var i = 0; i < _lightsBackup.Count; i++)
-            {
-                if (_lightsBackup.ElementAt(i).State.IsReachable != true) continue;
-
-                var command = new LightCommand
-                {
-                    On = _lightsBackup.ElementAt(i).State.On,
-                    Hue = _lightsBackup.ElementAt(i).State.Hue,
-                    Saturation = _lightsBackup.ElementAt(i).State.Saturation,
-                    Brightness = _lightsBackup.ElementAt(i).State.Brightness
-                };
-
-                await MainWindowViewModel.Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
-                    .ConfigureAwait(false);
-            }
         }
 
         private void ShowSystemTrayIconCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
@@ -256,5 +239,12 @@ namespace CSHUE.Views
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
+
+        private void Save(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        #endregion
     }
 }

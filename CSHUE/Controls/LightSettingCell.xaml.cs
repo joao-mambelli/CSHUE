@@ -2,7 +2,6 @@
 using System.Windows;
 using CSHUE.ViewModels;
 using CSHUE.Views;
-
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Controls
@@ -12,12 +11,22 @@ namespace CSHUE.Controls
     /// </summary>
     public partial class LightSettingCell
     {
+        #region Fields
+
         public LightSelectorViewModel LightSelectorViewModel = null;
+
+        #endregion
+
+        #region Initializers
 
         public LightSettingCell()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Events Handlers
 
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
@@ -37,5 +46,7 @@ namespace CSHUE.Controls
             if (colorPicker.DialogResult == true)
                 ((LightSettingCellViewModel)DataContext).Color = colorPicker.Color;
         }
+
+        #endregion
     }
 }

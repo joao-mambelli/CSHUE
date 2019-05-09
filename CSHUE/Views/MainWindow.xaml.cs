@@ -28,7 +28,121 @@ namespace CSHUE.Views
     /// </summary>
     public partial class MainWindow
     {
+        #region Low Level Window Hook
+
+        private IntPtr WindowProc(IntPtr hwnd,
+            int msg,
+            IntPtr wParam,
+            IntPtr lParam,
+            ref bool handled)
+        {
+            if (msg == 0x0024)
+                WmGetMinMaxInfo(lParam);
+            if (msg == NativeMethods.WmShowme)
+                ShowMe();
+            return IntPtr.Zero;
+        }
+
+        private void WmGetMinMaxInfo(IntPtr lParam)
+        {
+            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(Window).Handle).WorkingArea.Height;
+            GetCursorPos(out var lMousePosition);
+            var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
+            var lPrimaryScreenInfo = new Monitorinfo();
+            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false) return;
+            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
+            var lMmi = (Minmaxinfo)Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
+            if (lPrimaryScreen.Equals(lCurrentScreen))
+            {
+                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
+                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcWork.Top;
+                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcWork.Right - lPrimaryScreenInfo.rcWork.Left;
+                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcWork.Bottom - lPrimaryScreenInfo.rcWork.Top;
+            }
+            else
+            {
+                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcMonitor.Left;
+                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcMonitor.Top;
+                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcMonitor.Right - lPrimaryScreenInfo.rcMonitor.Left;
+                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcMonitor.Bottom - lPrimaryScreenInfo.rcMonitor.Top;
+            }
+
+            Marshal.StructureToPtr(lMmi, lParam, true);
+        }
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetCursorPos(out Point lpPoint);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr MonitorFromPoint(Point pt, MonitorOptions dwFlags);
+
+        private enum MonitorOptions : uint
+        {
+            //MonitorDefaulttonull = 0x00000000,
+            MonitorDefaulttoprimary = 0x00000001,
+            MonitorDefaulttonearest = 0x00000002
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool GetMonitorInfo(IntPtr hMonitor, Monitorinfo lpmi);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Point
+        {
+            public int X;
+            public int Y;
+
+            public Point(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct Minmaxinfo
+        {
+            private readonly Point ptReserved;
+            public Point ptMaxSize;
+            public Point ptMaxPosition;
+            private readonly Point ptMinTrackSize;
+            private readonly Point ptMaxTrackSize;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        private class Monitorinfo
+        {
+            // ReSharper disable once UnusedMember.Local
+            private readonly int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
+            public readonly Rect rcMonitor = new Rect();
+            public readonly Rect rcWork = new Rect();
+#pragma warning disable 169
+#pragma warning disable 414
+            private readonly int dwFlags = 0;
+#pragma warning restore 414
+#pragma warning restore 169
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Rect
+        {
+            public int Left, Top, Right, Bottom;
+        }
+
+        #endregion
+
+        #region Fields
+
         public readonly MainWindowViewModel ViewModel = new MainWindowViewModel();
+
+        private bool _buttonClickable;
+        private bool? _isModeDark;
+        private bool? _isTransparencyTrue;
+
+        #endregion
+
+        #region Initializers
 
         public MainWindow()
         {
@@ -158,119 +272,9 @@ namespace CSHUE.Views
                 WindowState = WindowState.Maximized;
         }
 
-        private IntPtr WindowProc(IntPtr hwnd,
-            int msg,
-            IntPtr wParam,
-            IntPtr lParam,
-            ref bool handled)
-        {
-            if (msg == 0x0024)
-                WmGetMinMaxInfo(lParam);
-            if (msg == NativeMethods.WmShowme)
-                ShowMe();
-            return IntPtr.Zero;
-        }
+        #endregion
 
-        private void ShowMe()
-        {
-            Show();
-            if (WindowState == WindowState.Minimized)
-                WindowState = WindowState.Normal;
-            var top = Topmost;
-            Topmost = true;
-            Topmost = top;
-        }
-
-        private void WmGetMinMaxInfo(IntPtr lParam)
-        {
-            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(Window).Handle).WorkingArea.Height;
-            GetCursorPos(out var lMousePosition);
-            var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
-            var lPrimaryScreenInfo = new Monitorinfo();
-            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false) return;
-            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
-            var lMmi = (Minmaxinfo) Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
-            if (lPrimaryScreen.Equals(lCurrentScreen))
-            {
-                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
-                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcWork.Top;
-                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcWork.Right - lPrimaryScreenInfo.rcWork.Left;
-                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcWork.Bottom - lPrimaryScreenInfo.rcWork.Top;
-            }
-            else
-            {
-                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcMonitor.Left;
-                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcMonitor.Top;
-                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcMonitor.Right - lPrimaryScreenInfo.rcMonitor.Left;
-                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcMonitor.Bottom - lPrimaryScreenInfo.rcMonitor.Top;
-            }
-
-            Marshal.StructureToPtr(lMmi, lParam, true);
-        }
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool GetCursorPos(out Point lpPoint);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr MonitorFromPoint(Point pt, MonitorOptions dwFlags);
-
-        private enum MonitorOptions : uint
-        {
-            //MonitorDefaulttonull = 0x00000000,
-            MonitorDefaulttoprimary = 0x00000001,
-            MonitorDefaulttonearest = 0x00000002
-        }
-
-        [DllImport("user32.dll")]
-        private static extern bool GetMonitorInfo(IntPtr hMonitor, Monitorinfo lpmi);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct Point
-        {
-            public int X;
-            public int Y;
-
-            public Point(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct Minmaxinfo
-        {
-            private readonly Point ptReserved;
-            public Point ptMaxSize;
-            public Point ptMaxPosition;
-            private readonly Point ptMinTrackSize;
-            private readonly Point ptMaxTrackSize;
-        }
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        private class Monitorinfo
-        {
-            // ReSharper disable once UnusedMember.Local
-            private readonly int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
-            public readonly Rect rcMonitor = new Rect();
-            public readonly Rect rcWork = new Rect();
-            #pragma warning disable 169
-            #pragma warning disable 414
-            private readonly int dwFlags = 0;
-            #pragma warning restore 414
-            #pragma warning restore 169
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct Rect
-        {
-            public int Left, Top, Right, Bottom;
-        }
-
-        private bool _buttonClickable;
-        private bool? _isModeDark;
-        private bool? _isTransparencyTrue;
+        #region Events Handlers
 
         private void PreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
         {
@@ -343,7 +347,7 @@ namespace CSHUE.Views
 
         private void Control_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Grid) sender).ClearValue(BackgroundProperty);
+            ((Grid)sender).ClearValue(BackgroundProperty);
             _buttonClickable = false;
         }
 
@@ -354,7 +358,7 @@ namespace CSHUE.Views
 
         private void Control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ((Grid) sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
+            ((Grid)sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
                 ? Color.FromArgb(102, 255, 255, 255)
                 : Color.FromArgb(102, 0, 0, 0));
             _buttonClickable = true;
@@ -363,46 +367,34 @@ namespace CSHUE.Views
         private void Control_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (!_buttonClickable) return;
-            ((Grid) sender).ClearValue(BackgroundProperty);
+            ((Grid)sender).ClearValue(BackgroundProperty);
             ViewModel.Navigate(Page, sender);
-            UpdateIndicator(((Grid) sender).Name);
-        }
-
-        public void UpdateIndicator(string name)
-        {
-            foreach (var f in Menus.Children.OfType<StackPanel>())
-                foreach (var g in f.Children.OfType<Grid>())
-                    foreach (var h in g.Children.OfType<StackPanel>())
-                        foreach (var i in h.Children.OfType<Grid>())
-                            if (i.Name == name + "Indicator")
-                                i.Visibility = Visibility.Visible;
-                            else if (i.Name.Contains("Indicator"))
-                                i.Visibility = Visibility.Hidden;
+            UpdateIndicator(((Grid)sender).Name);
         }
 
         private void TopControls_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _buttonClickable = true;
-            if (((Grid) sender).Name == "CloseButton")
+            if (((Grid)sender).Name == "CloseButton")
             {
-                ((Grid) sender).Background = new SolidColorBrush(Color.FromRgb(241, 112, 123));
-                if (VisualTreeHelper.GetChild((Grid) sender, 0) is PackIcon child)
+                ((Grid)sender).Background = new SolidColorBrush(Color.FromRgb(241, 112, 123));
+                if (VisualTreeHelper.GetChild((Grid)sender, 0) is PackIcon child)
                     child.Foreground = new SolidColorBrush(Colors.Black);
             }
             else
-                ((Grid) sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentDark1);
+                ((Grid)sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentDark1);
         }
 
         private void TopControls_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (!_buttonClickable)
                 return;
-            GetType().GetMethod(((Grid) sender).Name + "_Click")?.Invoke(this, null);
+            GetType().GetMethod(((Grid)sender).Name + "_Click")?.Invoke(this, null);
         }
 
         private static void TopControls_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((Grid) sender).Background = ((Grid) sender).Name == "CloseButton"
+            ((Grid)sender).Background = ((Grid)sender).Name == "CloseButton"
                 ? new SolidColorBrush(Color.FromRgb(232, 17, 35))
                 : AccentColors.ImmersiveSystemAccentBrush;
         }
@@ -410,9 +402,9 @@ namespace CSHUE.Views
         private void TopControls_MouseLeave(object sender, MouseEventArgs e)
         {
             _buttonClickable = false;
-            ((Grid) sender).Background = new SolidColorBrush(Colors.Transparent);
-            if (((Grid) sender).Name != "CloseButton") return;
-            if (VisualTreeHelper.GetChild((Grid) sender, 0) is PackIcon child)
+            ((Grid)sender).Background = new SolidColorBrush(Colors.Transparent);
+            if (((Grid)sender).Name != "CloseButton") return;
+            if (VisualTreeHelper.GetChild((Grid)sender, 0) is PackIcon child)
                 child.ClearValue(ForegroundProperty);
         }
 
@@ -439,7 +431,7 @@ namespace CSHUE.Views
                         : 4)
                 });
 
-            ((Path) Resources["MaximizeRestorePath"]).Data = Geometry.Parse(WindowState == WindowState.Maximized
+            ((Path)Resources["MaximizeRestorePath"]).Data = Geometry.Parse(WindowState == WindowState.Maximized
                 ? "M 0.5 2.5 L 7.5 2.5 M 0.5 2.5 L 0.5 9.5 M 0.5 9.5 L 7.5 9.5 M 7.5 2.5 L 7.5 9.5 M 2.5 0.5 L 9.5 0.5 M 9.5 0.5 L 9.5 7.5 M 2.5 0.5 L 2.5 2.5 M 7.5 7.5 L 9.5 7.5"
                 : "M 0.5 0.5 L 9.5 0.5 M 0.5 0.5 L 0.5 9.5 M 0.5 9.5 L 9.5 9.5 M 9.5 0.5 L 9.5 9.5");
 
@@ -540,5 +532,33 @@ namespace CSHUE.Views
         {
             ViewModel.RunCsgo();
         }
+
+        #endregion
+
+        #region Methods
+
+        private void ShowMe()
+        {
+            Show();
+            if (WindowState == WindowState.Minimized)
+                WindowState = WindowState.Normal;
+            var top = Topmost;
+            Topmost = true;
+            Topmost = top;
+        }
+
+        public void UpdateIndicator(string name)
+        {
+            foreach (var f in Menus.Children.OfType<StackPanel>())
+            foreach (var g in f.Children.OfType<Grid>())
+            foreach (var h in g.Children.OfType<StackPanel>())
+            foreach (var i in h.Children.OfType<Grid>())
+                if (i.Name == name + "Indicator")
+                    i.Visibility = Visibility.Visible;
+                else if (i.Name.Contains("Indicator"))
+                    i.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
     }
 }

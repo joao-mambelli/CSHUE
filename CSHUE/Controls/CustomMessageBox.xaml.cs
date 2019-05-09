@@ -9,6 +9,14 @@ namespace CSHUE.Controls
     /// </summary>
     public partial class CustomMessageBox
     {
+        #region Properties
+
+        public string Folder { get; set; }
+
+        #endregion
+
+        #region Dependency Properties
+
         public string Text1
         {
             get => (string)GetValue(Text1Property);
@@ -57,10 +65,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty Button1OpenFolderVisibilityProperty =
             DependencyProperty.Register("Button1OpenFolderVisibility", typeof(Visibility), typeof(CustomMessageBox));
 
-        public CustomMessageBox()
-        {
-            InitializeComponent();
-        }
+        #endregion
+
+        #region Event Handlers
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
@@ -72,6 +79,20 @@ namespace CSHUE.Controls
         {
             DialogResult = false;
             Close();
+        }
+
+        private void ButtonOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Folder);
+        }
+
+        #endregion
+
+        #region Initializers
+
+        public CustomMessageBox()
+        {
+            InitializeComponent();
         }
 
         private void CustomMessageBox_OnLoaded(object sender, RoutedEventArgs e)
@@ -96,11 +117,6 @@ namespace CSHUE.Controls
             }
         }
 
-        private void ButtonOpenFolder_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(Folder);
-        }
-
-        public string Folder { get; set; }
+        #endregion
     }
 }

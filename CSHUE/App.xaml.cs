@@ -10,8 +10,12 @@ namespace CSHUE
     /// </summary>
     public partial class App
     {
+        #region Fields
+
         private static readonly Mutex Mutex = new Mutex(true, "CSHUE");
         public static bool Resetting;
+
+        #endregion
 
         /// <summary>
         /// Application Entry Point.

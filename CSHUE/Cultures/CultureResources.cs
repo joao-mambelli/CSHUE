@@ -22,12 +22,12 @@ namespace CSHUE.Cultures
         /// <summary>
         /// List of available cultures, enumerated at startup
         /// </summary>
-        public static List<CultureInfo> SupportedCultures => new List<CultureInfo>();
+        public static List<CultureInfo> SupportedCultures { get; } = new List<CultureInfo>();
 
         /// <summary>
         /// List of available cultures, enumerated at startup
         /// </summary>
-        public static List<string> SupportedCulturesFullNames => new List<string>();
+        public static List<string> SupportedCulturesFullNames { get; } = new List<string>();
 
         private static ObjectDataProvider _mProvider;
         public static ObjectDataProvider ResourceProvider => _mProvider ?? (_mProvider = (ObjectDataProvider)System.Windows.Application.Current.FindResource("Resources"));

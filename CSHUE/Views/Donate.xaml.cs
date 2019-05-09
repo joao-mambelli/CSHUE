@@ -12,7 +12,13 @@ namespace CSHUE.Views
     /// </summary>
     public partial class Donate
     {
+        #region Fields
+
         public DonateViewModel ViewModel = new DonateViewModel();
+
+        #endregion
+
+        #region Initializers
 
         public Donate()
         {
@@ -21,6 +27,10 @@ namespace CSHUE.Views
 
             ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
         }
+
+        #endregion
+
+        #region Events Handlers
 
         private void Donate_Click(object sender,
             EventArgs e)
@@ -44,5 +54,7 @@ namespace CSHUE.Views
 
             Process.Start(url);
         }
+
+        #endregion
     }
 }

@@ -5,6 +5,8 @@ namespace CSHUE.Helpers
 {
     internal class ColorConverters
     {
+        #region Methods
+
         public static Color Hs(double hue, double sat)
         {
             var x = sat * (1 - Math.Abs(hue / (Math.PI / 3) % 2.0 - 1));
@@ -42,5 +44,7 @@ namespace CSHUE.Helpers
         }
 
         public static float GetHue(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B).GetHue();
+
+        #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace CSHUE.Helpers
     public class UniqueLight
     {
         public string Id { get; set; }
-        public SerializableColor Color { get; set; }
+        public Color Color { get; set; }
         public byte Brightness { get; set; }
     }
 
@@ -40,52 +40,8 @@ namespace CSHUE.Helpers
     public class UniqueBrightnessLight
     {
         public string Id { get; set; }
-        public SerializableColor Color { get; set; }
+        public Color Color { get; set; }
         public byte Brightness { get; set; }
         public bool OnlyBrightness { get; set; }
-    }
-
-    /// <summary>
-    /// Represents a color, stored in a way that it can be serialized.
-    /// </summary>
-    public class SerializableColor
-    {
-        /// <summary>
-        /// The red component.
-        /// </summary>
-        public byte Red { get; set; }
-
-        /// <summary>
-        /// The green component.
-        /// </summary>
-        public byte Green { get; set; }
-
-        /// <summary>
-        /// The blue component.
-        /// </summary>
-        public byte Blue { get; set; }
-
-        /// <summary>
-        /// Converts a <see cref="SerializableColor"/> to a <see cref="Color"/>.
-        /// </summary>
-        /// <param name="src">The color to convert.</param>
-        public static implicit operator Color(SerializableColor src)
-        {
-            return Color.FromRgb(src.Red, src.Green, src.Blue);
-        }
-
-        /// <summary>
-        /// Converts a <see cref="Color"/> to a <see cref="SerializableColor"/>.
-        /// </summary>
-        /// <param name="src">The color to convert.</param>
-        public static implicit operator SerializableColor(Color src)
-        {
-            return new SerializableColor
-            {
-                Red = src.R,
-                Green = src.G,
-                Blue = src.B
-            };
-        }
     }
 }

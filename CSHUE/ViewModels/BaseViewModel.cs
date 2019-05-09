@@ -6,6 +6,8 @@ namespace CSHUE.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        #region Properties
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -98,5 +100,7 @@ namespace CSHUE.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
     }
 }

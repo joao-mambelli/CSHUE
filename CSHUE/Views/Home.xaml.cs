@@ -11,7 +11,13 @@ namespace CSHUE.Views
     /// </summary>
     public partial class Home
     {
+        #region Fields
+
         public HomeViewModel ViewModel = new HomeViewModel();
+
+        #endregion
+
+        #region Initializers
 
         public Home()
         {
@@ -24,16 +30,20 @@ namespace CSHUE.Views
         public void StartLightsChecking()
         {
             new Thread(async () =>
-            {
-                while (!ViewModel.MainWindowViewModel.WindowMinimized)
                 {
-                    await ViewModel.RefreshLights();
+                    while (!ViewModel.MainWindowViewModel.WindowMinimized)
+                    {
+                        await ViewModel.RefreshLights();
 
-                    Thread.Sleep(500);
-                }
-            })
-            { IsBackground = true }.Start();
+                        Thread.Sleep(500);
+                    }
+                })
+                { IsBackground = true }.Start();
         }
+
+        #endregion
+
+        #region Events Handlers
 
         private void Retry_Click(object sender, RoutedEventArgs e)
         {
@@ -44,5 +54,7 @@ namespace CSHUE.Views
         {
             ViewModel.MainWindowViewModel.RunCsgo();
         }
+
+        #endregion
     }
 }

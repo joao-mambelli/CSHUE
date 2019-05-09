@@ -10,7 +10,6 @@ using System.Windows.Media.Imaging;
 using CSHUE.Controls;
 using CSHUE.Helpers;
 using CSHUE.ViewModels;
-
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
@@ -168,7 +167,7 @@ namespace CSHUE.Views
 
         #endregion
 
-        #region Globals
+        #region Fields
 
         public ColorPickerViewModel ViewModel = new ColorPickerViewModel();
 
@@ -180,7 +179,7 @@ namespace CSHUE.Views
 
         #endregion
 
-        #region Event Handlers
+        #region Events Handlers
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {

@@ -67,7 +67,7 @@ namespace CSHUE.Controls
 
         #endregion
 
-        #region Event Handlers
+        #region Events Handlers
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {

@@ -12,7 +12,13 @@ namespace CSHUE.Views
     /// </summary>
     public partial class HubSelector
     {
+        #region Fields
+
         public HubSelectorViewModel ViewModel = new HubSelectorViewModel();
+
+        #endregion
+
+        #region Initializers
 
         public HubSelector(List<HubInfoCellViewModel> list)
         {
@@ -24,7 +30,15 @@ namespace CSHUE.Views
             ViewModel.List = new ObservableCollection<HubInfoCellViewModel>(list);
         }
 
+        #endregion
+
+        #region Properties
+
         public string SelectedBridge { get; set; }
+
+        #endregion
+
+        #region Events Handlers
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
@@ -39,5 +53,7 @@ namespace CSHUE.Views
             DialogResult = true;
             Close();
         }
+
+        #endregion
     }
 }

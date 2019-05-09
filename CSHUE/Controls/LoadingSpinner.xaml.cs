@@ -13,40 +13,7 @@ namespace CSHUE.Controls
     /// </summary>
     public partial class LoadingSpinner
     {
-        public LoadingSpinner()
-        {
-            InitializeComponent();
-        }
-
-        public SpinnerStates State
-        {
-            get => (SpinnerStates)GetValue(StateProperty);
-            set => SetValue(StateProperty, value);
-        }
-        public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register(
-                "State",
-                typeof(SpinnerStates),
-                typeof(LoadingSpinner),
-                new PropertyMetadata(SpinnerStates.Disabled, OnStatePropertyChanged));
-
-        public enum SpinnerStates
-        {
-            Loading,
-            Hanging,
-            Disabled
-        }
-
-        public double AngleCanvas
-        {
-            get => (double)GetValue(AngleCanvasProperty);
-            set
-            {
-                SetValue(AngleCanvasProperty, value);
-                SetValue(AngleCanvasHangingProperty, value - 360);
-                SetValue(AngleCanvasLoadingProperty, value + 1500);
-            }
-        }
+        #region Dependency Properties
 
         public static readonly DependencyProperty AngleCanvasProperty =
             DependencyProperty.Register("AngleCanvas", typeof(double), typeof(LoadingSpinner));
@@ -141,70 +108,112 @@ namespace CSHUE.Controls
 
         public KeyTime KeyTime
         {
-            get => (KeyTime) GetValue(KeyTimeProperty);
+            get => (KeyTime)GetValue(KeyTimeProperty);
             set => SetValue(KeyTimeProperty, value);
         }
         public static readonly DependencyProperty KeyTimeProperty =
             DependencyProperty.Register("KeyTime", typeof(KeyTime), typeof(LoadingSpinner));
 
+        public SpinnerStates State
+        {
+            get => (SpinnerStates)GetValue(StateProperty);
+            set => SetValue(StateProperty, value);
+        }
+        public static readonly DependencyProperty StateProperty =
+            DependencyProperty.Register(
+                "State",
+                typeof(SpinnerStates),
+                typeof(LoadingSpinner),
+                new PropertyMetadata(SpinnerStates.Disabled, OnStatePropertyChanged));
+
+        #endregion
+
+        #region Properties
+
+        public double AngleCanvas
+        {
+            get => (double)GetValue(AngleCanvasProperty);
+            set
+            {
+                SetValue(AngleCanvasProperty, value);
+                SetValue(AngleCanvasHangingProperty, value - 360);
+                SetValue(AngleCanvasLoadingProperty, value + 1500);
+            }
+        }
+
+        #endregion
+
+        #region Enums
+
+        public enum SpinnerStates
+        {
+            Loading,
+            Hanging,
+            Disabled
+        }
+
+        #endregion
+
+        #region Events Handlers
+
         private static void OnStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LoadingSpinner)d).AngleCanvas = ((LoadingSpinner) d).RotateCanvas.Angle;
+            ((LoadingSpinner)d).AngleCanvas = ((LoadingSpinner)d).RotateCanvas.Angle;
             ((LoadingSpinner)d).AnglePath1 = ((LoadingSpinner)d).RotatePath.Angle;
             ((LoadingSpinner)d).AnglePath2 = ((LoadingSpinner)d).RotatePath.Angle + 276;
             ((LoadingSpinner)d).AnglePath3 = ((LoadingSpinner)d).RotatePath.Angle + 552;
             ((LoadingSpinner)d).AnglePath4 = ((LoadingSpinner)d).RotatePath.Angle + 828;
             ((LoadingSpinner)d).AnglePath5 = ((LoadingSpinner)d).RotatePath.Angle + 1104;
             ((LoadingSpinner)d).AnglePath6 = ((LoadingSpinner)d).RotatePath.Angle + 1380;
-            ((LoadingSpinner) d).StartPoint = ((LoadingSpinner) d).Arc.Point;
+            ((LoadingSpinner)d).StartPoint = ((LoadingSpinner)d).Arc.Point;
 
             switch ((SpinnerStates)e.NewValue)
             {
                 case SpinnerStates.Loading:
-                {
-                    ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > 25);
-
-                    if (((LoadingSpinner)d).Arc.Point.X >= 25)
                     {
-                        ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(0);
-                    }
-                    else
-                    {
-                        var degree = 270 - -1 * (Math.Asin(-1 * ((((LoadingSpinner) d).Arc.Point.Y - 25) / 25)) * 180 / Math.PI - 90);
-                        var mili = (int)Math.Round(0.7 / degree * (degree - 90) * 1000);
+                        ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > 25);
 
-                        ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(mili);
-                    }
+                        if (((LoadingSpinner)d).Arc.Point.X >= 25)
+                        {
+                            ((LoadingSpinner)d).KeyTime = TimeSpan.FromMilliseconds(0);
+                        }
+                        else
+                        {
+                            var degree = 270 - -1 * (Math.Asin(-1 * ((((LoadingSpinner)d).Arc.Point.Y - 25) / 25)) * 180 / Math.PI - 90);
+                            var mili = (int)Math.Round(0.7 / degree * (degree - 90) * 1000);
+
+                            ((LoadingSpinner)d).KeyTime = TimeSpan.FromMilliseconds(mili);
+                        }
 
                     ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
 
-                    VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
-                    break;
-                }
+                        VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
+                        break;
+                    }
                 case SpinnerStates.Hanging:
-                {
-                    if (((LoadingSpinner)d).Arc.Point.X > 25)
                     {
-                        ((LoadingSpinner)d).SweepDirection = SweepDirection.Clockwise;
-                        ((LoadingSpinner)d).IsLargeArc = true;
-                    }
-                    else
-                    {
-                        ((LoadingSpinner)d).SweepDirection = SweepDirection.Counterclockwise;
-                        ((LoadingSpinner)d).IsLargeArc = false;
-                    }
+                        if (((LoadingSpinner)d).Arc.Point.X > 25)
+                        {
+                            ((LoadingSpinner)d).SweepDirection = SweepDirection.Clockwise;
+                            ((LoadingSpinner)d).IsLargeArc = true;
+                        }
+                        else
+                        {
+                            ((LoadingSpinner)d).SweepDirection = SweepDirection.Counterclockwise;
+                            ((LoadingSpinner)d).IsLargeArc = false;
+                        }
 
-                    if (((LoadingSpinner)d).StartPoint.Y == 50)
-                    {
-                        ((LoadingSpinner)d).StartPoint = new Point(25.00001, 49.99999);
-                    }
+                        if (((LoadingSpinner)d).StartPoint.Y == 50)
+                        {
+                            ((LoadingSpinner)d).StartPoint = new Point(25.00001, 49.99999);
+                        }
 
                     ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseMediumColorBrush");
-                    ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
+                        ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
 
-                    VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
-                    break;
-                }
+                        VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
+                        break;
+                    }
                 case SpinnerStates.Disabled:
                     VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
                     break;
@@ -213,5 +222,16 @@ namespace CSHUE.Controls
                     break;
             }
         }
+
+        #endregion
+
+        #region Initializers
+
+        public LoadingSpinner()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
     }
 }

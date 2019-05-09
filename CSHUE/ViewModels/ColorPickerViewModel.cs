@@ -8,6 +8,8 @@ namespace CSHUE.ViewModels
 {
     public class ColorPickerViewModel : BaseViewModel
     {
+        #region Methods
+
         public async void SetLightAsync(Color color, byte brightness, int index)
         {
             var command = new LightCommand
@@ -19,7 +21,9 @@ namespace CSHUE.ViewModels
                 TransitionTime = TimeSpan.FromMilliseconds(400)
             };
 
-            await MainWindowViewModel.Client.SendCommandAsync(command, new List<string> {$"{index}"}).ConfigureAwait(false);
+            await MainWindowViewModel.Client.SendCommandAsync(command, new List<string> { $"{index}" }).ConfigureAwait(false);
         }
+
+        #endregion
     }
 }

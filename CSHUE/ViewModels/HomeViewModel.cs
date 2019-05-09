@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.Helpers;
-using CSHUE.Controls;
 
 namespace CSHUE.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        public MainWindowViewModel MainWindowViewModel = null;
+        #region Properties
 
         private Visibility _loadingVisibility = Visibility.Hidden;
         public Visibility LoadingVisibility
@@ -122,6 +122,28 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private ObservableCollection<LightStateCell> _list = new ObservableCollection<LightStateCell>();
+        public ObservableCollection<LightStateCell> List
+        {
+            get =>
+                _list;
+            set
+            {
+                _list = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Fields
+
+        public MainWindowViewModel MainWindowViewModel = null;
+
+        #endregion
+
+        #region Methods
+
         public void SetWarningNoHub()
         {
             WarningNoHub = Visibility.Visible;
@@ -221,18 +243,6 @@ namespace CSHUE.ViewModels
             InProcess = Visibility.Collapsed;
         }
 
-        private ObservableCollection<LightStateCell> _list = new ObservableCollection<LightStateCell>();
-        public ObservableCollection<LightStateCell> List
-        {
-            get =>
-                _list;
-            set
-            {
-                _list = value;
-                OnPropertyChanged();
-            }
-        }
-
         public async Task RefreshLights()
         {
             if (MainWindowViewModel.Client == null) return;
@@ -254,10 +264,10 @@ namespace CSHUE.ViewModels
                         existingElement.On = l.State.On;
                         existingElement.Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")";
                         existingElement.Color = l.State.On
-                            ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2,
-                                (double) l.State.Saturation / 255)
+                            ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
+                                (double)l.State.Saturation / 255)
                             : Colors.Black;
-                        existingElement.Brightness = (double) (l.State.Brightness + 1) / 255;
+                        existingElement.Brightness = (double)(l.State.Brightness + 1) / 255;
                     }
                     else
                     {
@@ -278,5 +288,7 @@ namespace CSHUE.ViewModels
 
             List = new ObservableCollection<LightStateCell>(tempList);
         }
+
+        #endregion
     }
 }

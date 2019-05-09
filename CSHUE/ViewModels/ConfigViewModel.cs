@@ -12,6 +12,14 @@ namespace CSHUE.ViewModels
 {
     public class ConfigViewModel : BaseViewModel
     {
+        #region Properties
+
+        private string FailText { get; set; }
+
+        #endregion
+
+        #region Fields
+
         public MainWindowViewModel MainWindowViewModel = null;
 
         private readonly string[] _lines =
@@ -37,7 +45,9 @@ namespace CSHUE.ViewModels
             "}"
         };
 
-        private string FailText { get; set; }
+        #endregion
+
+        #region Methods
 
         public void CreateConfigFile()
         {
@@ -270,5 +280,7 @@ namespace CSHUE.ViewModels
             MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
             MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
         }
+
+        #endregion
     }
 }

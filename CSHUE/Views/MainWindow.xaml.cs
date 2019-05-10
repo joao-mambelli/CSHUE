@@ -45,7 +45,7 @@ namespace CSHUE.Views
 
         private void WmGetMinMaxInfo(IntPtr lParam)
         {
-            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(Window).Handle).WorkingArea.Height;
+            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle).WorkingArea.Height;
             GetCursorPos(out var lMousePosition);
             var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
             var lPrimaryScreenInfo = new Monitorinfo();
@@ -285,7 +285,7 @@ namespace CSHUE.Views
                 {
                     if (key == null)
                     {
-                        Menus.Background = new SolidColorBrush(Color.FromRgb(230, 230, 230));
+                        ViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
                         return;
                     }
                     var changeMenuColor = false;
@@ -308,16 +308,16 @@ namespace CSHUE.Views
 
                     if (key.GetValue("EnableTransparency") == null)
                     {
-                        Menus.SetResourceReference(BackgroundProperty, "SystemAltMediumColorBrush");
+                        ViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
                         return;
                     }
                     var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
                     if (_isTransparencyTrue != true && transparency)
-                        Menus.SetResourceReference(BackgroundProperty, "SystemAltMediumColorBrush");
+                        ViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
                     else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
-                        Menus.Background = new SolidColorBrush(_isModeDark == true
+                        ViewModel.BackgroundColor = _isModeDark == true
                             ? Color.FromRgb(31, 31, 31)
-                            : Color.FromRgb(230, 230, 230));
+                            : Color.FromRgb(230, 230, 230);
                     _isTransparencyTrue = transparency;
                 }
             }
@@ -423,7 +423,7 @@ namespace CSHUE.Views
         protected sealed override void OnStateChanged(EventArgs e)
         {
             BorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 1);
-            WindowChrome.SetWindowChrome(Window,
+            WindowChrome.SetWindowChrome(this,
                 new WindowChrome
                 {
                     ResizeBorderThickness = new Thickness(WindowState == WindowState.Maximized

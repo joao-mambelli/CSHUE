@@ -334,7 +334,7 @@
 
                     <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}" Margin="0,15,0,4"/>
                     <ComboBox Margin="0,4,0,9"
-                              Name="ComboBoxLanguage"
+                              x:Name="ComboBoxLanguage"
                               Width="280"
                               HorizontalAlignment="Left"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"

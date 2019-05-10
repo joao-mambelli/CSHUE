@@ -43,8 +43,7 @@ namespace CSHUE.Controls
             colorPicker.ShowDialog();
             LightSelectorViewModel.IsColorPickerOpened = false;
 
-            if (colorPicker.DialogResult == true)
-                ((LightSettingCellViewModel)DataContext).Color = colorPicker.Color;
+            ((LightSettingCellViewModel)DataContext).Color = colorPicker.Color;
         }
 
         #endregion

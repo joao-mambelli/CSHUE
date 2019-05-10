@@ -61,7 +61,6 @@
                 </Grid.ColumnDefinitions>
 
                 <ListBox ItemsSource="{Binding List}"
-                         x:Name="ListBox"
                          Background="Transparent"
                          BorderThickness="0"
                          Margin="20,0,20,0">

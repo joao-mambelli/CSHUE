@@ -6,11 +6,10 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using CSHUE.Controls;
 using CSHUE.Helpers;
 using CSHUE.ViewModels;
 // ReSharper disable InheritdocConsiderUsage
+// ReSharper disable PossibleLossOfFraction
 
 namespace CSHUE.Views
 {
@@ -41,14 +40,21 @@ namespace CSHUE.Views
             if (MouseMessages.WmLbuttonup == (MouseMessages) wParam)
             {
                 UnhookWindowsHookEx(_hookId);
-                _movingPicker = false;
+                ViewModel.MovingPicker = false;
             }
 
             if (nCode < 0 || MouseMessages.WmMousemove != (MouseMessages) wParam)
                 return CallNextHookEx(_hookId, nCode, wParam, lParam);
             var hookStruct = (Msllhookstruct)Marshal.PtrToStructure(lParam, typeof(Msllhookstruct));
 
-            ChangeHueSat(hookStruct.Position.X, hookStruct.Position.Y, _approximate);
+            ViewModel.ChangeHueSaturation(new System.Windows.Point(
+                hookStruct.Position.X - Left -
+                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
+                ViewModel.ColorWheelSize / 2,
+                hookStruct.Position.Y - Top -
+                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
+                ViewModel.ColorWheelSize / 2),
+                _approximate);
 
             return CallNextHookEx(_hookId, nCode, wParam, lParam);
         }
@@ -105,73 +111,15 @@ namespace CSHUE.Views
 
         public byte Brightness { get; set; }
 
-        #endregion
+        public string Text1 { get; set; }
 
-        #region Dependency Properties
-
-        public string Text1
-        {
-            get => (string)GetValue(Text1Property);
-            set => SetValue(Text1Property, value);
-        }
-        public static readonly DependencyProperty Text1Property =
-            DependencyProperty.Register("Text1", typeof(string), typeof(ColorPicker));
-
-        public string Text2
-        {
-            get => (string)GetValue(Text2Property);
-            set => SetValue(Text2Property, value);
-        }
-        public static readonly DependencyProperty Text2Property =
-            DependencyProperty.Register("Text2", typeof(string), typeof(ColorPicker));
-
-        public WriteableBitmap HueSliderBrush
-        {
-            get => (WriteableBitmap)GetValue(HueSliderBrushProperty);
-            set => SetValue(HueSliderBrushProperty, value);
-        }
-        public static readonly DependencyProperty HueSliderBrushProperty =
-            DependencyProperty.Register("HueSliderBrush", typeof(WriteableBitmap), typeof(ColorPicker));
-
-        public WriteableBitmap SatSliderBrush
-        {
-            get => (WriteableBitmap)GetValue(SatSliderBrushProperty);
-            set => SetValue(SatSliderBrushProperty, value);
-        }
-        public static readonly DependencyProperty SatSliderBrushProperty =
-            DependencyProperty.Register("SatSliderBrush", typeof(WriteableBitmap), typeof(ColorPicker));
-
-        public Thickness MousePosition
-        {
-            get => (Thickness)GetValue(MousePositionProperty);
-            set => SetValue(MousePositionProperty, value);
-        }
-        public static readonly DependencyProperty MousePositionProperty =
-            DependencyProperty.Register("MousePosition", typeof(Thickness), typeof(ColorPicker));
-
-        public double Hue
-        {
-            get => (double)GetValue(HueProperty);
-            set => SetValue(HueProperty, value);
-        }
-        public static readonly DependencyProperty HueProperty =
-            DependencyProperty.Register("Hue", typeof(double), typeof(LightSettingCell));
-
-        public double Sat
-        {
-            get => (double)GetValue(SatProperty);
-            set => SetValue(SatProperty, value);
-        }
-        public static readonly DependencyProperty SatProperty =
-            DependencyProperty.Register("Sat", typeof(double), typeof(LightSettingCell));
+        public string Text2 { get; set; }
 
         #endregion
 
         #region Fields
 
         public ColorPickerViewModel ViewModel = new ColorPickerViewModel();
-
-        private bool _movingPicker;
 
         private bool _approximate;
 
@@ -183,44 +131,15 @@ namespace CSHUE.Views
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
             _isWindowOpened = false;
             Close();
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            Color = ViewModel.Color;
             _isWindowOpened = false;
             Close();
-        }
-
-        private void HueSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Hue = e.NewValue;
-            var bitMap = new ColorWheel().CreateSatImage((int)SatSlider.ActualHeight, e.NewValue);
-            bitMap.Freeze();
-            SatSliderBrush = bitMap;
-
-            if (_movingPicker) return;
-            MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,
-                0, ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-            Color = ColorConverters.Hs(Hue / 360 * 2 * Math.PI, Sat / 100);
-            SelectedColor.Background = new SolidColorBrush(Color);
-        }
-
-        private void SatSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Sat = e.NewValue;
-            var bitMap = new ColorWheel().CreateHueImage((int)HueSlider.ActualHeight, e.NewValue);
-            bitMap.Freeze();
-            HueSliderBrush = bitMap;
-
-            if (_movingPicker) return;
-            MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,
-                0, ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-            Color = ColorConverters.Hs(Hue / 360 * 2 * Math.PI, Sat / 100);
-            SelectedColor.Background = new SolidColorBrush(Color);
         }
 
         private void OutsideColorWheel_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -228,18 +147,28 @@ namespace CSHUE.Views
             _approximate = true;
             _hookId = SetHook(_proc);
 
-            ChangeHueSat((int)Math.Round(PointToScreen(e.GetPosition(this)).X),
-                (int)Math.Round(PointToScreen(e.GetPosition(this)).Y), true);
+            ViewModel.ChangeHueSaturation(new System.Windows.Point(
+                (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
+                ViewModel.ColorWheelSize / 2,
+                (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
+                ViewModel.ColorWheelSize / 2), _approximate);
         }
 
         private void ColorWheel_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             _approximate = false;
             _hookId = SetHook(_proc);
-            _movingPicker = true;
+            ViewModel.MovingPicker = true;
 
-            ChangeHueSat((int)Math.Round(PointToScreen(e.GetPosition(this)).X),
-                (int)Math.Round(PointToScreen(e.GetPosition(this)).Y), false);
+            ViewModel.ChangeHueSaturation(new System.Windows.Point(
+                (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
+                ViewModel.ColorWheelSize / 2,
+                (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
+                ViewModel.ColorWheelSize / 2), _approximate);
         }
 
         #endregion
@@ -249,15 +178,17 @@ namespace CSHUE.Views
         public ColorPicker()
         {
             InitializeComponent();
+            DataContext = ViewModel;
+
             _proc = HookCallback;
 
             new Thread(() =>
             {
                 while (_isWindowOpened && Properties.Settings.Default.PreviewLights)
                 {
-                    ViewModel.SetLightAsync(Color, Brightness, Index);
-
                     Thread.Sleep(500);
+
+                    ViewModel.SetLightAsync(Brightness, Index);
                 }
             })
             { IsBackground = true }.Start();
@@ -266,56 +197,22 @@ namespace CSHUE.Views
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         private void ColorPicker_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ColorWheelBrush.ImageSource = new ColorWheel().CreateWheelImage((int)(ColorWheel.ActualWidth / 2));
-            OutsideColorWheelBrush.ImageSource =
-                new ColorWheel().CreateOutsideWheelImage((int)OutsideColorWheel.ActualWidth / 2,
-                    (int)ColorWheel.ActualWidth / 2);
+            ViewModel.ColorWheelBrush = new ColorWheel().CreateWheelImage(ViewModel.ColorWheelSize / 2);
+            ViewModel.OutsideColorWheelBrush =
+                new ColorWheel().CreateOutsideWheelImage(ViewModel.OutsideColorWheelSize / 2,
+                    ViewModel.ColorWheelSize / 2);
 
-            _movingPicker = true;
-            HueSlider.Value = 360;
-            SatSlider.Value = 100;
-            
-            HueSlider.Value = Math.Round(ColorConverters.GetHue(Color));
-            SatSlider.Value = Math.Round(ColorConverters.GetSaturation(Color) * 100);
+            ViewModel.MovingPicker = true;
+            ViewModel.Hue = Math.Round(ColorConverters.GetHue(Color));
+            ViewModel.Saturation = Math.Round(ColorConverters.GetSaturation(Color) * 100);
+            ViewModel.Color = Color;
+            ViewModel.MovingPicker = false;
 
-            SelectedColor.Background = new SolidColorBrush(Color);
-            _movingPicker = false;
-
-            MousePosition = new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0,
-                0, ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-        }
-
-        #endregion
-
-        #region Methods
-
-        private void ChangeHueSat(int x, int y, bool approximate)
-        {
-            var colorWheelPos = ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0));
-            var colorWheelCenterRelativeMousePosition = new System.Windows.Point(
-                x - Left - colorWheelPos.X - ColorWheel.ActualWidth / 2,
-                y - Top - colorWheelPos.Y - ColorWheel.ActualWidth / 2);
-            var distanceFromCenter = Math.Sqrt(Math.Pow(colorWheelCenterRelativeMousePosition.X, 2) +
-                                               Math.Pow(colorWheelCenterRelativeMousePosition.Y, 2));
-            var angle = Math.Atan2(colorWheelCenterRelativeMousePosition.Y, colorWheelCenterRelativeMousePosition.X) +
-                        Math.PI / 2;
-
-            if (angle < 0) angle += 2 * Math.PI;
-
-            HueSlider.Value = (int)Math.Round(approximate
-                ? Math.Round(angle / ((double)1 / 18 * Math.PI)) * ((double)1 / 18 * Math.PI) / (2 * Math.PI) * 360
-                : angle / (2 * Math.PI) * 360);
-            SatSlider.Value = distanceFromCenter < ColorWheel.ActualWidth / 2
-                ? (int)Math.Round(distanceFromCenter / (ColorWheel.ActualWidth / 2) * 100)
-                : 100;
-
-            MousePosition = distanceFromCenter < ColorWheel.ActualWidth / 2
-                ? new Thickness(colorWheelCenterRelativeMousePosition.X * 2,
-                    colorWheelCenterRelativeMousePosition.Y * 2, 0, 0)
-                : new Thickness(ColorWheel.ActualWidth * Math.Sin(Hue / 360 * Math.PI * 2) * (Sat / 100), 0, 0,
-                    ColorWheel.ActualWidth * Math.Cos(Hue / 360 * Math.PI * 2) * (Sat / 100));
-            Color = ColorConverters.Hs(Hue / 360 * 2 * Math.PI, Sat / 100);
-            SelectedColor.Background = new SolidColorBrush(Color);
+            ViewModel.MousePosition = new Thickness(
+                ViewModel.ColorWheelSize * Math.Sin(ViewModel.Hue / 360 * Math.PI * 2) * (ViewModel.Saturation / 100),
+                0,
+                0,
+                ViewModel.ColorWheelSize * Math.Cos(ViewModel.Hue / 360 * Math.PI * 2) * (ViewModel.Saturation / 100));
         }
 
         #endregion

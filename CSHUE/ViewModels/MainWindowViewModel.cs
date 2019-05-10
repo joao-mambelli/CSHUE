@@ -80,6 +80,18 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private Color _backgroundColor;
+        public Color BackgroundColor
+        {
+            get =>
+                _backgroundColor;
+            set
+            {
+                _backgroundColor = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Methods

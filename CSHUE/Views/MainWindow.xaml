@@ -15,7 +15,6 @@
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
-        Name="Window"
         SourceInitialized="Window_SourceInitialized"
         Activated="Window_Activated"
         Deactivated="Window_Deactivated"
@@ -48,21 +47,24 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Name="Menus" Background="{DynamicResource SystemAltMediumColorBrush}">
+        <Grid x:Name="Menus">
+            <Grid.Background>
+                <SolidColorBrush Color="{Binding BackgroundColor}" />
+            </Grid.Background>
             <StackPanel>
                 <Grid Height="32">
                     <TextBlock Text="CSHUE" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0" />
                 </Grid>
                 
                 <Grid Height="16" />
-                
-                <Grid Name="Home"
+
+                <Grid x:Name="Home"
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
                       Style="{DynamicResource Windows10Menu}">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="HomeIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" />
+                        <Grid x:Name="HomeIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" />
                         <materialDesign:PackIcon Kind="HomeOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <materialDesign:PackIcon.LayoutTransform>
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
@@ -95,13 +97,13 @@
                     </materialDesign:PackIcon>
                 </Grid>
 
-                <Grid Name="Config"
+                <Grid x:Name="Config"
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
                       Style="{DynamicResource Windows10Menu}">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="ConfigIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden" />
+                        <Grid x:Name="ConfigIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden" />
                         <materialDesign:PackIcon Kind="WrenchOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <materialDesign:PackIcon.LayoutTransform>
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
@@ -205,13 +207,13 @@
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom">
-                <Grid Name="Donate"
+                <Grid x:Name="Donate"
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
                       Style="{DynamicResource Windows10Menu}">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="DonateIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden" />
+                        <Grid x:Name="DonateIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden" />
                         <materialDesign:PackIcon Foreground="Gray" Kind="CoffeeOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <materialDesign:PackIcon.LayoutTransform>
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
@@ -221,13 +223,13 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Name="About"
+                <Grid x:Name="About"
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
                       Style="{DynamicResource Windows10Menu}">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="AboutIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden"/>
+                        <Grid x:Name="AboutIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden"/>
                         <materialDesign:PackIcon Foreground="Gray" Kind="AboutOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <materialDesign:PackIcon.LayoutTransform>
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
@@ -237,13 +239,13 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Name="Settings"
+                <Grid x:Name="Settings"
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
                       Style="{DynamicResource Windows10Menu}">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="SettingsIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden"/>
+                        <Grid x:Name="SettingsIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden"/>
                         <materialDesign:PackIcon Kind="SettingsOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <materialDesign:PackIcon.LayoutTransform>
                                 <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
@@ -269,7 +271,7 @@
                     <ColumnDefinition Width="46" />
                 </Grid.ColumnDefinitions>
 
-                <Grid WindowChrome.IsHitTestVisibleInChrome="True" Name="MinimizeButton" Height="32"
+                <Grid WindowChrome.IsHitTestVisibleInChrome="True" x:Name="MinimizeButton" Height="32"
                     MouseLeftButtonDown="TopControls_MouseLeftButtonDown"
                     MouseLeftButtonUp="TopControls_MouseLeftButtonUp"
                     Grid.Column="1"
@@ -285,7 +287,7 @@
                     />
                 </Grid>
 
-                <Grid WindowChrome.IsHitTestVisibleInChrome="True" Name="MaximizeButton" Height="32"
+                <Grid WindowChrome.IsHitTestVisibleInChrome="True" x:Name="MaximizeButton" Height="32"
                     MouseLeftButtonDown="TopControls_MouseLeftButtonDown"
                     MouseLeftButtonUp="TopControls_MouseLeftButtonUp"
                     Grid.Column="2"
@@ -301,7 +303,7 @@
                     />
                 </Grid>
 
-                <Grid WindowChrome.IsHitTestVisibleInChrome="True" Name="CloseButton" Height="32"
+                <Grid WindowChrome.IsHitTestVisibleInChrome="True" x:Name="CloseButton" Height="32"
                     MouseLeftButtonDown="TopControls_MouseLeftButtonDown"
                     MouseLeftButtonUp="TopControls_MouseLeftButtonUp"
                     Grid.Column="3"
@@ -318,7 +320,7 @@
                 </Grid>
             </Grid>
 
-            <Frame Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="Page" Grid.Row="1" NavigationUIVisibility="Hidden"/>
         </Grid>
 
         <tb:TaskbarIcon

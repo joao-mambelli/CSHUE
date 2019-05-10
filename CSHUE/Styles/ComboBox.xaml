@@ -58,13 +58,13 @@
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
                         <ToggleButton 
-                            Name="ToggleButton" 
+                            x:Name="ToggleButton" 
                             Template="{StaticResource ComboBoxToggleButton}" 
                             Focusable="false"
                             IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
                             ClickMode="Release">
                         </ToggleButton>
-                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                        <ContentPresenter x:Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
                             ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                             Margin="13,0,32,0"
@@ -82,7 +82,7 @@
                             Visibility="Hidden"
                             IsReadOnly="{TemplateBinding IsReadOnly}"/>
                         <Popup 
-                            Name="Popup"
+                            x:Name="Popup"
                             Placement="Relative"
                             IsOpen="{TemplateBinding IsDropDownOpen}"
                             AllowsTransparency="True" 
@@ -90,7 +90,7 @@
                             PopupAnimation="None">
 
                             <Grid Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Grid Name="DropDown"
+                                <Grid x:Name="DropDown"
                                       SnapsToDevicePixels="True"                
                                       MinWidth="{TemplateBinding ActualWidth}"
                                       MaxHeight="{TemplateBinding MaxDropDownHeight}">
@@ -129,13 +129,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                    <Border Name="Border"
+                    <Border x:Name="Border"
                             SnapsToDevicePixels="true"
                             Height="32"
                             Background="Transparent">
                         <Grid>
-                            <Grid Background="Transparent" Name="Back" Opacity=".6"/>
-                            <Grid Background="Transparent" Name="Highlight">
+                            <Grid Background="Transparent" x:Name="Back" Opacity=".6"/>
+                            <Grid Background="Transparent" x:Name="Highlight">
                                 <ContentPresenter VerticalAlignment="Center" Margin="12,-2,0,0"/>
                             </Grid>
                         </Grid>

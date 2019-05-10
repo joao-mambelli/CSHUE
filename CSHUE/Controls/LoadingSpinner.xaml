@@ -199,7 +199,7 @@
             <Path
                 x:Name="Path"
                 Stroke="{DynamicResource SystemBaseHighColorBrush}"
-                StrokeThickness="5">
+                StrokeThickness="{Binding Thickness, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                 <Path.Data>
                     <PathGeometry>
                         <PathFigure

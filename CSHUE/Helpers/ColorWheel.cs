@@ -169,7 +169,7 @@ namespace CSHUE.Helpers
             return img;
         }
 
-        public Color PickSatPixelColor(int y, int height, double hue)
+        public Color PickSaturationPixelColor(int y, int height, double hue)
         {
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
@@ -177,7 +177,7 @@ namespace CSHUE.Helpers
             return ColorConverters.Hs(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double)y - 6) / (height - 12));
         }
 
-        public WriteableBitmap CreateSatImage(int height, double hue)
+        public WriteableBitmap CreateSaturationImage(int height, double hue)
         {
             var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
             var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
@@ -194,7 +194,7 @@ namespace CSHUE.Helpers
             var pixels = new byte[1, height, 4];
             for (var y = 0; y < height; y++)
             {
-                var color = PickSatPixelColor(y, height, hue);
+                var color = PickSaturationPixelColor(y, height, hue);
                 pixels[0, y, 3] = color.A;
                 pixels[0, y, 2] = color.R;
                 pixels[0, y, 1] = color.G;

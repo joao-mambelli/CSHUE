@@ -59,7 +59,6 @@
                 <ListBox ItemsSource="{Binding List}"
                          Background="Transparent"
                          BorderThickness="0"
-                         x:Name="ListBox"
                          Margin="20,0,20,0">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">

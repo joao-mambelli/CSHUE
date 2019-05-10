@@ -19,9 +19,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Border Name="Border"
+                    <Border x:Name="Border"
                             Background="Transparent">
-                        <Path Name="Path"
+                        <Path x:Name="Path"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               SnapsToDevicePixels="False"

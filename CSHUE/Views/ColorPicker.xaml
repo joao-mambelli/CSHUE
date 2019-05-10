@@ -9,6 +9,7 @@
         BorderThickness="1"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         Height="427"
         SizeToContent="Width"
@@ -23,7 +24,7 @@
         fw:PointerTracker.Enabled="False"
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        d:DataContext="{d:DesignInstance Type=viewModels:ColorPickerViewModel}"
         Loaded="ColorPicker_OnLoaded">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="37" />
@@ -38,9 +39,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Height="40" VerticalAlignment="Top"
-              x:Name="SelectedColor">
-            <TextBlock Text="{Binding Path=ColorPicker, Source={StaticResource Resources}}" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0"
+        <Grid Height="40"
+              VerticalAlignment="Top">
+            <Grid.Background>
+                <SolidColorBrush Color="{Binding Color}"/>
+            </Grid.Background>
+            <TextBlock Text="{Binding Path=ColorPicker, Source={StaticResource Resources}}"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Margin="12 0 0 0"
                        Foreground="Black"/>
         </Grid>
 
@@ -51,14 +58,13 @@
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>
                 <Slider Minimum="0"
-                        Height="270"
+                        Height="{Binding SlidersHeight}"
                         Width="30"
                         HorizontalAlignment="Center"
-                        x:Name="HueSlider"
                         Maximum="360"
                         Orientation="Vertical"
                         Style="{DynamicResource Windows10Slider}"
-                        ValueChanged="HueSlider_OnValueChanged">
+                        Value="{Binding Hue}">
                     <Slider.Background>
                         <ImageBrush ImageSource="{Binding HueSliderBrush}"/>
                     </Slider.Background>
@@ -77,7 +83,8 @@
                                         Maximum="360"
                                         DefaultValue="0"
                                         DisplayDefaultValueOnEmptyText="True"/>
-                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}" Content="°"
+                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                           Content="°"
                            VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
@@ -86,16 +93,15 @@
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>
                 <Slider Minimum="0"
-                        Height="270"
+                        Height="{Binding SlidersHeight}"
                         Width="30"
                         HorizontalAlignment="Center"
-                        x:Name="SatSlider"
                         Maximum="100"
                         Orientation="Vertical"
                         Style="{DynamicResource Windows10Slider}"
-                        ValueChanged="SatSlider_OnValueChanged">
+                        Value="{Binding Saturation}">
                     <Slider.Background>
-                        <ImageBrush ImageSource="{Binding SatSliderBrush}"/>
+                        <ImageBrush ImageSource="{Binding SaturationSliderBrush}"/>
                     </Slider.Background>
                 </Slider>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="21 0 0 0">
@@ -120,11 +126,10 @@
                 <Ellipse Width="290" Height="290"
                          MouseDown="OutsideColorWheel_OnMouseDown"
                          VerticalAlignment="Center"
-                         x:Name="OutsideColorWheel"
                          Stroke="{DynamicResource SystemAltHighColorBrush}"
                          StrokeThickness="2">
                     <Ellipse.Fill>
-                        <ImageBrush x:Name="OutsideColorWheelBrush" Stretch="None"/>
+                        <ImageBrush Stretch="None" ImageSource="{Binding OutsideColorWheelBrush}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Canvas VerticalAlignment="Center"
@@ -148,14 +153,14 @@
                     <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="0.54986612574" Y1="131.905995173" X2="288.450133874" Y2="157.094004827" />
                     <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="0.54986612574" Y1="157.094004827" X2="288.450133874" Y2="131.905995173" />
                 </Canvas>
-                <Ellipse Width="236" Height="236"
+                <Ellipse Width="{Binding ColorWheelSize}" Height="{Binding ColorWheelSize}"
                          MouseDown="ColorWheel_OnMouseDown"
                          VerticalAlignment="Center"
                          x:Name="ColorWheel"
                          Stroke="{DynamicResource SystemAltHighColorBrush}"
                          StrokeThickness="1">
                     <Ellipse.Fill>
-                        <ImageBrush x:Name="ColorWheelBrush" Stretch="None"/>
+                        <ImageBrush Stretch="None" ImageSource="{Binding ColorWheelBrush}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Grid Width="11" Height="11"
@@ -176,7 +181,7 @@
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31" MinWidth="90" HorizontalAlignment="Right"
-                    Content="{Binding Text1}"
+                    Content="{Binding Text1, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Click="Button1_Click">
 
             </Button>
@@ -185,7 +190,7 @@
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31" MinWidth="90" HorizontalAlignment="Right"
-                    Content="{Binding Text2}"
+                    Content="{Binding Text2, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Click="Button2_Click">
 
             </Button>

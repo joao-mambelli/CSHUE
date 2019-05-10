@@ -227,7 +227,7 @@ namespace CSHUE.ViewModels
 
         public void SetRetry()
         {
-            State = LoadingSpinner.SpinnerStates.Hanging;
+            //State = LoadingSpinner.SpinnerStates.Hanging;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Visible;
             MainWindowViewModel.InProcess = Visibility.Visible;

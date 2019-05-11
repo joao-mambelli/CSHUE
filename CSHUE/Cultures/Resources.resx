@@ -403,4 +403,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="ShowSystemTrayIcon" xml:space="preserve">
     <value>Show system tray icon</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>

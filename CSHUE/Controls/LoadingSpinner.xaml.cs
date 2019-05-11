@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 // ReSharper disable CompareOfFloatsByEqualityOperator
 // ReSharper disable InheritdocConsiderUsage
+// ReSharper disable UnusedMember.Global
 
 namespace CSHUE.Controls
 {

@@ -60,9 +60,7 @@
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"
                     Visibility="{Binding InProcess}">
-                        <controls:LoadingSpinner State="{Binding State}"
-                                                 Thickness="10"
-                                                 Radius="50"/>
+                        <controls:LoadingSpinner State="{Binding State}"/>
 
                         <Grid Visibility="{Binding LoadingVisibility}">
                             <TextBlock

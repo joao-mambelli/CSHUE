@@ -218,7 +218,8 @@ namespace CSHUE.ViewModels
 
         public void SetLoading()
         {
-            State = LoadingSpinner.SpinnerStates.Loading;
+            //State = LoadingSpinner.SpinnerStates.Loading;
+            State = LoadingSpinner.SpinnerStates.Hanging;
             LoadingVisibility = Visibility.Visible;
             RetryVisibility = Visibility.Collapsed;
             MainWindowViewModel.InProcess = Visibility.Visible;
@@ -227,7 +228,7 @@ namespace CSHUE.ViewModels
 
         public void SetRetry()
         {
-            //State = LoadingSpinner.SpinnerStates.Hanging;
+            State = LoadingSpinner.SpinnerStates.Hanging;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Visible;
             MainWindowViewModel.InProcess = Visibility.Visible;

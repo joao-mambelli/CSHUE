@@ -13,7 +13,7 @@
                     Storyboard.TargetName="RotateCanvas"
                     Storyboard.TargetProperty="Angle"
                     RepeatBehavior="Forever"
-                    Duration="0:0:2"
+                    Duration="{Binding HangingCycleTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                     From="{Binding AngleCanvas, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                     To="{Binding AngleCanvasHanging, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
 
@@ -30,7 +30,11 @@
                                     <PathFigure StartPoint="{Binding StartPoint, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                                         <PathFigure.Segments>
                                             <PathSegmentCollection>
-                                                <ArcSegment Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" RotationAngle="0" IsLargeArc="False" SweepDirection="{Binding SweepDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" Point="{Binding PointRadiusDiameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                                                <ArcSegment Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                            RotationAngle="0"
+                                                            IsLargeArc="False"
+                                                            SweepDirection="{Binding SweepDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                            Point="{Binding PointRadiusDiameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
                                             </PathSegmentCollection>
                                         </PathFigure.Segments>
                                     </PathFigure>
@@ -64,7 +68,11 @@
                                     <PathFigure StartPoint="{Binding StartPoint, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                                         <PathFigure.Segments>
                                             <PathSegmentCollection>
-                                                <ArcSegment Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" RotationAngle="0" IsLargeArc="{Binding IsLargeArc, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" SweepDirection="CounterClockwise" Point="{Binding PointDiameterRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                                                <ArcSegment Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                            RotationAngle="0"
+                                                            IsLargeArc="{Binding IsLargeArc, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                            SweepDirection="CounterClockwise"
+                                                            Point="{Binding PointDiameterRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
                                             </PathSegmentCollection>
                                         </PathFigure.Segments>
                                     </PathFigure>
@@ -97,8 +105,27 @@
                     BeginTime="{Binding LambdaTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                     AccelerationRatio=".5"
-                    DecelerationRatio=".5"
-                    PathGeometry="{Binding PathGeometry, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    DecelerationRatio=".5">
+                    <PointAnimationUsingPath.PathGeometry>
+                        <PathGeometry>
+                            <PathGeometry.Figures>
+                                <PathFigureCollection>
+                                    <PathFigure StartPoint="{Binding PointDiameterRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+                                        <PathFigure.Segments>
+                                            <PathSegmentCollection>
+                                                <ArcSegment Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                            RotationAngle="0"
+                                                            IsLargeArc="True"
+                                                            SweepDirection="Clockwise"
+                                                            Point="{Binding EndPoint, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                                            </PathSegmentCollection>
+                                        </PathFigure.Segments>
+                                    </PathFigure>
+                                </PathFigureCollection>
+                            </PathGeometry.Figures>
+                        </PathGeometry>
+                    </PointAnimationUsingPath.PathGeometry>
+                </PointAnimationUsingPath>
 
                 <BooleanAnimationUsingKeyFrames
                     Storyboard.TargetName="Arc"
@@ -114,7 +141,7 @@
                         Value="True" />
 
                     <DiscreteBooleanKeyFrame
-                        KeyTime="0:0:0.2383333"
+                        KeyTime="{Binding KeyTime2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                         Value="False" />
                 </BooleanAnimationUsingKeyFrames>
 
@@ -202,8 +229,7 @@
                 StrokeThickness="{Binding Thickness, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                 <Path.Data>
                     <PathGeometry>
-                        <PathFigure
-                            StartPoint="{Binding StartPoint2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+                        <PathFigure StartPoint="{Binding StartPoint2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                             <ArcSegment
                                 x:Name="Arc"
                                 SweepDirection="Counterclockwise"

@@ -33,13 +33,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MaxWidth="502" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Margin="24,0,20,30">
+                <StackPanel Margin="24,0,20,30" >
                     <TextBlock Margin="0,20,0,9"
                            TextWrapping="Wrap"
                            TextAlignment="Justify"
                            Text="{Binding Path=AboutText, Source={StaticResource Resources}}" />
-                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=FollowMe, Source={StaticResource Resources}}" VerticalAlignment="Bottom"/>
 
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=FollowMe, Source={StaticResource Resources}}" VerticalAlignment="Bottom"/>
                     <StackPanel Orientation="Horizontal" Margin="0,2,0,9">
                         <StackPanel.Resources>
                             <Style TargetType="{x:Type Hyperlink}">
@@ -205,6 +205,9 @@
                             </TextBlock>
                         </StackPanel>
                     </StackPanel>
+
+                    <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=Version, Source={StaticResource Resources}}" VerticalAlignment="Bottom"/>
+                    <Label Content="{Binding Version}" Foreground="White" Margin="0,2,0,9"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

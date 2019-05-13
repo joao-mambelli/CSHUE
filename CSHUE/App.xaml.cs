@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows;
+
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE

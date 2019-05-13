@@ -31,7 +31,8 @@
         FontFamily="Segoe UI Semilight"
         WindowState="{Binding WindowState, Mode=TwoWay}"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
-        xmlns:tb="http://www.hardcodet.net/taskbar">
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        Initialized="MainWindow_OnInitialized">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" />
     </WindowChrome.WindowChrome>

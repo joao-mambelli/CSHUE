@@ -264,10 +264,6 @@ namespace CSHUE.Views
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
-            var mWindowHandle = new WindowInteropHelper(this).Handle;
-            HwndSource.FromHwnd(mWindowHandle)
-                ?.AddHook(WindowProc);
-
             if (Properties.Settings.Default.Maximized)
                 WindowState = WindowState.Maximized;
         }
@@ -275,6 +271,13 @@ namespace CSHUE.Views
         #endregion
 
         #region Events Handlers
+
+        private void MainWindow_OnInitialized(object sender, EventArgs e)
+        {
+            var helper = new WindowInteropHelper(this);
+            helper.EnsureHandle();
+            HwndSource.FromHwnd(helper.Handle)?.AddHook(WindowProc);
+        }
 
         private void PreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
         {
@@ -435,7 +438,8 @@ namespace CSHUE.Views
                 ? "M 0.5 2.5 L 7.5 2.5 M 0.5 2.5 L 0.5 9.5 M 0.5 9.5 L 7.5 9.5 M 7.5 2.5 L 7.5 9.5 M 2.5 0.5 L 9.5 0.5 M 9.5 0.5 L 9.5 7.5 M 2.5 0.5 L 2.5 2.5 M 7.5 7.5 L 9.5 7.5"
                 : "M 0.5 0.5 L 9.5 0.5 M 0.5 0.5 L 0.5 9.5 M 0.5 9.5 L 9.5 9.5 M 9.5 0.5 L 9.5 9.5");
 
-            if (WindowState == WindowState.Minimized && Properties.Settings.Default.MinimizeToSystemTray &&
+            if (WindowState == WindowState.Minimized &&
+                Properties.Settings.Default.MinimizeToSystemTray &&
                 Properties.Settings.Default.ShowSystemTrayIcon)
                 Hide();
 

@@ -60,7 +60,7 @@
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"
                     Visibility="{Binding InProcess}">
-                        <controls:LoadingSpinner State="{Binding State}" LoadingStroke="{DynamicResource SystemBaseHighColor}"/>
+                        <controls:LoadingSpinner State="{Binding State}" LoadingColor="{DynamicResource SystemBaseHighColor}"/>
 
                         <Grid Visibility="{Binding LoadingVisibility}">
                             <TextBlock

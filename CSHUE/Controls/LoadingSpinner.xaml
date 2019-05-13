@@ -225,7 +225,6 @@
 
             <Path
                 x:Name="Path"
-                Stroke="{DynamicResource SystemBaseHighColorBrush}"
                 StrokeThickness="{Binding Thickness, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                 <Path.Data>
                     <PathGeometry>
@@ -239,6 +238,10 @@
                         </PathFigure>
                     </PathGeometry>
                 </Path.Data>
+                
+                <Path.Stroke>
+                    <SolidColorBrush Color="{Binding Color, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+                </Path.Stroke>
 
                 <Path.RenderTransform>
                     <RotateTransform

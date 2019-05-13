@@ -40,6 +40,7 @@ namespace CSHUE.ViewModels
         private bool _alreadyMinimized;
         private bool? _lastSetState;
         private bool _previousState;
+        private bool _firstIteration = true;
 
         private GameState _lastgs;
         private bool _blockLightChange;
@@ -709,15 +710,16 @@ namespace CSHUE.ViewModels
                             && !Resetting)
                         {
                             _alreadyMinimized = true;
-                            WindowState = WindowState.Minimized;
+
+                            if (!_firstIteration)
+                                WindowState = WindowState.Minimized;
                         }
 
                         _previousState = true;
                     }
                     else
                     {
-                        if (!_alreadyMinimized)
-                            _alreadyMinimized = false;
+                        _alreadyMinimized = false;
 
                         if (_previousState)
                             RestoreLights();
@@ -726,6 +728,7 @@ namespace CSHUE.ViewModels
                     }
 
                     Resetting = false;
+                    _firstIteration = false;
 
                     Thread.Sleep(Properties.Settings.Default.CsgoCheckingPeriod * 1000);
                 }

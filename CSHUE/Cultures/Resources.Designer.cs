@@ -115,6 +115,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically deactivate if not in the above range.
+        /// </summary>
+        public static string AutomaticallyDeactivate {
+            get {
+                return ResourceManager.GetString("AutomaticallyDeactivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bomb Blink.
         /// </summary>
         public static string BombBlink {

@@ -331,6 +331,13 @@
                                              DisplayDefaultValueOnEmptyText="True" 
                                              ValueChanged="Save"/>
                     </WrapPanel>
+                    <CheckBox Margin="30,7,0,9"
+                              Style="{DynamicResource Windows10CheckBox}"
+                              HorizontalAlignment="Left"
+                              IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}"
+                              IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoDeactivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Text="{Binding Path=AutomaticallyDeactivate, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
+                    </CheckBox>
 
                     <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}" Margin="0,15,0,4"/>
                     <ComboBox Margin="0,4,0,9"

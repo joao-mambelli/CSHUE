@@ -406,4 +406,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="AutomaticallyDeactivate" xml:space="preserve">
+    <value>Automatically deactivate if not in the above range</value>
+  </data>
 </root>

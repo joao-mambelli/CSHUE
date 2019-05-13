@@ -636,50 +636,60 @@ namespace CSHUE.ViewModels
                     Properties.Settings.Default.AutoActivateEnd.Substring(0, 5);
             }
 
-            var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm", CultureInfo.InvariantCulture);
-            var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm", CultureInfo.InvariantCulture);
+            var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm",
+                CultureInfo.InvariantCulture);
+            var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm",
+                CultureInfo.InvariantCulture);
 
             if (end.Hour > start.Hour || end.Hour == start.Hour && end.Minute > start.Minute)
             {
-                if (DateTime.Now.Hour > start.Hour || DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute)
+                if (DateTime.Now.Hour > start.Hour ||
+                    DateTime.Now.Hour == start.Hour &&
+                    DateTime.Now.Minute >= start.Minute)
                 {
-                    if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
+                    if (DateTime.Now.Hour < end.Hour ||
+                        DateTime.Now.Hour == end.Hour &&
+                        DateTime.Now.Minute < end.Minute)
                     {
-                        if (_lastSetState != false && _lastSetState != null) return;
+                        if (_lastSetState == true) return;
                         Properties.Settings.Default.Activated = true;
                         _lastSetState = true;
                     }
-                    else
+                    else if (Properties.Settings.Default.AutoDeactivate)
                     {
-                        if (_lastSetState != true && _lastSetState != null) return;
+                        if (_lastSetState == false) return;
                         Properties.Settings.Default.Activated = false;
                         _lastSetState = false;
                     }
                 }
-                else
+                else if (Properties.Settings.Default.AutoDeactivate)
                 {
-                    if (_lastSetState != true && _lastSetState != null) return;
+                    if (_lastSetState == false) return;
                     Properties.Settings.Default.Activated = false;
                     _lastSetState = false;
                 }
             }
             else
             {
-                if (DateTime.Now.Hour > start.Hour || DateTime.Now.Hour == start.Hour && DateTime.Now.Minute >= start.Minute)
+                if (DateTime.Now.Hour > start.Hour ||
+                    DateTime.Now.Hour == start.Hour &&
+                    DateTime.Now.Minute >= start.Minute)
                 {
-                    if (_lastSetState != false && _lastSetState != null) return;
+                    if (_lastSetState == true) return;
                     Properties.Settings.Default.Activated = true;
                     _lastSetState = true;
                 }
-                else if (DateTime.Now.Hour < end.Hour || DateTime.Now.Hour == end.Hour && DateTime.Now.Minute < end.Minute)
+                else if (DateTime.Now.Hour < end.Hour ||
+                          DateTime.Now.Hour == end.Hour &&
+                          DateTime.Now.Minute < end.Minute)
                 {
-                    if (_lastSetState != false && _lastSetState != null) return;
+                    if (_lastSetState == true) return;
                     Properties.Settings.Default.Activated = true;
                     _lastSetState = true;
                 }
-                else
+                else if (Properties.Settings.Default.AutoDeactivate)
                 {
-                    if (_lastSetState != true && _lastSetState != null) return;
+                    if (_lastSetState == false) return;
                     Properties.Settings.Default.Activated = false;
                     _lastSetState = false;
                 }

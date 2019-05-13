@@ -28,6 +28,24 @@ namespace CSHUE.Controls
                 typeof(LoadingSpinner),
                 new PropertyMetadata(SpinnerStates.Disabled, OnStatePropertyChanged));
 
+        public Color LoadingStroke
+        {
+            get => (Color)GetValue(LoadingStrokeProperty);
+            set => SetValue(LoadingStrokeProperty, value);
+        }
+        public static readonly DependencyProperty LoadingStrokeProperty =
+            DependencyProperty.Register("LoadingStroke", typeof(Color), typeof(LoadingSpinner),
+                new PropertyMetadata(Colors.White));
+
+        public Color HangingStroke
+        {
+            get => (Color)GetValue(HangingStrokeProperty);
+            set => SetValue(HangingStrokeProperty, value);
+        }
+        public static readonly DependencyProperty HangingStrokeProperty =
+            DependencyProperty.Register("HangingStroke", typeof(Color), typeof(LoadingSpinner),
+                new PropertyMetadata(Colors.Gray));
+
         public double LoadingRevolutionsPerSecond
         {
             get => (double)GetValue(LoadingRevolutionsPerSecondProperty);
@@ -80,6 +98,15 @@ namespace CSHUE.Controls
         }
         private static readonly DependencyProperty AngleCanvasProperty =
             DependencyProperty.Register("AngleCanvas", typeof(double), typeof(LoadingSpinner));
+
+        private Color Stroke
+        {
+            get => (Color)GetValue(StrokeProperty);
+            set => SetValue(StrokeProperty, value);
+        }
+        private static readonly DependencyProperty StrokeProperty =
+            DependencyProperty.Register("Stroke", typeof(Color), typeof(LoadingSpinner),
+                new PropertyMetadata(Colors.White));
 
         private Duration HangingCycleTimeDuration
         {
@@ -397,7 +424,7 @@ namespace CSHUE.Controls
                             ((LoadingSpinner)d).KeyTime = TimeSpan.FromMilliseconds(mili);
                         }
 
-                    ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
+                        ((LoadingSpinner) d).Stroke = ((LoadingSpinner) d).LoadingStroke;
 
                         VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
                         break;
@@ -420,7 +447,7 @@ namespace CSHUE.Controls
                             ((LoadingSpinner)d).StartPoint = new Point(((LoadingSpinner)d).Radius + .00001, ((LoadingSpinner)d).Radius * 2 - .00001);
                         }
 
-                    ((LoadingSpinner)d).Path.SetResourceReference(Shape.StrokeProperty, "SystemBaseMediumColorBrush");
+                        ((LoadingSpinner)d).Stroke = ((LoadingSpinner)d).HangingStroke;
                         ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
 
                         VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);

@@ -240,7 +240,7 @@
                 </Path.Data>
                 
                 <Path.Stroke>
-                    <SolidColorBrush Color="{Binding Stroke, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+                    <SolidColorBrush Color="{Binding Color, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                 </Path.Stroke>
 
                 <Path.RenderTransform>

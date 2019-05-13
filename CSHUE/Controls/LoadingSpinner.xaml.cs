@@ -28,22 +28,22 @@ namespace CSHUE.Controls
                 typeof(LoadingSpinner),
                 new PropertyMetadata(SpinnerStates.Disabled, OnStatePropertyChanged));
 
-        public Color LoadingStroke
+        public Color LoadingColor
         {
-            get => (Color)GetValue(LoadingStrokeProperty);
-            set => SetValue(LoadingStrokeProperty, value);
+            get => (Color)GetValue(LoadingColorProperty);
+            set => SetValue(LoadingColorProperty, value);
         }
-        public static readonly DependencyProperty LoadingStrokeProperty =
-            DependencyProperty.Register("LoadingStroke", typeof(Color), typeof(LoadingSpinner),
+        public static readonly DependencyProperty LoadingColorProperty =
+            DependencyProperty.Register("LoadingColor", typeof(Color), typeof(LoadingSpinner),
                 new PropertyMetadata(Colors.White));
 
-        public Color HangingStroke
+        public Color HangingColor
         {
-            get => (Color)GetValue(HangingStrokeProperty);
-            set => SetValue(HangingStrokeProperty, value);
+            get => (Color)GetValue(HangingColorProperty);
+            set => SetValue(HangingColorProperty, value);
         }
-        public static readonly DependencyProperty HangingStrokeProperty =
-            DependencyProperty.Register("HangingStroke", typeof(Color), typeof(LoadingSpinner),
+        public static readonly DependencyProperty HangingColorProperty =
+            DependencyProperty.Register("HangingColor", typeof(Color), typeof(LoadingSpinner),
                 new PropertyMetadata(Colors.Gray));
 
         public double LoadingRevolutionsPerSecond
@@ -99,13 +99,13 @@ namespace CSHUE.Controls
         private static readonly DependencyProperty AngleCanvasProperty =
             DependencyProperty.Register("AngleCanvas", typeof(double), typeof(LoadingSpinner));
 
-        private Color Stroke
+        private Color Color
         {
-            get => (Color)GetValue(StrokeProperty);
-            set => SetValue(StrokeProperty, value);
+            get => (Color)GetValue(ColorProperty);
+            set => SetValue(ColorProperty, value);
         }
-        private static readonly DependencyProperty StrokeProperty =
-            DependencyProperty.Register("Stroke", typeof(Color), typeof(LoadingSpinner),
+        private static readonly DependencyProperty ColorProperty =
+            DependencyProperty.Register("Color", typeof(Color), typeof(LoadingSpinner),
                 new PropertyMetadata(Colors.White));
 
         private Duration HangingCycleTimeDuration
@@ -424,7 +424,7 @@ namespace CSHUE.Controls
                             ((LoadingSpinner)d).KeyTime = TimeSpan.FromMilliseconds(mili);
                         }
 
-                        ((LoadingSpinner) d).Stroke = ((LoadingSpinner) d).LoadingStroke;
+                        ((LoadingSpinner) d).Color = ((LoadingSpinner) d).LoadingColor;
 
                         VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
                         break;
@@ -447,7 +447,7 @@ namespace CSHUE.Controls
                             ((LoadingSpinner)d).StartPoint = new Point(((LoadingSpinner)d).Radius + .00001, ((LoadingSpinner)d).Radius * 2 - .00001);
                         }
 
-                        ((LoadingSpinner)d).Stroke = ((LoadingSpinner)d).HangingStroke;
+                        ((LoadingSpinner)d).Color = ((LoadingSpinner)d).HangingColor;
                         ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
 
                         VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);

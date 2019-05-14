@@ -17,8 +17,19 @@
     <Grid HorizontalAlignment="Stretch"
           Height="70" Width="300">
         <Grid.Background>
-            <SolidColorBrush Color="{Binding Color}"/>
+            <SolidColorBrush x:Name="SolidColorBrush" Color="{Binding Color, NotifyOnTargetUpdated=True}"/>
         </Grid.Background>
+
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation Storyboard.TargetName="SolidColorBrush" Storyboard.TargetProperty="Color" To="{Binding Color}" Duration="0:0:.5" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
         <Grid>
             <Label Content="{Binding Text}" Foreground="{DynamicResource SystemAltHighColorBrush}"
                    FontSize="17"

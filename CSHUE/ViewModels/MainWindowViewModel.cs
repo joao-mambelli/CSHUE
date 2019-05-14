@@ -40,7 +40,8 @@ namespace CSHUE.ViewModels
         private bool _alreadyMinimized;
         private bool? _lastSetState;
         private bool _previousState;
-        private bool _firstIteration = true;
+        private bool _firstCsgoIteration = true;
+        private bool _firstTimeIteration = true;
 
         private GameState _lastgs;
         private bool _blockLightChange;
@@ -606,20 +607,20 @@ namespace CSHUE.ViewModels
             {
                 while (true)
                 {
-                    CheckTime();
+                    Thread.Sleep(60000 - CheckTime());
 
-                    Thread.Sleep(1000);
+                    _firstTimeIteration = false;
                 }
             })
             { IsBackground = true }.Start();
         }
 
-        public void CheckTime()
+        public int CheckTime()
         {
             if (!Properties.Settings.Default.AutoActivate)
             {
                 _lastSetState = !Properties.Settings.Default.Activated;
-                return;
+                return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
             }
 
             // For some reason the NumericUpDown was setting sometimes the variables as HH:mm:ss
@@ -651,20 +652,20 @@ namespace CSHUE.ViewModels
                         DateTime.Now.Hour == end.Hour &&
                         DateTime.Now.Minute < end.Minute)
                     {
-                        if (_lastSetState == true) return;
+                        if (_lastSetState == true) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
                         Properties.Settings.Default.Activated = true;
                         _lastSetState = true;
                     }
                     else if (Properties.Settings.Default.AutoDeactivate)
                     {
-                        if (_lastSetState == false) return;
+                        if (_lastSetState == false) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
                         Properties.Settings.Default.Activated = false;
                         _lastSetState = false;
                     }
                 }
                 else if (Properties.Settings.Default.AutoDeactivate)
                 {
-                    if (_lastSetState == false) return;
+                    if (_lastSetState == false) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
                     Properties.Settings.Default.Activated = false;
                     _lastSetState = false;
                 }
@@ -675,7 +676,7 @@ namespace CSHUE.ViewModels
                     DateTime.Now.Hour == start.Hour &&
                     DateTime.Now.Minute >= start.Minute)
                 {
-                    if (_lastSetState == true) return;
+                    if (_lastSetState == true) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
                     Properties.Settings.Default.Activated = true;
                     _lastSetState = true;
                 }
@@ -683,17 +684,19 @@ namespace CSHUE.ViewModels
                           DateTime.Now.Hour == end.Hour &&
                           DateTime.Now.Minute < end.Minute)
                 {
-                    if (_lastSetState == true) return;
+                    if (_lastSetState == true) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
                     Properties.Settings.Default.Activated = true;
                     _lastSetState = true;
                 }
                 else if (Properties.Settings.Default.AutoDeactivate)
                 {
-                    if (_lastSetState == false) return;
+                    if (_lastSetState == false) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
                     Properties.Settings.Default.Activated = false;
                     _lastSetState = false;
                 }
             }
+
+            return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
         }
 
         public void CheckCsgoProcessLoop()
@@ -721,7 +724,7 @@ namespace CSHUE.ViewModels
                         {
                             _alreadyMinimized = true;
 
-                            if (!_firstIteration)
+                            if (!_firstCsgoIteration)
                                 WindowState = WindowState.Minimized;
                         }
 
@@ -738,7 +741,7 @@ namespace CSHUE.ViewModels
                     }
 
                     Resetting = false;
-                    _firstIteration = false;
+                    _firstCsgoIteration = false;
 
                     Thread.Sleep(Properties.Settings.Default.CsgoCheckingPeriod * 1000);
                 }

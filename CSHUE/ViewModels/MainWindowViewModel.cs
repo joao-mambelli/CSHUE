@@ -1257,8 +1257,9 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            if (gs.Provider.SteamID == gs.Player.SteamID ||
-                Properties.Settings.Default.TriggerSpecEvents)
+            if ((gs.Provider.SteamID == gs.Player.SteamID ||
+                Properties.Settings.Default.TriggerSpecEvents) &&
+                gs.Map.Phase != MapPhase.Warmup)
             {
                 if (gs.Previously.Player.SteamID != "")
                 {

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF">
 
-    <Style x:Key="Windows10ToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+    <Style x:Key="CustomToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
         <Setter Property="BorderBrush" Value="{DynamicResource SystemBaseHighColorBrush}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Background" Value="{DynamicResource SystemAltHighColorBrush}"/>

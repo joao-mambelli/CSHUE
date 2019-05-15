@@ -518,7 +518,7 @@ namespace CSHUE.Views
             ((ContextMenu)sender).Items[0] = new MenuItem
             {
                 Header = Cultures.Resources.Home,
-                Style = (Style)FindResource("Windows10MenuItemAlertHome"),
+                Style = (Style)FindResource("CustomMenuItemAlertHome"),
                 Tag = "Home"
             };
             ((MenuItem)((ContextMenu)sender).Items[0]).Click += MenuNavigate_Click;
@@ -526,7 +526,7 @@ namespace CSHUE.Views
             ((ContextMenu)sender).Items[1] = new MenuItem
             {
                 Header = Cultures.Resources.CSGOGSI,
-                Style = (Style)FindResource("Windows10MenuItemAlertConfig"),
+                Style = (Style)FindResource("CustomMenuItemAlertConfig"),
                 Tag = "Config"
             };
             ((MenuItem)((ContextMenu)sender).Items[1]).Click += MenuNavigate_Click;

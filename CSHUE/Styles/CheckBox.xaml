@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF">
 
-    <Style x:Key="Windows10CheckBox" TargetType="CheckBox">
+    <Style x:Key="CustomCheckBox" TargetType="CheckBox">
         <Setter Property="Foreground" Value="{DynamicResource SystemBaseHighColorBrush}" />
         <Setter Property="Padding" Value="4,1,0,0"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>

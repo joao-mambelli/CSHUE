@@ -26,7 +26,7 @@
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
-                      Style="{DynamicResource Windows10ScrollViewer}"
+                      Style="{DynamicResource CustomScrollViewer}"
                       ContextMenuService.IsEnabled="False"
                       attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
@@ -39,14 +39,14 @@
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="{Binding Path=Events, Source={StaticResource Resources}}" />
 
                     <TabControl Margin="0,2,0,9"
-                                Style="{DynamicResource Windows10TabControl}">
-                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                                Style="{DynamicResource CustomTabControl}">
+                        <TabItem Style="{DynamicResource CustomTabItem}"
                                  Header="{Binding Path=Primary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=MainMenu, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="MainMenu">
                                     <Button.Background>
@@ -55,7 +55,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=TerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="TerroristsWin">
                                     <Button.Background>
@@ -64,7 +64,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=CounterTerroristsWin, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="CounterTerroristsWin">
                                     <Button.Background>
@@ -73,7 +73,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="RoundStarts">
                                     <Button.Background>
@@ -82,7 +82,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="BombPlanted">
                                     <Button.Background>
@@ -92,13 +92,13 @@
                             </StackPanel>
                         </TabItem>
 
-                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                        <TabItem Style="{DynamicResource CustomTabItem}"
                                  Header="{Binding Path=Secondary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="BombExplodes">
                                     <Button.Background>
@@ -107,7 +107,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=BombBlink, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="BombBlink">
                                     <Button.Background>
@@ -116,7 +116,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="FreezeTime">
                                     <Button.Background>
@@ -125,7 +125,7 @@
                                 </Button>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=Warmup, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="Warmup">
                                     <Button.Background>
@@ -135,13 +135,13 @@
                             </StackPanel>
                         </TabItem>
 
-                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                        <TabItem Style="{DynamicResource CustomTabItem}"
                                  Header="{Binding Path=Tertiary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsKill, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="PlayerGetsKill">
                                     <Button.Background>
@@ -168,7 +168,7 @@
                                 </StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsKilled, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="PlayerGetsKilled">
                                     <Button.Background>
@@ -196,13 +196,13 @@
                             </StackPanel>
                         </TabItem>
 
-                        <TabItem Style="{DynamicResource Windows10TabItem}"
+                        <TabItem Style="{DynamicResource CustomTabItem}"
                                  Header="{Binding Path=Quarternary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0,15,0,2" Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}" />
                                 <Button Height="40" HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource Windows10Button}"
+                                        Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
                                         Tag="PlayerGetsFlashed">
                                     <Button.Background>
@@ -215,7 +215,7 @@
 
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="CSHUE" />
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="RunOnStartupCheckBox_CheckedChanged"
@@ -223,7 +223,7 @@
                         <TextBlock Text="{Binding Path=RunOnStartup, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="30,7,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -232,7 +232,7 @@
                         <TextBlock Text="{Binding Path=RunMinimized, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="ShowSystemTrayIconCheckBox_CheckedChanged"
@@ -240,14 +240,14 @@
                         <TextBlock Text="{Binding Path=ShowSystemTrayIcon, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="30,7,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=MinimizeToSystemTray, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock Text="{Binding Path=MinimizeSystemTray, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
@@ -271,7 +271,7 @@
                         <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}" Margin="3,0,0,0"/>
                     </WrapPanel>
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
@@ -279,7 +279,7 @@
                         <TextBlock Text="{Binding Path=TriggerSpectating, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
@@ -287,7 +287,7 @@
                         <TextBlock Text="{Binding Path=RememberLights, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=PreviewLights, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
@@ -295,7 +295,7 @@
                         <TextBlock Text="{Binding Path=PreviewLights, Source={StaticResource Resources}}" TextWrapping="Wrap"/>
                     </CheckBox>
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
@@ -332,7 +332,7 @@
                                              ValueChanged="Save"/>
                     </WrapPanel>
                     <CheckBox Margin="30,7,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoDeactivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -345,14 +345,14 @@
                               Width="280"
                               HorizontalAlignment="Left"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
-                              Style="{DynamicResource Windows10ComboBox}"
+                              Style="{DynamicResource CustomComboBox}"
                               SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               SelectionChanged="Save">
                     </ComboBox>
 
                     <TextBlock Margin="0,20,0,2" FontSize="20" Text="CS:GO" />
                     <CheckBox Margin="0,15,0,9"
-                              Style="{DynamicResource Windows10CheckBox}"
+                              Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
@@ -371,7 +371,7 @@
                     <Button Margin="0,20,0,9" VerticalAlignment="Top"
                             Height="31" MinWidth="90"
                             HorizontalAlignment="Left"
-                            Style="{DynamicResource Windows10Button}"
+                            Style="{DynamicResource CustomButton}"
                             Content="{Binding Path=Default, Source={StaticResource Resources}}" Click="Default_Click">
                      </Button>
                 </StackPanel>

@@ -46,7 +46,7 @@
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
-                      Style="{DynamicResource Windows10ScrollViewer}"
+                      Style="{DynamicResource CustomScrollViewer}"
                       ContextMenuService.IsEnabled="False"
                       attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehaviors:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
@@ -75,7 +75,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <RadioButton
-                                Style="{DynamicResource Windows10RadioButton}"
+                                Style="{DynamicResource CustomRadioButton}"
                                 Content="{Binding Text}"
                                 GroupName="radioList"
                                 IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -89,7 +89,7 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Right">
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="0,0,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"

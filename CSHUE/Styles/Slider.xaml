@@ -126,7 +126,7 @@
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="Windows10Slider" TargetType="{x:Type Slider}">
+    <Style x:Key="CustomSlider" TargetType="{x:Type Slider}">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />

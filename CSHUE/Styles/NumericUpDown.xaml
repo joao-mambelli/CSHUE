@@ -12,7 +12,7 @@
                         Margin="0,0,3,0" />
     </DataTemplate>
 
-    <Style x:Key="Windows10ButtonSpinnerRepeatButton" TargetType="{x:Type RepeatButton}">
+    <Style x:Key="CustomButtonSpinnerRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Focusable" Value="False"/>
@@ -85,7 +85,7 @@
                                 </Grid.RowDefinitions>
 
                                 <RepeatButton x:Name="PART_IncreaseButton"
-                                              Style="{DynamicResource Windows10ButtonSpinnerRepeatButton}"
+                                              Style="{DynamicResource CustomButtonSpinnerRepeatButton}"
                                               Background="{DynamicResource SystemBaseLowColorBrush}"
                                               BorderThickness="0"
                                               IsTabStop="{TemplateBinding IsTabStop}"
@@ -93,7 +93,7 @@
                                 </RepeatButton>
 
                                 <RepeatButton x:Name="PART_DecreaseButton"
-                                              Style="{DynamicResource Windows10ButtonSpinnerRepeatButton}"
+                                              Style="{DynamicResource CustomButtonSpinnerRepeatButton}"
                                               Grid.Row="1"
                                               Background="{DynamicResource SystemBaseLowColorBrush}"
                                               BorderThickness="0"
@@ -120,7 +120,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Windows10NumericUpDownLeft" TargetType="{x:Type xctk:InputBase}">
+    <Style x:Key="CustomNumericUpDownLeft" TargetType="{x:Type xctk:InputBase}">
         <Setter Property="Background" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBackgroundKey}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBorderKey}}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -191,7 +191,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Windows10NumericUpDownRight" TargetType="{x:Type xctk:InputBase}">
+    <Style x:Key="CustomNumericUpDownRight" TargetType="{x:Type xctk:InputBase}">
         <Setter Property="Background" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBackgroundKey}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes1:ResourceKeys.ControlNormalBorderKey}}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -262,14 +262,14 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type xctk:DecimalUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:DoubleUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:IntegerUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:ShortUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:LongUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:ByteUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:SingleUpDown}" BasedOn="{StaticResource Windows10NumericUpDownLeft}" />
-    <Style TargetType="{x:Type xctk:TimeSpanUpDown}" BasedOn="{StaticResource Windows10NumericUpDownRight}" />
+    <Style TargetType="{x:Type xctk:DecimalUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:DoubleUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:IntegerUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:ShortUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:LongUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:ByteUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:SingleUpDown}" BasedOn="{StaticResource CustomNumericUpDownLeft}" />
+    <Style TargetType="{x:Type xctk:TimeSpanUpDown}" BasedOn="{StaticResource CustomNumericUpDownRight}" />
 
 </ResourceDictionary>
 

@@ -50,7 +50,7 @@
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
-                      Style="{DynamicResource Windows10ScrollViewer}"
+                      Style="{DynamicResource CustomScrollViewer}"
                       ContextMenuService.IsEnabled="False"
                       attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehaviors:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
@@ -80,7 +80,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton
-                                    Style="{DynamicResource Windows10RadioButton}"
+                                    Style="{DynamicResource CustomRadioButton}"
                                     GroupName="{Binding GroupName}"
                                     IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Margin="0 13 0 0"
@@ -90,7 +90,7 @@
                                     Checked="RadioButton_OnChanged"
                                     Unchecked="RadioButton_OnChanged"/>
                                 <CheckBox
-                                    Style="{DynamicResource Windows10CheckBox}"
+                                    Style="{DynamicResource CustomCheckBox}"
                                     IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Margin="0 13 0 0"
                                     VerticalAlignment="Top"
@@ -106,7 +106,7 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Right">
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,0,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
@@ -115,7 +115,7 @@
                     Click="ButtonCancel_Click">
 
             </Button>
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="0,0,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"

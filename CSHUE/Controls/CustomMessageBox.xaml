@@ -51,7 +51,7 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Visibility="{Binding Button1Button2Visibility}">
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,0,15" 
                     FontSize="14"
                     VerticalAlignment="Bottom"
@@ -60,7 +60,7 @@
                     Click="Button1_Click">
 
             </Button>
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
@@ -73,7 +73,7 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Visibility="{Binding Button1Visibility}">
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
@@ -86,7 +86,7 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Visibility="{Binding Button1OpenFolderVisibility}">
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,0,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
@@ -95,7 +95,7 @@
                     Click="ButtonOpenFolder_Click">
 
             </Button>
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"

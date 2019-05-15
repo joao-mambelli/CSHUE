@@ -6,7 +6,7 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
                     mc:Ignorable="d">
-    <Style x:Key="Windows10ContextMenu" TargetType="{x:Type ContextMenu}">
+    <Style x:Key="CustomContextMenu" TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Grid.IsSharedSizeScope" Value="true" />
@@ -30,7 +30,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Windows10MenuItem" TargetType="{x:Type MenuItem}">
+    <Style x:Key="CustomMenuItem" TargetType="{x:Type MenuItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Grid.IsSharedSizeScope" Value="true" />
@@ -50,7 +50,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Windows10MenuItemAlertHome" TargetType="{x:Type MenuItem}">
+    <Style x:Key="CustomMenuItemAlertHome" TargetType="{x:Type MenuItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Grid.IsSharedSizeScope" Value="true" />
@@ -79,7 +79,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Windows10MenuItemAlertConfig" TargetType="{x:Type MenuItem}">
+    <Style x:Key="CustomMenuItemAlertConfig" TargetType="{x:Type MenuItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Grid.IsSharedSizeScope" Value="true" />

@@ -24,7 +24,7 @@
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
-                      Style="{DynamicResource Windows10ScrollViewer}"
+                      Style="{DynamicResource CustomScrollViewer}"
                       ContextMenuService.IsEnabled="False"
                       attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"                         
                       attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"

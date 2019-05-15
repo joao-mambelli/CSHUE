@@ -63,7 +63,7 @@
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
-                      Style="{DynamicResource Windows10Menu}">
+                      Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="HomeIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" />
                         <materialDesign:PackIcon Kind="HomeOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -102,7 +102,7 @@
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
-                      Style="{DynamicResource Windows10Menu}">
+                      Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="ConfigIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden" />
                         <materialDesign:PackIcon Kind="WrenchOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -212,7 +212,7 @@
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
-                      Style="{DynamicResource Windows10Menu}">
+                      Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="DonateIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden" />
                         <materialDesign:PackIcon Foreground="Gray" Kind="CoffeeOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -228,7 +228,7 @@
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
-                      Style="{DynamicResource Windows10Menu}">
+                      Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="AboutIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden"/>
                         <materialDesign:PackIcon Foreground="Gray" Kind="AboutOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -244,7 +244,7 @@
                       Height="48"
                       MouseLeftButtonDown="Control_MouseLeftButtonDown"
                       MouseLeftButtonUp="Control_MouseLeftButtonUp"
-                      Style="{DynamicResource Windows10Menu}">
+                      Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="SettingsIndicator" HorizontalAlignment="Left" Height="24" Width="4" Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}" Visibility="Hidden"/>
                         <materialDesign:PackIcon Kind="SettingsOutline" Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -337,36 +337,36 @@
                     Background="{DynamicResource SystemAltHighColorBrush}"
                     BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                    Style="{DynamicResource Windows10ContextMenu}"
+                    Style="{DynamicResource CustomContextMenu}"
                     Opened="ContextMenu_Opened">
                     <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItemAlertHome}"
+                              Style="{DynamicResource CustomMenuItemAlertHome}"
                               Click="MenuNavigate_Click"
                               Tag="Home"/>
                     <MenuItem Header="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItemAlertConfig}"
+                              Style="{DynamicResource CustomMenuItemAlertConfig}"
                               Click="MenuNavigate_Click"
                               Tag="Config"/>
                     <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItem}"
+                              Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_Click"
                               Tag="Donate"/>
                     <MenuItem Header="{Binding Path=About, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItem}"
+                              Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_Click"
                               Tag="About"/>
                     <MenuItem Header="{Binding Path=Settings, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItem}"
+                              Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_Click"
                               Tag="Settings"/>
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
                     <MenuItem Header="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItem}"
+                              Style="{DynamicResource CustomMenuItem}"
                               Click="RunCsgo_Click"
                               Tag="Settings"/>
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
                     <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
-                              Style="{DynamicResource Windows10MenuItem}"
+                              Style="{DynamicResource CustomMenuItem}"
                               Click="MenuExit_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>

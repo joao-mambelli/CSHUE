@@ -63,7 +63,7 @@
                         HorizontalAlignment="Center"
                         Maximum="360"
                         Orientation="Vertical"
-                        Style="{DynamicResource Windows10Slider}"
+                        Style="{DynamicResource CustomSlider}"
                         Value="{Binding Hue}">
                     <Slider.Background>
                         <ImageBrush ImageSource="{Binding HueSliderBrush}"/>
@@ -98,7 +98,7 @@
                         HorizontalAlignment="Center"
                         Maximum="100"
                         Orientation="Vertical"
-                        Style="{DynamicResource Windows10Slider}"
+                        Style="{DynamicResource CustomSlider}"
                         Value="{Binding Saturation}">
                     <Slider.Background>
                         <ImageBrush ImageSource="{Binding SaturationSliderBrush}"/>
@@ -176,7 +176,7 @@
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,0,15" 
                     FontSize="14"
                     VerticalAlignment="Bottom"
@@ -185,7 +185,7 @@
                     Click="Button1_Click">
 
             </Button>
-            <Button Style="{DynamicResource Windows10Button}"
+            <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"

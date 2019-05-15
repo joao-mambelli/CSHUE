@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -7,6 +9,7 @@ using System.Windows.Media;
 using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.Helpers;
+using Q42.HueApi;
 
 namespace CSHUE.ViewModels
 {
@@ -232,6 +235,8 @@ namespace CSHUE.ViewModels
             RetryVisibility = Visibility.Visible;
             MainWindowViewModel.InProcess = Visibility.Visible;
             InProcess = Visibility.Visible;
+
+            SetDone(); // testing
         }
 
         public void SetDone()
@@ -243,13 +248,56 @@ namespace CSHUE.ViewModels
             InProcess = Visibility.Collapsed;
         }
 
+        private int test = 0;
+
         public async Task RefreshLights()
         {
-            if (MainWindowViewModel.Client == null) return;
+            //if (MainWindowViewModel.Client == null) return;
 
             var tempList = List.ToList();
 
-            var allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+            //var allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+
+            if (test % 2 == 0)
+            {
+                Debug.WriteLine("set first to red");
+            }
+            else
+            {
+                Debug.WriteLine("set first to cyan");
+            }
+
+            var allLights = new List<Light>
+            {
+                new Light
+                {
+                    Id = "1",
+                    State = new State
+                    {
+                        On = true,
+                        Brightness = 255,
+                        Hue = test % 2 == 0 ? 0 : 32768,
+                        Saturation = 255
+                    },
+                    Name = "test",
+                    UniqueId = "1"
+                },
+                new Light
+                {
+                    Id = "2",
+                    State = new State
+                    {
+                        On = true,
+                        Brightness = 255,
+                        Hue = test % 2 == 0 ? 32768 : 0,
+                        Saturation = 255
+                    },
+                    Name = "test",
+                    UniqueId = "2"
+                }
+            };
+
+            test++;
 
             foreach (var l in allLights)
             {

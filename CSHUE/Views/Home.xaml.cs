@@ -25,8 +25,6 @@ namespace CSHUE.Views
             DataContext = ViewModel;
 
             ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
-
-            StartLightsChecking();
         }
 
         public void StartLightsChecking()
@@ -37,7 +35,7 @@ namespace CSHUE.Views
                     {
                         await ViewModel.RefreshLights();
 
-                        Thread.Sleep(3000);
+                        Thread.Sleep(500);
                     }
                 })
                 { IsBackground = true }.Start();

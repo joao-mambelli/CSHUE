@@ -24,9 +24,9 @@
             <EventTrigger RoutedEvent="Binding.TargetUpdated">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                        <ColorAnimation Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
                                         To="{Binding Color}"
-                                        Duration="0:0:2.5" />
+                                        Duration="0:0:0.4" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -64,40 +64,56 @@
                   VerticalAlignment="Bottom"
                   Visibility="{Binding On, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Grid.Background>
-                    <SolidColorBrush Color="{Binding Brightness, Converter={StaticResource BrightnessToWhiteConverter}}"/>
+                    <SolidColorBrush Color="{Binding Brightness, Converter={StaticResource BrightnessToWhiteConverter}, NotifyOnTargetUpdated=True}"/>
                 </Grid.Background>
+
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                To="{Binding Brightness, Converter={StaticResource BrightnessToWhiteConverter}}"
+                                                Duration="0:0:0.4" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
             </Grid>
 
             <StackPanel Orientation="Horizontal">
                 <Grid>
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemAltHighColorBrush}"
+                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                           Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3">
                         <Label.Effect>
                             <BlurEffect Radius="1" KernelType="Box"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemAltHighColorBrush}"
+                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                           Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3">
                         <Label.Effect>
                             <BlurEffect Radius="2" KernelType="Box"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemAltHighColorBrush}"
+                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                           Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3">
                         <Label.Effect>
                             <BlurEffect Radius="3" KernelType="Box"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                           Foreground="{DynamicResource SystemBaseHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3"/>
                 </Grid>
 
                 <Grid>
-                    <Label Content="{Binding Brightness, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}}"
                                Foreground="{DynamicResource SystemAltHighColorBrush}"
                                VerticalAlignment="Bottom"
                                Margin="-4 0 0 -3"
@@ -106,7 +122,7 @@
                             <BlurEffect Radius="1" KernelType="Box"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{Binding Brightness, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}}"
                                Foreground="{DynamicResource SystemAltHighColorBrush}"
                                VerticalAlignment="Bottom"
                                Margin="-4 0 0 -3"
@@ -115,7 +131,7 @@
                             <BlurEffect Radius="2" KernelType="Box"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{Binding Brightness, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}}"
                                Foreground="{DynamicResource SystemAltHighColorBrush}"
                                VerticalAlignment="Bottom"
                                Margin="-4 0 0 -3"
@@ -124,7 +140,7 @@
                             <BlurEffect Radius="3" KernelType="Box"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{Binding Brightness, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}, NotifyOnSourceUpdated=True}"
                                Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                VerticalAlignment="Bottom"
                                Margin="-4 0 0 -3"

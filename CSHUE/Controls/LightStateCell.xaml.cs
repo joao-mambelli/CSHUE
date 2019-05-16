@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Threading;
+using System.Windows;
 using System.Windows.Media;
+// ReSharper disable AccessToModifiedClosure
 
 // ReSharper disable InheritdocConsiderUsage
 
@@ -48,7 +51,16 @@ namespace CSHUE.Controls
             set => SetValue(BrightnessProperty, value);
         }
         public static readonly DependencyProperty BrightnessProperty =
-            DependencyProperty.Register("Brightness", typeof(double), typeof(LightStateCell));
+            DependencyProperty.Register("Brightness", typeof(double), typeof(LightStateCell),
+                new PropertyMetadata((double)0, OnBrightnessPropertyChanged));
+
+        public double BrightnessAnimated
+        {
+            get => (double)GetValue(BrightnessAnimatedProperty);
+            set => SetValue(BrightnessAnimatedProperty, value);
+        }
+        public static readonly DependencyProperty BrightnessAnimatedProperty =
+            DependencyProperty.Register("BrightnessAnimated", typeof(double), typeof(LightStateCell));
 
         #endregion
 
@@ -57,6 +69,54 @@ namespace CSHUE.Controls
         public LightStateCell()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private static void OnBrightnessPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((double)e.OldValue < (double)e.NewValue)
+            {
+                new Thread(() =>
+                    {
+                        for (var i = (double)e.OldValue; i < (double)e.NewValue; i = i + 0.05)
+                        {
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                ((LightStateCell)d).BrightnessAnimated = i;
+                            });
+                            Thread.Sleep((int)Math.Round(400 / (((double)e.NewValue - (double)e.OldValue) * 20)));
+                        }
+
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            ((LightStateCell)d).BrightnessAnimated = (double)e.NewValue;
+                        });
+                    })
+                { IsBackground = true }.Start();
+            }
+            else if ((double)e.OldValue > (double)e.NewValue)
+            {
+                new Thread(() =>
+                    {
+                        for (var i = (double) e.OldValue; i > (double) e.NewValue; i = i - 0.05)
+                        {
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                ((LightStateCell)d).BrightnessAnimated = i;
+                            });
+                            Thread.Sleep((int) Math.Round(400 / (((double) e.OldValue - (double) e.NewValue) * 20)));
+                        }
+
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            ((LightStateCell)d).BrightnessAnimated = (double)e.NewValue;
+                        });
+                    })
+                { IsBackground = true }.Start();
+            }
         }
 
         #endregion

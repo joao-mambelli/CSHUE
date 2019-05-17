@@ -21,7 +21,7 @@
 
                 <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
 
-                <ResourceDictionary Source="ResourceDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/CSHUE;component/Cultures/ResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -146,8 +146,8 @@ namespace CSHUE.Views
 
         public MainWindow()
         {
-            if (Properties.Settings.Default.Top == -1
-                && Properties.Settings.Default.Left == -1)
+            if (Properties.Settings.Default.Top == -1 &&
+                Properties.Settings.Default.Left == -1)
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             else
             {
@@ -469,8 +469,8 @@ namespace CSHUE.Views
 
             ViewModel.NotifyIconVisibility = Visibility.Collapsed;
 
-            if (WindowState == WindowState.Maximized
-                || WindowState == WindowState.Minimized)
+            if (WindowState == WindowState.Maximized ||
+                WindowState == WindowState.Minimized)
             {
                 Properties.Settings.Default.Top = RestoreBounds.Top;
                 Properties.Settings.Default.Left = RestoreBounds.Left;

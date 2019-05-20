@@ -716,11 +716,11 @@ namespace CSHUE.ViewModels
                             Client != null)
                             _globalLightsBackup = (await Client.GetLightsAsync()).ToList();
 
-                        if (WindowState != WindowState.Minimized
-                            && Properties.Settings.Default.AutoMinimize
-                            && !_alreadyMinimized
-                            && !_previousState
-                            && !Resetting)
+                        if (WindowState != WindowState.Minimized &&
+                            Properties.Settings.Default.AutoMinimize &&
+                            !_alreadyMinimized &&
+                            !_previousState &&
+                            !Resetting)
                         {
                             _alreadyMinimized = true;
 
@@ -1197,8 +1197,8 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder)
-                || !File.Exists(Properties.Settings.Default.SteamFolder + "\\Steam.exe")) return;
+            if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder) ||
+                !File.Exists(Properties.Settings.Default.SteamFolder + "\\Steam.exe")) return;
 
             Process.Start("steam://run/730//" + Properties.Settings.Default.LaunchOptions + "/");
         }
@@ -1211,9 +1211,9 @@ namespace CSHUE.ViewModels
 
         public void OnNewGameState(GameState gs)
         {
-            if (!Properties.Settings.Default.Activated
-                || Client == null
-                || _globalLightsBackup == null) return;
+            if (!Properties.Settings.Default.Activated ||
+                Client == null ||
+                _globalLightsBackup == null) return;
 
             _lastgs = gs;
 

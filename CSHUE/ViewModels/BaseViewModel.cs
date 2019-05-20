@@ -19,10 +19,10 @@ namespace CSHUE.ViewModels
         {
             get
             {
-                if (WarningCsgoVisibility == Visibility.Visible
-                    || WarningSteamVisibility == Visibility.Visible
-                    || WarningGsiVisibility == Visibility.Visible
-                    || WarningGsiCorruptedVisibility == Visibility.Visible)
+                if (WarningCsgoVisibility == Visibility.Visible ||
+                    WarningSteamVisibility == Visibility.Visible ||
+                    WarningGsiVisibility == Visibility.Visible ||
+                    WarningGsiCorruptedVisibility == Visibility.Visible)
                     return Visibility.Visible;
 
                 return Visibility.Collapsed;

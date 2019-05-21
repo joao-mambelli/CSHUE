@@ -714,7 +714,16 @@ namespace CSHUE.ViewModels
                         if (_globalLightsBackup == null &&
                             !string.IsNullOrEmpty(Properties.Settings.Default.AppKey) &&
                             Client != null)
-                            _globalLightsBackup = (await Client.GetLightsAsync()).ToList();
+                        {
+                            try
+                            {
+                                _globalLightsBackup = (await Client.GetLightsAsync()).ToList();
+                            }
+                            catch
+                            {
+                                //ignored
+                            }
+                        }
 
                         if (WindowState != WindowState.Minimized &&
                             Properties.Settings.Default.AutoMinimize &&

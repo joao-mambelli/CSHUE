@@ -216,7 +216,7 @@ namespace CSHUE.Views
                 brightnessProperty = Properties.Settings.Default.BombBlink;
             }
 
-            ViewModel.LightsBackup = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+            ViewModel.LightsBackup = allLights;
             new LightSelector(title)
             {
                 AllLights = allLights,

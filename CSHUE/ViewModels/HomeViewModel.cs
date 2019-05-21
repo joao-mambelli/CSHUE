@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows.Media;
 using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.Helpers;
+using Q42.HueApi;
 
 namespace CSHUE.ViewModels
 {
@@ -249,7 +251,20 @@ namespace CSHUE.ViewModels
 
             var tempList = List.ToList();
 
-            var allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+            List<Light> allLights;
+
+            try
+            {
+                allLights = (await MainWindowViewModel.Client.GetLightsAsync()).ToList();
+            }
+            catch
+            {
+                SetWarningValidating();
+                return;
+            }
+
+            if (State != LoadingSpinner.SpinnerStates.Disabled)
+                SetDone();
 
             foreach (var l in allLights)
             {

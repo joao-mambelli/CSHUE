@@ -409,4 +409,10 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="AutomaticallyDeactivate" xml:space="preserve">
     <value>Desativar automaticamente se não estiver no intervalo acima</value>
   </data>
+  <data name="OpenReleasePage" xml:space="preserve">
+    <value>Abrir Página da Versão</value>
+  </data>
+  <data name="NewVersionMessage" xml:space="preserve">
+    <value>Versão mais nova, "{0}", está disponível.</value>
+  </data>
 </root>

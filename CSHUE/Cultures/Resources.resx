@@ -409,4 +409,10 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="AutomaticallyDeactivate" xml:space="preserve">
     <value>Automatically deactivate if not in the above range</value>
   </data>
+  <data name="OpenReleasePage" xml:space="preserve">
+    <value>Open Release Page</value>
+  </data>
+  <data name="NewVersionMessage" xml:space="preserve">
+    <value>Newer version, "{0}", is available.</value>
+  </data>
 </root>

@@ -496,6 +496,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Newer version, &quot;{0}&quot;, is available..
+        /// </summary>
+        public static string NewVersionMessage {
+            get {
+                return ResourceManager.GetString("NewVersionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
@@ -546,6 +555,15 @@ namespace CSHUE.Cultures {
         public static string OpenFolder {
             get {
                 return ResourceManager.GetString("OpenFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Release Page.
+        /// </summary>
+        public static string OpenReleasePage {
+            get {
+                return ResourceManager.GetString("OpenReleasePage", resourceCulture);
             }
         }
         

@@ -11,7 +11,7 @@ namespace CSHUE.Controls
     {
         #region Properties
 
-        public string Folder { get; set; }
+        public string Path { get; set; }
 
         #endregion
 
@@ -83,7 +83,7 @@ namespace CSHUE.Controls
 
         private void ButtonOpenFolder_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(Folder);
+            Process.Start(Path);
         }
 
         #endregion
@@ -93,6 +93,7 @@ namespace CSHUE.Controls
         public CustomMessageBox()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private void CustomMessageBox_OnLoaded(object sender, RoutedEventArgs e)
@@ -103,7 +104,9 @@ namespace CSHUE.Controls
                 Button1Visibility = Visibility.Visible;
                 Button1OpenFolderVisibility = Visibility.Hidden;
             }
-            else if (Text1 == Cultures.Resources.Ok && Text2 == Cultures.Resources.OpenFolder)
+            else if (Text1 == Cultures.Resources.Ok &&
+                     (Text2 == Cultures.Resources.OpenFolder ||
+                      Text2 == Cultures.Resources.OpenReleasePage))
             {
                 Button1Button2Visibility = Visibility.Hidden;
                 Button1Visibility = Visibility.Hidden;

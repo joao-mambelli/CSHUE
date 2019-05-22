@@ -25,7 +25,6 @@
         fw:PointerTracker.Enabled="False"
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         d:DataContext="{d:DesignInstance Type=viewModels:HubSelectorViewModel}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" />

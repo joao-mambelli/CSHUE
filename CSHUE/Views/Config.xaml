@@ -12,7 +12,6 @@
       Title="Config"
       FontFamily="Segoe UI Semilight"
       d:DataContext="{d:DesignInstance Type=viewModels:ConfigViewModel}">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />

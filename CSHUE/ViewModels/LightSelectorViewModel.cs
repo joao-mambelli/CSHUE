@@ -45,20 +45,22 @@ namespace CSHUE.ViewModels
             {
                 if (!List.ElementAt(i).IsChecked)
                 {
-                    await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
-                    {
-                        On = false
-                    }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
+                    if (await MainWindowViewModel.Client.CheckConnection())
+                        await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                        {
+                            On = false
+                        }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
                 }
                 else
                 {
-                    await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
-                    {
-                        On = true,
-                        Hue = (int)Math.Round(ColorConverters.GetHue(List.ElementAt(i).Color) / 360 * 65535),
-                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(List.ElementAt(i).Color) * 255),
-                        Brightness = List.ElementAt(i).Brightness
-                    }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
+                    if (await MainWindowViewModel.Client.CheckConnection())
+                        await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                        {
+                            On = true,
+                            Hue = (int)Math.Round(ColorConverters.GetHue(List.ElementAt(i).Color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(List.ElementAt(i).Color) * 255),
+                            Brightness = List.ElementAt(i).Brightness
+                        }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
                 }
             }
         }

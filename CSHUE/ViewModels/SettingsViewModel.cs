@@ -785,16 +785,14 @@ namespace CSHUE.ViewModels
             {
                 if (LightsBackup.ElementAt(i).State.IsReachable != true) continue;
 
-                var command = new LightCommand
-                {
-                    On = LightsBackup.ElementAt(i).State.On,
-                    Hue = LightsBackup.ElementAt(i).State.Hue,
-                    Saturation = LightsBackup.ElementAt(i).State.Saturation,
-                    Brightness = LightsBackup.ElementAt(i).State.Brightness
-                };
-
-                await MainWindowViewModel.Client.SendCommandAsync(command, new List<string> { $"{i + 1}" })
-                    .ConfigureAwait(false);
+                if (await MainWindowViewModel.Client.CheckConnection())
+                    await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                        {
+                            On = LightsBackup.ElementAt(i).State.On,
+                            Hue = LightsBackup.ElementAt(i).State.Hue,
+                            Saturation = LightsBackup.ElementAt(i).State.Saturation,
+                            Brightness = LightsBackup.ElementAt(i).State.Brightness
+                        }, new List<string> {$"{i + 1}"}).ConfigureAwait(false);
             }
         }
 

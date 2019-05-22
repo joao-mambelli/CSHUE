@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using MaterialDesignThemes.Wpf;
@@ -274,6 +275,23 @@ namespace CSHUE.Views
 
         private void MainWindow_OnInitialized(object sender, EventArgs e)
         {
+            var latestVerstion = ViewModel.CheckForUpdates();
+
+            if (latestVerstion != "" && Properties.Settings.Default.LatestVersionCheck != latestVerstion)
+            {
+                Properties.Settings.Default.LatestVersionCheck = latestVerstion;
+
+                new CustomMessageBox
+                {
+                    Text1 = Cultures.Resources.Ok,
+                    Text2 = Cultures.Resources.OpenReleasePage,
+                    Path = "https://github.com/joao7yt/CSHUE/releases/tag/" + latestVerstion,
+                    Message = string.Format(Cultures.Resources.NewVersionMessage, latestVerstion),
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    ShowInTaskbar = true
+                }.ShowDialog();
+            }
+
             var helper = new WindowInteropHelper(this);
             helper.EnsureHandle();
             HwndSource.FromHwnd(helper.Handle)?.AddHook(WindowProc);

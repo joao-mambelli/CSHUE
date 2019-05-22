@@ -161,7 +161,7 @@ namespace CSHUE.ViewModels
                     {
                         Text1 = Resources.Ok,
                         Text2 = Resources.OpenFolder,
-                        Folder = cfgpath,
+                        Path = cfgpath,
                         Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     }.ShowDialog();
@@ -179,7 +179,7 @@ namespace CSHUE.ViewModels
                 {
                     Text1 = Resources.Ok,
                     Text2 = Resources.OpenFolder,
-                    Folder = cfgpath,
+                    Path = cfgpath,
                     Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              FontSize="14"
              FontFamily="Segoe UI Semilight"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+             d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <UserControl.Resources>
         <helpers:BrightnessToWhiteConverter x:Key="BrightnessToWhiteConverter" />
         <helpers:BrightnessToPercentageConverter x:Key="BrightnessToPercentageConverter" />

@@ -23,8 +23,8 @@
         fw:PointerTracker.Enabled="False"
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Loaded="CustomMessageBox_OnLoaded">
+        Loaded="CustomMessageBox_OnLoaded"
+        d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" />
     </WindowChrome.WindowChrome>

@@ -69,6 +69,7 @@ namespace CSHUE.Controls
         public LightStateCell()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         #endregion

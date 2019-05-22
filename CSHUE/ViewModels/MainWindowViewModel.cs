@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using CSGSI;
 using CSGSI.Nodes;
+using CSHUE.Controls;
 using CSHUE.Helpers;
 using CSHUE.Views;
 using Microsoft.Win32;
@@ -94,51 +99,13 @@ namespace CSHUE.ViewModels
             }
         }
 
-        #endregion
-
-        #region Methods
-
-        public void Navigate(Frame page, object sender)
+        public string Version
         {
-            switch (((Grid)sender).Name)
+            get
             {
-                case "Config":
-                    page.Navigate(ConfigPage);
-                    break;
-                case "Donate":
-                    page.Navigate(DonatePage);
-                    break;
-                case "Settings":
-                    page.Navigate(SettingsPage);
-                    break;
-                case "About":
-                    page.Navigate(AboutPage);
-                    break;
-                default:
-                    page.Navigate(HomePage);
-                    break;
-            }
-        }
+                var date = GetLinkerTimestamp().ToUniversalTime();
 
-        public void Navigate(Frame page, string pageName)
-        {
-            switch (pageName)
-            {
-                case "Config":
-                    page.Navigate(ConfigPage);
-                    break;
-                case "Donate":
-                    page.Navigate(DonatePage);
-                    break;
-                case "Settings":
-                    page.Navigate(SettingsPage);
-                    break;
-                case "About":
-                    page.Navigate(AboutPage);
-                    break;
-                default:
-                    page.Navigate(HomePage);
-                    break;
+                return date.Year + "." + date.DayOfYear + "." + (date.Hour * 60 + date.Minute) + "." + date.Second;
             }
         }
 
@@ -1165,6 +1132,126 @@ namespace CSHUE.ViewModels
         #endregion
 
         #region Generic
+
+        private static DateTime GetLinkerTimestamp()
+        {
+            var filePath = Assembly.GetCallingAssembly().Location;
+
+            const int cPeHeaderOffset = 60;
+            const int cLinkerTimestampOffset = 8;
+            var bPeHeader = new byte[2048];
+
+            Stream fs = null;
+
+            try
+            {
+                fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                fs.Read(bPeHeader, 0, 2048);
+            }
+            finally
+            {
+                fs?.Close();
+            }
+
+            var i = BitConverter.ToInt32(bPeHeader, cPeHeaderOffset);
+            var secondsFrom1970 = BitConverter.ToInt32(bPeHeader, i + cLinkerTimestampOffset);
+            var dt = new DateTime(1970, 1, 1, 0, 0, 0);
+            dt = dt.AddSeconds(secondsFrom1970);
+            dt = dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
+
+            var fileDt = File.GetLastWriteTime(filePath);
+
+            if (DateTime.Now.Year >= 2038 & dt.Year != fileDt.Year)
+                return fileDt;
+
+            return dt;
+        }
+
+        public void Navigate(Frame page, object sender)
+        {
+            switch (((Grid)sender).Name)
+            {
+                case "Config":
+                    page.Navigate(ConfigPage);
+                    break;
+                case "Donate":
+                    page.Navigate(DonatePage);
+                    break;
+                case "Settings":
+                    page.Navigate(SettingsPage);
+                    break;
+                case "About":
+                    page.Navigate(AboutPage);
+                    break;
+                default:
+                    page.Navigate(HomePage);
+                    break;
+            }
+        }
+
+        public void Navigate(Frame page, string pageName)
+        {
+            switch (pageName)
+            {
+                case "Config":
+                    page.Navigate(ConfigPage);
+                    break;
+                case "Donate":
+                    page.Navigate(DonatePage);
+                    break;
+                case "Settings":
+                    page.Navigate(SettingsPage);
+                    break;
+                case "About":
+                    page.Navigate(AboutPage);
+                    break;
+                default:
+                    page.Navigate(HomePage);
+                    break;
+            }
+        }
+
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public string CheckForUpdates()
+        {
+            string data;
+
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create("https://github.com/joao7yt/CSHUE/tags");
+                var response = (HttpWebResponse)request.GetResponse();
+
+                if (response.StatusCode != HttpStatusCode.OK) return "";
+
+                var receiveStream = response.GetResponseStream();
+
+                var readStream = response.CharacterSet == null
+                    ? new StreamReader(receiveStream)
+                    : new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+
+                data = readStream.ReadToEnd();
+
+                response.Close();
+                readStream.Close();
+            }
+            catch
+            {
+                return "";
+            }
+
+            var latestVersion = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value;
+
+            var latestVersionSplit = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value.Split('.');
+            var actualVersionSplit = Version.Split('.');
+
+            if (int.Parse(actualVersionSplit[0]) < int.Parse(latestVersionSplit[0]) ||
+                int.Parse(actualVersionSplit[1]) < int.Parse(latestVersionSplit[1]) ||
+                int.Parse(actualVersionSplit[2]) < int.Parse(latestVersionSplit[2]) ||
+                int.Parse(actualVersionSplit[3]) < int.Parse(latestVersionSplit[3]))
+                return latestVersion;
+
+            return "";
+        }
 
         public void RunCsgo()
         {

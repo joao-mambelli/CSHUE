@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 using System.Globalization;
 using System.IO;
@@ -16,7 +15,6 @@ using System.Windows;
 using System.Windows.Controls;
 using CSGSI;
 using CSGSI.Nodes;
-using CSHUE.Controls;
 using CSHUE.Helpers;
 using CSHUE.Views;
 using Microsoft.Win32;
@@ -1211,8 +1209,7 @@ namespace CSHUE.ViewModels
             }
         }
 
-        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public string CheckForUpdates()
+        public string GetLastVersion()
         {
             string data;
 
@@ -1224,6 +1221,8 @@ namespace CSHUE.ViewModels
                 if (response.StatusCode != HttpStatusCode.OK) return "";
 
                 var receiveStream = response.GetResponseStream();
+
+                if (receiveStream == null) return "";
 
                 var readStream = response.CharacterSet == null
                     ? new StreamReader(receiveStream)
@@ -1241,16 +1240,7 @@ namespace CSHUE.ViewModels
 
             var latestVersion = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value;
 
-            var latestVersionSplit = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value.Split('.');
-            var actualVersionSplit = Version.Split('.');
-
-            if (int.Parse(actualVersionSplit[0]) < int.Parse(latestVersionSplit[0]) ||
-                int.Parse(actualVersionSplit[1]) < int.Parse(latestVersionSplit[1]) ||
-                int.Parse(actualVersionSplit[2]) < int.Parse(latestVersionSplit[2]) ||
-                int.Parse(actualVersionSplit[3]) < int.Parse(latestVersionSplit[3]))
-                return latestVersion;
-
-            return "";
+            return Version != latestVersion ? latestVersion : "";
         }
 
         public void RunCsgo()

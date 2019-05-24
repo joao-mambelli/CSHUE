@@ -275,7 +275,7 @@ namespace CSHUE.Views
 
         private void MainWindow_OnInitialized(object sender, EventArgs e)
         {
-            var latestVerstion = ViewModel.CheckForUpdates();
+            var latestVerstion = ViewModel.GetLastVersion();
 
             if (latestVerstion != "" && Properties.Settings.Default.LatestVersionCheck != latestVerstion)
             {

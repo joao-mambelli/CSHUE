@@ -3,7 +3,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 // ReSharper disable AccessToModifiedClosure
-
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Controls

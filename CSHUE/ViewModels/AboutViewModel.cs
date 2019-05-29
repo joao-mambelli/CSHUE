@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-
-namespace CSHUE.ViewModels
+﻿namespace CSHUE.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

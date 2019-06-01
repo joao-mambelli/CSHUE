@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using CSHUE.Helpers;
 using CSHUE.ViewModels;
 using Q42.HueApi;
@@ -64,8 +65,12 @@ namespace CSHUE.Views
                     var lightSettingCellViewModel = new LightSettingCellViewModel
                     {
                         Text = AllLights.ElementAt(i).Name,
-                        Color = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color,
-                        Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
+                        Color = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                            ? Colors.Black
+                            : Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color,
+                        Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                            ? (byte)255
+                            : Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
                         Index = i + 1,
                         UniqueId = AllLights.ElementAt(i).UniqueId,
                         IsChecked = Property.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId)
@@ -101,10 +106,16 @@ namespace CSHUE.Views
                     var lightSettingCellViewModel = new LightSettingCellViewModel
                     {
                         Text = AllLights.ElementAt(i).Name,
-                        Color = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color,
-                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
+                        Color = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                            ? Colors.Black
+                            : BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color,
+                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                            ? (byte)255
+                            : BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
                         Index = i + 1,
-                        OnlyBrightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
+                        OnlyBrightness =
+                            BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null ||
+                            BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
                         OnlyBrightnessVisibility = Visibility.Visible,
                         MainEventText = string.Format(Cultures.Resources.UseMainEventColor,
                             (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent +

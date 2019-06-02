@@ -729,7 +729,6 @@ namespace CSHUE.ViewModels
 
         public async Task SetLightsAsync(EventProperty config)
         {
-            var i = 1;
             foreach (var l in config.Lights)
             {
                 if (!config.SelectedLights.FindAll(x => x == l.Id).Any()) continue;
@@ -743,7 +742,7 @@ namespace CSHUE.ViewModels
                         Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
                         Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                         Brightness = l.Brightness
-                    }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                 _alreadySetLights = false;
             }
@@ -755,7 +754,6 @@ namespace CSHUE.ViewModels
             foreach (var l in Properties.Settings.Default.BombBlink.Lights)
                 bombblinklightsids.Add(l.Id);
 
-            var i = 1;
             foreach (var l in config.Lights)
             {
                 if (!config.SelectedLights.FindAll(x => x == l.Id).Any()) continue;
@@ -771,7 +769,7 @@ namespace CSHUE.ViewModels
                             Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness
-                        }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                     _alreadySetLights = false;
                     continue;
@@ -784,7 +782,7 @@ namespace CSHUE.ViewModels
                         Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.Id == l.Id).Color) / 360 * 65535),
                         Saturation = (byte)Math.Round(ColorConverters.GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color) * 255),
                         Brightness = l.Brightness
-                    }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                 _alreadySetLights = false;
             }
@@ -796,7 +794,6 @@ namespace CSHUE.ViewModels
             foreach (var l in Properties.Settings.Default.BombBlink.Lights)
                 bombblinklightsids.Add(l.Id);
 
-            var i = 1;
             foreach (var l in config.Lights)
             {
                 if (!config.SelectedLights.FindAll(x => x == l.Id).Any()) continue;
@@ -812,7 +809,7 @@ namespace CSHUE.ViewModels
                             Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness
-                        }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                     _alreadySetLights = false;
                     continue;
@@ -827,7 +824,7 @@ namespace CSHUE.ViewModels
                             Hue = (int)Math.Round(ColorConverters.GetHue(config2.Lights.Find(x => x.Id == l.Id).Color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(config2.Lights.Find(x => x.Id == l.Id).Color) * 255),
                             Brightness = l.Brightness
-                        }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                     _alreadySetLights = false;
                     continue;
@@ -840,7 +837,7 @@ namespace CSHUE.ViewModels
                         Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.Id == l.Id).Color) / 360 * 65535),
                         Saturation = (byte)Math.Round(ColorConverters.GetSaturation(main.Lights.Find(x => x.Id == l.Id).Color) * 255),
                         Brightness = l.Brightness
-                    }, new List<string> { $"{i++}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                 _alreadySetLights = false;
             }
@@ -852,18 +849,19 @@ namespace CSHUE.ViewModels
                 _alreadySetLights) return;
 
             _alreadySetLights = true;
-            for (var i = 0; i < _globalLightsBackup.Count; i++)
+
+            foreach (var l in _globalLightsBackup)
             {
-                if (_globalLightsBackup.ElementAt(i).State.IsReachable != true) continue;
+                if (l.State.IsReachable != true) continue;
 
                 if (await Client.CheckConnection())
                     await Client.SendCommandAsync(new LightCommand
-                        {
-                            On = _globalLightsBackup.ElementAt(i).State.On,
-                            Hue = _globalLightsBackup.ElementAt(i).State.Hue,
-                            Saturation = _globalLightsBackup.ElementAt(i).State.Saturation,
-                            Brightness = _globalLightsBackup.ElementAt(i).State.Brightness
-                        }, new List<string> { $"{i + 1}" }).ConfigureAwait(false);
+                    {
+                        On = l.State.On,
+                        Hue = l.State.Hue,
+                        Saturation = l.State.Saturation,
+                        Brightness = l.State.Brightness
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
             }
 
             _globalLightsBackup = null;
@@ -873,7 +871,6 @@ namespace CSHUE.ViewModels
         {
             if (!_isPlanted) return;
 
-            var i = 1;
             foreach (var l in Properties.Settings.Default.BombBlink.Lights)
             {
                 if (!Properties.Settings.Default.BombBlink.SelectedLights.FindAll(x => x == l.Id).Any()) continue;
@@ -892,7 +889,8 @@ namespace CSHUE.ViewModels
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness,
                             TransitionTime = TimeSpan.FromMilliseconds(100)
-                        }, new List<string> { $"{i}" }).ConfigureAwait(false);
+                        }, new List<string> {$"{l.Id}"})
+                            .ConfigureAwait(false);
                 }
                 else
                 {
@@ -906,7 +904,8 @@ namespace CSHUE.ViewModels
                                                               .Find(x => x.Id == l.Id).Color) * 255),
                             Brightness = l.Brightness,
                             TransitionTime = TimeSpan.FromMilliseconds(100)
-                        }, new List<string> { $"{i}" }).ConfigureAwait(false);
+                        }, new List<string> {$"{l.Id}"})
+                            .ConfigureAwait(false);
                 }
                 
                 _alreadySetLights = false;
@@ -923,11 +922,9 @@ namespace CSHUE.ViewModels
                                                            .Find(x => x.Id == l.Id).Color) * 255),
                         Brightness = Properties.Settings.Default.BombPlanted.Lights.Find(x => x.Id == l.Id).Brightness,
                         TransitionTime = TimeSpan.FromMilliseconds(100)
-                    }, new List<string> { $"{i}" }).ConfigureAwait(false);
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
 
                 _alreadySetLights = false;
-
-                i++;
             }
         }
 

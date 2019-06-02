@@ -58,22 +58,22 @@ namespace CSHUE.Views
         {
             ViewModel.List = new ObservableCollection<LightSettingCellViewModel>();
 
-            for (var i = 0; i < AllLights.Count; i++)
+            foreach (var l in AllLights)
             {
                 if (Property != null)
                 {
                     var lightSettingCellViewModel = new LightSettingCellViewModel
                     {
-                        Text = AllLights.ElementAt(i).Name,
-                        Color = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                        Text = l.Name,
+                        Color = Property.Lights.Find(x => x.Id == l.UniqueId) == null
                             ? Colors.Black
-                            : Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color,
-                        Brightness = Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                            : Property.Lights.Find(x => x.Id == l.UniqueId).Color,
+                        Brightness = Property.Lights.Find(x => x.Id == l.UniqueId) == null
                             ? (byte)255
-                            : Property.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
-                        Index = i + 1,
-                        UniqueId = AllLights.ElementAt(i).UniqueId,
-                        IsChecked = Property.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId)
+                            : Property.Lights.Find(x => x.Id == l.UniqueId).Brightness,
+                        Index = l.Id,
+                        UniqueId = l.UniqueId,
+                        IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId)
                     };
                     lightSettingCellViewModel.Content = new LightSettingCell
                     {
@@ -105,23 +105,23 @@ namespace CSHUE.Views
 
                     var lightSettingCellViewModel = new LightSettingCellViewModel
                     {
-                        Text = AllLights.ElementAt(i).Name,
-                        Color = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                        Text = l.Name,
+                        Color = BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId) == null
                             ? Colors.Black
-                            : BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Color,
-                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null
+                            : BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Color,
+                        Brightness = BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId) == null
                             ? (byte)255
-                            : BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).Brightness,
-                        Index = i + 1,
+                            : BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).Brightness,
+                        Index = l.Id,
                         OnlyBrightness =
-                            BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId) == null ||
-                            BrightnessProperty.Lights.Find(x => x.Id == AllLights.ElementAt(i).UniqueId).OnlyBrightness,
+                            BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId) == null ||
+                            BrightnessProperty.Lights.Find(x => x.Id == l.UniqueId).OnlyBrightness,
                         OnlyBrightnessVisibility = Visibility.Visible,
                         MainEventText = string.Format(Cultures.Resources.UseMainEventColor,
                             (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent +
                             (mainEvent != Cultures.Resources.Current ? "\"" : "")),
-                        UniqueId = AllLights.ElementAt(i).UniqueId,
-                        IsChecked = BrightnessProperty.SelectedLights.Any(x => x == AllLights.ElementAt(i).UniqueId),
+                        UniqueId = l.UniqueId,
+                        IsChecked = BrightnessProperty.SelectedLights.Any(x => x == l.UniqueId),
                         SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed
                     };
                     lightSettingCellViewModel.Content = new LightSettingCell

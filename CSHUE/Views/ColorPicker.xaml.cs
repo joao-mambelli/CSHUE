@@ -107,7 +107,7 @@ namespace CSHUE.Views
 
         public Color Color { get; set; }
 
-        public int Index { get; set; }
+        public string Index { get; set; }
 
         public byte Brightness { get; set; }
 

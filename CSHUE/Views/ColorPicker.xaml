@@ -16,7 +16,7 @@
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         fw:AcrylicWindow.Enabled="True"
-        fw:AcrylicWindow.ShowTitleBar="False"
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
         FontSize="14"
         AllowsTransparency="True"
         ResizeMode="NoResize"

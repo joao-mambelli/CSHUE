@@ -18,7 +18,7 @@
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner"
         fw:AcrylicWindow.Enabled="True"
-        fw:AcrylicWindow.ShowTitleBar="False"
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
         FontSize="17"
         AllowsTransparency="True"
         ResizeMode="NoResize"

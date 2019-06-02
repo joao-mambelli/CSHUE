@@ -19,7 +19,7 @@
         Activated="Window_Activated"
         Deactivated="Window_Deactivated"
         fw:AcrylicWindow.Enabled="True"
-        fw:AcrylicWindow.ShowTitleBar="False"
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
         FontSize="14"
         AllowsTransparency="True"
         ResizeMode="CanResize"

@@ -41,15 +41,15 @@ namespace CSHUE.ViewModels
 
         public async void SetLightsAsync()
         {
-            for (var i = 0; i < List.Count; i++)
+            foreach (var l in List)
             {
-                if (!List.ElementAt(i).IsChecked)
+                if (!l.IsChecked)
                 {
                     if (await MainWindowViewModel.Client.CheckConnection())
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                         {
                             On = false
-                        }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
+                        }, new List<string> { $"{l.Index}" }).ConfigureAwait(false);
                 }
                 else
                 {
@@ -57,10 +57,10 @@ namespace CSHUE.ViewModels
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int)Math.Round(ColorConverters.GetHue(List.ElementAt(i).Color) / 360 * 65535),
-                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(List.ElementAt(i).Color) * 255),
-                            Brightness = List.ElementAt(i).Brightness
-                        }, new List<string> { $"{List.ElementAt(i).Index}" }).ConfigureAwait(false);
+                            Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                            Brightness = l.Brightness
+                        }, new List<string> { $"{l.Index}" }).ConfigureAwait(false);
                 }
             }
         }

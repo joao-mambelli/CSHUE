@@ -127,7 +127,7 @@ namespace CSHUE.ViewModels
 
         #region Methods
 
-        public async void SetLightAsync(byte brightness, int index)
+        public async void SetLightAsync(byte brightness, string index)
         {
             if (await MainWindowViewModel.Client.CheckConnection())
                 await MainWindowViewModel.Client.SendCommandAsync(new LightCommand

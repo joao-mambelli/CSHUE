@@ -15,7 +15,6 @@ using System.Windows.Shell;
 using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
-using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
 // ReSharper disable CompareOfFloatsByEqualityOperator
@@ -399,11 +398,11 @@ namespace CSHUE.Views
             if (((Grid)sender).Name == "CloseButton")
             {
                 ((Grid)sender).Background = new SolidColorBrush(Color.FromRgb(241, 112, 123));
-                if (VisualTreeHelper.GetChild((Grid)sender, 0) is PackIcon child)
-                    child.Foreground = new SolidColorBrush(Colors.Black);
+                if (VisualTreeHelper.GetChild((Grid)sender, 0) is Path child)
+                    child.Stroke = new SolidColorBrush(Colors.Black);
             }
             else
-                ((Grid)sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentDark1);
+                ((Grid)sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentLight1);
         }
 
         private void TopControls_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -418,15 +417,17 @@ namespace CSHUE.Views
             ((Grid)sender).Background = ((Grid)sender).Name == "CloseButton"
                 ? new SolidColorBrush(Color.FromRgb(232, 17, 35))
                 : AccentColors.ImmersiveSystemAccentBrush;
+
+            if (VisualTreeHelper.GetChild((Grid)sender, 0) is Path child)
+                child.Stroke = new SolidColorBrush(Colors.White);
         }
 
         private void TopControls_MouseLeave(object sender, MouseEventArgs e)
         {
             _buttonClickable = false;
             ((Grid)sender).Background = new SolidColorBrush(Colors.Transparent);
-            if (((Grid)sender).Name != "CloseButton") return;
-            if (VisualTreeHelper.GetChild((Grid)sender, 0) is PackIcon child)
-                child.ClearValue(ForegroundProperty);
+            if (VisualTreeHelper.GetChild((Grid)sender, 0) is Path child)
+                child.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
         }
 
         public void MinimizeButton_Click()

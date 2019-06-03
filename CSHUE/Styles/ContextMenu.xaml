@@ -59,7 +59,7 @@
                     <Border x:Name="Border" Background="Transparent">
                         <Grid>
                             <TextBlock Padding="30 10 10 10" Text="{TemplateBinding Header}" />
-                            <Path Data="M 8.1,0 A 8,8 0 1 1 7.9,0 Z M 7.5,11 V 13 M 8.5,11 V 13 M 7.5,3 V 9 M 8.5,3 V 9"
+                            <Path Data="{Binding Source={StaticResource Alert}, Path=Data}"
                                   Stroke="Orange"
                                   Visibility="{Binding InProcess}"
                                   HorizontalAlignment="Right"
@@ -88,7 +88,7 @@
                     <Border x:Name="Border" Background="Transparent">
                         <Grid>
                             <TextBlock Padding="30 10 10 10" Text="{TemplateBinding Header}" />
-                            <Path Data="M 8.1,0 A 8,8 0 1 1 7.9,0 Z M 7.5,11 V 13 M 8.5,11 V 13 M 7.5,3 V 9 M 8.5,3 V 9"
+                            <Path Data="{Binding Source={StaticResource Alert}, Path=Data}"
                                   Stroke="Orange"
                                   Visibility="{Binding WarningVisibility}"
                                   HorizontalAlignment="Right"

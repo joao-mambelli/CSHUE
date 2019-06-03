@@ -283,7 +283,7 @@ namespace CSHUE.Views
                 new CustomMessageBox
                 {
                     Text1 = Cultures.Resources.Ok,
-                    Text2 = Cultures.Resources.OpenReleasePage,
+                    Text2 = Cultures.Resources.ShowInBrowser,
                     Path = "https://github.com/joao7yt/CSHUE/releases/tag/" + latestVerstion,
                     Message = string.Format(Cultures.Resources.NewVersionMessage, latestVerstion),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -453,9 +453,9 @@ namespace CSHUE.Views
                         : 4)
                 });
 
-            ((Path)Resources["MaximizeRestorePath"]).Data = Geometry.Parse(WindowState == WindowState.Maximized
-                ? "M 0.5 2.5 L 7.5 2.5 M 0.5 2.5 L 0.5 9.5 M 0.5 9.5 L 7.5 9.5 M 7.5 2.5 L 7.5 9.5 M 2.5 0.5 L 9.5 0.5 M 9.5 0.5 L 9.5 7.5 M 2.5 0.5 L 2.5 2.5 M 7.5 7.5 L 9.5 7.5"
-                : "M 0.5 0.5 L 9.5 0.5 M 0.5 0.5 L 0.5 9.5 M 0.5 9.5 L 9.5 9.5 M 9.5 0.5 L 9.5 9.5");
+            ViewModel.MaximizeRestore = WindowState == WindowState.Maximized
+                ? Geometry.Parse((string)Application.Current.Resources["Restore"])
+                : Geometry.Parse((string)Application.Current.Resources["Maximize"]);
 
             if (WindowState == WindowState.Minimized &&
                 Properties.Settings.Default.MinimizeToSystemTray &&

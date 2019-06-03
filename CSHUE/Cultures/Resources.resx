@@ -321,7 +321,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
     <value>Exit</value>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>Open Folder</value>
+    <value>Open folder</value>
   </data>
   <data name="HubSelector" xml:space="preserve">
     <value>Hub Selector</value>
@@ -409,8 +409,8 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="AutomaticallyDeactivate" xml:space="preserve">
     <value>Automatically deactivate if not in the above range</value>
   </data>
-  <data name="OpenReleasePage" xml:space="preserve">
-    <value>Open Release Page</value>
+  <data name="ShowInBrowser" xml:space="preserve">
+    <value>Show in browser</value>
   </data>
   <data name="NewVersionMessage" xml:space="preserve">
     <value>Newer version, "{0}", is available.</value>

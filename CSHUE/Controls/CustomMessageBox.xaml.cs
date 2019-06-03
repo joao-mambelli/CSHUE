@@ -106,7 +106,7 @@ namespace CSHUE.Controls
             }
             else if (Text1 == Cultures.Resources.Ok &&
                      (Text2 == Cultures.Resources.OpenFolder ||
-                      Text2 == Cultures.Resources.OpenReleasePage))
+                      Text2 == Cultures.Resources.ShowInBrowser))
             {
                 Button1Button2Visibility = Visibility.Hidden;
                 Button1Visibility = Visibility.Hidden;

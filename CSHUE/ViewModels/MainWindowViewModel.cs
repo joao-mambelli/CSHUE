@@ -58,6 +58,17 @@ namespace CSHUE.ViewModels
 
         #region Properties
 
+        private Geometry _maximizeRestore = Geometry.Parse((string)Application.Current.Resources["Maximize"]);
+        public Geometry MaximizeRestore
+        {
+            get => _maximizeRestore;
+            set
+            {
+                _maximizeRestore = value;
+                OnPropertyChanged();
+            }
+        }
+
         private WindowState _windowState = WindowState.Normal;
         public WindowState WindowState
         {

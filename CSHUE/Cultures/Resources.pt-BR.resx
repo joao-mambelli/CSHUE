@@ -321,7 +321,7 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
     <value>Sair</value>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>Abrir Pasta</value>
+    <value>Abrir pasta</value>
   </data>
   <data name="HubSelector" xml:space="preserve">
     <value>Seletor de Hub</value>
@@ -409,8 +409,8 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="AutomaticallyDeactivate" xml:space="preserve">
     <value>Desativar automaticamente se não estiver no intervalo acima</value>
   </data>
-  <data name="OpenReleasePage" xml:space="preserve">
-    <value>Abrir Página da Versão</value>
+  <data name="ShowInBrowser" xml:space="preserve">
+    <value>Mostrar no navegador</value>
   </data>
   <data name="NewVersionMessage" xml:space="preserve">
     <value>Versão mais nova, "{0}", está disponível.</value>

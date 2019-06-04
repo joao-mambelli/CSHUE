@@ -89,7 +89,7 @@
                                               Background="{DynamicResource SystemBaseLowColorBrush}"
                                               BorderThickness="0"
                                               IsTabStop="{TemplateBinding IsTabStop}"
-                                              Content="M 0 4 L 4 0 M 4 0 L 8 4">
+                                              Content="M 0,4 L 4,0 L 8,4">
                                 </RepeatButton>
 
                                 <RepeatButton x:Name="PART_DecreaseButton"
@@ -98,7 +98,7 @@
                                               Background="{DynamicResource SystemBaseLowColorBrush}"
                                               BorderThickness="0"
                                               IsTabStop="{TemplateBinding IsTabStop}"
-                                              Content="M 0 0 L 4 4 M 4 4 L 8 0" >
+                                              Content="M 0,0 L 4,4 L 8,0" >
                                 </RepeatButton>
 
                             </Grid>

@@ -44,15 +44,28 @@ namespace CSHUE.ViewModels
             {
                 if (!l.IsChecked)
                 {
-                    if (await MainWindowViewModel.Client.CheckConnection())
+                    if (!await MainWindowViewModel.Client.CheckConnection())
+                        continue;
+
+                    try
+                    {
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                         {
                             On = false
                         }, new List<string> { $"{l.Index}" }).ConfigureAwait(false);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
                 else
                 {
-                    if (await MainWindowViewModel.Client.CheckConnection())
+                    if (!await MainWindowViewModel.Client.CheckConnection())
+                        continue;
+
+                    try
+                    {
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
@@ -60,6 +73,11 @@ namespace CSHUE.ViewModels
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Index}" }).ConfigureAwait(false);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
             }
         }

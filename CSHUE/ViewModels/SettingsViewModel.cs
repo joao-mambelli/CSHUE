@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Linq;
@@ -785,7 +786,11 @@ namespace CSHUE.ViewModels
             {
                 if (l.State.IsReachable != true) continue;
 
-                if (await MainWindowViewModel.Client.CheckConnection())
+                if (!await MainWindowViewModel.Client.CheckConnection())
+                    continue;
+
+                try
+                {
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = l.State.On,
@@ -793,6 +798,11 @@ namespace CSHUE.ViewModels
                         Saturation = l.State.Saturation,
                         Brightness = l.State.Brightness
                     }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                }
+                catch
+                {
+                    // ignored
+                }
             }
         }
 

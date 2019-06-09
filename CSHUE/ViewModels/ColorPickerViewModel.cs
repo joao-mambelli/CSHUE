@@ -129,7 +129,11 @@ namespace CSHUE.ViewModels
 
         public async void SetLightAsync(byte brightness, string index)
         {
-            if (await MainWindowViewModel.Client.CheckConnection())
+            if (!await MainWindowViewModel.Client.CheckConnection())
+                return;
+
+            try
+            {
                 await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                 {
                     On = true,
@@ -138,6 +142,11 @@ namespace CSHUE.ViewModels
                     Brightness = brightness,
                     TransitionTime = TimeSpan.FromMilliseconds(400)
                 }, new List<string> { $"{index}" }).ConfigureAwait(false);
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         public void ChangeHueSaturation(Point colorWheelCenterRelativeMousePosition, bool approximate)

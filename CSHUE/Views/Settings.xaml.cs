@@ -140,6 +140,11 @@ namespace CSHUE.Views
                 allLights = null;
             }
 
+            if (ViewModel.MainWindowViewModel.GlobalLightsBackup == null)
+            {
+                ViewModel.MainWindowViewModel.GlobalLightsBackup = allLights;
+            }
+
             if (allLights == null || !allLights.Any())
             {
                 new CustomMessageBox

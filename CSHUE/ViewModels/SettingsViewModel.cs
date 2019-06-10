@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Windows;
 using System.Windows.Media;
 using CSHUE.Helpers;
 using Q42.HueApi;
-
 // ReSharper disable SwitchStatementMissingSomeCases
 
 namespace CSHUE.ViewModels
@@ -254,7 +252,7 @@ namespace CSHUE.ViewModels
             {
                 case "MainMenu" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -294,7 +292,7 @@ namespace CSHUE.ViewModels
                     break;
                 case "PlayerGetsFlashed" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -334,7 +332,7 @@ namespace CSHUE.ViewModels
                     break;
                 case "TerroristsWin" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -374,7 +372,7 @@ namespace CSHUE.ViewModels
                     break;
                 case "CounterTerroristsWin" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -414,7 +412,7 @@ namespace CSHUE.ViewModels
                     break;
                 case "RoundStarts" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -454,7 +452,7 @@ namespace CSHUE.ViewModels
                     break;
                 case "BombPlanted" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -501,7 +499,7 @@ namespace CSHUE.ViewModels
             {
                 case "PlayerGetsKill" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -545,7 +543,7 @@ namespace CSHUE.ViewModels
                     break;
                 case "PlayerGetsKilled" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -589,10 +587,10 @@ namespace CSHUE.ViewModels
                     break;
                 case "FreezeTime" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
                         var selectedMainLights =
                             Properties.Settings.Default.RoundStarts.Lights.FindAll(x =>
-                                Event.SelectedLights.Contains(x.Id));
+                                Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -636,10 +634,10 @@ namespace CSHUE.ViewModels
                     break;
                 case "Warmup" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
                         var selectedMainLights =
                             Properties.Settings.Default.RoundStarts.Lights.FindAll(x =>
-                                Event.SelectedLights.Contains(x.Id));
+                                Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -683,10 +681,10 @@ namespace CSHUE.ViewModels
                     break;
                 case "BombExplodes" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
                         var selectedMainLights =
                             Properties.Settings.Default.BombPlanted.Lights.FindAll(x =>
-                                Event.SelectedLights.Contains(x.Id));
+                                Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -730,10 +728,10 @@ namespace CSHUE.ViewModels
                     break;
                 case "BombBlink" when Event?.SelectedLights != null:
                     {
-                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.Id));
+                        var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
                         var selectedMainLights =
                             Properties.Settings.Default.BombPlanted.Lights.FindAll(x =>
-                                Event.SelectedLights.Contains(x.Id));
+                                Event.SelectedLights.Contains(x.UniqueId));
 
                         Application.Current.Dispatcher.Invoke(() =>
                         {

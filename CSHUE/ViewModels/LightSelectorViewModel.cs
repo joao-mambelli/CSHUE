@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Media;
 using CSHUE.Helpers;
 using Q42.HueApi;
 
@@ -23,6 +25,11 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private List<bool> _lastListIsChecked = new List<bool>();
+        private List<bool> _lastListOnlyBrightness = new List<bool>();
+        private List<byte> _lastListBrightness = new List<byte>();
+        private List<Color> _lastListColor = new List<Color>();
+
         private string _title;
         public string Title
         {
@@ -42,11 +49,32 @@ namespace CSHUE.ViewModels
         {
             foreach (var l in List)
             {
+                try
+                {
+                    if (l.IsChecked != _lastListIsChecked.ElementAt(List.IndexOf(l)) ||
+                        l.OnlyBrightness != _lastListOnlyBrightness.ElementAt(List.IndexOf(l)) ||
+                        l.Brightness != _lastListBrightness.ElementAt(List.IndexOf(l)) ||
+                        l.Color != _lastListColor.ElementAt(List.IndexOf(l)))
+                        break;
+
+                    if (l == List.Last())
+                        return;
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            _lastListIsChecked = new List<bool>(List.Select(x => x.IsChecked).ToList());
+            _lastListOnlyBrightness = new List<bool>(List.Select(x => x.OnlyBrightness).ToList());
+            _lastListBrightness = new List<byte>(List.Select(x => x.Brightness).ToList());
+            _lastListColor = new List<Color>(List.Select(x => x.Color).ToList());
+
+            foreach (var l in List)
+            {
                 if (!l.IsChecked)
                 {
-                    if (!await MainWindowViewModel.Client.CheckConnection())
-                        continue;
-
                     try
                     {
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
@@ -61,9 +89,6 @@ namespace CSHUE.ViewModels
                 }
                 else
                 {
-                    if (!await MainWindowViewModel.Client.CheckConnection())
-                        continue;
-
                     try
                     {
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand

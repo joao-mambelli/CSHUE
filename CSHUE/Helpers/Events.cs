@@ -29,6 +29,7 @@ namespace CSHUE.Helpers
     /// </summary>
     public class UniqueLight
     {
+        public string UniqueId { get; set; }
         public string Id { get; set; }
         public Color Color { get; set; }
         public byte Brightness { get; set; }
@@ -39,6 +40,7 @@ namespace CSHUE.Helpers
     /// </summary>
     public class UniqueBrightnessLight
     {
+        public string UniqueId { get; set; }
         public string Id { get; set; }
         public Color Color { get; set; }
         public byte Brightness { get; set; }

@@ -26,20 +26,25 @@
         Loaded="CustomMessageBox_OnLoaded"
         d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="32" />
+        <WindowChrome CaptionHeight="32"/>
     </WindowChrome.WindowChrome>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Height="32" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <TextBlock Text="CSHUE" VerticalAlignment="Center" FontSize="15" Margin="12 0 0 0" />
+        <Grid Height="32"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Left">
+            <TextBlock Text="CSHUE"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Margin="12 0 0 0"/>
         </Grid>
 
         <TextBlock Text="{Binding Message}"
@@ -52,24 +57,26 @@
                     HorizontalAlignment="Right"
                     Visibility="{Binding Button1Button2Visibility}">
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,0,15" 
+                    Margin="15,25,0,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text1}"
-                    Click="Button1_Click">
+                    Click="Button1_Click"/>
 
-            </Button>
             <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text2}"
-                    Click="Button2_Click">
-
-            </Button>
+                    Click="Button2_Click"/>
         </StackPanel>
+
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Visibility="{Binding Button1Visibility}">
@@ -77,12 +84,13 @@
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text1}"
-                    Click="Button1_Click">
-
-            </Button>
+                    Click="Button1_Click"/>
         </StackPanel>
+
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Visibility="{Binding Button1OpenFolderVisibility}">
@@ -90,20 +98,21 @@
                     Margin="15,25,0,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text2}"
-                    Click="ButtonOpenFolder_Click">
+                    Click="ButtonOpenFolder_Click"/>
 
-            </Button>
             <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text1}"
-                    Click="Button1_Click">
-
-            </Button>
+                    Click="Button1_Click"/>
         </StackPanel>
     </Grid>
 </Window>

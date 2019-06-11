@@ -5,19 +5,28 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
                     mc:Ignorable="d">
-    <Style x:Key="CustomContextMenu" TargetType="{x:Type ContextMenu}">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Grid.IsSharedSizeScope" Value="true" />
-        <Setter Property="HasDropShadow" Value="False" />
+    <Style x:Key="CustomContextMenu"
+           TargetType="{x:Type ContextMenu}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"/>
+
+        <Setter Property="OverridesDefaultStyle"
+                Value="True"/>
+
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="true"/>
+
+        <Setter Property="HasDropShadow"
+                Value="False"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
                     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
                         <Border x:Name="Border"
-                            Background="{DynamicResource SystemBaseLowColorBrush}"
-                            BorderThickness="1"
-                            BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
+                                Background="{DynamicResource SystemBaseLowColorBrush}"
+                                BorderThickness="1"
+                                BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
                                 MinWidth="140">
                             <StackPanel IsItemsHost="True"
                                         KeyboardNavigation.DirectionalNavigation="Cycle"
@@ -29,19 +38,32 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomMenuItem" TargetType="{x:Type MenuItem}">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+    <Style x:Key="CustomMenuItem"
+           TargetType="{x:Type MenuItem}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"/>
+
+        <Setter Property="OverridesDefaultStyle"
+                Value="True"/>
+
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="true"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
-                    <Border x:Name="Border" Background="Transparent">
-                        <TextBlock Padding="30 10 10 10" Text="{TemplateBinding Header}" />
+                    <Border x:Name="Border"
+                            Background="Transparent">
+                        <TextBlock Padding="30 10 10 10"
+                                   Text="{TemplateBinding Header}"/>
                     </Border>
+
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseLowColorBrush}" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource SystemBaseLowColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -49,16 +71,26 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomMenuItemAlertHome" TargetType="{x:Type MenuItem}">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+    <Style x:Key="CustomMenuItemAlertHome"
+           TargetType="{x:Type MenuItem}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"/>
+
+        <Setter Property="OverridesDefaultStyle"
+                Value="True"/>
+
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="true"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
-                    <Border x:Name="Border" Background="Transparent">
+                    <Border x:Name="Border"
+                            Background="Transparent">
                         <Grid>
-                            <TextBlock Padding="30 10 10 10" Text="{TemplateBinding Header}" />
+                            <TextBlock Padding="30 10 10 10"
+                                       Text="{TemplateBinding Header}"/>
+
                             <Path Data="M 8.1,0 a 8,8 0 1 1 -0.2,0 Z M 7.5,11 v 2 h 1 v -2 M 7.5,3 v 6 h 1 v -6"
                                   Stroke="Orange"
                                   Visibility="{Binding InProcess}"
@@ -68,9 +100,13 @@
                                   Margin="0 0 14 0"/>
                         </Grid>
                     </Border>
+
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseLowColorBrush}" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource SystemBaseLowColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -78,16 +114,26 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomMenuItemAlertConfig" TargetType="{x:Type MenuItem}">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+    <Style x:Key="CustomMenuItemAlertConfig"
+           TargetType="{x:Type MenuItem}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"/>
+
+        <Setter Property="OverridesDefaultStyle"
+                Value="True"/>
+
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="true"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
-                    <Border x:Name="Border" Background="Transparent">
+                    <Border x:Name="Border"
+                            Background="Transparent">
                         <Grid>
-                            <TextBlock Padding="30 10 10 10" Text="{TemplateBinding Header}" />
+                            <TextBlock Padding="30 10 10 10"
+                                       Text="{TemplateBinding Header}"/>
+
                             <Path Data="M 8.1,0 a 8,8 0 1 1 -0.2,0 Z M 7.5,11 v 2 h 1 v -2 M 7.5,3 v 6 h 1 v -6"
                                   Stroke="Orange"
                                   Visibility="{Binding WarningVisibility}"
@@ -97,9 +143,13 @@
                                   Margin="0 0 14 0"/>
                         </Grid>
                     </Border>
+
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SystemBaseLowColorBrush}" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource SystemBaseLowColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

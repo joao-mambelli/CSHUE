@@ -27,32 +27,37 @@
         FontFamily="Segoe UI Semilight"
         d:DataContext="{d:DesignInstance Type=viewModels:HubSelectorViewModel}">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="32" />
+        <WindowChrome CaptionHeight="32"/>
     </WindowChrome.WindowChrome>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="45"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Path=HubSelector, Source={StaticResource Resources}}" VerticalAlignment="Top" FontSize="15" Margin="12 10 0 0" />
+        <TextBlock Text="{Binding Path=HubSelector, Source={StaticResource Resources}}"
+                   VerticalAlignment="Top"
+                   FontSize="15"
+                   Margin="12 10 0 0"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
                       Style="{DynamicResource CustomScrollViewer}"
                       ContextMenuService.IsEnabled="False"
-                      attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"                         
+                      attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"
                       attachedBehaviors:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
                       attachedBehaviors:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="502" />
+                    <ColumnDefinition MaxWidth="502"/>
                 </Grid.ColumnDefinitions>
 
                 <ListBox ItemsSource="{Binding List}"
@@ -61,24 +66,25 @@
                          Margin="20,0,20,0">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="Focusable" Value="False"/>
+                            <Setter Property="Focusable"
+                                    Value="False"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                        <ContentPresenter />
+                                        <ContentPresenter/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
                         </Style>
                     </ListBox.ItemContainerStyle>
+
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton
-                                Style="{DynamicResource CustomRadioButton}"
+                            <RadioButton Style="{DynamicResource CustomRadioButton}"
                                 Content="{Binding Text}"
-                                GroupName="radioList"
-                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Margin="0 13 0 0"/>
+                                         GroupName="radioList"
+                                         IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Margin="0 13 0 0"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -92,11 +98,11 @@
                     Margin="0,0,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Path=Ok, Source={StaticResource Resources}}"
-                    Click="ButtonOk_Click">
-
-            </Button>
+                    Click="ButtonOk_Click"/>
         </StackPanel>
     </Grid>
 </Window>

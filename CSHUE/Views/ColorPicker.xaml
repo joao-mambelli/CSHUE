@@ -27,16 +27,16 @@
         d:DataContext="{d:DesignInstance Type=viewModels:ColorPickerViewModel}"
         Loaded="ColorPicker_OnLoaded">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="37" />
+        <WindowChrome CaptionHeight="37"/>
     </WindowChrome.WindowChrome>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Height="40"
@@ -44,6 +44,7 @@
             <Grid.Background>
                 <SolidColorBrush Color="{Binding Color}"/>
             </Grid.Background>
+
             <TextBlock Text="{Binding Path=ColorPicker, Source={StaticResource Resources}}"
                        VerticalAlignment="Center"
                        FontSize="15"
@@ -51,10 +52,13 @@
                        Foreground="Black"/>
         </Grid>
 
-        <StackPanel VerticalAlignment="Top" Orientation="Horizontal"
-                    Height="320" Margin="20 50 0 0">
+        <StackPanel VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    Height="320"
+                    Margin="20 50 0 0">
             <StackPanel>
-                <Label Content="{Binding Path=Hue, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                <Label Content="{Binding Path=Hue, Source={StaticResource Resources}}"
+                       Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>
                 <Slider Minimum="0"
@@ -69,7 +73,9 @@
                         <ImageBrush ImageSource="{Binding HueSliderBrush}"/>
                     </Slider.Background>
                 </Slider>
-                <StackPanel Orientation="Horizontal" Margin="15 0 0 0">
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="15 0 0 0">
                     <xctk:IntegerUpDown Value="{Binding Value, ElementName=HueSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -88,8 +94,10 @@
                            VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
+
             <StackPanel>
-                <Label Content="{Binding Path=Saturation, Source={StaticResource Resources}}" Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                <Label Content="{Binding Path=Saturation, Source={StaticResource Resources}}"
+                       Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>
                 <Slider Minimum="0"
@@ -104,7 +112,10 @@
                         <ImageBrush ImageSource="{Binding SaturationSliderBrush}"/>
                     </Slider.Background>
                 </Slider>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="21 0 0 0">
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="21 0 0 0">
                     <xctk:IntegerUpDown Value="{Binding Value, ElementName=SatSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
@@ -118,56 +129,178 @@
                                         Maximum="100"
                                         DefaultValue="100"
                                         DisplayDefaultValueOnEmptyText="True"/>
-                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}" Content="%"
+
+                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                           Content="%"
                            VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <Grid Width="290" Height="290" Margin="0 0 20 0">
-                <Ellipse Width="290" Height="290"
+
+            <Grid Width="290"
+                  Height="290"
+                  Margin="0 0 20 0">
+                <Ellipse Width="290"
+                         Height="290"
                          MouseDown="OutsideColorWheel_OnMouseDown"
                          VerticalAlignment="Center"
                          Stroke="{DynamicResource SystemAltHighColorBrush}"
                          StrokeThickness="2">
                     <Ellipse.Fill>
-                        <ImageBrush Stretch="None" ImageSource="{Binding OutsideColorWheelBrush}"/>
+                        <ImageBrush Stretch="None"
+                                    ImageSource="{Binding OutsideColorWheelBrush}"/>
                     </Ellipse.Fill>
                 </Ellipse>
+
                 <Canvas VerticalAlignment="Center"
-                        Width="290" Height="290">
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="131.905995173" Y1="0.54986612574" X2="157.094004827" Y2="288.450133874" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="131.905995173" Y1="288.450133874" X2="157.094004827" Y2="0.54986612574" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="107.100647983" Y1="4.92371810123" X2="181.899352017" Y2="284.076281899" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="107.100647983" Y1="284.076281899" X2="181.899352017" Y2="4.92371810123" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="83.4316611785" Y1="13.5385247732" X2="205.568338822" Y2="275.461475227" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="83.4316611785" Y1="275.461475227" X2="205.568338822" Y2="13.5385247732" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="61.6182049473" Y1="26.1325296002" X2="227.381795053" Y2="262.867470400" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="61.6182049473" Y1="262.867470400" X2="227.381795053" Y2="26.1325296002" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="42.3230701185" Y1="42.3230701185" X2="246.676929881" Y2="246.676929881" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="42.3230701185" Y1="246.676929881" X2="246.676929881" Y2="42.3230701185" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="26.1325296002" Y1="61.6182049473" X2="262.867470400" Y2="227.381795053" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="26.1325296002" Y1="227.381795053" X2="262.867470400" Y2="61.6182049473" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="13.5385247732" Y1="83.4316611785" X2="275.461475227" Y2="205.568338822" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="13.5385247732" Y1="205.568338822" X2="275.461475227" Y2="83.4316611785" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="4.92371810123" Y1="107.100647983" X2="284.076281899" Y2="181.899352017" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="4.92371810123" Y1="181.899352017" X2="284.076281899" Y2="107.100647983" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="0.54986612574" Y1="131.905995173" X2="288.450133874" Y2="157.094004827" />
-                    <Line StrokeThickness="1" Stroke="{DynamicResource SystemAltHighColorBrush}" X1="0.54986612574" Y1="157.094004827" X2="288.450133874" Y2="131.905995173" />
+                        Width="290"
+                        Height="290">
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="131.905995173"
+                          Y1="0.54986612574"
+                          X2="157.094004827"
+                          Y2="288.450133874"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="131.905995173"
+                          Y1="288.450133874"
+                          X2="157.094004827"
+                          Y2="0.54986612574"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="107.100647983"
+                          Y1="4.92371810123"
+                          X2="181.899352017"
+                          Y2="284.076281899"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="107.100647983"
+                          Y1="284.076281899"
+                          X2="181.899352017"
+                          Y2="4.92371810123"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="83.4316611785"
+                          Y1="13.5385247732"
+                          X2="205.568338822"
+                          Y2="275.461475227"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="83.4316611785"
+                          Y1="275.461475227"
+                          X2="205.568338822"
+                          Y2="13.5385247732"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="61.6182049473"
+                          Y1="26.1325296002"
+                          X2="227.381795053"
+                          Y2="262.867470400"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="61.6182049473"
+                          Y1="262.867470400"
+                          X2="227.381795053"
+                          Y2="26.1325296002"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="42.3230701185"
+                          Y1="42.3230701185"
+                          X2="246.676929881"
+                          Y2="246.676929881"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="42.3230701185"
+                          Y1="246.676929881"
+                          X2="246.676929881"
+                          Y2="42.3230701185"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="26.1325296002"
+                          Y1="61.6182049473"
+                          X2="262.867470400"
+                          Y2="227.381795053"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="26.1325296002"
+                          Y1="227.381795053"
+                          X2="262.867470400"
+                          Y2="61.6182049473"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="13.5385247732"
+                          Y1="83.4316611785"
+                          X2="275.461475227"
+                          Y2="205.568338822"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="13.5385247732"
+                          Y1="205.568338822"
+                          X2="275.461475227"
+                          Y2="83.4316611785"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="4.92371810123"
+                          Y1="107.100647983"
+                          X2="284.076281899"
+                          Y2="181.899352017"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="4.92371810123"
+                          Y1="181.899352017"
+                          X2="284.076281899"
+                          Y2="107.100647983"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="0.54986612574"
+                          Y1="131.905995173"
+                          X2="288.450133874"
+                          Y2="157.094004827"/>
+                    
+                    <Line StrokeThickness="1"
+                          Stroke="{DynamicResource SystemAltHighColorBrush}"
+                          X1="0.54986612574"
+                          Y1="157.094004827"
+                          X2="288.450133874"
+                          Y2="131.905995173"/>
                 </Canvas>
-                <Ellipse Width="{Binding ColorWheelSize}" Height="{Binding ColorWheelSize}"
+
+                <Ellipse Width="{Binding ColorWheelSize}"
+                         Height="{Binding ColorWheelSize}"
                          MouseDown="ColorWheel_OnMouseDown"
                          VerticalAlignment="Center"
                          x:Name="ColorWheel"
                          Stroke="{DynamicResource SystemAltHighColorBrush}"
                          StrokeThickness="1">
                     <Ellipse.Fill>
-                        <ImageBrush Stretch="None" ImageSource="{Binding ColorWheelBrush}"/>
+                        <ImageBrush Stretch="None"
+                                    ImageSource="{Binding ColorWheelBrush}"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <Grid Width="11" Height="11"
+
+                <Grid Width="11"
+                      Height="11"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       Margin="{Binding MousePosition}">
-                    <Ellipse Stroke="Black" StrokeThickness="1"
+                    <Ellipse Stroke="Black"
+                             StrokeThickness="1"
                              SnapsToDevicePixels="False"
                              IsHitTestVisible="False"/>
                 </Grid>
@@ -177,23 +310,24 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,0,15" 
+                    Margin="15,25,0,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text1, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Click="Button1_Click">
+                    Click="Button1_Click"/>
 
-            </Button>
             <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Text2, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Click="Button2_Click">
-
-            </Button>
+                    Click="Button2_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,11 +1,11 @@
 ﻿<Page x:Class="CSHUE.Views.Donate"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
       d:DesignWidth="800"
@@ -14,46 +14,55 @@
       d:DataContext="{d:DesignInstance Type=viewModels:DonateViewModel}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="48"/>
+
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,4,0,0" FontSize="28" Text="{Binding Path=Donate, Source={StaticResource Resources}}" />
+        <TextBlock Margin="24,4,0,0"
+                   FontSize="28"
+                   Text="{Binding Path=Donate, Source={StaticResource Resources}}"/>
 
-        <ScrollViewer
-            Grid.Row="1"
-            VerticalScrollBarVisibility="Auto"
-            Style="{DynamicResource CustomScrollViewer}"
-            ContextMenuService.IsEnabled="False"
-            attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"
-            attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
-            attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Style="{DynamicResource CustomScrollViewer}"
+                      ContextMenuService.IsEnabled="False"
+                      attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"
+                      attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
+                      attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="502" />
+                    <ColumnDefinition MaxWidth="502"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Margin="24,0,20,30">
-                    <TextBlock
-                        Margin="0,20,0,2"
-                        TextWrapping="Wrap"
-                        TextAlignment="Justify"
-                        Text="{Binding Path=DonateText, Source={StaticResource Resources}}" />
 
-                    <Button 
-                        ToolTipService.InitialShowDelay="100"
-                        ToolTipService.HasDropShadow="True"
-                        ToolTipService.HorizontalOffset="-150"
-                        ToolTipService.ShowDuration="30000"
-                        Margin="0,10,0,9" VerticalAlignment="Top"
-                        Height="31" MinWidth="90" HorizontalAlignment="Center"
-                        Style="{DynamicResource CustomButton}"
-                        Content="{Binding Path=DonateButton, Source={StaticResource Resources}}" Click="Donate_Click">
+                <StackPanel Margin="24,0,20,30">
+                    <TextBlock Margin="0,20,0,2"
+                               TextWrapping="Wrap"
+                               TextAlignment="Justify"
+                               Text="{Binding Path=DonateText, Source={StaticResource Resources}}"/>
+
+                    <Button ToolTipService.InitialShowDelay="100"
+                            ToolTipService.HasDropShadow="True"
+                            ToolTipService.HorizontalOffset="-150"
+                            ToolTipService.ShowDuration="30000"
+                            Margin="0,10,0,9"
+                            VerticalAlignment="Top"
+                            Height="31"
+                            MinWidth="90"
+                            HorizontalAlignment="Center"
+                            Style="{DynamicResource CustomButton}"
+                            Content="{Binding Path=DonateButton, Source={StaticResource Resources}}"
+                            Click="Donate_Click">
                         <Button.ToolTip>
-                            <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}" Background="{DynamicResource SystemAltHighColorBrush}">
+                            <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                     Background="{DynamicResource SystemAltHighColorBrush}">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Path=DonationLink, Source={StaticResource Resources}}" />
-                                    <Separator />
-                                    <TextBlock FontStyle="Italic" Text="{Binding Path=DonationDetails, Source={StaticResource Resources}}"/>
+                                    <TextBlock Text="{Binding Path=DonationLink, Source={StaticResource Resources}}"/>
+
+                                    <Separator/>
+
+                                    <TextBlock FontStyle="Italic"
+                                               Text="{Binding Path=DonationDetails, Source={StaticResource Resources}}"/>
                                 </StackPanel>
                             </ToolTip>
                         </Button.ToolTip>

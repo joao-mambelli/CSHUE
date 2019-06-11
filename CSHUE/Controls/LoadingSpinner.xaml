@@ -1,29 +1,28 @@
 ﻿<UserControl x:Class="CSHUE.Controls.LoadingSpinner"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              Width="{Binding Diameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
              Height="{Binding Diameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
              d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Grid.Resources>
-            <Storyboard x:Key="Hanging" RepeatBehavior="Forever">
-                <DoubleAnimation
-                    Storyboard.TargetName="RotateCanvas"
-                    Storyboard.TargetProperty="Angle"
-                    RepeatBehavior="Forever"
-                    Duration="{Binding HangingCycleTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    From="{Binding AngleCanvas, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    To="{Binding AngleCanvasHanging, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+            <Storyboard x:Key="Hanging"
+                        RepeatBehavior="Forever">
+                <DoubleAnimation Storyboard.TargetName="RotateCanvas"
+                                 Storyboard.TargetProperty="Angle"
+                                 RepeatBehavior="Forever"
+                                 Duration="{Binding HangingCycleTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                 From="{Binding AngleCanvas, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                 To="{Binding AngleCanvasHanging, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                <PointAnimationUsingPath
-                    Storyboard.TargetName="Arc"
-                    Storyboard.TargetProperty="Point"
-                    Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    AccelerationRatio=".5"
-                    DecelerationRatio=".5">
+                <PointAnimationUsingPath Storyboard.TargetName="Arc"
+                                         Storyboard.TargetProperty="Point"
+                                         Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                         AccelerationRatio=".5"
+                                         DecelerationRatio=".5">
                     <PointAnimationUsingPath.PathGeometry>
                         <PathGeometry>
                             <PathGeometry.Figures>
@@ -35,7 +34,7 @@
                                                             RotationAngle="0"
                                                             IsLargeArc="False"
                                                             SweepDirection="{Binding SweepDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                                                            Point="{Binding PointRadiusDiameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                                                            Point="{Binding PointRadiusDiameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                                             </PathSegmentCollection>
                                         </PathFigure.Segments>
                                     </PathFigure>
@@ -45,23 +44,20 @@
                     </PointAnimationUsingPath.PathGeometry>
                 </PointAnimationUsingPath>
 
-                <BooleanAnimationUsingKeyFrames
-                    Storyboard.TargetName="Arc"
-                    Storyboard.TargetProperty="IsLargeArc"
-                    Duration="0:0:0">
-                    <DiscreteBooleanKeyFrame
-                        KeyTime="0:0:0"
-                        Value="{Binding IsLargeArc, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Arc"
+                                                Storyboard.TargetProperty="IsLargeArc"
+                                                Duration="0:0:0">
+                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                             Value="{Binding IsLargeArc, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                 </BooleanAnimationUsingKeyFrames>
             </Storyboard>
 
             <Storyboard x:Key="Loading">
-                <PointAnimationUsingPath
-                    Storyboard.TargetName="Arc"
-                    Storyboard.TargetProperty="Point"
-                    Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    AccelerationRatio=".5"
-                    DecelerationRatio=".5">
+                <PointAnimationUsingPath Storyboard.TargetName="Arc"
+                                         Storyboard.TargetProperty="Point"
+                                         Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                         AccelerationRatio=".5"
+                                         DecelerationRatio=".5">
                     <PointAnimationUsingPath.PathGeometry>
                         <PathGeometry>
                             <PathGeometry.Figures>
@@ -73,7 +69,7 @@
                                                             RotationAngle="0"
                                                             IsLargeArc="{Binding IsLargeArc, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                                                             SweepDirection="CounterClockwise"
-                                                            Point="{Binding PointDiameterRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                                                            Point="{Binding PointDiameterRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                                             </PathSegmentCollection>
                                         </PathFigure.Segments>
                                     </PathFigure>
@@ -83,30 +79,26 @@
                     </PointAnimationUsingPath.PathGeometry>
                 </PointAnimationUsingPath>
 
-                <BooleanAnimationUsingKeyFrames
-                    Storyboard.TargetName="Arc"
-                    Storyboard.TargetProperty="IsLargeArc"
-                    Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    AccelerationRatio=".5"
-                    DecelerationRatio=".5">
-                    <DiscreteBooleanKeyFrame
-                        KeyTime="0:0:0"
-                        Value="False" />
+                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Arc"
+                                                Storyboard.TargetProperty="IsLargeArc"
+                                                Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                AccelerationRatio=".5"
+                                                DecelerationRatio=".5">
+                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                             Value="False"/>
 
-                    <DiscreteBooleanKeyFrame
-                        KeyTime="{Binding KeyTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Value="True" />
+                    <DiscreteBooleanKeyFrame KeyTime="{Binding KeyTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                             Value="True"/>
                 </BooleanAnimationUsingKeyFrames>
 
-                <PointAnimationUsingPath
-                    Storyboard.TargetName="Arc"
-                    Storyboard.TargetProperty="Point"
-                    AutoReverse="True"
-                    RepeatBehavior="Forever"
-                    BeginTime="{Binding LambdaTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    AccelerationRatio=".5"
-                    DecelerationRatio=".5">
+                <PointAnimationUsingPath Storyboard.TargetName="Arc"
+                                         Storyboard.TargetProperty="Point"
+                                         AutoReverse="True"
+                                         RepeatBehavior="Forever"
+                                         BeginTime="{Binding LambdaTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                         Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                         AccelerationRatio=".5"
+                                         DecelerationRatio=".5">
                     <PointAnimationUsingPath.PathGeometry>
                         <PathGeometry>
                             <PathGeometry.Figures>
@@ -118,7 +110,7 @@
                                                             RotationAngle="0"
                                                             IsLargeArc="True"
                                                             SweepDirection="Clockwise"
-                                                            Point="{Binding EndPoint, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                                                            Point="{Binding EndPoint, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                                             </PathSegmentCollection>
                                         </PathFigure.Segments>
                                     </PathFigure>
@@ -128,114 +120,100 @@
                     </PointAnimationUsingPath.PathGeometry>
                 </PointAnimationUsingPath>
 
-                <BooleanAnimationUsingKeyFrames
-                    Storyboard.TargetName="Arc"
-                    Storyboard.TargetProperty="IsLargeArc"
-                    AutoReverse="True"
-                    RepeatBehavior="Forever"
-                    BeginTime="{Binding LambdaTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    AccelerationRatio=".5"
-                    DecelerationRatio=".5">
-                    <DiscreteBooleanKeyFrame
-                        KeyTime="0:0:0"
-                        Value="True" />
+                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Arc"
+                                                Storyboard.TargetProperty="IsLargeArc"
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                BeginTime="{Binding LambdaTime, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                AccelerationRatio=".5"
+                                                DecelerationRatio=".5">
+                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                             Value="True"/>
 
-                    <DiscreteBooleanKeyFrame
-                        KeyTime="{Binding KeyTime2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Value="False" />
+                    <DiscreteBooleanKeyFrame KeyTime="{Binding KeyTime2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                             Value="False"/>
                 </BooleanAnimationUsingKeyFrames>
 
                 <Storyboard RepeatBehavior="Forever">
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotatePath"
-                        Storyboard.TargetProperty="Angle"
-                        Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        AccelerationRatio=".5"
-                        DecelerationRatio=".5"
-                        From="{Binding AnglePath1, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AnglePath2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+                    <DoubleAnimation Storyboard.TargetName="RotatePath"
+                                     Storyboard.TargetProperty="Angle"
+                                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     AccelerationRatio=".5"
+                                     DecelerationRatio=".5"
+                                     From="{Binding AnglePath1, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AnglePath2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotatePath"
-                        Storyboard.TargetProperty="Angle"
-                        BeginTime="{Binding LambdaTime2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        AccelerationRatio=".5"
-                        DecelerationRatio=".5"
-                        From="{Binding AnglePath2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AnglePath3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <DoubleAnimation Storyboard.TargetName="RotatePath"
+                                     Storyboard.TargetProperty="Angle"
+                                     BeginTime="{Binding LambdaTime2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     AccelerationRatio=".5"
+                                     DecelerationRatio=".5"
+                                     From="{Binding AnglePath2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AnglePath3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotatePath"
-                        Storyboard.TargetProperty="Angle"
-                        BeginTime="{Binding LambdaTime3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        AccelerationRatio=".5"
-                        DecelerationRatio=".5"
-                        From="{Binding AnglePath3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AnglePath4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <DoubleAnimation Storyboard.TargetName="RotatePath"
+                                     Storyboard.TargetProperty="Angle"
+                                     BeginTime="{Binding LambdaTime3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     AccelerationRatio=".5"
+                                     DecelerationRatio=".5"
+                                     From="{Binding AnglePath3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AnglePath4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotatePath"
-                        Storyboard.TargetProperty="Angle"
-                        BeginTime="{Binding LambdaTime4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        AccelerationRatio=".5"
-                        DecelerationRatio=".5"
-                        From="{Binding AnglePath4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AnglePath5, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <DoubleAnimation Storyboard.TargetName="RotatePath"
+                                     Storyboard.TargetProperty="Angle"
+                                     BeginTime="{Binding LambdaTime4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     AccelerationRatio=".5"
+                                     DecelerationRatio=".5"
+                                     From="{Binding AnglePath4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AnglePath5, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotatePath"
-                        Storyboard.TargetProperty="Angle"
-                        BeginTime="{Binding LambdaTime5, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        AccelerationRatio=".5"
-                        DecelerationRatio=".5"
-                        From="{Binding AnglePath5, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AnglePath6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <DoubleAnimation Storyboard.TargetName="RotatePath"
+                                     Storyboard.TargetProperty="Angle"
+                                     BeginTime="{Binding LambdaTime5, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     AccelerationRatio=".5"
+                                     DecelerationRatio=".5"
+                                     From="{Binding AnglePath5, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AnglePath6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotatePath"
-                        Storyboard.TargetProperty="Angle"
-                        BeginTime="{Binding LambdaTime6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        From="{Binding AnglePath6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AnglePath6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <DoubleAnimation Storyboard.TargetName="RotatePath"
+                                     Storyboard.TargetProperty="Angle"
+                                     BeginTime="{Binding LambdaTime6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     Duration="{Binding LambdaTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     From="{Binding AnglePath6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AnglePath6, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
-                    <DoubleAnimation
-                        Storyboard.TargetName="RotateCanvas"
-                        Storyboard.TargetProperty="Angle"
-                        Duration="{Binding CycleTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        From="{Binding AngleCanvas, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        To="{Binding AngleCanvasLoading, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <DoubleAnimation Storyboard.TargetName="RotateCanvas"
+                                     Storyboard.TargetProperty="Angle"
+                                     Duration="{Binding CycleTimeDuration, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     From="{Binding AngleCanvas, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     To="{Binding AngleCanvasLoading, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                 </Storyboard>
             </Storyboard>
         </Grid.Resources>
 
-        <Canvas
-            Width="{Binding Diameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-            Height="{Binding Diameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+        <Canvas Width="{Binding Diameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                Height="{Binding Diameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
             <Canvas.RenderTransform>
-                <RotateTransform
-                    x:Name="RotateCanvas"
-                    CenterX="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                    CenterY="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+                <RotateTransform x:Name="RotateCanvas"
+                                 CenterX="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                 CenterY="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
             </Canvas.RenderTransform>
 
-            <Path
-                x:Name="Path"
-                StrokeThickness="{Binding Thickness, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+            <Path x:Name="Path"
+                  StrokeThickness="{Binding Thickness, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                 <Path.Data>
                     <PathGeometry>
                         <PathFigure StartPoint="{Binding StartPoint2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
-                            <ArcSegment
-                                x:Name="Arc"
-                                SweepDirection="Counterclockwise"
-                                IsLargeArc="True"
-                                Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                                Point="{Binding PointRadiusDiameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+                            <ArcSegment x:Name="Arc"
+                                        SweepDirection="Counterclockwise"
+                                        IsLargeArc="True"
+                                        Size="{Binding Size, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                        Point="{Binding PointRadiusDiameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                         </PathFigure>
                     </PathGeometry>
                 </Path.Data>
@@ -245,18 +223,21 @@
                 </Path.Stroke>
 
                 <Path.RenderTransform>
-                    <RotateTransform
-                        x:Name="RotatePath"
-                        CenterX="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
-                        CenterY="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                    <RotateTransform x:Name="RotatePath"
+                                     CenterX="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                     CenterY="{Binding Radius, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
                 </Path.RenderTransform>
             </Path>
         </Canvas>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <VisualState x:Name="Loading" Storyboard="{StaticResource ResourceKey=Loading}"/>
-                <VisualState x:Name="Hanging" Storyboard="{StaticResource ResourceKey=Hanging}"/>
+                <VisualState x:Name="Loading"
+                             Storyboard="{StaticResource ResourceKey=Loading}"/>
+
+                <VisualState x:Name="Hanging"
+                             Storyboard="{StaticResource ResourceKey=Hanging}"/>
+
                 <VisualState x:Name="Disabled"/>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>

@@ -1,10 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="CustomMenu" TargetType="{x:Type Grid}">
-        <Setter Property="Background" Value="Transparent" />
+    <Style x:Key="CustomMenu"
+           TargetType="{x:Type Grid}">
+        <Setter Property="Background"
+                Value="Transparent"/>
+
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SystemBaseLowColorBrush}" />
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{DynamicResource SystemBaseLowColorBrush}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

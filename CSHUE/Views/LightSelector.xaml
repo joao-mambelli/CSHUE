@@ -29,35 +29,41 @@
         d:DataContext="{d:DesignInstance Type=viewModels:LightSelectorViewModel}"
         Loaded="LightSelector_OnLoaded">
     <Window.Resources>
-        <helpers:VisibleToCollapsedConverter x:Key="VisibleToCollapsedConverter" />
+        <helpers:VisibleToCollapsedConverter x:Key="VisibleToCollapsedConverter"/>
     </Window.Resources>
+
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="32" />
+        <WindowChrome CaptionHeight="32"/>
     </WindowChrome.WindowChrome>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="45"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Title}" VerticalAlignment="Top" FontSize="15" Margin="12 10 0 0" />
+        <TextBlock Text="{Binding Title}"
+                   VerticalAlignment="Top"
+                   FontSize="15"
+                   Margin="12 10 0 0"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
                       Style="{DynamicResource CustomScrollViewer}"
                       ContextMenuService.IsEnabled="False"
-                      attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"                         
+                      attachedBehaviors:ScrollAnimationBehavior.IsEnabled="True"
                       attachedBehaviors:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
                       attachedBehaviors:ScrollAnimationBehavior.PointsToScroll="128">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="502" />
+                    <ColumnDefinition MaxWidth="502"/>
                 </Grid.ColumnDefinitions>
 
                 <ListBox ItemsSource="{Binding List}"
@@ -66,36 +72,39 @@
                          Margin="20,0,20,0">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="Focusable" Value="False"/>
+                            <Setter Property="Focusable"
+                                    Value="False"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                        <ContentPresenter />
+                                        <ContentPresenter/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
                         </Style>
                     </ListBox.ItemContainerStyle>
+
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <RadioButton
-                                    Style="{DynamicResource CustomRadioButton}"
+                                <RadioButton Style="{DynamicResource CustomRadioButton}"
                                     GroupName="{Binding GroupName}"
-                                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Margin="0 13 0 0"
-                                    VerticalAlignment="Top"
-                                    Visibility="{Binding SingleOptionVisibility}"
-                                    Click="RadioButton_OnClick"
-                                    Checked="RadioButton_OnChanged"
-                                    Unchecked="RadioButton_OnChanged"/>
-                                <CheckBox
-                                    Style="{DynamicResource CustomCheckBox}"
-                                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Margin="0 13 0 0"
-                                    VerticalAlignment="Top"
-                                    Visibility="{Binding SingleOptionVisibility, Converter={StaticResource VisibleToCollapsedConverter}}"/>
-                                <Label Content="{Binding Content}" IsEnabled="{Binding IsChecked}" />
+                                             IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Margin="0 13 0 0"
+                                             VerticalAlignment="Top"
+                                             Visibility="{Binding SingleOptionVisibility}"
+                                             Click="RadioButton_OnClick"
+                                             Checked="RadioButton_OnChanged"
+                                             Unchecked="RadioButton_OnChanged"/>
+
+                                <CheckBox Style="{DynamicResource CustomCheckBox}"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Margin="0 13 0 0"
+                                          VerticalAlignment="Top"
+                                          Visibility="{Binding SingleOptionVisibility, Converter={StaticResource VisibleToCollapsedConverter}}"/>
+
+                                <Label Content="{Binding Content}"
+                                       IsEnabled="{Binding IsChecked}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -110,20 +119,21 @@
                     Margin="15,0,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Path=Cancel, Source={StaticResource Resources}}"
-                    Click="ButtonCancel_Click">
+                    Click="ButtonCancel_Click"/>
 
-            </Button>
             <Button Style="{DynamicResource CustomButton}"
                     Margin="0,0,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
-                    Height="31" MinWidth="90" HorizontalAlignment="Right"
+                    Height="31"
+                    MinWidth="90"
+                    HorizontalAlignment="Right"
                     Content="{Binding Path=Ok, Source={StaticResource Resources}}"
-                    Click="ButtonOk_Click">
-
-            </Button>
+                    Click="ButtonOk_Click"/>
         </StackPanel>
     </Grid>
 </Window>

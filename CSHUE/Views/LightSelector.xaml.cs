@@ -9,7 +9,6 @@ using CSHUE.Helpers;
 using CSHUE.ViewModels;
 using Q42.HueApi;
 using CSHUE.Controls;
-
 // ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
@@ -48,7 +47,7 @@ namespace CSHUE.Views
                                 ViewModel.SetLightsAsync();
                             });
 
-                        Thread.Sleep(300 + 200 * ViewModel.List?.Count ?? 500);
+                        Thread.Sleep(500);
                     }
                 })
                 { IsBackground = true }.Start();
@@ -71,7 +70,7 @@ namespace CSHUE.Views
                         Brightness = Property.Lights.Find(x => x.UniqueId == l.UniqueId) == null
                             ? (byte)255
                             : Property.Lights.Find(x => x.UniqueId == l.UniqueId).Brightness,
-                        Index = l.Id,
+                        Id = l.Id,
                         UniqueId = l.UniqueId,
                         IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId)
                     };
@@ -112,7 +111,7 @@ namespace CSHUE.Views
                         Brightness = BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId) == null
                             ? (byte)255
                             : BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId).Brightness,
-                        Index = l.Id,
+                        Id = l.Id,
                         OnlyBrightness =
                             BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId) == null ||
                             BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId).OnlyBrightness,
@@ -196,8 +195,8 @@ namespace CSHUE.Views
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             _isWindowOpened = false;
+            Close();
         }
 
         private void RadioButton_OnClick(object sender, RoutedEventArgs e)

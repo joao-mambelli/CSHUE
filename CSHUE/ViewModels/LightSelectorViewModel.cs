@@ -47,6 +47,8 @@ namespace CSHUE.ViewModels
 
         public async void SetLightsAsync()
         {
+            var updateList = new List<LightSettingCellViewModel>();
+
             foreach (var l in List)
             {
                 try
@@ -55,14 +57,11 @@ namespace CSHUE.ViewModels
                         l.OnlyBrightness != _lastListOnlyBrightness.ElementAt(List.IndexOf(l)) ||
                         l.Brightness != _lastListBrightness.ElementAt(List.IndexOf(l)) ||
                         l.Color != _lastListColor.ElementAt(List.IndexOf(l)))
-                        break;
-
-                    if (l == List.Last())
-                        return;
+                        updateList.Add(l);
                 }
                 catch
                 {
-                    break;
+                    return;
                 }
             }
 
@@ -71,7 +70,7 @@ namespace CSHUE.ViewModels
             _lastListBrightness = new List<byte>(List.Select(x => x.Brightness).ToList());
             _lastListColor = new List<Color>(List.Select(x => x.Color).ToList());
 
-            foreach (var l in List)
+            foreach (var l in updateList)
             {
                 if (!l.IsChecked)
                 {
@@ -80,7 +79,7 @@ namespace CSHUE.ViewModels
                         await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                         {
                             On = false
-                        }, new List<string> { $"{l.Index}" }).ConfigureAwait(false);
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
                     catch
                     {
@@ -97,7 +96,7 @@ namespace CSHUE.ViewModels
                             Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness
-                        }, new List<string> { $"{l.Index}" }).ConfigureAwait(false);
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
                     catch
                     {

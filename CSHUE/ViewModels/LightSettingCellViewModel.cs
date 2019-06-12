@@ -14,7 +14,7 @@ namespace CSHUE.ViewModels
 
         public string UniqueId { get; set; }
 
-        public string Index { get; set; }
+        public string Id { get; set; }
 
         private Visibility _singleOptionVisibility = Visibility.Collapsed;
         public Visibility SingleOptionVisibility

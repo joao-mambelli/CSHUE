@@ -37,7 +37,7 @@ namespace CSHUE.Controls
                 Text2 = Cultures.Resources.Ok,
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
                 Color = ((LightSettingCellViewModel)DataContext).Color,
-                Index = ((LightSettingCellViewModel)DataContext).Index,
+                Index = ((LightSettingCellViewModel)DataContext).Id,
                 Brightness = ((LightSettingCellViewModel)DataContext).Brightness
             };
             colorPicker.ShowDialog();

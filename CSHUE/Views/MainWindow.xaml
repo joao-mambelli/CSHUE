@@ -230,7 +230,7 @@
                               Margin="14"/>
 
                         <TextBlock Foreground="Gray"
-                                   Text="{Binding Path=Donate, Source={StaticResource Resources}}"
+                                   Text="{Binding Path=Donation, Source={StaticResource Resources}}"
                                    Margin="2,0,0,0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>

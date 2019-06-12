@@ -138,10 +138,10 @@ If the bellow button is pressed, CSHUE will automatically try to find where CS:G
   <data name="CSGOGSI" xml:space="preserve">
     <value>CS:GO GSI</value>
   </data>
-  <data name="Donate" xml:space="preserve">
-    <value>Donate</value>
+  <data name="Donation" xml:space="preserve">
+    <value>Donation</value>
   </data>
-  <data name="DonateButton" xml:space="preserve">
+  <data name="Donate" xml:space="preserve">
     <value>Donate</value>
   </data>
   <data name="DonateText" xml:space="preserve">

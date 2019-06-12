@@ -88,7 +88,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton Style="{DynamicResource CustomRadioButton}"
-                                    GroupName="{Binding GroupName}"
+                                             GroupName="{Binding GroupName}"
                                              IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              Margin="0 13 0 0"
                                              VerticalAlignment="Top"

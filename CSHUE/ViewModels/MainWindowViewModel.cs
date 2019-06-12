@@ -758,22 +758,19 @@ namespace CSHUE.ViewModels
 
                 var color = l.Color;
 
-                if (await Client.CheckConnection())
+                try
                 {
-                    try
+                    await Client.SendCommandAsync(new LightCommand
                     {
-                        await Client.SendCommandAsync(new LightCommand
-                        {
-                            On = true,
-                            Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
-                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                            Brightness = l.Brightness
-                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
+                        On = true,
+                        Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                        Brightness = l.Brightness
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                }
+                catch
+                {
+                    // ignored
                 }
 
                 _alreadySetLights = false;
@@ -794,42 +791,13 @@ namespace CSHUE.ViewModels
 
                 if (!l.OnlyBrightness)
                 {
-                    if (await Client.CheckConnection())
-                    {
-                        try
-                        {
-                            await Client.SendCommandAsync(new LightCommand
-                            {
-                                On = true,
-                                Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
-                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                                Brightness = l.Brightness
-                            }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                    }
-
-                    _alreadySetLights = false;
-                    continue;
-                }
-
-                if (await Client.CheckConnection())
-                {
                     try
                     {
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
-                                                   360 *
-                                                   65535),
-                            Saturation =
-                                (byte)Math.Round(
-                                    ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
-                                    255),
+                            Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
@@ -837,6 +805,29 @@ namespace CSHUE.ViewModels
                     {
                         // ignored
                     }
+
+                    _alreadySetLights = false;
+                    continue;
+                }
+
+                try
+                {
+                    await Client.SendCommandAsync(new LightCommand
+                    {
+                        On = true,
+                        Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
+                                              360 *
+                                              65535),
+                        Saturation =
+                            (byte)Math.Round(
+                                ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
+                                255),
+                        Brightness = l.Brightness
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                }
+                catch
+                {
+                    // ignored
                 }
 
                 _alreadySetLights = false;
@@ -857,22 +848,19 @@ namespace CSHUE.ViewModels
 
                 if (!l.OnlyBrightness)
                 {
-                    if (await Client.CheckConnection())
+                    try
                     {
-                        try
+                        await Client.SendCommandAsync(new LightCommand
                         {
-                            await Client.SendCommandAsync(new LightCommand
-                            {
-                                On = true,
-                                Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
-                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                                Brightness = l.Brightness
-                            }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
+                            On = true,
+                            Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                            Brightness = l.Brightness
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                    }
+                    catch
+                    {
+                        // ignored
                     }
 
                     _alreadySetLights = false;
@@ -881,45 +869,16 @@ namespace CSHUE.ViewModels
 
                 if (!config2.Lights.Find(x => x.UniqueId == l.UniqueId).OnlyBrightness)
                 {
-                    if (await Client.CheckConnection())
-                    {
-                        try
-                        {
-                            await Client.SendCommandAsync(new LightCommand
-                            {
-                                On = true,
-                                Hue = (int)Math.Round(
-                                    ColorConverters.GetHue(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) / 360 * 65535),
-                                Saturation =
-                                    (byte)Math.Round(
-                                        ColorConverters.GetSaturation(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
-                                        255),
-                                Brightness = l.Brightness
-                            }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                    }
-
-                    _alreadySetLights = false;
-                    continue;
-                }
-
-                if (await Client.CheckConnection())
-                {
                     try
                     {
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
-                                                   360 *
-                                                   65535),
+                            Hue = (int)Math.Round(
+                                ColorConverters.GetHue(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) / 360 * 65535),
                             Saturation =
                                 (byte)Math.Round(
-                                    ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
+                                    ColorConverters.GetSaturation(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                     255),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
@@ -928,6 +887,29 @@ namespace CSHUE.ViewModels
                     {
                         // ignored
                     }
+
+                    _alreadySetLights = false;
+                    continue;
+                }
+
+                try
+                {
+                    await Client.SendCommandAsync(new LightCommand
+                    {
+                        On = true,
+                        Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
+                                              360 *
+                                              65535),
+                        Saturation =
+                            (byte)Math.Round(
+                                ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
+                                255),
+                        Brightness = l.Brightness
+                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                }
+                catch
+                {
+                    // ignored
                 }
 
                 _alreadySetLights = false;
@@ -966,91 +948,72 @@ namespace CSHUE.ViewModels
 
         public async void BlinkingBombAsync()
         {
-            if (!_isPlanted) return;
+            if (!_isPlanted || Properties.Settings.Default.BombBlink.SelectedLights.Count == 0)
+                return;
 
-            foreach (var l in Properties.Settings.Default.BombBlink.Lights)
+            var uniqueId = Properties.Settings.Default.BombBlink.SelectedLights.First();
+
+            var light = Properties.Settings.Default.BombBlink.Lights.Find(x => x.UniqueId == uniqueId);
+            var plantedLight = Properties.Settings.Default.BombPlanted.Lights.Find(x => x.UniqueId == uniqueId);
+
+            if (!light.OnlyBrightness)
             {
-                if (!Properties.Settings.Default.BombBlink.SelectedLights.FindAll(x => x == l.UniqueId).Any()) continue;
-
-                var color = l.Color;
-
-                var back = Properties.Settings.Default.BombPlanted.Lights.Find(x => x.UniqueId == l.UniqueId).Color;
-
-                if (!Properties.Settings.Default.BombBlink.Lights.Find(x => x.UniqueId == l.UniqueId).OnlyBrightness)
+                try
                 {
-                    if (await Client.CheckConnection())
+                    await Client.SendCommandAsync(new LightCommand
                     {
-                        try
-                        {
-                            await Client.SendCommandAsync(new LightCommand
-                            {
-                                On = true,
-                                Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
-                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                                Brightness = l.Brightness,
-                                TransitionTime = TimeSpan.FromMilliseconds(100)
-                            }, new List<string> { $"{l.Id}" })
-                                .ConfigureAwait(false);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                    }
+                        On = true,
+                        Hue = (int)Math.Round(ColorConverters.GetHue(light.Color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(light.Color) * 255),
+                        Brightness = light.Brightness,
+                        TransitionTime = TimeSpan.FromMilliseconds(100)
+                    }, new List<string> { $"{light.Id}" })
+                        .ConfigureAwait(false);
                 }
-                else
+                catch
                 {
-                    if (await Client.CheckConnection())
-                    {
-                        try
-                        {
-                            await Client.SendCommandAsync(new LightCommand
-                            {
-                                On = true,
-                                Hue = (int)Math.Round(ColorConverters.GetHue(back) / 360 * 65535),
-                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(Properties
-                                                                      .Settings.Default.BombPlanted.Lights
-                                                                      .Find(x => x.UniqueId == l.UniqueId).Color) * 255),
-                                Brightness = l.Brightness,
-                                TransitionTime = TimeSpan.FromMilliseconds(100)
-                            }, new List<string> { $"{l.Id}" })
-                                .ConfigureAwait(false);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-
-                    }
+                    // ignored
                 }
-
-                _alreadySetLights = false;
-
-                Thread.Sleep(100);
-
-                if (await Client.CheckConnection())
-                {
-                    try
-                    {
-                        await Client.SendCommandAsync(new LightCommand
-                        {
-                            On = true,
-                            Hue = (int)Math.Round(ColorConverters.GetHue(back) / 360 * 65535),
-                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(Properties
-                                                              .Settings.Default.BombPlanted.Lights
-                                                              .Find(x => x.UniqueId == l.UniqueId).Color) * 255),
-                            Brightness = Properties.Settings.Default.BombPlanted.Lights.Find(x => x.UniqueId == l.UniqueId).Brightness,
-                            TransitionTime = TimeSpan.FromMilliseconds(100)
-                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                }
-
-                _alreadySetLights = false;
             }
+            else
+            {
+                try
+                {
+                    await Client.SendCommandAsync(new LightCommand
+                    {
+                        On = true,
+                        Hue = (int)Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
+                        Brightness = light.Brightness,
+                        TransitionTime = TimeSpan.FromMilliseconds(100)
+                    }, new List<string> { $"{light.Id}" })
+                        .ConfigureAwait(false);
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+            Thread.Sleep(100);
+
+            try
+            {
+                await Client.SendCommandAsync(new LightCommand
+                {
+                    On = true,
+                    Hue = (int)Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
+                    Saturation = (byte)Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
+                    Brightness = plantedLight.Brightness,
+                    TransitionTime = TimeSpan.FromMilliseconds(100)
+                }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
+            }
+            catch
+            {
+                // ignored
+            }
+
+            _alreadySetLights = false;
         }
 
         public bool BackLights(GameState gs)

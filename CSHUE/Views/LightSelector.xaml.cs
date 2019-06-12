@@ -164,7 +164,8 @@ namespace CSHUE.Views
                 Property.SelectedLights = new List<string>();
                 foreach (var c in ViewModel.List)
                 {
-                    if (!c.IsChecked) continue;
+                    if (!c.IsChecked)
+                        continue;
 
                     Property.SelectedLights.Add(c.UniqueId);
                 }
@@ -181,7 +182,8 @@ namespace CSHUE.Views
                 BrightnessProperty.SelectedLights = new List<string>();
                 foreach (var c in ViewModel.List)
                 {
-                    if (!c.IsChecked) continue;
+                    if (!c.IsChecked)
+                        continue;
 
                     BrightnessProperty.SelectedLights.Add(c.UniqueId);
                 }

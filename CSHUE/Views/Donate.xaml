@@ -51,7 +51,7 @@
                             MinWidth="90"
                             HorizontalAlignment="Center"
                             Style="{DynamicResource CustomButton}"
-                            Content="{Binding Path=DonateButton, Source={StaticResource Resources}}"
+                            Content="{Binding Path=Donate, Source={StaticResource Resources}}"
                             Click="Donate_Click">
                         <Button.ToolTip>
                             <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"

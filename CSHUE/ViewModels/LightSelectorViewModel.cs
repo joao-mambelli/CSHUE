@@ -61,7 +61,7 @@ namespace CSHUE.ViewModels
                 }
                 catch
                 {
-                    return;
+                    updateList.Add(l);
                 }
             }
 

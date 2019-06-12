@@ -138,10 +138,10 @@ Se o botão abaixo for pressionado, o CSHUE vai, automaticamente, tentar encontr
   <data name="CSGOGSI" xml:space="preserve">
     <value>CS:GO GSI</value>
   </data>
-  <data name="Donate" xml:space="preserve">
+  <data name="Donation" xml:space="preserve">
     <value>Doação</value>
   </data>
-  <data name="DonateButton" xml:space="preserve">
+  <data name="Donate" xml:space="preserve">
     <value>Doar</value>
   </data>
   <data name="DonateText" xml:space="preserve">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Windows.Media;
 using System.Globalization;
@@ -162,8 +163,6 @@ namespace CSHUE.ViewModels
             if (Properties.Settings.Default.BombBlink == null)
                 Properties.Settings.Default.BombBlink = new EventBrightnessProperty();
 
-            var rnd = new Random();
-
             if (Properties.Settings.Default.MainMenu.Lights == null)
             {
                 Properties.Settings.Default.MainMenu.Lights = new List<UniqueLight>();
@@ -172,9 +171,21 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256)),
-                        Brightness = (byte)rnd.Next(184, 201)
+                        Color = Color.FromRgb(0, 0, 255),
+                        Brightness = 192
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.MainMenu.Lights.Add(new UniqueLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(0, 0, 255),
+                            Brightness = 192
+                        });
             }
             if (Properties.Settings.Default.MainMenu.SelectedLights == null)
             {
@@ -191,10 +202,23 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(240, 256),
+                        Color = Color.FromRgb(0, 255, 0),
+                        Brightness = 255,
                         OnlyBrightness = true
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.PlayerGetsKill.Lights.Add(new UniqueBrightnessLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(0, 255, 0),
+                            Brightness = 255,
+                            OnlyBrightness = true
+                        });
             }
             if (Properties.Settings.Default.PlayerGetsKill.SelectedLights == null)
             {
@@ -211,10 +235,23 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(120, 137),
+                        Color = Color.FromRgb(255, 0, 0),
+                        Brightness = 128,
                         OnlyBrightness = true
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.PlayerGetsKilled.Lights.Add(new UniqueBrightnessLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 0, 0),
+                            Brightness = 128,
+                            OnlyBrightness = true
+                        });
             }
             if (Properties.Settings.Default.PlayerGetsKilled.SelectedLights == null)
             {
@@ -231,9 +268,21 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256)),
-                        Brightness = (byte)rnd.Next(240, 256)
+                        Color = Color.FromRgb(255, 255, 255),
+                        Brightness = 255
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.PlayerGetsFlashed.Lights.Add(new UniqueLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 255, 255),
+                            Brightness = 255
+                        });
             }
             if (Properties.Settings.Default.PlayerGetsFlashed.SelectedLights == null)
             {
@@ -250,9 +299,21 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(162, 179), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(184, 201)
+                        Color = Color.FromRgb(255, 170, 0),
+                        Brightness = 192
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.TerroristsWin.Lights.Add(new UniqueLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 170, 0),
+                            Brightness = 192
+                        });
             }
             if (Properties.Settings.Default.TerroristsWin.SelectedLights == null)
             {
@@ -269,9 +330,21 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256)),
-                        Brightness = (byte)rnd.Next(184, 201)
+                        Color = Color.FromRgb(0, 0, 255),
+                        Brightness = 192
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.CounterTerroristsWin.Lights.Add(new UniqueLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(0, 0, 255),
+                            Brightness = 192
+                        });
             }
             if (Properties.Settings.Default.CounterTerroristsWin.SelectedLights == null)
             {
@@ -288,9 +361,21 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(0, 17), (byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(184, 201)
+                        Color = Color.FromRgb(0, 255, 0),
+                        Brightness = 192
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.RoundStarts.Lights.Add(new UniqueLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(0, 255, 0),
+                            Brightness = 192
+                        });
             }
             if (Properties.Settings.Default.RoundStarts.SelectedLights == null)
             {
@@ -307,10 +392,23 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256)),
-                        Brightness = (byte)rnd.Next(120, 137),
+                        Color = Color.FromRgb(255, 255, 255),
+                        Brightness = 128,
                         OnlyBrightness = true
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.FreezeTime.Lights.Add(new UniqueBrightnessLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 255, 255),
+                            Brightness = 128,
+                            OnlyBrightness = true
+                        });
             }
             if (Properties.Settings.Default.FreezeTime.SelectedLights == null)
             {
@@ -327,10 +425,23 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256), (byte)rnd.Next(240, 256)),
-                        Brightness = (byte)rnd.Next(120, 137),
+                        Color = Color.FromRgb(255, 255, 255),
+                        Brightness = 128,
                         OnlyBrightness = true
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.Warmup.Lights.Add(new UniqueBrightnessLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 255, 255),
+                            Brightness = 128,
+                            OnlyBrightness = true
+                        });
             }
             if (Properties.Settings.Default.Warmup.SelectedLights == null)
             {
@@ -347,10 +458,23 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(240, 256),
+                        Color = Color.FromRgb(255, 0, 0),
+                        Brightness = 255,
                         OnlyBrightness = true
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.BombExplodes.Lights.Add(new UniqueBrightnessLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 0, 0),
+                            Brightness = 255,
+                            OnlyBrightness = true
+                        });
             }
             if (Properties.Settings.Default.BombExplodes.SelectedLights == null)
             {
@@ -367,9 +491,21 @@ namespace CSHUE.ViewModels
                     {
                         UniqueId = i.UniqueId,
                         Id = i.Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(120, 137)
+                        Color = Color.FromRgb(255, 0, 0),
+                        Brightness = 128
                     });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.BombPlanted.Lights.Add(new UniqueLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 0, 0),
+                            Brightness = 128
+                        });
             }
             if (Properties.Settings.Default.BombPlanted.SelectedLights == null)
             {
@@ -380,17 +516,29 @@ namespace CSHUE.ViewModels
 
             if (Properties.Settings.Default.BombBlink.Lights == null)
             {
-                Properties.Settings.Default.BombBlink.Lights = new List<UniqueBrightnessLight>
-                {
-                    new UniqueBrightnessLight
+                Properties.Settings.Default.BombBlink.Lights = new List<UniqueBrightnessLight>();
+                foreach (var i in allLights)
+                    Properties.Settings.Default.BombBlink.Lights.Add(new UniqueBrightnessLight
                     {
-                        UniqueId = allLights.First().UniqueId,
-                        Id = allLights.First().Id,
-                        Color = Color.FromRgb((byte)rnd.Next(240, 256), (byte)rnd.Next(0, 17), (byte)rnd.Next(0, 17)),
-                        Brightness = (byte)rnd.Next(240, 256),
+                        UniqueId = i.UniqueId,
+                        Id = i.Id,
+                        Color = Color.FromRgb(255, 0, 0),
+                        Brightness = 255,
                         OnlyBrightness = true
-                    }
-                };
+                    });
+            }
+            else if (Properties.Settings.Default.UniqueIds != null)
+            {
+                foreach (var i in allLights)
+                    if (!Properties.Settings.Default.UniqueIds.Contains(i.UniqueId))
+                        Properties.Settings.Default.BombBlink.Lights.Add(new UniqueBrightnessLight
+                        {
+                            UniqueId = i.UniqueId,
+                            Id = i.Id,
+                            Color = Color.FromRgb(255, 0, 0),
+                            Brightness = 255,
+                            OnlyBrightness = true
+                        });
             }
             if (Properties.Settings.Default.BombBlink.SelectedLights == null)
             {
@@ -398,6 +546,12 @@ namespace CSHUE.ViewModels
                 {
                     allLights.FirstOrDefault().UniqueId
                 };
+            }
+
+            Properties.Settings.Default.UniqueIds = new StringCollection();
+            foreach (var l in allLights)
+            {
+                Properties.Settings.Default.UniqueIds.Add(l.UniqueId);
             }
         }
 
@@ -567,9 +721,10 @@ namespace CSHUE.ViewModels
             }
             catch
             {
-                Properties.Settings.Default.AppKey = "";
-                Properties.Settings.Default.Save();
+                // ignored
             }
+
+            Properties.Settings.Default.Save();
         }
 
         public void Csgo()

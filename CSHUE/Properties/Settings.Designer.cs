@@ -490,5 +490,16 @@ namespace CSHUE.Properties {
                 this["LatestVersionCheck"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection UniqueIds {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["UniqueIds"]));
+            }
+            set {
+                this["UniqueIds"] = value;
+            }
+        }
     }
 }

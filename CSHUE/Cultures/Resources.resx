@@ -415,4 +415,7 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="NewVersionMessage" xml:space="preserve">
     <value>Newer version, "{0}", is available.</value>
   </data>
+  <data name="Temperature" xml:space="preserve">
+    <value>Temperature</value>
+  </data>
 </root>

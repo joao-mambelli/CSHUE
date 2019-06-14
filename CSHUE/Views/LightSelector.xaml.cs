@@ -72,6 +72,8 @@ namespace CSHUE.Views
                             : Property.Lights.Find(x => x.UniqueId == l.UniqueId).Brightness,
                         Id = l.Id,
                         UniqueId = l.UniqueId,
+                        IsColorTemperature = l.Capabilities.Control.ColorGamut == null,
+                        ColorTemperature = Property.Lights.Find(x => x.UniqueId == l.UniqueId).ColorTemperature,
                         IsChecked = Property.SelectedLights.Any(x => x == l.UniqueId)
                     };
                     lightSettingCellViewModel.Content = new LightSettingCell
@@ -120,6 +122,8 @@ namespace CSHUE.Views
                             (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent +
                             (mainEvent != Cultures.Resources.Current ? "\"" : "")),
                         UniqueId = l.UniqueId,
+                        IsColorTemperature = l.Capabilities.Control.ColorGamut == null,
+                        ColorTemperature = BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId).ColorTemperature,
                         IsChecked = BrightnessProperty.SelectedLights.Any(x => x == l.UniqueId),
                         SingleOptionVisibility = singleOption ? Visibility.Visible : Visibility.Collapsed
                     };
@@ -158,6 +162,7 @@ namespace CSHUE.Views
                 {
                     l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Brightness;
                     l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Color;
+                    l.ColorTemperature = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).ColorTemperature;
                 }
 
                 Property.SelectedLights = new List<string>();
@@ -175,6 +180,7 @@ namespace CSHUE.Views
                 {
                     l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Brightness;
                     l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Color;
+                    l.ColorTemperature = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).ColorTemperature;
                     l.OnlyBrightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).OnlyBrightness;
                 }
 

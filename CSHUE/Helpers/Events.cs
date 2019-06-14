@@ -32,6 +32,8 @@ namespace CSHUE.Helpers
         public string UniqueId { get; set; }
         public string Id { get; set; }
         public Color Color { get; set; }
+        public int ColorTemperature { get; set; }
+        public bool IsColorTemperature { get; set; }
         public byte Brightness { get; set; }
     }
 
@@ -43,6 +45,8 @@ namespace CSHUE.Helpers
         public string UniqueId { get; set; }
         public string Id { get; set; }
         public Color Color { get; set; }
+        public int ColorTemperature { get; set; }
+        public bool IsColorTemperature { get; set; }
         public byte Brightness { get; set; }
         public bool OnlyBrightness { get; set; }
     }

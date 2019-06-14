@@ -10,6 +10,7 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
+        xmlns:helpers="clr-namespace:CSHUE.Helpers"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         Height="427"
         SizeToContent="Width"
@@ -29,6 +30,12 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="37"/>
     </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <helpers:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter"/>
+
+        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
         <Grid.ColumnDefinitions>
@@ -56,7 +63,7 @@
                     Orientation="Horizontal"
                     Height="320"
                     Margin="20 50 0 0">
-            <StackPanel>
+            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BoolToCollapsedConverter}}">
                 <Label Content="{Binding Path=Hue, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
@@ -68,7 +75,8 @@
                         Maximum="360"
                         Orientation="Vertical"
                         Style="{DynamicResource CustomSlider}"
-                        Value="{Binding Hue}">
+                        Value="{Binding Hue}"
+                        x:Name="HueSlider">
                     <Slider.Background>
                         <ImageBrush ImageSource="{Binding HueSliderBrush}"/>
                     </Slider.Background>
@@ -95,7 +103,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel>
+            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BoolToCollapsedConverter}}">
                 <Label Content="{Binding Path=Saturation, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
@@ -107,7 +115,8 @@
                         Maximum="100"
                         Orientation="Vertical"
                         Style="{DynamicResource CustomSlider}"
-                        Value="{Binding Saturation}">
+                        Value="{Binding Saturation}"
+                        x:Name="SatSlider">
                     <Slider.Background>
                         <ImageBrush ImageSource="{Binding SaturationSliderBrush}"/>
                     </Slider.Background>
@@ -132,6 +141,48 @@
 
                     <Label Foreground="{DynamicResource SystemBaseHighColorBrush}"
                            Content="%"
+                           VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Label Content="{Binding Path=Temperature, Source={StaticResource Resources}}"
+                       Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 -4"/>
+                <Slider Minimum="2000"
+                        Height="{Binding SlidersHeight}"
+                        Width="30"
+                        HorizontalAlignment="Center"
+                        Maximum="6500"
+                        Orientation="Vertical"
+                        Style="{DynamicResource CustomSlider}"
+                        Value="{Binding ColorTemperature}"
+                        x:Name="TemperatureSlider">
+                    <Slider.Background>
+                        <ImageBrush ImageSource="{Binding TemperatureSliderBrush}"/>
+                    </Slider.Background>
+                </Slider>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="17 0 0 0">
+                    <xctk:IntegerUpDown Value="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Background="{DynamicResource SystemAltLowColorBrush}"
+                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                        ButtonSpinnerLocation="Left"
+                                        BorderThickness="0"
+                                        Width="52"
+                                        Height="21"
+                                        TextAlignment="Center"
+                                        Increment="1"
+                                        Minimum="2000"
+                                        Maximum="6500"
+                                        DefaultValue="6500"
+                                        DisplayDefaultValueOnEmptyText="True"/>
+
+                    <Label Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                           Content="K"
                            VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>

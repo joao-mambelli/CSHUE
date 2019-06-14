@@ -10,8 +10,13 @@ namespace CSHUE.Helpers
     {
         #region Methods
 
-        public Color PickWheelPixelColor(int x, int y, int radius)
+        public Color PickWheelPixelColor(int x, int y, int radius, bool colorTemperature)
         {
+            if (colorTemperature)
+            {
+                return ColorConverters.Ct((int)Math.Round((1 - (double)y / (2 * radius)) * 4500 + 2000));
+            }
+
             var distanceFromCenter = Math.Sqrt(Math.Pow(x - radius, 2) + Math.Pow(y - radius, 2));
             if (distanceFromCenter > radius)
             {
@@ -36,7 +41,7 @@ namespace CSHUE.Helpers
             return ColorConverters.Hs(Math.Round(angle / ((double)1 / 18 * Math.PI), MidpointRounding.AwayFromZero) * ((double)1 / 18 * Math.PI), 1);
         }
 
-        public WriteableBitmap CreateWheelImage(int radius)
+        public WriteableBitmap CreateWheelImage(int radius, bool colorTemperature)
         {
             var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
             var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
@@ -55,7 +60,7 @@ namespace CSHUE.Helpers
             {
                 for (var x = 0; x < radius * 2; x++)
                 {
-                    var color = PickWheelPixelColor(x, y, radius);
+                    var color = PickWheelPixelColor(x, y, radius, colorTemperature);
                     pixels[y, x, 3] = color.A;
                     pixels[y, x, 2] = color.R;
                     pixels[y, x, 1] = color.G;
@@ -80,7 +85,7 @@ namespace CSHUE.Helpers
             return img;
         }
 
-        public WriteableBitmap CreateOutsideWheelImage(int outerRadius, int innerRadius)
+        public WriteableBitmap CreateOutsideWheelImage(int outerRadius, int innerRadius, bool colorTemperature)
         {
             var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
             var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
@@ -99,7 +104,9 @@ namespace CSHUE.Helpers
             {
                 for (var x = 0; x < outerRadius * 2; x++)
                 {
-                    var color = PickOutsideWheelPixelColor(x, y, outerRadius, innerRadius);
+                    var color = colorTemperature
+                        ? Colors.Transparent
+                        : PickOutsideWheelPixelColor(x, y, outerRadius, innerRadius);
                     pixels[y, x, 3] = color.A;
                     pixels[y, x, 2] = color.R;
                     pixels[y, x, 1] = color.G;
@@ -195,6 +202,52 @@ namespace CSHUE.Helpers
             for (var y = 0; y < height; y++)
             {
                 var color = PickSaturationPixelColor(y, height, hue);
+                pixels[0, y, 3] = color.A;
+                pixels[0, y, 2] = color.R;
+                pixels[0, y, 1] = color.G;
+                pixels[0, y, 0] = color.B;
+            }
+
+            var pixels1D = new byte[height * 4];
+            var index = 0;
+            for (var row = 0; row < height; row++)
+            {
+                for (var i = 0; i < 4; i++)
+                    pixels1D[index++] = pixels[0, row, i];
+            }
+
+            var rect = new Int32Rect(0, 0, 1, height);
+            img.WritePixels(rect, pixels1D, (img.Format.BitsPerPixel + 7) / 8, 0);
+
+            return img;
+        }
+
+        public Color PickTemperaturePixelColor(int y, int height)
+        {
+            if (y <= 6 || height - y <= 6) return Colors.Transparent;
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return ColorConverters.Ct((int)Math.Round((1 - (double)y / height) * 4500 + 2000));
+        }
+
+        public WriteableBitmap CreateTemperatureImage(int height)
+        {
+            var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
+            var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
+
+            var dpiX = 96;
+            var dpiY = 96;
+            if (dpiXProperty != null && dpiYProperty != null)
+            {
+                dpiX = (int)dpiXProperty.GetValue(null, null);
+                dpiY = (int)dpiYProperty.GetValue(null, null);
+            }
+
+            var img = new WriteableBitmap(1, height, dpiX, dpiY, PixelFormats.Bgra32, null);
+            var pixels = new byte[1, height, 4];
+            for (var y = 0; y < height; y++)
+            {
+                var color = PickTemperaturePixelColor(y, height);
                 pixels[0, y, 3] = color.A;
                 pixels[0, y, 2] = color.R;
                 pixels[0, y, 1] = color.G;

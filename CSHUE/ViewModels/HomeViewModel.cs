@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -245,6 +246,7 @@ namespace CSHUE.ViewModels
             InProcess = Visibility.Collapsed;
         }
 
+        [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
         public async Task RefreshLights()
         {
             if (MainWindowViewModel.Client == null) return;
@@ -279,8 +281,10 @@ namespace CSHUE.ViewModels
                         existingElement.On = l.State.On;
                         existingElement.Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")";
                         existingElement.Color = l.State.On
-                            ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
-                                (double)l.State.Saturation / 255)
+                            ? l.Capabilities.Control.ColorGamut == null
+                                ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2,
+                                    (double) l.State.Saturation / 255)
+                                : ColorConverters.Ct((int)Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
                             : Colors.Black;
                         existingElement.Brightness = (double)(l.State.Brightness + 1) / 255;
                     }
@@ -291,8 +295,10 @@ namespace CSHUE.ViewModels
                             On = l.State.On,
                             Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")",
                             Color = l.State.On
-                                ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
-                                    (double)l.State.Saturation / 255)
+                                ? l.Capabilities.Control.ColorGamut == null
+                                    ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
+                                        (double)l.State.Saturation / 255)
+                                    : ColorConverters.Ct((int)Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
                                 : Colors.Black,
                             Brightness = (double)(l.State.Brightness + 1) / 255,
                             UniqueId = l.UniqueId

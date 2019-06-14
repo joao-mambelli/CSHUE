@@ -22,6 +22,25 @@ namespace CSHUE.Helpers
             return Colors.Transparent;
         }
 
+        public static Color Ct(int kelvin)
+        {
+            var temperature = (double)kelvin / 100;
+
+            var green = 99.4708025861 * Math.Log(temperature) - 161.1195681661;
+            if (green < 0)
+                green = 0;
+            if (green > 255)
+                green = 255;
+
+            var blue = 138.5177312231 * Math.Log(temperature - 10) - 305.0447927307;
+            if (blue < 0)
+                blue = 0;
+            if (blue > 255)
+                blue = 255;
+
+            return Color.FromRgb(255, (byte)Math.Round(green), (byte)Math.Round(blue));
+        }
+
         public static double GetSaturation(Color color)
         {
             var r = (double)color.R / 255;

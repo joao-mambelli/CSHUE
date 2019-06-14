@@ -244,7 +244,7 @@ namespace CSHUE.Views
             ViewModel.MovingPicker = true;
 
             if (IsColorTemperature)
-                ViewModel.ColorTemperature = 4250;
+                ViewModel.ColorTemperature = ColorTemperature;
             else
             {
                 ViewModel.Hue = Math.Round(ColorConverters.GetHue(Color));

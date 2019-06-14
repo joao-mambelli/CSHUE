@@ -519,6 +519,11 @@ namespace CSHUE.Views
             }
 
             Properties.Settings.Default.Save();
+            
+            foreach (var w in Application.Current.Windows)
+            {
+                ((Window)w).Hide();
+            }
 
             Environment.Exit(0);
         }

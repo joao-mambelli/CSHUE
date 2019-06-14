@@ -784,18 +784,23 @@ namespace CSHUE.ViewModels
             {
                 if (l.State.IsReachable != true) continue;
 
-                if (!await MainWindowViewModel.Client.CheckConnection())
-                    continue;
-
                 try
                 {
-                    await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
-                    {
-                        On = l.State.On,
-                        Hue = l.State.Hue,
-                        Saturation = l.State.Saturation,
-                        Brightness = l.State.Brightness
-                    }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                    if (l.Capabilities.Control.ColorGamut == null)
+                        await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                        {
+                            On = l.State.On,
+                            ColorTemperature = l.State.ColorTemperature,
+                            Brightness = l.State.Brightness
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                    else
+                        await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                        {
+                            On = l.State.On,
+                            Hue = l.State.Hue,
+                            Saturation = l.State.Saturation,
+                            Brightness = l.State.Brightness
+                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                 }
                 catch
                 {

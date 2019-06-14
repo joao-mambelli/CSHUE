@@ -37,13 +37,16 @@ namespace CSHUE.Controls
                 Text2 = Cultures.Resources.Ok,
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
                 Color = ((LightSettingCellViewModel)DataContext).Color,
-                Index = ((LightSettingCellViewModel)DataContext).Id,
-                Brightness = ((LightSettingCellViewModel)DataContext).Brightness
+                Id = ((LightSettingCellViewModel)DataContext).Id,
+                Brightness = ((LightSettingCellViewModel)DataContext).Brightness,
+                IsColorTemperature = ((LightSettingCellViewModel)DataContext).IsColorTemperature,
+                ColorTemperature = ((LightSettingCellViewModel)DataContext).ColorTemperature
             };
             colorPicker.ShowDialog();
             LightSelectorViewModel.IsColorPickerOpened = false;
 
             ((LightSettingCellViewModel)DataContext).Color = colorPicker.Color;
+            ((LightSettingCellViewModel)DataContext).ColorTemperature = colorPicker.ColorTemperature;
         }
 
         #endregion

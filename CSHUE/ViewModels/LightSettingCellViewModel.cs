@@ -14,6 +14,8 @@ namespace CSHUE.ViewModels
 
         public string UniqueId { get; set; }
 
+        public bool IsColorTemperature { get; set; }
+
         public string Id { get; set; }
 
         private Visibility _singleOptionVisibility = Visibility.Collapsed;
@@ -38,6 +40,17 @@ namespace CSHUE.ViewModels
             set
             {
                 _isChecked = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _colorTemperature;
+        public int ColorTemperature
+        {
+            get => _colorTemperature;
+            set
+            {
+                _colorTemperature = value;
                 OnPropertyChanged();
             }
         }

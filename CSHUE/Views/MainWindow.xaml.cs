@@ -187,35 +187,40 @@ namespace CSHUE.Views
             if (Properties.Settings.Default.ShowSystemTrayIcon)
                 ViewModel.NotifyIconVisibility = Visibility.Visible;
 
-            var arguments = Environment.GetCommandLineArgs();
-            foreach (var s in arguments)
+            if (Properties.Settings.Default.FirstLaunch)
+                ViewModel.Navigate(Page, "Home");
+            else
             {
-                switch (s)
+                var arguments = Environment.GetCommandLineArgs();
+                foreach (var s in arguments)
                 {
-                    case "-silent":
-                        if (Properties.Settings.Default.RunOnStartupMinimized &&
-                            Properties.Settings.Default.MinimizeToSystemTray &&
-                            Properties.Settings.Default.ShowSystemTrayIcon)
-                        {
-                            WindowState = WindowState.Minimized;
-                            Hide();
-                        }
-                        else if (Properties.Settings.Default.RunOnStartupMinimized)
-                            WindowState = WindowState.Minimized;
+                    switch (s)
+                    {
+                        case "-silent":
+                            if (Properties.Settings.Default.RunOnStartupMinimized &&
+                                Properties.Settings.Default.MinimizeToSystemTray &&
+                                Properties.Settings.Default.ShowSystemTrayIcon)
+                            {
+                                WindowState = WindowState.Minimized;
+                                Hide();
+                            }
+                            else if (Properties.Settings.Default.RunOnStartupMinimized)
+                                WindowState = WindowState.Minimized;
 
-                        ViewModel.Navigate(Page, "Home");
-                        break;
-                    case "-lang":
-                        ViewModel.Navigate(Page, "Settings");
-                        UpdateIndicator("Settings");
-                        break;
-                    case "-reset":
-                        ViewModel.Resetting = true;
-                        ViewModel.Navigate(Page, "Home");
-                        break;
-                    default:
-                        ViewModel.Navigate(Page, "Home");
-                        break;
+                            ViewModel.Navigate(Page, "Home");
+                            break;
+                        case "-lang":
+                            ViewModel.Navigate(Page, "Settings");
+                            UpdateIndicator("Settings");
+                            break;
+                        case "-reset":
+                            ViewModel.Resetting = true;
+                            ViewModel.Navigate(Page, "Home");
+                            break;
+                        default:
+                            ViewModel.Navigate(Page, "Home");
+                            break;
+                    }
                 }
             }
 
@@ -389,6 +394,13 @@ namespace CSHUE.Views
             if (!_buttonClickable) return;
             ((Grid)sender).ClearValue(BackgroundProperty);
             ViewModel.Navigate(Page, sender);
+
+            if (((Grid)sender).Name == "Settings" && Properties.Settings.Default.FirstLaunch)
+            {
+                Properties.Settings.Default.FirstLaunch = false;
+                Properties.Settings.Default.Save();
+            }
+
             UpdateIndicator(((Grid)sender).Name);
         }
 

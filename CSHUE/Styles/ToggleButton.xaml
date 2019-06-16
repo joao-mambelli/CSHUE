@@ -63,7 +63,7 @@
                         <Ellipse Height="10"
                                  Width="10"
                                  x:Name="Slider"
-                                 Fill="White"
+                                 Fill="{DynamicResource SystemBaseHighColorBrush}"
                                  HorizontalAlignment="Left"
                                  Margin="5,0,0,0"
                                  Opacity=".77"/>
@@ -117,6 +117,10 @@
                             <Setter TargetName="Slider"
                                     Property="Opacity"
                                     Value="1"/>
+
+                            <Setter TargetName="Slider"
+                                    Property="Fill"
+                                    Value="White"/>
 
                             <Setter TargetName="Stroke"
                                     Property="Opacity"

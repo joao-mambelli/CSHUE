@@ -418,4 +418,7 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="Temperature" xml:space="preserve">
     <value>Temperatura</value>
   </data>
+  <data name="Unreachable" xml:space="preserve">
+    <value>Inacessível</value>
+  </data>
 </root>

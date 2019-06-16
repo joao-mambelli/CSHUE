@@ -145,6 +145,15 @@ namespace CSHUE.Views
                 ViewModel.MainWindowViewModel.GlobalLightsBackup = allLights;
             }
 
+            var unreachableLights = new List<Light>();
+            if (allLights != null)
+                foreach (var l in allLights)
+                    if (l.State.IsReachable != true)
+                        unreachableLights.Add(l);
+            foreach (var l in unreachableLights)
+                if (l.State.IsReachable != true)
+                    allLights?.Remove(l);
+
             if (allLights == null || !allLights.Any())
             {
                 new CustomMessageBox

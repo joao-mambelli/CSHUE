@@ -784,6 +784,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unreachable.
+        /// </summary>
+        public static string Unreachable {
+            get {
+                return ResourceManager.GetString("Unreachable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use its color from {0} event.
         /// </summary>
         public static string UseMainEventColor {

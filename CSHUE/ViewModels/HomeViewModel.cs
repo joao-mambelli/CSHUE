@@ -278,9 +278,13 @@ namespace CSHUE.ViewModels
 
                     if (existingElement != null)
                     {
-                        existingElement.On = l.State.On;
-                        existingElement.Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")";
-                        existingElement.Color = l.State.On
+                        existingElement.On = l.State.On && l.State.IsReachable.Value;
+                        existingElement.Text = l.State.On && l.State.IsReachable.Value
+                            ? l.Name
+                            : l.Name + " (" + (!l.State.IsReachable.Value
+                                  ? Resources.Unreachable
+                                  : Resources.LightOff) + ")";
+                        existingElement.Color = l.State.On && l.State.IsReachable.Value
                             ? l.Capabilities.Control.ColorGamut == null
                                 ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2,
                                     (double) l.State.Saturation / 255)
@@ -292,9 +296,13 @@ namespace CSHUE.ViewModels
                     {
                         tempList.Add(new LightStateCell
                         {
-                            On = l.State.On,
-                            Text = l.State.On ? l.Name : l.Name + " (" + Resources.LightOff + ")",
-                            Color = l.State.On
+                            On = l.State.On && l.State.IsReachable.Value,
+                            Text = l.State.On && l.State.IsReachable.Value
+                                ? l.Name
+                                : l.Name + " (" + (!l.State.IsReachable.Value
+                                      ? Resources.Unreachable
+                                      : Resources.LightOff) + ")",
+                            Color = l.State.On && l.State.IsReachable.Value
                                 ? l.Capabilities.Control.ColorGamut == null
                                     ? ColorConverters.Hs((double)l.State.Hue / 65535 * Math.PI * 2,
                                         (double)l.State.Saturation / 255)

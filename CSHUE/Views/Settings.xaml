@@ -32,7 +32,8 @@
                       ContextMenuService.IsEnabled="False"
                       attachedBehavior:ScrollAnimationBehavior.IsEnabled="True"
                       attachedBehavior:ScrollAnimationBehavior.TimeDuration="00:00:00.35"
-                      attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128">
+                      attachedBehavior:ScrollAnimationBehavior.PointsToScroll="128"
+                      ScrollChanged="ScrollViewer_OnScrollChanged">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MaxWidth="502"/>
@@ -462,9 +463,7 @@
                               HorizontalAlignment="Left"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
                               Style="{DynamicResource CustomComboBox}"
-                              SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectionChanged="Save">
-                    </ComboBox>
+                              SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Margin="0,20,0,2"
                                FontSize="20"

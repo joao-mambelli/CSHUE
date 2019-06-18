@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Data;
 
 namespace CSHUE.Cultures
@@ -44,7 +45,9 @@ namespace CSHUE.Cultures
 
         static CultureResources()
         {
-            if (BFoundInstalledCultures) return;
+            if (BFoundInstalledCultures)
+                return;
+
             foreach (var dir in Directory.GetDirectories(System.Windows.Forms.Application.StartupPath))
             {
                 try
@@ -54,7 +57,9 @@ namespace CSHUE.Cultures
 
                     if (dirinfo.GetFiles(
                             Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath) +
-                            ".resources.dll").Length <= 0) continue;
+                            ".resources.dll").Length <= 0)
+                        continue;
+
                     SupportedCulturesFullNames.Add(tCulture.NativeName);
                     SupportedCultures.Add(tCulture);
                 }
@@ -63,6 +68,11 @@ namespace CSHUE.Cultures
 
                 }
             }
+
+            SupportedCulturesFullNames.Remove(
+                SupportedCulturesFullNames.Find(x => x == Properties.Settings.Default.LanguageName));
+            SupportedCulturesFullNames.Insert(0, Properties.Settings.Default.LanguageName);
+
             BFoundInstalledCultures = true;
         }
 

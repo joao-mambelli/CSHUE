@@ -233,7 +233,7 @@ namespace CSHUE.Views
 
         private static void SetLanguage()
         {
-            if (Properties.Settings.Default.Language == -1)
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.LanguageName))
             {
                 var culture = CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
                     ? CultureInfo.InstalledUICulture
@@ -249,11 +249,11 @@ namespace CSHUE.Views
 
                 CultureResources.ChangeCulture(culture);
 
-                Properties.Settings.Default.Language = Helpers.Converters.GetIndexFromCultureInfo(culture);
+                Properties.Settings.Default.LanguageName = CultureResources.SupportedCultures.Find(x => Equals(x, culture)).NativeName;
             }
             else
             {
-                var culture = Helpers.Converters.GetCultureInfoFromIndex(Properties.Settings.Default.Language);
+                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == Properties.Settings.Default.LanguageName);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;

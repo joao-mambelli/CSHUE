@@ -463,7 +463,7 @@
                               HorizontalAlignment="Left"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
                               Style="{DynamicResource CustomComboBox}"
-                              SelectedIndex="{Binding Source={x:Static p:Settings.Default}, Path=Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=LanguageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Margin="0,20,0,2"
                                FontSize="20"

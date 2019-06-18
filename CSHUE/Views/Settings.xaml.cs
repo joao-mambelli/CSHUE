@@ -54,7 +54,7 @@ namespace CSHUE.Views
 
             if (ViewModel.MainWindowViewModel.Resetting) return;
 
-            if (((ComboBox)sender).SelectedIndex == -1)
+            if (((ComboBox)sender).SelectedItem == null)
             {
                 var culture = CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
                     ? CultureInfo.InstalledUICulture
@@ -70,11 +70,11 @@ namespace CSHUE.Views
 
                 CultureResources.ChangeCulture(culture);
 
-                Properties.Settings.Default.Language = Converters.GetIndexFromCultureInfo(culture);
+                Properties.Settings.Default.LanguageName = CultureResources.SupportedCultures.Find(x => Equals(x, culture)).NativeName;
             }
             else
             {
-                var culture = Converters.GetCultureInfoFromIndex(((ComboBox)sender).SelectedIndex);
+                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == (string)((ComboBox)sender).SelectedItem);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;

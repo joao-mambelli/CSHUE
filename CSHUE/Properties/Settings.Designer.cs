@@ -397,13 +397,13 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int Language {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LanguageName {
             get {
-                return ((int)(this["Language"]));
+                return ((string)(this["LanguageName"]));
             }
             set {
-                this["Language"] = value;
+                this["LanguageName"] = value;
             }
         }
         

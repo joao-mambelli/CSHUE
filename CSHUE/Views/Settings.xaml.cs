@@ -50,6 +50,8 @@ namespace CSHUE.Views
 
         private void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Properties.Settings.Default.Save();
+
             if (ViewModel.MainWindowViewModel.Resetting) return;
 
             if (((ComboBox)sender).SelectedIndex == -1)
@@ -257,6 +259,15 @@ namespace CSHUE.Views
         private void Save(object sender, RoutedEventArgs routedEventArgs)
         {
             Properties.Settings.Default.Save();
+        }
+
+        private void ScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (!ComboBoxLanguage.IsDropDownOpen)
+                return;
+
+            ComboBoxLanguage.IsDropDownOpen = false;
+            ComboBoxLanguage.IsDropDownOpen = true;
         }
 
         #endregion

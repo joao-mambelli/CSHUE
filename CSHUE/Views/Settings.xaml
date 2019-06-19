@@ -461,6 +461,7 @@
                               x:Name="ComboBoxLanguage"
                               Width="280"
                               HorizontalAlignment="Left"
+                              MaxDropDownHeight="162"
                               ItemsSource="{Binding Source={x:Static cultures:CultureResources.SupportedCulturesFullNames}}"
                               Style="{DynamicResource CustomComboBox}"
                               SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=LanguageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

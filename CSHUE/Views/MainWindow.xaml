@@ -14,7 +14,7 @@
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
-        SourceInitialized="Window_SourceInitialized"
+        Loaded="MainWindow_OnLoaded"
         Activated="Window_Activated"
         Deactivated="Window_Deactivated"
         fw:AcrylicWindow.Enabled="True"

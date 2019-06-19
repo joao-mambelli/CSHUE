@@ -267,7 +267,7 @@ namespace CSHUE.Views
             }
         }
 
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.Maximized)
                 WindowState = WindowState.Maximized;
@@ -277,7 +277,7 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void MainWindow_OnInitialized(object sender, EventArgs e)
+        private void OnInitialized(object sender, EventArgs e)
         {
             var latestVerstion = ViewModel.GetLastVersion();
 
@@ -352,16 +352,18 @@ namespace CSHUE.Views
             }
         }
 
-        private void Window_Deactivated(object sender, EventArgs e)
+        private void OnDeactivated(object sender, EventArgs e)
         {
             BorderBrush = new SolidColorBrush(Color.FromArgb(64, 102, 102, 102));
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void OnActivated(object sender, EventArgs e)
         {
             using (var key = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\DWM"))
             {
-                if (key == null) return;
+                if (key == null)
+                    return;
+
                 var o = key.GetValue("ColorPrevalence");
                 if (o != null && Convert.ToBoolean(o))
                     BorderBrush = AccentColors.ImmersiveSystemAccentBrush;
@@ -494,10 +496,9 @@ namespace CSHUE.Views
             Close();
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
+        private void OnClosing(object sender, CancelEventArgs e)
         {
             ViewModel.RestoreLights();
-
             ViewModel.NotifyIconVisibility = Visibility.Collapsed;
 
             if (WindowState == WindowState.Maximized ||

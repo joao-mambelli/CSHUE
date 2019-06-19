@@ -14,9 +14,6 @@
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="722"
         MinHeight="322"
-        Loaded="MainWindow_OnLoaded"
-        Activated="Window_Activated"
-        Deactivated="Window_Deactivated"
         fw:AcrylicWindow.Enabled="True"
         fw:AcrylicWindow.AcrylicWindowStyle="None"
         FontSize="14"
@@ -27,12 +24,15 @@
         d:DesignHeight="322"
         d:DesignWidth="722"
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
-        Closing="Window_Closing"
         FontFamily="Segoe UI Semilight"
         WindowState="{Binding WindowState, Mode=TwoWay}"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         xmlns:tb="http://www.hardcodet.net/taskbar"
-        Initialized="MainWindow_OnInitialized">
+        Initialized="OnInitialized"
+        Activated="OnActivated"
+        Loaded="OnLoaded"
+        Closing="OnClosing"
+        Deactivated="OnDeactivated">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32"/>
     </WindowChrome.WindowChrome>

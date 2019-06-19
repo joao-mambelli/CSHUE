@@ -267,7 +267,7 @@ namespace CSHUE.Views
             }
         }
 
-        private void Window_SourceInitialized(object sender, EventArgs e)
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.Maximized)
                 WindowState = WindowState.Maximized;

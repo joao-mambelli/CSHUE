@@ -45,6 +45,7 @@ namespace CSHUE.ViewModels
         private bool _previousState;
         private bool _firstCsgoIteration = true;
         private bool _firstCheckIteration = true;
+        private string _bridgeIp = "";
 
         private GameState _lastgs;
         private bool _blockLightChange;
@@ -77,8 +78,7 @@ namespace CSHUE.ViewModels
         private WindowState _windowState = WindowState.Normal;
         public WindowState WindowState
         {
-            get =>
-                _windowState;
+            get => _windowState;
             set
             {
                 _windowState = value;
@@ -86,14 +86,12 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private string _bridgeIp = "";
         public static ILocalHueClient Client { get; set; }
 
         private Visibility _notifyIconVisibility = Visibility.Collapsed;
         public Visibility NotifyIconVisibility
         {
-            get =>
-                _notifyIconVisibility;
+            get => _notifyIconVisibility;
             set
             {
                 _notifyIconVisibility = value;
@@ -104,8 +102,7 @@ namespace CSHUE.ViewModels
         private Color _backgroundColor;
         public Color BackgroundColor
         {
-            get =>
-                _backgroundColor;
+            get => _backgroundColor;
             set
             {
                 _backgroundColor = value;

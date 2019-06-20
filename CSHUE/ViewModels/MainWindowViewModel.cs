@@ -55,6 +55,9 @@ namespace CSHUE.ViewModels
         private int _deathAmount = 60000;
         private bool _mainMenuState = true;
 
+        private System.Timers.Timer _csgoTimer;
+        private System.Timers.Timer _initTimer;
+
         #endregion
 
         #region Properties
@@ -858,8 +861,19 @@ namespace CSHUE.ViewModels
             if (Properties.Settings.Default.RunCsgo)
                 RunCsgo();
 
-            CheckCsgoProcessLoop();
+            ConfigPage.ViewModel.CheckConfigFile();
+
+            _initTimer = new System.Timers.Timer(7000);
+            _initTimer.Elapsed += InitTimerElapsed;
+            _initTimer.AutoReset = false;
+            _initTimer.Start();
+            
             CheckTimeLoop();
+        }
+
+        private void InitTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            _firstCsgoIteration = false;
         }
 
         #endregion
@@ -962,65 +976,6 @@ namespace CSHUE.ViewModels
             }
 
             return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-        }
-
-        public void CheckCsgoProcessLoop()
-        {
-            new Thread(async () =>
-            {
-                while (true)
-                {
-                    ConfigPage.ViewModel.CheckConfigFile();
-
-                    var pname = Process.GetProcessesByName("csgo");
-
-                    if (pname.Length > 0)
-                    {
-                        if (GlobalLightsBackup == null &&
-                            !string.IsNullOrEmpty(Properties.Settings.Default.AppKey) &&
-                            Client != null)
-                        {
-                            try
-                            {
-                                GlobalLightsBackup = (await Client.GetLightsAsync()).ToList();
-                            }
-                            catch
-                            {
-                                //ignored
-                            }
-                        }
-
-                        if (WindowState != WindowState.Minimized &&
-                            Properties.Settings.Default.AutoMinimize &&
-                            !_alreadyMinimized &&
-                            !_previousState &&
-                            !Resetting)
-                        {
-                            _alreadyMinimized = true;
-
-                            if (!_firstCsgoIteration)
-                                WindowState = WindowState.Minimized;
-                        }
-
-                        _previousState = true;
-                    }
-                    else
-                    {
-                        _alreadyMinimized = false;
-
-                        if (_previousState)
-                            RestoreLights();
-
-                        _previousState = false;
-                    }
-
-                    Resetting = false;
-                    _firstCsgoIteration = false;
-
-                    Thread.Sleep(Properties.Settings.Default.CsgoCheckingPeriod * 1000);
-                }
-            })
-            { IsBackground = true }.Start();
         }
 
         #endregion
@@ -1243,8 +1198,10 @@ namespace CSHUE.ViewModels
 
         public async void RestoreLights()
         {
-            if (GlobalLightsBackup == null || !Properties.Settings.Default.RememberLightsStates ||
-                _alreadySetLights) return;
+            if (GlobalLightsBackup == null
+                || !Properties.Settings.Default.RememberLightsStates
+                || _alreadySetLights)
+                return;
 
             _alreadySetLights = true;
 
@@ -1717,11 +1674,62 @@ namespace CSHUE.ViewModels
 
         #region Events Handlers
 
-        public void OnNewGameState(GameState gs)
+        private void CsgoTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            _alreadyMinimized = false;
+
+            if (_previousState)
+                RestoreLights();
+
+            _previousState = false;
+        }
+
+        public async void OnNewGameState(GameState gs)
+        {
+            if (GlobalLightsBackup == null &&
+                !string.IsNullOrEmpty(Properties.Settings.Default.AppKey) &&
+                Client != null)
+            {
+                try
+                {
+                    GlobalLightsBackup = (await Client.GetLightsAsync()).ToList();
+                }
+                catch
+                {
+                    //ignored
+                }
+            }
+
+            if (WindowState != WindowState.Minimized &&
+                Properties.Settings.Default.AutoMinimize &&
+                !_alreadyMinimized &&
+                !_previousState)
+            {
+                _alreadyMinimized = true;
+
+                if (!_firstCsgoIteration)
+                    WindowState = WindowState.Minimized;
+            }
+
+            _previousState = true;
+
+            if (_csgoTimer == null)
+            {
+                _csgoTimer = new System.Timers.Timer(10000);
+                _csgoTimer.Elapsed += CsgoTimerElapsed;
+                _csgoTimer.AutoReset = false;
+                _csgoTimer.Start();
+            }
+            else
+            {
+                _csgoTimer.Stop();
+                _csgoTimer.Start();
+            }
+
             if (!Properties.Settings.Default.Activated ||
                 Client == null ||
-                GlobalLightsBackup == null) return;
+                GlobalLightsBackup == null)
+                return;
 
             _lastgs = gs;
 

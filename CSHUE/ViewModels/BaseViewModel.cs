@@ -89,18 +89,6 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private bool _resetting;
-        public bool Resetting
-        {
-            get =>
-                _resetting;
-            set
-            {
-                _resetting = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
     }
 }

@@ -42,10 +42,9 @@ namespace CSHUE.ViewModels
         public List<Light> GlobalLightsBackup;
         private bool _alreadySetLights;
         private bool _alreadyMinimized;
-        private bool? _lastSetState;
         private bool _previousState;
         private bool _firstCsgoIteration = true;
-        private bool _firstTimeIteration = true;
+        private bool _firstCheckIteration = true;
 
         private GameState _lastgs;
         private bool _blockLightChange;
@@ -54,9 +53,11 @@ namespace CSHUE.ViewModels
         private int _killAmount = 60000;
         private int _deathAmount = 60000;
         private bool _mainMenuState = true;
+        private bool _lastActivatedState;
 
         private System.Timers.Timer _csgoTimer;
         private System.Timers.Timer _initTimer;
+        private System.Timers.Timer _checkTimer;
 
         #endregion
 
@@ -867,8 +868,26 @@ namespace CSHUE.ViewModels
             _initTimer.Elapsed += InitTimerElapsed;
             _initTimer.AutoReset = false;
             _initTimer.Start();
-            
-            CheckTimeLoop();
+
+            CheckTimerElapsed(null, null);
+            _checkTimer = new System.Timers.Timer((61 - DateTime.Now.Second) * 1000);
+            _checkTimer.Elapsed += CheckTimerElapsed;
+            _checkTimer.AutoReset = false;
+            _checkTimer.Start();
+        }
+
+        #endregion
+
+        #region Timers
+
+        private void CsgoTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            _alreadyMinimized = false;
+
+            if (_previousState)
+                RestoreLights();
+
+            _previousState = false;
         }
 
         private void InitTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -876,32 +895,8 @@ namespace CSHUE.ViewModels
             _firstCsgoIteration = false;
         }
 
-        #endregion
-
-        #region Loops
-
-        public void CheckTimeLoop()
+        public void CheckTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            new Thread(() =>
-            {
-                while (true)
-                {
-                    Thread.Sleep(60000 - CheckTime());
-
-                    _firstTimeIteration = false;
-                }
-            })
-            { IsBackground = true }.Start();
-        }
-
-        public int CheckTime()
-        {
-            if (!Properties.Settings.Default.AutoActivate)
-            {
-                _lastSetState = !Properties.Settings.Default.Activated;
-                return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-            }
-
             // For some reason the NumericUpDown was setting sometimes the variables as HH:mm:ss
             // This was crashing the app, so this is a workarround.
             if (Properties.Settings.Default.AutoActivateStart.Length > 5)
@@ -931,22 +926,25 @@ namespace CSHUE.ViewModels
                         DateTime.Now.Hour == end.Hour &&
                         DateTime.Now.Minute < end.Minute)
                     {
-                        if (_lastSetState == true) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-                        Properties.Settings.Default.Activated = true;
-                        _lastSetState = true;
+                        if (Properties.Settings.Default.AutoActivate && !_lastActivatedState)
+                            Properties.Settings.Default.Activated = true;
+
+                        _lastActivatedState = true;
                     }
                     else if (Properties.Settings.Default.AutoDeactivate)
                     {
-                        if (_lastSetState == false) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-                        Properties.Settings.Default.Activated = false;
-                        _lastSetState = false;
+                        if (Properties.Settings.Default.AutoActivate && _lastActivatedState)
+                            Properties.Settings.Default.Activated = false;
+
+                        _lastActivatedState = false;
                     }
                 }
                 else if (Properties.Settings.Default.AutoDeactivate)
                 {
-                    if (_lastSetState == false) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-                    Properties.Settings.Default.Activated = false;
-                    _lastSetState = false;
+                    if (Properties.Settings.Default.AutoActivate && _lastActivatedState)
+                        Properties.Settings.Default.Activated = false;
+
+                    _lastActivatedState = false;
                 }
             }
             else
@@ -955,27 +953,38 @@ namespace CSHUE.ViewModels
                     DateTime.Now.Hour == start.Hour &&
                     DateTime.Now.Minute >= start.Minute)
                 {
-                    if (_lastSetState == true) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-                    Properties.Settings.Default.Activated = true;
-                    _lastSetState = true;
+                    if (Properties.Settings.Default.AutoActivate && !_lastActivatedState)
+                        Properties.Settings.Default.Activated = true;
+
+                    _lastActivatedState = true;
                 }
                 else if (DateTime.Now.Hour < end.Hour ||
                           DateTime.Now.Hour == end.Hour &&
                           DateTime.Now.Minute < end.Minute)
                 {
-                    if (_lastSetState == true) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-                    Properties.Settings.Default.Activated = true;
-                    _lastSetState = true;
+                    if (Properties.Settings.Default.AutoActivate && !_lastActivatedState)
+                        Properties.Settings.Default.Activated = true;
+
+                    _lastActivatedState = true;
                 }
                 else if (Properties.Settings.Default.AutoDeactivate)
                 {
-                    if (_lastSetState == false) return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
-                    Properties.Settings.Default.Activated = false;
-                    _lastSetState = false;
+                    if (Properties.Settings.Default.AutoActivate && _lastActivatedState)
+                        Properties.Settings.Default.Activated = false;
+
+                    _lastActivatedState = false;
                 }
             }
 
-            return _firstTimeIteration ? DateTime.Now.Second * 1000 - 1000 : 0;
+            if (!_firstCheckIteration)
+            {
+                _checkTimer = new System.Timers.Timer(60000);
+                _checkTimer.Elapsed += CheckTimerElapsed;
+                _checkTimer.AutoReset = false;
+                _checkTimer.Start();
+            }
+            else
+                _firstCheckIteration = false;
         }
 
         #endregion
@@ -1673,16 +1682,6 @@ namespace CSHUE.ViewModels
         #endregion
 
         #region Events Handlers
-
-        private void CsgoTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            _alreadyMinimized = false;
-
-            if (_previousState)
-                RestoreLights();
-
-            _previousState = false;
-        }
 
         public async void OnNewGameState(GameState gs)
         {

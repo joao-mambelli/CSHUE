@@ -135,10 +135,11 @@ namespace CSHUE.Views
         #region Fields
 
         public readonly MainWindowViewModel ViewModel = new MainWindowViewModel();
-
+        
         private bool _buttonClickable;
         private bool? _isModeDark;
         private bool? _isTransparencyTrue;
+        private SplashScreen _splashScreen;
 
         #endregion
 
@@ -206,7 +207,7 @@ namespace CSHUE.Views
                             }
                             else if (Properties.Settings.Default.RunOnStartupMinimized)
                                 WindowState = WindowState.Minimized;
-
+                            
                             ViewModel.Navigate(Page, "Home");
                             break;
                         case "-lang":
@@ -263,12 +264,6 @@ namespace CSHUE.Views
             }
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            if (Properties.Settings.Default.Maximized)
-                WindowState = WindowState.Maximized;
-        }
-
         #endregion
 
         #region Events Handlers
@@ -292,9 +287,30 @@ namespace CSHUE.Views
                 }.ShowDialog();
             }
 
+            var arguments = Environment.GetCommandLineArgs();
+            if (!arguments.Contains("-silent") && !arguments.Contains("-lang"))
+                try
+                {
+                    _splashScreen = new SplashScreen("logo.png");
+                    _splashScreen.Show(false, true);
+                    Thread.Sleep(500);
+                }
+                catch
+                {
+                    // ignored
+                }
+
             var helper = new WindowInteropHelper(this);
             helper.EnsureHandle();
             HwndSource.FromHwnd(helper.Handle)?.AddHook(WindowProc);
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (Properties.Settings.Default.Maximized)
+                WindowState = WindowState.Maximized;
+
+            _splashScreen?.Close(TimeSpan.FromSeconds(.3));
         }
 
         private void PreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)

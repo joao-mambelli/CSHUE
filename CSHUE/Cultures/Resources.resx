@@ -211,9 +211,6 @@ bn=PP%2dDonationsBF</value>
   <data name="CounterTerroristsWin" xml:space="preserve">
     <value>Counter-Terrorists Win</value>
   </data>
-  <data name="CsgoCheckingPeriod" xml:space="preserve">
-    <value>CS:GO process checking period:</value>
-  </data>
   <data name="Duration" xml:space="preserve">
     <value>Duration:</value>
   </data>

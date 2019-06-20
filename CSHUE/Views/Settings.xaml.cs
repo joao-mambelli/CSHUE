@@ -48,11 +48,9 @@ namespace CSHUE.Views
             ViewModel.UpdateGradient(e.PropertyName);
         }
 
-        private void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private static void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Properties.Settings.Default.Save();
-
-            if (ViewModel.MainWindowViewModel.Resetting) return;
 
             if (((ComboBox)sender).SelectedItem == null)
             {
@@ -84,7 +82,7 @@ namespace CSHUE.Views
 
                 Cultures.Resources.Culture = culture;
 
-                Process.Start(Application.ResourceAssembly.Location, App.Resetting ? "-reset" : "-lang");
+                Process.Start(Application.ResourceAssembly.Location, "-lang");
 
                 Application.Current.Shutdown();
             }

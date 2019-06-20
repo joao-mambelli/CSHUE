@@ -351,27 +351,6 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <WrapPanel Margin="0,15,0,9">
-                        <TextBlock Text="{Binding Path=CsgoCheckingPeriod, Source={StaticResource Resources}}"
-                                   TextWrapping="Wrap"/>
-
-                        <xctk:ByteUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=CsgoCheckingPeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         Background="{DynamicResource SystemBaseLowColorBrush}"
-                                         ButtonSpinnerLocation="Left"
-                                         BorderThickness="0"
-                                         Width="39"
-                                         Margin="5,0,0,0"
-                                         TextAlignment="Center"
-                                         Minimum="1"
-                                         Maximum="60"
-                                         DefaultValue="7"
-                                         DisplayDefaultValueOnEmptyText="True"
-                                         ValueChanged="Save"/>
-
-                        <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}"
-                                   Margin="3,0,0,0"/>
-                    </WrapPanel>
-
                     <CheckBox Margin="0,15,0,9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"

@@ -216,15 +216,6 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CS:GO process checking period:.
-        /// </summary>
-        public static string CsgoCheckingPeriod {
-            get {
-                return ResourceManager.GetString("CsgoCheckingPeriod", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CS:GO GSI.
         /// </summary>
         public static string CSGOGSI {

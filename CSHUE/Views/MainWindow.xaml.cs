@@ -213,10 +213,6 @@ namespace CSHUE.Views
                             ViewModel.Navigate(Page, "Settings");
                             UpdateIndicator("Settings");
                             break;
-                        case "-reset":
-                            ViewModel.Resetting = true;
-                            ViewModel.Navigate(Page, "Home");
-                            break;
                         default:
                             ViewModel.Navigate(Page, "Home");
                             break;

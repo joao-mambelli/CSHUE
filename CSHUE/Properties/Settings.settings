@@ -74,9 +74,6 @@
     <Setting Name="AutoMinimize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="CsgoCheckingPeriod" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">7</Value>
-    </Setting>
     <Setting Name="TriggerSpecEvents" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>

@@ -211,9 +211,6 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="CounterTerroristsWin" xml:space="preserve">
     <value>Vitória dos Contraterroristas</value>
   </data>
-  <data name="CsgoCheckingPeriod" xml:space="preserve">
-    <value>Período de verificação do processo do CS:GO:</value>
-  </data>
   <data name="Duration" xml:space="preserve">
     <value>Duração:</value>
   </data>

@@ -13,7 +13,6 @@ namespace CSHUE
         #region Fields
 
         private static readonly Mutex Mutex = new Mutex(true, "CSHUE");
-        public static bool Resetting;
 
         #endregion
 
@@ -28,11 +27,8 @@ namespace CSHUE
             var allow = false;
             foreach (var s in Environment.GetCommandLineArgs())
             {
-                if (s != "-reset" && s != "-lang") continue;
-                if (s == "-reset")
-                {
-                    Resetting = true;
-                }
+                if (s != "-reset" && s != "-lang")
+                    continue;
 
                 allow = true;
             }

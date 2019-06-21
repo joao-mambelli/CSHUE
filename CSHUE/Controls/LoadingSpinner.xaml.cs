@@ -15,17 +15,17 @@ namespace CSHUE.Controls
     {
         #region Public Dependency Properties
 
-        public SpinnerStates State
+        public SpinnerState State
         {
-            get => (SpinnerStates)GetValue(StateProperty);
+            get => (SpinnerState)GetValue(StateProperty);
             set => SetValue(StateProperty, value);
         }
         public static readonly DependencyProperty StateProperty =
             DependencyProperty.Register(
                 "State",
-                typeof(SpinnerStates),
+                typeof(SpinnerState),
                 typeof(LoadingSpinner),
-                new PropertyMetadata(SpinnerStates.Disabled, OnStatePropertyChanged));
+                new PropertyMetadata(SpinnerState.Disabled, OnStatePropertyChanged));
 
         public Color LoadingColor
         {
@@ -351,7 +351,7 @@ namespace CSHUE.Controls
 
         #region Enums
 
-        public enum SpinnerStates
+        public enum SpinnerState
         {
             Loading,
             Hanging,
@@ -405,9 +405,9 @@ namespace CSHUE.Controls
             ((LoadingSpinner)d).AnglePath6 = ((LoadingSpinner)d).RotatePath.Angle + 1380;
             ((LoadingSpinner)d).StartPoint = ((LoadingSpinner)d).Arc.Point;
 
-            switch ((SpinnerStates)e.NewValue)
+            switch ((SpinnerState)e.NewValue)
             {
-                case SpinnerStates.Loading:
+                case SpinnerState.Loading:
                     {
                         ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > ((LoadingSpinner)d).Radius);
 
@@ -428,7 +428,7 @@ namespace CSHUE.Controls
                         VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
                         break;
                     }
-                case SpinnerStates.Hanging:
+                case SpinnerState.Hanging:
                     {
                         if (((LoadingSpinner)d).Arc.Point.X > ((LoadingSpinner)d).Radius)
                         {
@@ -452,7 +452,7 @@ namespace CSHUE.Controls
                         VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
                         break;
                     }
-                case SpinnerStates.Disabled:
+                case SpinnerState.Disabled:
                     VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
                     break;
                 default:

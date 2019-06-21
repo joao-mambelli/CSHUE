@@ -20,8 +20,7 @@ namespace CSHUE.ViewModels
         private Visibility _loadingVisibility = Visibility.Hidden;
         public Visibility LoadingVisibility
         {
-            get =>
-                _loadingVisibility;
+            get => _loadingVisibility;
             set
             {
                 _loadingVisibility = value;
@@ -29,11 +28,10 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private LoadingSpinner.SpinnerStates _state;
-        public LoadingSpinner.SpinnerStates State
+        private LoadingSpinner.SpinnerState _state;
+        public LoadingSpinner.SpinnerState State
         {
-            get =>
-                _state;
+            get => _state;
             set
             {
                 _state = value;
@@ -44,8 +42,7 @@ namespace CSHUE.ViewModels
         private Visibility _retryVisibility = Visibility.Hidden;
         public Visibility RetryVisibility
         {
-            get =>
-                _retryVisibility;
+            get => _retryVisibility;
             set
             {
                 _retryVisibility = value;
@@ -56,8 +53,7 @@ namespace CSHUE.ViewModels
         private Visibility _warningNoHub = Visibility.Collapsed;
         public Visibility WarningNoHub
         {
-            get =>
-                _warningNoHub;
+            get => _warningNoHub;
             set
             {
                 _warningNoHub = value;
@@ -68,8 +64,7 @@ namespace CSHUE.ViewModels
         private Visibility _warningLink = Visibility.Collapsed;
         public Visibility WarningLink
         {
-            get =>
-                _warningLink;
+            get => _warningLink;
             set
             {
                 _warningLink = value;
@@ -80,8 +75,7 @@ namespace CSHUE.ViewModels
         private Visibility _warningValidating = Visibility.Collapsed;
         public Visibility WarningValidating
         {
-            get =>
-                _warningValidating;
+            get => _warningValidating;
             set
             {
                 _warningValidating = value;
@@ -92,8 +86,7 @@ namespace CSHUE.ViewModels
         private Visibility _warningSearching = Visibility.Collapsed;
         public Visibility WarningSearching
         {
-            get =>
-                _warningSearching;
+            get => _warningSearching;
             set
             {
                 _warningSearching = value;
@@ -104,8 +97,7 @@ namespace CSHUE.ViewModels
         private Visibility _warningNoReachableHubs = Visibility.Collapsed;
         public Visibility WarningNoReachableHubs
         {
-            get =>
-                _warningNoReachableHubs;
+            get => _warningNoReachableHubs;
             set
             {
                 _warningNoReachableHubs = value;
@@ -116,8 +108,7 @@ namespace CSHUE.ViewModels
         private Visibility _warningHubNotAvailable = Visibility.Collapsed;
         public Visibility WarningHubNotAvailable
         {
-            get =>
-                _warningHubNotAvailable;
+            get => _warningHubNotAvailable;
             set
             {
                 _warningHubNotAvailable = value;
@@ -128,8 +119,7 @@ namespace CSHUE.ViewModels
         private ObservableCollection<LightStateCell> _list = new ObservableCollection<LightStateCell>();
         public ObservableCollection<LightStateCell> List
         {
-            get =>
-                _list;
+            get => _list;
             set
             {
                 _list = value;
@@ -221,7 +211,7 @@ namespace CSHUE.ViewModels
 
         public void SetLoading()
         {
-            State = LoadingSpinner.SpinnerStates.Loading;
+            State = LoadingSpinner.SpinnerState.Loading;
             LoadingVisibility = Visibility.Visible;
             RetryVisibility = Visibility.Collapsed;
             MainWindowViewModel.InProcess = Visibility.Visible;
@@ -230,7 +220,7 @@ namespace CSHUE.ViewModels
 
         public void SetRetry()
         {
-            State = LoadingSpinner.SpinnerStates.Hanging;
+            State = LoadingSpinner.SpinnerState.Hanging;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Visible;
             MainWindowViewModel.InProcess = Visibility.Visible;
@@ -239,7 +229,7 @@ namespace CSHUE.ViewModels
 
         public void SetDone()
         {
-            State = LoadingSpinner.SpinnerStates.Disabled;
+            State = LoadingSpinner.SpinnerState.Disabled;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Collapsed;
             MainWindowViewModel.InProcess = Visibility.Collapsed;
@@ -265,7 +255,7 @@ namespace CSHUE.ViewModels
                 return;
             }
 
-            if (State != LoadingSpinner.SpinnerStates.Disabled)
+            if (State != LoadingSpinner.SpinnerState.Disabled)
                 SetDone();
 
             foreach (var l in allLights)

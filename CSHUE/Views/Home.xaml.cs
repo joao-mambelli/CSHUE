@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Windows;
 using CSHUE.ViewModels;
-// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {

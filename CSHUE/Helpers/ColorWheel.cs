@@ -14,7 +14,7 @@ namespace CSHUE.Helpers
         {
             if (colorTemperature)
             {
-                return ColorConverters.Ct((int)Math.Round((1 - (double)y / (2 * radius)) * 4500 + 2000));
+                return ColorConverters.Ct((int) Math.Round((1 - (double) y / (2 * radius)) * 4500 + 2000));
             }
 
             var distanceFromCenter = Math.Sqrt(Math.Pow(x - radius, 2) + Math.Pow(y - radius, 2));
@@ -50,8 +50,8 @@ namespace CSHUE.Helpers
             var dpiY = 96;
             if (dpiXProperty != null && dpiYProperty != null)
             {
-                dpiX = (int)dpiXProperty.GetValue(null, null);
-                dpiY = (int)dpiYProperty.GetValue(null, null);
+                dpiX = (int) dpiXProperty.GetValue(null, null);
+                dpiY = (int) dpiYProperty.GetValue(null, null);
             }
 
             var img = new WriteableBitmap(radius * 2, radius * 2, dpiX, dpiY, PixelFormats.Bgra32, null);
@@ -94,8 +94,8 @@ namespace CSHUE.Helpers
             var dpiY = 96;
             if (dpiXProperty != null && dpiYProperty != null)
             {
-                dpiX = (int)dpiXProperty.GetValue(null, null);
-                dpiY = (int)dpiYProperty.GetValue(null, null);
+                dpiX = (int) dpiXProperty.GetValue(null, null);
+                dpiY = (int) dpiYProperty.GetValue(null, null);
             }
 
             var img = new WriteableBitmap(outerRadius * 2, outerRadius * 2, dpiX, dpiY, PixelFormats.Bgra32, null);
@@ -135,7 +135,7 @@ namespace CSHUE.Helpers
         {
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
-            return ColorConverters.Hs(2 * Math.PI - ((double)y - 6) / (height - 12) * (2 * Math.PI), sat / 100);
+            return ColorConverters.Hs(2 * Math.PI - ((double) y - 6) / (height - 12) * (2 * Math.PI), sat / 100);
         }
 
         public WriteableBitmap CreateHueImage(int height, double sat)
@@ -147,8 +147,8 @@ namespace CSHUE.Helpers
             var dpiY = 96;
             if (dpiXProperty != null && dpiYProperty != null)
             {
-                dpiX = (int)dpiXProperty.GetValue(null, null);
-                dpiY = (int)dpiYProperty.GetValue(null, null);
+                dpiX = (int) dpiXProperty.GetValue(null, null);
+                dpiY = (int) dpiYProperty.GetValue(null, null);
             }
 
             var img = new WriteableBitmap(1, height, dpiX, dpiY, PixelFormats.Bgra32, null);
@@ -181,7 +181,7 @@ namespace CSHUE.Helpers
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return ColorConverters.Hs(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double)y - 6) / (height - 12));
+            return ColorConverters.Hs(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double) y - 6) / (height - 12));
         }
 
         public WriteableBitmap CreateSaturationImage(int height, double hue)
@@ -193,8 +193,8 @@ namespace CSHUE.Helpers
             var dpiY = 96;
             if (dpiXProperty != null && dpiYProperty != null)
             {
-                dpiX = (int)dpiXProperty.GetValue(null, null);
-                dpiY = (int)dpiYProperty.GetValue(null, null);
+                dpiX = (int) dpiXProperty.GetValue(null, null);
+                dpiY = (int) dpiYProperty.GetValue(null, null);
             }
 
             var img = new WriteableBitmap(1, height, dpiX, dpiY, PixelFormats.Bgra32, null);
@@ -227,7 +227,7 @@ namespace CSHUE.Helpers
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return ColorConverters.Ct((int)Math.Round((1 - (double)y / height) * 4500 + 2000));
+            return ColorConverters.Ct((int) Math.Round((1 - (double) y / height) * 4500 + 2000));
         }
 
         public WriteableBitmap CreateTemperatureImage(int height)
@@ -239,8 +239,8 @@ namespace CSHUE.Helpers
             var dpiY = 96;
             if (dpiXProperty != null && dpiYProperty != null)
             {
-                dpiX = (int)dpiXProperty.GetValue(null, null);
-                dpiY = (int)dpiYProperty.GetValue(null, null);
+                dpiX = (int) dpiXProperty.GetValue(null, null);
+                dpiY = (int) dpiYProperty.GetValue(null, null);
             }
 
             var img = new WriteableBitmap(1, height, dpiX, dpiY, PixelFormats.Bgra32, null);

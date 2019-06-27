@@ -9,7 +9,6 @@ using CSHUE.Helpers;
 using CSHUE.ViewModels;
 using Q42.HueApi;
 using CSHUE.Controls;
-// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
@@ -207,9 +206,9 @@ namespace CSHUE.Views
 
         private void RadioButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (((RadioButton)sender).IsChecked == true && !_radioButtonOnChanged && _loadDone)
+            if (((RadioButton) sender).IsChecked == true && !_radioButtonOnChanged && _loadDone)
             {
-                ((RadioButton)sender).IsChecked = false;
+                ((RadioButton) sender).IsChecked = false;
             }
 
             _radioButtonOnChanged = false;

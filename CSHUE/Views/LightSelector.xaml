@@ -29,7 +29,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:LightSelectorViewModel}"
         Loaded="LightSelector_OnLoaded">
     <Window.Resources>
-        <helpers:VisibleToCollapsedConverter x:Key="VisibleToCollapsedConverter"/>
+        <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
     </Window.Resources>
 
     <WindowChrome.WindowChrome>
@@ -101,7 +101,7 @@
                                           IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                           Margin="0 13 0 0"
                                           VerticalAlignment="Top"
-                                          Visibility="{Binding SingleOptionVisibility, Converter={StaticResource VisibleToCollapsedConverter}}"/>
+                                          Visibility="{Binding SingleOptionVisibility, Converter={StaticResource VisibilityInverter}}"/>
 
                                 <Label Content="{Binding Content}"
                                        IsEnabled="{Binding IsChecked}"/>

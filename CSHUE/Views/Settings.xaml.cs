@@ -10,7 +10,6 @@ using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using CSHUE.Helpers;
 using Q42.HueApi;
-// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Views
 {
@@ -52,7 +51,7 @@ namespace CSHUE.Views
         {
             Properties.Settings.Default.Save();
 
-            if (((ComboBox)sender).SelectedItem == null)
+            if (((ComboBox) sender).SelectedItem == null)
             {
                 var culture = CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
                     ? CultureInfo.InstalledUICulture
@@ -72,7 +71,7 @@ namespace CSHUE.Views
             }
             else
             {
-                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == (string)((ComboBox)sender).SelectedItem);
+                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == (string) ((ComboBox) sender).SelectedItem);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
@@ -169,62 +168,62 @@ namespace CSHUE.Views
             var title = Cultures.Resources.LightSelector + " - ";
             EventProperty property = null;
             EventBrightnessProperty brightnessProperty = null;
-            if (((Button)sender).Tag.ToString() == "MainMenu")
+            if (((Button) sender).Tag.ToString() == "MainMenu")
             {
                 title += Cultures.Resources.MainMenu;
                 property = Properties.Settings.Default.MainMenu;
             }
-            if (((Button)sender).Tag.ToString() == "PlayerGetsFlashed")
+            if (((Button) sender).Tag.ToString() == "PlayerGetsFlashed")
             {
                 title += Cultures.Resources.PlayerGetsFlashed;
                 property = Properties.Settings.Default.PlayerGetsFlashed;
             }
-            if (((Button)sender).Tag.ToString() == "TerroristsWin")
+            if (((Button) sender).Tag.ToString() == "TerroristsWin")
             {
                 title += Cultures.Resources.TerroristsWin;
                 property = Properties.Settings.Default.TerroristsWin;
             }
-            if (((Button)sender).Tag.ToString() == "CounterTerroristsWin")
+            if (((Button) sender).Tag.ToString() == "CounterTerroristsWin")
             {
                 title += Cultures.Resources.CounterTerroristsWin;
                 property = Properties.Settings.Default.CounterTerroristsWin;
             }
-            if (((Button)sender).Tag.ToString() == "RoundStarts")
+            if (((Button) sender).Tag.ToString() == "RoundStarts")
             {
                 title += Cultures.Resources.RoundStarts;
                 property = Properties.Settings.Default.RoundStarts;
             }
-            if (((Button)sender).Tag.ToString() == "BombPlanted")
+            if (((Button) sender).Tag.ToString() == "BombPlanted")
             {
                 title += Cultures.Resources.BombHasBeenPlanted;
                 property = Properties.Settings.Default.BombPlanted;
             }
-            if (((Button)sender).Tag.ToString() == "PlayerGetsKill")
+            if (((Button) sender).Tag.ToString() == "PlayerGetsKill")
             {
                 title += Cultures.Resources.PlayerGetsKill;
                 brightnessProperty = Properties.Settings.Default.PlayerGetsKill;
             }
-            if (((Button)sender).Tag.ToString() == "PlayerGetsKilled")
+            if (((Button) sender).Tag.ToString() == "PlayerGetsKilled")
             {
                 title += Cultures.Resources.PlayerGetsKilled;
                 brightnessProperty = Properties.Settings.Default.PlayerGetsKilled;
             }
-            if (((Button)sender).Tag.ToString() == "FreezeTime")
+            if (((Button) sender).Tag.ToString() == "FreezeTime")
             {
                 title += Cultures.Resources.FreezeTime;
                 brightnessProperty = Properties.Settings.Default.FreezeTime;
             }
-            if (((Button)sender).Tag.ToString() == "Warmup")
+            if (((Button) sender).Tag.ToString() == "Warmup")
             {
                 title += Cultures.Resources.Warmup;
                 brightnessProperty = Properties.Settings.Default.Warmup;
             }
-            if (((Button)sender).Tag.ToString() == "BombExplodes")
+            if (((Button) sender).Tag.ToString() == "BombExplodes")
             {
                 title += Cultures.Resources.BombExplodes;
                 brightnessProperty = Properties.Settings.Default.BombExplodes;
             }
-            if (((Button)sender).Tag.ToString() == "BombBlink")
+            if (((Button) sender).Tag.ToString() == "BombBlink")
             {
                 title += Cultures.Resources.BombBlink;
                 brightnessProperty = Properties.Settings.Default.BombBlink;

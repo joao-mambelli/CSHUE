@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Windows;
-// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Controls
 {
@@ -19,7 +18,7 @@ namespace CSHUE.Controls
 
         public string Text1
         {
-            get => (string)GetValue(Text1Property);
+            get => (string) GetValue(Text1Property);
             set => SetValue(Text1Property, value);
         }
         public static readonly DependencyProperty Text1Property =
@@ -27,7 +26,7 @@ namespace CSHUE.Controls
 
         public string Text2
         {
-            get => (string)GetValue(Text2Property);
+            get => (string) GetValue(Text2Property);
             set => SetValue(Text2Property, value);
         }
         public static readonly DependencyProperty Text2Property =
@@ -35,7 +34,7 @@ namespace CSHUE.Controls
 
         public string Message
         {
-            get => (string)GetValue(MessageProperty);
+            get => (string) GetValue(MessageProperty);
             set => SetValue(MessageProperty, value);
         }
         public static readonly DependencyProperty MessageProperty =
@@ -43,7 +42,7 @@ namespace CSHUE.Controls
 
         public Visibility Button1Button2Visibility
         {
-            get => (Visibility)GetValue(Button1Button2VisibilityProperty);
+            get => (Visibility) GetValue(Button1Button2VisibilityProperty);
             set => SetValue(Button1Button2VisibilityProperty, value);
         }
         public static readonly DependencyProperty Button1Button2VisibilityProperty =
@@ -51,7 +50,7 @@ namespace CSHUE.Controls
 
         public Visibility Button1Visibility
         {
-            get => (Visibility)GetValue(Button1VisibilityProperty);
+            get => (Visibility) GetValue(Button1VisibilityProperty);
             set => SetValue(Button1VisibilityProperty, value);
         }
         public static readonly DependencyProperty Button1VisibilityProperty =
@@ -59,7 +58,7 @@ namespace CSHUE.Controls
 
         public Visibility Button1OpenFolderVisibility
         {
-            get => (Visibility)GetValue(Button1OpenFolderVisibilityProperty);
+            get => (Visibility) GetValue(Button1OpenFolderVisibilityProperty);
             set => SetValue(Button1OpenFolderVisibilityProperty, value);
         }
         public static readonly DependencyProperty Button1OpenFolderVisibilityProperty =

@@ -2,7 +2,6 @@
 using System.Windows;
 using CSHUE.ViewModels;
 using CSHUE.Views;
-// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE.Controls
 {
@@ -36,17 +35,17 @@ namespace CSHUE.Controls
                 Text1 = Cultures.Resources.Cancel,
                 Text2 = Cultures.Resources.Ok,
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
-                Color = ((LightSettingCellViewModel)DataContext).Color,
-                Id = ((LightSettingCellViewModel)DataContext).Id,
-                Brightness = ((LightSettingCellViewModel)DataContext).Brightness,
-                IsColorTemperature = ((LightSettingCellViewModel)DataContext).IsColorTemperature,
-                ColorTemperature = ((LightSettingCellViewModel)DataContext).ColorTemperature
+                Color = ((LightSettingCellViewModel) DataContext).Color,
+                Id = ((LightSettingCellViewModel) DataContext).Id,
+                Brightness = ((LightSettingCellViewModel) DataContext).Brightness,
+                IsColorTemperature = ((LightSettingCellViewModel) DataContext).IsColorTemperature,
+                ColorTemperature = ((LightSettingCellViewModel) DataContext).ColorTemperature
             };
             colorPicker.ShowDialog();
             LightSelectorViewModel.IsColorPickerOpened = false;
 
-            ((LightSettingCellViewModel)DataContext).Color = colorPicker.Color;
-            ((LightSettingCellViewModel)DataContext).ColorTemperature = colorPicker.ColorTemperature;
+            ((LightSettingCellViewModel) DataContext).Color = colorPicker.Color;
+            ((LightSettingCellViewModel) DataContext).ColorTemperature = colorPicker.ColorTemperature;
         }
 
         #endregion

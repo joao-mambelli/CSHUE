@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 // ReSharper disable CompareOfFloatsByEqualityOperator
-// ReSharper disable InheritdocConsiderUsage
 // ReSharper disable UnusedMember.Global
 
 namespace CSHUE.Controls
@@ -17,7 +16,7 @@ namespace CSHUE.Controls
 
         public SpinnerState State
         {
-            get => (SpinnerState)GetValue(StateProperty);
+            get => (SpinnerState) GetValue(StateProperty);
             set => SetValue(StateProperty, value);
         }
         public static readonly DependencyProperty StateProperty =
@@ -29,7 +28,7 @@ namespace CSHUE.Controls
 
         public Color LoadingColor
         {
-            get => (Color)GetValue(LoadingColorProperty);
+            get => (Color) GetValue(LoadingColorProperty);
             set => SetValue(LoadingColorProperty, value);
         }
         public static readonly DependencyProperty LoadingColorProperty =
@@ -38,7 +37,7 @@ namespace CSHUE.Controls
 
         public Color HangingColor
         {
-            get => (Color)GetValue(HangingColorProperty);
+            get => (Color) GetValue(HangingColorProperty);
             set => SetValue(HangingColorProperty, value);
         }
         public static readonly DependencyProperty HangingColorProperty =
@@ -47,7 +46,7 @@ namespace CSHUE.Controls
 
         public double LoadingRevolutionsPerSecond
         {
-            get => (double)GetValue(LoadingRevolutionsPerSecondProperty);
+            get => (double) GetValue(LoadingRevolutionsPerSecondProperty);
             set => SetValue(LoadingRevolutionsPerSecondProperty, value);
         }
         public static readonly DependencyProperty LoadingRevolutionsPerSecondProperty =
@@ -56,7 +55,7 @@ namespace CSHUE.Controls
 
         public double HangingRevolutionsPerSecond
         {
-            get => (double)GetValue(HangingRevolutionsPerSecondProperty);
+            get => (double) GetValue(HangingRevolutionsPerSecondProperty);
             set => SetValue(HangingRevolutionsPerSecondProperty, value);
         }
         public static readonly DependencyProperty HangingRevolutionsPerSecondProperty =
@@ -65,7 +64,7 @@ namespace CSHUE.Controls
 
         public double Radius
         {
-            get => (double)GetValue(RadiusProperty);
+            get => (double) GetValue(RadiusProperty);
             set => SetValue(RadiusProperty, value);
         }
         public static readonly DependencyProperty RadiusProperty =
@@ -74,7 +73,7 @@ namespace CSHUE.Controls
 
         public double Thickness
         {
-            get => (double)GetValue(ThicknessProperty);
+            get => (double) GetValue(ThicknessProperty);
             set => SetValue(ThicknessProperty, value);
         }
         public static readonly DependencyProperty ThicknessProperty =
@@ -87,7 +86,7 @@ namespace CSHUE.Controls
 
         private double AngleCanvas
         {
-            get => (double)GetValue(AngleCanvasProperty);
+            get => (double) GetValue(AngleCanvasProperty);
             set
             {
                 SetValue(AngleCanvasProperty, value);
@@ -100,7 +99,7 @@ namespace CSHUE.Controls
 
         private Color Color
         {
-            get => (Color)GetValue(ColorProperty);
+            get => (Color) GetValue(ColorProperty);
             set => SetValue(ColorProperty, value);
         }
         private static readonly DependencyProperty ColorProperty =
@@ -109,7 +108,7 @@ namespace CSHUE.Controls
 
         private Duration HangingCycleTimeDuration
         {
-            get => (Duration)GetValue(HangingCycleTimeDurationProperty);
+            get => (Duration) GetValue(HangingCycleTimeDurationProperty);
             set => SetValue(HangingCycleTimeDurationProperty, value);
         }
         private static readonly DependencyProperty HangingCycleTimeDurationProperty =
@@ -118,7 +117,7 @@ namespace CSHUE.Controls
 
         private Duration CycleTimeDuration
         {
-            get => (Duration)GetValue(CycleTimeDurationProperty);
+            get => (Duration) GetValue(CycleTimeDurationProperty);
             set => SetValue(CycleTimeDurationProperty, value);
         }
         private static readonly DependencyProperty CycleTimeDurationProperty =
@@ -127,7 +126,7 @@ namespace CSHUE.Controls
 
         private Duration LambdaTimeDuration
         {
-            get => (Duration)GetValue(LambdaTimeDurationProperty);
+            get => (Duration) GetValue(LambdaTimeDurationProperty);
             set => SetValue(LambdaTimeDurationProperty, value);
         }
         private static readonly DependencyProperty LambdaTimeDurationProperty =
@@ -136,7 +135,7 @@ namespace CSHUE.Controls
 
         private TimeSpan LambdaTime
         {
-            get => (TimeSpan)GetValue(LambdaTimeProperty);
+            get => (TimeSpan) GetValue(LambdaTimeProperty);
             set => SetValue(LambdaTimeProperty, value);
         }
         private static readonly DependencyProperty LambdaTimeProperty =
@@ -145,7 +144,7 @@ namespace CSHUE.Controls
 
         private TimeSpan LambdaTime2
         {
-            get => (TimeSpan)GetValue(LambdaTime2Property);
+            get => (TimeSpan) GetValue(LambdaTime2Property);
             set => SetValue(LambdaTime2Property, value);
         }
         private static readonly DependencyProperty LambdaTime2Property =
@@ -154,7 +153,7 @@ namespace CSHUE.Controls
 
         private TimeSpan LambdaTime3
         {
-            get => (TimeSpan)GetValue(LambdaTime3Property);
+            get => (TimeSpan) GetValue(LambdaTime3Property);
             set => SetValue(LambdaTime3Property, value);
         }
         private static readonly DependencyProperty LambdaTime3Property =
@@ -163,7 +162,7 @@ namespace CSHUE.Controls
 
         private TimeSpan LambdaTime4
         {
-            get => (TimeSpan)GetValue(LambdaTime4Property);
+            get => (TimeSpan) GetValue(LambdaTime4Property);
             set => SetValue(LambdaTime4Property, value);
         }
         private static readonly DependencyProperty LambdaTime4Property =
@@ -172,7 +171,7 @@ namespace CSHUE.Controls
 
         private TimeSpan LambdaTime5
         {
-            get => (TimeSpan)GetValue(LambdaTime5Property);
+            get => (TimeSpan) GetValue(LambdaTime5Property);
             set => SetValue(LambdaTime5Property, value);
         }
         private static readonly DependencyProperty LambdaTime5Property =
@@ -181,7 +180,7 @@ namespace CSHUE.Controls
 
         private TimeSpan LambdaTime6
         {
-            get => (TimeSpan)GetValue(LambdaTime6Property);
+            get => (TimeSpan) GetValue(LambdaTime6Property);
             set => SetValue(LambdaTime6Property, value);
         }
         private static readonly DependencyProperty LambdaTime6Property =
@@ -190,7 +189,7 @@ namespace CSHUE.Controls
 
         private Point EndPoint
         {
-            get => (Point)GetValue(EndPointProperty);
+            get => (Point) GetValue(EndPointProperty);
             set => SetValue(EndPointProperty, value);
         }
         private static readonly DependencyProperty EndPointProperty =
@@ -199,7 +198,7 @@ namespace CSHUE.Controls
 
         private double Diameter
         {
-            get => (double)GetValue(DiameterProperty);
+            get => (double) GetValue(DiameterProperty);
             set => SetValue(DiameterProperty, value);
         }
         private static readonly DependencyProperty DiameterProperty =
@@ -208,7 +207,7 @@ namespace CSHUE.Controls
 
         private Point PointRadiusDiameter
         {
-            get => (Point)GetValue(PointRadiusDiameterProperty);
+            get => (Point) GetValue(PointRadiusDiameterProperty);
             set => SetValue(PointRadiusDiameterProperty, value);
         }
         private static readonly DependencyProperty PointRadiusDiameterProperty =
@@ -217,7 +216,7 @@ namespace CSHUE.Controls
 
         private Point StartPoint2
         {
-            get => (Point)GetValue(StartPoint2Property);
+            get => (Point) GetValue(StartPoint2Property);
             set => SetValue(StartPoint2Property, value);
         }
         private static readonly DependencyProperty StartPoint2Property =
@@ -226,7 +225,7 @@ namespace CSHUE.Controls
 
         private Point PointDiameterRadius
         {
-            get => (Point)GetValue(PointDiameterRadiusProperty);
+            get => (Point) GetValue(PointDiameterRadiusProperty);
             set => SetValue(PointDiameterRadiusProperty, value);
         }
         private static readonly DependencyProperty PointDiameterRadiusProperty =
@@ -235,7 +234,7 @@ namespace CSHUE.Controls
 
         private Size Size
         {
-            get => (Size)GetValue(SizeProperty);
+            get => (Size) GetValue(SizeProperty);
             set => SetValue(SizeProperty, value);
         }
         private static readonly DependencyProperty SizeProperty =
@@ -244,7 +243,7 @@ namespace CSHUE.Controls
 
         private double AngleCanvasHanging
         {
-            get => (double)GetValue(AngleCanvasHangingProperty);
+            get => (double) GetValue(AngleCanvasHangingProperty);
             set => SetValue(AngleCanvasHangingProperty, value);
         }
         private static readonly DependencyProperty AngleCanvasHangingProperty =
@@ -252,7 +251,7 @@ namespace CSHUE.Controls
 
         private double AngleCanvasLoading
         {
-            get => (double)GetValue(AngleCanvasLoadingProperty);
+            get => (double) GetValue(AngleCanvasLoadingProperty);
             set => SetValue(AngleCanvasLoadingProperty, value);
         }
         private static readonly DependencyProperty AngleCanvasLoadingProperty =
@@ -260,7 +259,7 @@ namespace CSHUE.Controls
 
         private double AnglePath1
         {
-            get => (double)GetValue(AnglePath1Property);
+            get => (double) GetValue(AnglePath1Property);
             set => SetValue(AnglePath1Property, value);
         }
         private static readonly DependencyProperty AnglePath1Property =
@@ -268,7 +267,7 @@ namespace CSHUE.Controls
 
         private double AnglePath2
         {
-            get => (double)GetValue(AnglePath2Property);
+            get => (double) GetValue(AnglePath2Property);
             set => SetValue(AnglePath2Property, value);
         }
         private static readonly DependencyProperty AnglePath2Property =
@@ -276,7 +275,7 @@ namespace CSHUE.Controls
 
         private double AnglePath3
         {
-            get => (double)GetValue(AnglePath3Property);
+            get => (double) GetValue(AnglePath3Property);
             set => SetValue(AnglePath3Property, value);
         }
         private static readonly DependencyProperty AnglePath3Property =
@@ -284,7 +283,7 @@ namespace CSHUE.Controls
 
         private double AnglePath4
         {
-            get => (double)GetValue(AnglePath4Property);
+            get => (double) GetValue(AnglePath4Property);
             set => SetValue(AnglePath4Property, value);
         }
         private static readonly DependencyProperty AnglePath4Property =
@@ -292,7 +291,7 @@ namespace CSHUE.Controls
 
         private double AnglePath5
         {
-            get => (double)GetValue(AnglePath5Property);
+            get => (double) GetValue(AnglePath5Property);
             set => SetValue(AnglePath5Property, value);
         }
         private static readonly DependencyProperty AnglePath5Property =
@@ -300,7 +299,7 @@ namespace CSHUE.Controls
 
         private double AnglePath6
         {
-            get => (double)GetValue(AnglePath6Property);
+            get => (double) GetValue(AnglePath6Property);
             set => SetValue(AnglePath6Property, value);
         }
         private static readonly DependencyProperty AnglePath6Property =
@@ -308,7 +307,7 @@ namespace CSHUE.Controls
 
         private Point StartPoint
         {
-            get => (Point)GetValue(StartPointProperty);
+            get => (Point) GetValue(StartPointProperty);
             set => SetValue(StartPointProperty, value);
         }
         private static readonly DependencyProperty StartPointProperty =
@@ -316,7 +315,7 @@ namespace CSHUE.Controls
 
         private SweepDirection SweepDirection
         {
-            get => (SweepDirection)GetValue(SweepDirectionProperty);
+            get => (SweepDirection) GetValue(SweepDirectionProperty);
             set => SetValue(SweepDirectionProperty, value);
         }
         private static readonly DependencyProperty SweepDirectionProperty =
@@ -324,7 +323,7 @@ namespace CSHUE.Controls
 
         private bool IsLargeArc
         {
-            get => (bool)GetValue(IsLargeArcProperty);
+            get => (bool) GetValue(IsLargeArcProperty);
             set => SetValue(IsLargeArcProperty, value);
         }
         private static readonly DependencyProperty IsLargeArcProperty =
@@ -332,7 +331,7 @@ namespace CSHUE.Controls
 
         private KeyTime KeyTime
         {
-            get => (KeyTime)GetValue(KeyTimeProperty);
+            get => (KeyTime) GetValue(KeyTimeProperty);
             set => SetValue(KeyTimeProperty, value);
         }
         private static readonly DependencyProperty KeyTimeProperty =
@@ -340,12 +339,12 @@ namespace CSHUE.Controls
 
         private KeyTime KeyTime2
         {
-            get => (KeyTime)GetValue(KeyTime2Property);
+            get => (KeyTime) GetValue(KeyTime2Property);
             set => SetValue(KeyTime2Property, value);
         }
         private static readonly DependencyProperty KeyTime2Property =
             DependencyProperty.Register("KeyTime2", typeof(KeyTime), typeof(LoadingSpinner),
-                new PropertyMetadata((KeyTime) new TimeSpan((long)Math.Round(TimeSpan.FromSeconds(.7).Ticks * ((double)2380950 / 999000 / 7)))));
+                new PropertyMetadata((KeyTime) new TimeSpan((long) Math.Round(TimeSpan.FromSeconds(.7).Ticks * ((double)2380950 / 999000 / 7)))));
 
         #endregion
 
@@ -366,97 +365,97 @@ namespace CSHUE.Controls
         {
             var animationPeriod = 5 / (double) e.NewValue;
 
-            ((LoadingSpinner)d).CycleTimeDuration = new Duration(TimeSpan.FromSeconds(animationPeriod));
-            ((LoadingSpinner)d).LambdaTimeDuration = new Duration(new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks / 10));
-            ((LoadingSpinner)d).LambdaTime = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks / 10);
-            ((LoadingSpinner)d).LambdaTime2 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks / 5);
-            ((LoadingSpinner)d).LambdaTime3 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks * 2 / 5);
-            ((LoadingSpinner)d).LambdaTime4 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks * 3 / 5);
-            ((LoadingSpinner)d).LambdaTime5 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks * 4 / 5);
-            ((LoadingSpinner)d).LambdaTime6 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks - TimeSpan.FromSeconds(animationPeriod).Ticks / 10);
-            ((LoadingSpinner)d).KeyTime2 = new TimeSpan((long)Math.Round(((LoadingSpinner)d).LambdaTime.Ticks * ((double)2380950 / 999000 / 7)));
+            ((LoadingSpinner) d).CycleTimeDuration = new Duration(TimeSpan.FromSeconds(animationPeriod));
+            ((LoadingSpinner) d).LambdaTimeDuration = new Duration(new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks / 10));
+            ((LoadingSpinner) d).LambdaTime = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks / 10);
+            ((LoadingSpinner) d).LambdaTime2 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks / 5);
+            ((LoadingSpinner) d).LambdaTime3 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks * 2 / 5);
+            ((LoadingSpinner) d).LambdaTime4 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks * 3 / 5);
+            ((LoadingSpinner) d).LambdaTime5 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks * 4 / 5);
+            ((LoadingSpinner) d).LambdaTime6 = new TimeSpan(TimeSpan.FromSeconds(animationPeriod).Ticks - TimeSpan.FromSeconds(animationPeriod).Ticks / 10);
+            ((LoadingSpinner) d).KeyTime2 = new TimeSpan((long) Math.Round(((LoadingSpinner) d).LambdaTime.Ticks * ((double)2380950 / 999000 / 7)));
         }
 
         private static void OnHangingRevolutionsPerSecondPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var animationPeriod = 1 / (double)e.NewValue;
+            var animationPeriod = 1 / (double) e.NewValue;
 
-            ((LoadingSpinner)d).HangingCycleTimeDuration = new Duration(TimeSpan.FromSeconds(animationPeriod));
+            ((LoadingSpinner) d).HangingCycleTimeDuration = new Duration(TimeSpan.FromSeconds(animationPeriod));
         }
 
         private static void OnRadiusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LoadingSpinner)d).Diameter = (double)e.NewValue * 2;
-            ((LoadingSpinner)d).Size = new Size((double)e.NewValue, (double)e.NewValue);
-            ((LoadingSpinner)d).PointRadiusDiameter = new Point((double)e.NewValue, (double)e.NewValue * 2);
-            ((LoadingSpinner)d).PointDiameterRadius = new Point((double)e.NewValue * 2, (double)e.NewValue);
-            ((LoadingSpinner)d).StartPoint2 = new Point((double)e.NewValue, 0);
-            ((LoadingSpinner)d).EndPoint = new Point((1 - Math.Cos(Math.PI * 86.4 / 180)) * (double)e.NewValue, (1 - Math.Sin(Math.PI * 86.4 / 180)) * (double)e.NewValue);
+            ((LoadingSpinner) d).Diameter = (double) e.NewValue * 2;
+            ((LoadingSpinner) d).Size = new Size((double) e.NewValue, (double) e.NewValue);
+            ((LoadingSpinner) d).PointRadiusDiameter = new Point((double) e.NewValue, (double) e.NewValue * 2);
+            ((LoadingSpinner) d).PointDiameterRadius = new Point((double) e.NewValue * 2, (double) e.NewValue);
+            ((LoadingSpinner) d).StartPoint2 = new Point((double) e.NewValue, 0);
+            ((LoadingSpinner) d).EndPoint = new Point((1 - Math.Cos(Math.PI * 86.4 / 180)) * (double) e.NewValue, (1 - Math.Sin(Math.PI * 86.4 / 180)) * (double) e.NewValue);
         }
 
         private static void OnStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LoadingSpinner)d).AngleCanvas = ((LoadingSpinner)d).RotateCanvas.Angle;
-            ((LoadingSpinner)d).AnglePath1 = ((LoadingSpinner)d).RotatePath.Angle;
-            ((LoadingSpinner)d).AnglePath2 = ((LoadingSpinner)d).RotatePath.Angle + 276;
-            ((LoadingSpinner)d).AnglePath3 = ((LoadingSpinner)d).RotatePath.Angle + 552;
-            ((LoadingSpinner)d).AnglePath4 = ((LoadingSpinner)d).RotatePath.Angle + 828;
-            ((LoadingSpinner)d).AnglePath5 = ((LoadingSpinner)d).RotatePath.Angle + 1104;
-            ((LoadingSpinner)d).AnglePath6 = ((LoadingSpinner)d).RotatePath.Angle + 1380;
-            ((LoadingSpinner)d).StartPoint = ((LoadingSpinner)d).Arc.Point;
+            ((LoadingSpinner) d).AngleCanvas = ((LoadingSpinner) d).RotateCanvas.Angle;
+            ((LoadingSpinner) d).AnglePath1 = ((LoadingSpinner) d).RotatePath.Angle;
+            ((LoadingSpinner) d).AnglePath2 = ((LoadingSpinner) d).RotatePath.Angle + 276;
+            ((LoadingSpinner) d).AnglePath3 = ((LoadingSpinner) d).RotatePath.Angle + 552;
+            ((LoadingSpinner) d).AnglePath4 = ((LoadingSpinner) d).RotatePath.Angle + 828;
+            ((LoadingSpinner) d).AnglePath5 = ((LoadingSpinner) d).RotatePath.Angle + 1104;
+            ((LoadingSpinner) d).AnglePath6 = ((LoadingSpinner) d).RotatePath.Angle + 1380;
+            ((LoadingSpinner) d).StartPoint = ((LoadingSpinner) d).Arc.Point;
 
-            switch ((SpinnerState)e.NewValue)
+            switch ((SpinnerState) e.NewValue)
             {
                 case SpinnerState.Loading:
                     {
-                        ((LoadingSpinner)d).IsLargeArc = !(((LoadingSpinner)d).Arc.Point.Y > ((LoadingSpinner)d).Radius);
+                        ((LoadingSpinner) d).IsLargeArc = !(((LoadingSpinner) d).Arc.Point.Y > ((LoadingSpinner) d).Radius);
 
-                        if (((LoadingSpinner)d).Arc.Point.X >= ((LoadingSpinner)d).Radius)
+                        if (((LoadingSpinner) d).Arc.Point.X >= ((LoadingSpinner) d).Radius)
                         {
-                            ((LoadingSpinner)d).KeyTime = TimeSpan.FromMilliseconds(0);
+                            ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(0);
                         }
                         else
                         {
-                            var degree = 270 - -1 * (Math.Asin(-1 * ((((LoadingSpinner)d).Arc.Point.Y - ((LoadingSpinner)d).Radius) / ((LoadingSpinner)d).Radius)) * 180 / Math.PI - 90);
-                            var mili = (int)Math.Round(0.7 / degree * (degree - 90) * 1000);
+                            var degree = 270 - -1 * (Math.Asin(-1 * ((((LoadingSpinner) d).Arc.Point.Y - ((LoadingSpinner) d).Radius) / ((LoadingSpinner) d).Radius)) * 180 / Math.PI - 90);
+                            var mili = (int) Math.Round(0.7 / degree * (degree - 90) * 1000);
 
-                            ((LoadingSpinner)d).KeyTime = TimeSpan.FromMilliseconds(mili);
+                            ((LoadingSpinner) d).KeyTime = TimeSpan.FromMilliseconds(mili);
                         }
 
                         ((LoadingSpinner) d).Color = ((LoadingSpinner) d).LoadingColor;
 
-                        VisualStateManager.GoToState((LoadingSpinner)d, "Loading", true);
+                        VisualStateManager.GoToState((LoadingSpinner) d, "Loading", true);
                         break;
                     }
                 case SpinnerState.Hanging:
                     {
-                        if (((LoadingSpinner)d).Arc.Point.X > ((LoadingSpinner)d).Radius)
+                        if (((LoadingSpinner) d).Arc.Point.X > ((LoadingSpinner) d).Radius)
                         {
-                            ((LoadingSpinner)d).SweepDirection = SweepDirection.Clockwise;
-                            ((LoadingSpinner)d).IsLargeArc = true;
+                            ((LoadingSpinner) d).SweepDirection = SweepDirection.Clockwise;
+                            ((LoadingSpinner) d).IsLargeArc = true;
                         }
                         else
                         {
-                            ((LoadingSpinner)d).SweepDirection = SweepDirection.Counterclockwise;
-                            ((LoadingSpinner)d).IsLargeArc = false;
+                            ((LoadingSpinner) d).SweepDirection = SweepDirection.Counterclockwise;
+                            ((LoadingSpinner) d).IsLargeArc = false;
                         }
 
-                        if (((LoadingSpinner)d).StartPoint.Y == ((LoadingSpinner)d).Radius * 2)
+                        if (((LoadingSpinner) d).StartPoint.Y == ((LoadingSpinner) d).Radius * 2)
                         {
-                            ((LoadingSpinner)d).StartPoint = new Point(((LoadingSpinner)d).Radius + .00001, ((LoadingSpinner)d).Radius * 2 - .00001);
+                            ((LoadingSpinner) d).StartPoint = new Point(((LoadingSpinner) d).Radius + .00001, ((LoadingSpinner) d).Radius * 2 - .00001);
                         }
 
-                        ((LoadingSpinner)d).Color = ((LoadingSpinner)d).HangingColor;
-                        ((LoadingSpinner)d).RotatePath.Angle = ((LoadingSpinner)d).RotatePath.Angle;
+                        ((LoadingSpinner) d).Color = ((LoadingSpinner) d).HangingColor;
+                        ((LoadingSpinner) d).RotatePath.Angle = ((LoadingSpinner) d).RotatePath.Angle;
 
-                        VisualStateManager.GoToState((LoadingSpinner)d, "Hanging", true);
+                        VisualStateManager.GoToState((LoadingSpinner) d, "Hanging", true);
                         break;
                     }
                 case SpinnerState.Disabled:
-                    VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
+                    VisualStateManager.GoToState((LoadingSpinner) d, "Disabled", true);
                     break;
                 default:
-                    VisualStateManager.GoToState((LoadingSpinner)d, "Disabled", true);
+                    VisualStateManager.GoToState((LoadingSpinner) d, "Disabled", true);
                     break;
             }
         }

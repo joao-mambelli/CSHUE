@@ -11,20 +11,20 @@ namespace CSHUE.Helpers
         {
             var x = sat * (1 - Math.Abs(hue / (Math.PI / 3) % 2.0 - 1));
             var m = 1 - sat;
-            if (hue <= 1 * (Math.PI / 3)) return Color.FromRgb(255, (byte)Math.Round((m + x) * 255), (byte)Math.Round(m * 255));
-            if (hue <= 2 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round((m + x) * 255), 255, (byte)Math.Round(m * 255));
-            if (hue <= 3 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round(m * 255), 255, (byte)Math.Round((m + x) * 255));
-            if (hue <= 4 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round(m * 255), (byte)Math.Round((m + x) * 255), 255);
-            if (hue <= 5 * (Math.PI / 3)) return Color.FromRgb((byte)Math.Round((m + x) * 255), (byte)Math.Round(m * 255), 255);
+            if (hue <= 1 * (Math.PI / 3)) return Color.FromRgb(255, (byte) Math.Round((m + x) * 255), (byte) Math.Round(m * 255));
+            if (hue <= 2 * (Math.PI / 3)) return Color.FromRgb((byte) Math.Round((m + x) * 255), 255, (byte) Math.Round(m * 255));
+            if (hue <= 3 * (Math.PI / 3)) return Color.FromRgb((byte) Math.Round(m * 255), 255, (byte) Math.Round((m + x) * 255));
+            if (hue <= 4 * (Math.PI / 3)) return Color.FromRgb((byte) Math.Round(m * 255), (byte) Math.Round((m + x) * 255), 255);
+            if (hue <= 5 * (Math.PI / 3)) return Color.FromRgb((byte) Math.Round((m + x) * 255), (byte) Math.Round(m * 255), 255);
             // ReSharper disable once ConvertIfStatementToReturnStatement
-            if (hue <= 6 * (Math.PI / 3)) return Color.FromRgb(255, (byte)Math.Round(m * 255), (byte)Math.Round((m + x) * 255));
+            if (hue <= 6 * (Math.PI / 3)) return Color.FromRgb(255, (byte) Math.Round(m * 255), (byte) Math.Round((m + x) * 255));
 
             return Colors.Transparent;
         }
 
         public static Color Ct(int kelvin)
         {
-            var temperature = (double)kelvin / 100;
+            var temperature = (double) kelvin / 100;
 
             var green = 99.4708025861 * Math.Log(temperature) - 161.1195681661;
             if (green < 0)
@@ -38,14 +38,14 @@ namespace CSHUE.Helpers
             if (blue > 255)
                 blue = 255;
 
-            return Color.FromRgb(255, (byte)Math.Round(green), (byte)Math.Round(blue));
+            return Color.FromRgb(255, (byte) Math.Round(green), (byte) Math.Round(blue));
         }
 
         public static double GetSaturation(Color color)
         {
-            var r = (double)color.R / 255;
-            var g = (double)color.G / 255;
-            var b = (double)color.B / 255;
+            var r = (double) color.R / 255;
+            var g = (double) color.G / 255;
+            var b = (double) color.B / 255;
 
             var max = r;
 

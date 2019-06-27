@@ -94,15 +94,15 @@ namespace CSHUE.ViewModels
                             await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                                ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
-                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                                Hue = (int) Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
+                                Saturation = (byte) Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }

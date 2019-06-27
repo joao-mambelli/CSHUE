@@ -32,9 +32,9 @@
     </WindowChrome.WindowChrome>
 
     <Window.Resources>
-        <helpers:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter"/>
+        <helpers:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
 
-        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
@@ -63,7 +63,7 @@
                     Orientation="Horizontal"
                     Height="320"
                     Margin="20 50 0 0">
-            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BoolToCollapsedConverter}}">
+            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BooleanToCollapsedConverter}}">
                 <Label Content="{Binding Path=Hue, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
@@ -103,7 +103,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BoolToCollapsedConverter}}">
+            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BooleanToCollapsedConverter}}">
                 <Label Content="{Binding Path=Saturation, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
@@ -145,7 +145,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Label Content="{Binding Path=Temperature, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"

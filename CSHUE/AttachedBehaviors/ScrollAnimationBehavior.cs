@@ -8,222 +8,39 @@ namespace CSHUE.AttachedBehaviors
 {
     public static class ScrollAnimationBehavior
     {
-        /*#region Private ScrollViewer for ListBox
+        #region Fields
 
-        private static ScrollViewer _listBoxScroller = new ScrollViewer();
-
-        #endregion*/
-
-        #region VerticalOffset Property
-
-        public static DependencyProperty VerticalOffsetProperty =
-            DependencyProperty.RegisterAttached("VerticalOffset",
-                typeof(double),
-                typeof(ScrollAnimationBehavior),
-                new UIPropertyMetadata(0.0,
-                    OnVerticalOffsetChanged));
+        public static DependencyProperty VerticalOffsetProperty = DependencyProperty.RegisterAttached("VerticalOffset",
+            typeof(double), typeof(ScrollAnimationBehavior), new UIPropertyMetadata(0.0, OnVerticalOffsetChanged));
+        public static DependencyProperty TimeDurationProperty = DependencyProperty.RegisterAttached("TimeDuration",
+            typeof(TimeSpan), typeof(ScrollAnimationBehavior), new PropertyMetadata(new TimeSpan(0, 0, 0, 0, 0)));
+        public static DependencyProperty PointsToScrollProperty = DependencyProperty.RegisterAttached("PointsToScroll",
+            typeof(double), typeof(ScrollAnimationBehavior), new PropertyMetadata(0.0));
+        public static DependencyProperty IsEnabledProperty = DependencyProperty.RegisterAttached("IsEnabled",
+            typeof(bool), typeof(ScrollAnimationBehavior), new UIPropertyMetadata(false, OnIsEnabledChanged));
+        private static double _currentToValue;
+        private static Storyboard _storyboard;
 
         #endregion
 
-        #region TimeDuration Property
+        #region Events Handlers
 
-        public static DependencyProperty TimeDurationProperty =
-            DependencyProperty.RegisterAttached("TimeDuration",
-                typeof(TimeSpan),
-                typeof(ScrollAnimationBehavior),
-                new PropertyMetadata(new TimeSpan(0,
-                    0,
-                    0,
-                    0,
-                    0)));
-
-        public static void SetTimeDuration(FrameworkElement target,
-            TimeSpan value)
-        {
-            target.SetValue(TimeDurationProperty,
-                value);
-        }
-
-        public static TimeSpan GetTimeDuration(FrameworkElement target)
-        {
-            return (TimeSpan) target.GetValue(TimeDurationProperty);
-        }
-
-        #endregion
-
-        #region PointsToScroll Property
-
-        public static DependencyProperty PointsToScrollProperty =
-            DependencyProperty.RegisterAttached("PointsToScroll",
-                typeof(double),
-                typeof(ScrollAnimationBehavior),
-                new PropertyMetadata(0.0));
-
-        public static void SetPointsToScroll(FrameworkElement target,
-            double value)
-        {
-            target.SetValue(PointsToScrollProperty,
-                value);
-        }
-
-        public static double GetPointsToScroll(FrameworkElement target)
-        {
-            return (double) target.GetValue(PointsToScrollProperty);
-        }
-
-        #endregion
-
-        #region OnVerticalOffset Changed
-
-        private static void OnVerticalOffsetChanged(DependencyObject target,
-            DependencyPropertyChangedEventArgs e)
-        {
-            if (target is ScrollViewer scrollViewer)
-                scrollViewer.ScrollToVerticalOffset((double) e.NewValue);
-        }
-
-        #endregion
-
-        #region IsEnabled Property
-
-        public static DependencyProperty IsEnabledProperty =
-            DependencyProperty.RegisterAttached("IsEnabled",
-                typeof(bool),
-                typeof(ScrollAnimationBehavior),
-                new UIPropertyMetadata(false,
-                    OnIsEnabledChanged));
-
-        public static void SetIsEnabled(FrameworkElement target,
-            bool value)
-        {
-            target.SetValue(IsEnabledProperty,
-                value);
-        }
-
-        #endregion
-
-        #region OnIsEnabledChanged Changed
-
-        private static void OnIsEnabledChanged(DependencyObject sender,
-            DependencyPropertyChangedEventArgs e)
+        private static void OnIsEnabledChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var target = sender;
 
             if (target is ScrollViewer scroller)
-            {
                 scroller.Loaded += ScrollerLoaded;
-            }
-
-            /*if (target != null && target is ListBox)
-            {
-                ListBox listbox = target as ListBox;
-                listbox.Loaded += new RoutedEventHandler(ListboxLoaded);
-            }*/
         }
 
-        #endregion
-
-        #region AnimateScroll Helper
-
-        private static double _currentToValue;
-
-        private static Storyboard _storyboard;
-
-        private static void AnimateScroll(ScrollViewer scrollViewer)
-        {
-            var verticalAnimation = new DoubleAnimationUsingKeyFrames
-            {
-                Duration = new Duration(GetTimeDuration(scrollViewer))
-            };
-
-            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(scrollViewer.VerticalOffset,
-                KeyTime.FromPercent(0)));
-            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(_currentToValue,
-                KeyTime.FromPercent(1.0),
-                new CubicEase
-                {
-                    EasingMode = EasingMode.EaseOut
-                }));
-
-            _storyboard = new Storyboard();
-
-            _storyboard.Children.Add(verticalAnimation);
-            Storyboard.SetTarget(verticalAnimation,
-                scrollViewer);
-            Storyboard.SetTargetProperty(verticalAnimation,
-                new PropertyPath(VerticalOffsetProperty));
-            _storyboard.Begin();
-        }
-
-        #endregion
-
-        /*#region UpdateScrollPosition Helper
-
-        private static void UpdateScrollPosition(object sender)
-        {
-            if (sender is ListBox listbox)
-            {
-                double scrollTo = 0;
-
-                for (int i = 0; i < (listbox.SelectedIndex); i++)
-                {
-                    if (listbox.ItemContainerGenerator.ContainerFromItem(listbox.Items[i]) is ListBoxItem tempItem)
-                    {
-                        scrollTo += tempItem.ActualHeight;
-                    }
-                }
-
-                AnimateScroll(_listBoxScroller, scrollTo);
-            }
-        }
-
-        #endregion*/
-
-        #region SetEventHandlersForScrollViewer Helper
-
-        private static void SetEventHandlersForScrollViewer(IInputElement scroller)
-        {
-            scroller.PreviewMouseWheel += ScrollViewerPreviewMouseWheel;
-            scroller.PreviewKeyDown += ScrollViewerPreviewKeyDown;
-        }
-
-        #endregion
-
-        #region scrollerLoaded Event Handler
-
-        private static void ScrollerLoaded(object sender,
-            RoutedEventArgs e)
+        private static void ScrollerLoaded(object sender, RoutedEventArgs e)
         {
             var scroller = sender as ScrollViewer;
 
             SetEventHandlersForScrollViewer(scroller);
         }
 
-        #endregion
-
-        /*#region listboxLoaded Event Handler
-
-        private static void ListboxLoaded(object sender, RoutedEventArgs e)
-        {
-            ListBox listbox = sender as ListBox;
-
-            _listBoxScroller = FindVisualChildHelper.GetFirstChildOfType<ScrollViewer>(listbox);
-            SetEventHandlersForScrollViewer(_listBoxScroller);
-
-            SetTimeDuration(_listBoxScroller, new TimeSpan(0, 0, 0, 0, 200));
-            SetPointsToScroll(_listBoxScroller, 16.0);
-
-            listbox.SelectionChanged += new SelectionChangedEventHandler(ListBoxSelectionChanged);
-            listbox.Loaded += new RoutedEventHandler(ListBoxLoaded);
-            listbox.LayoutUpdated += new EventHandler(ListBoxLayoutUpdated);
-        }
-
-        #endregion*/
-
-        #region ScrollViewerPreviewMouseWheel Event Handler
-
-        private static void ScrollViewerPreviewMouseWheel(object sender,
-            MouseWheelEventArgs e)
+        private static void ScrollViewerPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             var tempToValue = _currentToValue;
 
@@ -246,12 +63,7 @@ namespace CSHUE.AttachedBehaviors
             e.Handled = true;
         }
 
-        #endregion
-
-        #region ScrollViewerPreviewKeyDown Handler
-
-        private static void ScrollViewerPreviewKeyDown(object sender,
-            KeyEventArgs e)
+        private static void ScrollViewerPreviewKeyDown(object sender, KeyEventArgs e)
         {
             var scroller = (ScrollViewer) sender;
             var offset = GetPointsToScroll(scroller);
@@ -297,23 +109,68 @@ namespace CSHUE.AttachedBehaviors
 
         #endregion
 
-        /*#region ListBox Event Handlers
+        #region Methods
 
-        private static void ListBoxLayoutUpdated(object sender, EventArgs e)
+        public static void SetTimeDuration(FrameworkElement target, TimeSpan value)
         {
-            UpdateScrollPosition(sender);
+            target.SetValue(TimeDurationProperty, value);
         }
 
-        private static void ListBoxLoaded(object sender, RoutedEventArgs e)
+        public static TimeSpan GetTimeDuration(FrameworkElement target)
         {
-            UpdateScrollPosition(sender);
+            return (TimeSpan) target.GetValue(TimeDurationProperty);
         }
 
-        private static void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        public static void SetPointsToScroll(FrameworkElement target, double value)
         {
-            UpdateScrollPosition(sender);
+            target.SetValue(PointsToScrollProperty, value);
         }
 
-        #endregion*/
+        public static double GetPointsToScroll(FrameworkElement target)
+        {
+            return (double) target.GetValue(PointsToScrollProperty);
+        }
+
+        private static void OnVerticalOffsetChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        {
+            if (target is ScrollViewer scrollViewer)
+                scrollViewer.ScrollToVerticalOffset((double) e.NewValue);
+        }
+
+        public static void SetIsEnabled(FrameworkElement target, bool value)
+        {
+            target.SetValue(IsEnabledProperty, value);
+        }
+
+        private static void AnimateScroll(ScrollViewer scrollViewer)
+        {
+            var verticalAnimation = new DoubleAnimationUsingKeyFrames
+            {
+                Duration = new Duration(GetTimeDuration(scrollViewer))
+            };
+
+            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(scrollViewer.VerticalOffset,
+                KeyTime.FromPercent(0)));
+            verticalAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(_currentToValue, KeyTime.FromPercent(1.0),
+                new CubicEase
+                {
+                    EasingMode = EasingMode.EaseOut
+                }));
+
+            _storyboard = new Storyboard();
+
+            _storyboard.Children.Add(verticalAnimation);
+            Storyboard.SetTarget(verticalAnimation, scrollViewer);
+            Storyboard.SetTargetProperty(verticalAnimation, new PropertyPath(VerticalOffsetProperty));
+            _storyboard.Begin();
+        }
+
+        private static void SetEventHandlersForScrollViewer(IInputElement scroller)
+        {
+            scroller.PreviewMouseWheel += ScrollViewerPreviewMouseWheel;
+            scroller.PreviewKeyDown += ScrollViewerPreviewKeyDown;
+        }
+
+        #endregion
     }
 }

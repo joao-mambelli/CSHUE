@@ -1,163 +1,288 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
-using CSHUE.Cultures;
 
 namespace CSHUE.Helpers
 {
-    public static class Converters
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.Boolean" /> to <see cref="T:System.Double" />.
+    /// </summary>
+    public class BoolToDoubleConverter : IValueConverter
     {
-        public static CultureInfo GetCultureInfoFromIndex(int index)
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts from <see cref="T:System.Boolean" /> to <see cref="T:System.Double" />. 1 if <paramref name="value" /> is <see langword="true" />, .5 if <paramref name="value" /> is <see langword="false" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <remarks></remarks>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return CultureResources.SupportedCultures.ElementAt(index);
+            return value != null && (bool) value ? 1 : 0.5;
         }
 
-        public static int GetIndexFromCultureInfo(CultureInfo cultureInfo)
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts from <see cref="T:System.Double" /> to <see cref="T:System.Boolean" />. <see langword="true" /> if <paramref name="value" /> is greater than .5, <see langword="false" /> if <paramref name="value" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return CultureResources.SupportedCultures.IndexOf(cultureInfo);
+            return value != null && (double) value > 0.5;
         }
     }
 
-    public class BoolToOpacityConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.Byte" /> to <see cref="T:System.Int32" />.
+    /// </summary>
+    public class ByteToInt32Converter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts the 0 - 255 range of a <see cref="T:System.Byte" /> into a 0 - 100 range of a <see cref="T:System.Int32" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && (bool)value ? 1 : 0.5;
-        }
+            if (value != null)
+                return (int) Math.Round(double.Parse(value.ToString()) / 255 * 100);
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
-        {
-            return null;
-        }
-    }
-
-    public class ByteToPercentageConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
-        {
-            if (value != null) return (int)Math.Round(double.Parse(value.ToString()) / 255 * 100);
             return 0;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Converts the 0 - 100 range of a <see cref="T:System.Int32" /> into a 0 - 255 range of a <see cref="T:System.Byte" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null) return (byte)Math.Round(double.Parse(value.ToString()) / 100 * 255);
+            if (value != null)
+                return (byte) Math.Round(double.Parse(value.ToString()) / 100 * 255);
+
             return 0;
         }
     }
 
-    public class VisibleToCollapsedConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom inverter from <see langword="Visibility.Visible" /> to <see langword="Visibility.Collapsed" />.
+    /// </summary>
+    public class VisibilityInverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Inverts the <see cref="T:System.Windows.Visibility" />, from <see langword="Visibility.Visible" /> to <see langword="Visibility.Collapsed" /> or to <see langword="Visibility.Collapsed" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && (Visibility) value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            return value != null && (Visibility) value == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Inverts the <see cref="T:System.Windows.Visibility" />, from <see langword="Visibility.Collapsed" /> to <see langword="Visibility.Visible" /> or to <see langword="Visibility.Collapsed" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && (Visibility)value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            return value != null && (Visibility) value == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
     }
 
-    public class FalseToTrueConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom inverter from <see langword="false" /> to <see langword="true" />.
+    /// </summary>
+    public class BooleanInverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Inverts the <see cref="T:System.Boolean" />, from <see langword="false" /> to <see langword="true" /> or to <see langword="false" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && !(bool)value;
+            return value != null && !(bool) value;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Inverts the <see cref="T:System.Boolean" />, from <see langword="false" /> to <see langword="true" /> or to <see langword="false" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && !(bool)value;
+            return value != null && !(bool) value;
         }
     }
 
-    public class EmptyStringToVisibilityConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.String" /> to <see cref="T:System.Windows.Visibility" />.
+    /// </summary>
+    public class StringToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns <see langword="Visibility.Collapsed" /> if <see cref="T:System.String" /> is empty or <see langword="null" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || string.IsNullOrEmpty(value.ToString()))
-            {
                 return Visibility.Collapsed;
-            }
 
             return Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns an empty <see cref="T:System.String" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value?.ToString();
+            return "";
         }
     }
 
-    public class BoolToVisibilityConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.Boolean" /> to <see cref="T:System.Windows.Visibility" />.
+    /// </summary>
+    public class BooleanToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns <see langword="Visibility.Visible" /> if <see cref="T:System.Boolean" /> is <see langword="true" />, <see langword="Visibility.Collapsed" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && (bool)value)
-            {
+            if (value != null && (bool) value)
                 return Visibility.Visible;
-            }
 
             return Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns <see langword="true" /> if <see langword="Visibility.Visible" /> , <see langword="false" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && (Visibility)value == Visibility.Visible;
+            return value != null && (Visibility) value == Visibility.Visible;
         }
     }
 
-    public class BoolToCollapsedConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.Boolean" /> to <see cref="T:System.Windows.Visibility" />.
+    /// </summary>
+    public class BooleanToCollapsedConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns <see langword="Visibility.Collapsed" /> if <see cref="T:System.Boolean" /> is <see langword="true" />, <see langword="Visibility.Visible" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && (bool)value)
-            {
+            if (value != null && (bool) value)
                 return Visibility.Collapsed;
-            }
 
             return Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns <see langword="true" /> if <see langword="Visibility.Collapsed" /> , <see langword="false" /> otherwise.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && (Visibility)value == Visibility.Collapsed;
+            return value != null && (Visibility) value == Visibility.Collapsed;
         }
     }
 
     public class BrightnessToWhiteConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
-                return Color.FromRgb((byte)Math.Round((double)value * 255),
-                    (byte)Math.Round((double)value * 255),
-                    (byte)Math.Round((double)value * 255));
+                return Color.FromRgb((byte) Math.Round((double) value * 255),
+                    (byte) Math.Round((double) value * 255),
+                    (byte) Math.Round((double) value * 255));
 
             return Colors.Black;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return Colors.Black;
         }
@@ -165,17 +290,19 @@ namespace CSHUE.Helpers
 
     public class BrightnessToPercentageConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null) return (int)Math.Round((double)value * 100);
+            if (value != null)
+                return (int) Math.Round((double) value * 100);
+
             return 0;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null) return (double)value / 100;
+            if (value != null)
+                return (double) value / 100;
+
             return 0;
         }
     }

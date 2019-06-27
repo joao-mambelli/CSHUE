@@ -8,7 +8,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using CSHUE.Helpers;
 using CSHUE.ViewModels;
-// ReSharper disable InheritdocConsiderUsage
 // ReSharper disable PossibleLossOfFraction
 
 namespace CSHUE.Views
@@ -45,7 +44,7 @@ namespace CSHUE.Views
 
             if (nCode < 0 || MouseMessages.WmMousemove != (MouseMessages) wParam)
                 return CallNextHookEx(_hookId, nCode, wParam, lParam);
-            var hookStruct = (Msllhookstruct)Marshal.PtrToStructure(lParam, typeof(Msllhookstruct));
+            var hookStruct = (Msllhookstruct) Marshal.PtrToStructure(lParam, typeof(Msllhookstruct));
 
             if (IsColorTemperature)
             {
@@ -185,10 +184,10 @@ namespace CSHUE.Views
             if (IsColorTemperature)
             {
                 ViewModel.ChangeTemperature(new System.Windows.Point(
-                    (int)Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                    (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
                     ViewModel.ColorWheelSize / 2,
-                    (int)Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                    (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
                     ViewModel.ColorWheelSize / 2));
             }
@@ -197,10 +196,10 @@ namespace CSHUE.Views
                 _approximate = false;
 
                 ViewModel.ChangeHueSaturation(new System.Windows.Point(
-                    (int)Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                    (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
                     ViewModel.ColorWheelSize / 2,
-                    (int)Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                    (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
                     ViewModel.ColorWheelSize / 2), _approximate);
             }

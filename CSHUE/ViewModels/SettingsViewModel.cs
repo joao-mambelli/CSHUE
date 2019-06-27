@@ -266,7 +266,7 @@ namespace CSHUE.ViewModels
                                         : selectedLights.Count < 2
                                             ? selectedLights[0].Color
                                             : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -306,7 +306,7 @@ namespace CSHUE.ViewModels
                                         : selectedLights.Count < 2
                                             ? selectedLights[0].Color
                                             : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -346,7 +346,7 @@ namespace CSHUE.ViewModels
                                         : selectedLights.Count < 2
                                             ? selectedLights[0].Color
                                             : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -386,7 +386,7 @@ namespace CSHUE.ViewModels
                                         : selectedLights.Count < 2
                                             ? selectedLights[0].Color
                                             : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -426,7 +426,7 @@ namespace CSHUE.ViewModels
                                         : selectedLights.Count < 2
                                             ? selectedLights[0].Color
                                             : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -466,7 +466,7 @@ namespace CSHUE.ViewModels
                                         : selectedLights.Count < 2
                                             ? selectedLights[0].Color
                                             : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -517,7 +517,7 @@ namespace CSHUE.ViewModels
                                             : selectedLights[i].OnlyBrightness
                                                 ? Colors.Gray
                                                 : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -561,7 +561,7 @@ namespace CSHUE.ViewModels
                                             : selectedLights[i].OnlyBrightness
                                                 ? Colors.Gray
                                                 : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -608,7 +608,7 @@ namespace CSHUE.ViewModels
                                             : selectedLights[i].OnlyBrightness
                                                 ? selectedMainLights[i].Color
                                                 : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -655,7 +655,7 @@ namespace CSHUE.ViewModels
                                             : selectedLights[i].OnlyBrightness
                                                 ? selectedMainLights[i].Color
                                                 : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -702,7 +702,7 @@ namespace CSHUE.ViewModels
                                             : selectedLights[i].OnlyBrightness
                                                 ? selectedMainLights[i].Color
                                                 : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });
@@ -749,7 +749,7 @@ namespace CSHUE.ViewModels
                                             : selectedLights[i].OnlyBrightness
                                                 ? selectedMainLights[i].Color
                                                 : selectedLights[i].Color,
-                                    Offset = i * 1 / (float)((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
+                                    Offset = i * 1 / (float) ((selectedLights.Count < 2 ? 2 : selectedLights.Count) - 1)
                                 });
                             }
                         });

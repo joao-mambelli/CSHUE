@@ -17,13 +17,13 @@
       FontFamily="Segoe UI Semilight"
       d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}">
     <Page.Resources>
-        <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+        <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
-        <helpers:VisibleToCollapsedConverter x:Key="VisibleToCollapsedConverter"/>
+        <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
 
-        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-        <helpers:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter"/>
+        <helpers:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -61,19 +61,19 @@
                         <Label Margin="7 0 0 0"
                                Content="{Binding Path=On, Source={StaticResource Resources}}"
                                Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                               Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                               Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         
                         <Label Margin="7 0 0 0"
                                Content="{Binding Path=Off, Source={StaticResource Resources}}"
                                Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                               Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedConverter}}"/>
+                               Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToCollapsedConverter}}"/>
                     </StackPanel>
 
                     <TextBlock Margin="0,20,0,2"
                                FontSize="20"
                                Text="{Binding Path=LightsStates, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"
-                               Visibility="{Binding InProcess, Converter={StaticResource VisibleToCollapsedConverter}}"/>
+                               Visibility="{Binding InProcess, Converter={StaticResource VisibilityInverter}}"/>
 
                     <StackPanel Margin="24,30,20,30"
                                 VerticalAlignment="Top"
@@ -150,7 +150,7 @@
                              Background="Transparent"
                              BorderThickness="0"
                              HorizontalAlignment="Left"
-                             Visibility="{Binding InProcess, Converter={StaticResource VisibleToCollapsedConverter}}">
+                             Visibility="{Binding InProcess, Converter={StaticResource VisibilityInverter}}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Focusable"
@@ -186,7 +186,7 @@
                         ToolTipService.HorizontalOffset="-50"
                         ToolTipService.ShowDuration="10000">
                     <Button.ToolTip>
-                        <ToolTip Visibility="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Converter={StaticResource EmptyStringToVisibilityConverter}}"
+                        <ToolTip Visibility="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Converter={StaticResource StringToVisibilityConverter}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                  Background="{DynamicResource SystemAltHighColorBrush}">
                             <StackPanel>

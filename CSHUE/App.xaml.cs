@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows;
-
-// ReSharper disable InheritdocConsiderUsage
 
 namespace CSHUE
 {
@@ -44,10 +41,7 @@ namespace CSHUE
             }
             else
             {
-                NativeMethods.PostMessage(
-                    (IntPtr)NativeMethods.HwndBroadcast,
-                    NativeMethods.WmShowme,
-                    IntPtr.Zero,
+                NativeMethods.PostMessage((IntPtr) NativeMethods.HwndBroadcast, NativeMethods.WmShowme, IntPtr.Zero,
                     IntPtr.Zero);
             }
         }

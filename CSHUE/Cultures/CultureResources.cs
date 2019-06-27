@@ -31,7 +31,7 @@ namespace CSHUE.Cultures
         public static List<string> SupportedCulturesFullNames { get; } = new List<string>();
 
         private static ObjectDataProvider _mProvider;
-        public static ObjectDataProvider ResourceProvider => _mProvider ?? (_mProvider = (ObjectDataProvider)System.Windows.Application.Current.FindResource("Resources"));
+        public static ObjectDataProvider ResourceProvider => _mProvider ?? (_mProvider = (ObjectDataProvider) System.Windows.Application.Current.FindResource("Resources"));
 
         #endregion
 

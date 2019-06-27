@@ -90,7 +90,7 @@ namespace CSHUE.ViewModels
                     DontUpdate = true;
 
                     Hue = 0;
-                    Saturation = ((double)value - 4250) * 2 / 45;
+                    Saturation = ((double) value - 4250) * 2 / 45;
 
                     DontUpdate = false;
                 }
@@ -188,7 +188,7 @@ namespace CSHUE.ViewModels
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        ColorTemperature = (int)Math.Round(ColorTemperature * -0.077111 + 654.222),
+                        ColorTemperature = (int) Math.Round(ColorTemperature * -0.077111 + 654.222),
                         Brightness = brightness,
                         TransitionTime = TimeSpan.FromMilliseconds(400)
                     }, new List<string> { $"{id}" }).ConfigureAwait(false);
@@ -198,8 +198,8 @@ namespace CSHUE.ViewModels
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        Hue = (int)Math.Round(Hue / 360 * 65535),
-                        Saturation = (byte)Math.Round(Saturation / 100 * 255),
+                        Hue = (int) Math.Round(Hue / 360 * 65535),
+                        Saturation = (byte) Math.Round(Saturation / 100 * 255),
                         Brightness = brightness,
                         TransitionTime = TimeSpan.FromMilliseconds(400)
                     }, new List<string> { $"{id}" }).ConfigureAwait(false);
@@ -219,11 +219,11 @@ namespace CSHUE.ViewModels
                         Math.PI / 2;
 
             if (angle < 0) angle += 2 * Math.PI;
-            Hue = (int)Math.Round(approximate
+            Hue = (int) Math.Round(approximate
                 ? Math.Round(angle / ((double)1 / 18 * Math.PI)) * ((double)1 / 18 * Math.PI) / (2 * Math.PI) * 360
                 : angle / (2 * Math.PI) * 360);
             Saturation = distanceFromCenter < ColorWheelSize / 2
-                ? (int)Math.Round(distanceFromCenter / (ColorWheelSize / 2) * 100)
+                ? (int) Math.Round(distanceFromCenter / (ColorWheelSize / 2) * 100)
                 : 100;
 
             MousePosition = distanceFromCenter < ColorWheelSize / 2
@@ -245,9 +245,9 @@ namespace CSHUE.ViewModels
             DontUpdate = true;
 
             if (angle < 0) angle += 2 * Math.PI;
-            Hue = (int)Math.Round(angle / (2 * Math.PI) * 360);
+            Hue = (int) Math.Round(angle / (2 * Math.PI) * 360);
             Saturation = distanceFromCenter < ColorWheelSize / 2
-                ? (int)Math.Round(distanceFromCenter / (ColorWheelSize / 2) * 100)
+                ? (int) Math.Round(distanceFromCenter / (ColorWheelSize / 2) * 100)
                 : 100;
 
             if (distanceFromCenter < ColorWheelSize / 2)

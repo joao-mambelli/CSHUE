@@ -12,14 +12,14 @@
              Width="350"
              d:DataContext="{d:DesignInstance Type=viewModels:LightSettingCellViewModel}">
     <UserControl.Resources>
-        <helpers:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
+        <helpers:BoolToDoubleConverter x:Key="BoolToDoubleConverter"/>
 
-        <helpers:ByteToPercentageConverter x:Key="ByteToPercentageConverter"/>
+        <helpers:ByteToInt32Converter x:Key="ByteToInt32Converter"/>
 
-        <helpers:FalseToTrueConverter x:Key="FalseToTrueConverter"/>
+        <helpers:BooleanInverter x:Key="BooleanInverter"/>
     </UserControl.Resources>
 
-    <Grid Opacity="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToOpacityConverter}}">
+    <Grid Opacity="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToDoubleConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
 
@@ -32,11 +32,11 @@
                         Style="{DynamicResource CustomButton}"
                         Height="50"
                         MinWidth="90"
-                        IsEnabled="{Binding OnlyBrightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FalseToTrueConverter}}"
+                        IsEnabled="{Binding OnlyBrightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanInverter}}"
                         Click="Button_OnClick">
                     <Button.Background>
                         <SolidColorBrush Color="{Binding Color}"
-                                         Opacity="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Converter={StaticResource BoolToOpacityConverter}}"/>
+                                         Opacity="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Converter={StaticResource BoolToDoubleConverter}}"/>
                     </Button.Background>
 
                     <Grid>
@@ -110,11 +110,11 @@
                     Maximum="100"
                     Margin="0 10 0 8"
                     Style="{DynamicResource CustomSlider}"
-                    Value="{Binding Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ByteToPercentageConverter}}"/>
+                    Value="{Binding Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ByteToInt32Converter}}"/>
 
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal">
-                <xctk:DecimalUpDown Value="{Binding Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ByteToPercentageConverter}}"
+                <xctk:DecimalUpDown Value="{Binding Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ByteToInt32Converter}}"
                                     Background="{DynamicResource SystemAltLowColorBrush}"
                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                     ButtonSpinnerLocation="Left"

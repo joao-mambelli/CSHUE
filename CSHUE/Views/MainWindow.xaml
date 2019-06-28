@@ -61,8 +61,8 @@
 
                 <Grid x:Name="Home"
                       Height="48"
-                      MouseLeftButtonDown="Control_MouseLeftButtonDown"
-                      MouseLeftButtonUp="Control_MouseLeftButtonUp"
+                      MouseLeftButtonDown="Control_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="Control_OnMouseLeftButtonUp"
                       Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="HomeIndicator"
@@ -105,8 +105,8 @@
 
                 <Grid x:Name="Config"
                       Height="48"
-                      MouseLeftButtonDown="Control_MouseLeftButtonDown"
-                      MouseLeftButtonUp="Control_MouseLeftButtonUp"
+                      MouseLeftButtonDown="Control_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="Control_OnMouseLeftButtonUp"
                       Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="ConfigIndicator"
@@ -212,8 +212,8 @@
             <StackPanel VerticalAlignment="Bottom">
                 <Grid x:Name="Donate"
                       Height="48"
-                      MouseLeftButtonDown="Control_MouseLeftButtonDown"
-                      MouseLeftButtonUp="Control_MouseLeftButtonUp"
+                      MouseLeftButtonDown="Control_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="Control_OnMouseLeftButtonUp"
                       Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="DonateIndicator"
@@ -238,8 +238,8 @@
 
                 <Grid x:Name="About"
                       Height="48"
-                      MouseLeftButtonDown="Control_MouseLeftButtonDown"
-                      MouseLeftButtonUp="Control_MouseLeftButtonUp"
+                      MouseLeftButtonDown="Control_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="Control_OnMouseLeftButtonUp"
                       Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="AboutIndicator"
@@ -264,8 +264,8 @@
 
                 <Grid x:Name="Settings"
                       Height="48"
-                      MouseLeftButtonDown="Control_MouseLeftButtonDown"
-                      MouseLeftButtonUp="Control_MouseLeftButtonUp"
+                      MouseLeftButtonDown="Control_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="Control_OnMouseLeftButtonUp"
                       Style="{DynamicResource CustomMenu}">
                     <StackPanel Orientation="Horizontal">
                         <Grid x:Name="SettingsIndicator"
@@ -314,8 +314,8 @@
                 <Grid WindowChrome.IsHitTestVisibleInChrome="True"
                       x:Name="MinimizeButton"
                       Height="32"
-                      MouseLeftButtonDown="TopControls_MouseLeftButtonDown"
-                      MouseLeftButtonUp="TopControls_MouseLeftButtonUp"
+                      MouseLeftButtonDown="TopControls_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="TopControls_OnMouseLeftButtonUp"
                       Grid.Column="1"
                       VerticalAlignment="Top"
                       Background="Transparent">
@@ -330,8 +330,8 @@
                 <Grid WindowChrome.IsHitTestVisibleInChrome="True"
                       x:Name="MaximizeButton"
                       Height="32"
-                      MouseLeftButtonDown="TopControls_MouseLeftButtonDown"
-                      MouseLeftButtonUp="TopControls_MouseLeftButtonUp"
+                      MouseLeftButtonDown="TopControls_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="TopControls_OnMouseLeftButtonUp"
                       Grid.Column="2"
                       VerticalAlignment="Top"
                       Background="Transparent">
@@ -346,8 +346,8 @@
                 <Grid WindowChrome.IsHitTestVisibleInChrome="True"
                       x:Name="CloseButton"
                       Height="32"
-                      MouseLeftButtonDown="TopControls_MouseLeftButtonDown"
-                      MouseLeftButtonUp="TopControls_MouseLeftButtonUp"
+                      MouseLeftButtonDown="TopControls_OnMouseLeftButtonDown"
+                      MouseLeftButtonUp="TopControls_OnMouseLeftButtonUp"
                       Grid.Column="3"
                       VerticalAlignment="Top"
                       Background="Transparent">
@@ -371,50 +371,50 @@
                         ToolTipText="CSHUE"
                         IconSource="/icon.ico"
                         MenuActivation="LeftOrRightClick"
-                        TrayMouseDoubleClick="NotifyIcon_TrayMouseDoubleClick">
+                        TrayMouseDoubleClick="NotifyIcon_OnTrayMouseDoubleClick">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Background="{DynamicResource SystemAltHighColorBrush}"
                              BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
                              Foreground="{DynamicResource SystemBaseHighColorBrush}"
                              Style="{DynamicResource CustomContextMenu}"
-                             Opened="ContextMenu_Opened">
+                             Opened="ContextMenu_OnOpened">
                     <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertHome}"
-                              Click="MenuNavigate_Click"
+                              Click="MenuNavigate_OnClick"
                               Tag="Home"/>
 
                     <MenuItem Header="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertConfig}"
-                              Click="MenuNavigate_Click"
+                              Click="MenuNavigate_OnClick"
                               Tag="Config"/>
 
                     <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
-                              Click="MenuNavigate_Click"
+                              Click="MenuNavigate_OnClick"
                               Tag="Donate"/>
 
                     <MenuItem Header="{Binding Path=About, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
-                              Click="MenuNavigate_Click"
+                              Click="MenuNavigate_OnClick"
                               Tag="About"/>
 
                     <MenuItem Header="{Binding Path=Settings, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
-                              Click="MenuNavigate_Click"
+                              Click="MenuNavigate_OnClick"
                               Tag="Settings"/>
 
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
 
                     <MenuItem Header="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
-                              Click="RunCsgo_Click"
+                              Click="RunCsgo_OnClick"
                               Tag="Settings"/>
 
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
 
                     <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
-                              Click="MenuExit_Click"/>
+                              Click="MenuExit_OnClick"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>

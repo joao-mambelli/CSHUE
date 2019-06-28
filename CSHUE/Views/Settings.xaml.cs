@@ -33,21 +33,21 @@ namespace CSHUE.Views
 
             ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
 
-            ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
+            ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_OnSelectionChanged;
 
-            Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
+            Properties.Settings.Default.PropertyChanged += Default_OnPropertyChanged;
         }
 
         #endregion
 
         #region Events Handlers
 
-        private void Default_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Default_OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             ViewModel.UpdateGradient(e.PropertyName);
         }
 
-        private static void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private static void ComboBoxLanguage_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Properties.Settings.Default.Save();
 
@@ -87,7 +87,7 @@ namespace CSHUE.Views
             }
         }
 
-        private async void Default_Click(object sender, RoutedEventArgs e)
+        private async void Default_OnClick(object sender, RoutedEventArgs e)
         {
             var messageBox = new CustomMessageBox
             {
@@ -100,7 +100,7 @@ namespace CSHUE.Views
 
             if (messageBox.DialogResult != true) return;
 
-            ComboBoxLanguage.SelectionChanged -= ComboBoxLanguage_SelectionChanged;
+            ComboBoxLanguage.SelectionChanged -= ComboBoxLanguage_OnSelectionChanged;
             Properties.Settings.Default.Reset();
             ViewModel.MainWindowViewModel.ConfigPage.ViewModel.CheckConfigFile();
 
@@ -117,7 +117,7 @@ namespace CSHUE.Views
             Application.Current.Shutdown();
         }
 
-        private void RunOnStartupCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
+        private void RunOnStartupCheckBox_OnCheckedChanged(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.RunOnStartup)
                 ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
@@ -244,7 +244,7 @@ namespace CSHUE.Views
             Save(sender, e);
         }
 
-        private void ShowSystemTrayIconCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
+        private void ShowSystemTrayIconCheckBox_OnCheckedChanged(object sender, RoutedEventArgs e)
         {
             if (ViewModel.MainWindowViewModel == null) return;
 

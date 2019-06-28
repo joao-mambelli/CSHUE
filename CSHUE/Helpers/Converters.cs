@@ -270,8 +270,21 @@ namespace CSHUE.Helpers
         }
     }
 
-    public class BrightnessToWhiteConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.Double" /> to <see cref="T:System.Windows.Media.Color" />.
+    /// </summary>
+    public class DoubleToColorConverter : IValueConverter
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns the relative white shade color from the 0 - 1 range of a <see cref="T:System.Double" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
@@ -282,14 +295,36 @@ namespace CSHUE.Helpers
             return Colors.Black;
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns a black color always.
+        /// </summary>
+        /// <param name="value">ignored</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return Colors.Black;
         }
     }
 
-    public class BrightnessToPercentageConverter : IValueConverter
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom converter from <see cref="T:System.Double" /> to <see cref="T:System.Int32" />.
+    /// </summary>
+    public class DoubleToIntConverter : IValueConverter
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns the relative 0 - 100 range of a <see cref="T:System.Int32" /> from a 0 - 1 range of a <see cref="T:System.Double" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
@@ -298,6 +333,15 @@ namespace CSHUE.Helpers
             return 0;
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns the relative 0 - 1 range of a <see cref="T:System.Double" /> from a 0 - 100 range of a <see cref="T:System.Int32" />.
+        /// </summary>
+        /// <param name="value">Value to convert.</param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)

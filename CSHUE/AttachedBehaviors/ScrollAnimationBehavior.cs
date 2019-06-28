@@ -30,17 +30,17 @@ namespace CSHUE.AttachedBehaviors
             var target = sender;
 
             if (target is ScrollViewer scroller)
-                scroller.Loaded += ScrollerLoaded;
+                scroller.Loaded += OnScrollerLoaded;
         }
 
-        private static void ScrollerLoaded(object sender, RoutedEventArgs e)
+        private static void OnScrollerLoaded(object sender, RoutedEventArgs e)
         {
             var scroller = sender as ScrollViewer;
 
             SetEventHandlersForScrollViewer(scroller);
         }
 
-        private static void ScrollViewerPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private static void OnScrollViewerPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             var tempToValue = _currentToValue;
 
@@ -63,7 +63,7 @@ namespace CSHUE.AttachedBehaviors
             e.Handled = true;
         }
 
-        private static void ScrollViewerPreviewKeyDown(object sender, KeyEventArgs e)
+        private static void OnScrollViewerPreviewKeyDown(object sender, KeyEventArgs e)
         {
             var scroller = (ScrollViewer) sender;
             var offset = GetPointsToScroll(scroller);
@@ -167,8 +167,8 @@ namespace CSHUE.AttachedBehaviors
 
         private static void SetEventHandlersForScrollViewer(IInputElement scroller)
         {
-            scroller.PreviewMouseWheel += ScrollViewerPreviewMouseWheel;
-            scroller.PreviewKeyDown += ScrollViewerPreviewKeyDown;
+            scroller.PreviewMouseWheel += OnScrollViewerPreviewMouseWheel;
+            scroller.PreviewKeyDown += OnScrollViewerPreviewKeyDown;
         }
 
         #endregion

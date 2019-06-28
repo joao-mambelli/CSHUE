@@ -276,9 +276,9 @@ namespace CSHUE.ViewModels
                                   : Resources.LightOff) + ")";
                         existingElement.Color = l.State.On && l.State.IsReachable.Value
                             ? l.Capabilities.Control.ColorGamut == null
-                                ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2,
+                                ? ColorConverters.HueSaturation((double) l.State.Hue / 65535 * Math.PI * 2,
                                     (double) l.State.Saturation / 255)
-                                : ColorConverters.Ct((int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
+                                : ColorConverters.ColorTemperatue((int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
                             : Colors.Black;
                         existingElement.Brightness = (double) (l.State.Brightness + 1) / 255;
                     }
@@ -294,9 +294,9 @@ namespace CSHUE.ViewModels
                                       : Resources.LightOff) + ")",
                             Color = l.State.On && l.State.IsReachable.Value
                                 ? l.Capabilities.Control.ColorGamut == null
-                                    ? ColorConverters.Hs((double) l.State.Hue / 65535 * Math.PI * 2,
+                                    ? ColorConverters.HueSaturation((double) l.State.Hue / 65535 * Math.PI * 2,
                                         (double) l.State.Saturation / 255)
-                                    : ColorConverters.Ct((int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
+                                    : ColorConverters.ColorTemperatue((int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
                                 : Colors.Black,
                             Brightness = (double) (l.State.Brightness + 1) / 255,
                             UniqueId = l.UniqueId

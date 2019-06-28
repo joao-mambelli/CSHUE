@@ -231,7 +231,7 @@ namespace CSHUE.ViewModels
                     colorWheelCenterRelativeMousePosition.Y * 2, 0, 0)
                 : new Thickness(ColorWheelSize * Math.Sin(Hue / 360 * Math.PI * 2) * (Saturation / 100), 0, 0,
                     ColorWheelSize * Math.Cos(Hue / 360 * Math.PI * 2) * (Saturation / 100));
-            Color = ColorConverters.Hs(Hue / 360 * 2 * Math.PI, Saturation / 100);
+            Color = ColorConverters.HueSaturation(Hue / 360 * 2 * Math.PI, Saturation / 100);
         }
 
         public void ChangeTemperature(Point colorWheelCenterRelativeMousePosition)
@@ -268,7 +268,7 @@ namespace CSHUE.ViewModels
                     colorWheelCenterRelativeMousePosition.Y * 2, 0, 0)
                 : new Thickness(ColorWheelSize * Math.Sin(Hue / 360 * Math.PI * 2) * (Saturation / 100), 0, 0,
                     ColorWheelSize * Math.Cos(Hue / 360 * Math.PI * 2) * (Saturation / 100));
-            Color = ColorConverters.Ct(ColorTemperature);
+            Color = ColorConverters.ColorTemperatue(ColorTemperature);
         }
 
         private void SetMousePositionAndColor(bool colorTemperature)
@@ -280,8 +280,8 @@ namespace CSHUE.ViewModels
                 0, ColorWheelSize * Math.Cos(Hue / 360 * Math.PI * 2) * (Saturation / 100));
 
             Color = colorTemperature
-                ? ColorConverters.Ct(ColorTemperature)
-                : ColorConverters.Hs(Hue / 360 * 2 * Math.PI, Saturation / 100);
+                ? ColorConverters.ColorTemperatue(ColorTemperature)
+                : ColorConverters.HueSaturation(Hue / 360 * 2 * Math.PI, Saturation / 100);
         }
 
         #endregion

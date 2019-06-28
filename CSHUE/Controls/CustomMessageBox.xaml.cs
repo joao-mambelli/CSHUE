@@ -3,6 +3,7 @@ using System.Windows;
 
 namespace CSHUE.Controls
 {
+    /// <inheritdoc cref="CustomMessageBox" />
     /// <summary>
     /// Interaction logic for CustomMessageBox.xaml
     /// </summary>
@@ -10,12 +11,18 @@ namespace CSHUE.Controls
     {
         #region Properties
 
+        /// <summary>
+        /// Path to open when "Open Path" button is pressed.
+        /// </summary>
         public string Path { get; set; }
 
         #endregion
 
         #region Dependency Properties
 
+        /// <summary>
+        /// First button text.
+        /// </summary>
         public string Text1
         {
             get => (string) GetValue(Text1Property);
@@ -24,6 +31,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty Text1Property =
             DependencyProperty.Register("Text1", typeof(string), typeof(CustomMessageBox));
 
+        /// <summary>
+        /// Second button text.
+        /// </summary>
         public string Text2
         {
             get => (string) GetValue(Text2Property);
@@ -32,6 +42,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty Text2Property =
             DependencyProperty.Register("Text2", typeof(string), typeof(CustomMessageBox));
 
+        /// <summary>
+        /// Message to dislay in the message box.
+        /// </summary>
         public string Message
         {
             get => (string) GetValue(MessageProperty);
@@ -40,6 +53,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty MessageProperty =
             DependencyProperty.Register("Message", typeof(string), typeof(CustomMessageBox));
 
+        /// <summary>
+        /// Property to control Button1Button2 type visibility.
+        /// </summary>
         public Visibility Button1Button2Visibility
         {
             get => (Visibility) GetValue(Button1Button2VisibilityProperty);
@@ -48,6 +64,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty Button1Button2VisibilityProperty =
             DependencyProperty.Register("Button1Button2Visibility", typeof(Visibility), typeof(CustomMessageBox));
 
+        /// <summary>
+        /// Property to control Button1 type visibility.
+        /// </summary>
         public Visibility Button1Visibility
         {
             get => (Visibility) GetValue(Button1VisibilityProperty);
@@ -56,6 +75,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty Button1VisibilityProperty =
             DependencyProperty.Register("Button1Visibility", typeof(Visibility), typeof(CustomMessageBox));
 
+        /// <summary>
+        /// Property to control Button1OpenFolder type visibility.
+        /// </summary>
         public Visibility Button1OpenFolderVisibility
         {
             get => (Visibility) GetValue(Button1OpenFolderVisibilityProperty);
@@ -68,34 +90,44 @@ namespace CSHUE.Controls
 
         #region Events Handlers
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Button1 click handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button1_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
             Close();
         }
 
-        private void Button2_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Button2 click handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button2_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
         }
 
-        private void ButtonOpenFolder_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// ButtonOpenFolder click handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonOpenFolder_OnClick(object sender, RoutedEventArgs e)
         {
             Process.Start(Path);
         }
 
-        #endregion
-
-        #region Initializers
-
-        public CustomMessageBox()
-        {
-            InitializeComponent();
-            DataContext = this;
-        }
-
-        private void CustomMessageBox_OnLoaded(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// View OnLoad handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (Text1 == Cultures.Resources.Ok && Text2 == null)
             {
@@ -117,6 +149,20 @@ namespace CSHUE.Controls
                 Button1Visibility = Visibility.Hidden;
                 Button1OpenFolderVisibility = Visibility.Hidden;
             }
+        }
+
+        #endregion
+
+        #region Initializers
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializer.
+        /// </summary>
+        public CustomMessageBox()
+        {
+            InitializeComponent();
+            DataContext = this;
         }
 
         #endregion

@@ -49,7 +49,7 @@
                             HorizontalAlignment="Center"
                             Style="{DynamicResource CustomButton}"
                             Content="{Binding Path=CreateCfg, Source={StaticResource Resources}}"
-                            Click="Config_Click"/>
+                            Click="Button_OnClick"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

@@ -26,7 +26,7 @@
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
         d:DataContext="{d:DesignInstance Type=viewModels:ColorPickerViewModel}"
-        Loaded="ColorPicker_OnLoaded">
+        Loaded="OnLoaded">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="37"/>
     </WindowChrome.WindowChrome>
@@ -368,7 +368,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text1, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Click="Button1_Click"/>
+                    Click="Button1_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
@@ -378,7 +378,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text2, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Click="Button2_Click"/>
+                    Click="Button2_OnClick"/>
         </StackPanel>
     </Grid>
 </Window>

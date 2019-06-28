@@ -142,7 +142,7 @@
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource CustomButton}"
                                     Content="{Binding Path=Retry, Source={StaticResource Resources}}"
-                                    Click="Retry_Click"/>
+                                    Click="Retry_OnClick"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -180,7 +180,7 @@
                         HorizontalAlignment="Right"
                         Style="{DynamicResource CustomButton}"
                         Content="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
-                        Click="RunCsgo_Click"
+                        Click="RunCsgo_OnClick"
                         ToolTipService.InitialShowDelay="100"
                         ToolTipService.HasDropShadow="True"
                         ToolTipService.HorizontalOffset="-50"

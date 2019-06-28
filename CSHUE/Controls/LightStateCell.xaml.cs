@@ -6,6 +6,7 @@ using System.Windows.Media;
 
 namespace CSHUE.Controls
 {
+    /// <inheritdoc cref="LightStateCell" />
     /// <summary>
     /// Interaction logic for LightStateCell.xaml
     /// </summary>
@@ -13,12 +14,18 @@ namespace CSHUE.Controls
     {
         #region Properties
 
+        /// <summary>
+        /// UniqueId of the light.
+        /// </summary>
         public string UniqueId { get; set; }
 
         #endregion
 
         #region Dependency Properties
 
+        /// <summary>
+        /// Text to be shown.
+        /// </summary>
         public string Text
         {
             get => (string) GetValue(TextProperty);
@@ -27,6 +34,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(LightStateCell));
 
+        /// <summary>
+        /// Property that indicates the light is on or off.
+        /// </summary>
         public bool On
         {
             get => (bool) GetValue(OnProperty);
@@ -35,6 +45,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty OnProperty =
             DependencyProperty.Register("On", typeof(bool), typeof(LightStateCell));
 
+        /// <summary>
+        /// Property that represents the current color of the light.
+        /// </summary>
         public Color Color
         {
             get => (Color) GetValue(ColorProperty);
@@ -43,6 +56,9 @@ namespace CSHUE.Controls
         public static readonly DependencyProperty ColorProperty =
             DependencyProperty.Register("Color", typeof(Color), typeof(LightStateCell));
 
+        /// <summary>
+        /// Property that represents the current brightness of the light.
+        /// </summary>
         public double Brightness
         {
             get => (double) GetValue(BrightnessProperty);
@@ -52,6 +68,9 @@ namespace CSHUE.Controls
             DependencyProperty.Register("Brightness", typeof(double), typeof(LightStateCell),
                 new PropertyMetadata((double)0, OnBrightnessPropertyChanged));
 
+        /// <summary>
+        /// Auxiliary property to animate the brightness numeric indicator.
+        /// </summary>
         public double BrightnessAnimated
         {
             get => (double) GetValue(BrightnessAnimatedProperty);
@@ -64,6 +83,10 @@ namespace CSHUE.Controls
 
         #region Initializers
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializer.
+        /// </summary>
         public LightStateCell()
         {
             InitializeComponent();
@@ -74,6 +97,11 @@ namespace CSHUE.Controls
 
         #region Methods
 
+        /// <summary>
+        /// Brightness property callback.
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
         private static void OnBrightnessPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if ((double) e.OldValue < (double) e.NewValue)

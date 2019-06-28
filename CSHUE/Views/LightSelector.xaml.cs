@@ -52,7 +52,7 @@ namespace CSHUE.Views
                 { IsBackground = true }.Start();
         }
 
-        private void LightSelector_OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.List = new ObservableCollection<LightSettingCellViewModel>();
 
@@ -153,7 +153,7 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        private void ButtonOk_OnClick(object sender, RoutedEventArgs e)
         {
             if (Property != null)
             {
@@ -198,7 +198,7 @@ namespace CSHUE.Views
             Close();
         }
 
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_OnClick(object sender, RoutedEventArgs e)
         {
             _isWindowOpened = false;
             Close();

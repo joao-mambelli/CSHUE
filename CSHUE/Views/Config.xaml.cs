@@ -30,7 +30,7 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void Config_Click(object sender, EventArgs e)
+        private void Button_OnClick(object sender, EventArgs e)
         {
             ViewModel.CreateConfigFile();
         }

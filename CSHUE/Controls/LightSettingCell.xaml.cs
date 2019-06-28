@@ -5,6 +5,7 @@ using CSHUE.Views;
 
 namespace CSHUE.Controls
 {
+    /// <inheritdoc cref="LightSettingCell" />
     /// <summary>
     /// Interaction logic for LightSettingCell.xaml
     /// </summary>
@@ -12,12 +13,19 @@ namespace CSHUE.Controls
     {
         #region Fields
 
+        /// <summary>
+        /// ViewModel.
+        /// </summary>
         public LightSelectorViewModel LightSelectorViewModel = null;
 
         #endregion
 
         #region Initializers
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializer.
+        /// </summary>
         public LightSettingCell()
         {
             InitializeComponent();
@@ -27,6 +35,11 @@ namespace CSHUE.Controls
 
         #region Events Handlers
 
+        /// <summary>
+        /// Button click handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
             LightSelectorViewModel.IsColorPickerOpened = true;

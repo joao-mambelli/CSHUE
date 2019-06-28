@@ -27,7 +27,7 @@
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
         d:DataContext="{d:DesignInstance Type=viewModels:LightSelectorViewModel}"
-        Loaded="LightSelector_OnLoaded">
+        Loaded="OnLoaded">
     <Window.Resources>
         <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
     </Window.Resources>
@@ -123,7 +123,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Path=Cancel, Source={StaticResource Resources}}"
-                    Click="ButtonCancel_Click"/>
+                    Click="ButtonCancel_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
                     Margin="0,0,15,15"
@@ -133,7 +133,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Path=Ok, Source={StaticResource Resources}}"
-                    Click="ButtonOk_Click"/>
+                    Click="ButtonOk_OnClick"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -39,7 +39,7 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        private void ButtonOk_OnClick(object sender, RoutedEventArgs e)
         {
             foreach (var c in ViewModel.List)
             {

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows.Data;
 
 namespace CSHUE.Cultures
 {
     /// <summary>
-    /// Wraps up XAML access to instance of WPFLocalize.Properties.Resources, list of available cultures, and method to change culture
+    /// Wraps up XAML access to instance of WPFLocalize.Properties.Resources, list of available cultures, and method to change culture.
     /// </summary>
     public class CultureResources
     {
@@ -21,28 +20,49 @@ namespace CSHUE.Cultures
         #region Properties
 
         /// <summary>
-        /// List of available cultures, enumerated at startup
+        /// List of available cultures, enumerated at startup.
         /// </summary>
         public static List<CultureInfo> SupportedCultures { get; } = new List<CultureInfo>();
 
         /// <summary>
-        /// List of available cultures, enumerated at startup
+        /// List of available cultures full names, enumerated at startup.
         /// </summary>
         public static List<string> SupportedCulturesFullNames { get; } = new List<string>();
 
         private static ObjectDataProvider _mProvider;
-        public static ObjectDataProvider ResourceProvider => _mProvider ?? (_mProvider = (ObjectDataProvider) System.Windows.Application.Current.FindResource("Resources"));
+        public static ObjectDataProvider ResourceProvider =>
+            _mProvider ?? (_mProvider =
+                (ObjectDataProvider) System.Windows.Application.Current.FindResource("Resources"));
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// The Resources ObjectDataProvider uses this method to get an instance of the WPFLocalize.Properties.Resources class
+        /// The Resources ObjectDataProvider uses this method to get an instance of the WPFLocalize.Properties.Resources class.
         /// </summary>
         /// <returns></returns>
         public Resources GetResourceInstance() => new Resources();
 
+        /// <summary>
+        /// Change the current culture used in the application.
+        /// If the desired culture is available all localized elements are updated.
+        /// </summary>
+        /// <param name="culture">Culture to change to</param>
+        public static void ChangeCulture(CultureInfo culture)
+        {
+            if (!SupportedCultures.Contains(culture)) return;
+            Resources.Culture = culture;
+            ResourceProvider.Refresh();
+        }
+
+        #endregion
+
+        #region Initializers
+
+        /// <summary>
+        /// Initializer.
+        /// </summary>
         static CultureResources()
         {
             if (BFoundInstalledCultures)
@@ -74,18 +94,6 @@ namespace CSHUE.Cultures
             SupportedCulturesFullNames.Insert(0, Properties.Settings.Default.LanguageName);
 
             BFoundInstalledCultures = true;
-        }
-
-        /// <summary>
-        /// Change the current culture used in the application.
-        /// If the desired culture is available all localized elements are updated.
-        /// </summary>
-        /// <param name="culture">Culture to change to</param>
-        public static void ChangeCulture(CultureInfo culture)
-        {
-            if (!SupportedCultures.Contains(culture)) return;
-            Resources.Culture = culture;
-            ResourceProvider.Refresh();
         }
 
         #endregion

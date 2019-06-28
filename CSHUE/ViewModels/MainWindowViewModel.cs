@@ -862,13 +862,13 @@ namespace CSHUE.ViewModels
             ConfigPage.ViewModel.CheckConfigFile();
 
             _initTimer = new System.Timers.Timer(7000);
-            _initTimer.Elapsed += InitTimerElapsed;
+            _initTimer.Elapsed += OnInitTimerElapsed;
             _initTimer.AutoReset = false;
             _initTimer.Start();
 
-            CheckTimerElapsed(null, null);
+            OnCheckTimerElapsed(null, null);
             _checkTimer = new System.Timers.Timer((61 - DateTime.Now.Second) * 1000);
-            _checkTimer.Elapsed += CheckTimerElapsed;
+            _checkTimer.Elapsed += OnCheckTimerElapsed;
             _checkTimer.AutoReset = false;
             _checkTimer.Start();
         }
@@ -877,7 +877,7 @@ namespace CSHUE.ViewModels
 
         #region Timers
 
-        private void CsgoTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void OnCsgoTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             _alreadyMinimized = false;
 
@@ -887,12 +887,12 @@ namespace CSHUE.ViewModels
             _previousState = false;
         }
 
-        private void InitTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void OnInitTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             _firstCsgoIteration = false;
         }
 
-        public void CheckTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        public void OnCheckTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             // For some reason the NumericUpDown was setting sometimes the variables as HH:mm:ss
             // This was crashing the app, so this is a workarround.
@@ -976,7 +976,7 @@ namespace CSHUE.ViewModels
             if (!_firstCheckIteration)
             {
                 _checkTimer = new System.Timers.Timer(60000);
-                _checkTimer.Elapsed += CheckTimerElapsed;
+                _checkTimer.Elapsed += OnCheckTimerElapsed;
                 _checkTimer.AutoReset = false;
                 _checkTimer.Start();
             }
@@ -1712,7 +1712,7 @@ namespace CSHUE.ViewModels
             if (_csgoTimer == null)
             {
                 _csgoTimer = new System.Timers.Timer(10000);
-                _csgoTimer.Elapsed += CsgoTimerElapsed;
+                _csgoTimer.Elapsed += OnCsgoTimerElapsed;
                 _csgoTimer.AutoReset = false;
                 _csgoTimer.Start();
             }

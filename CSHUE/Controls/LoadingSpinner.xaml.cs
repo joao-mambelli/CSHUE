@@ -7,6 +7,7 @@ using System.Windows.Media.Animation;
 
 namespace CSHUE.Controls
 {
+    /// <inheritdoc cref="LoadingSpinner" />
     /// <summary>
     /// Interaction logic for Loading.xaml
     /// </summary>
@@ -14,6 +15,9 @@ namespace CSHUE.Controls
     {
         #region Public Dependency Properties
 
+        /// <summary>
+        /// Property that indicates the animation state of the spinner.
+        /// </summary>
         public SpinnerState State
         {
             get => (SpinnerState) GetValue(StateProperty);
@@ -26,6 +30,9 @@ namespace CSHUE.Controls
                 typeof(LoadingSpinner),
                 new PropertyMetadata(SpinnerState.Disabled, OnStatePropertyChanged));
 
+        /// <summary>
+        /// Property that indicates the color of the spinner when loading.
+        /// </summary>
         public Color LoadingColor
         {
             get => (Color) GetValue(LoadingColorProperty);
@@ -35,6 +42,9 @@ namespace CSHUE.Controls
             DependencyProperty.Register("LoadingColor", typeof(Color), typeof(LoadingSpinner),
                 new PropertyMetadata(Colors.White));
 
+        /// <summary>
+        /// Property that indicates the color of the spinner when hanging.
+        /// </summary>
         public Color HangingColor
         {
             get => (Color) GetValue(HangingColorProperty);
@@ -44,6 +54,9 @@ namespace CSHUE.Controls
             DependencyProperty.Register("HangingColor", typeof(Color), typeof(LoadingSpinner),
                 new PropertyMetadata(Colors.Gray));
 
+        /// <summary>
+        /// Property that indicates the revolutions per second when the spinner is loading.
+        /// </summary>
         public double LoadingRevolutionsPerSecond
         {
             get => (double) GetValue(LoadingRevolutionsPerSecondProperty);
@@ -53,6 +66,10 @@ namespace CSHUE.Controls
             DependencyProperty.Register("LoadingRevolutionsPerSecond", typeof(double), typeof(LoadingSpinner),
                 new PropertyMetadata((double)5 / 7, OnLoadingRevolutionsPerSecondPropertyChanged));
 
+
+        /// <summary>
+        /// Property that indicates the revolutions per second when the spinner is hanging.
+        /// </summary>
         public double HangingRevolutionsPerSecond
         {
             get => (double) GetValue(HangingRevolutionsPerSecondProperty);
@@ -62,6 +79,10 @@ namespace CSHUE.Controls
             DependencyProperty.Register("HangingRevolutionsPerSecond", typeof(double), typeof(LoadingSpinner),
                 new PropertyMetadata(0.5, OnHangingRevolutionsPerSecondPropertyChanged));
 
+
+        /// <summary>
+        /// Property that indicates the radius of the spinner.
+        /// </summary>
         public double Radius
         {
             get => (double) GetValue(RadiusProperty);
@@ -71,6 +92,9 @@ namespace CSHUE.Controls
             DependencyProperty.Register("Radius", typeof(double), typeof(LoadingSpinner),
                 new PropertyMetadata((double)25, OnRadiusPropertyChanged));
 
+        /// <summary>
+        /// Property that indicates the thickness of the spinner.
+        /// </summary>
         public double Thickness
         {
             get => (double) GetValue(ThicknessProperty);
@@ -350,6 +374,9 @@ namespace CSHUE.Controls
 
         #region Enums
 
+        /// <summary>
+        /// Spinner states.
+        /// </summary>
         public enum SpinnerState
         {
             Loading,
@@ -361,6 +388,11 @@ namespace CSHUE.Controls
 
         #region Events Handlers
 
+        /// <summary>
+        /// LoadingRevolutionsPerSecond changed handler.
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
         private static void OnLoadingRevolutionsPerSecondPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var animationPeriod = 5 / (double) e.NewValue;
@@ -376,6 +408,11 @@ namespace CSHUE.Controls
             ((LoadingSpinner) d).KeyTime2 = new TimeSpan((long) Math.Round(((LoadingSpinner) d).LambdaTime.Ticks * ((double)2380950 / 999000 / 7)));
         }
 
+        /// <summary>
+        /// HangingRevolutionsPerSecond changed handler.
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
         private static void OnHangingRevolutionsPerSecondPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var animationPeriod = 1 / (double) e.NewValue;
@@ -383,6 +420,11 @@ namespace CSHUE.Controls
             ((LoadingSpinner) d).HangingCycleTimeDuration = new Duration(TimeSpan.FromSeconds(animationPeriod));
         }
 
+        /// <summary>
+        /// Radius changed handler.
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
         private static void OnRadiusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LoadingSpinner) d).Diameter = (double) e.NewValue * 2;
@@ -393,6 +435,11 @@ namespace CSHUE.Controls
             ((LoadingSpinner) d).EndPoint = new Point((1 - Math.Cos(Math.PI * 86.4 / 180)) * (double) e.NewValue, (1 - Math.Sin(Math.PI * 86.4 / 180)) * (double) e.NewValue);
         }
 
+        /// <summary>
+        /// State changed handler.
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
         private static void OnStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LoadingSpinner) d).AngleCanvas = ((LoadingSpinner) d).RotateCanvas.Angle;
@@ -464,6 +511,10 @@ namespace CSHUE.Controls
 
         #region Initializers
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializer.
+        /// </summary>
         public LoadingSpinner()
         {
             InitializeComponent();

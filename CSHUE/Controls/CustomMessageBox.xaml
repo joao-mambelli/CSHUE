@@ -23,7 +23,7 @@
         fw:PointerTracker.Enabled="False"
         Foreground="{DynamicResource SystemBaseHighColorBrush}"
         FontFamily="Segoe UI Semilight"
-        Loaded="CustomMessageBox_OnLoaded"
+        Loaded="OnLoaded"
         d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32"/>
@@ -64,7 +64,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text1}"
-                    Click="Button1_Click"/>
+                    Click="Button1_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
@@ -74,7 +74,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text2}"
-                    Click="Button2_Click"/>
+                    Click="Button2_OnClick"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
@@ -88,7 +88,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text1}"
-                    Click="Button1_Click"/>
+                    Click="Button1_OnClick"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
@@ -102,7 +102,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text2}"
-                    Click="ButtonOpenFolder_Click"/>
+                    Click="ButtonOpenFolder_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
                     Margin="15,25,15,15"
@@ -112,7 +112,7 @@
                     MinWidth="90"
                     HorizontalAlignment="Right"
                     Content="{Binding Text1}"
-                    Click="Button1_Click"/>
+                    Click="Button1_OnClick"/>
         </StackPanel>
     </Grid>
 </Window>

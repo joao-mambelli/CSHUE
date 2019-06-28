@@ -14,7 +14,7 @@ namespace CSHUE.Helpers
         {
             if (colorTemperature)
             {
-                return ColorConverters.Ct((int) Math.Round((1 - (double) y / (2 * radius)) * 4500 + 2000));
+                return ColorConverters.ColorTemperatue((int) Math.Round((1 - (double) y / (2 * radius)) * 4500 + 2000));
             }
 
             var distanceFromCenter = Math.Sqrt(Math.Pow(x - radius, 2) + Math.Pow(y - radius, 2));
@@ -25,7 +25,7 @@ namespace CSHUE.Helpers
 
             var angle = Math.Atan2(y - radius, x - radius) + Math.PI / 2;
             if (angle < 0) angle += 2 * Math.PI;
-            return ColorConverters.Hs(angle, distanceFromCenter / radius);
+            return ColorConverters.HueSaturation(angle, distanceFromCenter / radius);
         }
 
         public Color PickOutsideWheelPixelColor(int x, int y, int outerRadius, int innerRadius)
@@ -38,7 +38,7 @@ namespace CSHUE.Helpers
 
             var angle = Math.Atan2(y - outerRadius, x - outerRadius) + Math.PI / 2;
             if (angle < 0) angle += 2 * Math.PI;
-            return ColorConverters.Hs(Math.Round(angle / ((double)1 / 18 * Math.PI), MidpointRounding.AwayFromZero) * ((double)1 / 18 * Math.PI), 1);
+            return ColorConverters.HueSaturation(Math.Round(angle / ((double)1 / 18 * Math.PI), MidpointRounding.AwayFromZero) * ((double)1 / 18 * Math.PI), 1);
         }
 
         public WriteableBitmap CreateWheelImage(int radius, bool colorTemperature)
@@ -135,7 +135,7 @@ namespace CSHUE.Helpers
         {
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
-            return ColorConverters.Hs(2 * Math.PI - ((double) y - 6) / (height - 12) * (2 * Math.PI), sat / 100);
+            return ColorConverters.HueSaturation(2 * Math.PI - ((double) y - 6) / (height - 12) * (2 * Math.PI), sat / 100);
         }
 
         public WriteableBitmap CreateHueImage(int height, double sat)
@@ -181,7 +181,7 @@ namespace CSHUE.Helpers
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return ColorConverters.Hs(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double) y - 6) / (height - 12));
+            return ColorConverters.HueSaturation(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double) y - 6) / (height - 12));
         }
 
         public WriteableBitmap CreateSaturationImage(int height, double hue)
@@ -227,7 +227,7 @@ namespace CSHUE.Helpers
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return ColorConverters.Ct((int) Math.Round((1 - (double) y / height) * 4500 + 2000));
+            return ColorConverters.ColorTemperatue((int) Math.Round((1 - (double) y / height) * 4500 + 2000));
         }
 
         public WriteableBitmap CreateTemperatureImage(int height)

@@ -9,9 +9,9 @@
              FontFamily="Segoe UI Semilight"
              d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <UserControl.Resources>
-        <helpers:BrightnessToWhiteConverter x:Key="BrightnessToWhiteConverter"/>
+        <helpers:DoubleToColorConverter x:Key="DoubleToColorConverter"/>
 
-        <helpers:BrightnessToPercentageConverter x:Key="BrightnessToPercentageConverter"/>
+        <helpers:DoubleToIntConverter x:Key="DoubleToIntConverter"/>
 
         <helpers:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
 
@@ -79,7 +79,7 @@
                   VerticalAlignment="Bottom"
                   Visibility="{Binding On, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.Background>
-                    <SolidColorBrush Color="{Binding Brightness, Converter={StaticResource BrightnessToWhiteConverter}, NotifyOnTargetUpdated=True}"/>
+                    <SolidColorBrush Color="{Binding Brightness, Converter={StaticResource DoubleToColorConverter}, NotifyOnTargetUpdated=True}"/>
                 </Grid.Background>
 
                 <Grid.Triggers>
@@ -87,7 +87,7 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                                To="{Binding Brightness, Converter={StaticResource BrightnessToWhiteConverter}}"
+                                                To="{Binding Brightness, Converter={StaticResource DoubleToColorConverter}}"
                                                 Duration="0:0:0.4"/>
                             </Storyboard>
                         </BeginStoryboard>
@@ -134,7 +134,7 @@
                 </Grid>
 
                 <Grid>
-                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource DoubleToIntConverter}}"
                            Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="-4 0 0 -3"
@@ -145,7 +145,7 @@
                         </Label.Effect>
                     </Label>
 
-                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource DoubleToIntConverter}}"
                            Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="-4 0 0 -3"
@@ -156,7 +156,7 @@
                         </Label.Effect>
                     </Label>
 
-                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource DoubleToIntConverter}}"
                            Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="-4 0 0 -3"
@@ -167,7 +167,7 @@
                         </Label.Effect>
                     </Label>
 
-                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource BrightnessToPercentageConverter}, NotifyOnSourceUpdated=True}"
+                    <Label Content="{Binding BrightnessAnimated, Converter={StaticResource DoubleToIntConverter}, NotifyOnSourceUpdated=True}"
                            Foreground="{DynamicResource SystemBaseHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="-4 0 0 -3"

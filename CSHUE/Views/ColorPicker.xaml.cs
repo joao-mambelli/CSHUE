@@ -145,13 +145,13 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
+        private void Button1_OnClick(object sender, RoutedEventArgs e)
         {
             _isWindowOpened = false;
             Close();
         }
 
-        private void Button2_Click(object sender, RoutedEventArgs e)
+        private void Button2_OnClick(object sender, RoutedEventArgs e)
         {
             Color = ViewModel.Color;
             ColorTemperature = ViewModel.ColorTemperature;
@@ -229,7 +229,7 @@ namespace CSHUE.Views
         }
 
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-        private void ColorPicker_OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.ColorWheelBrush =
                 new ColorWheel().CreateWheelImage(ViewModel.ColorWheelSize / 2, IsColorTemperature);

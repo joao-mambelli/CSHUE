@@ -44,12 +44,12 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void Retry_Click(object sender, RoutedEventArgs e)
+        private void Retry_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.MainWindowViewModel.HueAsync();
         }
 
-        private void RunCsgo_Click(object sender, RoutedEventArgs e)
+        private void RunCsgo_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.MainWindowViewModel.RunCsgo();
         }

@@ -305,8 +305,8 @@
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Checked="RunOnStartupCheckBox_CheckedChanged"
-                              Unchecked="RunOnStartupCheckBox_CheckedChanged">
+                              Checked="RunOnStartupCheckBox_OnCheckedChanged"
+                              Unchecked="RunOnStartupCheckBox_OnCheckedChanged">
                         <TextBlock Text="{Binding Path=RunOnStartup, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
@@ -326,8 +326,8 @@
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Checked="ShowSystemTrayIconCheckBox_CheckedChanged"
-                              Unchecked="ShowSystemTrayIconCheckBox_CheckedChanged">
+                              Checked="ShowSystemTrayIconCheckBox_OnCheckedChanged"
+                              Unchecked="ShowSystemTrayIconCheckBox_OnCheckedChanged">
                         <TextBlock Text="{Binding Path=ShowSystemTrayIcon, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
@@ -474,7 +474,7 @@
                             HorizontalAlignment="Left"
                             Style="{DynamicResource CustomButton}"
                             Content="{Binding Path=Default, Source={StaticResource Resources}}"
-                            Click="Default_Click"/>
+                            Click="Default_OnClick"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

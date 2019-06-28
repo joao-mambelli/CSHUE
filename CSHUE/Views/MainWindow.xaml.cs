@@ -157,20 +157,20 @@ namespace CSHUE.Views
 
             InitializeComponent();
             DataContext = ViewModel;
-            SystemEvents.UserPreferenceChanged += PreferenceChangedHandler;
-            PreferenceChangedHandler(new object(), new UserPreferenceChangedEventArgs(new UserPreferenceCategory()));
-            Home.MouseLeave += Control_MouseLeave;
-            Config.MouseLeave += Control_MouseLeave;
-            Donate.MouseLeave += Control_MouseLeave;
-            About.MouseLeave += Control_MouseLeave;
-            Settings.MouseLeave += Control_MouseLeave;
-            MinimizeButton.MouseEnter += TopControls_MouseEnter;
-            MinimizeButton.MouseLeave += TopControls_MouseLeave;
-            MaximizeButton.MouseEnter += TopControls_MouseEnter;
-            MaximizeButton.MouseLeave += TopControls_MouseLeave;
-            CloseButton.MouseEnter += TopControls_MouseEnter;
-            CloseButton.MouseLeave += TopControls_MouseLeave;
-            Page.Navigated += Page_Navigated;
+            SystemEvents.UserPreferenceChanged += OnPreferenceChangedHandler;
+            OnPreferenceChangedHandler(new object(), new UserPreferenceChangedEventArgs(new UserPreferenceCategory()));
+            Home.MouseLeave += Control_OnMouseLeave;
+            Config.MouseLeave += Control_OnMouseLeave;
+            Donate.MouseLeave += Control_OnMouseLeave;
+            About.MouseLeave += Control_OnMouseLeave;
+            Settings.MouseLeave += Control_OnMouseLeave;
+            MinimizeButton.MouseEnter += TopControls_OnMouseEnter;
+            MinimizeButton.MouseLeave += TopControls_OnMouseLeave;
+            MaximizeButton.MouseEnter += TopControls_OnMouseEnter;
+            MaximizeButton.MouseLeave += TopControls_OnMouseLeave;
+            CloseButton.MouseEnter += TopControls_OnMouseEnter;
+            CloseButton.MouseLeave += TopControls_OnMouseLeave;
+            Page.Navigated += Page_OnNavigated;
 
             Height = Properties.Settings.Default.Height;
             Width = Properties.Settings.Default.Width;
@@ -312,7 +312,7 @@ namespace CSHUE.Views
             _splashScreen?.Close(TimeSpan.FromSeconds(.3));
         }
 
-        private void PreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
+        private void OnPreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
         {
             try
             {
@@ -383,18 +383,18 @@ namespace CSHUE.Views
             }
         }
 
-        private void Control_MouseLeave(object sender, MouseEventArgs e)
+        private void Control_OnMouseLeave(object sender, MouseEventArgs e)
         {
             ((Grid) sender).ClearValue(BackgroundProperty);
             _buttonClickable = false;
         }
 
-        private void Page_Navigated(object sender, NavigationEventArgs e)
+        private void Page_OnNavigated(object sender, NavigationEventArgs e)
         {
             Page.NavigationService.RemoveBackEntry();
         }
 
-        private void Control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Control_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ((Grid) sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
                 ? Color.FromArgb(102, 255, 255, 255)
@@ -402,7 +402,7 @@ namespace CSHUE.Views
             _buttonClickable = true;
         }
 
-        private void Control_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Control_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (!_buttonClickable) return;
             ((Grid) sender).ClearValue(BackgroundProperty);
@@ -417,7 +417,7 @@ namespace CSHUE.Views
             UpdateIndicator(((Grid) sender).Name);
         }
 
-        private void TopControls_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TopControls_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _buttonClickable = true;
             if (((Grid) sender).Name == "CloseButton")
@@ -430,14 +430,14 @@ namespace CSHUE.Views
                 ((Grid) sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentLight1);
         }
 
-        private void TopControls_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void TopControls_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (!_buttonClickable)
                 return;
             GetType().GetMethod(((Grid) sender).Name + "_Click")?.Invoke(this, null);
         }
 
-        private static void TopControls_MouseEnter(object sender, MouseEventArgs e)
+        private static void TopControls_OnMouseEnter(object sender, MouseEventArgs e)
         {
             ((Grid) sender).Background = ((Grid) sender).Name == "CloseButton"
                 ? new SolidColorBrush(Color.FromRgb(232, 17, 35))
@@ -447,7 +447,7 @@ namespace CSHUE.Views
                 child.Stroke = new SolidColorBrush(Colors.White);
         }
 
-        private void TopControls_MouseLeave(object sender, MouseEventArgs e)
+        private void TopControls_OnMouseLeave(object sender, MouseEventArgs e)
         {
             _buttonClickable = false;
             ((Grid) sender).Background = new SolidColorBrush(Colors.Transparent);
@@ -540,13 +540,13 @@ namespace CSHUE.Views
             Environment.Exit(0);
         }
 
-        private void NotifyIcon_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+        private void NotifyIcon_OnTrayMouseDoubleClick(object sender, RoutedEventArgs e)
         {
             Show();
             WindowState = WindowState.Normal;
         }
 
-        private void MenuNavigate_Click(object sender, RoutedEventArgs e)
+        private void MenuNavigate_OnClick(object sender, RoutedEventArgs e)
         {
             Show();
             WindowState = WindowState.Normal;
@@ -556,12 +556,12 @@ namespace CSHUE.Views
             UpdateIndicator(((MenuItem) sender).Tag.ToString());
         }
 
-        private void MenuExit_Click(object sender, RoutedEventArgs e)
+        private void MenuExit_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        private void ContextMenu_OnOpened(object sender, RoutedEventArgs e)
         {
             ((ContextMenu) sender).Items[0] = new MenuItem
             {
@@ -569,7 +569,7 @@ namespace CSHUE.Views
                 Style = (Style) FindResource("CustomMenuItemAlertHome"),
                 Tag = "Home"
             };
-            ((MenuItem) ((ContextMenu) sender).Items[0]).Click += MenuNavigate_Click;
+            ((MenuItem) ((ContextMenu) sender).Items[0]).Click += MenuNavigate_OnClick;
 
             ((ContextMenu) sender).Items[1] = new MenuItem
             {
@@ -577,10 +577,10 @@ namespace CSHUE.Views
                 Style = (Style) FindResource("CustomMenuItemAlertConfig"),
                 Tag = "Config"
             };
-            ((MenuItem) ((ContextMenu) sender).Items[1]).Click += MenuNavigate_Click;
+            ((MenuItem) ((ContextMenu) sender).Items[1]).Click += MenuNavigate_OnClick;
         }
 
-        private void RunCsgo_Click(object sender, RoutedEventArgs e)
+        private void RunCsgo_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.RunCsgo();
         }

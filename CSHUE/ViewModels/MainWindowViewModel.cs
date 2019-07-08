@@ -21,8 +21,6 @@ using CSHUE.Views;
 using Microsoft.Win32;
 using Q42.HueApi;
 using Q42.HueApi.Interfaces;
-// ReSharper disable FunctionNeverReturns
-// ReSharper disable SwitchStatementMissingSomeCases
 
 namespace CSHUE.ViewModels
 {

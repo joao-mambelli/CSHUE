@@ -3,7 +3,6 @@ using System.Windows;
 
 namespace CSHUE.Controls
 {
-    /// <inheritdoc cref="CustomMessageBox" />
     /// <summary>
     /// Interaction logic for CustomMessageBox.xaml
     /// </summary>
@@ -155,7 +154,6 @@ namespace CSHUE.Controls
 
         #region Initializers
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializer.
         /// </summary>

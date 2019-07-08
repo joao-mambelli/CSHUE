@@ -5,7 +5,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Q42.HueApi;
 using CSHUE.Helpers;
-// ReSharper disable PossibleLossOfFraction
 
 namespace CSHUE.ViewModels
 {
@@ -222,11 +221,11 @@ namespace CSHUE.ViewModels
             Hue = (int) Math.Round(approximate
                 ? Math.Round(angle / ((double)1 / 18 * Math.PI)) * ((double)1 / 18 * Math.PI) / (2 * Math.PI) * 360
                 : angle / (2 * Math.PI) * 360);
-            Saturation = distanceFromCenter < ColorWheelSize / 2
-                ? (int) Math.Round(distanceFromCenter / (ColorWheelSize / 2) * 100)
+            Saturation = distanceFromCenter < (double) ColorWheelSize / 2
+                ? (int) Math.Round(distanceFromCenter / ((double) ColorWheelSize / 2) * 100)
                 : 100;
 
-            MousePosition = distanceFromCenter < ColorWheelSize / 2
+            MousePosition = distanceFromCenter < (double) ColorWheelSize / 2
                 ? new Thickness(colorWheelCenterRelativeMousePosition.X * 2,
                     colorWheelCenterRelativeMousePosition.Y * 2, 0, 0)
                 : new Thickness(ColorWheelSize * Math.Sin(Hue / 360 * Math.PI * 2) * (Saturation / 100), 0, 0,
@@ -246,24 +245,24 @@ namespace CSHUE.ViewModels
 
             if (angle < 0) angle += 2 * Math.PI;
             Hue = (int) Math.Round(angle / (2 * Math.PI) * 360);
-            Saturation = distanceFromCenter < ColorWheelSize / 2
-                ? (int) Math.Round(distanceFromCenter / (ColorWheelSize / 2) * 100)
+            Saturation = distanceFromCenter < (double) ColorWheelSize / 2
+                ? (int) Math.Round(distanceFromCenter / ((double) ColorWheelSize / 2) * 100)
                 : 100;
 
-            if (distanceFromCenter < ColorWheelSize / 2)
+            if (distanceFromCenter < (double) ColorWheelSize / 2)
                 ColorTemperature =
                     (int) Math.Round(
-                        (1 - (colorWheelCenterRelativeMousePosition.Y + ColorWheelSize / 2) / ColorWheelSize) *
+                        (1 - (colorWheelCenterRelativeMousePosition.Y + (double) ColorWheelSize / 2) / ColorWheelSize) *
                         4500 + 2000);
             else
                 ColorTemperature =
                     (int) Math.Round(
                         (ColorWheelSize * Math.Cos(Hue / 360 * Math.PI * 2) * (Saturation / 100) / 2 +
-                         ColorWheelSize / 2) / ColorWheelSize * 4500 + 2000);
+                         (double) ColorWheelSize / 2) / ColorWheelSize * 4500 + 2000);
 
             DontUpdate = false;
 
-            MousePosition = distanceFromCenter < ColorWheelSize / 2
+            MousePosition = distanceFromCenter < (double) ColorWheelSize / 2
                 ? new Thickness(colorWheelCenterRelativeMousePosition.X * 2,
                     colorWheelCenterRelativeMousePosition.Y * 2, 0, 0)
                 : new Thickness(ColorWheelSize * Math.Sin(Hue / 360 * Math.PI * 2) * (Saturation / 100), 0, 0,

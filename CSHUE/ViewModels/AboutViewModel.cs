@@ -4,6 +4,9 @@
     {
         #region Fields
 
+        /// <summary>
+        /// Main window viewmodel field.
+        /// </summary>
         public MainWindowViewModel MainWindowViewModel = null;
 
         #endregion

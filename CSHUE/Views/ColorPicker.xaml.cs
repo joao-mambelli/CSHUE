@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -8,7 +7,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using CSHUE.Helpers;
 using CSHUE.ViewModels;
-// ReSharper disable PossibleLossOfFraction
 
 namespace CSHUE.Views
 {
@@ -51,28 +49,26 @@ namespace CSHUE.Views
                 ViewModel.ChangeTemperature(new System.Windows.Point(
                         hookStruct.Position.X - Left -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                        ViewModel.ColorWheelSize / 2,
+                        (double) ViewModel.ColorWheelSize / 2,
                         hookStruct.Position.Y - Top -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                        ViewModel.ColorWheelSize / 2));
+                        (double) ViewModel.ColorWheelSize / 2));
             }
             else
             {
                 ViewModel.ChangeHueSaturation(new System.Windows.Point(
                         hookStruct.Position.X - Left -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                        ViewModel.ColorWheelSize / 2,
+                        (double) ViewModel.ColorWheelSize / 2,
                         hookStruct.Position.Y - Top -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                        ViewModel.ColorWheelSize / 2),
+                        (double) ViewModel.ColorWheelSize / 2),
                     _approximate);
             }
 
             return CallNextHookEx(_hookId, nCode, wParam, lParam);
         }
 
-        [SuppressMessage("ReSharper", "UnusedMember.Local")]
-        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         private enum MouseMessages
         {
             WmLbuttondown = 0x0201,
@@ -170,10 +166,10 @@ namespace CSHUE.Views
             ViewModel.ChangeHueSaturation(new System.Windows.Point(
                 (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                 ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                ViewModel.ColorWheelSize / 2,
+                (double) ViewModel.ColorWheelSize / 2,
                 (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                 ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                ViewModel.ColorWheelSize / 2), _approximate);
+                (double) ViewModel.ColorWheelSize / 2), _approximate);
         }
 
         private void ColorWheel_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -186,10 +182,10 @@ namespace CSHUE.Views
                 ViewModel.ChangeTemperature(new System.Windows.Point(
                     (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                    ViewModel.ColorWheelSize / 2,
+                    (double) ViewModel.ColorWheelSize / 2,
                     (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                    ViewModel.ColorWheelSize / 2));
+                    (double) ViewModel.ColorWheelSize / 2));
             }
             else
             {
@@ -198,10 +194,10 @@ namespace CSHUE.Views
                 ViewModel.ChangeHueSaturation(new System.Windows.Point(
                     (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                    ViewModel.ColorWheelSize / 2,
+                    (double) ViewModel.ColorWheelSize / 2,
                     (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                    ViewModel.ColorWheelSize / 2), _approximate);
+                    (double) ViewModel.ColorWheelSize / 2), _approximate);
             }
         }
 
@@ -227,8 +223,7 @@ namespace CSHUE.Views
             })
             { IsBackground = true }.Start();
         }
-
-        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
+        
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.ColorWheelBrush =

@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Media;
 using CSHUE.Helpers;
 using Q42.HueApi;
-// ReSharper disable SwitchStatementMissingSomeCases
 
 namespace CSHUE.ViewModels
 {
@@ -14,15 +13,27 @@ namespace CSHUE.ViewModels
     {
         #region Fields
 
+        /// <summary>
+        /// Main windows viewmodel field.
+        /// </summary>
         public MainWindowViewModel MainWindowViewModel = null;
 
+        /// <summary>
+        /// Lights backup field.
+        /// </summary>
         public List<Light> LightsBackup;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// MainMenu gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsMainMenu;
+        /// <summary>
+        /// MainMenu gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsMainMenu
         {
             get =>
@@ -34,7 +45,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// PlayerGetsKill gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsPlayerGetsKill;
+        /// <summary>
+        /// PlayerGetsKill gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsKill
         {
             get =>
@@ -46,7 +63,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// PlayerGetsKilled gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsPlayerGetsKilled;
+        /// <summary>
+        /// PlayerGetsKilled gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsKilled
         {
             get =>
@@ -58,7 +81,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// PlayerGetsFlashed gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsPlayerGetsFlashed;
+        /// <summary>
+        /// PlayerGetsFlashed gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsFlashed
         {
             get =>
@@ -70,7 +99,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// TerroristsWin gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsTerroristsWin;
+        /// <summary>
+        /// TerroristsWin gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsTerroristsWin
         {
             get =>
@@ -82,7 +117,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// CounterTerroristsWin gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsCounterTerroristsWin;
+        /// <summary>
+        /// CounterTerroristsWin gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsCounterTerroristsWin
         {
             get =>
@@ -94,7 +135,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// RoundStarts gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsRoundStarts;
+        /// <summary>
+        /// RoundStarts gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsRoundStarts
         {
             get =>
@@ -106,7 +153,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// FreezeTime gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsFreezeTime;
+        /// <summary>
+        /// FreezeTime gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsFreezeTime
         {
             get =>
@@ -118,7 +171,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Warmup gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsWarmup;
+        /// <summary>
+        /// Warmup gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsWarmup
         {
             get =>
@@ -130,7 +189,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// BombExplodes gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsBombExplodes;
+        /// <summary>
+        /// BombExplodes gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsBombExplodes
         {
             get =>
@@ -142,7 +207,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// BombPlanted gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsBombPlanted;
+        /// <summary>
+        /// BombPlanted gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsBombPlanted
         {
             get =>
@@ -154,7 +225,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// BombBlink gradients stops back field. 
+        /// </summary>
         private GradientStopCollection _gradientStopsBombBlink;
+        /// <summary>
+        /// BombBlink gradients stops property. 
+        /// </summary>
         public GradientStopCollection GradientStopsBombBlink
         {
             get =>
@@ -170,6 +247,10 @@ namespace CSHUE.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Method that adds the startup path in the Registry.
+        /// </summary>
+        /// <param name="silent">The silent parameter.</param>
         public void AddStartup(bool silent)
         {
             var rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
@@ -180,6 +261,9 @@ namespace CSHUE.ViewModels
                 rk?.SetValue("CSHUE", "\"" + Process.GetCurrentProcess().MainModule?.FileName + "\"");
         }
 
+        /// <summary>
+        /// Method that removes the startup path from the Registry.
+        /// </summary>
         public void RemoveStartup()
         {
             var rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
@@ -187,6 +271,9 @@ namespace CSHUE.ViewModels
             rk?.DeleteValue("CSHUE", false);
         }
 
+        /// <summary>
+        /// Method used to call the true update gradient method.
+        /// </summary>
         public void UpdateGradient(string propertyName)
         {
             switch (propertyName)
@@ -230,6 +317,9 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Method that updates all the events gradients.
+        /// </summary>
         public void UpdateGradients()
         {
             UpdateGradient("MainMenu", Properties.Settings.Default.MainMenu);
@@ -246,6 +336,9 @@ namespace CSHUE.ViewModels
             UpdateGradient("BombBlink", Properties.Settings.Default.BombBlink);
         }
 
+        /// <summary>
+        /// Method that updates a single event gradient.
+        /// </summary>
         private void UpdateGradient(string propertyName, EventProperty Event)
         {
             switch (propertyName)
@@ -493,6 +586,9 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Method that updates a single brightness event gradient.
+        /// </summary>
         private void UpdateGradient(string propertyName, EventBrightnessProperty Event)
         {
             switch (propertyName)
@@ -775,7 +871,10 @@ namespace CSHUE.ViewModels
                     break;
             }
         }
-
+        
+        /// <summary>
+        /// Method that restore all lights.
+        /// </summary>
         public async void RestoreLights()
         {
             if (LightsBackup == null) return;

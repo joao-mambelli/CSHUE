@@ -73,12 +73,12 @@
                                FontSize="20"
                                Text="{Binding Path=LightsStates, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"
-                               Visibility="{Binding InProcess, Converter={StaticResource VisibilityInverter}}"/>
+                               Visibility="{Binding InProcessVisibility, Converter={StaticResource VisibilityInverter}}"/>
 
                     <StackPanel Margin="24,30,20,30"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Center"
-                                Visibility="{Binding InProcess}">
+                                Visibility="{Binding InProcessVisibility}">
                         <controls:LoadingSpinner State="{Binding State}"
                                                  LoadingColor="{DynamicResource SystemBaseHighColor}"/>
 
@@ -150,7 +150,7 @@
                              Background="Transparent"
                              BorderThickness="0"
                              HorizontalAlignment="Left"
-                             Visibility="{Binding InProcess, Converter={StaticResource VisibilityInverter}}">
+                             Visibility="{Binding InProcessVisibility, Converter={StaticResource VisibilityInverter}}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Focusable"

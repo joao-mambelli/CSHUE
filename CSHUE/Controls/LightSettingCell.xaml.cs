@@ -5,7 +5,6 @@ using CSHUE.Views;
 
 namespace CSHUE.Controls
 {
-    /// <inheritdoc cref="LightSettingCell" />
     /// <summary>
     /// Interaction logic for LightSettingCell.xaml
     /// </summary>
@@ -22,7 +21,6 @@ namespace CSHUE.Controls
 
         #region Initializers
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializer.
         /// </summary>

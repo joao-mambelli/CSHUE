@@ -2,12 +2,9 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-// ReSharper disable CompareOfFloatsByEqualityOperator
-// ReSharper disable UnusedMember.Global
 
 namespace CSHUE.Controls
 {
-    /// <inheritdoc cref="LoadingSpinner" />
     /// <summary>
     /// Interaction logic for Loading.xaml
     /// </summary>
@@ -511,7 +508,6 @@ namespace CSHUE.Controls
 
         #region Initializers
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializer.
         /// </summary>

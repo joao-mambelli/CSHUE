@@ -73,8 +73,7 @@ namespace CSHUE.AttachedBehaviors
 
             if (_storyboard == null || _storyboard.GetCurrentState() == ClockState.Filling)
                 _currentToValue = scroller.VerticalOffset;
-
-            // ReSharper disable once SwitchStatementMissingSomeCases
+            
             switch (keyPressed)
             {
                 case Key.Down:

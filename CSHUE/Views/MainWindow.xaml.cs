@@ -17,8 +17,6 @@ using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using Microsoft.Win32;
 using SourceChord.FluentWPF;
-// ReSharper disable CompareOfFloatsByEqualityOperator
-// ReSharper disable UnusedMember.Global
 
 namespace CSHUE.Views
 {
@@ -112,14 +110,11 @@ namespace CSHUE.Views
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         private class Monitorinfo
         {
-            // ReSharper disable once UnusedMember.Local
             private readonly int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
 #pragma warning disable 169
-#pragma warning disable 414
             private readonly int dwFlags = 0;
-#pragma warning restore 414
 #pragma warning restore 169
         }
 

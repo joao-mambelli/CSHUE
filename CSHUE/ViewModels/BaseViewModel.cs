@@ -4,17 +4,30 @@ using System.Windows;
 
 namespace CSHUE.ViewModels
 {
+    /// <summary>
+    /// Base class containing base properties.
+    /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         #region Properties
 
+        /// <summary>
+        /// Property changed handler property.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Property changed handler method.
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this,
                 new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Warning visibility property.
+        /// </summary>
         public Visibility WarningVisibility
         {
             get
@@ -29,7 +42,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Warning CSGO visibility back field.
+        /// </summary>
         private Visibility _warningCsgoVisibility;
+        /// <summary>
+        /// Warning CSGO visibility property.
+        /// </summary>
         public Visibility WarningCsgoVisibility
         {
             get =>
@@ -41,7 +60,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Warning Steam visibility back field.
+        /// </summary>
         private Visibility _warningSteamVisibility;
+        /// <summary>
+        /// Warning Steam visibility property.
+        /// </summary>
         public Visibility WarningSteamVisibility
         {
             get =>
@@ -53,7 +78,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Warning GSI visibility back field.
+        /// </summary>
         private Visibility _warningGsiVisibility;
+        /// <summary>
+        /// Warning GSI visibility property.
+        /// </summary>
         public Visibility WarningGsiVisibility
         {
             get =>
@@ -65,7 +96,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Warning GSI corrupted visibility back field.
+        /// </summary>
         private Visibility _warningGsiCorruptedVisibility;
+        /// <summary>
+        /// Warning GSI corrupted visibility property.
+        /// </summary>
         public Visibility WarningGsiCorruptedVisibility
         {
             get =>
@@ -77,14 +114,20 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private Visibility _inProcess = Visibility.Collapsed;
-        public Visibility InProcess
+        /// <summary>
+        /// In process visibility back field.
+        /// </summary>
+        private Visibility _inProcessVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// In process visibility property.
+        /// </summary>
+        public Visibility InProcessVisibility
         {
             get =>
-                _inProcess;
+                _inProcessVisibility;
             set
             {
-                _inProcess = value;
+                _inProcessVisibility = value;
                 OnPropertyChanged();
             }
         }

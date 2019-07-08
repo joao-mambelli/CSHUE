@@ -2,11 +2,9 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
-// ReSharper disable AccessToModifiedClosure
 
 namespace CSHUE.Controls
 {
-    /// <inheritdoc cref="LightStateCell" />
     /// <summary>
     /// Interaction logic for LightStateCell.xaml
     /// </summary>
@@ -83,7 +81,6 @@ namespace CSHUE.Controls
 
         #region Initializers
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializer.
         /// </summary>
@@ -110,9 +107,10 @@ namespace CSHUE.Controls
                     {
                         for (var i = (double) e.OldValue; i < (double) e.NewValue; i = i + 0.05)
                         {
+                            var index = i;
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                                ((LightStateCell) d).BrightnessAnimated = i;
+                                ((LightStateCell) d).BrightnessAnimated = index;
                             });
                             Thread.Sleep((int) Math.Round(400 / (((double) e.NewValue - (double) e.OldValue) * 20)));
                         }
@@ -130,9 +128,10 @@ namespace CSHUE.Controls
                     {
                         for (var i = (double) e.OldValue; i > (double) e.NewValue; i = i - 0.05)
                         {
+                            var index = i;
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                                ((LightStateCell) d).BrightnessAnimated = i;
+                                ((LightStateCell) d).BrightnessAnimated = index;
                             });
                             Thread.Sleep((int) Math.Round(400 / (((double) e.OldValue - (double) e.NewValue) * 20)));
                         }

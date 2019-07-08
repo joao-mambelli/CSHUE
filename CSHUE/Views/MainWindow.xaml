@@ -89,7 +89,7 @@
                           ToolTipService.HorizontalOffset="-50"
                           ToolTipService.HasDropShadow="True"
                           ToolTipService.ShowDuration="3000"
-                          Visibility="{Binding InProcess}"
+                          Visibility="{Binding InProcessVisibility}"
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">

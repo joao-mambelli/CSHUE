@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -214,8 +213,8 @@ namespace CSHUE.ViewModels
             State = LoadingSpinner.SpinnerState.Loading;
             LoadingVisibility = Visibility.Visible;
             RetryVisibility = Visibility.Collapsed;
-            MainWindowViewModel.InProcess = Visibility.Visible;
-            InProcess = Visibility.Visible;
+            MainWindowViewModel.InProcessVisibility = Visibility.Visible;
+            InProcessVisibility = Visibility.Visible;
         }
 
         public void SetRetry()
@@ -223,8 +222,8 @@ namespace CSHUE.ViewModels
             State = LoadingSpinner.SpinnerState.Hanging;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Visible;
-            MainWindowViewModel.InProcess = Visibility.Visible;
-            InProcess = Visibility.Visible;
+            MainWindowViewModel.InProcessVisibility = Visibility.Visible;
+            InProcessVisibility = Visibility.Visible;
         }
 
         public void SetDone()
@@ -232,11 +231,10 @@ namespace CSHUE.ViewModels
             State = LoadingSpinner.SpinnerState.Disabled;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Collapsed;
-            MainWindowViewModel.InProcess = Visibility.Collapsed;
-            InProcess = Visibility.Collapsed;
+            MainWindowViewModel.InProcessVisibility = Visibility.Collapsed;
+            InProcessVisibility = Visibility.Collapsed;
         }
-
-        [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
+        
         public async Task RefreshLights()
         {
             if (MainWindowViewModel.Client == null) return;
@@ -262,9 +260,13 @@ namespace CSHUE.ViewModels
             {
                 Application.Current.Dispatcher.Invoke(delegate
                 {
-                    if (l.State.Hue == null || l.State.Saturation == null) return;
+                    if (l.State.Hue == null || l.State.Saturation == null)
+                        return;
 
                     var existingElement = tempList.Find(x => x.UniqueId == l.UniqueId);
+
+                    if (l.State.IsReachable == null || l.State.ColorTemperature == null)
+                        return;
 
                     if (existingElement != null)
                     {
@@ -278,7 +280,8 @@ namespace CSHUE.ViewModels
                             ? l.Capabilities.Control.ColorGamut == null
                                 ? ColorConverters.HueSaturation((double) l.State.Hue / 65535 * Math.PI * 2,
                                     (double) l.State.Saturation / 255)
-                                : ColorConverters.ColorTemperatue((int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
+                                : ColorConverters.ColorTemperatue(
+                                    (int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
                             : Colors.Black;
                         existingElement.Brightness = (double) (l.State.Brightness + 1) / 255;
                     }
@@ -296,7 +299,8 @@ namespace CSHUE.ViewModels
                                 ? l.Capabilities.Control.ColorGamut == null
                                     ? ColorConverters.HueSaturation((double) l.State.Hue / 65535 * Math.PI * 2,
                                         (double) l.State.Saturation / 255)
-                                    : ColorConverters.ColorTemperatue((int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
+                                    : ColorConverters.ColorTemperatue(
+                                        (int) Math.Round((l.State.ColorTemperature.Value - 654.222) / -0.077111))
                                 : Colors.Black,
                             Brightness = (double) (l.State.Brightness + 1) / 255,
                             UniqueId = l.UniqueId

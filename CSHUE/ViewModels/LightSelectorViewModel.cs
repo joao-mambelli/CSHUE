@@ -12,9 +12,18 @@ namespace CSHUE.ViewModels
     {
         #region Properties
 
+        /// <summary>
+        /// Property that tells if the color picker is opened.
+        /// </summary>
         public bool IsColorPickerOpened { get; set; }
 
+        /// <summary>
+        /// List back field.
+        /// </summary>
         private ObservableCollection<LightSettingCellViewModel> _list;
+        /// <summary>
+        /// List property.
+        /// </summary>
         public ObservableCollection<LightSettingCellViewModel> List
         {
             get => _list;
@@ -25,12 +34,13 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private List<bool> _lastListIsChecked = new List<bool>();
-        private List<bool> _lastListOnlyBrightness = new List<bool>();
-        private List<byte> _lastListBrightness = new List<byte>();
-        private List<Color> _lastListColor = new List<Color>();
-
+        /// <summary>
+        /// Title back field.
+        /// </summary>
         private string _title;
+        /// <summary>
+        /// Title property.
+        /// </summary>
         public string Title
         {
             get => _title;
@@ -43,8 +53,21 @@ namespace CSHUE.ViewModels
 
         #endregion
 
+        #region Fields
+
+        // Fields that store last states.
+        private List<bool> _lastListIsChecked = new List<bool>();
+        private List<bool> _lastListOnlyBrightness = new List<bool>();
+        private List<byte> _lastListBrightness = new List<byte>();
+        private List<Color> _lastListColor = new List<Color>();
+
+        #endregion
+
         #region Methods
 
+        /// <summary>
+        /// Set light async method.
+        /// </summary>
         public async void SetLightsAsync()
         {
             var updateList = new List<LightSettingCellViewModel>();

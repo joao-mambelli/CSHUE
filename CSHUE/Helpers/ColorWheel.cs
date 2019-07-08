@@ -231,8 +231,7 @@ namespace CSHUE.Helpers
         public Color PickSaturationPixelColor(int y, int height, double hue)
         {
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            
             return ColorConverters.HueSaturation(hue == 360 ? 0 : hue / 360 * (2 * Math.PI), 1 - ((double) y - 6) / (height - 12));
         }
 
@@ -289,8 +288,7 @@ namespace CSHUE.Helpers
         public Color PickTemperaturePixelColor(int y, int height)
         {
             if (y <= 6 || height - y <= 6) return Colors.Transparent;
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            
             return ColorConverters.ColorTemperatue((int) Math.Round((1 - (double) y / height) * 4500 + 2000));
         }
 

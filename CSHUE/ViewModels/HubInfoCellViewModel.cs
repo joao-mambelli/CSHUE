@@ -4,7 +4,13 @@
     {
         #region Properties
 
+        /// <summary>
+        /// Text back field.
+        /// </summary>
         private string _text;
+        /// <summary>
+        /// Text property.
+        /// </summary>
         public string Text
         {
             get => _text;
@@ -15,7 +21,13 @@
             }
         }
 
+        /// <summary>
+        /// Is checked back field.
+        /// </summary>
         private bool _isChecked;
+        /// <summary>
+        /// Is checked property.
+        /// </summary>
         public bool IsChecked
         {
             get => _isChecked;
@@ -26,7 +38,13 @@
             }
         }
 
+        /// <summary>
+        /// Ip back field.
+        /// </summary>
         private string _ip;
+        /// <summary>
+        /// Ip property.
+        /// </summary>
         public string Ip
         {
             get => _ip;

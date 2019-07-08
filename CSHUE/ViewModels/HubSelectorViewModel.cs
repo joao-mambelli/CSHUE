@@ -6,7 +6,13 @@ namespace CSHUE.ViewModels
     {
         #region Properties
 
+        /// <summary>
+        /// List back field.
+        /// </summary>
         private ObservableCollection<HubInfoCellViewModel> _list;
+        /// <summary>
+        /// List property.
+        /// </summary>
         public ObservableCollection<HubInfoCellViewModel> List
         {
             get => _list;

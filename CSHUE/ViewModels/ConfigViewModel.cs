@@ -14,14 +14,23 @@ namespace CSHUE.ViewModels
     {
         #region Properties
 
+        /// <summary>
+        /// Fail text private property.
+        /// </summary>
         private string FailText { get; set; }
 
         #endregion
 
         #region Fields
 
+        /// <summary>
+        /// Main window viewmodel field.
+        /// </summary>
         public MainWindowViewModel MainWindowViewModel = null;
 
+        /// <summary>
+        /// Config lines field.
+        /// </summary>
         private readonly string[] _lines =
         {
             "\"CSHUE\"",
@@ -49,6 +58,9 @@ namespace CSHUE.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Create config method.
+        /// </summary>
         public void CreateConfigFile()
         {
             var fail = false;
@@ -186,6 +198,9 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Check config method.
+        /// </summary>
         public void CheckConfigFile()
         {
             var fail = false;

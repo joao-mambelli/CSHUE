@@ -8,17 +8,38 @@ namespace CSHUE.ViewModels
     {
         #region Properties
 
+        /// <summary>
+        /// Content property.
+        /// </summary>
         public LightSettingCell Content { get; set; }
 
+        /// <summary>
+        /// Group name property.
+        /// </summary>
         public string GroupName { get; set; } = "";
 
+        /// <summary>
+        /// Unique Id property.
+        /// </summary>
         public string UniqueId { get; set; }
 
+        /// <summary>
+        /// Property that indicates if the mode is color temperature or not.
+        /// </summary>
         public bool IsColorTemperature { get; set; }
 
+        /// <summary>
+        /// Id property.
+        /// </summary>
         public string Id { get; set; }
 
+        /// <summary>
+        /// Single option visibility back field.
+        /// </summary>
         private Visibility _singleOptionVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Single option visibility property.
+        /// </summary>
         public Visibility SingleOptionVisibility
         {
             get => _singleOptionVisibility;
@@ -32,7 +53,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Is checked back field.
+        /// </summary>
         private bool _isChecked;
+        /// <summary>
+        /// Is checked property.
+        /// </summary>
         public bool IsChecked
         {
             get =>
@@ -44,7 +71,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Color temperature back field.
+        /// </summary>
         private int _colorTemperature;
+        /// <summary>
+        /// Color temperature property.
+        /// </summary>
         public int ColorTemperature
         {
             get => _colorTemperature;
@@ -55,7 +88,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Color back field.
+        /// </summary>
         private Color _color;
+        /// <summary>
+        /// Color property.
+        /// </summary>
         public Color Color
         {
             get => _color;
@@ -66,7 +105,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Brightness back field.
+        /// </summary>
         private byte _brightness;
+        /// <summary>
+        /// Brightness property.
+        /// </summary>
         public byte Brightness
         {
             get => _brightness;
@@ -77,7 +122,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Text back field.
+        /// </summary>
         private string _text;
+        /// <summary>
+        /// Text property.
+        /// </summary>
         public string Text
         {
             get => _text;
@@ -88,7 +139,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Only brightness back field.
+        /// </summary>
         private bool _onlyBrightness;
+        /// <summary>
+        /// Only brightness property.
+        /// </summary>
         public bool OnlyBrightness
         {
             get => _onlyBrightness;
@@ -99,7 +156,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Only brightness visibility back field.
+        /// </summary>
         private Visibility _onlyBrightnessVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Only brightness visibility property.
+        /// </summary>
         public Visibility OnlyBrightnessVisibility
         {
             get => _onlyBrightnessVisibility;
@@ -110,7 +173,13 @@ namespace CSHUE.ViewModels
             }
         }
 
+        /// <summary>
+        /// Main event back field.
+        /// </summary>
         private string _mainEventText;
+        /// <summary>
+        /// Main event property.
+        /// </summary>
         public string MainEventText
         {
             get => _mainEventText;

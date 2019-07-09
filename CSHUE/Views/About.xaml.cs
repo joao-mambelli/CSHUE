@@ -13,12 +13,18 @@ namespace CSHUE.Views
     {
         #region Fields
 
+        /// <summary>
+        /// ViewModel field.
+        /// </summary>
         public AboutViewModel ViewModel = new AboutViewModel();
 
         #endregion
 
         #region Initializers
 
+        /// <summary>
+        /// About initializer.
+        /// </summary>
         public About()
         {
             InitializeComponent();
@@ -31,8 +37,12 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void Hyperlink_RequestNavigate(object sender,
-            RequestNavigateEventArgs e)
+        /// <summary>
+        /// Hyperlink request navigation event handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;

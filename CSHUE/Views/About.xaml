@@ -79,7 +79,7 @@
                                        ToolTipService.HorizontalOffset="-100"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://steamcommunity.com/id/joao7yt"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Steam}, Path=Data}"
@@ -108,7 +108,7 @@
                                        ToolTipService.HorizontalOffset="-100"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://www.reddit.com/user/joao7yt"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Reddit}, Path=Data}"
@@ -137,7 +137,7 @@
                                        ToolTipService.HorizontalOffset="-100"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://www.linkedin.com/in/joao-mambelli"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Linkedin}, Path=Data}"
@@ -168,7 +168,7 @@
                                        ToolTipService.HorizontalOffset="-100"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://www.youtube.com/user/joao7yt"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Youtube}, Path=Data}"
@@ -197,7 +197,7 @@
                                        ToolTipService.HorizontalOffset="-100"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://www.instagram.com/joomambaa"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Instagram}, Path=Data}"
@@ -225,7 +225,7 @@
                                        ToolTipService.HorizontalOffset="-100"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://www.facebook.com/joao7yt"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Facebook}, Path=Data}"
@@ -256,7 +256,7 @@
                                        ToolTipService.HorizontalOffset="-80"
                                        ToolTipService.ShowDuration="3000">
                                 <Hyperlink NavigateUri="https://github.com/joao7yt"
-                                           RequestNavigate="Hyperlink_RequestNavigate">
+                                           RequestNavigate="Hyperlink_OnRequestNavigate">
                                     <StackPanel Orientation="Horizontal"
                                                 Background="Transparent">
                                         <Path Data="{Binding Source={StaticResource Github}, Path=Data}"

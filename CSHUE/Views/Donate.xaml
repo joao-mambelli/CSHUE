@@ -52,7 +52,7 @@
                             HorizontalAlignment="Center"
                             Style="{DynamicResource CustomButton}"
                             Content="{Binding Path=Donate, Source={StaticResource Resources}}"
-                            Click="Donate_Click">
+                            Click="Donate_OnClick">
                         <Button.ToolTip>
                             <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                      Background="{DynamicResource SystemAltHighColorBrush}">

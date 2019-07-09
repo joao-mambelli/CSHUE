@@ -13,12 +13,18 @@ namespace CSHUE.Views
     {
         #region Fields
 
+        /// <summary>
+        /// ViewModel field.
+        /// </summary>
         public DonateViewModel ViewModel = new DonateViewModel();
 
         #endregion
 
         #region Initializers
 
+        /// <summary>
+        /// Donate initializer.
+        /// </summary>
         public Donate()
         {
             InitializeComponent();
@@ -31,8 +37,12 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void Donate_Click(object sender,
-            EventArgs e)
+        /// <summary>
+        /// Donate button click event handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Donate_OnClick(object sender, EventArgs e)
         {
             var url = "";
 

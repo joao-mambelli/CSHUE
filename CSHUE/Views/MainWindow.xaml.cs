@@ -76,7 +76,6 @@ namespace CSHUE.Views
 
         private enum MonitorOptions : uint
         {
-            //MonitorDefaulttonull = 0x00000000,
             MonitorDefaulttoprimary = 0x00000001,
             MonitorDefaulttonearest = 0x00000002
         }
@@ -114,7 +113,9 @@ namespace CSHUE.Views
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
 #pragma warning disable 169
+#pragma warning disable 414
             private readonly int dwFlags = 0;
+#pragma warning restore 414
 #pragma warning restore 169
         }
 
@@ -215,11 +216,13 @@ namespace CSHUE.Views
                 }
             }
 
-            ViewModel.HueAsync();
+            ViewModel.YeeAsync();
+
+            /*ViewModel.HueAsync();
 
             ViewModel.Csgo();
 
-            ViewModel.SettingsPage.ViewModel.UpdateGradients();
+            ViewModel.SettingsPage.ViewModel.UpdateGradients();*/
         }
 
         private static void SetLanguage()

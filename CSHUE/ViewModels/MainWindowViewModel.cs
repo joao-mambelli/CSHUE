@@ -21,6 +21,7 @@ using CSHUE.Views;
 using Microsoft.Win32;
 using Q42.HueApi;
 using Q42.HueApi.Interfaces;
+using YeelightAPI;
 
 namespace CSHUE.ViewModels
 {
@@ -681,6 +682,11 @@ namespace CSHUE.ViewModels
         #region Methods
 
         #region Connection
+
+        public async void YeeAsync()
+        {
+            var devices = await DeviceLocator.Discover();
+        }
 
         public async void HueAsync()
         {

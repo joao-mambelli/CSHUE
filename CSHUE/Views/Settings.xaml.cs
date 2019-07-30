@@ -98,7 +98,8 @@ namespace CSHUE.Views
             };
             messageBox.ShowDialog();
 
-            if (messageBox.DialogResult != true) return;
+            if (messageBox.DialogResult != true)
+                return;
 
             ComboBoxLanguage.SelectionChanged -= ComboBoxLanguage_OnSelectionChanged;
             Properties.Settings.Default.Reset();
@@ -162,6 +163,7 @@ namespace CSHUE.Views
                     Message = Cultures.Resources.NoLightsFound,
                     Owner = Window.GetWindow(this)
                 }.ShowDialog();
+
                 return;
             }
 
@@ -246,11 +248,10 @@ namespace CSHUE.Views
 
         private void ShowSystemTrayIconCheckBox_OnCheckedChanged(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.MainWindowViewModel == null) return;
-
-            ViewModel.MainWindowViewModel.NotifyIconVisibility = Properties.Settings.Default.ShowSystemTrayIcon
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+            if (ViewModel.MainWindowViewModel != null)
+                ViewModel.MainWindowViewModel.NotifyIconVisibility = Properties.Settings.Default.ShowSystemTrayIcon
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
         }
 
         private void Save(object sender, RoutedEventArgs routedEventArgs)
@@ -260,11 +261,11 @@ namespace CSHUE.Views
 
         private void ScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (!ComboBoxLanguage.IsDropDownOpen)
-                return;
-
-            ComboBoxLanguage.IsDropDownOpen = false;
-            ComboBoxLanguage.IsDropDownOpen = true;
+            if (ComboBoxLanguage.IsDropDownOpen)
+            {
+                ComboBoxLanguage.IsDropDownOpen = false;
+                ComboBoxLanguage.IsDropDownOpen = true;
+            }
         }
 
         #endregion

@@ -237,7 +237,8 @@ namespace CSHUE.ViewModels
         
         public async Task RefreshLights()
         {
-            if (MainWindowViewModel.Client == null) return;
+            if (MainWindowViewModel.Client == null)
+                return;
 
             var tempList = List.ToList();
 

@@ -133,7 +133,8 @@ namespace CSHUE.ViewModels
 
         public static async Task SetDefaultLightsSettings()
         {
-            if (Client == null) return;
+            if (Client == null)
+                return;
 
             var allLights = (await Client.GetLightsAsync()).ToList();
 
@@ -686,7 +687,8 @@ namespace CSHUE.ViewModels
         {
             _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
 
-            if (_bridgeIp == "") return;
+            if (_bridgeIp == "")
+                return;
 
             Client = new LocalHueClient(_bridgeIp);
 
@@ -745,6 +747,7 @@ namespace CSHUE.ViewModels
                         {
                             request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
                             request.Timeout = 7000;
+
                             if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
                                 list.Add(new HubInfoCellViewModel
                                 {
@@ -774,6 +777,7 @@ namespace CSHUE.ViewModels
                     {
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     };
+
                     hubSelector.ShowDialog();
 
                     HomePage.ViewModel.SetWarningValidating();
@@ -782,6 +786,7 @@ namespace CSHUE.ViewModels
                     {
                         request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
                         request.Timeout = 7000;
+
                         if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
                             return hubSelector.SelectedBridge;
                     }
@@ -802,6 +807,7 @@ namespace CSHUE.ViewModels
             {
                 var request = WebRequest.Create($"http://{bridgeIPs.First().IpAddress}/debug/clip.html");
                 request.Timeout = 7000;
+
                 if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
                     return bridgeIPs.First().IpAddress;
             }
@@ -1408,14 +1414,16 @@ namespace CSHUE.ViewModels
 
         public void BombExplodes()
         {
-            if (!_flashedZeroed) return;
+            if (!_flashedZeroed)
+                return;
 
             SetLightsAsync(Properties.Settings.Default.BombExplodes, Properties.Settings.Default.BombPlanted).Wait();
         }
 
         public void RoundEnd(RoundWinTeam winner)
         {
-            if (!_flashedZeroed) return;
+            if (!_flashedZeroed)
+                return;
 
             switch (winner)
             {
@@ -1621,11 +1629,13 @@ namespace CSHUE.ViewModels
                 var request = (HttpWebRequest) WebRequest.Create("https://github.com/joao7yt/CSHUE/tags");
                 var response = (HttpWebResponse) request.GetResponse();
 
-                if (response.StatusCode != HttpStatusCode.OK) return "";
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return "";
 
                 var receiveStream = response.GetResponseStream();
 
-                if (receiveStream == null) return "";
+                if (receiveStream == null)
+                    return "";
 
                 var readStream = response.CharacterSet == null
                     ? new StreamReader(receiveStream)
@@ -1648,7 +1658,8 @@ namespace CSHUE.ViewModels
 
         public void RunCsgo()
         {
-            if (Process.GetProcessesByName("csgo").Length > 0) return;
+            if (Process.GetProcessesByName("csgo").Length > 0)
+                return;
 
             if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder))
             {
@@ -1656,6 +1667,7 @@ namespace CSHUE.ViewModels
                 using (var key64 = Registry.LocalMachine.OpenSubKey("Software\\Wow6432Node\\Valve\\Steam"))
                 {
                     object o = null;
+
                     if (key64 != null)
                         o = key64.GetValue("InstallPath");
                     else if (key32 != null)
@@ -1667,7 +1679,8 @@ namespace CSHUE.ViewModels
             }
 
             if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder) ||
-                !File.Exists(Properties.Settings.Default.SteamFolder + "\\Steam.exe")) return;
+                !File.Exists(Properties.Settings.Default.SteamFolder + "\\Steam.exe"))
+                return;
 
             Process.Start("steam://run/730//" + Properties.Settings.Default.LaunchOptions + "/");
         }
@@ -1735,6 +1748,7 @@ namespace CSHUE.ViewModels
                 _killAmount = 60000;
                 _deathAmount = 60000;
                 MainMenu();
+
                 return;
             }
 
@@ -1823,7 +1837,8 @@ namespace CSHUE.ViewModels
                 }
             }
 
-            if (_blockLightChange) return;
+            if (_blockLightChange)
+                return;
 
             if (gs.Previously.Round.Phase != RoundPhase.Undefined &&
                 gs.Round.Phase != RoundPhase.Undefined &&

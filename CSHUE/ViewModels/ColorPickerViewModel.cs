@@ -272,7 +272,8 @@ namespace CSHUE.ViewModels
 
         private void SetMousePositionAndColor(bool colorTemperature)
         {
-            if (MovingPicker) return;
+            if (MovingPicker)
+                return;
 
             MousePosition = new Thickness(
                 ColorWheelSize * Math.Sin(Hue / 360 * Math.PI * 2) * (Saturation / 100), 0,

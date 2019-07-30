@@ -289,11 +289,13 @@ namespace CSHUE.ViewModels
                 MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Visible;
             }
 
-            if (fail) return;
-            MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
-            MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
+            if (!fail)
+            {
+                MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
+                MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Collapsed;
+            }
         }
 
         #endregion

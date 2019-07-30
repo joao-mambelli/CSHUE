@@ -31,38 +31,39 @@ namespace CSHUE.Views
         }
 
         private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
-        
+
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (MouseMessages.WmLbuttonup == (MouseMessages) wParam)
+            if (MouseMessages.WmLbuttonup == (MouseMessages)wParam)
             {
                 UnhookWindowsHookEx(_hookId);
                 ViewModel.MovingPicker = false;
             }
 
-            if (nCode < 0 || MouseMessages.WmMousemove != (MouseMessages) wParam)
+            if (nCode < 0 || MouseMessages.WmMousemove != (MouseMessages)wParam)
                 return CallNextHookEx(_hookId, nCode, wParam, lParam);
-            var hookStruct = (Msllhookstruct) Marshal.PtrToStructure(lParam, typeof(Msllhookstruct));
+
+            var hookStruct = (Msllhookstruct)Marshal.PtrToStructure(lParam, typeof(Msllhookstruct));
 
             if (IsColorTemperature)
             {
                 ViewModel.ChangeTemperature(new System.Windows.Point(
                         hookStruct.Position.X - Left -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                        (double) ViewModel.ColorWheelSize / 2,
+                        (double)ViewModel.ColorWheelSize / 2,
                         hookStruct.Position.Y - Top -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                        (double) ViewModel.ColorWheelSize / 2));
+                        (double)ViewModel.ColorWheelSize / 2));
             }
             else
             {
                 ViewModel.ChangeHueSaturation(new System.Windows.Point(
                         hookStruct.Position.X - Left -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                        (double) ViewModel.ColorWheelSize / 2,
+                        (double)ViewModel.ColorWheelSize / 2,
                         hookStruct.Position.Y - Top -
                         ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                        (double) ViewModel.ColorWheelSize / 2),
+                        (double)ViewModel.ColorWheelSize / 2),
                     _approximate);
             }
 
@@ -157,19 +158,19 @@ namespace CSHUE.Views
 
         private void OutsideColorWheel_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (IsColorTemperature)
-                return;
+            if (!IsColorTemperature)
+            {
+                _approximate = true;
+                _hookId = SetHook(_proc);
 
-            _approximate = true;
-            _hookId = SetHook(_proc);
-
-            ViewModel.ChangeHueSaturation(new System.Windows.Point(
-                (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
-                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                (double) ViewModel.ColorWheelSize / 2,
-                (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
-                ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                (double) ViewModel.ColorWheelSize / 2), _approximate);
+                ViewModel.ChangeHueSaturation(new System.Windows.Point(
+                    (int)Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                    ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
+                    (double)ViewModel.ColorWheelSize / 2,
+                    (int)Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                    ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
+                    (double)ViewModel.ColorWheelSize / 2), _approximate);
+            }
         }
 
         private void ColorWheel_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -180,24 +181,24 @@ namespace CSHUE.Views
             if (IsColorTemperature)
             {
                 ViewModel.ChangeTemperature(new System.Windows.Point(
-                    (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                    (int)Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                    (double) ViewModel.ColorWheelSize / 2,
-                    (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                    (double)ViewModel.ColorWheelSize / 2,
+                    (int)Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                    (double) ViewModel.ColorWheelSize / 2));
+                    (double)ViewModel.ColorWheelSize / 2));
             }
             else
             {
                 _approximate = false;
 
                 ViewModel.ChangeHueSaturation(new System.Windows.Point(
-                    (int) Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
+                    (int)Math.Round(PointToScreen(e.GetPosition(this)).X) - Left -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).X -
-                    (double) ViewModel.ColorWheelSize / 2,
-                    (int) Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
+                    (double)ViewModel.ColorWheelSize / 2,
+                    (int)Math.Round(PointToScreen(e.GetPosition(this)).Y) - Top -
                     ColorWheel.TransformToAncestor(this).Transform(new System.Windows.Point(0, 0)).Y -
-                    (double) ViewModel.ColorWheelSize / 2), _approximate);
+                    (double)ViewModel.ColorWheelSize / 2), _approximate);
             }
         }
 
@@ -223,7 +224,7 @@ namespace CSHUE.Views
             })
             { IsBackground = true }.Start();
         }
-        
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.ColorWheelBrush =

@@ -51,9 +51,11 @@ namespace CSHUE.Cultures
         /// <param name="culture">Culture to change to</param>
         public static void ChangeCulture(CultureInfo culture)
         {
-            if (!SupportedCultures.Contains(culture)) return;
-            Resources.Culture = culture;
-            ResourceProvider.Refresh();
+            if (SupportedCultures.Contains(culture))
+            {
+                Resources.Culture = culture;
+                ResourceProvider.Refresh();
+            }
         }
 
         #endregion
@@ -65,35 +67,35 @@ namespace CSHUE.Cultures
         /// </summary>
         static CultureResources()
         {
-            if (BFoundInstalledCultures)
-                return;
-
-            foreach (var dir in Directory.GetDirectories(System.Windows.Forms.Application.StartupPath))
+            if (!BFoundInstalledCultures)
             {
-                try
+                foreach (var dir in Directory.GetDirectories(System.Windows.Forms.Application.StartupPath))
                 {
-                    var dirinfo = new DirectoryInfo(dir);
-                    var tCulture = CultureInfo.GetCultureInfo(dirinfo.Name);
+                    try
+                    {
+                        var dirinfo = new DirectoryInfo(dir);
+                        var tCulture = CultureInfo.GetCultureInfo(dirinfo.Name);
 
-                    if (dirinfo.GetFiles(
-                            Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath) +
-                            ".resources.dll").Length <= 0)
-                        continue;
+                        if (dirinfo.GetFiles(
+                                Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath) +
+                                ".resources.dll").Length <= 0)
+                            continue;
 
-                    SupportedCulturesFullNames.Add(tCulture.NativeName);
-                    SupportedCultures.Add(tCulture);
+                        SupportedCulturesFullNames.Add(tCulture.NativeName);
+                        SupportedCultures.Add(tCulture);
+                    }
+                    catch (ArgumentException)
+                    {
+                        // ignored
+                    }
                 }
-                catch (ArgumentException)
-                {
 
-                }
+                SupportedCulturesFullNames.Remove(
+                    SupportedCulturesFullNames.Find(x => x == Properties.Settings.Default.LanguageName));
+                SupportedCulturesFullNames.Insert(0, Properties.Settings.Default.LanguageName);
+
+                BFoundInstalledCultures = true;
             }
-
-            SupportedCulturesFullNames.Remove(
-                SupportedCulturesFullNames.Find(x => x == Properties.Settings.Default.LanguageName));
-            SupportedCulturesFullNames.Insert(0, Properties.Settings.Default.LanguageName);
-
-            BFoundInstalledCultures = true;
         }
 
         #endregion

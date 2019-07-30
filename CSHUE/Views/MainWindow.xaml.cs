@@ -35,8 +35,10 @@ namespace CSHUE.Views
         {
             if (msg == 0x0024)
                 WmGetMinMaxInfo(lParam);
+
             if (msg == NativeMethods.WmShowme)
                 ShowMe();
+
             return IntPtr.Zero;
         }
 
@@ -44,11 +46,16 @@ namespace CSHUE.Views
         {
             MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle).WorkingArea.Height;
             GetCursorPos(out var lMousePosition);
+
             var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
             var lPrimaryScreenInfo = new Monitorinfo();
-            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false) return;
+
+            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false)
+                return;
+
             var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
             var lMmi = (Minmaxinfo) Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
+
             if (lPrimaryScreen.Equals(lCurrentScreen))
             {
                 lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
@@ -319,10 +326,13 @@ namespace CSHUE.Views
                         ViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
                         return;
                     }
+
                     var changeMenuColor = false;
+
                     if (key.GetValue("AppsUseLightTheme") != null)
                     {
                         var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+
                         if (_isModeDark != false && !darkMode)
                         {
                             if (_isTransparencyTrue != true)
@@ -342,13 +352,16 @@ namespace CSHUE.Views
                         ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
                         return;
                     }
+
                     var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
+
                     if (_isTransparencyTrue != true && transparency)
                         ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
                     else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
                         ViewModel.BackgroundColor = _isModeDark == true
                             ? Color.FromRgb(31, 31, 31)
                             : Color.FromRgb(230, 230, 230);
+
                     _isTransparencyTrue = transparency;
                 }
             }
@@ -367,14 +380,14 @@ namespace CSHUE.Views
         {
             using (var key = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\DWM"))
             {
-                if (key == null)
-                    return;
-
-                var o = key.GetValue("ColorPrevalence");
-                if (o != null && Convert.ToBoolean(o))
-                    BorderBrush = AccentColors.ImmersiveSystemAccentBrush;
-                else
-                    BorderBrush = new SolidColorBrush(Color.FromRgb(102, 102, 102));
+                if (key != null)
+                {
+                    var o = key.GetValue("ColorPrevalence");
+                    if (o != null && Convert.ToBoolean(o))
+                        BorderBrush = AccentColors.ImmersiveSystemAccentBrush;
+                    else
+                        BorderBrush = new SolidColorBrush(Color.FromRgb(102, 102, 102));
+                }
             }
         }
 
@@ -399,17 +412,19 @@ namespace CSHUE.Views
 
         private void Control_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!_buttonClickable) return;
-            ((Grid) sender).ClearValue(BackgroundProperty);
-            ViewModel.Navigate(Page, sender);
-
-            if (((Grid) sender).Name == "Settings" && Properties.Settings.Default.FirstLaunch)
+            if (_buttonClickable)
             {
-                Properties.Settings.Default.FirstLaunch = false;
-                Properties.Settings.Default.Save();
-            }
+                ((Grid) sender).ClearValue(BackgroundProperty);
+                ViewModel.Navigate(Page, sender);
 
-            UpdateIndicator(((Grid) sender).Name);
+                if (((Grid) sender).Name == "Settings" && Properties.Settings.Default.FirstLaunch)
+                {
+                    Properties.Settings.Default.FirstLaunch = false;
+                    Properties.Settings.Default.Save();
+                }
+
+                UpdateIndicator(((Grid) sender).Name);
+            }
         }
 
         private void TopControls_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -427,9 +442,8 @@ namespace CSHUE.Views
 
         private void TopControls_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!_buttonClickable)
-                return;
-            GetType().GetMethod(((Grid) sender).Name + "_Click")?.Invoke(this, null);
+            if (_buttonClickable)
+                GetType().GetMethod(((Grid) sender).Name + "_Click")?.Invoke(this, null);
         }
 
         private static void TopControls_OnMouseEnter(object sender, MouseEventArgs e)

@@ -877,35 +877,33 @@ namespace CSHUE.ViewModels
         /// </summary>
         public async void RestoreLights()
         {
-            if (LightsBackup == null) return;
-
-            foreach (var l in LightsBackup)
-            {
-                if (l.State.IsReachable != true) continue;
-
-                try
+            if (LightsBackup != null)
+                foreach (var l in LightsBackup)
                 {
-                    if (l.Capabilities.Control.ColorGamut == null)
-                        await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                    if (l.State.IsReachable == true)
+                        try
                         {
-                            On = l.State.On,
-                            ColorTemperature = l.State.ColorTemperature,
-                            Brightness = l.State.Brightness
-                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
-                    else
-                        await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                            if (l.Capabilities.Control.ColorGamut == null)
+                                await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                                {
+                                    On = l.State.On,
+                                    ColorTemperature = l.State.ColorTemperature,
+                                    Brightness = l.State.Brightness
+                                }, new List<string> {$"{l.Id}"}).ConfigureAwait(false);
+                            else
+                                await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
+                                {
+                                    On = l.State.On,
+                                    Hue = l.State.Hue,
+                                    Saturation = l.State.Saturation,
+                                    Brightness = l.State.Brightness
+                                }, new List<string> {$"{l.Id}"}).ConfigureAwait(false);
+                        }
+                        catch
                         {
-                            On = l.State.On,
-                            Hue = l.State.Hue,
-                            Saturation = l.State.Saturation,
-                            Brightness = l.State.Brightness
-                        }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
+                            // ignored
+                        }
                 }
-                catch
-                {
-                    // ignored
-                }
-            }
         }
 
         #endregion

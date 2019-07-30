@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace CSHUE
 {
@@ -14,6 +18,46 @@ namespace CSHUE
         private static readonly Mutex Mutex = new Mutex(true, "CSHUE");
 
         #endregion
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            RegisterLogException();
+
+            base.OnStartup(e);
+        }
+
+        private void RegisterLogException()
+        {
+            AppDomain.CurrentDomain.UnhandledException += (s, exception) => LogUnhandledException((Exception)exception.ExceptionObject);
+
+            DispatcherUnhandledException += (s, exception) => DispatcherUnhandled(exception);
+
+            TaskScheduler.UnobservedTaskException += (s, exception) => LogUnhandledException(exception.Exception);
+        }
+
+        private static void DispatcherUnhandled(DispatcherUnhandledExceptionEventArgs exception)
+        {
+            LogUnhandledException(exception.Exception);
+
+            if (exception.Exception is COMException comException && comException.ErrorCode == -2147221040)
+                exception.Handled = true;
+        }
+
+        private static void LogUnhandledException(Exception exception)
+        {
+            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/log/cshue-log.log");
+
+            var errorContent =
+                string.Format("HResult: {1}{0} HelpLink: {2}{0} Message: {3}{0} Source: {4}{0} StackTrace: {5}{0} {0}",
+                    Environment.NewLine,
+                    exception.HResult,
+                    exception.HelpLink,
+                    exception.Message,
+                    exception.Source,
+                    exception.StackTrace);
+
+            File.AppendAllText(fileName, errorContent);
+        }
 
         /// <summary>
         /// Application Entry Point.

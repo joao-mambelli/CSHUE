@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,18 +46,29 @@ namespace CSHUE
 
         private static void LogUnhandledException(Exception exception)
         {
-            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/log/cshue-log.log");
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\logs");
 
             var errorContent =
-                string.Format("HResult: {1}{0} HelpLink: {2}{0} Message: {3}{0} Source: {4}{0} StackTrace: {5}{0} {0}",
-                    Environment.NewLine,
-                    exception.HResult,
-                    exception.HelpLink,
-                    exception.Message,
-                    exception.Source,
-                    exception.StackTrace);
+                $"HResult:    {exception.HResult}\nHelpLink:   {exception.HelpLink}\nMessage:    {exception.Message}\nSource:     {exception.Source}\nStackTrace: {exception.StackTrace}";
 
-            File.AppendAllText(fileName, errorContent);
+            errorContent = Regex.Replace(errorContent, @"\n   (\w)", "\n            $1");
+
+            var tabs = "";
+            while (exception.InnerException != null)
+            {
+                exception = exception.InnerException;
+
+                errorContent +=
+                    $"\n\n{tabs}\tHResult:    {exception.HResult}\n{tabs}\tHelpLink:   {exception.HelpLink}\n{tabs}\tMessage:    {exception.Message}\n{tabs}\tSource:     {exception.Source}\n{tabs}\tStackTrace: {exception.StackTrace}";
+
+                errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t            $1");
+
+                tabs += "\t";
+            }
+
+            errorContent = Regex.Replace(errorContent, "(StackTrace: )   ", "$1");
+
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs\\cshue-log.log", $"{errorContent}\n\n-------------------------------------------------------\n\n");
         }
 
         /// <summary>

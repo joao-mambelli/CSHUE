@@ -148,6 +148,8 @@ namespace CSHUE.Views
 
         public MainWindow()
         {
+            throw new Exception();
+
             if (Properties.Settings.Default.Top == -1 &&
                 Properties.Settings.Default.Left == -1)
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -46,6 +48,12 @@ namespace CSHUE
 
         private static void LogUnhandledException(Exception exception)
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\logs");
 
             var errorContent =
@@ -69,13 +77,15 @@ namespace CSHUE
             errorContent = Regex.Replace(errorContent, "(StackTrace: )   ", "$1");
 
             File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs\\cshue-log.log", $"{errorContent}\n\n-------------------------------------------------------\n\n");
+
+            Process.Start("https://github.com/joao7yt/CSHUE/issues/new?title=Crash+report&labels=crash&body=" + Uri.EscapeDataString($"```\nUTC: {DateTime.Now.ToUniversalTime():yyyy/MM/dd HH:mm:ss}\n\n{errorContent}\n```"));
         }
 
         /// <summary>
         /// Application Entry Point.
         /// </summary>
         [STAThreadAttribute]
-        [System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [DebuggerNonUserCodeAttribute]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main()
         {

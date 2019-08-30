@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using CSHUE.Controls;
 
 namespace CSHUE
 {
@@ -48,37 +49,100 @@ namespace CSHUE
 
         private static void LogUnhandledException(Exception exception)
         {
+            var tempException = exception;
+
+            var tempDefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
+            var tempDefaultThreadCurrentUiCulture = CultureInfo.DefaultThreadCurrentUICulture;
+            var tempCurrentCulture = Thread.CurrentThread.CurrentCulture;
+            var tempCurrentUiCulture = Thread.CurrentThread.CurrentUICulture;
+
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
-
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
-            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\logs");
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var now = DateTime.Now.ToUniversalTime().ToString("yyyy_MM_dd_HH_mm_ss");
 
-            var errorContent =
-                $"HResult:    {exception.HResult}\nHelpLink:   {exception.HelpLink}\nMessage:    {exception.Message}\nSource:     {exception.Source}\nStackTrace: {exception.StackTrace}";
+            Directory.CreateDirectory(baseDirectory + "\\logs");
+
+            var errorContent = $"HResult:    {exception.HResult}\n";
+            errorContent += $"HelpLink:   {exception.HelpLink}\n";
+            errorContent += $"Message:    {exception.Message}\n";
+            errorContent += $"Source:     {exception.Source}\n";
+            errorContent += $"StackTrace: {exception.StackTrace}\n\n";
 
             errorContent = Regex.Replace(errorContent, @"\n   (\w)", "\n            $1");
 
-            var tabs = "";
+            var tabs = "\t";
             while (exception.InnerException != null)
             {
                 exception = exception.InnerException;
 
-                errorContent +=
-                    $"\n\n{tabs}\tHResult:    {exception.HResult}\n{tabs}\tHelpLink:   {exception.HelpLink}\n{tabs}\tMessage:    {exception.Message}\n{tabs}\tSource:     {exception.Source}\n{tabs}\tStackTrace: {exception.StackTrace}";
+                errorContent += $"{tabs}HResult:    {exception.HResult}\n";
+                errorContent += $"{tabs}HelpLink:   {exception.HelpLink}\n";
+                errorContent += $"{tabs}Message:    {exception.Message}\n";
+                errorContent += $"{tabs}Source:     {exception.Source}\n";
+                errorContent += $"{tabs}StackTrace: {exception.StackTrace}\n\n";
 
                 errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t            $1");
 
                 tabs += "\t";
             }
 
-            errorContent = Regex.Replace(errorContent, "(StackTrace: )   ", "$1");
+            errorContent = Regex.Replace(errorContent, "(StackTrace: )   ", "$1").Trim();
 
-            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs\\cshue-log.log", $"{errorContent}\n\n-------------------------------------------------------\n\n");
+            var file = baseDirectory + $"logs\\log-{now}";
+            var sur = "";
+            var id = 2;
+            while (File.Exists($"{file}{sur}.log"))
+            {
+                sur = sur == "" ? "_(1)" : $"_({id++})";
+            }
 
-            Process.Start("https://github.com/joao7yt/CSHUE/issues/new?title=Crash+report&labels=crash&body=" + Uri.EscapeDataString($"```\nUTC: {DateTime.Now.ToUniversalTime():yyyy/MM/dd HH:mm:ss}\n\n{errorContent}\n```"));
+            File.AppendAllText($"{file}{sur}.log", errorContent);
+
+            exception = tempException;
+
+            errorContent = $"HResult:    {exception.HResult}\n";
+            errorContent += $"HelpLink:   {exception.HelpLink}\n";
+            errorContent += $"Message:    {exception.Message}\n";
+            errorContent += $"Source:     {exception.Source}\n\n";
+
+            errorContent = Regex.Replace(errorContent, @"\n   (\w)", "\n            $1");
+
+            tabs = "\t";
+            while (exception.InnerException != null)
+            {
+                exception = exception.InnerException;
+
+                errorContent += $"{tabs}HResult:    {exception.HResult}\n";
+                errorContent += $"{tabs}HelpLink:   {exception.HelpLink}\n";
+                errorContent += $"{tabs}Message:    {exception.Message}\n";
+                errorContent += $"{tabs}Source:     {exception.Source}\n\n";
+
+                errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t            $1");
+
+                tabs += "\t";
+            }
+
+            CultureInfo.DefaultThreadCurrentCulture = tempDefaultThreadCurrentCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = tempDefaultThreadCurrentUiCulture;
+            Thread.CurrentThread.CurrentCulture = tempCurrentCulture;
+            Thread.CurrentThread.CurrentUICulture = tempCurrentUiCulture;
+
+            var url = "https://github.com/joao7yt/CSHUE/issues/new?title=Crash+report&labels=crash&body=";
+            url += Uri.EscapeDataString($"{Cultures.Resources.ExtraInfo}\n```\nUTC: {now}\n\n{errorContent}\n```");
+
+            new CustomMessageBox
+            {
+                Text1 = Cultures.Resources.Ok,
+                Text2 = Cultures.Resources.CreateIssue,
+                Path = url,
+                Message = string.Format(Cultures.Resources.CrashMessage, $"{file}{sur}.log"),
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                ShowInTaskbar = true
+            }.ShowDialog();
         }
 
         /// <summary>

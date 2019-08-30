@@ -119,6 +119,9 @@ namespace CSHUE.Controls
         private void ButtonOpenFolder_OnClick(object sender, RoutedEventArgs e)
         {
             Process.Start(Path);
+
+            if (Text2 == Cultures.Resources.CreateIssue)
+                Close();
         }
 
         /// <summary>
@@ -136,7 +139,8 @@ namespace CSHUE.Controls
             }
             else if (Text1 == Cultures.Resources.Ok &&
                      (Text2 == Cultures.Resources.OpenFolder ||
-                      Text2 == Cultures.Resources.ShowInBrowser))
+                      Text2 == Cultures.Resources.ShowInBrowser ||
+                      Text2 == Cultures.Resources.CreateIssue))
             {
                 Button1Button2Visibility = Visibility.Hidden;
                 Button1Visibility = Visibility.Hidden;

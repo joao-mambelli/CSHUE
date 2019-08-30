@@ -418,4 +418,16 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="Unreachable" xml:space="preserve">
     <value>Inacessível</value>
   </data>
+  <data name="CrashMessage" xml:space="preserve">
+    <value>Uma exceção não tratada ocorreu. Um arquivo de log foi criado em
+{0}.
+
+Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relatório no GitHub com o corpo do relatório já preenchido para você. Adicione informações extra sobre o erro, se quiser.</value>
+  </data>
+  <data name="CreateIssue" xml:space="preserve">
+    <value>Reportar erro no GitHub</value>
+  </data>
+  <data name="ExtraInfo" xml:space="preserve">
+    <value>Informação extra aqui</value>
+  </data>
 </root>

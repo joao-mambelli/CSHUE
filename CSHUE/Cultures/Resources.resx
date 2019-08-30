@@ -418,4 +418,16 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="Unreachable" xml:space="preserve">
     <value>Unreachable</value>
   </data>
+  <data name="CrashMessage" xml:space="preserve">
+    <value>An unhandled exception has occoured. A log file was created at
+{0}.
+
+Click on the "Create GitHub issue" button to open a GitHub new issue page with the body already filled for you. You can then add extra information about the crash if you want.</value>
+  </data>
+  <data name="CreateIssue" xml:space="preserve">
+    <value>Create GitHub issue</value>
+  </data>
+  <data name="ExtraInfo" xml:space="preserve">
+    <value>Extra information here</value>
+  </data>
 </root>

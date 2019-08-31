@@ -50,7 +50,6 @@ namespace CSHUE
         private static void LogUnhandledException(Exception exception)
         {
             var tempException = exception;
-
             var tempDefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
             var tempDefaultThreadCurrentUiCulture = CultureInfo.DefaultThreadCurrentUICulture;
             var tempCurrentCulture = Thread.CurrentThread.CurrentCulture;
@@ -62,7 +61,6 @@ namespace CSHUE
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            var now = DateTime.Now.ToUniversalTime().ToString("yyyy_MM_dd_HH_mm_ss");
 
             Directory.CreateDirectory(baseDirectory + "\\logs");
 
@@ -92,7 +90,7 @@ namespace CSHUE
 
             errorContent = Regex.Replace(errorContent, "(StackTrace: )   ", "$1").Trim();
 
-            var file = baseDirectory + $"logs\\log-{now}";
+            var file = baseDirectory + $"logs\\log-{DateTime.Now.ToUniversalTime():yyyy_MM_dd_HH_mm_ss}";
             var sur = "";
             var id = 2;
             while (File.Exists($"{file}{sur}.log"))
@@ -131,14 +129,29 @@ namespace CSHUE
             Thread.CurrentThread.CurrentCulture = tempCurrentCulture;
             Thread.CurrentThread.CurrentUICulture = tempCurrentUiCulture;
 
-            var url = "https://github.com/joao7yt/CSHUE/issues/new?title=Crash+report&labels=crash&body=";
-            url += Uri.EscapeDataString($"{Cultures.Resources.ExtraInfo}\n```\nUTC: {now}\n\n{errorContent}\n```");
+            var url = "https://github.com/joao7yt/CSHUE/issues/new?title=";
+            url += Uri.EscapeDataString($"Crash report. UTC: {DateTime.Now.ToUniversalTime():yyyy/MM/dd HH:mm:ss}");
+            url += "&labels=crash&body=";
+            url += Uri.EscapeDataString($"({Cultures.Resources.ExtraInfo})\n```\n{errorContent.Trim()}\n```");
 
             new CustomMessageBox
             {
-                Text1 = Cultures.Resources.Ok,
-                Text2 = Cultures.Resources.CreateIssue,
-                Path = url,
+                Button1 = new CustomButton
+                {
+                    Text = Cultures.Resources.Ok
+                },
+                Button2 = new CustomButton
+                {
+                    Text = Cultures.Resources.CreateIssue,
+                    Path = url
+                },
+                Button3 = new CustomButton
+                {
+                    Text = Cultures.Resources.ShowInFolder,
+                    Path = $"{file}{sur}.log",
+                    ShowInFolder = true,
+                    DialogResult = null
+                },
                 Message = string.Format(Cultures.Resources.CrashMessage, $"{file}{sur}.log"),
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 ShowInTaskbar = true

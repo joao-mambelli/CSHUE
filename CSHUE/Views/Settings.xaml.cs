@@ -91,8 +91,15 @@ namespace CSHUE.Views
         {
             var messageBox = new CustomMessageBox
             {
-                Text1 = Cultures.Resources.Yes,
-                Text2 = Cultures.Resources.No,
+                Button1 = new CustomButton
+                {
+                    Text = Cultures.Resources.Yes,
+                    DialogResult = true
+                },
+                Button2 = new CustomButton
+                {
+                    Text = Cultures.Resources.No
+                },
                 Message = Cultures.Resources.AreYouSure,
                 Owner = Window.GetWindow(this)
             };
@@ -158,8 +165,10 @@ namespace CSHUE.Views
             {
                 new CustomMessageBox
                 {
-                    Text1 = Cultures.Resources.Ok,
-                    Text2 = null,
+                    Button1 = new CustomButton
+                    {
+                        Text = Cultures.Resources.Ok
+                    },
                     Message = Cultures.Resources.NoLightsFound,
                     Owner = Window.GetWindow(this)
                 }.ShowDialog();

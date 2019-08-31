@@ -347,7 +347,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsMainMenu = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -366,7 +366,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "MainMenu":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsMainMenu = new GradientStopCollection
                         {
@@ -387,7 +387,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsPlayerGetsFlashed = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -406,7 +406,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "PlayerGetsFlashed":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsPlayerGetsFlashed = new GradientStopCollection
                         {
@@ -427,7 +427,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsTerroristsWin = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -446,7 +446,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "TerroristsWin":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsTerroristsWin = new GradientStopCollection
                         {
@@ -467,7 +467,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsCounterTerroristsWin = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -486,7 +486,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "CounterTerroristsWin":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsCounterTerroristsWin = new GradientStopCollection
                         {
@@ -507,7 +507,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsRoundStarts = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -526,7 +526,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "RoundStarts":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsRoundStarts = new GradientStopCollection
                         {
@@ -547,7 +547,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsBombPlanted = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -566,7 +566,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "BombPlanted":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsBombPlanted = new GradientStopCollection
                         {
@@ -597,7 +597,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsPlayerGetsKill = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -620,7 +620,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "PlayerGetsKill":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsPlayerGetsKill = new GradientStopCollection
                         {
@@ -641,7 +641,7 @@ namespace CSHUE.ViewModels
                     {
                         var selectedLights = Event.Lights.FindAll(x => Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsPlayerGetsKilled = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -664,7 +664,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "PlayerGetsKilled":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsPlayerGetsKilled = new GradientStopCollection
                         {
@@ -688,7 +688,7 @@ namespace CSHUE.ViewModels
                             Properties.Settings.Default.RoundStarts.Lights.FindAll(x =>
                                 Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsFreezeTime = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -711,7 +711,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "FreezeTime":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsFreezeTime = new GradientStopCollection
                         {
@@ -735,7 +735,7 @@ namespace CSHUE.ViewModels
                             Properties.Settings.Default.RoundStarts.Lights.FindAll(x =>
                                 Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsWarmup = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -758,7 +758,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "Warmup":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsWarmup = new GradientStopCollection
                         {
@@ -782,7 +782,7 @@ namespace CSHUE.ViewModels
                             Properties.Settings.Default.BombPlanted.Lights.FindAll(x =>
                                 Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsBombExplodes = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -805,7 +805,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "BombExplodes":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsBombExplodes = new GradientStopCollection
                         {
@@ -829,7 +829,7 @@ namespace CSHUE.ViewModels
                             Properties.Settings.Default.BombPlanted.Lights.FindAll(x =>
                                 Event.SelectedLights.Contains(x.UniqueId));
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             GradientStopsBombBlink = new GradientStopCollection();
                             for (var i = 0; i < (selectedLights.Count < 2 ? 2 : selectedLights.Count); i++)
@@ -852,7 +852,7 @@ namespace CSHUE.ViewModels
                         break;
                     }
                 case "BombBlink":
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher?.Invoke(() =>
                     {
                         GradientStopsBombBlink = new GradientStopCollection
                         {

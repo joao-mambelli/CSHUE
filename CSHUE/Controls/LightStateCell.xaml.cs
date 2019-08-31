@@ -108,14 +108,14 @@ namespace CSHUE.Controls
                         for (var i = (double) e.OldValue; i < (double) e.NewValue; i = i + 0.05)
                         {
                             var index = i;
-                            Application.Current.Dispatcher.Invoke(() =>
+                            Application.Current.Dispatcher?.Invoke(() =>
                             {
                                 ((LightStateCell) d).BrightnessAnimated = index;
                             });
                             Thread.Sleep((int) Math.Round(400 / (((double) e.NewValue - (double) e.OldValue) * 20)));
                         }
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             ((LightStateCell) d).BrightnessAnimated = (double) e.NewValue;
                         });
@@ -129,14 +129,14 @@ namespace CSHUE.Controls
                         for (var i = (double) e.OldValue; i > (double) e.NewValue; i = i - 0.05)
                         {
                             var index = i;
-                            Application.Current.Dispatcher.Invoke(() =>
+                            Application.Current.Dispatcher?.Invoke(() =>
                             {
                                 ((LightStateCell) d).BrightnessAnimated = index;
                             });
                             Thread.Sleep((int) Math.Round(400 / (((double) e.OldValue - (double) e.NewValue) * 20)));
                         }
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        Application.Current.Dispatcher?.Invoke(() =>
                         {
                             ((LightStateCell) d).BrightnessAnimated = (double) e.NewValue;
                         });

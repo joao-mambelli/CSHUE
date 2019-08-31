@@ -138,6 +138,7 @@
     </Page>
     <Compile Include="Helpers\ColorConverters.cs" />
     <Compile Include="Helpers\ColorWheel.cs" />
+    <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
     <Compile Include="ViewModels\HubInfoCellViewModel.cs" />
     <Compile Include="ViewModels\LightSelectorViewModel.cs" />
@@ -148,6 +149,9 @@
     </Compile>
     <Compile Include="Controls\LightSettingCell.xaml.cs">
       <DependentUpon>LightSettingCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Update.xaml.cs">
+      <DependentUpon>Update.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
@@ -215,6 +219,10 @@
     <Page Include="Controls\LightSettingCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Update.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>

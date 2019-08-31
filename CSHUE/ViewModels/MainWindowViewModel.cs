@@ -34,6 +34,7 @@ namespace CSHUE.ViewModels
         public Config ConfigPage;
         public Donate DonatePage;
         public About AboutPage;
+        public Update UpdatePage;
         public Home HomePage;
         public Settings SettingsPage;
 
@@ -129,6 +130,7 @@ namespace CSHUE.ViewModels
             HomePage = new Home();
             SettingsPage = new Settings();
             AboutPage = new About();
+            UpdatePage = new Update();
         }
 
         public static async Task SetDefaultLightsSettings()
@@ -733,7 +735,7 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs.Count > 1)
             {
-                return Application.Current.Dispatcher.Invoke(() =>
+                return Application.Current.Dispatcher?.Invoke(() =>
                 {
                     var list = new List<HubInfoCellViewModel>();
 
@@ -1592,6 +1594,9 @@ namespace CSHUE.ViewModels
                 case "About":
                     page.Navigate(AboutPage);
                     break;
+                case "UpdateAvailable":
+                    page.Navigate(UpdatePage);
+                    break;
                 default:
                     page.Navigate(HomePage);
                     break;
@@ -1613,6 +1618,9 @@ namespace CSHUE.ViewModels
                     break;
                 case "About":
                     page.Navigate(AboutPage);
+                    break;
+                case "UpdateAvailable":
+                    page.Navigate(UpdatePage);
                     break;
                 default:
                     page.Navigate(HomePage);
@@ -1652,6 +1660,8 @@ namespace CSHUE.ViewModels
             }
 
             var latestVersion = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value;
+
+            WarningUpdateVisibility = Version != latestVersion ? Visibility.Visible : Visibility.Collapsed;
 
             return Version != latestVersion ? latestVersion : "";
         }

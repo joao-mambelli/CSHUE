@@ -41,7 +41,7 @@ namespace CSHUE.Views
                     while (_isWindowOpened && Properties.Settings.Default.PreviewLights)
                     {
                         if (!ViewModel.IsColorPickerOpened)
-                            Dispatcher.Invoke(() =>
+                            Dispatcher?.Invoke(() =>
                             {
                                 ViewModel.SetLightsAsync();
                             });

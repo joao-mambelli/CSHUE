@@ -259,7 +259,7 @@ namespace CSHUE.ViewModels
 
             foreach (var l in allLights)
             {
-                Application.Current.Dispatcher.Invoke(delegate
+                Application.Current.Dispatcher?.Invoke(delegate
                 {
                     if (l.State.Hue == null || l.State.Saturation == null)
                         return;

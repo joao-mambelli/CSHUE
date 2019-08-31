@@ -433,6 +433,12 @@
                               Click="MenuNavigate_OnClick"
                               Tag="Config"/>
 
+                    <MenuItem Header="{Binding Path=UpdateAvailable, Source={StaticResource Resources}}"
+                              Style="{DynamicResource CustomMenuItemAlertUpdate}"
+                              Click="MenuNavigate_OnClick"
+                              Tag="UpdateAvailable"
+                              Visibility="{Binding WarningUpdateVisibility}"/>
+
                     <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_OnClick"

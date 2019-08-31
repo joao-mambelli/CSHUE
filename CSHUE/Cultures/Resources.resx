@@ -317,8 +317,8 @@ Make sure the Hub is connected to the same network as yours and retry.</value>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="OpenFolder" xml:space="preserve">
-    <value>Open folder</value>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Show in folder</value>
   </data>
   <data name="HubSelector" xml:space="preserve">
     <value>Hub Selector</value>
@@ -429,5 +429,14 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   </data>
   <data name="ExtraInfo" xml:space="preserve">
     <value>Extra information here</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="WarningUpdateAvailable" xml:space="preserve">
+    <value>Update available.</value>
+  </data>
+  <data name="NewVersionText" xml:space="preserve">
+    <value>A new CSHUE version is available at GitHub. Click at the bellow button to open the release post in your browse.</value>
   </data>
 </root>

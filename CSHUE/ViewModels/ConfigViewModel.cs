@@ -127,8 +127,10 @@ namespace CSHUE.ViewModels
             {
                 new CustomMessageBox
                 {
-                    Text1 = Resources.Ok,
-                    Text2 = null,
+                    Button1 = new CustomButton
+                    {
+                        Text = Resources.Ok
+                    },
                     Message = $"{FailText} {(string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder) ? Resources.SelectSteamFolder : Resources.SelectFolder)}",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
@@ -171,9 +173,16 @@ namespace CSHUE.ViewModels
 
                     new CustomMessageBox
                     {
-                        Text1 = Resources.Ok,
-                        Text2 = Resources.OpenFolder,
-                        Path = cfgpath,
+                        Button1 = new CustomButton
+                        {
+                            Text = Resources.Ok
+                        },
+                        Button2 = new CustomButton
+                        {
+                            Text = Resources.ShowInFolder,
+                            Path = cfgpath + "\\gamestate_integration_cshue.cfg",
+                            ShowInFolder = true
+                        },
                         Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     }.ShowDialog();
@@ -189,9 +198,16 @@ namespace CSHUE.ViewModels
 
                 new CustomMessageBox
                 {
-                    Text1 = Resources.Ok,
-                    Text2 = Resources.OpenFolder,
-                    Path = cfgpath,
+                    Button1 = new CustomButton
+                    {
+                        Text = Resources.Ok
+                    },
+                    Button2 = new CustomButton
+                    {
+                        Text = Resources.ShowInFolder,
+                        Path = cfgpath + "\\gamestate_integration_cshue.cfg",
+                        ShowInFolder = true
+                    },
                     Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();

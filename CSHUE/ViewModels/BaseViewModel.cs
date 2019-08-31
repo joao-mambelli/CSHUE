@@ -43,6 +43,24 @@ namespace CSHUE.ViewModels
         }
 
         /// <summary>
+        /// Warning update visibility back field.
+        /// </summary>
+        private Visibility _warningUpdateVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Warning Update visibility property.
+        /// </summary>
+        public Visibility WarningUpdateVisibility
+        {
+            get =>
+                _warningUpdateVisibility;
+            set
+            {
+                _warningUpdateVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Warning CSGO visibility back field.
         /// </summary>
         private Visibility _warningCsgoVisibility;

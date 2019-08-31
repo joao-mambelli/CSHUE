@@ -54,65 +54,39 @@
 
         </TextBlock>
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Visibility="{Binding Button1Button2Visibility}">
+                    HorizontalAlignment="Right">
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,0,15"
+                    Margin="0,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"
                     MinWidth="90"
                     HorizontalAlignment="Right"
-                    Content="{Binding Text1}"
-                    Click="Button1_OnClick"/>
+                    Content="{Binding Button3.Text}"
+                    Click="Button3_OnClick"
+                    Visibility="{Binding Button3Visibility}"/>
 
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,15,15"
+                    Margin="0,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"
                     MinWidth="90"
                     HorizontalAlignment="Right"
-                    Content="{Binding Text2}"
-                    Click="Button2_OnClick"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Visibility="{Binding Button1Visibility}">
-            <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,15,15"
-                    FontSize="14"
-                    VerticalAlignment="Bottom"
-                    Height="31"
-                    MinWidth="90"
-                    HorizontalAlignment="Right"
-                    Content="{Binding Text1}"
-                    Click="Button1_OnClick"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Visibility="{Binding Button1OpenFolderVisibility}">
-            <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,0,15"
-                    FontSize="14"
-                    VerticalAlignment="Bottom"
-                    Height="31"
-                    MinWidth="90"
-                    HorizontalAlignment="Right"
-                    Content="{Binding Text2}"
-                    Click="ButtonOpenFolder_OnClick"/>
+                    Content="{Binding Button2.Text}"
+                    Click="Button2_OnClick"
+                    Visibility="{Binding Button2Visibility}"/>
 
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,15,15"
+                    Margin="0,25,15,15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"
                     MinWidth="90"
                     HorizontalAlignment="Right"
-                    Content="{Binding Text1}"
-                    Click="Button1_OnClick"/>
+                    Content="{Binding Button1.Text}"
+                    Click="Button1_OnClick"
+                    Visibility="{Binding Button1Visibility}"/>
         </StackPanel>
     </Grid>
 </Window>

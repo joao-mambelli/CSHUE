@@ -121,7 +121,9 @@ namespace CSHUE.Views
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
 #pragma warning disable 169
+#pragma warning disable 414
             private readonly int dwFlags = 0;
+#pragma warning restore 414
 #pragma warning restore 169
         }
 
@@ -279,9 +281,16 @@ namespace CSHUE.Views
 
                 new CustomMessageBox
                 {
-                    Text1 = Cultures.Resources.Ok,
-                    Text2 = Cultures.Resources.ShowInBrowser,
-                    Path = "https://github.com/joao7yt/CSHUE/releases/tag/" + latestVerstion,
+                    Button1 = new CustomButton
+                    {
+                        Text = Cultures.Resources.Ok
+                    },
+                    Button2 = new CustomButton
+                    {
+                        Text = Cultures.Resources.ShowInBrowser,
+                        Path = $"https://github.com/joao7yt/CSHUE/releases/tag/{latestVerstion}",
+                        DialogResult = null
+                    },
                     Message = string.Format(Cultures.Resources.NewVersionMessage, latestVerstion),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     ShowInTaskbar = true

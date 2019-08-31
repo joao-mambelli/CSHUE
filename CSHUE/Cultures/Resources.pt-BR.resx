@@ -317,8 +317,8 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="Exit" xml:space="preserve">
     <value>Sair</value>
   </data>
-  <data name="OpenFolder" xml:space="preserve">
-    <value>Abrir pasta</value>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Mostrar na pasta</value>
   </data>
   <data name="HubSelector" xml:space="preserve">
     <value>Seletor de Hub</value>
@@ -429,5 +429,14 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   </data>
   <data name="ExtraInfo" xml:space="preserve">
     <value>Informação extra aqui</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Atualização</value>
+  </data>
+  <data name="WarningUpdateAvailable" xml:space="preserve">
+    <value>Atualização disponível.</value>
+  </data>
+  <data name="NewVersionText" xml:space="preserve">
+    <value>Uma nova versão do CSHUE está disponível no GitHub. Clique no botão abaixo para abrir a postagem de lançamento no navegador.</value>
   </data>
 </root>

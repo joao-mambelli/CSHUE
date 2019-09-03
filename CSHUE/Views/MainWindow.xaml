@@ -207,7 +207,9 @@
                               Stroke="Orange"/>
                     </Grid>
                 </Grid>
+            </StackPanel>
 
+            <StackPanel VerticalAlignment="Bottom">
                 <Grid x:Name="UpdateAvailable"
                       Height="48"
                       MouseLeftButtonDown="Control_OnMouseLeftButtonDown"
@@ -223,12 +225,13 @@
                               Visibility="Hidden"/>
 
                         <Path Data="{Binding Source={StaticResource UpdateAvailable}, Path=Data}"
-                              Stroke="{Binding (Window.Foreground), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                              Stroke="Gray"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               Margin="14"/>
 
-                        <TextBlock Text="{Binding Path=UpdateAvailable, Source={StaticResource Resources}}"
+                        <TextBlock Foreground="Gray"
+                                   Text="{Binding Path=UpdateAvailable, Source={StaticResource Resources}}"
                                    Margin="2,0,0,0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -240,6 +243,7 @@
                           ToolTipService.HorizontalOffset="-50"
                           ToolTipService.HasDropShadow="True"
                           ToolTipService.ShowDuration="3000"
+                          Visibility="{Binding aaa}"
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
@@ -252,9 +256,7 @@
                               Stroke="Orange"/>
                     </Grid>
                 </Grid>
-            </StackPanel>
 
-            <StackPanel VerticalAlignment="Bottom">
                 <Grid x:Name="Donate"
                       Height="48"
                       MouseLeftButtonDown="Control_OnMouseLeftButtonDown"

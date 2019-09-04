@@ -167,6 +167,7 @@ namespace CSHUE.Views
             Config.MouseLeave += Control_OnMouseLeave;
             Donate.MouseLeave += Control_OnMouseLeave;
             About.MouseLeave += Control_OnMouseLeave;
+            UpdateAvailable.MouseLeave += Control_OnMouseLeave;
             Settings.MouseLeave += Control_OnMouseLeave;
             MinimizeButton.MouseEnter += TopControls_OnMouseEnter;
             MinimizeButton.MouseLeave += TopControls_OnMouseLeave;
@@ -323,58 +324,65 @@ namespace CSHUE.Views
 
         private void OnPreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
         {
-            try
-            {
-                using (var key = Registry.CurrentUser.OpenSubKey(
-                    "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+            if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
+                try
                 {
-                    if (key == null)
+                    using (var key = Registry.CurrentUser.OpenSubKey(
+                        "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
                     {
-                        ViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
-                        return;
-                    }
-
-                    var changeMenuColor = false;
-
-                    if (key.GetValue("AppsUseLightTheme") != null)
-                    {
-                        var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
-
-                        if (_isModeDark != false && !darkMode)
+                        if (key == null)
                         {
-                            if (_isTransparencyTrue != true)
-                                changeMenuColor = true;
-                        }
-                        else if (_isModeDark != true && darkMode)
-                        {
-                            if (_isTransparencyTrue != true)
-                                changeMenuColor = true;
+                            ViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                            return;
                         }
 
-                        _isModeDark = darkMode;
+                        var changeMenuColor = false;
+
+                        if (key.GetValue("AppsUseLightTheme") != null)
+                        {
+                            var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+
+                            if (_isModeDark != false && !darkMode)
+                            {
+                                if (_isTransparencyTrue != true)
+                                    changeMenuColor = true;
+                            }
+                            else if (_isModeDark != true && darkMode)
+                            {
+                                if (_isTransparencyTrue != true)
+                                    changeMenuColor = true;
+                            }
+
+                            _isModeDark = darkMode;
+                        }
+
+                        if (key.GetValue("EnableTransparency") == null)
+                        {
+                            ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
+                            return;
+                        }
+
+                        var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
+
+                        if (_isTransparencyTrue != true && transparency)
+                            ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
+                        else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
+                            ViewModel.BackgroundColor = _isModeDark == true
+                                ? Color.FromRgb(31, 31, 31)
+                                : Color.FromRgb(230, 230, 230);
+
+                        _isTransparencyTrue = transparency;
                     }
-
-                    if (key.GetValue("EnableTransparency") == null)
-                    {
-                        ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
-                        return;
-                    }
-
-                    var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
-
-                    if (_isTransparencyTrue != true && transparency)
-                        ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
-                    else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
-                        ViewModel.BackgroundColor = _isModeDark == true
-                            ? Color.FromRgb(31, 31, 31)
-                            : Color.FromRgb(230, 230, 230);
-
-                    _isTransparencyTrue = transparency;
                 }
-            }
-            catch
+                catch
+                {
+                    // ignored
+                }
+            else
             {
-                // ignored
+                ViewModel.BackgroundColor = ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
+                    ? Color.FromRgb(31, 31, 31)
+                    : Color.FromRgb(230, 230, 230);
             }
         }
 
@@ -407,13 +415,21 @@ namespace CSHUE.Views
         private void Page_OnNavigated(object sender, NavigationEventArgs e)
         {
             Page.NavigationService.RemoveBackEntry();
+
+            ResourceDictionaryEx.GlobalTheme = ElementTheme.Light;
         }
 
         private void Control_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ((Grid) sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
-                ? Color.FromArgb(102, 255, 255, 255)
-                : Color.FromArgb(102, 0, 0, 0));
+            if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
+                ((Grid) sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
+                    ? Color.FromArgb(102, 255, 255, 255)
+                    : Color.FromArgb(102, 0, 0, 0));
+            else
+                ((Grid)sender).Background = new SolidColorBrush(ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
+                    ? Color.FromArgb(102, 255, 255, 255)
+                    : Color.FromArgb(102, 0, 0, 0));
+
             _buttonClickable = true;
         }
 

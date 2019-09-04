@@ -169,6 +169,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for updates.
+        /// </summary>
+        public static string CheckUpdate {
+            get {
+                return ResourceManager.GetString("CheckUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color Picker.
         /// </summary>
         public static string ColorPicker {
@@ -553,6 +562,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No updates were found. Click the below button to check for updates..
+        /// </summary>
+        public static string NoUpdates {
+            get {
+                return ResourceManager.GetString("NoUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Off.
         /// </summary>
         public static string Off {
@@ -639,6 +657,24 @@ namespace CSHUE.Cultures {
         public static string RememberLights {
             get {
                 return ResourceManager.GetString("RememberLights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report a problem.
+        /// </summary>
+        public static string ReportProblem {
+            get {
+                return ResourceManager.GetString("ReportProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are having trouble using the app or you think there are unwanted behavior, let me know through GitHub..
+        /// </summary>
+        public static string ReportProblemText {
+            get {
+                return ResourceManager.GetString("ReportProblemText", resourceCulture);
             }
         }
         

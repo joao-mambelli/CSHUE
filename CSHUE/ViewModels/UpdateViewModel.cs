@@ -14,6 +14,17 @@
                 OnPropertyChanged();
             }
         }
+        
+        private bool _allowCheck = true;
+        public bool AllowCheck
+        {
+            get => _allowCheck;
+            set
+            {
+                _allowCheck = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 

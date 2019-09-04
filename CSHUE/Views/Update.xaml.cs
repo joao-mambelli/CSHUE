@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using CSHUE.ViewModels;
 
@@ -47,6 +48,26 @@ namespace CSHUE.Views
         private void ShowInBrowser_OnClick(object sender, EventArgs e)
         {
             Process.Start($"https://github.com/joao7yt/CSHUE/releases/tag/{Properties.Settings.Default.LatestVersionCheck}");
+        }
+
+        /// <summary>
+        /// CheckUpdate button click event handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckUpdate_OnClick(object sender, EventArgs e)
+        {
+            ViewModel.AllowCheck = false;
+
+            new Thread(() =>
+                {
+                    ViewModel.MainWindowViewModel.GetLastVersion();
+
+                    ViewModel.AllowCheck = true;
+
+                    ViewModel.WarningUpdateVisibility = ViewModel.MainWindowViewModel.WarningUpdateVisibility;
+                })
+            { IsBackground = true }.Start();
         }
 
         #endregion

@@ -57,6 +57,12 @@
                             <Setter Property="BorderBrush"
                                     Value="{DynamicResource SystemBaseLowColorBrush}"/>
                         </Trigger>
+
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Foreground"
+                                    Value="Gray"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -179,6 +179,7 @@
 
                             <Path Data="M 8.1,0 a 8,8 0 1 1 -0.2,0 Z M 7.5,11 v 2 h 1 v -2 M 7.5,3 v 6 h 1 v -6"
                                   Stroke="Orange"
+                                  Visibility="{Binding WarningUpdateVisibility}"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Center"
                                   d:DataContext="{d:DesignInstance Type=viewModels:BaseViewModel}"

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
@@ -46,6 +47,16 @@ namespace CSHUE.Views
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// Report button click event handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Report_OnClick(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/joao7yt/CSHUE/issues/new");
         }
 
         #endregion

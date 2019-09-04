@@ -439,4 +439,16 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="NewVersionText" xml:space="preserve">
     <value>Uma nova versão do CSHUE está disponível no GitHub. Clique no botão abaixo para abrir a postagem de lançamento no navegador.</value>
   </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>Verificar se há atualizações</value>
+  </data>
+  <data name="NoUpdates" xml:space="preserve">
+    <value>Nenhuma atualização foi encontrada. Clique no botão abaixo para verificar se há atualizações.</value>
+  </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>Relatar um problema</value>
+  </data>
+  <data name="ReportProblemText" xml:space="preserve">
+    <value>Se você está tendo problemas ao usar o programa or você acha que há comportamentos indesejados, me avise pelo GitHub.</value>
+  </data>
 </root>

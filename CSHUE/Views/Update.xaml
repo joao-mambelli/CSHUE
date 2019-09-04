@@ -6,12 +6,18 @@
       mc:Ignorable="d"
       xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
       xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
+      xmlns:helpers="clr-namespace:CSHUE.Helpers"
+      xmlns:p="clr-namespace:CSHUE.Properties"
       Foreground="{DynamicResource SystemBaseHighColorBrush}"
       FontSize="14"
       d:DesignWidth="800"
       Title="Update"
       FontFamily="Segoe UI Semilight"
       d:DataContext="{d:DesignInstance Type=viewModels:UpdateViewModel}">
+    <Page.Resources>
+        <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -39,29 +45,67 @@
                     <TextBlock Margin="0,20,0,2"
                                TextWrapping="Wrap"
                                TextAlignment="Justify"
+                               FontSize="20"
+                               Visibility="{Binding WarningUpdateVisibility}"
+                               Text="{Binding Source={x:Static p:Settings.Default}, Path=LatestVersionCheck}"/>
+
+                    <TextBlock Margin="0,20,0,2"
+                               TextWrapping="Wrap"
+                               TextAlignment="Justify"
+                               Visibility="{Binding WarningUpdateVisibility}"
                                Text="{Binding Path=NewVersionText, Source={StaticResource Resources}}"/>
 
-                    <Button ToolTipService.InitialShowDelay="100"
-                            ToolTipService.HasDropShadow="True"
-                            ToolTipService.HorizontalOffset="-150"
-                            ToolTipService.ShowDuration="30000"
-                            Margin="0,10,0,9"
-                            VerticalAlignment="Top"
-                            Height="31"
-                            MinWidth="90"
-                            HorizontalAlignment="Center"
-                            Style="{DynamicResource CustomButton}"
-                            Content="{Binding Path=ShowInBrowser, Source={StaticResource Resources}}"
-                            Click="ShowInBrowser_OnClick">
-                        <Button.ToolTip>
-                            <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                     Background="{DynamicResource SystemAltHighColorBrush}">
-                                <StackPanel>
+                    <TextBlock Margin="0,20,0,2"
+                               TextWrapping="Wrap"
+                               TextAlignment="Justify"
+                               Visibility="{Binding WarningUpdateVisibility, Converter={StaticResource VisibilityInverter}}"
+                               Text="{Binding Path=NoUpdates, Source={StaticResource Resources}}"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+
+                            <ColumnDefinition Width="*"/>
+
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button ToolTipService.InitialShowDelay="100"
+                                ToolTipService.HasDropShadow="True"
+                                ToolTipService.HorizontalOffset="-150"
+                                ToolTipService.ShowDuration="30000"
+                                Margin="0,10,0,9"
+                                VerticalAlignment="Top"
+                                Height="31"
+                                MinWidth="90"
+                                HorizontalAlignment="Center"
+                                Style="{DynamicResource CustomButton}"
+                                Content="{Binding Path=ShowInBrowser, Source={StaticResource Resources}}"
+                                Click="ShowInBrowser_OnClick"
+                                Visibility="{Binding WarningUpdateVisibility}">
+                            <Button.ToolTip>
+                                <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                                        Background="{DynamicResource SystemAltHighColorBrush}">
                                     <TextBlock Text="{Binding Link}"/>
-                                </StackPanel>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button Grid.Column="2"
+                                ToolTipService.InitialShowDelay="100"
+                                ToolTipService.HasDropShadow="True"
+                                ToolTipService.HorizontalOffset="-150"
+                                ToolTipService.ShowDuration="30000"
+                                Margin="0,10,0,9"
+                                VerticalAlignment="Top"
+                                Height="31"
+                                MinWidth="90"
+                                HorizontalAlignment="Center"
+                                Style="{DynamicResource CustomButton}"
+                                Content="{Binding Path=CheckUpdate, Source={StaticResource Resources}}"
+                                Click="CheckUpdate_OnClick"
+                                IsEnabled="{Binding AllowCheck}"/>
+                    </Grid>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

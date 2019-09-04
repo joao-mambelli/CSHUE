@@ -131,7 +131,7 @@ namespace CSHUE
 
             var url = "https://github.com/joao7yt/CSHUE/issues/new?title=";
             url += Uri.EscapeDataString($"Crash report. UTC: {DateTime.Now.ToUniversalTime():yyyy/MM/dd HH:mm:ss}");
-            url += "&labels=crash&body=";
+            url += "&body=";
             url += Uri.EscapeDataString($"({Cultures.Resources.ExtraInfo})\n```\n{errorContent.Trim()}\n```");
 
             new CustomMessageBox

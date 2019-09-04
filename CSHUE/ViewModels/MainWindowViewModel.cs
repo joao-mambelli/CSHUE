@@ -1595,6 +1595,7 @@ namespace CSHUE.ViewModels
                     page.Navigate(AboutPage);
                     break;
                 case "UpdateAvailable":
+                    UpdatePage.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
                     page.Navigate(UpdatePage);
                     break;
                 default:
@@ -1620,6 +1621,7 @@ namespace CSHUE.ViewModels
                     page.Navigate(AboutPage);
                     break;
                 case "UpdateAvailable":
+                    UpdatePage.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
                     page.Navigate(UpdatePage);
                     break;
                 default:
@@ -1660,6 +1662,9 @@ namespace CSHUE.ViewModels
             }
 
             var latestVersion = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value;
+            //latestVersion = Version;
+
+            Properties.Settings.Default.LatestVersionCheck = latestVersion;
 
             WarningUpdateVisibility = Version != latestVersion ? Visibility.Visible : Visibility.Collapsed;
 

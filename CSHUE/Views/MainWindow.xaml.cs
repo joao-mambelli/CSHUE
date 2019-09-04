@@ -273,12 +273,10 @@ namespace CSHUE.Views
 
         private void OnInitialized(object sender, EventArgs e)
         {
-            var latestVerstion = ViewModel.GetLastVersion();
+            var lastVersion = ViewModel.GetLastVersion();
 
-            if (latestVerstion != "" && Properties.Settings.Default.LatestVersionCheck != latestVerstion)
+            if (lastVersion != "" && Properties.Settings.Default.LatestVersionCheck != lastVersion)
             {
-                Properties.Settings.Default.LatestVersionCheck = latestVerstion;
-
                 new CustomMessageBox
                 {
                     Button1 = new CustomButton
@@ -288,10 +286,10 @@ namespace CSHUE.Views
                     Button2 = new CustomButton
                     {
                         Text = Cultures.Resources.ShowInBrowser,
-                        Path = $"https://github.com/joao7yt/CSHUE/releases/tag/{latestVerstion}",
+                        Path = $"https://github.com/joao7yt/CSHUE/releases/tag/{lastVersion}",
                         DialogResult = null
                     },
-                    Message = string.Format(Cultures.Resources.NewVersionMessage, latestVerstion),
+                    Message = string.Format(Cultures.Resources.NewVersionMessage, lastVersion),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     ShowInTaskbar = true
                 }.ShowDialog();

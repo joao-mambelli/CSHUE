@@ -439,4 +439,16 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="NewVersionText" xml:space="preserve">
     <value>A new CSHUE version is available at GitHub. Click at the bellow button to open the release post in your browse.</value>
   </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="NoUpdates" xml:space="preserve">
+    <value>No updates were found. Click the below button to check for updates.</value>
+  </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>Report a problem</value>
+  </data>
+  <data name="ReportProblemText" xml:space="preserve">
+    <value>If you are having trouble using the app or you think there are unwanted behavior, let me know through GitHub.</value>
+  </data>
 </root>

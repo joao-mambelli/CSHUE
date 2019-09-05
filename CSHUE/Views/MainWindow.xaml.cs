@@ -140,8 +140,6 @@ namespace CSHUE.Views
         public readonly MainWindowViewModel ViewModel = new MainWindowViewModel();
         
         private bool _buttonClickable;
-        private bool? _isModeDark;
-        private bool? _isTransparencyTrue;
         private SplashScreen _splashScreen;
 
         #endregion
@@ -342,18 +340,18 @@ namespace CSHUE.Views
                         {
                             var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
 
-                            if (_isModeDark != false && !darkMode)
+                            if (ViewModel.IsModeDark != false && !darkMode)
                             {
-                                if (_isTransparencyTrue != true)
+                                if (ViewModel.IsTransparencyTrue != true)
                                     changeMenuColor = true;
                             }
-                            else if (_isModeDark != true && darkMode)
+                            else if (ViewModel.IsModeDark != true && darkMode)
                             {
-                                if (_isTransparencyTrue != true)
+                                if (ViewModel.IsTransparencyTrue != true)
                                     changeMenuColor = true;
                             }
 
-                            _isModeDark = darkMode;
+                            ViewModel.IsModeDark = darkMode;
                         }
 
                         if (key.GetValue("EnableTransparency") == null)
@@ -364,14 +362,14 @@ namespace CSHUE.Views
 
                         var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
 
-                        if (_isTransparencyTrue != true && transparency)
+                        if (ViewModel.IsTransparencyTrue != true && transparency)
                             ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
-                        else if (_isTransparencyTrue != false && !transparency || changeMenuColor)
-                            ViewModel.BackgroundColor = _isModeDark == true
+                        else if (ViewModel.IsTransparencyTrue != false && !transparency || changeMenuColor)
+                            ViewModel.BackgroundColor = ViewModel.IsModeDark == true
                                 ? Color.FromRgb(31, 31, 31)
                                 : Color.FromRgb(230, 230, 230);
 
-                        _isTransparencyTrue = transparency;
+                        ViewModel.IsTransparencyTrue = transparency;
                     }
                 }
                 catch
@@ -415,8 +413,6 @@ namespace CSHUE.Views
         private void Page_OnNavigated(object sender, NavigationEventArgs e)
         {
             Page.NavigationService.RemoveBackEntry();
-
-            ResourceDictionaryEx.GlobalTheme = ElementTheme.Light;
         }
 
         private void Control_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

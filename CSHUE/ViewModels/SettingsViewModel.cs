@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Linq;
@@ -28,11 +29,117 @@ namespace CSHUE.ViewModels
         #region Properties
 
         /// <summary>
-        /// MainMenu gradients stops back field. 
+        /// Themes list back field.
+        /// </summary>
+        private ObservableCollection<Theme> _themes = new ObservableCollection<Theme>
+        {
+            new Theme
+            {
+                Text = "123",
+                Index = 0
+            },
+            new Theme
+            {
+                Text = "456",
+                Index = 1
+            },
+            new Theme
+            {
+                Text = "789",
+                Index = 2
+            }
+        };
+        /// <summary>
+        /// Themes list property.
+        /// </summary>
+        public ObservableCollection<Theme> Themes
+        {
+            get =>
+                _themes;
+            set
+            {
+                _themes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// SelectedTheme back field.
+        /// </summary>
+        private Theme _selectedTheme;
+        /// <summary>
+        /// SelectedTheme property.
+        /// </summary>
+        public Theme SelectedTheme
+        {
+            get =>
+                _selectedTheme;
+            set
+            {
+                _selectedTheme = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Transparencies list back field.
+        /// </summary>
+        private ObservableCollection<Transparency> _transparencies = new ObservableCollection<Transparency>
+        {
+            new Transparency
+            {
+                Text = "123",
+                Index = 0
+            },
+            new Transparency
+            {
+                Text = "456",
+                Index = 1
+            },
+            new Transparency
+            {
+                Text = "789",
+                Index = 2
+            }
+        };
+        /// <summary>
+        /// Transparencies list property.
+        /// </summary>
+        public ObservableCollection<Transparency> Transparencies
+        {
+            get =>
+                _transparencies;
+            set
+            {
+                _transparencies = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// SelectedTransparency back field.
+        /// </summary>
+        private Transparency _selectedTransparency;
+        /// <summary>
+        /// SelectedTransparency property.
+        /// </summary>
+        public Transparency SelectedTransparency
+        {
+            get =>
+                _selectedTransparency;
+            set
+            {
+                _selectedTransparency = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// MainMenu gradients stops back field.
         /// </summary>
         private GradientStopCollection _gradientStopsMainMenu;
         /// <summary>
-        /// MainMenu gradients stops property. 
+        /// MainMenu gradients stops property.
         /// </summary>
         public GradientStopCollection GradientStopsMainMenu
         {
@@ -46,11 +153,11 @@ namespace CSHUE.ViewModels
         }
 
         /// <summary>
-        /// PlayerGetsKill gradients stops back field. 
+        /// PlayerGetsKill gradients stops back field.
         /// </summary>
         private GradientStopCollection _gradientStopsPlayerGetsKill;
         /// <summary>
-        /// PlayerGetsKill gradients stops property. 
+        /// PlayerGetsKill gradients stops property.
         /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsKill
         {
@@ -64,11 +171,11 @@ namespace CSHUE.ViewModels
         }
 
         /// <summary>
-        /// PlayerGetsKilled gradients stops back field. 
+        /// PlayerGetsKilled gradients stops back field.
         /// </summary>
         private GradientStopCollection _gradientStopsPlayerGetsKilled;
         /// <summary>
-        /// PlayerGetsKilled gradients stops property. 
+        /// PlayerGetsKilled gradients stops property.
         /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsKilled
         {
@@ -907,5 +1014,17 @@ namespace CSHUE.ViewModels
         }
 
         #endregion
+    }
+
+    public class Theme
+    {
+        public string Text { get; set; }
+        public int Index { get; set; }
+    }
+
+    public class Transparency
+    {
+        public string Text { get; set; }
+        public int Index { get; set; }
     }
 }

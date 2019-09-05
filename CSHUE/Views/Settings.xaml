@@ -445,6 +445,34 @@
                               Style="{DynamicResource CustomComboBox}"
                               SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=LanguageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <TextBlock Text="{Binding Path=Theme, Source={StaticResource Resources}}"
+                               Margin="0,15,0,4"/>
+
+                    <ComboBox Margin="0,4,0,9"
+                              x:Name="ComboBoxTheme"
+                              Width="280"
+                              HorizontalAlignment="Left"
+                              MaxDropDownHeight="162"
+                              ItemsSource="{Binding Themes}"
+                              Style="{DynamicResource CustomComboBox}"
+                              SelectedItem="{Binding SelectedTheme}"
+                              SelectionChanged="ComboBoxTheme_OnSelectionChanged"
+                              DisplayMemberPath="Text"/>
+
+                    <TextBlock Text="{Binding Path=Theme, Source={StaticResource Resources}}"
+                               Margin="0,15,0,4"/>
+
+                    <ComboBox Margin="0,4,0,9"
+                              x:Name="ComboBoxTransparency"
+                              Width="280"
+                              HorizontalAlignment="Left"
+                              MaxDropDownHeight="162"
+                              ItemsSource="{Binding Transparencies}"
+                              Style="{DynamicResource CustomComboBox}"
+                              SelectedItem="{Binding SelectedTransparency}"
+                              SelectionChanged="ComboBoxTransparency_OnSelectionChanged"
+                              DisplayMemberPath="Text"/>
+
                     <TextBlock Margin="0,20,0,2"
                                FontSize="20"
                                Text="CS:GO"/>

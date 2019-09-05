@@ -30,6 +30,8 @@ namespace CSHUE.ViewModels
 
         public bool WindowMinimized;
         public bool AllowStartLightsChecking;
+        public bool? IsModeDark;
+        public bool? IsTransparencyTrue;
 
         public Config ConfigPage;
         public Donate DonatePage;

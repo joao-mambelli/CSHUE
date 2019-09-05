@@ -451,4 +451,13 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="ReportProblemText" xml:space="preserve">
     <value>If you are having trouble using the app or you think there are unwanted behavior, let me know through GitHub.</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Light</value>
+  </data>
 </root>

@@ -451,4 +451,16 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="ReportProblemText" xml:space="preserve">
     <value>Se você está tendo problemas ao usar o programa or você acha que há comportamentos indesejados, me avise pelo GitHub.</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="ThemeDefault" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Claro</value>
+  </data>
 </root>

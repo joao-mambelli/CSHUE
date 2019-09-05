@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
 using CSHUE.Helpers;
+using Microsoft.Win32;
 using Q42.HueApi;
+using SourceChord.FluentWPF;
 
 namespace CSHUE.Views
 {
@@ -33,6 +38,88 @@ namespace CSHUE.Views
 
             ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
 
+            ViewModel.SelectedTheme = ViewModel.Themes.First(x => x.Index == Properties.Settings.Default.Theme);
+
+            ResourceDictionaryEx.GlobalTheme = ViewModel.SelectedTheme.Index == 0
+                ? ElementTheme.Default
+                : (ViewModel.SelectedTheme.Index == 1
+                    ? ElementTheme.Dark
+                    : ElementTheme.Light);
+
+            if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
+                try
+                {
+                    using (var key = Registry.CurrentUser.OpenSubKey(
+                        "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+                    {
+                        if (key == null)
+                        {
+                            if (ViewModel.MainWindowViewModel != null)
+                                ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                            return;
+                        }
+
+                        var changeMenuColor = false;
+
+                        if (key.GetValue("AppsUseLightTheme") != null)
+                        {
+                            var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+
+                            if (ViewModel.MainWindowViewModel?.IsModeDark != false && !darkMode)
+                            {
+                                if (ViewModel.MainWindowViewModel?.IsTransparencyTrue != true)
+                                    changeMenuColor = true;
+                            }
+                            else if (ViewModel.MainWindowViewModel?.IsModeDark != true && darkMode)
+                            {
+                                if (ViewModel.MainWindowViewModel?.IsTransparencyTrue != true)
+                                    changeMenuColor = true;
+                            }
+
+                            if (ViewModel.MainWindowViewModel != null)
+                                ViewModel.MainWindowViewModel.IsModeDark = darkMode;
+                        }
+
+                        if (key.GetValue("EnableTransparency") == null)
+                        {
+                            if (ViewModel.MainWindowViewModel != null)
+                                ViewModel.MainWindowViewModel.BackgroundColor =
+                                    (Color) FindResource("SystemAltLowColor");
+                            return;
+                        }
+
+                        var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
+
+                        if (ViewModel.MainWindowViewModel?.IsTransparencyTrue != true && transparency)
+                        {
+                            if (ViewModel.MainWindowViewModel != null)
+                                ViewModel.MainWindowViewModel.BackgroundColor =
+                                    (Color) FindResource("SystemAltLowColor");
+                        }
+                        else if (ViewModel.MainWindowViewModel?.IsTransparencyTrue != false && !transparency || changeMenuColor)
+                            if (ViewModel.MainWindowViewModel != null)
+                                ViewModel.MainWindowViewModel.BackgroundColor =
+                                    ViewModel.MainWindowViewModel.IsModeDark == true
+                                        ? Color.FromRgb(31, 31, 31)
+                                        : Color.FromRgb(230, 230, 230);
+
+                        if (ViewModel.MainWindowViewModel != null)
+                            ViewModel.MainWindowViewModel.IsTransparencyTrue = transparency;
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            else
+            {
+                if (ViewModel.MainWindowViewModel != null)
+                    ViewModel.MainWindowViewModel.BackgroundColor =
+                        ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
+                            ? Color.FromRgb(31, 31, 31)
+                            : Color.FromRgb(230, 230, 230);
+            }
+
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_OnSelectionChanged;
 
             Properties.Settings.Default.PropertyChanged += Default_OnPropertyChanged;
@@ -51,7 +138,7 @@ namespace CSHUE.Views
         {
             Properties.Settings.Default.Save();
 
-            if (((ComboBox) sender).SelectedItem == null)
+            if (((ComboBox)sender).SelectedItem == null)
             {
                 var culture = CultureResources.SupportedCultures.Contains(CultureInfo.InstalledUICulture)
                     ? CultureInfo.InstalledUICulture
@@ -71,7 +158,7 @@ namespace CSHUE.Views
             }
             else
             {
-                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == (string) ((ComboBox) sender).SelectedItem);
+                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == (string)((ComboBox)sender).SelectedItem);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
@@ -179,62 +266,62 @@ namespace CSHUE.Views
             var title = Cultures.Resources.LightSelector + " - ";
             EventProperty property = null;
             EventBrightnessProperty brightnessProperty = null;
-            if (((Button) sender).Tag.ToString() == "MainMenu")
+            if (((Button)sender).Tag.ToString() == "MainMenu")
             {
                 title += Cultures.Resources.MainMenu;
                 property = Properties.Settings.Default.MainMenu;
             }
-            if (((Button) sender).Tag.ToString() == "PlayerGetsFlashed")
+            if (((Button)sender).Tag.ToString() == "PlayerGetsFlashed")
             {
                 title += Cultures.Resources.PlayerGetsFlashed;
                 property = Properties.Settings.Default.PlayerGetsFlashed;
             }
-            if (((Button) sender).Tag.ToString() == "TerroristsWin")
+            if (((Button)sender).Tag.ToString() == "TerroristsWin")
             {
                 title += Cultures.Resources.TerroristsWin;
                 property = Properties.Settings.Default.TerroristsWin;
             }
-            if (((Button) sender).Tag.ToString() == "CounterTerroristsWin")
+            if (((Button)sender).Tag.ToString() == "CounterTerroristsWin")
             {
                 title += Cultures.Resources.CounterTerroristsWin;
                 property = Properties.Settings.Default.CounterTerroristsWin;
             }
-            if (((Button) sender).Tag.ToString() == "RoundStarts")
+            if (((Button)sender).Tag.ToString() == "RoundStarts")
             {
                 title += Cultures.Resources.RoundStarts;
                 property = Properties.Settings.Default.RoundStarts;
             }
-            if (((Button) sender).Tag.ToString() == "BombPlanted")
+            if (((Button)sender).Tag.ToString() == "BombPlanted")
             {
                 title += Cultures.Resources.BombHasBeenPlanted;
                 property = Properties.Settings.Default.BombPlanted;
             }
-            if (((Button) sender).Tag.ToString() == "PlayerGetsKill")
+            if (((Button)sender).Tag.ToString() == "PlayerGetsKill")
             {
                 title += Cultures.Resources.PlayerGetsKill;
                 brightnessProperty = Properties.Settings.Default.PlayerGetsKill;
             }
-            if (((Button) sender).Tag.ToString() == "PlayerGetsKilled")
+            if (((Button)sender).Tag.ToString() == "PlayerGetsKilled")
             {
                 title += Cultures.Resources.PlayerGetsKilled;
                 brightnessProperty = Properties.Settings.Default.PlayerGetsKilled;
             }
-            if (((Button) sender).Tag.ToString() == "FreezeTime")
+            if (((Button)sender).Tag.ToString() == "FreezeTime")
             {
                 title += Cultures.Resources.FreezeTime;
                 brightnessProperty = Properties.Settings.Default.FreezeTime;
             }
-            if (((Button) sender).Tag.ToString() == "Warmup")
+            if (((Button)sender).Tag.ToString() == "Warmup")
             {
                 title += Cultures.Resources.Warmup;
                 brightnessProperty = Properties.Settings.Default.Warmup;
             }
-            if (((Button) sender).Tag.ToString() == "BombExplodes")
+            if (((Button)sender).Tag.ToString() == "BombExplodes")
             {
                 title += Cultures.Resources.BombExplodes;
                 brightnessProperty = Properties.Settings.Default.BombExplodes;
             }
-            if (((Button) sender).Tag.ToString() == "BombBlink")
+            if (((Button)sender).Tag.ToString() == "BombBlink")
             {
                 title += Cultures.Resources.BombBlink;
                 brightnessProperty = Properties.Settings.Default.BombBlink;
@@ -275,6 +362,156 @@ namespace CSHUE.Views
                 ComboBoxLanguage.IsDropDownOpen = false;
                 ComboBoxLanguage.IsDropDownOpen = true;
             }
+        }
+
+        private void ComboBoxTheme_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ComboBox)sender).SelectedItem == null || ((ComboBox)sender).SelectedIndex == 0)
+                return;
+
+            var item = (Theme)((ComboBox)sender).SelectedItem;
+
+            ViewModel.Themes.Remove(item);
+            ViewModel.Themes = new ObservableCollection<Theme>(ViewModel.Themes.OrderBy(x => x.Index));
+            ViewModel.Themes.Insert(0, item);
+
+            ViewModel.SelectedTheme = (Theme)((ComboBox)sender).Items[0];
+
+            ResourceDictionaryEx.GlobalTheme = ViewModel.SelectedTheme.Index == 0
+                ? ElementTheme.Default
+                : (ViewModel.SelectedTheme.Index == 1
+                    ? ElementTheme.Dark
+                    : ElementTheme.Light);
+
+            if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
+                try
+                {
+                    using (var key = Registry.CurrentUser.OpenSubKey(
+                        "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+                    {
+                        if (key == null)
+                        {
+                            ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                            return;
+                        }
+
+                        var changeMenuColor = false;
+
+                        if (key.GetValue("AppsUseLightTheme") != null)
+                        {
+                            bool darkMode;
+                            if (Properties.Settings.Default.Theme == 0)
+                                darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+                            else
+                                darkMode = Properties.Settings.Default.Theme == 1;
+
+                            ViewModel.MainWindowViewModel.IsModeDark = darkMode;
+                        }
+
+                        if (key.GetValue("EnableTransparency") == null)
+                        {
+                            ViewModel.MainWindowViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
+                            return;
+                        }
+
+                        bool transparency;
+                        if (Properties.Settings.Default.Transparency == 0)
+                            transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
+                        else
+                            transparency = Properties.Settings.Default.Transparency == 1;
+
+                        ViewModel.MainWindowViewModel.IsTransparencyTrue = transparency;
+
+                        if (ViewModel.MainWindowViewModel.IsTransparencyTrue != true && transparency)
+                            ViewModel.MainWindowViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
+                        else if (ViewModel.MainWindowViewModel.IsTransparencyTrue != false && !transparency || changeMenuColor)
+                            ViewModel.MainWindowViewModel.BackgroundColor = ViewModel.MainWindowViewModel.IsModeDark == true
+                                ? Color.FromRgb(31, 31, 31)
+                                : Color.FromRgb(230, 230, 230);
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            else
+            {
+                ViewModel.MainWindowViewModel.BackgroundColor = ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
+                    ? Color.FromRgb(31, 31, 31)
+                    : Color.FromRgb(230, 230, 230);
+            }
+
+            Properties.Settings.Default.Theme = item.Index;
+        }
+
+        private void ComboBoxTransparency_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ComboBox)sender).SelectedItem == null || ((ComboBox)sender).SelectedIndex == 0)
+                return;
+
+            var item = (Transparency)((ComboBox)sender).SelectedItem;
+
+            ViewModel.Transparencies.Remove(item);
+            ViewModel.Transparencies = new ObservableCollection<Transparency>(ViewModel.Transparencies.OrderBy(x => x.Index));
+            ViewModel.Transparencies.Insert(0, item);
+
+            ViewModel.SelectedTransparency = (Transparency)((ComboBox)sender).Items[0];
+
+            ResourceDictionaryEx.GlobalTheme = ViewModel.SelectedTransparency.Index == 0
+                ? ElementTheme.Default
+                : (ViewModel.SelectedTransparency.Index == 1
+                    ? ElementTheme.Dark
+                    : ElementTheme.Light);
+
+            if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
+                try
+                {
+                    using (var key = Registry.CurrentUser.OpenSubKey(
+                        "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+                    {
+                        if (key == null)
+                        {
+                            ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                            return;
+                        }
+
+                        if (key.GetValue("AppsUseLightTheme") != null)
+                        {
+                            var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+
+                            ViewModel.MainWindowViewModel.IsModeDark = darkMode;
+                        }
+
+                        if (key.GetValue("EnableTransparency") == null)
+                        {
+                            ViewModel.MainWindowViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
+                            return;
+                        }
+
+                        var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
+
+                        if (ViewModel.MainWindowViewModel.IsTransparencyTrue != true && transparency)
+                            ViewModel.MainWindowViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
+                        else
+                            ViewModel.MainWindowViewModel.BackgroundColor = ViewModel.MainWindowViewModel.IsModeDark == true
+                                ? Color.FromRgb(31, 31, 31)
+                                : Color.FromRgb(230, 230, 230);
+
+                        ViewModel.MainWindowViewModel.IsTransparencyTrue = transparency;
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            else
+            {
+                ViewModel.MainWindowViewModel.BackgroundColor = ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
+                    ? Color.FromRgb(31, 31, 31)
+                    : Color.FromRgb(230, 230, 230);
+            }
+
+            Properties.Settings.Default.Transparency = item.Index;
         }
 
         #endregion

@@ -449,7 +449,7 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
     <value>Relatar um problema</value>
   </data>
   <data name="ReportProblemText" xml:space="preserve">
-    <value>Se você está tendo problemas ao usar o programa or você acha que há comportamentos indesejados, me avise pelo GitHub.</value>
+    <value>Se você está tendo problemas ao usar o programa ou você acha que há comportamentos indesejados, me avise pelo GitHub.</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Tema</value>

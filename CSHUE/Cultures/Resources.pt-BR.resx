@@ -457,10 +457,10 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="ThemeDark" xml:space="preserve">
     <value>Escuro</value>
   </data>
-  <data name="ThemeDefault" xml:space="preserve">
-    <value>Padrão</value>
-  </data>
   <data name="ThemeLight" xml:space="preserve">
     <value>Claro</value>
+  </data>
+  <data name="Transparency" xml:space="preserve">
+    <value>Transparência</value>
   </data>
 </root>

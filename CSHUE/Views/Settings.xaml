@@ -459,7 +459,7 @@
                               SelectionChanged="ComboBoxTheme_OnSelectionChanged"
                               DisplayMemberPath="Text"/>
 
-                    <TextBlock Text="{Binding Path=Theme, Source={StaticResource Resources}}"
+                    <TextBlock Text="{Binding Path=Transparency, Source={StaticResource Resources}}"
                                Margin="0,15,0,4"/>
 
                     <ComboBox Margin="0,4,0,9"

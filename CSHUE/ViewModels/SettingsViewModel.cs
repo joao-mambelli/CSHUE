@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using CSHUE.Cultures;
 using CSHUE.Helpers;
 using Q42.HueApi;
 
@@ -35,17 +36,17 @@ namespace CSHUE.ViewModels
         {
             new Theme
             {
-                Text = "123",
+                Text = Resources.Default,
                 Index = 0
             },
             new Theme
             {
-                Text = "456",
+                Text = Resources.ThemeDark,
                 Index = 1
             },
             new Theme
             {
-                Text = "789",
+                Text = Resources.ThemeLight,
                 Index = 2
             }
         };
@@ -88,17 +89,17 @@ namespace CSHUE.ViewModels
         {
             new Transparency
             {
-                Text = "123",
+                Text = Resources.Default,
                 Index = 0
             },
             new Transparency
             {
-                Text = "456",
+                Text = Resources.Yes,
                 Index = 1
             },
             new Transparency
             {
-                Text = "789",
+                Text = Resources.No,
                 Index = 2
             }
         };

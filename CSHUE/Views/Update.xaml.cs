@@ -61,7 +61,7 @@ namespace CSHUE.Views
 
             new Thread(() =>
                 {
-                    ViewModel.MainWindowViewModel.GetLastVersion();
+                    Properties.Settings.Default.LatestVersionCheck = ViewModel.MainWindowViewModel.GetLastVersion();
 
                     ViewModel.AllowCheck = true;
 

@@ -119,7 +119,7 @@ namespace CSHUE.Controls
         /// <param name="e"></param>
         private void Button2_OnClick(object sender, RoutedEventArgs e)
         {
-            //DialogResult = Button2.DialogResult;
+            DialogResult = Button2.DialogResult;
 
             if (!string.IsNullOrWhiteSpace(Button2.Path))
             {
@@ -137,7 +137,7 @@ namespace CSHUE.Controls
         /// <param name="e"></param>
         private void Button3_OnClick(object sender, RoutedEventArgs e)
         {
-            //DialogResult = Button3.DialogResult;
+            DialogResult = Button3.DialogResult;
 
             if (!string.IsNullOrWhiteSpace(Button3.Path))
             {

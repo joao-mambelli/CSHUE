@@ -148,6 +148,8 @@ namespace CSHUE.Views
 
         public MainWindow()
         {
+            SetLanguage();
+
             if (Properties.Settings.Default.Top == -1 &&
                 Properties.Settings.Default.Left == -1)
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -179,8 +181,6 @@ namespace CSHUE.Views
             Width = Properties.Settings.Default.Width;
 
             ViewModel.CreateInstances();
-
-            SetLanguage();
 
             if (Properties.Settings.Default.RunOnStartup)
                 ViewModel.SettingsPage.ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
@@ -292,6 +292,8 @@ namespace CSHUE.Views
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     ShowInTaskbar = true
                 }.ShowDialog();
+
+                Properties.Settings.Default.LatestVersionCheck = lastVersion;
             }
 
             var arguments = Environment.GetCommandLineArgs();
@@ -322,6 +324,19 @@ namespace CSHUE.Views
 
         private void OnPreferenceChangedHandler(object sender, UserPreferenceChangedEventArgs e)
         {
+            switch (Properties.Settings.Default.Theme)
+            {
+                case 0:
+                    ResourceDictionaryEx.GlobalTheme = ElementTheme.Default;
+                    break;
+                case 1:
+                    ResourceDictionaryEx.GlobalTheme = ElementTheme.Dark;
+                    break;
+                default:
+                    ResourceDictionaryEx.GlobalTheme = ElementTheme.Light;
+                    break;
+            }
+
             if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
                 try
                 {
@@ -330,57 +345,79 @@ namespace CSHUE.Views
                     {
                         if (key == null)
                         {
+                            if (Properties.Settings.Default.Transparency == 0 || Properties.Settings.Default.Transparency == 1)
+                            {
+                                ViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
+                                ViewModel.IsModeDark = false;
+                                ViewModel.IsTransparencyTrue = true;
+                            }
+                            else
+                            {
+                                ViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                                ViewModel.IsModeDark = false;
+                                ViewModel.IsTransparencyTrue = false;
+                            }
+
+                            return;
+                        }
+
+                        ViewModel.IsModeDark = key.GetValue("AppsUseLightTheme") != null && !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+
+                        if (Properties.Settings.Default.Transparency == 0)
+                            ViewModel.IsTransparencyTrue = key.GetValue("EnableTransparency") == null || Convert.ToBoolean(key.GetValue("EnableTransparency"));
+                        else
+                            ViewModel.IsTransparencyTrue = Properties.Settings.Default.Transparency == 1;
+
+                        if (ViewModel.IsTransparencyTrue == true)
+                            ViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
+                        else if (ViewModel.IsModeDark == true)
+                            ViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
+                        else
                             ViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
-                            return;
-                        }
-
-                        var changeMenuColor = false;
-
-                        if (key.GetValue("AppsUseLightTheme") != null)
-                        {
-                            var darkMode = !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
-
-                            if (ViewModel.IsModeDark != false && !darkMode)
-                            {
-                                if (ViewModel.IsTransparencyTrue != true)
-                                    changeMenuColor = true;
-                            }
-                            else if (ViewModel.IsModeDark != true && darkMode)
-                            {
-                                if (ViewModel.IsTransparencyTrue != true)
-                                    changeMenuColor = true;
-                            }
-
-                            ViewModel.IsModeDark = darkMode;
-                        }
-
-                        if (key.GetValue("EnableTransparency") == null)
-                        {
-                            ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
-                            return;
-                        }
-
-                        var transparency = Convert.ToBoolean(key.GetValue("EnableTransparency"));
-
-                        if (ViewModel.IsTransparencyTrue != true && transparency)
-                            ViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
-                        else if (ViewModel.IsTransparencyTrue != false && !transparency || changeMenuColor)
-                            ViewModel.BackgroundColor = ViewModel.IsModeDark == true
-                                ? Color.FromRgb(31, 31, 31)
-                                : Color.FromRgb(230, 230, 230);
-
-                        ViewModel.IsTransparencyTrue = transparency;
                     }
                 }
                 catch
                 {
                     // ignored
                 }
-            else
+
+            if (Properties.Settings.Default.Transparency == 0)
             {
-                ViewModel.BackgroundColor = ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
-                    ? Color.FromRgb(31, 31, 31)
-                    : Color.FromRgb(230, 230, 230);
+                try
+                {
+                    using (var key = Registry.CurrentUser.OpenSubKey(
+                        "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+                    {
+                        if (key == null)
+                        {
+                            ViewModel.BackgroundColor =
+                                ViewModel.IsModeDark == true
+                                    ? Color.FromArgb(51, 0, 0, 0)
+                                    : Color.FromArgb(51, 255, 255, 255);
+
+                            ViewModel.IsTransparencyTrue = true;
+
+                            return;
+                        }
+
+                        ViewModel.IsTransparencyTrue = key.GetValue("EnableTransparency") == null || Convert.ToBoolean(key.GetValue("EnableTransparency"));
+
+                        if (ViewModel.IsTransparencyTrue == true)
+                            ViewModel.BackgroundColor =
+                                ViewModel.IsModeDark == true
+                                    ? Color.FromArgb(51, 0, 0, 0)
+                                    : Color.FromArgb(51, 255, 255, 255);
+                        else
+                            ViewModel.BackgroundColor =
+                                ViewModel.IsModeDark == true
+                                    ? Color.FromRgb(31, 31, 31)
+                                    : Color.FromRgb(230, 230, 230);
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
             }
         }
 

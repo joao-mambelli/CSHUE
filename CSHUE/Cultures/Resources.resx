@@ -460,4 +460,7 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="ThemeLight" xml:space="preserve">
     <value>Light</value>
   </data>
+  <data name="Transparency" xml:space="preserve">
+    <value>Transparency</value>
+  </data>
 </root>

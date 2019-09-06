@@ -36,10 +36,12 @@ namespace CSHUE.Views
             InitializeComponent();
             DataContext = ViewModel;
 
-            ViewModel.MainWindowViewModel = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
+            ViewModel.MainWindowViewModel =
+                Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.ViewModel;
 
             ViewModel.SelectedTheme = ViewModel.Themes.First(x => x.Index == Properties.Settings.Default.Theme);
-            ViewModel.SelectedTransparency = ViewModel.Transparencies.First(x => x.Index == Properties.Settings.Default.Transparency);
+            ViewModel.SelectedTransparency =
+                ViewModel.Transparencies.First(x => x.Index == Properties.Settings.Default.Transparency);
 
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_OnSelectionChanged;
 
@@ -75,11 +77,14 @@ namespace CSHUE.Views
 
                 CultureResources.ChangeCulture(culture);
 
-                Properties.Settings.Default.LanguageName = CultureResources.SupportedCultures.Find(x => Equals(x, culture)).NativeName;
+                Properties.Settings.Default.LanguageName =
+                    CultureResources.SupportedCultures.Find(x => Equals(x, culture)).NativeName;
             }
             else
             {
-                var culture = CultureResources.SupportedCultures.Find(x => x.NativeName == (string)((ComboBox)sender).SelectedItem);
+                var culture =
+                    CultureResources.SupportedCultures.Find(x =>
+                        x.NativeName == (string) ((ComboBox) sender).SelectedItem);
 
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
@@ -266,9 +271,10 @@ namespace CSHUE.Views
         private void ShowSystemTrayIconCheckBox_OnCheckedChanged(object sender, RoutedEventArgs e)
         {
             if (ViewModel.MainWindowViewModel != null)
-                ViewModel.MainWindowViewModel.NotifyIconVisibility = Properties.Settings.Default.ShowSystemTrayIcon
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+                ViewModel.MainWindowViewModel.NotifyIconVisibility =
+                    Properties.Settings.Default.ShowSystemTrayIcon
+                        ? Visibility.Visible
+                        : Visibility.Collapsed;
         }
 
         private void Save(object sender, RoutedEventArgs routedEventArgs)
@@ -326,9 +332,11 @@ namespace CSHUE.Views
                     {
                         if (key == null)
                         {
-                            if (Properties.Settings.Default.Transparency == 0 || Properties.Settings.Default.Transparency == 1)
+                            if (Properties.Settings.Default.Transparency == 0 ||
+                                Properties.Settings.Default.Transparency == 1)
                             {
-                                ViewModel.MainWindowViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
+                                ViewModel.MainWindowViewModel.BackgroundColor =
+                                    (Color) FindResource("SystemAltLowColor");
                                 ViewModel.MainWindowViewModel.IsModeDark = false;
                                 ViewModel.MainWindowViewModel.IsTransparencyTrue = true;
                             }
@@ -342,12 +350,17 @@ namespace CSHUE.Views
                             return;
                         }
 
-                        ViewModel.MainWindowViewModel.IsModeDark = key.GetValue("AppsUseLightTheme") != null && !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+                        ViewModel.MainWindowViewModel.IsModeDark =
+                            key.GetValue("AppsUseLightTheme") != null &&
+                            !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
 
                         if (Properties.Settings.Default.Transparency == 0)
-                            ViewModel.MainWindowViewModel.IsTransparencyTrue = key.GetValue("EnableTransparency") == null || Convert.ToBoolean(key.GetValue("EnableTransparency"));
+                            ViewModel.MainWindowViewModel.IsTransparencyTrue =
+                                key.GetValue("EnableTransparency") == null ||
+                                Convert.ToBoolean(key.GetValue("EnableTransparency"));
                         else
-                            ViewModel.MainWindowViewModel.IsTransparencyTrue = Properties.Settings.Default.Transparency == 1;
+                            ViewModel.MainWindowViewModel.IsTransparencyTrue =
+                                Properties.Settings.Default.Transparency == 1;
 
                         if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
                             ViewModel.MainWindowViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
@@ -365,54 +378,61 @@ namespace CSHUE.Views
             {
                 ViewModel.MainWindowViewModel.IsModeDark = ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark;
 
-                if (Properties.Settings.Default.Transparency == 0)
-                    try
-                    {
-                        using (var key = Registry.CurrentUser.OpenSubKey(
-                            "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
-                        {
-                            if (key == null)
-                            {
-                                ViewModel.MainWindowViewModel.BackgroundColor =
-                                    ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
-                                        ? Color.FromArgb(51, 0, 0, 0)
-                                        : Color.FromArgb(51, 255, 255, 255);
-
-                                ViewModel.MainWindowViewModel.IsTransparencyTrue = true;
-
-                                return;
-                            }
-
-                            ViewModel.MainWindowViewModel.IsTransparencyTrue = key.GetValue("EnableTransparency") == null || Convert.ToBoolean(key.GetValue("EnableTransparency"));
-
-                            if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
-                            {
-                                ViewModel.MainWindowViewModel.BackgroundColor =
-                                    ViewModel.MainWindowViewModel.IsModeDark == true
-                                        ? Color.FromArgb(51, 0, 0, 0)
-                                        : Color.FromArgb(51, 255, 255, 255);
-                            }
-                            else if (ViewModel.MainWindowViewModel.IsModeDark == true)
-                                ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
-                            else
-                                ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
-                        }
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                else
+                switch (Properties.Settings.Default.Transparency)
                 {
-                    if (Properties.Settings.Default.Transparency == 1)
-                        if (ViewModel.MainWindowViewModel.IsModeDark == true)
-                            ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 0, 0, 0);
-                        else
-                            ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 255, 255, 255);
-                    else if (ViewModel.MainWindowViewModel.IsModeDark == true)
-                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
-                    else
-                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                    case 0:
+                        try
+                        {
+                            using (var key = Registry.CurrentUser.OpenSubKey(
+                                "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+                            {
+                                if (key == null)
+                                {
+                                    ViewModel.MainWindowViewModel.BackgroundColor =
+                                        ResourceDictionaryEx.GlobalTheme == ElementTheme.Dark
+                                            ? Color.FromArgb(51, 0, 0, 0)
+                                            : Color.FromArgb(51, 255, 255, 255);
+
+                                    ViewModel.MainWindowViewModel.IsTransparencyTrue = true;
+
+                                    return;
+                                }
+
+                                ViewModel.MainWindowViewModel.IsTransparencyTrue =
+                                    key.GetValue("EnableTransparency") == null ||
+                                    Convert.ToBoolean(key.GetValue("EnableTransparency"));
+
+                                if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
+                                {
+                                    ViewModel.MainWindowViewModel.BackgroundColor =
+                                        ViewModel.MainWindowViewModel.IsModeDark == true
+                                            ? Color.FromArgb(51, 0, 0, 0)
+                                            : Color.FromArgb(51, 255, 255, 255);
+                                }
+                                else if (ViewModel.MainWindowViewModel.IsModeDark == true)
+                                    ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
+                                else
+                                    ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                            }
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+
+                        break;
+                    case 1 when ViewModel.MainWindowViewModel.IsModeDark == true:
+                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 0, 0, 0);
+                        break;
+                    case 1:
+                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 255, 255, 255);
+                        break;
+                    default:
+                        ViewModel.MainWindowViewModel.BackgroundColor =
+                            ViewModel.MainWindowViewModel.IsModeDark == true
+                                ? Color.FromRgb(31, 31, 31)
+                                : Color.FromRgb(230, 230, 230);
+                        break;
                 }
             }
         }
@@ -425,7 +445,8 @@ namespace CSHUE.Views
             var item = (Transparency)((ComboBox)sender).SelectedItem;
 
             ViewModel.Transparencies.Remove(item);
-            ViewModel.Transparencies = new ObservableCollection<Transparency>(ViewModel.Transparencies.OrderBy(x => x.Index));
+            ViewModel.Transparencies =
+                new ObservableCollection<Transparency>(ViewModel.Transparencies.OrderBy(x => x.Index));
             ViewModel.Transparencies.Insert(0, item);
 
             ViewModel.SelectedTransparency = (Transparency)((ComboBox)sender).Items[0];
@@ -451,7 +472,9 @@ namespace CSHUE.Views
                             return;
                         }
 
-                        ViewModel.MainWindowViewModel.IsTransparencyTrue = key.GetValue("EnableTransparency") == null || Convert.ToBoolean(key.GetValue("EnableTransparency"));
+                        ViewModel.MainWindowViewModel.IsTransparencyTrue =
+                            key.GetValue("EnableTransparency") == null ||
+                            Convert.ToBoolean(key.GetValue("EnableTransparency"));
 
                         if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
                             ViewModel.MainWindowViewModel.BackgroundColor =
@@ -474,54 +497,61 @@ namespace CSHUE.Views
             {
                 ViewModel.MainWindowViewModel.IsTransparencyTrue = Properties.Settings.Default.Transparency == 1;
 
-                if (Properties.Settings.Default.Theme == 0)
-                    try
-                    {
-                        using (var key = Registry.CurrentUser.OpenSubKey(
-                            "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
-                        {
-                            if (key == null)
-                            {
-                                ViewModel.MainWindowViewModel.BackgroundColor =
-                                    ViewModel.MainWindowViewModel.IsTransparencyTrue == true
-                                        ? Color.FromArgb(51, 0, 0, 0)
-                                        : Color.FromRgb(230, 230, 230);
-
-                                ViewModel.MainWindowViewModel.IsModeDark = false;
-
-                                return;
-                            }
-
-                            ViewModel.MainWindowViewModel.IsModeDark = key.GetValue("AppsUseLightTheme") != null && !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
-
-                            if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
-                            {
-                                ViewModel.MainWindowViewModel.BackgroundColor =
-                                    ViewModel.MainWindowViewModel.IsModeDark == true
-                                        ? Color.FromArgb(51, 0, 0, 0)
-                                        : Color.FromArgb(51, 255, 255, 255);
-                            }
-                            else if (ViewModel.MainWindowViewModel.IsModeDark == true)
-                                ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
-                            else
-                                ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
-                        }
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                else
+                switch (Properties.Settings.Default.Theme)
                 {
-                    if (Properties.Settings.Default.Theme == 1)
-                        if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
-                            ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 0, 0, 0);
-                        else
-                            ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
-                    else if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
-                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 255, 255, 255);
-                    else
-                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                    case 0:
+                        try
+                        {
+                            using (var key = Registry.CurrentUser.OpenSubKey(
+                                "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
+                            {
+                                if (key == null)
+                                {
+                                    ViewModel.MainWindowViewModel.BackgroundColor =
+                                        ViewModel.MainWindowViewModel.IsTransparencyTrue == true
+                                            ? Color.FromArgb(51, 0, 0, 0)
+                                            : Color.FromRgb(230, 230, 230);
+
+                                    ViewModel.MainWindowViewModel.IsModeDark = false;
+
+                                    return;
+                                }
+
+                                ViewModel.MainWindowViewModel.IsModeDark =
+                                    key.GetValue("AppsUseLightTheme") != null &&
+                                    !Convert.ToBoolean(key.GetValue("AppsUseLightTheme"));
+
+                                if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
+                                {
+                                    ViewModel.MainWindowViewModel.BackgroundColor =
+                                        ViewModel.MainWindowViewModel.IsModeDark == true
+                                            ? Color.FromArgb(51, 0, 0, 0)
+                                            : Color.FromArgb(51, 255, 255, 255);
+                                }
+                                else if (ViewModel.MainWindowViewModel.IsModeDark == true)
+                                    ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
+                                else
+                                    ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(230, 230, 230);
+                            }
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+
+                        break;
+                    case 1 when ViewModel.MainWindowViewModel.IsTransparencyTrue == true:
+                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromArgb(51, 0, 0, 0);
+                        break;
+                    case 1:
+                        ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
+                        break;
+                    default:
+                        ViewModel.MainWindowViewModel.BackgroundColor =
+                            ViewModel.MainWindowViewModel.IsTransparencyTrue == true
+                                ? Color.FromArgb(51, 255, 255, 255)
+                                : Color.FromRgb(230, 230, 230);
+                        break;
                 }
             }
         }

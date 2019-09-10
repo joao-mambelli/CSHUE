@@ -430,10 +430,10 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="ExtraInfo" xml:space="preserve">
     <value>Extra information here</value>
   </data>
-  <data name="UpdateAvailable" xml:space="preserve">
+  <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="WarningUpdateAvailable" xml:space="preserve">
+  <data name="WarningUpdate" xml:space="preserve">
     <value>Update available.</value>
   </data>
   <data name="NewVersionText" xml:space="preserve">
@@ -462,5 +462,8 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   </data>
   <data name="Transparency" xml:space="preserve">
     <value>Transparency</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
   </data>
 </root>

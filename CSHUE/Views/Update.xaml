@@ -27,7 +27,7 @@
 
         <TextBlock Margin="24,4,0,0"
                    FontSize="28"
-                   Text="{Binding Path=UpdateAvailable, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=Update, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"

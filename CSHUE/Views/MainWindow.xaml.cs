@@ -167,7 +167,8 @@ namespace CSHUE.Views
             Config.MouseLeave += Control_OnMouseLeave;
             Donate.MouseLeave += Control_OnMouseLeave;
             About.MouseLeave += Control_OnMouseLeave;
-            UpdateAvailable.MouseLeave += Control_OnMouseLeave;
+            Help.MouseLeave += Control_OnMouseLeave;
+            Update.MouseLeave += Control_OnMouseLeave;
             Settings.MouseLeave += Control_OnMouseLeave;
             MinimizeButton.MouseEnter += TopControls_OnMouseEnter;
             MinimizeButton.MouseLeave += TopControls_OnMouseLeave;
@@ -214,7 +215,7 @@ namespace CSHUE.Views
                             break;
                         case "-lang":
                             ViewModel.Navigate(Page, "Settings");
-                            UpdateIndicator("Settings");
+                            UpdateIndicatorPosition("Settings");
                             break;
                         default:
                             ViewModel.Navigate(Page, "Home");
@@ -479,7 +480,7 @@ namespace CSHUE.Views
                     Properties.Settings.Default.Save();
                 }
 
-                UpdateIndicator(((Grid) sender).Name);
+                UpdateIndicatorPosition(((Grid) sender).Name);
             }
         }
 
@@ -618,7 +619,7 @@ namespace CSHUE.Views
 
             ViewModel.Navigate(Page, ((MenuItem) sender).Tag.ToString());
 
-            UpdateIndicator(((MenuItem) sender).Tag.ToString());
+            UpdateIndicatorPosition(((MenuItem) sender).Tag.ToString());
         }
 
         private void MenuExit_OnClick(object sender, RoutedEventArgs e)
@@ -664,7 +665,7 @@ namespace CSHUE.Views
             Topmost = top;
         }
 
-        public void UpdateIndicator(string name)
+        public void UpdateIndicatorPosition(string name)
         {
             foreach (var f in Menus.Children.OfType<StackPanel>())
             foreach (var g in f.Children.OfType<Grid>())

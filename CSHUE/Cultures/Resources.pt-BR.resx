@@ -430,10 +430,10 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="ExtraInfo" xml:space="preserve">
     <value>Informação extra aqui</value>
   </data>
-  <data name="UpdateAvailable" xml:space="preserve">
+  <data name="Update" xml:space="preserve">
     <value>Atualização</value>
   </data>
-  <data name="WarningUpdateAvailable" xml:space="preserve">
+  <data name="WarningUpdate" xml:space="preserve">
     <value>Atualização disponível.</value>
   </data>
   <data name="NewVersionText" xml:space="preserve">
@@ -462,5 +462,8 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   </data>
   <data name="Transparency" xml:space="preserve">
     <value>Transparência</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ajuda</value>
   </data>
 </root>

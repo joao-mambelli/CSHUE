@@ -293,36 +293,6 @@
                             <viewModels:MainWindowViewModel/>
                         </Label.DataContext>
                     </Label>
-
-                    <TextBlock Margin="0,20,0,2"
-                               FontSize="20"
-                               Text="{Binding Path=ReportProblem, Source={StaticResource Resources}}"
-                               VerticalAlignment="Bottom"/>
-
-                    <TextBlock Margin="0,2,0,9"
-                               TextWrapping="Wrap"
-                               TextAlignment="Justify"
-                               Text="{Binding Path=ReportProblemText, Source={StaticResource Resources}}"/>
-
-                    <Button ToolTipService.InitialShowDelay="100"
-                            ToolTipService.HasDropShadow="True"
-                            ToolTipService.HorizontalOffset="-150"
-                            ToolTipService.ShowDuration="30000"
-                            Margin="0,10,0,9"
-                            VerticalAlignment="Top"
-                            Height="31"
-                            MinWidth="90"
-                            HorizontalAlignment="Center"
-                            Style="{DynamicResource CustomButton}"
-                            Content="{Binding Path=ReportProblem, Source={StaticResource Resources}}"
-                            Click="Report_OnClick">
-                        <Button.ToolTip>
-                            <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                     Background="{DynamicResource SystemAltHighColorBrush}">
-                                <TextBlock Text="https://github.com/joao7yt/CSHUE/issues/new"/>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

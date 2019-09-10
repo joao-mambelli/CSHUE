@@ -2,31 +2,30 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using System.Windows.Navigation;
 using CSHUE.ViewModels;
 
 namespace CSHUE.Views
 {
     /// <summary>
-    /// Interaction logic for About.xaml
+    /// Interaction logic for Help.xaml
     /// </summary>
-    public partial class About
+    public partial class Help
     {
         #region Fields
 
         /// <summary>
         /// ViewModel field.
         /// </summary>
-        public AboutViewModel ViewModel = new AboutViewModel();
+        public HelpViewModel ViewModel = new HelpViewModel();
 
         #endregion
 
         #region Initializers
 
         /// <summary>
-        /// About initializer.
+        /// Help initializer.
         /// </summary>
-        public About()
+        public Help()
         {
             InitializeComponent();
             DataContext = ViewModel;
@@ -37,16 +36,15 @@ namespace CSHUE.Views
         #endregion
 
         #region Events Handlers
-
+        
         /// <summary>
-        /// Hyperlink request navigation event handler.
+        /// Report button click event handler.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void Report_OnClick(object sender, EventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
+            Process.Start("https://github.com/joao7yt/CSHUE/issues/new");
         }
 
         #endregion

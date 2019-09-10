@@ -36,6 +36,7 @@ namespace CSHUE.ViewModels
         public Config ConfigPage;
         public Donate DonatePage;
         public About AboutPage;
+        public Help HelpPage;
         public Update UpdatePage;
         public Home HomePage;
         public Settings SettingsPage;
@@ -132,6 +133,7 @@ namespace CSHUE.ViewModels
             HomePage = new Home();
             SettingsPage = new Settings();
             AboutPage = new About();
+            HelpPage = new Help();
             UpdatePage = new Update();
         }
 
@@ -1596,7 +1598,10 @@ namespace CSHUE.ViewModels
                 case "About":
                     page.Navigate(AboutPage);
                     break;
-                case "UpdateAvailable":
+                case "Help":
+                    page.Navigate(HelpPage);
+                    break;
+                case "Update":
                     UpdatePage.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
                     page.Navigate(UpdatePage);
                     break;
@@ -1622,7 +1627,10 @@ namespace CSHUE.ViewModels
                 case "About":
                     page.Navigate(AboutPage);
                     break;
-                case "UpdateAvailable":
+                case "Help":
+                    page.Navigate(HelpPage);
+                    break;
+                case "Update":
                     UpdatePage.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
                     page.Navigate(UpdatePage);
                     break;

@@ -541,7 +541,8 @@ namespace CSHUE.Views
                 {
                     ResizeBorderThickness = new Thickness(WindowState == WindowState.Maximized
                         ? 0
-                        : 4)
+                        : 4),
+                    CaptionHeight = 32
                 });
 
             ViewModel.MaximizeRestore = WindowState == WindowState.Maximized

@@ -34,7 +34,8 @@
         Closing="OnClosing"
         Deactivated="OnDeactivated">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="32"/>
+        <WindowChrome x:Name="WindowChrome"
+                      CaptionHeight="32"/>
     </WindowChrome.WindowChrome>
 
     <Grid>

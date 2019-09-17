@@ -11,7 +11,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Shell;
 using CSHUE.Controls;
 using CSHUE.Cultures;
 using CSHUE.ViewModels;
@@ -536,14 +535,7 @@ namespace CSHUE.Views
         protected sealed override void OnStateChanged(EventArgs e)
         {
             BorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 1);
-            WindowChrome.SetWindowChrome(this,
-                new WindowChrome
-                {
-                    ResizeBorderThickness = new Thickness(WindowState == WindowState.Maximized
-                        ? 0
-                        : 4),
-                    CaptionHeight = 32
-                });
+            WindowChrome.ResizeBorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 4);
 
             ViewModel.MaximizeRestore = WindowState == WindowState.Maximized
                 ? Geometry.Parse((string) Application.Current.Resources["Restore"])

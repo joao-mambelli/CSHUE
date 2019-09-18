@@ -35,7 +35,7 @@
         Deactivated="OnDeactivated">
     <WindowChrome.WindowChrome>
         <WindowChrome x:Name="WindowChrome"
-                      CaptionHeight="32"/>
+                      CaptionHeight="30"/>
     </WindowChrome.WindowChrome>
 
     <Grid>

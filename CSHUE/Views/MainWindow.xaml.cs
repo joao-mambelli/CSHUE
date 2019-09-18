@@ -536,6 +536,7 @@ namespace CSHUE.Views
         {
             BorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 1);
             WindowChrome.ResizeBorderThickness = new Thickness(WindowState == WindowState.Maximized ? 0 : 4);
+            WindowChrome.CaptionHeight = WindowState == WindowState.Maximized ? 33 : 30;
 
             ViewModel.MaximizeRestore = WindowState == WindowState.Maximized
                 ? Geometry.Parse((string) Application.Current.Resources["Restore"])

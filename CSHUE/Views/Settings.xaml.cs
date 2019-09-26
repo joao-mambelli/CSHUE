@@ -123,7 +123,7 @@ namespace CSHUE.Views
 
             ComboBoxLanguage.SelectionChanged -= ComboBoxLanguage_OnSelectionChanged;
             Properties.Settings.Default.Reset();
-            ViewModel.MainWindowViewModel.ConfigPage.ViewModel.CheckConfigFile();
+            ViewModel.MainWindowViewModel.Config.ViewModel.CheckConfigFile();
 
             try
             {
@@ -263,7 +263,7 @@ namespace CSHUE.Views
             }.ShowDialog();
             ViewModel.RestoreLights();
 
-            ViewModel.MainWindowViewModel.SettingsPage.ViewModel.UpdateGradients();
+            ViewModel.MainWindowViewModel.Settings.ViewModel.UpdateGradients();
 
             Save(sender, e);
         }

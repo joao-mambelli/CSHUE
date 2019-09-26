@@ -433,9 +433,8 @@
                 </Grid>
             </Grid>
 
-            <Frame x:Name="Page"
-                   Grid.Row="1"
-                   NavigationUIVisibility="Hidden"/>
+            <ContentControl Grid.Row="1"
+                            Content="{Binding Content}"/>
         </Grid>
 
         <tb:TaskbarIcon Grid.Column="0"
@@ -443,14 +442,15 @@
                         Visibility="{Binding NotifyIconVisibility}"
                         ToolTipText="CSHUE"
                         IconSource="/icon.ico"
-                        MenuActivation="LeftOrRightClick"
-                        TrayMouseDoubleClick="NotifyIcon_OnTrayMouseDoubleClick">
+                        MenuActivation="RightClick"
+                        TrayLeftMouseDown="NotifyIcon_OnTrayLeftMouseDown">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Background="{DynamicResource SystemAltHighColorBrush}"
                              BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
                              Foreground="{DynamicResource SystemBaseHighColorBrush}"
                              Style="{DynamicResource CustomContextMenu}"
-                             Opened="ContextMenu_OnOpened">
+                             Opened="ContextMenu_OnOpened"
+                             MinWidth="250">
                     <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertHome}"
                               Click="MenuNavigate_OnClick"

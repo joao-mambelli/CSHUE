@@ -13,7 +13,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using CSGSI;
 using CSGSI.Nodes;
 using CSHUE.Helpers;
@@ -33,13 +32,13 @@ namespace CSHUE.ViewModels
         public bool? IsModeDark;
         public bool? IsTransparencyTrue;
 
-        public Config ConfigPage;
-        public Donate DonatePage;
-        public About AboutPage;
-        public Help HelpPage;
-        public Update UpdatePage;
-        public Home HomePage;
-        public Settings SettingsPage;
+        public Config Config;
+        public Donate Donate;
+        public About About;
+        public Help Help;
+        public Update Update;
+        public Home Home;
+        public Settings Settings;
 
         public List<Light> GlobalLightsBackup;
         private bool _alreadySetLights;
@@ -112,6 +111,17 @@ namespace CSHUE.ViewModels
             }
         }
 
+        private object _content;
+        public object Content
+        {
+            get => _content;
+            set
+            {
+                _content = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Version
         {
             get
@@ -128,13 +138,13 @@ namespace CSHUE.ViewModels
 
         public void CreateInstances()
         {
-            ConfigPage = new Config();
-            DonatePage = new Donate();
-            HomePage = new Home();
-            SettingsPage = new Settings();
-            AboutPage = new About();
-            HelpPage = new Help();
-            UpdatePage = new Update();
+            Config = new Config();
+            Donate = new Donate();
+            Home = new Home();
+            Settings = new Settings();
+            About = new About();
+            Help = new Help();
+            Update = new Update();
         }
 
         public static async Task SetDefaultLightsSettings()
@@ -704,11 +714,11 @@ namespace CSHUE.ViewModels
                 await GetAppKeyAsync();
             }
 
-            SettingsPage.ViewModel.UpdateGradients();
+            Settings.ViewModel.UpdateGradients();
 
-            HomePage.ViewModel.SetDone();
+            Home.ViewModel.SetDone();
 
-            HomePage.StartLightsChecking();
+            Home.StartLightsChecking();
 
             AllowStartLightsChecking = true;
         }
@@ -721,7 +731,7 @@ namespace CSHUE.ViewModels
 
             try
             {
-                HomePage.ViewModel.SetWarningSearching();
+                Home.ViewModel.SetWarningSearching();
 
                 bridgeIPs = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5.5)).ConfigureAwait(false)).ToList();
             }
@@ -732,7 +742,7 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs == null || bridgeIPs.Count < 1)
             {
-                HomePage.ViewModel.SetWarningNoHub();
+                Home.ViewModel.SetWarningNoHub();
 
                 return "";
             }
@@ -745,7 +755,7 @@ namespace CSHUE.ViewModels
 
                 foreach (var b in bridgeIPs)
                 {
-                    HomePage.ViewModel.SetWarningValidating();
+                    Home.ViewModel.SetWarningValidating();
 
                     try
                     {
@@ -767,7 +777,7 @@ namespace CSHUE.ViewModels
 
                 if (list.Count < 1)
                 {
-                    HomePage.ViewModel.SetWarningNoReachableHubs();
+                    Home.ViewModel.SetWarningNoReachableHubs();
 
                     return "";
                 }
@@ -784,7 +794,7 @@ namespace CSHUE.ViewModels
 
                 hubSelector.ShowDialog();
 
-                HomePage.ViewModel.SetWarningValidating();
+                Home.ViewModel.SetWarningValidating();
 
                 try
                 {
@@ -796,7 +806,7 @@ namespace CSHUE.ViewModels
                 }
                 catch
                 {
-                    HomePage.ViewModel.SetWarningHubNotAvailable();
+                    Home.ViewModel.SetWarningHubNotAvailable();
 
                     return "";
                 }
@@ -804,7 +814,7 @@ namespace CSHUE.ViewModels
                 return "";
             }
 
-            HomePage.ViewModel.SetWarningValidating();
+            Home.ViewModel.SetWarningValidating();
 
             try
             {
@@ -816,7 +826,7 @@ namespace CSHUE.ViewModels
             }
             catch
             {
-                HomePage.ViewModel.SetWarningNoReachableHubs();
+                Home.ViewModel.SetWarningNoReachableHubs();
             }
 
             return "";
@@ -826,7 +836,7 @@ namespace CSHUE.ViewModels
         {
             if (string.IsNullOrEmpty(Properties.Settings.Default.AppKey))
             {
-                HomePage.ViewModel.SetWarningLink();
+                Home.ViewModel.SetWarningLink();
 
                 while (Properties.Settings.Default.AppKey == "")
                 {
@@ -866,7 +876,7 @@ namespace CSHUE.ViewModels
             if (Properties.Settings.Default.RunCsgo)
                 RunCsgo();
 
-            ConfigPage.ViewModel.CheckConfigFile();
+            Config.ViewModel.CheckConfigFile();
 
             _initTimer = new System.Timers.Timer(7000);
             _initTimer.Elapsed += OnInitTimerElapsed;
@@ -1579,60 +1589,31 @@ namespace CSHUE.ViewModels
             return dt;
         }
 
-        public void Navigate(Frame page, object sender)
+        public void Navigate(string name)
         {
-            switch (((Grid)sender).Name)
+            switch (name)
             {
                 case "Config":
-                    page.Navigate(ConfigPage);
+                    Content = Config;
                     break;
                 case "Donate":
-                    page.Navigate(DonatePage);
+                    Content = Donate;
                     break;
                 case "Settings":
-                    page.Navigate(SettingsPage);
+                    Content = Settings;
                     break;
                 case "About":
-                    page.Navigate(AboutPage);
+                    Content = About;
                     break;
                 case "Help":
-                    page.Navigate(HelpPage);
+                    Content = Help;
                     break;
                 case "Update":
-                    UpdatePage.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
-                    page.Navigate(UpdatePage);
+                    Update.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
+                    Content = Update;
                     break;
                 default:
-                    page.Navigate(HomePage);
-                    break;
-            }
-        }
-
-        public void Navigate(Frame page, string pageName)
-        {
-            switch (pageName)
-            {
-                case "Config":
-                    page.Navigate(ConfigPage);
-                    break;
-                case "Donate":
-                    page.Navigate(DonatePage);
-                    break;
-                case "Settings":
-                    page.Navigate(SettingsPage);
-                    break;
-                case "About":
-                    page.Navigate(AboutPage);
-                    break;
-                case "Help":
-                    page.Navigate(HelpPage);
-                    break;
-                case "Update":
-                    UpdatePage.ViewModel.WarningUpdateVisibility = WarningUpdateVisibility;
-                    page.Navigate(UpdatePage);
-                    break;
-                default:
-                    page.Navigate(HomePage);
+                    Content = Home;
                     break;
             }
         }

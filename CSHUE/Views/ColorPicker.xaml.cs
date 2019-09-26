@@ -214,14 +214,14 @@ namespace CSHUE.Views
             _proc = HookCallback;
 
             new Thread(() =>
-            {
-                while (_isWindowOpened && Properties.Settings.Default.PreviewLights)
                 {
-                    Thread.Sleep(500);
+                    while (_isWindowOpened && Properties.Settings.Default.PreviewLights)
+                    {
+                        Thread.Sleep(500);
 
-                    ViewModel.SetLightAsync(Brightness, Id, IsColorTemperature);
-                }
-            })
+                        ViewModel.SetLightAsync(Brightness, Id, IsColorTemperature);
+                    }
+                })
             { IsBackground = true }.Start();
         }
 

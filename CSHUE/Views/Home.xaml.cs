@@ -37,7 +37,7 @@ namespace CSHUE.Views
                         Thread.Sleep(500);
                     }
                 })
-                { IsBackground = true }.Start();
+            { IsBackground = true }.Start();
         }
 
         #endregion

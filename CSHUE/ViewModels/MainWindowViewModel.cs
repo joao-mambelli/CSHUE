@@ -66,7 +66,7 @@ namespace CSHUE.ViewModels
 
         #region Properties
 
-        private Geometry _maximizeRestore = Geometry.Parse((string) Application.Current.Resources["Maximize"]);
+        private Geometry _maximizeRestore = Geometry.Parse((string)Application.Current.Resources["Maximize"]);
         public Geometry MaximizeRestore
         {
             get => _maximizeRestore;
@@ -739,72 +739,69 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs.Count > 1)
             {
-                return Application.Current.Dispatcher?.Invoke(() =>
+                var list = new List<HubInfoCellViewModel>();
+
+                WebRequest request;
+
+                foreach (var b in bridgeIPs)
                 {
-                    var list = new List<HubInfoCellViewModel>();
-
-                    WebRequest request;
-
-                    foreach (var b in bridgeIPs)
-                    {
-                        HomePage.ViewModel.SetWarningValidating();
-
-                        try
-                        {
-                            request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
-                            request.Timeout = 7000;
-
-                            if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                                list.Add(new HubInfoCellViewModel
-                                {
-                                    Text = $"ip: {b.IpAddress}, id: {b.BridgeId}",
-                                    Ip = b.IpAddress
-                                });
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                    }
-
-                    if (list.Count < 1)
-                    {
-                        HomePage.ViewModel.SetWarningNoReachableHubs();
-
-                        return "";
-                    }
-
-                    if (list.Count == 1)
-                    {
-                        return list.ElementAt(0).Ip;
-                    }
-
-                    var hubSelector = new HubSelector(list)
-                    {
-                        Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                    };
-
-                    hubSelector.ShowDialog();
-
                     HomePage.ViewModel.SetWarningValidating();
 
                     try
                     {
-                        request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
-                        request.Timeout = 7000;
+                        request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
+                        request.Timeout = 1000;
 
-                        if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                            return hubSelector.SelectedBridge;
+                        if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                            list.Add(new HubInfoCellViewModel
+                            {
+                                Text = $"ip: {b.IpAddress}, id: {b.BridgeId}",
+                                Ip = b.IpAddress
+                            });
                     }
                     catch
                     {
-                        HomePage.ViewModel.SetWarningHubNotAvailable();
-
-                        return "";
+                        // ignored
                     }
+                }
+
+                if (list.Count < 1)
+                {
+                    HomePage.ViewModel.SetWarningNoReachableHubs();
 
                     return "";
-                });
+                }
+
+                if (list.Count == 1)
+                {
+                    return list.ElementAt(0).Ip;
+                }
+
+                var hubSelector = new HubSelector(list)
+                {
+                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+                };
+
+                hubSelector.ShowDialog();
+
+                HomePage.ViewModel.SetWarningValidating();
+
+                try
+                {
+                    request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
+                    request.Timeout = 1000;
+
+                    if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                        return hubSelector.SelectedBridge;
+                }
+                catch
+                {
+                    HomePage.ViewModel.SetWarningHubNotAvailable();
+
+                    return "";
+                }
+
+                return "";
             }
 
             HomePage.ViewModel.SetWarningValidating();
@@ -812,9 +809,9 @@ namespace CSHUE.ViewModels
             try
             {
                 var request = WebRequest.Create($"http://{bridgeIPs.First().IpAddress}/debug/clip.html");
-                request.Timeout = 7000;
+                request.Timeout = 1000;
 
-                if (((HttpWebResponse) request.GetResponse()).StatusCode == HttpStatusCode.OK)
+                if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
                     return bridgeIPs.First().IpAddress;
             }
             catch
@@ -1012,15 +1009,15 @@ namespace CSHUE.ViewModels
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                            ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int) Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
-                            Saturation = (byte) Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                            Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                 }
@@ -1053,15 +1050,15 @@ namespace CSHUE.ViewModels
                             await Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                                ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                Hue = (int) Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
-                                Saturation = (byte) Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                                Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
+                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
@@ -1080,18 +1077,18 @@ namespace CSHUE.ViewModels
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                            ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int) Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
+                            Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
                                                   360 *
                                                   65535),
                             Saturation =
-                                (byte) Math.Round(
+                                (byte)Math.Round(
                                     ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                     255),
                             Brightness = l.Brightness
@@ -1126,15 +1123,15 @@ namespace CSHUE.ViewModels
                             await Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                                ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                Hue = (int) Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
-                                Saturation = (byte) Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
+                                Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
+                                Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
@@ -1155,17 +1152,17 @@ namespace CSHUE.ViewModels
                             await Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                                ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                                 Brightness = l.Brightness
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await Client.SendCommandAsync(new LightCommand
                             {
                                 On = true,
-                                Hue = (int) Math.Round(
+                                Hue = (int)Math.Round(
                                     ColorConverters.GetHue(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) / 360 * 65535),
                                 Saturation =
-                                    (byte) Math.Round(
+                                    (byte)Math.Round(
                                         ColorConverters.GetSaturation(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                         255),
                                 Brightness = l.Brightness
@@ -1186,18 +1183,18 @@ namespace CSHUE.ViewModels
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            ColorTemperature = (int) Math.Round(l.ColorTemperature * -0.077111 + 654.222),
+                            ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
                             Brightness = l.Brightness
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int) Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
+                            Hue = (int)Math.Round(ColorConverters.GetHue(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) /
                                                   360 *
                                                   65535),
                             Saturation =
-                                (byte) Math.Round(
+                                (byte)Math.Round(
                                     ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                     255),
                             Brightness = l.Brightness
@@ -1270,15 +1267,15 @@ namespace CSHUE.ViewModels
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            ColorTemperature = (int) Math.Round(light.ColorTemperature * -0.077111 + 654.222),
+                            ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
                             Brightness = light.Brightness
                         }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int) Math.Round(ColorConverters.GetHue(light.Color) / 360 * 65535),
-                            Saturation = (byte) Math.Round(ColorConverters.GetSaturation(light.Color) * 255),
+                            Hue = (int)Math.Round(ColorConverters.GetHue(light.Color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(light.Color) * 255),
                             Brightness = light.Brightness,
                             TransitionTime = TimeSpan.FromMilliseconds(100)
                         }, new List<string> { $"{light.Id}" })
@@ -1297,15 +1294,15 @@ namespace CSHUE.ViewModels
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            ColorTemperature = (int) Math.Round(light.ColorTemperature * -0.077111 + 654.222),
+                            ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
                             Brightness = light.Brightness
                         }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            Hue = (int) Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
-                            Saturation = (byte) Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
+                            Hue = (int)Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
+                            Saturation = (byte)Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
                             Brightness = light.Brightness,
                             TransitionTime = TimeSpan.FromMilliseconds(100)
                         }, new List<string> { $"{light.Id}" })
@@ -1325,15 +1322,15 @@ namespace CSHUE.ViewModels
                     await Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        ColorTemperature = (int) Math.Round(light.ColorTemperature * -0.077111 + 654.222),
+                        ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
                         Brightness = light.Brightness
                     }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                 else
                     await Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        Hue = (int) Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
-                        Saturation = (byte) Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
+                        Hue = (int)Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
+                        Saturation = (byte)Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
                         Brightness = plantedLight.Brightness,
                         TransitionTime = TimeSpan.FromMilliseconds(100)
                     }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
@@ -1406,15 +1403,15 @@ namespace CSHUE.ViewModels
             SetLightsAsync(Properties.Settings.Default.BombPlanted).Wait();
 
             new Thread(() =>
-            {
-                for (var i = 0; i < 80 && _isPlanted; i++)
                 {
-                    if (_flashedZeroed)
-                        BlinkingBombAsync();
+                    for (var i = 0; i < 80 && _isPlanted; i++)
+                    {
+                        if (_flashedZeroed)
+                            BlinkingBombAsync();
 
-                    Thread.Sleep(Convert.ToInt32(1000.0 - i * 21 + i * i * 0.14));
-                }
-            })
+                        Thread.Sleep(Convert.ToInt32(1000.0 - i * 21 + i * i * 0.14));
+                    }
+                })
             { IsBackground = true }.Start();
         }
 
@@ -1495,13 +1492,13 @@ namespace CSHUE.ViewModels
             }
 
             new Thread(() =>
-            {
-                Thread.Sleep((int) (Properties.Settings.Default.PlayerGetsKillDuration * 1000));
+                {
+                    Thread.Sleep((int)(Properties.Settings.Default.PlayerGetsKillDuration * 1000));
 
-                BackLights(_lastgs);
+                    BackLights(_lastgs);
 
-                _blockLightChange = false;
-            })
+                    _blockLightChange = false;
+                })
             { IsBackground = true }.Start();
         }
 
@@ -1536,11 +1533,11 @@ namespace CSHUE.ViewModels
             }
 
             new Thread(() =>
-            {
-                Thread.Sleep((int) (Properties.Settings.Default.PlayerGetsKilledDuration * 1000));
+                {
+                    Thread.Sleep((int)(Properties.Settings.Default.PlayerGetsKilledDuration * 1000));
 
-                BackLights(_lastgs);
-            })
+                    BackLights(_lastgs);
+                })
             { IsBackground = true }.Start();
         }
 
@@ -1584,7 +1581,7 @@ namespace CSHUE.ViewModels
 
         public void Navigate(Frame page, object sender)
         {
-            switch (((Grid) sender).Name)
+            switch (((Grid)sender).Name)
             {
                 case "Config":
                     page.Navigate(ConfigPage);
@@ -1646,8 +1643,8 @@ namespace CSHUE.ViewModels
 
             try
             {
-                var request = (HttpWebRequest) WebRequest.Create("https://github.com/joao7yt/CSHUE/tags");
-                var response = (HttpWebResponse) request.GetResponse();
+                var request = (HttpWebRequest)WebRequest.Create("https://github.com/joao7yt/CSHUE/tags");
+                var response = (HttpWebResponse)request.GetResponse();
 
                 if (response.StatusCode != HttpStatusCode.OK)
                     return "";

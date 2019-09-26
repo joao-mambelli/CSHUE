@@ -53,7 +53,7 @@ namespace CSHUE.Views
                 return;
 
             var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
-            var lMmi = (Minmaxinfo) Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
+            var lMmi = (Minmaxinfo)Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
 
             if (lPrimaryScreen.Equals(lCurrentScreen))
             {
@@ -137,7 +137,7 @@ namespace CSHUE.Views
         #region Fields
 
         public readonly MainWindowViewModel ViewModel = new MainWindowViewModel();
-        
+
         private bool _buttonClickable;
         private SplashScreen _splashScreen;
 
@@ -209,7 +209,7 @@ namespace CSHUE.Views
                             }
                             else if (Properties.Settings.Default.RunOnStartupMinimized)
                                 WindowState = WindowState.Minimized;
-                            
+
                             ViewModel.Navigate(Page, "Home");
                             break;
                         case "-lang":
@@ -443,7 +443,7 @@ namespace CSHUE.Views
 
         private void Control_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            ((Grid) sender).ClearValue(BackgroundProperty);
+            ((Grid)sender).ClearValue(BackgroundProperty);
             _buttonClickable = false;
         }
 
@@ -455,7 +455,7 @@ namespace CSHUE.Views
         private void Control_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
-                ((Grid) sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
+                ((Grid)sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
                     ? Color.FromArgb(102, 255, 255, 255)
                     : Color.FromArgb(102, 0, 0, 0));
             else
@@ -470,53 +470,53 @@ namespace CSHUE.Views
         {
             if (_buttonClickable)
             {
-                ((Grid) sender).ClearValue(BackgroundProperty);
+                ((Grid)sender).ClearValue(BackgroundProperty);
                 ViewModel.Navigate(Page, sender);
 
-                if (((Grid) sender).Name == "Settings" && Properties.Settings.Default.FirstLaunch)
+                if (((Grid)sender).Name == "Settings" && Properties.Settings.Default.FirstLaunch)
                 {
                     Properties.Settings.Default.FirstLaunch = false;
                     Properties.Settings.Default.Save();
                 }
 
-                UpdateIndicatorPosition(((Grid) sender).Name);
+                UpdateIndicatorPosition(((Grid)sender).Name);
             }
         }
 
         private void TopControls_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _buttonClickable = true;
-            if (((Grid) sender).Name == "CloseButton")
+            if (((Grid)sender).Name == "CloseButton")
             {
-                ((Grid) sender).Background = new SolidColorBrush(Color.FromRgb(241, 112, 123));
-                if (VisualTreeHelper.GetChild((Grid) sender, 0) is Path child)
+                ((Grid)sender).Background = new SolidColorBrush(Color.FromRgb(241, 112, 123));
+                if (VisualTreeHelper.GetChild((Grid)sender, 0) is Path child)
                     child.Stroke = new SolidColorBrush(Colors.Black);
             }
             else
-                ((Grid) sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentLight1);
+                ((Grid)sender).Background = new SolidColorBrush(AccentColors.ImmersiveSystemAccentLight1);
         }
 
         private void TopControls_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (_buttonClickable)
-                GetType().GetMethod(((Grid) sender).Name + "_Click")?.Invoke(this, null);
+                GetType().GetMethod(((Grid)sender).Name + "_Click")?.Invoke(this, null);
         }
 
         private static void TopControls_OnMouseEnter(object sender, MouseEventArgs e)
         {
-            ((Grid) sender).Background = ((Grid) sender).Name == "CloseButton"
+            ((Grid)sender).Background = ((Grid)sender).Name == "CloseButton"
                 ? new SolidColorBrush(Color.FromRgb(232, 17, 35))
                 : AccentColors.ImmersiveSystemAccentBrush;
 
-            if (VisualTreeHelper.GetChild((Grid) sender, 0) is Path child)
+            if (VisualTreeHelper.GetChild((Grid)sender, 0) is Path child)
                 child.Stroke = new SolidColorBrush(Colors.White);
         }
 
         private void TopControls_OnMouseLeave(object sender, MouseEventArgs e)
         {
             _buttonClickable = false;
-            ((Grid) sender).Background = new SolidColorBrush(Colors.Transparent);
-            if (VisualTreeHelper.GetChild((Grid) sender, 0) is Path child)
+            ((Grid)sender).Background = new SolidColorBrush(Colors.Transparent);
+            if (VisualTreeHelper.GetChild((Grid)sender, 0) is Path child)
                 child.SetResourceReference(Shape.StrokeProperty, "SystemBaseHighColorBrush");
         }
 
@@ -539,8 +539,8 @@ namespace CSHUE.Views
             WindowChrome.CaptionHeight = WindowState == WindowState.Maximized ? 33 : 30;
 
             ViewModel.MaximizeRestore = WindowState == WindowState.Maximized
-                ? Geometry.Parse((string) Application.Current.Resources["Restore"])
-                : Geometry.Parse((string) Application.Current.Resources["Maximize"]);
+                ? Geometry.Parse((string)Application.Current.Resources["Restore"])
+                : Geometry.Parse((string)Application.Current.Resources["Maximize"]);
 
             if (WindowState == WindowState.Minimized &&
                 Properties.Settings.Default.MinimizeToSystemTray &&
@@ -591,10 +591,10 @@ namespace CSHUE.Views
             }
 
             Properties.Settings.Default.Save();
-            
+
             foreach (var w in Application.Current.Windows)
             {
-                ((Window) w).Hide();
+                ((Window)w).Hide();
             }
 
             Environment.Exit(0);
@@ -602,18 +602,16 @@ namespace CSHUE.Views
 
         private void NotifyIcon_OnTrayMouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            Show();
-            WindowState = WindowState.Normal;
+            ShowMe();
         }
 
         private void MenuNavigate_OnClick(object sender, RoutedEventArgs e)
         {
-            Show();
-            WindowState = WindowState.Normal;
+            ShowMe();
 
-            ViewModel.Navigate(Page, ((MenuItem) sender).Tag.ToString());
+            ViewModel.Navigate(Page, ((MenuItem)sender).Tag.ToString());
 
-            UpdateIndicatorPosition(((MenuItem) sender).Tag.ToString());
+            UpdateIndicatorPosition(((MenuItem)sender).Tag.ToString());
         }
 
         private void MenuExit_OnClick(object sender, RoutedEventArgs e)
@@ -623,21 +621,21 @@ namespace CSHUE.Views
 
         private void ContextMenu_OnOpened(object sender, RoutedEventArgs e)
         {
-            ((ContextMenu) sender).Items[0] = new MenuItem
+            ((ContextMenu)sender).Items[0] = new MenuItem
             {
                 Header = Cultures.Resources.Home,
-                Style = (Style) FindResource("CustomMenuItemAlertHome"),
+                Style = (Style)FindResource("CustomMenuItemAlertHome"),
                 Tag = "Home"
             };
-            ((MenuItem) ((ContextMenu) sender).Items[0]).Click += MenuNavigate_OnClick;
+            ((MenuItem)((ContextMenu)sender).Items[0]).Click += MenuNavigate_OnClick;
 
-            ((ContextMenu) sender).Items[1] = new MenuItem
+            ((ContextMenu)sender).Items[1] = new MenuItem
             {
                 Header = Cultures.Resources.CSGOGSI,
-                Style = (Style) FindResource("CustomMenuItemAlertConfig"),
+                Style = (Style)FindResource("CustomMenuItemAlertConfig"),
                 Tag = "Config"
             };
-            ((MenuItem) ((ContextMenu) sender).Items[1]).Click += MenuNavigate_OnClick;
+            ((MenuItem)((ContextMenu)sender).Items[1]).Click += MenuNavigate_OnClick;
         }
 
         private void RunCsgo_OnClick(object sender, RoutedEventArgs e)
@@ -662,13 +660,13 @@ namespace CSHUE.Views
         public void UpdateIndicatorPosition(string name)
         {
             foreach (var f in Menus.Children.OfType<StackPanel>())
-            foreach (var g in f.Children.OfType<Grid>())
-            foreach (var h in g.Children.OfType<StackPanel>())
-            foreach (var i in h.Children.OfType<Grid>())
-                if (i.Name == name + "Indicator")
-                    i.Visibility = Visibility.Visible;
-                else if (i.Name.Contains("Indicator"))
-                    i.Visibility = Visibility.Hidden;
+                foreach (var g in f.Children.OfType<Grid>())
+                    foreach (var h in g.Children.OfType<StackPanel>())
+                        foreach (var i in h.Children.OfType<Grid>())
+                            if (i.Name == name + "Indicator")
+                                i.Visibility = Visibility.Visible;
+                            else if (i.Name.Contains("Indicator"))
+                                i.Visibility = Visibility.Hidden;
         }
 
         #endregion

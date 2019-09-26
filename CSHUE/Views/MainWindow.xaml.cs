@@ -9,7 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CSHUE.Controls;
 using CSHUE.Cultures;
@@ -175,7 +174,6 @@ namespace CSHUE.Views
             MaximizeButton.MouseLeave += TopControls_OnMouseLeave;
             CloseButton.MouseEnter += TopControls_OnMouseEnter;
             CloseButton.MouseLeave += TopControls_OnMouseLeave;
-            Page.Navigated += Page_OnNavigated;
 
             Height = Properties.Settings.Default.Height;
             Width = Properties.Settings.Default.Width;
@@ -183,15 +181,15 @@ namespace CSHUE.Views
             ViewModel.CreateInstances();
 
             if (Properties.Settings.Default.RunOnStartup)
-                ViewModel.SettingsPage.ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
+                ViewModel.Settings.ViewModel.AddStartup(Properties.Settings.Default.RunOnStartupMinimized);
             else
-                ViewModel.SettingsPage.ViewModel.RemoveStartup();
+                ViewModel.Settings.ViewModel.RemoveStartup();
 
             if (Properties.Settings.Default.ShowSystemTrayIcon)
                 ViewModel.NotifyIconVisibility = Visibility.Visible;
 
             if (Properties.Settings.Default.FirstLaunch)
-                ViewModel.Navigate(Page, "Home");
+                ViewModel.Navigate("Home");
             else
             {
                 var arguments = Environment.GetCommandLineArgs();
@@ -210,14 +208,14 @@ namespace CSHUE.Views
                             else if (Properties.Settings.Default.RunOnStartupMinimized)
                                 WindowState = WindowState.Minimized;
 
-                            ViewModel.Navigate(Page, "Home");
+                            ViewModel.Navigate("Home");
                             break;
                         case "-lang":
-                            ViewModel.Navigate(Page, "Settings");
+                            ViewModel.Navigate("Settings");
                             UpdateIndicatorPosition("Settings");
                             break;
                         default:
-                            ViewModel.Navigate(Page, "Home");
+                            ViewModel.Navigate("Home");
                             break;
                     }
                 }
@@ -227,7 +225,7 @@ namespace CSHUE.Views
 
             ViewModel.Csgo();
 
-            ViewModel.SettingsPage.ViewModel.UpdateGradients();
+            ViewModel.Settings.ViewModel.UpdateGradients();
         }
 
         private static void SetLanguage()
@@ -447,11 +445,6 @@ namespace CSHUE.Views
             _buttonClickable = false;
         }
 
-        private void Page_OnNavigated(object sender, NavigationEventArgs e)
-        {
-            Page.NavigationService.RemoveBackEntry();
-        }
-
         private void Control_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
@@ -471,7 +464,7 @@ namespace CSHUE.Views
             if (_buttonClickable)
             {
                 ((Grid)sender).ClearValue(BackgroundProperty);
-                ViewModel.Navigate(Page, sender);
+                ViewModel.Navigate(((Grid)sender).Name);
 
                 if (((Grid)sender).Name == "Settings" && Properties.Settings.Default.FirstLaunch)
                 {
@@ -556,7 +549,7 @@ namespace CSHUE.Views
                 ViewModel.WindowMinimized = false;
 
                 if (ViewModel.AllowStartLightsChecking)
-                    ViewModel.HomePage.StartLightsChecking();
+                    ViewModel.Home.StartLightsChecking();
             }
 
             base.OnStateChanged(e);
@@ -600,7 +593,7 @@ namespace CSHUE.Views
             Environment.Exit(0);
         }
 
-        private void NotifyIcon_OnTrayMouseDoubleClick(object sender, RoutedEventArgs e)
+        private void NotifyIcon_OnTrayLeftMouseDown(object sender, RoutedEventArgs e)
         {
             ShowMe();
         }
@@ -609,7 +602,7 @@ namespace CSHUE.Views
         {
             ShowMe();
 
-            ViewModel.Navigate(Page, ((MenuItem)sender).Tag.ToString());
+            ViewModel.Navigate(((MenuItem)sender).Tag.ToString());
 
             UpdateIndicatorPosition(((MenuItem)sender).Tag.ToString());
         }

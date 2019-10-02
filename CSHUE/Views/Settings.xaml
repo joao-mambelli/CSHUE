@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,4,0,0"
+        <TextBlock Margin="24 4 0 0"
                    FontSize="28"
                    Text="{Binding Path=Settings, Source={StaticResource Resources}}"/>
 
@@ -38,18 +38,18 @@
                     <ColumnDefinition MaxWidth="502"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="24,0,20,30">
-                    <TextBlock Margin="0,20,0,2"
+                <StackPanel Margin="24 0 20 30">
+                    <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="{Binding Path=Events, Source={StaticResource Resources}}"/>
 
-                    <TabControl Margin="0,2,0,9"
+                    <TabControl Margin="0 2 0 9"
                                 Style="{DynamicResource CustomTabControl}">
                         <TabItem Style="{DynamicResource CustomTabItem}"
                                  Header="{Binding Path=Primary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=MainMenu, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -64,7 +64,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=TerroristsWin, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -79,7 +79,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=CounterTerroristsWin, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -94,7 +94,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -109,7 +109,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -130,7 +130,7 @@
                                  Header="{Binding Path=Secondary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -145,7 +145,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=BombBlink, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -160,7 +160,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -175,7 +175,7 @@
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=Warmup, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -196,7 +196,7 @@
                                  Header="{Binding Path=Tertiary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=PlayerGetsKill, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -212,7 +212,7 @@
                                 </Button>
 
                                 <StackPanel Orientation="Horizontal"
-                                            Margin="0,5,0,0">
+                                            Margin="0 5 0 0">
                                     <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}"/>
 
                                     <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKillDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -221,7 +221,7 @@
                                                         ButtonSpinnerLocation="Left"
                                                         BorderThickness="0"
                                                         Width="42"
-                                                        Margin="5,0,0,0"
+                                                        Margin="5 0 0 0"
                                                         TextAlignment="Center"
                                                         Increment=".5"
                                                         Minimum="1"
@@ -231,10 +231,10 @@
                                                         ValueChanged="Save"/>
 
                                     <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}"
-                                               Margin="3,0,0,0"/>
+                                               Margin="3 0 0 0"/>
                                 </StackPanel>
 
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=PlayerGetsKilled, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -250,7 +250,7 @@
                                 </Button>
 
                                 <StackPanel Orientation="Horizontal"
-                                            Margin="0,5,0,0">
+                                            Margin="0 5 0 0">
                                     <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}"/>
 
                                     <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKilledDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -259,7 +259,7 @@
                                                         ButtonSpinnerLocation="Left"
                                                         BorderThickness="0"
                                                         Width="42"
-                                                        Margin="5,0,0,0"
+                                                        Margin="5 0 0 0"
                                                         TextAlignment="Center"
                                                         Increment=".5"
                                                         Minimum="1"
@@ -269,7 +269,7 @@
                                                         ValueChanged="Save"/>
 
                                     <TextBlock Text="{Binding Path=SecondsAbbreviation, Source={StaticResource Resources}}"
-                                               Margin="3,0,0,0"/>
+                                               Margin="3 0 0 0"/>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
@@ -278,7 +278,7 @@
                                  Header="{Binding Path=Quarternary, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
-                                <TextBlock Margin="0,15,0,2"
+                                <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
@@ -296,11 +296,33 @@
                         </TabItem>
                     </TabControl>
 
-                    <TextBlock Margin="0,20,0,2"
+                    <TextBlock Margin="0 20 0 2"
+                               FontSize="20"
+                               Text="{Binding Path=Lights, Source={StaticResource Resources}}"/>
+
+                    <TextBlock Text="{Binding Path=BrightnessModifier, Source={StaticResource Resources}}"
+                               Margin="0 15 0 4"/>
+
+                    <Slider Width="{Binding Width, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                            Margin="0 4 0 0"
+                            Minimum="0"
+                            Maximum="200"
+                            Style="{DynamicResource CustomSlider}"
+                            Value="{Binding Source={x:Static p:Settings.Default}, Path=BrightnessModifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ValueChanged="BrightnessModifier_OnValueChanged"/>
+
+                    <TextBlock Text="{Binding Formula}"
+                               HorizontalAlignment="Right"
+                               Foreground="Gray"
+                               FontFamily="Courier"
+                               FontSize="13"
+                               Margin="0 5 0 0"/>
+
+                    <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="CSHUE"/>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -310,7 +332,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="30,7,0,9"
+                    <CheckBox Margin="30 7 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup}"
@@ -321,7 +343,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -331,7 +353,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="30,7,0,9"
+                    <CheckBox Margin="30 7 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon}"
@@ -340,7 +362,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -350,7 +372,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -360,7 +382,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -370,7 +392,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=PreviewLights, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -380,7 +402,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -390,7 +412,7 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <WrapPanel Margin="30,7,0,9"
+                    <WrapPanel Margin="30 7 0 9"
                                IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}">
                         <xctk:TimeSpanUpDown Background="{DynamicResource SystemBaseLowColorBrush}"
                                              Value="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivateStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -406,7 +428,7 @@
                                              ValueChanged="Save"/>
 
                         <TextBlock Text="{Binding Path=And, Source={StaticResource Resources}}"
-                                   Margin="5,0,5,0"
+                                   Margin="5 0 5 0"
                                    Style="{DynamicResource DisableTextBlock}"/>
 
                         <xctk:TimeSpanUpDown Background="{DynamicResource SystemBaseLowColorBrush}"
@@ -423,7 +445,7 @@
                                              ValueChanged="Save"/>
                     </WrapPanel>
 
-                    <CheckBox Margin="30,7,0,9"
+                    <CheckBox Margin="30 7 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}"
@@ -433,9 +455,9 @@
                     </CheckBox>
 
                     <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}"
-                               Margin="0,15,0,4"/>
+                               Margin="0 15 0 4"/>
 
-                    <ComboBox Margin="0,4,0,9"
+                    <ComboBox Margin="0 4 0 9"
                               x:Name="ComboBoxLanguage"
                               Width="280"
                               HorizontalAlignment="Left"
@@ -445,9 +467,9 @@
                               SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=LanguageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="{Binding Path=Theme, Source={StaticResource Resources}}"
-                               Margin="0,15,0,4"/>
+                               Margin="0 15 0 4"/>
 
-                    <ComboBox Margin="0,4,0,9"
+                    <ComboBox Margin="0 4 0 9"
                               x:Name="ComboBoxTheme"
                               Width="280"
                               HorizontalAlignment="Left"
@@ -459,9 +481,9 @@
                               DisplayMemberPath="Text"/>
 
                     <TextBlock Text="{Binding Path=Transparency, Source={StaticResource Resources}}"
-                               Margin="0,15,0,4"/>
+                               Margin="0 15 0 4"/>
 
-                    <ComboBox Margin="0,4,0,9"
+                    <ComboBox Margin="0 4 0 9"
                               x:Name="ComboBoxTransparency"
                               Width="280"
                               HorizontalAlignment="Left"
@@ -472,11 +494,11 @@
                               SelectionChanged="ComboBoxTransparency_OnSelectionChanged"
                               DisplayMemberPath="Text"/>
 
-                    <TextBlock Margin="0,20,0,2"
+                    <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="CS:GO"/>
 
-                    <CheckBox Margin="0,15,0,9"
+                    <CheckBox Margin="0 15 0 9"
                               Style="{DynamicResource CustomCheckBox}"
                               HorizontalAlignment="Left"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -487,14 +509,14 @@
                     </CheckBox>
 
                     <TextBox Height="35"
-                             Margin="0,2,0,9"
+                             Margin="0 2 0 9"
                              VerticalContentAlignment="Center"
                              Style="{StaticResource HintTextBox}"
                              Tag="{Binding Path=LaunchOptions, Source={StaticResource Resources}}"
                              Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              TextInput="Save"/>
 
-                    <Button Margin="0,20,0,9"
+                    <Button Margin="0 20 0 9"
                             VerticalAlignment="Top"
                             Height="31"
                             MinWidth="90"

@@ -97,7 +97,7 @@
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                          Margin="13,0,32,0"
+                                          Margin="13 0 32 0"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Left"/>
 
@@ -106,7 +106,7 @@
                                  Template="{StaticResource ComboBoxTextBox}"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
-                                 Margin="3,3,23,3"
+                                 Margin="3 3 23 3"
                                  Focusable="True"
                                  Background="#FF3F3F3F"
                                  Foreground="Green"
@@ -128,7 +128,7 @@
                                             Background="{DynamicResource SystemBaseLowColorBrush}"
                                             BorderThickness="1"
                                             BorderBrush="{DynamicResource SystemBaseMediumColorBrush}"/>
-                                    <ScrollViewer Margin="1,1,1,1"
+                                    <ScrollViewer Margin="1 1 1 1"
                                                   SnapsToDevicePixels="True">
                                         <StackPanel IsItemsHost="True"
                                                     KeyboardNavigation.DirectionalNavigation="Contained"/>

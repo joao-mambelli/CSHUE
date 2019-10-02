@@ -466,4 +466,13 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="Help" xml:space="preserve">
     <value>Ajuda</value>
   </data>
+  <data name="BrightnessModifier" xml:space="preserve">
+    <value>Modificador de brilho</value>
+  </data>
+  <data name="BrightnessPercentage" xml:space="preserve">
+    <value>%brilho</value>
+  </data>
+  <data name="Lights" xml:space="preserve">
+    <value>Luzes</value>
+  </data>
 </root>

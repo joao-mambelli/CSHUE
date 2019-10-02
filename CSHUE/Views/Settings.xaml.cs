@@ -556,6 +556,13 @@ namespace CSHUE.Views
             }
         }
 
+        private void BrightnessModifier_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            ViewModel.Formula = e.NewValue <= 100
+                ? $"{Cultures.Resources.BrightnessPercentage} * {e.NewValue / 100:0.00}"
+                : $"{Cultures.Resources.BrightnessPercentage} + (1 - {Cultures.Resources.BrightnessPercentage}) * {e.NewValue / 100 - 1:0.00}";
+        }
+
         #endregion
     }
 }

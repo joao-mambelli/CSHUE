@@ -361,7 +361,7 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,0,15"
+                    Margin="15 25 0 15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"
@@ -371,7 +371,7 @@
                     Click="Button1_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,25,15,15"
+                    Margin="15 25 15 15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"

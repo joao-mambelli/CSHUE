@@ -25,7 +25,7 @@
                             SnapsToDevicePixels="True">
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost"
-                                          Margin="8,0,8,0"
+                                          Margin="8 0 8 0"
                                           Focusable="false"
                                           HorizontalScrollBarVisibility="Hidden"
                                           VerticalScrollBarVisibility="Hidden"/>
@@ -34,7 +34,7 @@
                                    VerticalAlignment="Center"
                                    Content="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
                                    Foreground="{DynamicResource SystemBaseMediumLowColorBrush}"
-                                   Padding="10,0,0,0"
+                                   Padding="10 0 0 0"
                                    Visibility="Collapsed"/>
                         </Grid>
                     </Border>

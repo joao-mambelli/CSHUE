@@ -7,7 +7,7 @@
                 Value="{DynamicResource SystemBaseHighColorBrush}"/>
 
         <Setter Property="Padding"
-                Value="4,1,0,0"/>
+                Value="4 1 0 0"/>
 
         <Setter Property="SnapsToDevicePixels"
                 Value="True"/>
@@ -34,7 +34,7 @@
                             </Border>
                         </BulletDecorator.Bullet>
 
-                        <ContentPresenter Margin="7,0,0,0"
+                        <ContentPresenter Margin="7 0 0 0"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Left"
                                           RecognizesAccessKey="True"/>

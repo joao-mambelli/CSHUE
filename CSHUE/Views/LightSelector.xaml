@@ -69,7 +69,7 @@
                 <ListBox ItemsSource="{Binding List}"
                          Background="Transparent"
                          BorderThickness="0"
-                         Margin="20,0,20,0">
+                         Margin="20 0 20 0">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="Focusable"
@@ -116,7 +116,7 @@
                     Grid.Row="2"
                     HorizontalAlignment="Right">
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="15,0,15,15"
+                    Margin="15 0 15 15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"
@@ -126,7 +126,7 @@
                     Click="ButtonCancel_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
-                    Margin="0,0,15,15"
+                    Margin="0 0 15 15"
                     FontSize="14"
                     VerticalAlignment="Bottom"
                     Height="31"

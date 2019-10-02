@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,4,0,0"
+        <TextBlock Margin="24 4 0 0"
                    FontSize="28"
                    Text="{Binding Path=About, Source={StaticResource Resources}}"/>
 
@@ -35,18 +35,18 @@
                     <ColumnDefinition MaxWidth="502"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="24,0,20,30">
-                    <TextBlock Margin="0,20,0,9"
+                <StackPanel Margin="24 0 20 30">
+                    <TextBlock Margin="0 20 0 9"
                                TextWrapping="Wrap"
                                TextAlignment="Justify"
                                Text="{Binding Path=AboutText, Source={StaticResource Resources}}"/>
 
-                    <TextBlock Margin="0,20,0,2"
+                    <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="{Binding Path=FollowMe, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
                     <StackPanel Orientation="Horizontal"
-                                Margin="0,2,0,9">
+                                Margin="0 2 0 9">
                         <StackPanel.Resources>
                             <Style TargetType="{x:Type Hyperlink}">
                                 <Setter Property="Foreground"
@@ -72,7 +72,7 @@
                         </StackPanel.Resources>
 
                         <StackPanel Width="90">
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-100"
@@ -87,7 +87,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="Steam"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -101,7 +101,7 @@
                                 </TextBlock.ToolTip>
                             </TextBlock>
 
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-100"
@@ -116,7 +116,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="Reddit"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -130,7 +130,7 @@
                                 </TextBlock.ToolTip>
                             </TextBlock>
 
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-100"
@@ -145,7 +145,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="LinkedIn"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -161,7 +161,7 @@
                         </StackPanel>
 
                         <StackPanel Width="90">
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-100"
@@ -176,7 +176,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="YouTube"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -190,7 +190,7 @@
                                 </TextBlock.ToolTip>
                             </TextBlock>
 
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-100"
@@ -205,7 +205,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="Instagram"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -218,7 +218,7 @@
                                     </ToolTip>
                                 </TextBlock.ToolTip>
                             </TextBlock>
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-100"
@@ -233,7 +233,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="Facebook"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -249,7 +249,7 @@
                         </StackPanel>
 
                         <StackPanel Width="90">
-                            <TextBlock Margin="0,6,0,5"
+                            <TextBlock Margin="0 6 0 5"
                                        ToolTipService.InitialShowDelay="100"
                                        ToolTipService.HasDropShadow="True"
                                        ToolTipService.HorizontalOffset="-80"
@@ -264,7 +264,7 @@
                                               Width="16"
                                               Stretch="Uniform"/>
 
-                                        <TextBlock Margin="7,0,0,0"
+                                        <TextBlock Margin="7 0 0 0"
                                                    Text="GitHub"
                                                    LineHeight="15"/>
                                     </StackPanel>
@@ -280,14 +280,14 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <TextBlock Margin="0,20,0,2"
+                    <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="{Binding Path=Version, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
 
                     <Label Content="{Binding Version}"
                            Foreground="White"
-                           Margin="0,2,0,9">
+                           Margin="0 2 0 9">
                         <Label.DataContext>
                             <viewModels:MainWindowViewModel/>
                         </Label.DataContext>

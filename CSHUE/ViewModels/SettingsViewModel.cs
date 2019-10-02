@@ -55,11 +55,27 @@ namespace CSHUE.ViewModels
         /// </summary>
         public ObservableCollection<Theme> Themes
         {
-            get =>
-                _themes;
+            get => _themes;
             set
             {
                 _themes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Formula back field.
+        /// </summary>
+        private string _formula = $"{Resources.BrightnessPercentage} * 0.00";
+        /// <summary>
+        /// Formula property.
+        /// </summary>
+        public string Formula
+        {
+            get => _formula;
+            set
+            {
+                _formula = value;
                 OnPropertyChanged();
             }
         }
@@ -73,8 +89,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public Theme SelectedTheme
         {
-            get =>
-                _selectedTheme;
+            get => _selectedTheme;
             set
             {
                 _selectedTheme = value;
@@ -108,8 +123,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public ObservableCollection<Transparency> Transparencies
         {
-            get =>
-                _transparencies;
+            get => _transparencies;
             set
             {
                 _transparencies = value;
@@ -126,8 +140,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public Transparency SelectedTransparency
         {
-            get =>
-                _selectedTransparency;
+            get => _selectedTransparency;
             set
             {
                 _selectedTransparency = value;
@@ -144,8 +157,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsMainMenu
         {
-            get =>
-                _gradientStopsMainMenu;
+            get => _gradientStopsMainMenu;
             set
             {
                 _gradientStopsMainMenu = value;
@@ -162,8 +174,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsKill
         {
-            get =>
-                _gradientStopsPlayerGetsKill;
+            get => _gradientStopsPlayerGetsKill;
             set
             {
                 _gradientStopsPlayerGetsKill = value;
@@ -180,8 +191,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsKilled
         {
-            get =>
-                _gradientStopsPlayerGetsKilled;
+            get => _gradientStopsPlayerGetsKilled;
             set
             {
                 _gradientStopsPlayerGetsKilled = value;
@@ -198,8 +208,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsPlayerGetsFlashed
         {
-            get =>
-                _gradientStopsPlayerGetsFlashed;
+            get => _gradientStopsPlayerGetsFlashed;
             set
             {
                 _gradientStopsPlayerGetsFlashed = value;
@@ -216,8 +225,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsTerroristsWin
         {
-            get =>
-                _gradientStopsTerroristsWin;
+            get => _gradientStopsTerroristsWin;
             set
             {
                 _gradientStopsTerroristsWin = value;
@@ -234,8 +242,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsCounterTerroristsWin
         {
-            get =>
-                _gradientStopsCounterTerroristsWin;
+            get => _gradientStopsCounterTerroristsWin;
             set
             {
                 _gradientStopsCounterTerroristsWin = value;
@@ -252,8 +259,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsRoundStarts
         {
-            get =>
-                _gradientStopsRoundStarts;
+            get => _gradientStopsRoundStarts;
             set
             {
                 _gradientStopsRoundStarts = value;
@@ -270,8 +276,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsFreezeTime
         {
-            get =>
-                _gradientStopsFreezeTime;
+            get => _gradientStopsFreezeTime;
             set
             {
                 _gradientStopsFreezeTime = value;
@@ -288,8 +293,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsWarmup
         {
-            get =>
-                _gradientStopsWarmup;
+            get => _gradientStopsWarmup;
             set
             {
                 _gradientStopsWarmup = value;
@@ -306,8 +310,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsBombExplodes
         {
-            get =>
-                _gradientStopsBombExplodes;
+            get => _gradientStopsBombExplodes;
             set
             {
                 _gradientStopsBombExplodes = value;
@@ -324,8 +327,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsBombPlanted
         {
-            get =>
-                _gradientStopsBombPlanted;
+            get => _gradientStopsBombPlanted;
             set
             {
                 _gradientStopsBombPlanted = value;
@@ -342,8 +344,7 @@ namespace CSHUE.ViewModels
         /// </summary>
         public GradientStopCollection GradientStopsBombBlink
         {
-            get =>
-                _gradientStopsBombBlink;
+            get => _gradientStopsBombBlink;
             set
             {
                 _gradientStopsBombBlink = value;

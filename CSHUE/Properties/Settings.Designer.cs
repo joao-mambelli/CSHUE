@@ -525,5 +525,17 @@ namespace CSHUE.Properties {
                 this["Transparency"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int BrightnessModifier {
+            get {
+                return ((int)(this["BrightnessModifier"]));
+            }
+            set {
+                this["BrightnessModifier"] = value;
+            }
+        }
     }
 }

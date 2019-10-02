@@ -121,7 +121,7 @@
                                     BorderThickness="0"
                                     Width="44"
                                     Height="21"
-                                    Margin="10,0,0,0"
+                                    Margin="10 0 0 0"
                                     TextAlignment="Center"
                                     Increment="1"
                                     Minimum="1"

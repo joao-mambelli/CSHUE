@@ -466,4 +466,13 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="BrightnessModifier" xml:space="preserve">
+    <value>Brightness modifier</value>
+  </data>
+  <data name="BrightnessPercentage" xml:space="preserve">
+    <value>brightness%</value>
+  </data>
+  <data name="Lights" xml:space="preserve">
+    <value>Lights</value>
+  </data>
 </root>

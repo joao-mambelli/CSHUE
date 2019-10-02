@@ -65,7 +65,7 @@
                                  x:Name="Slider"
                                  Fill="{DynamicResource SystemBaseHighColorBrush}"
                                  HorizontalAlignment="Left"
-                                 Margin="5,0,0,0"
+                                 Margin="5 0 0 0"
                                  Opacity=".77"/>
                     </Grid>
 
@@ -130,7 +130,7 @@
                                 <BeginStoryboard x:Name="checkedSB">
                                     <Storyboard Storyboard.TargetProperty="Margin"
                                                 Storyboard.TargetName="Slider">
-                                        <ThicknessAnimation To="29,0,0,0"
+                                        <ThicknessAnimation To="29 0 0 0"
                                                             Duration="00:00:00.2">
                                             <ThicknessAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseInOut"/>
@@ -144,7 +144,7 @@
                                 <BeginStoryboard x:Name="uncheckedSB">
                                     <Storyboard Storyboard.TargetProperty="Margin"
                                                 Storyboard.TargetName="Slider">
-                                        <ThicknessAnimation To="5,0,0,0"
+                                        <ThicknessAnimation To="5 0 0 0"
                                                             Duration="00:00:00.2">
                                             <ThicknessAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseInOut"/>

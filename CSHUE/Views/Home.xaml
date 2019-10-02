@@ -32,7 +32,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="24,4,0,0"
+        <TextBlock Margin="24 4 0 0"
                    FontSize="28"
                    Text="{Binding Path=Home, Source={StaticResource Resources}}"/>
 
@@ -48,12 +48,12 @@
                     <ColumnDefinition MaxWidth="502"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="24,0,20,80">
+                <StackPanel Margin="24 0 20 80">
                     <TextBlock Text="{Binding Path=Activated, Source={StaticResource Resources}}"
-                               Margin="0,15,0,4"/>
+                               Margin="0 15 0 4"/>
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Margin="0,4,0,9"
+                                      Margin="0 4 0 9"
                                       HorizontalAlignment="Left"
                                       Style="{DynamicResource CustomToggleButton}"/>
 
@@ -68,13 +68,13 @@
                                Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToCollapsedConverter}}"/>
                     </StackPanel>
 
-                    <TextBlock Margin="0,20,0,2"
+                    <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="{Binding Path=LightsStates, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"
                                Visibility="{Binding InProcessVisibility, Converter={StaticResource VisibilityInverter}}"/>
 
-                    <StackPanel Margin="24,30,20,30"
+                    <StackPanel Margin="24 30 20 30"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Center"
                                 Visibility="{Binding InProcessVisibility}">
@@ -85,7 +85,7 @@
                             <TextBlock Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningLink}"
                                        HorizontalAlignment="Center"
-                                       Margin="0,30,0,0"
+                                       Margin="0 30 0 0"
                                        MaxWidth="500"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
@@ -93,7 +93,7 @@
                             <TextBlock Text="{Binding Path=WarningValidating, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningValidating}"
                                        HorizontalAlignment="Center"
-                                       Margin="0,30,0,0"
+                                       Margin="0 30 0 0"
                                        MaxWidth="500"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
@@ -101,7 +101,7 @@
                             <TextBlock Text="{Binding Path=WarningSearching, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningSearching}"
                                        HorizontalAlignment="Center"
-                                       Margin="0,30,0,0"
+                                       Margin="0 30 0 0"
                                        MaxWidth="500"
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
@@ -112,7 +112,7 @@
                                 <TextBlock Text="{Binding Path=WarningNoHub, Source={StaticResource Resources}}"
                                            Visibility="{Binding WarningNoHub}"
                                            HorizontalAlignment="Center"
-                                           Margin="0,30,0,0"
+                                           Margin="0 30 0 0"
                                            MaxWidth="500"
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
@@ -120,7 +120,7 @@
                                 <TextBlock Text="{Binding Path=WarningNoReachableHubs, Source={StaticResource Resources}}"
                                     Visibility="{Binding WarningNoReachableHubs}"
                                            HorizontalAlignment="Center"
-                                           Margin="0,30,0,0"
+                                           Margin="0 30 0 0"
                                            MaxWidth="500"
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
@@ -128,13 +128,13 @@
                                 <TextBlock Text="{Binding Path=WarningHubNotAvailable, Source={StaticResource Resources}}"
                                 Visibility="{Binding WarningHubNotAvailable}"
                                            HorizontalAlignment="Center"
-                                           Margin="0,30,0,0"
+                                           Margin="0 30 0 0"
                                            MaxWidth="500"
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
                             </Grid>
 
-                            <Button Margin="0,30,0,9"
+                            <Button Margin="0 30 0 9"
                                     VerticalAlignment="Top"
                                     Height="31"
                                     MinWidth="90"
@@ -172,7 +172,7 @@
                     </ListBox>
                 </StackPanel>
 
-                <Button Margin="0,0,30,30"
+                <Button Margin="0 0 30 30"
                         VerticalAlignment="Bottom"
                         Height="31"
                         MinWidth="90"

@@ -160,6 +160,24 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Brightness modifier.
+        /// </summary>
+        public static string BrightnessModifier {
+            get {
+                return ResourceManager.GetString("BrightnessModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a brightness%.
+        /// </summary>
+        public static string BrightnessPercentage {
+            get {
+                return ResourceManager.GetString("BrightnessPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Cancel.
         /// </summary>
         public static string Cancel {
@@ -486,6 +504,15 @@ namespace CSHUE.Cultures {
         public static string LightOff {
             get {
                 return ResourceManager.GetString("LightOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Lights.
+        /// </summary>
+        public static string Lights {
+            get {
+                return ResourceManager.GetString("Lights", resourceCulture);
             }
         }
         

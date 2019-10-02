@@ -8,7 +8,7 @@
         <ContentControl Content="{Binding}"
                         Foreground="Gray"
                         Focusable="False"
-                        Margin="0,0,3,0"/>
+                        Margin="0 0 3 0"/>
     </DataTemplate>
 
     <Style x:Key="CustomButtonSpinnerRepeatButton"

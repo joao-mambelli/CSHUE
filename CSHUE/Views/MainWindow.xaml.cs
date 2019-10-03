@@ -603,6 +603,11 @@ namespace CSHUE.Views
             UpdateIndicatorPosition(((MenuItem)sender).Tag.ToString());
         }
 
+        private void MenuActivated_OnClick(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Activated = !Properties.Settings.Default.Activated;
+        }
+
         private void MenuExit_OnClick(object sender, RoutedEventArgs e)
         {
             Close();

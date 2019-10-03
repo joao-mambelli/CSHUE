@@ -451,6 +451,12 @@
                              Style="{DynamicResource CustomContextMenu}"
                              Opened="ContextMenu_OnOpened"
                              MinWidth="250">
+                    <MenuItem Header="{Binding Path=Activated, Source={StaticResource Resources}}"
+                              Style="{DynamicResource CustomMenuItemActivated}"
+                              Click="MenuActivated_OnClick"/>
+
+                    <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
+
                     <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertHome}"
                               Click="MenuNavigate_OnClick"

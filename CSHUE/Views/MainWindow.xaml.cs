@@ -25,11 +25,7 @@ namespace CSHUE.Views
     {
         #region Low Level Window Hook
 
-        private IntPtr WindowProc(IntPtr hwnd,
-            int msg,
-            IntPtr wParam,
-            IntPtr lParam,
-            ref bool handled)
+        private IntPtr WindowProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             if (msg == 0x0024)
                 WmGetMinMaxInfo(lParam);
@@ -118,11 +114,11 @@ namespace CSHUE.Views
             private readonly int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
             public readonly Rect rcMonitor = new Rect();
             public readonly Rect rcWork = new Rect();
-#pragma warning disable 169
-#pragma warning disable 414
+            #pragma warning disable 169
+            #pragma warning disable 414
             private readonly int dwFlags = 0;
-#pragma warning restore 414
-#pragma warning restore 169
+            #pragma warning restore 414
+            #pragma warning restore 169
         }
 
         [StructLayout(LayoutKind.Sequential)]

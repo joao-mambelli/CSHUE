@@ -1012,6 +1012,10 @@ namespace CSHUE.ViewModels
                 if (!config.SelectedLights.FindAll(x => x == l.UniqueId).Any()) continue;
 
                 var color = l.Color;
+                var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+                var brightnessModified = brightnessModifier <= 1
+                    ? (byte)Math.Round(l.Brightness * brightnessModifier)
+                    : (byte)(l.Brightness + Math.Round((255 - l.Brightness) * (brightnessModifier - 1)));
 
                 try
                 {
@@ -1020,7 +1024,7 @@ namespace CSHUE.ViewModels
                         {
                             On = true,
                             ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
-                            Brightness = l.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
@@ -1028,7 +1032,7 @@ namespace CSHUE.ViewModels
                             On = true,
                             Hue = (int)Math.Round(ColorConverters.GetHue(color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                            Brightness = l.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                 }
                 catch
@@ -1052,8 +1056,14 @@ namespace CSHUE.ViewModels
 
                 if (_isPlanted && bombblinklightsids.Contains(l.UniqueId)) continue;
 
+                var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+                var brightnessModified = brightnessModifier <= 1
+                    ? (byte)Math.Round(l.Brightness * brightnessModifier)
+                    : (byte)(l.Brightness + Math.Round((255 - l.Brightness) * (brightnessModifier - 1)));
+
                 if (!l.OnlyBrightness)
                 {
+
                     try
                     {
                         if (l.IsColorTemperature)
@@ -1061,7 +1071,7 @@ namespace CSHUE.ViewModels
                             {
                                 On = true,
                                 ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
-                                Brightness = l.Brightness
+                                Brightness = brightnessModified
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await Client.SendCommandAsync(new LightCommand
@@ -1069,7 +1079,7 @@ namespace CSHUE.ViewModels
                                 On = true,
                                 Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
                                 Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                                Brightness = l.Brightness
+                                Brightness = brightnessModified
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
                     catch
@@ -1088,7 +1098,7 @@ namespace CSHUE.ViewModels
                         {
                             On = true,
                             ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
-                            Brightness = l.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
@@ -1101,7 +1111,7 @@ namespace CSHUE.ViewModels
                                 (byte)Math.Round(
                                     ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                     255),
-                            Brightness = l.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                 }
                 catch
@@ -1125,6 +1135,11 @@ namespace CSHUE.ViewModels
 
                 if (_isPlanted && bombblinklightsids.Contains(l.UniqueId)) continue;
 
+                var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+                var brightnessModified = brightnessModifier <= 1
+                    ? (byte)Math.Round(l.Brightness * brightnessModifier)
+                    : (byte)(l.Brightness + Math.Round((255 - l.Brightness) * (brightnessModifier - 1)));
+
                 if (!l.OnlyBrightness)
                 {
                     try
@@ -1134,7 +1149,7 @@ namespace CSHUE.ViewModels
                             {
                                 On = true,
                                 ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
-                                Brightness = l.Brightness
+                                Brightness = brightnessModified
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await Client.SendCommandAsync(new LightCommand
@@ -1142,7 +1157,7 @@ namespace CSHUE.ViewModels
                                 On = true,
                                 Hue = (int)Math.Round(ColorConverters.GetHue(l.Color) / 360 * 65535),
                                 Saturation = (byte)Math.Round(ColorConverters.GetSaturation(l.Color) * 255),
-                                Brightness = l.Brightness
+                                Brightness = brightnessModified
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
                     catch
@@ -1163,7 +1178,7 @@ namespace CSHUE.ViewModels
                             {
                                 On = true,
                                 ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
-                                Brightness = l.Brightness
+                                Brightness = brightnessModified
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                         else
                             await Client.SendCommandAsync(new LightCommand
@@ -1175,7 +1190,7 @@ namespace CSHUE.ViewModels
                                     (byte)Math.Round(
                                         ColorConverters.GetSaturation(config2.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                         255),
-                                Brightness = l.Brightness
+                                Brightness = brightnessModified
                             }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     }
                     catch
@@ -1194,7 +1209,7 @@ namespace CSHUE.ViewModels
                         {
                             On = true,
                             ColorTemperature = (int)Math.Round(l.ColorTemperature * -0.077111 + 654.222),
-                            Brightness = l.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
@@ -1207,7 +1222,7 @@ namespace CSHUE.ViewModels
                                 (byte)Math.Round(
                                     ColorConverters.GetSaturation(main.Lights.Find(x => x.UniqueId == l.UniqueId).Color) *
                                     255),
-                            Brightness = l.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                 }
                 catch
@@ -1232,6 +1247,11 @@ namespace CSHUE.ViewModels
             {
                 if (l.State.IsReachable != true) continue;
 
+                var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+                var brightnessModified = brightnessModifier <= 1
+                    ? (byte)Math.Round(l.State.Brightness * brightnessModifier)
+                    : (byte)(l.State.Brightness + Math.Round((255 - l.State.Brightness) * (brightnessModifier - 1)));
+
                 try
                 {
                     if (l.Capabilities.Control.ColorGamut == null)
@@ -1239,7 +1259,7 @@ namespace CSHUE.ViewModels
                         {
                             On = l.State.On,
                             ColorTemperature = l.State.ColorTemperature,
-                            Brightness = l.State.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
@@ -1247,7 +1267,7 @@ namespace CSHUE.ViewModels
                             On = l.State.On,
                             Hue = l.State.Hue,
                             Saturation = l.State.Saturation,
-                            Brightness = l.State.Brightness
+                            Brightness = brightnessModified
                         }, new List<string> { $"{l.Id}" }).ConfigureAwait(false);
                 }
                 catch
@@ -1269,6 +1289,14 @@ namespace CSHUE.ViewModels
             var light = Properties.Settings.Default.BombBlink.Lights.Find(x => x.UniqueId == uniqueId);
             var plantedLight = Properties.Settings.Default.BombPlanted.Lights.Find(x => x.UniqueId == uniqueId);
 
+            var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+            var brightnessModifiedLight = brightnessModifier <= 1
+                ? (byte)Math.Round(light.Brightness * brightnessModifier)
+                : (byte)(light.Brightness + Math.Round((255 - light.Brightness) * (brightnessModifier - 1)));
+            var brightnessModifiedPlantedLight = brightnessModifier <= 1
+                ? (byte)Math.Round(light.Brightness * brightnessModifier)
+                : (byte)(light.Brightness + Math.Round((255 - light.Brightness) * (brightnessModifier - 1)));
+
             if (!light.OnlyBrightness)
             {
                 try
@@ -1278,7 +1306,7 @@ namespace CSHUE.ViewModels
                         {
                             On = true,
                             ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
-                            Brightness = light.Brightness
+                            Brightness = brightnessModifiedLight
                         }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
@@ -1286,7 +1314,7 @@ namespace CSHUE.ViewModels
                             On = true,
                             Hue = (int)Math.Round(ColorConverters.GetHue(light.Color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(light.Color) * 255),
-                            Brightness = light.Brightness,
+                            Brightness = brightnessModifiedLight,
                             TransitionTime = TimeSpan.FromMilliseconds(100)
                         }, new List<string> { $"{light.Id}" })
                             .ConfigureAwait(false);
@@ -1305,7 +1333,7 @@ namespace CSHUE.ViewModels
                         {
                             On = true,
                             ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
-                            Brightness = light.Brightness
+                            Brightness = brightnessModifiedLight
                         }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                     else
                         await Client.SendCommandAsync(new LightCommand
@@ -1313,7 +1341,7 @@ namespace CSHUE.ViewModels
                             On = true,
                             Hue = (int)Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
                             Saturation = (byte)Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
-                            Brightness = light.Brightness,
+                            Brightness = brightnessModifiedLight,
                             TransitionTime = TimeSpan.FromMilliseconds(100)
                         }, new List<string> { $"{light.Id}" })
                             .ConfigureAwait(false);
@@ -1333,7 +1361,7 @@ namespace CSHUE.ViewModels
                     {
                         On = true,
                         ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
-                        Brightness = light.Brightness
+                        Brightness = brightnessModifiedLight
                     }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                 else
                     await Client.SendCommandAsync(new LightCommand
@@ -1341,7 +1369,7 @@ namespace CSHUE.ViewModels
                         On = true,
                         Hue = (int)Math.Round(ColorConverters.GetHue(plantedLight.Color) / 360 * 65535),
                         Saturation = (byte)Math.Round(ColorConverters.GetSaturation(plantedLight.Color) * 255),
-                        Brightness = plantedLight.Brightness,
+                        Brightness = brightnessModifiedPlantedLight,
                         TransitionTime = TimeSpan.FromMilliseconds(100)
                     }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
             }

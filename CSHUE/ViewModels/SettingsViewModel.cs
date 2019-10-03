@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using System.Diagnostics;
@@ -992,12 +993,17 @@ namespace CSHUE.ViewModels
                     if (l.State.IsReachable == true)
                         try
                         {
+                            var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+                            var brightnessModified = brightnessModifier <= 1
+                                ? (byte)Math.Round(l.State.Brightness * brightnessModifier)
+                                : (byte)(l.State.Brightness + Math.Round((255 - l.State.Brightness) * (brightnessModifier - 1)));
+
                             if (l.Capabilities.Control.ColorGamut == null)
                                 await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                                 {
                                     On = l.State.On,
                                     ColorTemperature = l.State.ColorTemperature,
-                                    Brightness = l.State.Brightness
+                                    Brightness = brightnessModified
                                 }, new List<string> {$"{l.Id}"}).ConfigureAwait(false);
                             else
                                 await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
@@ -1005,7 +1011,7 @@ namespace CSHUE.ViewModels
                                     On = l.State.On,
                                     Hue = l.State.Hue,
                                     Saturation = l.State.Saturation,
-                                    Brightness = l.State.Brightness
+                                    Brightness = brightnessModified
                                 }, new List<string> {$"{l.Id}"}).ConfigureAwait(false);
                         }
                         catch

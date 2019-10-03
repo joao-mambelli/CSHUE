@@ -182,13 +182,18 @@ namespace CSHUE.ViewModels
         {
             try
             {
+                var brightnessModifier = (double)Properties.Settings.Default.BrightnessModifier / 100;
+                var brightnessModified = brightnessModifier <= 1
+                    ? (byte)Math.Round(brightness * brightnessModifier)
+                    : (byte)(brightness + Math.Round((255 - brightness) * (brightnessModifier - 1)));
+
                 if (colorTemperature)
                 {
                     await MainWindowViewModel.Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
                         ColorTemperature = (int) Math.Round(ColorTemperature * -0.077111 + 654.222),
-                        Brightness = brightness,
+                        Brightness = brightnessModified,
                         TransitionTime = TimeSpan.FromMilliseconds(400)
                     }, new List<string> { $"{id}" }).ConfigureAwait(false);
                 }
@@ -199,7 +204,7 @@ namespace CSHUE.ViewModels
                         On = true,
                         Hue = (int) Math.Round(Hue / 360 * 65535),
                         Saturation = (byte) Math.Round(Saturation / 100 * 255),
-                        Brightness = brightness,
+                        Brightness = brightnessModified,
                         TransitionTime = TimeSpan.FromMilliseconds(400)
                     }, new List<string> { $"{id}" }).ConfigureAwait(false);
                 }

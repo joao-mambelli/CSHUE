@@ -28,7 +28,6 @@
         WindowState="{Binding WindowState, Mode=TwoWay}"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         xmlns:tb="http://www.hardcodet.net/taskbar"
-        xmlns:p="clr-namespace:CSHUE.Properties"
         Initialized="OnInitialized"
         Activated="OnActivated"
         Loaded="OnLoaded"

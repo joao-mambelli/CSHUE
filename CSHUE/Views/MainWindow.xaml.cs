@@ -630,6 +630,25 @@ namespace CSHUE.Views
                 Tag = "Config"
             };
             ((MenuItem)((ContextMenu)sender).Items[1]).Click += MenuNavigate_OnClick;
+
+            ((ContextMenu)sender).Items[3] = new MenuItem
+            {
+                Header = Cultures.Resources.Update,
+                Style = (Style)FindResource("CustomMenuItemAlertUpdate"),
+                Tag = "Update"
+            };
+            ((MenuItem)((ContextMenu)sender).Items[3]).Click += MenuNavigate_OnClick;
+
+            ((ContextMenu)sender).Items[11] = new MenuItem
+            {
+                Header = Properties.Settings.Default.Activated
+                    ? Cultures.Resources.TurnOff
+                    : Cultures.Resources.TurnOn,
+                Style = Properties.Settings.Default.Activated
+                    ? (Style)FindResource("CustomMenuItemOn")
+                    : (Style)FindResource("CustomMenuItemOff")
+            };
+            ((MenuItem)((ContextMenu)sender).Items[11]).Click += MenuActivated_OnClick;
         }
 
         private void RunCsgo_OnClick(object sender, RoutedEventArgs e)

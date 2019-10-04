@@ -115,7 +115,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomMenuItemActivated"
+    <Style x:Key="CustomMenuItemOn"
            TargetType="{x:Type MenuItem}">
         <Setter Property="SnapsToDevicePixels"
                 Value="True"/>
@@ -135,7 +135,50 @@
                             <TextBlock Padding="30 10 10 10"
                                        Text="{TemplateBinding Header}"/>
 
-                            <Path Data="M 8.1,0 a 8,8 0 1 1 -0.2,0 Z M 7.5,11 v 2 h 1 v -2 M 7.5,3 v 6 h 1 v -6"
+                            <Path Data="M 8.1,0 a 8,8 0 1 1 -0.2,0 Z"
+                                  Fill="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
+                                  Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  d:DataContext="{d:DesignInstance Type=viewModels:BaseViewModel}"
+                                  Margin="0 0 14 0"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource SystemBaseLowColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomMenuItemOff"
+           TargetType="{x:Type MenuItem}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"/>
+
+        <Setter Property="OverridesDefaultStyle"
+                Value="True"/>
+
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="true"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type MenuItem}">
+                    <Border x:Name="Border"
+                            Background="Transparent">
+                        <Grid>
+                            <TextBlock Padding="30 10 10 10"
+                                       Text="{TemplateBinding Header}"/>
+
+                            <Path Data="M 8.1,0 a 8,8 0 1 1 -0.2,0 Z"
                                   Stroke="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
                                   Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   HorizontalAlignment="Right"

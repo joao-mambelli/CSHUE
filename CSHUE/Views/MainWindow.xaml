@@ -28,6 +28,7 @@
         WindowState="{Binding WindowState, Mode=TwoWay}"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:p="clr-namespace:CSHUE.Properties"
         Initialized="OnInitialized"
         Activated="OnActivated"
         Loaded="OnLoaded"
@@ -451,12 +452,6 @@
                              Style="{DynamicResource CustomContextMenu}"
                              Opened="ContextMenu_OnOpened"
                              MinWidth="250">
-                    <MenuItem Header="{Binding Path=Activated, Source={StaticResource Resources}}"
-                              Style="{DynamicResource CustomMenuItemActivated}"
-                              Click="MenuActivated_OnClick"/>
-
-                    <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
-
                     <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertHome}"
                               Click="MenuNavigate_OnClick"
@@ -506,6 +501,10 @@
                               Tag="Settings"/>
 
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
+
+                    <MenuItem Header="{Binding Path=Activated, Source={StaticResource Resources}}"
+                              Style="{DynamicResource CustomMenuItemOn}"
+                              Click="MenuActivated_OnClick"/>
 
                     <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"

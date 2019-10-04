@@ -475,4 +475,10 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="Lights" xml:space="preserve">
     <value>Luzes</value>
   </data>
+  <data name="TurnOff" xml:space="preserve">
+    <value>Desativar</value>
+  </data>
+  <data name="TurnOn" xml:space="preserve">
+    <value>Ativar</value>
+  </data>
 </root>

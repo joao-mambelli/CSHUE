@@ -475,4 +475,10 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="Lights" xml:space="preserve">
     <value>Lights</value>
   </data>
+  <data name="TurnOff" xml:space="preserve">
+    <value>Turn off</value>
+  </data>
+  <data name="TurnOn" xml:space="preserve">
+    <value>Turn on</value>
+  </data>
 </root>

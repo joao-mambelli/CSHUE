@@ -50,9 +50,8 @@
         <TextBlock Text="{Binding Message}"
                    Margin="20 45 20 65"
                    TextWrapping="Wrap"
-                   MaxWidth="500">
+                   MaxWidth="500"/>
 
-        </TextBlock>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button Style="{DynamicResource CustomButton}"

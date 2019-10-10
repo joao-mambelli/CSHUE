@@ -914,31 +914,19 @@ namespace CSHUE.ViewModels
             // For some reason the NumericUpDown was setting sometimes the variables as HH:mm:ss
             // This was crashing the app, so this is a workarround.
             if (Properties.Settings.Default.AutoActivateStart.Length > 5)
-            {
-                Properties.Settings.Default.AutoActivateStart =
-                    Properties.Settings.Default.AutoActivateStart.Substring(0, 5);
-            }
-
+                Properties.Settings.Default.AutoActivateStart = Properties.Settings.Default.AutoActivateStart.Substring(0, 5);
             if (Properties.Settings.Default.AutoActivateEnd.Length > 5)
-            {
-                Properties.Settings.Default.AutoActivateEnd =
-                    Properties.Settings.Default.AutoActivateEnd.Substring(0, 5);
-            }
+                Properties.Settings.Default.AutoActivateEnd = Properties.Settings.Default.AutoActivateEnd.Substring(0, 5);
 
-            var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm",
-                CultureInfo.InvariantCulture);
-            var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm",
-                CultureInfo.InvariantCulture);
+            var start = DateTime.ParseExact(Properties.Settings.Default.AutoActivateStart, "HH:mm", CultureInfo.InvariantCulture);
+            var end = DateTime.ParseExact(Properties.Settings.Default.AutoActivateEnd, "HH:mm", CultureInfo.InvariantCulture);
+            var now = DateTime.Now;
 
             if (end.Hour > start.Hour || end.Hour == start.Hour && end.Minute > start.Minute)
             {
-                if (DateTime.Now.Hour > start.Hour ||
-                    DateTime.Now.Hour == start.Hour &&
-                    DateTime.Now.Minute >= start.Minute)
+                if (now.Hour > start.Hour || now.Hour == start.Hour && now.Minute >= start.Minute)
                 {
-                    if (DateTime.Now.Hour < end.Hour ||
-                        DateTime.Now.Hour == end.Hour &&
-                        DateTime.Now.Minute < end.Minute)
+                    if (now.Hour < end.Hour || now.Hour == end.Hour && now.Minute < end.Minute)
                     {
                         if (Properties.Settings.Default.AutoActivate && !_lastActivatedState)
                             Properties.Settings.Default.Activated = true;
@@ -963,18 +951,14 @@ namespace CSHUE.ViewModels
             }
             else
             {
-                if (DateTime.Now.Hour > start.Hour ||
-                    DateTime.Now.Hour == start.Hour &&
-                    DateTime.Now.Minute >= start.Minute)
+                if (now.Hour > start.Hour || now.Hour == start.Hour && now.Minute >= start.Minute)
                 {
                     if (Properties.Settings.Default.AutoActivate && !_lastActivatedState)
                         Properties.Settings.Default.Activated = true;
 
                     _lastActivatedState = true;
                 }
-                else if (DateTime.Now.Hour < end.Hour ||
-                          DateTime.Now.Hour == end.Hour &&
-                          DateTime.Now.Minute < end.Minute)
+                else if (now.Hour < end.Hour || now.Hour == end.Hour && now.Minute < end.Minute)
                 {
                     if (Properties.Settings.Default.AutoActivate && !_lastActivatedState)
                         Properties.Settings.Default.Activated = true;

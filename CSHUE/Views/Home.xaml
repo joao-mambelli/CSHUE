@@ -6,8 +6,8 @@
              xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
              xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
              xmlns:p="clr-namespace:CSHUE.Properties"
-             xmlns:helpers="clr-namespace:CSHUE.Helpers"
              xmlns:controls="clr-namespace:CSHUE.Controls"
+             xmlns:utilities="clr-namespace:CSHUE.Core.Utilities"
              mc:Ignorable="d"
              Foreground="{DynamicResource SystemBaseHighColorBrush}"
              FontSize="14"
@@ -16,13 +16,13 @@
              FontFamily="Segoe UI Semilight"
              d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}">
     <UserControl.Resources>
-        <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+        <utilities:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
-        <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
+        <utilities:VisibilityInverter x:Key="VisibilityInverter"/>
 
-        <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <utilities:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-        <helpers:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
+        <utilities:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
     </UserControl.Resources>
 
     <Grid>

@@ -8,9 +8,9 @@
         WindowStyle="None"
         BorderThickness="1"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
-        xmlns:helpers="clr-namespace:CSHUE.Helpers"
+        xmlns:utilities="clr-namespace:CSHUE.Core.Utilities"
+        xmlns:numericUpDown="clr-namespace:CSHUE.Components.NumericUpDown"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         Height="427"
         SizeToContent="Width"
@@ -32,9 +32,9 @@
     </WindowChrome.WindowChrome>
 
     <Window.Resources>
-        <helpers:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
+        <utilities:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter"/>
 
-        <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <utilities:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
 
     <Grid Background="{DynamicResource SystemAltHighColorBrush}">
@@ -84,7 +84,7 @@
 
                 <StackPanel Orientation="Horizontal"
                             Margin="15 0 0 0">
-                    <xctk:IntegerUpDown Value="{Binding Value, ElementName=HueSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <numericUpDown:IntegerUpDown Value="{Binding Value, ElementName=HueSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                         ButtonSpinnerLocation="Left"
@@ -125,7 +125,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             Margin="21 0 0 0">
-                    <xctk:IntegerUpDown Value="{Binding Value, ElementName=SatSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <numericUpDown:IntegerUpDown Value="{Binding Value, ElementName=SatSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                         ButtonSpinnerLocation="Left"
@@ -167,7 +167,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             Margin="17 0 0 0">
-                    <xctk:IntegerUpDown Value="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <numericUpDown:IntegerUpDown Value="{Binding Value, ElementName=TemperatureSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                         ButtonSpinnerLocation="Left"

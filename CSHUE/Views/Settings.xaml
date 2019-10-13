@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:p="clr-namespace:CSHUE.Properties"
              xmlns:cultures="clr-namespace:CSHUE.Cultures"
              xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
+             xmlns:numericUpDown="clr-namespace:CSHUE.Components.NumericUpDown"
+             xmlns:timeSpanUpDown="clr-namespace:CSHUE.Components.TimeSpanUpDown"
              mc:Ignorable="d"
              Foreground="{DynamicResource SystemBaseHighColorBrush}"
              FontSize="14"
@@ -215,7 +216,7 @@
                                             Margin="0 5 0 0">
                                     <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}"/>
 
-                                    <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKillDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    <numericUpDown:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKillDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                                         ButtonSpinnerLocation="Left"
@@ -253,7 +254,7 @@
                                             Margin="0 5 0 0">
                                     <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}"/>
 
-                                    <xctk:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKilledDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    <numericUpDown:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKilledDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Background="{DynamicResource SystemAltLowColorBrush}"
                                                         Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                                         ButtonSpinnerLocation="Left"
@@ -414,7 +415,7 @@
 
                     <WrapPanel Margin="30 7 0 9"
                                IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}">
-                        <xctk:TimeSpanUpDown Background="{DynamicResource SystemBaseLowColorBrush}"
+                        <timeSpanUpDown:TimeSpanUpDown Background="{DynamicResource SystemBaseLowColorBrush}"
                                              Value="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivateStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              ShowSeconds="False"
                                              ShowDays="False"
@@ -431,7 +432,7 @@
                                    Margin="5 0 5 0"
                                    Style="{DynamicResource DisableTextBlock}"/>
 
-                        <xctk:TimeSpanUpDown Background="{DynamicResource SystemBaseLowColorBrush}"
+                        <timeSpanUpDown:TimeSpanUpDown Background="{DynamicResource SystemBaseLowColorBrush}"
                                              Value="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivateEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              ShowSeconds="False"
                                              ShowDays="False"

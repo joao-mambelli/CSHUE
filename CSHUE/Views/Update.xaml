@@ -6,15 +6,15 @@
              mc:Ignorable="d"
              xmlns:attachedBehavior="clr-namespace:CSHUE.AttachedBehaviors"
              xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
-             xmlns:helpers="clr-namespace:CSHUE.Helpers"
              xmlns:p="clr-namespace:CSHUE.Properties"
+             xmlns:utilities="clr-namespace:CSHUE.Core.Utilities"
              Foreground="{DynamicResource SystemBaseHighColorBrush}"
              FontSize="14"
              d:DesignWidth="800"
              FontFamily="Segoe UI Semilight"
              d:DataContext="{d:DesignInstance Type=viewModels:UpdateViewModel}">
     <UserControl.Resources>
-        <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
+        <utilities:VisibilityInverter x:Key="VisibilityInverter"/>
     </UserControl.Resources>
 
     <Grid>

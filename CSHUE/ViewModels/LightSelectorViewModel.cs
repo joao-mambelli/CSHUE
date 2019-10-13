@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Media;
-using CSHUE.Helpers;
+using CSHUE.Core.Utilities;
 using Q42.HueApi;
 
 namespace CSHUE.ViewModels

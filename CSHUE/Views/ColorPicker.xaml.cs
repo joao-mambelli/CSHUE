@@ -5,7 +5,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using CSHUE.Helpers;
+using CSHUE.Components.ColorWheel;
+using CSHUE.Core.Utilities;
 using CSHUE.ViewModels;
 
 namespace CSHUE.Views

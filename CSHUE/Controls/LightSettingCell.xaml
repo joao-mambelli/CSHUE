@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:helpers="clr-namespace:CSHUE.Helpers"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
+             xmlns:utilities="clr-namespace:CSHUE.Core.Utilities"
+             xmlns:numericUpDown="clr-namespace:CSHUE.Components.NumericUpDown"
              mc:Ignorable="d"
              FontSize="14"
              FontFamily="Segoe UI Semilight"
              Width="350"
              d:DataContext="{d:DesignInstance Type=viewModels:LightSettingCellViewModel}">
     <UserControl.Resources>
-        <helpers:BoolToDoubleConverter x:Key="BoolToDoubleConverter"/>
+        <utilities:BoolToDoubleConverter x:Key="BoolToDoubleConverter"/>
 
-        <helpers:ByteToInt32Converter x:Key="ByteToInt32Converter"/>
+        <utilities:ByteToInt32Converter x:Key="ByteToInt32Converter"/>
 
-        <helpers:BooleanInverter x:Key="BooleanInverter"/>
+        <utilities:BooleanInverter x:Key="BooleanInverter"/>
     </UserControl.Resources>
 
     <Grid Opacity="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToDoubleConverter}}">
@@ -114,7 +114,7 @@
 
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal">
-                <xctk:DecimalUpDown Value="{Binding Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ByteToInt32Converter}}"
+                <numericUpDown:DecimalUpDown Value="{Binding Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ByteToInt32Converter}}"
                                     Background="{DynamicResource SystemAltLowColorBrush}"
                                     Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                     ButtonSpinnerLocation="Left"

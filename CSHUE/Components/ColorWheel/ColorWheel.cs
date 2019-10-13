@@ -3,8 +3,9 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using CSHUE.Core.Utilities;
 
-namespace CSHUE.Helpers
+namespace CSHUE.Components.ColorWheel
 {
     /// <summary>
     /// Class containing methods to get the color wheel bitmaps.

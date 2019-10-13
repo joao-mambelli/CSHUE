@@ -6,8 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using CSHUE.Core;
 using CSHUE.Cultures;
-using CSHUE.Helpers;
 using Q42.HueApi;
 
 namespace CSHUE.ViewModels

@@ -8,8 +8,8 @@
         BorderThickness="1"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:attachedBehaviors="clr-namespace:CSHUE.AttachedBehaviors"
-        xmlns:helpers="clr-namespace:CSHUE.Helpers"
         xmlns:viewModels="clr-namespace:CSHUE.ViewModels"
+        xmlns:utilities="clr-namespace:CSHUE.Core.Utilities"
         BorderBrush="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"
         MinWidth="100"
         MinHeight="50"
@@ -29,7 +29,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:LightSelectorViewModel}"
         Loaded="OnLoaded">
     <Window.Resources>
-        <helpers:VisibilityInverter x:Key="VisibilityInverter"/>
+        <utilities:VisibilityInverter x:Key="VisibilityInverter"/>
     </Window.Resources>
 
     <WindowChrome.WindowChrome>

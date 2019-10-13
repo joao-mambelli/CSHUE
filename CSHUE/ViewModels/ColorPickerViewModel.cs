@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using CSHUE.Components.ColorWheel;
+using CSHUE.Core.Utilities;
 using Q42.HueApi;
-using CSHUE.Helpers;
 
 namespace CSHUE.ViewModels
 {

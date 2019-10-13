@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Windows.Media;
 
-namespace CSHUE.Helpers
+namespace CSHUE.Core
 {
     /// <summary>
     /// Defines an event property.

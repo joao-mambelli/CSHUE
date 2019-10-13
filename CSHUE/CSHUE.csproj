@@ -131,29 +131,38 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Helpers\ColorConverters.cs" />
-    <Compile Include="Helpers\ColorWheel.cs" />
+    <Compile Include="Components\ButtonSpinner\ButtonSpinner.cs" />
+    <Compile Include="Components\ButtonSpinner\SpinDirection.cs" />
+    <Compile Include="Components\ButtonSpinner\SpinEventArgs.cs" />
+    <Compile Include="Components\ButtonSpinner\Spinner.cs" />
+    <Compile Include="Components\ButtonSpinner\ValidSpinDirections.cs" />
+    <Compile Include="Components\Core\Input\InputValidationErrorEventArgs.cs" />
+    <Compile Include="Components\Core\Input\IValidateInput.cs" />
+    <Compile Include="Components\Core\Utilities\DateTimeUtilities.cs" />
+    <Compile Include="Components\Core\Utilities\TreeHelper.cs" />
+    <Compile Include="Components\DateTimeUpDown\DateTimeFormat.cs" />
+    <Compile Include="Components\DateTimeUpDown\DateTimeInfo.cs" />
+    <Compile Include="Components\DateTimeUpDown\DateTimeParser.cs" />
+    <Compile Include="Components\DateTimeUpDown\DateTimePart.cs" />
+    <Compile Include="Components\DateTimeUpDown\DateTimeUpDown.cs" />
+    <Compile Include="Components\NumericUpDown\AllowedSpecialValuesEnum.cs" />
+    <Compile Include="Components\NumericUpDown\CommonNumericUpDown.cs" />
+    <Compile Include="Components\NumericUpDown\DecimalUpDown.cs" />
+    <Compile Include="Components\NumericUpDown\IntegerUpDown.cs" />
+    <Compile Include="Components\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="Components\Primitives\DateTimeUpDownBase.cs" />
+    <Compile Include="Components\Primitives\InputBase.cs" />
+    <Compile Include="Components\Primitives\MouseWheelActiveTriggerEnum.cs" />
+    <Compile Include="Components\Primitives\Themes\ResourceKeys.cs" />
+    <Compile Include="Components\Primitives\UpDownBase.cs" />
+    <Compile Include="Components\TimeSpanUpDown\TimeSpanUpDown.cs" />
+    <Compile Include="Components\ColorWheel\ColorWheel.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
@@ -289,8 +298,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Converters.cs" />
-    <Compile Include="Helpers\Events.cs" />
+    <Compile Include="Core\Utilities\Converters.cs" />
+    <Compile Include="Core\Events.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />

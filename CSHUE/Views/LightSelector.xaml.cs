@@ -5,10 +5,10 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using CSHUE.Helpers;
 using CSHUE.ViewModels;
 using Q42.HueApi;
 using CSHUE.Controls;
+using CSHUE.Core;
 
 namespace CSHUE.Views
 {

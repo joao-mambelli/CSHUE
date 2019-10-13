@@ -109,9 +109,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventProperty MainMenu {
+        public global::CSHUE.Core.EventProperty MainMenu {
             get {
-                return ((global::CSHUE.Helpers.EventProperty)(this["MainMenu"]));
+                return ((global::CSHUE.Core.EventProperty)(this["MainMenu"]));
             }
             set {
                 this["MainMenu"] = value;
@@ -120,9 +120,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventProperty TerroristsWin {
+        public global::CSHUE.Core.EventProperty TerroristsWin {
             get {
-                return ((global::CSHUE.Helpers.EventProperty)(this["TerroristsWin"]));
+                return ((global::CSHUE.Core.EventProperty)(this["TerroristsWin"]));
             }
             set {
                 this["TerroristsWin"] = value;
@@ -131,9 +131,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventProperty CounterTerroristsWin {
+        public global::CSHUE.Core.EventProperty CounterTerroristsWin {
             get {
-                return ((global::CSHUE.Helpers.EventProperty)(this["CounterTerroristsWin"]));
+                return ((global::CSHUE.Core.EventProperty)(this["CounterTerroristsWin"]));
             }
             set {
                 this["CounterTerroristsWin"] = value;
@@ -142,9 +142,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventProperty RoundStarts {
+        public global::CSHUE.Core.EventProperty RoundStarts {
             get {
-                return ((global::CSHUE.Helpers.EventProperty)(this["RoundStarts"]));
+                return ((global::CSHUE.Core.EventProperty)(this["RoundStarts"]));
             }
             set {
                 this["RoundStarts"] = value;
@@ -153,9 +153,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventProperty BombPlanted {
+        public global::CSHUE.Core.EventProperty BombPlanted {
             get {
-                return ((global::CSHUE.Helpers.EventProperty)(this["BombPlanted"]));
+                return ((global::CSHUE.Core.EventProperty)(this["BombPlanted"]));
             }
             set {
                 this["BombPlanted"] = value;
@@ -164,9 +164,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventProperty PlayerGetsFlashed {
+        public global::CSHUE.Core.EventProperty PlayerGetsFlashed {
             get {
-                return ((global::CSHUE.Helpers.EventProperty)(this["PlayerGetsFlashed"]));
+                return ((global::CSHUE.Core.EventProperty)(this["PlayerGetsFlashed"]));
             }
             set {
                 this["PlayerGetsFlashed"] = value;
@@ -175,9 +175,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventBrightnessProperty BombExplodes {
+        public global::CSHUE.Core.EventBrightnessProperty BombExplodes {
             get {
-                return ((global::CSHUE.Helpers.EventBrightnessProperty)(this["BombExplodes"]));
+                return ((global::CSHUE.Core.EventBrightnessProperty)(this["BombExplodes"]));
             }
             set {
                 this["BombExplodes"] = value;
@@ -186,9 +186,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventBrightnessProperty BombBlink {
+        public global::CSHUE.Core.EventBrightnessProperty BombBlink {
             get {
-                return ((global::CSHUE.Helpers.EventBrightnessProperty)(this["BombBlink"]));
+                return ((global::CSHUE.Core.EventBrightnessProperty)(this["BombBlink"]));
             }
             set {
                 this["BombBlink"] = value;
@@ -197,9 +197,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventBrightnessProperty FreezeTime {
+        public global::CSHUE.Core.EventBrightnessProperty FreezeTime {
             get {
-                return ((global::CSHUE.Helpers.EventBrightnessProperty)(this["FreezeTime"]));
+                return ((global::CSHUE.Core.EventBrightnessProperty)(this["FreezeTime"]));
             }
             set {
                 this["FreezeTime"] = value;
@@ -208,9 +208,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventBrightnessProperty Warmup {
+        public global::CSHUE.Core.EventBrightnessProperty Warmup {
             get {
-                return ((global::CSHUE.Helpers.EventBrightnessProperty)(this["Warmup"]));
+                return ((global::CSHUE.Core.EventBrightnessProperty)(this["Warmup"]));
             }
             set {
                 this["Warmup"] = value;
@@ -219,9 +219,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventBrightnessProperty PlayerGetsKill {
+        public global::CSHUE.Core.EventBrightnessProperty PlayerGetsKill {
             get {
-                return ((global::CSHUE.Helpers.EventBrightnessProperty)(this["PlayerGetsKill"]));
+                return ((global::CSHUE.Core.EventBrightnessProperty)(this["PlayerGetsKill"]));
             }
             set {
                 this["PlayerGetsKill"] = value;
@@ -230,9 +230,9 @@ namespace CSHUE.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::CSHUE.Helpers.EventBrightnessProperty PlayerGetsKilled {
+        public global::CSHUE.Core.EventBrightnessProperty PlayerGetsKilled {
             get {
-                return ((global::CSHUE.Helpers.EventBrightnessProperty)(this["PlayerGetsKilled"]));
+                return ((global::CSHUE.Core.EventBrightnessProperty)(this["PlayerGetsKilled"]));
             }
             set {
                 this["PlayerGetsKilled"] = value;

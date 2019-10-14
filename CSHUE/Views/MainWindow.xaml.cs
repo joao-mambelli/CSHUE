@@ -212,6 +212,8 @@ namespace CSHUE.Views
                             break;
                         default:
                             ViewModel.Navigate("Home");
+                            Topmost = true;
+                            Topmost = false;
                             break;
                     }
                 }

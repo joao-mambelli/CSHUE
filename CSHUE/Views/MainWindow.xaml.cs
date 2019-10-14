@@ -662,12 +662,13 @@ namespace CSHUE.Views
 
         private void ShowMe()
         {
+            Hide();
             Show();
             if (WindowState == WindowState.Minimized)
                 WindowState = WindowState.Normal;
-            var top = Topmost;
+            Topmost = false;
             Topmost = true;
-            Topmost = top;
+            Topmost = false;
         }
 
         public void UpdateIndicatorPosition(string name)

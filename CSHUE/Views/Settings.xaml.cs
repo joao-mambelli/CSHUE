@@ -42,8 +42,13 @@ namespace CSHUE.Views
             ViewModel.SelectedTheme = ViewModel.Themes.First(x => x.Index == Properties.Settings.Default.Theme);
             ViewModel.SelectedTransparency =
                 ViewModel.Transparencies.First(x => x.Index == Properties.Settings.Default.Transparency);
+            ViewModel.SelectedAccentColor =
+                ViewModel.AccentColors.First(x => x.Index == Properties.Settings.Default.AccentColorOption);
 
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_OnSelectionChanged;
+
+            ViewModel.AccentColor = Color.FromRgb(Properties.Settings.Default.AccentColor.R,
+                Properties.Settings.Default.AccentColor.G, Properties.Settings.Default.AccentColor.B);
 
             Properties.Settings.Default.PropertyChanged += Default_OnPropertyChanged;
         }
@@ -301,6 +306,12 @@ namespace CSHUE.Views
                 ComboBoxTransparency.IsDropDownOpen = false;
                 ComboBoxTransparency.IsDropDownOpen = true;
             }
+
+            if (ComboBoxAccentColor.IsDropDownOpen)
+            {
+                ComboBoxAccentColor.IsDropDownOpen = false;
+                ComboBoxAccentColor.IsDropDownOpen = true;
+            }
         }
 
         private void ComboBoxTheme_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -308,13 +319,13 @@ namespace CSHUE.Views
             if (((ComboBox)sender).SelectedItem == null || ((ComboBox)sender).SelectedIndex == 0)
                 return;
 
-            var item = (Theme)((ComboBox)sender).SelectedItem;
+            var item = (CustomComboBoxItem)((ComboBox)sender).SelectedItem;
 
             ViewModel.Themes.Remove(item);
-            ViewModel.Themes = new ObservableCollection<Theme>(ViewModel.Themes.OrderBy(x => x.Index));
+            ViewModel.Themes = new ObservableCollection<CustomComboBoxItem>(ViewModel.Themes.OrderBy(x => x.Index));
             ViewModel.Themes.Insert(0, item);
 
-            ViewModel.SelectedTheme = (Theme)((ComboBox)sender).Items[0];
+            ViewModel.SelectedTheme = (CustomComboBoxItem)((ComboBox)sender).Items[0];
 
             Properties.Settings.Default.Theme = item.Index;
 
@@ -336,7 +347,7 @@ namespace CSHUE.Views
                                 Properties.Settings.Default.Transparency == 1)
                             {
                                 ViewModel.MainWindowViewModel.BackgroundColor =
-                                    (Color) FindResource("SystemAltLowColor");
+                                    (Color)FindResource("SystemAltLowColor");
                                 ViewModel.MainWindowViewModel.IsModeDark = false;
                                 ViewModel.MainWindowViewModel.IsTransparencyTrue = true;
                             }
@@ -363,7 +374,7 @@ namespace CSHUE.Views
                                 Properties.Settings.Default.Transparency == 1;
 
                         if (ViewModel.MainWindowViewModel.IsTransparencyTrue == true)
-                            ViewModel.MainWindowViewModel.BackgroundColor = (Color) FindResource("SystemAltLowColor");
+                            ViewModel.MainWindowViewModel.BackgroundColor = (Color)FindResource("SystemAltLowColor");
                         else if (ViewModel.MainWindowViewModel.IsModeDark == true)
                             ViewModel.MainWindowViewModel.BackgroundColor = Color.FromRgb(31, 31, 31);
                         else
@@ -442,14 +453,14 @@ namespace CSHUE.Views
             if (((ComboBox)sender).SelectedItem == null || ((ComboBox)sender).SelectedIndex == 0)
                 return;
 
-            var item = (Transparency)((ComboBox)sender).SelectedItem;
+            var item = (CustomComboBoxItem)((ComboBox)sender).SelectedItem;
 
             ViewModel.Transparencies.Remove(item);
             ViewModel.Transparencies =
-                new ObservableCollection<Transparency>(ViewModel.Transparencies.OrderBy(x => x.Index));
+                new ObservableCollection<CustomComboBoxItem>(ViewModel.Transparencies.OrderBy(x => x.Index));
             ViewModel.Transparencies.Insert(0, item);
 
-            ViewModel.SelectedTransparency = (Transparency)((ComboBox)sender).Items[0];
+            ViewModel.SelectedTransparency = (CustomComboBoxItem)((ComboBox)sender).Items[0];
 
             Properties.Settings.Default.Transparency = item.Index;
 
@@ -554,6 +565,50 @@ namespace CSHUE.Views
                         break;
                 }
             }
+        }
+
+        private void ComboBoxAccentColor_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ComboBox)sender).SelectedItem == null || ((ComboBox)sender).SelectedIndex == 0)
+                return;
+
+            var item = (CustomComboBoxItem)((ComboBox)sender).SelectedItem;
+
+            ViewModel.AccentColors.Remove(item);
+            ViewModel.AccentColors =
+                new ObservableCollection<CustomComboBoxItem>(ViewModel.AccentColors.OrderBy(x => x.Index));
+            ViewModel.AccentColors.Insert(0, item);
+
+            ViewModel.SelectedAccentColor = (CustomComboBoxItem)((ComboBox)sender).Items[0];
+
+            Properties.Settings.Default.AccentColorOption = item.Index;
+
+            ViewModel.AccentColorPickerVisibility = item.Index == 0
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Button click handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AccentColor_OnClick(object sender, RoutedEventArgs e)
+        {
+            var colorPicker = new ColorPicker
+            {
+                Text1 = Cultures.Resources.Cancel,
+                Text2 = Cultures.Resources.Ok,
+                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
+                Color = Color.FromRgb(Properties.Settings.Default.AccentColor.R,
+                    Properties.Settings.Default.AccentColor.G, Properties.Settings.Default.AccentColor.B)
+            };
+            colorPicker.ShowDialog();
+
+            Properties.Settings.Default.AccentColor =
+                System.Drawing.Color.FromArgb(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B);
+
+            ViewModel.AccentColor = colorPicker.Color;
         }
 
         private void BrightnessModifier_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

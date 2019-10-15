@@ -33,19 +33,19 @@ namespace CSHUE.ViewModels
         /// <summary>
         /// Themes list back field.
         /// </summary>
-        private ObservableCollection<Theme> _themes = new ObservableCollection<Theme>
+        private ObservableCollection<CustomComboBoxItem> _themes = new ObservableCollection<CustomComboBoxItem>
         {
-            new Theme
+            new CustomComboBoxItem
             {
                 Text = Resources.Default,
                 Index = 0
             },
-            new Theme
+            new CustomComboBoxItem
             {
                 Text = Resources.ThemeDark,
                 Index = 1
             },
-            new Theme
+            new CustomComboBoxItem
             {
                 Text = Resources.ThemeLight,
                 Index = 2
@@ -54,7 +54,7 @@ namespace CSHUE.ViewModels
         /// <summary>
         /// Themes list property.
         /// </summary>
-        public ObservableCollection<Theme> Themes
+        public ObservableCollection<CustomComboBoxItem> Themes
         {
             get => _themes;
             set
@@ -84,11 +84,11 @@ namespace CSHUE.ViewModels
         /// <summary>
         /// SelectedTheme back field.
         /// </summary>
-        private Theme _selectedTheme;
+        private CustomComboBoxItem _selectedTheme;
         /// <summary>
         /// SelectedTheme property.
         /// </summary>
-        public Theme SelectedTheme
+        public CustomComboBoxItem SelectedTheme
         {
             get => _selectedTheme;
             set
@@ -101,19 +101,19 @@ namespace CSHUE.ViewModels
         /// <summary>
         /// Transparencies list back field.
         /// </summary>
-        private ObservableCollection<Transparency> _transparencies = new ObservableCollection<Transparency>
+        private ObservableCollection<CustomComboBoxItem> _transparencies = new ObservableCollection<CustomComboBoxItem>
         {
-            new Transparency
+            new CustomComboBoxItem
             {
                 Text = Resources.Default,
                 Index = 0
             },
-            new Transparency
+            new CustomComboBoxItem
             {
                 Text = Resources.Yes,
                 Index = 1
             },
-            new Transparency
+            new CustomComboBoxItem
             {
                 Text = Resources.No,
                 Index = 2
@@ -122,7 +122,7 @@ namespace CSHUE.ViewModels
         /// <summary>
         /// Transparencies list property.
         /// </summary>
-        public ObservableCollection<Transparency> Transparencies
+        public ObservableCollection<CustomComboBoxItem> Transparencies
         {
             get => _transparencies;
             set
@@ -133,18 +133,98 @@ namespace CSHUE.ViewModels
         }
 
         /// <summary>
+        /// AccentColors list back field.
+        /// </summary>
+        private ObservableCollection<CustomComboBoxItem> _accentColors = new ObservableCollection<CustomComboBoxItem>
+        {
+            new CustomComboBoxItem
+            {
+                Text = Resources.SystemColor,
+                Index = 0
+            },
+            new CustomComboBoxItem
+            {
+                Text = Resources.Custom,
+                Index = 1
+            }
+        };
+        /// <summary>
+        /// AccentColors list property.
+        /// </summary>
+        public ObservableCollection<CustomComboBoxItem> AccentColors
+        {
+            get => _accentColors;
+            set
+            {
+                _accentColors = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// AccentColorPickerVisibility back field.
+        /// </summary>
+        private Visibility _accentColorPickerVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// AccentColorPickerVisibility property.
+        /// </summary>
+        public Visibility AccentColorPickerVisibility
+        {
+            get => _accentColorPickerVisibility;
+            set
+            {
+                _accentColorPickerVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// AccentColor back field.
+        /// </summary>
+        private Color _accentColor;
+        /// <summary>
+        /// AccentColor property.
+        /// </summary>
+        public Color AccentColor
+        {
+            get => _accentColor;
+            set
+            {
+                _accentColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// SelectedTransparency back field.
         /// </summary>
-        private Transparency _selectedTransparency;
+        private CustomComboBoxItem _selectedTransparency;
         /// <summary>
         /// SelectedTransparency property.
         /// </summary>
-        public Transparency SelectedTransparency
+        public CustomComboBoxItem SelectedTransparency
         {
             get => _selectedTransparency;
             set
             {
                 _selectedTransparency = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// SelectedAccentColor back field.
+        /// </summary>
+        private CustomComboBoxItem _selectedAccentColor;
+        /// <summary>
+        /// SelectedAccentColor property.
+        /// </summary>
+        public CustomComboBoxItem SelectedAccentColor
+        {
+            get => _selectedAccentColor;
+            set
+            {
+                _selectedAccentColor = value;
                 OnPropertyChanged();
             }
         }
@@ -1024,13 +1104,7 @@ namespace CSHUE.ViewModels
         #endregion
     }
 
-    public class Theme
-    {
-        public string Text { get; set; }
-        public int Index { get; set; }
-    }
-
-    public class Transparency
+    public class CustomComboBoxItem
     {
         public string Text { get; set; }
         public int Index { get; set; }

@@ -481,4 +481,13 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="TurnOn" xml:space="preserve">
     <value>Ativar</value>
   </data>
+  <data name="AccentColor" xml:space="preserve">
+    <value>Cor de destaque</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Customizado</value>
+  </data>
+  <data name="SystemColor" xml:space="preserve">
+    <value>Cor do sistema</value>
+  </data>
 </root>

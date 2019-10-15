@@ -23,40 +23,40 @@
     <Setting Name="Maximized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="MainMenu" Type="CSHUE.Helpers.EventProperty" Scope="User">
+    <Setting Name="MainMenu" Type="CSHUE.Core.EventProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="TerroristsWin" Type="CSHUE.Helpers.EventProperty" Scope="User">
+    <Setting Name="TerroristsWin" Type="CSHUE.Core.EventProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CounterTerroristsWin" Type="CSHUE.Helpers.EventProperty" Scope="User">
+    <Setting Name="CounterTerroristsWin" Type="CSHUE.Core.EventProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="RoundStarts" Type="CSHUE.Helpers.EventProperty" Scope="User">
+    <Setting Name="RoundStarts" Type="CSHUE.Core.EventProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="BombPlanted" Type="CSHUE.Helpers.EventProperty" Scope="User">
+    <Setting Name="BombPlanted" Type="CSHUE.Core.EventProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PlayerGetsFlashed" Type="CSHUE.Helpers.EventProperty" Scope="User">
+    <Setting Name="PlayerGetsFlashed" Type="CSHUE.Core.EventProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="BombExplodes" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+    <Setting Name="BombExplodes" Type="CSHUE.Core.EventBrightnessProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="BombBlink" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+    <Setting Name="BombBlink" Type="CSHUE.Core.EventBrightnessProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="FreezeTime" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+    <Setting Name="FreezeTime" Type="CSHUE.Core.EventBrightnessProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Warmup" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+    <Setting Name="Warmup" Type="CSHUE.Core.EventBrightnessProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PlayerGetsKill" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+    <Setting Name="PlayerGetsKill" Type="CSHUE.Core.EventBrightnessProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PlayerGetsKilled" Type="CSHUE.Helpers.EventBrightnessProperty" Scope="User">
+    <Setting Name="PlayerGetsKilled" Type="CSHUE.Core.EventBrightnessProperty" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="PlayerGetsKillDuration" Type="System.Decimal" Scope="User">
@@ -133,6 +133,12 @@
     </Setting>
     <Setting Name="BrightnessModifier" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="AccentColorOption" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="AccentColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">149, 0, 255</Value>
     </Setting>
   </Settings>
 </SettingsFile>

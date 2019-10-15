@@ -113,17 +113,6 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private WriteableBitmap _temperatureSliderBrush;
-        public WriteableBitmap TemperatureSliderBrush
-        {
-            get => _temperatureSliderBrush;
-            set
-            {
-                _temperatureSliderBrush = value;
-                OnPropertyChanged();
-            }
-        }
-
         private WriteableBitmap _hueSliderBrush;
         public WriteableBitmap HueSliderBrush
         {
@@ -131,6 +120,17 @@ namespace CSHUE.ViewModels
             set
             {
                 _hueSliderBrush = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WriteableBitmap _temperatureSliderBrush;
+        public WriteableBitmap TemperatureSliderBrush
+        {
+            get => _temperatureSliderBrush;
+            set
+            {
+                _temperatureSliderBrush = value;
                 OnPropertyChanged();
             }
         }

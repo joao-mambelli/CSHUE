@@ -481,4 +481,13 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="TurnOn" xml:space="preserve">
     <value>Turn on</value>
   </data>
+  <data name="AccentColor" xml:space="preserve">
+    <value>Accent color</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="SystemColor" xml:space="preserve">
+    <value>System color</value>
+  </data>
 </root>

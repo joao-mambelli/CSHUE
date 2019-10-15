@@ -495,6 +495,31 @@
                               SelectionChanged="ComboBoxTransparency_OnSelectionChanged"
                               DisplayMemberPath="Text"/>
 
+                    <TextBlock Text="{Binding Path=AccentColor, Source={StaticResource Resources}}"
+                               Margin="0 15 0 4"/>
+
+                    <DockPanel Margin="0 4 0 9">
+                        <ComboBox x:Name="ComboBoxAccentColor"
+                                  Width="280"
+                                  HorizontalAlignment="Left"
+                                  MaxDropDownHeight="162"
+                                  ItemsSource="{Binding AccentColors}"
+                                  Style="{DynamicResource CustomComboBox}"
+                                  SelectedItem="{Binding SelectedAccentColor}"
+                                  SelectionChanged="ComboBoxAccentColor_OnSelectionChanged"
+                                  DisplayMemberPath="Text"/>
+
+                        <Button Height="32"
+                                Margin="20 0 0 0"
+                                Style="{DynamicResource CustomButton}"
+                                Click="AccentColor_OnClick"
+                                Visibility="{Binding AccentColorPickerVisibility}">
+                            <Button.Background>
+                                <SolidColorBrush Color="{Binding AccentColor}"/>
+                            </Button.Background>
+                        </Button>
+                    </DockPanel>
+
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="CS:GO"/>

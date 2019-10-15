@@ -537,5 +537,29 @@ namespace CSHUE.Properties {
                 this["BrightnessModifier"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AccentColorOption {
+            get {
+                return ((int)(this["AccentColorOption"]));
+            }
+            set {
+                this["AccentColorOption"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("149, 0, 255")]
+        public global::System.Drawing.Color AccentColor {
+            get {
+                return ((global::System.Drawing.Color)(this["AccentColor"]));
+            }
+            set {
+                this["AccentColor"] = value;
+            }
+        }
     }
 }

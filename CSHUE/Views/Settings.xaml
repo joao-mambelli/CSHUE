@@ -496,9 +496,11 @@
                               DisplayMemberPath="Text"/>
 
                     <TextBlock Text="{Binding Path=AccentColor, Source={StaticResource Resources}}"
-                               Margin="0 15 0 4"/>
+                               Margin="0 15 0 4"
+                               Visibility="Collapsed"/>
 
-                    <DockPanel Margin="0 4 0 9">
+                    <DockPanel Margin="0 4 0 9"
+                               Visibility="Collapsed">
                         <ComboBox x:Name="ComboBoxAccentColor"
                                   Width="280"
                                   HorizontalAlignment="Left"

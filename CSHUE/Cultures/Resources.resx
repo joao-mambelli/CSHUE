@@ -311,7 +311,7 @@ bn=PP%2dDonationsBF</value>
     <value>Press the link button on your Hub.</value>
   </data>
   <data name="WarningNoHub" xml:space="preserve">
-    <value>No Hub found.
+    <value>No Hubs found.
 Make sure the Hub is connected to the same network as yours and retry.</value>
   </data>
   <data name="Exit" xml:space="preserve">

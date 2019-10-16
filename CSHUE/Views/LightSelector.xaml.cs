@@ -159,6 +159,9 @@ namespace CSHUE.Views
             {
                 foreach (var l in Property.Lights)
                 {
+                    if (ViewModel.List.All(x => x.UniqueId != l.UniqueId))
+                        continue;
+
                     l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Brightness;
                     l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Color;
                     l.ColorTemperature = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).ColorTemperature;
@@ -177,6 +180,9 @@ namespace CSHUE.Views
             {
                 foreach (var l in BrightnessProperty.Lights)
                 {
+                    if (ViewModel.List.All(x => x.UniqueId != l.UniqueId))
+                        continue;
+
                     l.Brightness = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Brightness;
                     l.Color = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).Color;
                     l.ColorTemperature = ViewModel.List.ToList().Find(x => x.UniqueId == l.UniqueId).ColorTemperature;

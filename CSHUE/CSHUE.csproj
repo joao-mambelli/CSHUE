@@ -163,6 +163,7 @@
     <Compile Include="Components\Primitives\UpDownBase.cs" />
     <Compile Include="Components\TimeSpanUpDown\TimeSpanUpDown.cs" />
     <Compile Include="Components\ColorWheel\ColorWheel.cs" />
+    <Compile Include="Core\Utilities\Version.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />

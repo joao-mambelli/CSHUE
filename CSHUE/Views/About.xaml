@@ -287,11 +287,7 @@
 
                     <Label Content="{Binding Version}"
                            Foreground="White"
-                           Margin="0 2 0 9">
-                        <Label.DataContext>
-                            <viewModels:MainWindowViewModel/>
-                        </Label.DataContext>
-                    </Label>
+                           Margin="0 2 0 9"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

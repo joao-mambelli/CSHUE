@@ -7,7 +7,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -120,16 +119,6 @@ namespace CSHUE.ViewModels
             {
                 _content = value;
                 OnPropertyChanged();
-            }
-        }
-
-        public string Version
-        {
-            get
-            {
-                var date = GetLinkerTimestamp().ToUniversalTime();
-
-                return date.Year + "." + date.DayOfYear + "." + (date.Hour * 60 + date.Minute) + "." + date.Second;
             }
         }
 
@@ -1568,40 +1557,6 @@ namespace CSHUE.ViewModels
 
         #region Generic
 
-        private static DateTime GetLinkerTimestamp()
-        {
-            var filePath = Assembly.GetCallingAssembly().Location;
-
-            const int cPeHeaderOffset = 60;
-            const int cLinkerTimestampOffset = 8;
-            var bPeHeader = new byte[2048];
-
-            Stream fs = null;
-
-            try
-            {
-                fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                fs.Read(bPeHeader, 0, 2048);
-            }
-            finally
-            {
-                fs?.Close();
-            }
-
-            var i = BitConverter.ToInt32(bPeHeader, cPeHeaderOffset);
-            var secondsFrom1970 = BitConverter.ToInt32(bPeHeader, i + cLinkerTimestampOffset);
-            var dt = new DateTime(1970, 1, 1, 0, 0, 0);
-            dt = dt.AddSeconds(secondsFrom1970);
-            dt = dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
-
-            var fileDt = File.GetLastWriteTime(filePath);
-
-            if (DateTime.Now.Year >= 2038 & dt.Year != fileDt.Year)
-                return fileDt;
-
-            return dt;
-        }
-
         public void Navigate(string name)
         {
             switch (name)
@@ -1664,9 +1619,9 @@ namespace CSHUE.ViewModels
 
             var latestVersion = Regex.Match(data, "\"/joao7yt/CSHUE/releases/tag/(.*)\"").Groups[1].Value;
 
-            WarningUpdateVisibility = Version != latestVersion ? Visibility.Visible : Visibility.Collapsed;
+            WarningUpdateVisibility = Core.Utilities.Version.CurrentVersion != latestVersion ? Visibility.Visible : Visibility.Collapsed;
 
-            return Version != latestVersion ? latestVersion : "";
+            return Core.Utilities.Version.CurrentVersion != latestVersion ? latestVersion : "";
         }
 
         public void RunCsgo()

@@ -36,15 +36,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="24 0 20 30">
-                    <TextBlock Margin="0 20 0 9"
-                               TextWrapping="Wrap"
-                               TextAlignment="Justify"
-                               Text="{Binding Path=AboutText, Source={StaticResource Resources}}"/>
-
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="{Binding Path=FollowMe, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
+
                     <StackPanel Orientation="Horizontal"
                                 Margin="0 2 0 9">
                         <StackPanel.Resources>

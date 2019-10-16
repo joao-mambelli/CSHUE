@@ -120,17 +120,10 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="AboutText" xml:space="preserve">
-    <value>My name is João but you can call me John. I'm 21 and I live in Rio Claro, São Paulo, Brazil. Currently studing Computer Science in Universidade Estadual Paulista (UNESP). For now I do internship for an IT company. C#, XAML and C are the languages I like the most, I moved recently from the good old WinForms to WPF and I'm loving the greater variety of things you can do with it. I didn't want to use UWP because there's still a lot of people using Windows 7, but I tried to make the UI as good as in UWP. I got inspired by the Settings app from Windows 10.
-
-As a hardcore CS:GO player I love the game, play it since its early beta versions. I've been playing CS since I was a little kid, when I got my first PC, around 2008. I remember when my friend got home with a CS:S DVD to install it. Before that I didn't even know that FPS was something possible. I simply fell in love with it. The simplicity of the gameplay is what got me.
-
-I decided to make this application because I recently got Philips Hue bulbs and didn't find any good solutions for using it with CS:GO, I wanted something easy to use and very customizable.</value>
-  </data>
   <data name="ConfigText" xml:space="preserve">
     <value>So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game's cfg folder, a gamestate_integration_cshue.cfg.
 
-If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file. Doesn't matter where you installed it, my precious application is going to find it MUAHAHA... Ahem... Here's the button:</value>
+If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file.</value>
   </data>
   <data name="CreateCfg" xml:space="preserve">
     <value>Create .cfg</value>
@@ -145,9 +138,7 @@ If the bellow button is pressed, CSHUE will automatically try to find where CS:G
     <value>Donate</value>
   </data>
   <data name="DonateText" xml:space="preserve">
-    <value>I don't expect much finantial return from this application, but who knows, right? Donations are always appreciated.
-
-I'm linking to a PayPal donation page. You will be able to donate from 1 to 9,999,999.99 dolars, any higher than this, please, email me a time and place and we meet there. You will also be able to choose "Make this a monthly donation" if you want to, well, make this a monthly donation.</value>
+    <value>I don't expect much finantial return from this application, but who knows, right? Donations are always appreciated.</value>
   </data>
   <data name="DonationCountry" xml:space="preserve">
     <value>US</value>

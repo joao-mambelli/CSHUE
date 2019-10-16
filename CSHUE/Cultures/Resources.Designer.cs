@@ -70,15 +70,6 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My name is João but you can call me John. I&apos;m 21 and I live in Rio Claro, São Paulo, Brazil. Currently studing Computer Science in Universidade Estadual Paulista (UNESP). For now I do internship for an IT company. C#, XAML and C are the languages I like the most, I moved recently from the good old WinForms to WPF and I&apos;m loving the greater variety of things you can do with it. I didn&apos;t want to use UWP because there&apos;s still a lot of people using Windows 7, but I tried to make the UI as good as in UWP. I got  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string AboutText {
-            get {
-                return ResourceManager.GetString("AboutText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Accent color.
         /// </summary>
         public static string AccentColor {
@@ -216,7 +207,7 @@ namespace CSHUE.Cultures {
         /// <summary>
         ///   Looks up a localized string similar to So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game&apos;s cfg folder, a gamestate_integration_cshue.cfg.
         ///
-        ///If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file. Doesn&apos;t matter where you installed it, my precious application is going to find it MUAHAHA... Ahem... Here&apos;s the button:.
+        ///If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file..
         /// </summary>
         public static string ConfigText {
             get {
@@ -318,9 +309,7 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I don&apos;t expect much finantial return from this application, but who knows, right? Donations are always appreciated.
-        ///
-        ///I&apos;m linking to a PayPal donation page. You will be able to donate from 1 to 9,999,999.99 dolars, any higher than this, please, email me a time and place and we meet there. You will also be able to choose &quot;Make this a monthly donation&quot; if you want to, well, make this a monthly donation..
+        ///   Looks up a localized string similar to I don&apos;t expect much finantial return from this application, but who knows, right? Donations are always appreciated..
         /// </summary>
         public static string DonateText {
             get {

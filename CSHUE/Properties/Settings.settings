@@ -138,7 +138,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="AccentColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">149, 0, 255</Value>
+      <Value Profile="(Default)">Magenta</Value>
     </Setting>
   </Settings>
 </SettingsFile>

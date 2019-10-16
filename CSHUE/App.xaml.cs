@@ -64,7 +64,8 @@ namespace CSHUE
 
             Directory.CreateDirectory(baseDirectory + "\\logs");
 
-            var errorContent = $"HResult:    {exception.HResult}\n";
+            var errorContent = $"Version:    {Core.Utilities.Version.CurrentVersion}\n";
+            errorContent += $"HResult:    {exception.HResult}\n";
             errorContent += $"HelpLink:   {exception.HelpLink}\n";
             errorContent += $"Message:    {exception.Message}\n";
             errorContent += $"Source:     {exception.Source}\n";

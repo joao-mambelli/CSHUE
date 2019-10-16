@@ -10,5 +10,7 @@
         public MainWindowViewModel MainWindowViewModel = null;
 
         #endregion
+
+        public string Version => Core.Utilities.Version.CurrentVersion;
     }
 }

@@ -1268,8 +1268,8 @@ namespace CSHUE.ViewModels
                 ? (byte)Math.Round(light.Brightness * brightnessModifier)
                 : (byte)(light.Brightness + Math.Round((255 - light.Brightness) * (brightnessModifier - 1)));
             var brightnessModifiedPlantedLight = brightnessModifier <= 1
-                ? (byte)Math.Round(light.Brightness * brightnessModifier)
-                : (byte)(light.Brightness + Math.Round((255 - light.Brightness) * (brightnessModifier - 1)));
+                ? (byte)Math.Round(plantedLight.Brightness * brightnessModifier)
+                : (byte)(plantedLight.Brightness + Math.Round((255 - plantedLight.Brightness) * (brightnessModifier - 1)));
 
             if (!light.OnlyBrightness)
             {
@@ -1306,7 +1306,7 @@ namespace CSHUE.ViewModels
                         await Client.SendCommandAsync(new LightCommand
                         {
                             On = true,
-                            ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
+                            ColorTemperature = (int)Math.Round(plantedLight.ColorTemperature * -0.077111 + 654.222),
                             Brightness = brightnessModifiedLight
                         }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                     else
@@ -1334,8 +1334,8 @@ namespace CSHUE.ViewModels
                     await Client.SendCommandAsync(new LightCommand
                     {
                         On = true,
-                        ColorTemperature = (int)Math.Round(light.ColorTemperature * -0.077111 + 654.222),
-                        Brightness = brightnessModifiedLight
+                        ColorTemperature = (int)Math.Round(plantedLight.ColorTemperature * -0.077111 + 654.222),
+                        Brightness = brightnessModifiedPlantedLight
                     }, new List<string> { $"{light.Id}" }).ConfigureAwait(false);
                 else
                     await Client.SendCommandAsync(new LightCommand
@@ -1827,11 +1827,38 @@ namespace CSHUE.ViewModels
                     break;
             }
 
-            if (gs.Previously.Round.Bomb == BombState.Planted &&
-                gs.Round.Bomb == BombState.Exploded)
+            switch (gs.Previously.Round.Bomb)
             {
-                _isPlanted = false;
-                BombExplodes();
+                case BombState.Planted when gs.Round.Bomb == BombState.Exploded:
+                    _isPlanted = false;
+                    BombExplodes();
+                    break;
+                case BombState.Planted:
+                {
+                    if (gs.Round.Bomb != BombState.Planted)
+                    {
+                        switch (gs.Round.Phase)
+                        {
+                            case RoundPhase.FreezeTime:
+                                _isPlanted = false;
+                                SetLightsAsync(Properties.Settings.Default.FreezeTime, Properties.Settings.Default.RoundStarts).Wait();
+                                break;
+                            case RoundPhase.Live:
+                                _isPlanted = false;
+                                RoundStarts();
+                                break;
+                        }
+                    }
+                    break;
+                }
+                case BombState.Exploded:
+                    switch (gs.Round.Phase)
+                    {
+                        case RoundPhase.Live:
+                            RoundStarts();
+                            break;
+                    }
+                    break;
             }
 
             if (!_isPlanted &&

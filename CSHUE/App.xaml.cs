@@ -62,7 +62,7 @@ namespace CSHUE
 
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            Directory.CreateDirectory(baseDirectory + "\\logs");
+            Directory.CreateDirectory(baseDirectory + "logs");
 
             var errorContent = $"Version:    {Core.Utilities.Version.CurrentVersion}\n";
             errorContent += $"HResult:    {exception.HResult}\n";
@@ -84,7 +84,7 @@ namespace CSHUE
                 errorContent += $"{tabs}Source:     {exception.Source}\n";
                 errorContent += $"{tabs}StackTrace: {exception.StackTrace}\n\n";
 
-                errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t            $1");
+                errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t    $1");
 
                 tabs += "\t";
             }
@@ -120,7 +120,7 @@ namespace CSHUE
                 errorContent += $"{tabs}Message:    {exception.Message}\n";
                 errorContent += $"{tabs}Source:     {exception.Source}\n\n";
 
-                errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t            $1");
+                errorContent = Regex.Replace(errorContent, @"\n   (\w)", $"\n{tabs}\t    $1");
 
                 tabs += "\t";
             }
@@ -178,6 +178,127 @@ namespace CSHUE
 
             if (allow || Mutex.WaitOne(TimeSpan.Zero, true))
             {
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+                if (!File.Exists($"{baseDirectory}CSHUE.exe.config"))
+                {
+                    File.AppendAllText($"{baseDirectory}CSHUE.exe.config", @"<?xml version=""1.0"" encoding=""utf-8""?>
+<configuration>
+  <configSections>
+    <sectionGroup name=""userSettings"" type=""System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"">
+      <section name=""CSHUE.Properties.Settings"" type=""System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"" allowExeDefinition=""MachineToLocalUser"" requirePermission=""false""/>
+    </sectionGroup>
+  </configSections>
+  <startup>
+    <supportedRuntime version=""v4.0"" sku="".NETFramework,Version=v4.7.2""/>
+  </startup>
+  <userSettings>
+    <CSHUE.Properties.Settings>
+      <setting name=""RunOnStartup"" serializeAs=""String"">
+        <value>False</value>
+      </setting>
+      <setting name=""Activated"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""Top"" serializeAs=""String"">
+        <value>-1</value>
+      </setting>
+      <setting name=""Left"" serializeAs=""String"">
+        <value>-1</value>
+      </setting>
+      <setting name=""Height"" serializeAs=""String"">
+        <value>450</value>
+      </setting>
+      <setting name=""Width"" serializeAs=""String"">
+        <value>650</value>
+      </setting>
+      <setting name=""Maximized"" serializeAs=""String"">
+        <value>False</value>
+      </setting>
+      <setting name=""PlayerGetsKillDuration"" serializeAs=""String"">
+        <value>1.5</value>
+      </setting>
+      <setting name=""PlayerGetsKilledDuration"" serializeAs=""String"">
+        <value>3</value>
+      </setting>
+      <setting name=""RunOnStartupMinimized"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""MinimizeToSystemTray"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""AutoMinimize"" serializeAs=""String"">
+        <value>False</value>
+      </setting>
+      <setting name=""TriggerSpecEvents"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""RememberLightsStates"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""AutoActivate"" serializeAs=""String"">
+        <value>False</value>
+      </setting>
+      <setting name=""AutoActivateStart"" serializeAs=""String"">
+        <value>18:00</value>
+      </setting>
+      <setting name=""AutoActivateEnd"" serializeAs=""String"">
+        <value>06:00</value>
+      </setting>
+      <setting name=""RunCsgo"" serializeAs=""String"">
+        <value>False</value>
+      </setting>
+      <setting name=""LaunchOptions"" serializeAs=""String"">
+        <value />
+      </setting>
+      <setting name=""LanguageName"" serializeAs=""String"">
+        <value />
+      </setting>
+      <setting name=""CsgoFolder"" serializeAs=""String"">
+        <value />
+      </setting>
+      <setting name=""SteamFolder"" serializeAs=""String"">
+        <value />
+      </setting>
+      <setting name=""AppKey"" serializeAs=""String"">
+        <value />
+      </setting>
+      <setting name=""PreviewLights"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""ShowSystemTrayIcon"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""AutoDeactivate"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""LatestVersionCheck"" serializeAs=""String"">
+        <value />
+      </setting>
+      <setting name=""FirstLaunch"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+      <setting name=""Theme"" serializeAs=""String"">
+        <value>0</value>
+      </setting>
+      <setting name=""Transparency"" serializeAs=""String"">
+        <value>0</value>
+      </setting>
+      <setting name=""BrightnessModifier"" serializeAs=""String"">
+        <value>100</value>
+      </setting>
+      <setting name=""AccentColorOption"" serializeAs=""String"">
+        <value>0</value>
+      </setting>
+      <setting name=""AccentColor"" serializeAs=""String"">
+        <value>Magenta</value>
+      </setting>
+    </CSHUE.Properties.Settings>
+  </userSettings>
+</configuration>
+");
+                }
+
                 var app = new App();
                 app.InitializeComponent();
                 app.Run();

@@ -118,344 +118,344 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Über</value>
   </data>
   <data name="ConfigText" xml:space="preserve">
-    <value>So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game's cfg folder, a gamestate_integration_cshue.cfg.
+    <value>Damit CSHUE weiß, was in CS:GO passiert, muss eine spezielle .cfg Datei in deinem Spiele Ordner existieren. (gamestate_integration_cshue.cfg)
 
-If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file.</value>
+Beim drücken der unteren Schaltfläche, versucht CSHUE automatisch deinen CS:GO Installationspfad zu finden und die benötigte .cfg Datei zu erstellen.</value>
   </data>
   <data name="CreateCfg" xml:space="preserve">
-    <value>Create .cfg</value>
+    <value>.cfg Datei erstellen</value>
   </data>
   <data name="Donation" xml:space="preserve">
-    <value>Donation</value>
+    <value>Spenden</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>Donate</value>
+    <value>Spenden</value>
   </data>
   <data name="DonateText" xml:space="preserve">
-    <value>I don't expect much finantial return from this application, but who knows, right? Donations are always appreciated.</value>
+    <value>Ich erwarte keine großen Gewinne mit diesem Programm, aber man weiß ja nie, richtig? Spenden sind immer willkommen.</value>
   </data>
   <data name="FileCreated" xml:space="preserve">
-    <value>File created at</value>
+    <value>Datei wurde hier erstellt:</value>
   </data>
   <data name="FollowMe" xml:space="preserve">
-    <value>Follow me</value>
+    <value>Folge mir</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Start</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="WarningCSGO" xml:space="preserve">
-    <value>Couldn't find CS:GO path.</value>
+    <value>Konnte den CS:GO Installationspfad nicht finden.</value>
   </data>
   <data name="WarningGSI" xml:space="preserve">
-    <value>Couldn't find CS:GO Game State Integration file.</value>
+    <value>Konnte die CS:GO Game State Integration Datei nicht finden.</value>
   </data>
   <data name="WarningGSICorrupted" xml:space="preserve">
-    <value>CS:GO Game State Integration file is corrupted.</value>
+    <value>Die CS:GO Game State Integration Datei ist beschädigt.</value>
   </data>
   <data name="WarningSteam" xml:space="preserve">
-    <value>Couldn't find Steam path.</value>
+    <value>Der Steam Pfad konnte nicht gefunden werden.</value>
   </data>
   <data name="AutomaticallyActivate" xml:space="preserve">
-    <value>Automatically activate between</value>
+    <value>Automatisch aktivieren zwischen</value>
   </data>
   <data name="BombBlink" xml:space="preserve">
-    <value>Bomb Blink</value>
+    <value>Bomben Blinken</value>
   </data>
   <data name="BombExplodes" xml:space="preserve">
-    <value>Bomb Explodes</value>
+    <value>Bomben Explosion</value>
   </data>
   <data name="BombHasBeenPlanted" xml:space="preserve">
-    <value>Bomb Has Been Planted</value>
+    <value>Bombe wurde gelegt</value>
   </data>
   <data name="CounterTerroristsWin" xml:space="preserve">
-    <value>Counter-Terrorists Win</value>
+    <value>Counter-Terroristen gewinnen</value>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Duration:</value>
+    <value>Länge:</value>
   </data>
   <data name="Events" xml:space="preserve">
-    <value>Events</value>
+    <value>Effekte</value>
   </data>
   <data name="FreezeTime" xml:space="preserve">
-    <value>Freeze Time</value>
+    <value>Kauf-/Auszeit</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="LaunchOptions" xml:space="preserve">
-    <value>Launch Options</value>
+    <value>Startoptionen</value>
   </data>
   <data name="MainMenu" xml:space="preserve">
-    <value>Main Menu</value>
+    <value>Hauptmenü</value>
   </data>
   <data name="MinimizeDetected" xml:space="preserve">
-    <value>Minimize CSHUE when CS:GO is detected</value>
+    <value>Minimiere CSHUE wenn CS:GO geöffnet ist</value>
   </data>
   <data name="MinimizeSystemTray" xml:space="preserve">
-    <value>Minimize to system tray</value>
+    <value>In die Taskleiste minimieren</value>
   </data>
   <data name="PlayerGetsFlashed" xml:space="preserve">
-    <value>Player Gets Flashed</value>
+    <value>Spieler wurde geblendet</value>
   </data>
   <data name="PlayerGetsKill" xml:space="preserve">
-    <value>Player Gets a Kill</value>
+    <value>Spieler hat Gegner eliminiert</value>
   </data>
   <data name="PlayerGetsKilled" xml:space="preserve">
-    <value>Player Gets Killed</value>
+    <value>Spieler wurde eliminiert</value>
   </data>
   <data name="RememberLights" xml:space="preserve">
-    <value>Remember lights states</value>
+    <value>Vorherigen Lampenstatus merken</value>
   </data>
   <data name="RoundStarts" xml:space="preserve">
-    <value>Round Starts</value>
+    <value>Runde startet</value>
   </data>
   <data name="RunCsgoOnStartup" xml:space="preserve">
-    <value>Run CS:GO on CSHUE startup</value>
+    <value>Öffne CS:GO beim starten von CSHUE</value>
   </data>
   <data name="RunMinimized" xml:space="preserve">
-    <value>Run minimized</value>
+    <value>Fenster Minimiert</value>
   </data>
   <data name="RunOnStartup" xml:space="preserve">
-    <value>Run CSHUE when my computer starts</value>
+    <value>CSHUE mit dem Windowsstart ausführen</value>
   </data>
   <data name="SecondsAbbreviation" xml:space="preserve">
-    <value>s</value>
+    <value>sek.</value>
   </data>
   <data name="TerroristsWin" xml:space="preserve">
-    <value>Terrorists Win</value>
+    <value>Terroristen gewinnen</value>
   </data>
   <data name="TriggerSpectating" xml:space="preserve">
-    <value>Also trigger player events when spectating</value>
+    <value>Effekte auch beim Zuschauen aktivieren</value>
   </data>
   <data name="Warmup" xml:space="preserve">
-    <value>Warmup</value>
+    <value>Aufwärmphase</value>
   </data>
   <data name="Default" xml:space="preserve">
-    <value>Default</value>
+    <value>Standard</value>
   </data>
   <data name="SelectFolder" xml:space="preserve">
-    <value>Please select the CS:GO cfg folder manually.</value>
+    <value>Bitte wähle den CS:GO cfg Ordner manuell.</value>
   </data>
   <data name="FolderSelection" xml:space="preserve">
-    <value>CS:GO cfg Folder Selection</value>
+    <value>CS:GO cfg Ordner Auswahl</value>
   </data>
   <data name="And" xml:space="preserve">
-    <value>and</value>
+    <value>und</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>Nein</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ja</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Are you sure you want to reset all the settings to default?</value>
+    <value>Bist du sicher alles auf Standardwerte zurückzusetzen?</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="WarningLink" xml:space="preserve">
-    <value>Press the link button on your Hub.</value>
+    <value>Betätige den Verbindungsknopf auf deiner Hue-Bridge.</value>
   </data>
   <data name="WarningNoHub" xml:space="preserve">
-    <value>No Hubs found.
-Make sure the Hub is connected to the same network as yours and retry.</value>
+    <value>Keine Hue-Bridge gefunden.
+Stelle sicher, dass deine Hue-Bridge mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Schließen</value>
   </data>
   <data name="ShowInFolder" xml:space="preserve">
-    <value>Show in folder</value>
+    <value>Im Ordner anzeigen</value>
   </data>
   <data name="HubSelector" xml:space="preserve">
-    <value>Hub Selector</value>
+    <value>Hue-Bridge Auswahl</value>
   </data>
   <data name="CouldNotConnect" xml:space="preserve">
-    <value>Couldn't connect to the Hub. Please try again.</value>
+    <value>Konnte keine Verbindung zur Hue-Bridge aufbauen. Versuche es noch einmal.</value>
   </data>
   <data name="WarningHubNotAvailable" xml:space="preserve">
-    <value>The selected Hub is no longer reachable.
-Make sure the Hub is connected to the same network as yours and retry.</value>
+    <value>Die ausgewählte Hue-Bridge ist nicht länger erreichbar.
+Stelle sicher, dass deine Hue-Bridge mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
   </data>
   <data name="Retry" xml:space="preserve">
-    <value>Retry</value>
+    <value>Wiederholen</value>
   </data>
   <data name="WarningNoReachableHubs" xml:space="preserve">
-    <value>No reachable Hubs found.
-Make sure the Hub is connected to the same network as yours and retry.</value>
+    <value>Keine erreichbare Hue-Bridge gefunden.
+Stelle sicher, dass deine Hue-Bridge mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
   </data>
   <data name="WarningValidating" xml:space="preserve">
-    <value>Validating Hub.</value>
+    <value>Überprüfe Hue-Bridge.</value>
   </data>
   <data name="WarningNotConnected" xml:space="preserve">
-    <value>No Hub connection.</value>
+    <value>Keine Hue-Bridge Verbindung.</value>
   </data>
   <data name="SelectSteamFolder" xml:space="preserve">
-    <value>Please select the Steam folder manually.</value>
+    <value>Bitte wähle den Steam Ordner manuell.</value>
   </data>
   <data name="WarningSearching" xml:space="preserve">
-    <value>Searching for Hubs.</value>
+    <value>Hue-Bridge wird gesucht.</value>
   </data>
   <data name="NoLightsFound" xml:space="preserve">
-    <value>No lights found.</value>
+    <value>Keine Lampen gefunden.</value>
   </data>
   <data name="LightSelector" xml:space="preserve">
-    <value>Light Selector</value>
+    <value>Lampenauswahl</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
   <data name="Brightness" xml:space="preserve">
-    <value>Brightness:</value>
+    <value>Helligkeit:</value>
   </data>
   <data name="UseMainEventColor" xml:space="preserve">
-    <value>Use its color from {0} event</value>
+    <value>Nutze die {0} Farbe</value>
   </data>
   <data name="Current" xml:space="preserve">
-    <value>current</value>
+    <value>aktuelle</value>
   </data>
   <data name="Hue" xml:space="preserve">
     <value>Hue</value>
   </data>
   <data name="Saturation" xml:space="preserve">
-    <value>Saturation</value>
+    <value>Sättigung</value>
   </data>
   <data name="ColorPicker" xml:space="preserve">
-    <value>Color Picker</value>
+    <value>Farbwähler</value>
   </data>
   <data name="PreviewLights" xml:space="preserve">
-    <value>Preview lights while changing events settings</value>
+    <value>Beim ändern der Farben als Vorschau anzeigen</value>
   </data>
   <data name="RunCsgo" xml:space="preserve">
-    <value>Run CS:GO</value>
+    <value>Starte CS:GO</value>
   </data>
   <data name="Activated" xml:space="preserve">
-    <value>Activated</value>
+    <value>Aktiviert</value>
   </data>
   <data name="LightsStates" xml:space="preserve">
-    <value>Lights states</value>
+    <value>Lampenzustand</value>
   </data>
   <data name="Off" xml:space="preserve">
-    <value>Off</value>
+    <value>Aus</value>
   </data>
   <data name="On" xml:space="preserve">
-    <value>On</value>
+    <value>An</value>
   </data>
   <data name="LightOff" xml:space="preserve">
-    <value>Off</value>
+    <value>Aus</value>
   </data>
   <data name="ShowSystemTrayIcon" xml:space="preserve">
-    <value>Show system tray icon</value>
+    <value>Zeige Taskleistensymbol</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
   <data name="AutomaticallyDeactivate" xml:space="preserve">
-    <value>Automatically deactivate if not in the above range</value>
+    <value>Automatisch deaktivieren, wenn nicht im obigen Bereich</value>
   </data>
   <data name="ShowInBrowser" xml:space="preserve">
-    <value>Show in browser</value>
+    <value>Im Browser anzeigen</value>
   </data>
   <data name="NewVersionMessage" xml:space="preserve">
-    <value>Newer version, "{0}", is available.</value>
+    <value>Neue Version, "{0}", ist verfügbar.</value>
   </data>
   <data name="Temperature" xml:space="preserve">
-    <value>Temperature</value>
+    <value>Temperatur</value>
   </data>
   <data name="Unreachable" xml:space="preserve">
-    <value>Unreachable</value>
+    <value>Unerreichbar</value>
   </data>
   <data name="CrashMessage" xml:space="preserve">
-    <value>An unhandled exception has occoured. A log file was created at
+    <value>Ein unbekannter Fehler ist aufgetreten. Eine Log-Datei wurde hier erstellt:
 {0}.
 
-Click on the "Create GitHub issue" button to open a GitHub new issue page with the body already filled for you. You can then add extra information about the crash if you want.</value>
+Klicke auf "GitHub Fehlermeldung" um eine neue GitHub-Problemmeldung mit dem bereits für Sie ausgefüllten Text zu erstellen. Sie können dann zusätzliche Informationen zum Absturz hinzufügen, wenn Sie möchten.</value>
   </data>
   <data name="CreateIssue" xml:space="preserve">
-    <value>Create GitHub issue</value>
+    <value>GitHub Fehlermeldung</value>
   </data>
   <data name="ExtraInfo" xml:space="preserve">
-    <value>Extra information here</value>
+    <value>Extra Informationen hier</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Aktualisieren</value>
   </data>
   <data name="WarningUpdate" xml:space="preserve">
-    <value>Update available.</value>
+    <value>Aktualisierung verfügbar.</value>
   </data>
   <data name="NewVersionText" xml:space="preserve">
-    <value>A new CSHUE version is available at GitHub. Click at the bellow button to open the release post in your browse.</value>
+    <value>Eine neue CSHUE-Version ist bei GitHub verfügbar. Klicken Sie auf die folgende Schaltfläche, um den Veröffentlichungsbeitrag in Ihrem Browser zu öffnen.</value>
   </data>
   <data name="CheckUpdate" xml:space="preserve">
-    <value>Check for updates</value>
+    <value>Auf Aktualisierungen prüfen</value>
   </data>
   <data name="NoUpdates" xml:space="preserve">
-    <value>No updates were found. Click the below button to check for updates.</value>
+    <value>Es wurden keine Aktualisierungen gefunden. Klicken Sie auf die Schaltfläche unten, um nach Aktualisierungen zu suchen.</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Problem melden</value>
   </data>
   <data name="ReportProblemText" xml:space="preserve">
-    <value>If you are having trouble using the app or you think there are unwanted behavior, let me know through GitHub.</value>
+    <value>Wenn Sie Probleme mit der App haben oder ein unerwünschtes Verhalten vermuten, lassen Sie es mich über GitHub wissen.</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
   </data>
   <data name="ThemeDark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Dunkel</value>
   </data>
   <data name="ThemeLight" xml:space="preserve">
-    <value>Light</value>
+    <value>Hell</value>
   </data>
   <data name="Transparency" xml:space="preserve">
-    <value>Transparency</value>
+    <value>Transparenz</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Hilfe</value>
   </data>
   <data name="BrightnessModifier" xml:space="preserve">
-    <value>Brightness modifier</value>
+    <value>Helligkeitsregler</value>
   </data>
   <data name="BrightnessPercentage" xml:space="preserve">
-    <value>brightness%</value>
+    <value>helligkeit%</value>
   </data>
   <data name="Lights" xml:space="preserve">
-    <value>Lights</value>
+    <value>Lampen</value>
   </data>
   <data name="TurnOff" xml:space="preserve">
-    <value>Turn off</value>
+    <value>Ausschalten</value>
   </data>
   <data name="TurnOn" xml:space="preserve">
-    <value>Turn on</value>
+    <value>Einschalten</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>Accent color</value>
+    <value>Akzentfarbe</value>
   </data>
   <data name="Custom" xml:space="preserve">
-    <value>Custom</value>
+    <value>Benutzerdefiniert</value>
   </data>
   <data name="SystemColor" xml:space="preserve">
-    <value>System color</value>
+    <value>System Farbe</value>
   </data>
   <data name="Bomb" xml:space="preserve">
-    <value>Bomb</value>
+    <value>Bombe</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>General</value>
+    <value>Allgemein</value>
   </data>
   <data name="Player" xml:space="preserve">
-    <value>Player</value>
+    <value>Spieler</value>
   </data>
   <data name="CountryIso2" xml:space="preserve">
-    <value>US</value>
+    <value>DE</value>
   </data>
   <data name="TranslationsBy" xml:space="preserve">
-    <value>Translations by</value>
+    <value>Übersetzt von</value>
   </data>
 </root>

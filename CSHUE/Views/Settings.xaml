@@ -47,7 +47,7 @@
                     <TabControl Margin="0 2 0 9"
                                 Style="{DynamicResource CustomTabControl}">
                         <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=Primary, Source={StaticResource Resources}}"
+                                 Header="{Binding Path=General, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
@@ -62,6 +62,51 @@
                                         <LinearGradientBrush StartPoint="0,0"
                                                              EndPoint="1,0"
                                                              GradientStops="{Binding GradientStopsMainMenu}"/>
+                                    </Button.Background>
+                                </Button>
+
+                                <TextBlock Margin="0 15 0 2"
+                                           Text="{Binding Path=Warmup, Source={StaticResource Resources}}"/>
+
+                                <Button Height="40"
+                                        HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource CustomButton}"
+                                        Click="Button_OnClick"
+                                        Tag="Warmup">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,0"
+                                                             GradientStops="{Binding GradientStopsWarmup}"/>
+                                    </Button.Background>
+                                </Button>
+
+                                <TextBlock Margin="0 15 0 2"
+                                           Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}"/>
+
+                                <Button Height="40"
+                                        HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource CustomButton}"
+                                        Click="Button_OnClick"
+                                        Tag="FreezeTime">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,0"
+                                                             GradientStops="{Binding GradientStopsFreezeTime}"/>
+                                    </Button.Background>
+                                </Button>
+
+                                <TextBlock Margin="0 15 0 2"
+                                           Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}"/>
+
+                                <Button Height="40"
+                                        HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource CustomButton}"
+                                        Click="Button_OnClick"
+                                        Tag="RoundStarts">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,0"
+                                                             GradientStops="{Binding GradientStopsRoundStarts}"/>
                                     </Button.Background>
                                 </Button>
 
@@ -94,109 +139,28 @@
                                                              GradientStops="{Binding GradientStopsCounterTerroristsWin}"/>
                                     </Button.Background>
                                 </Button>
-
-                                <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}"/>
-
-                                <Button Height="40"
-                                        HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource CustomButton}"
-                                        Click="Button_OnClick"
-                                        Tag="RoundStarts">
-                                    <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsRoundStarts}"/>
-                                    </Button.Background>
-                                </Button>
-
-                                <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}"/>
-
-                                <Button Height="40"
-                                        HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource CustomButton}"
-                                        Click="Button_OnClick"
-                                        Tag="BombPlanted">
-                                    <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsBombPlanted}"/>
-                                    </Button.Background>
-                                </Button>
                             </StackPanel>
                         </TabItem>
 
                         <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=Secondary, Source={StaticResource Resources}}"
+                                 Header="{Binding Path=Player, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
                                         Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
-                                        Tag="BombExplodes">
+                                        Tag="PlayerGetsFlashed">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0"
                                                              EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsBombExplodes}"/>
+                                                             GradientStops="{Binding GradientStopsPlayerGetsFlashed}"/>
                                     </Button.Background>
                                 </Button>
 
-                                <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=BombBlink, Source={StaticResource Resources}}"/>
-
-                                <Button Height="40"
-                                        HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource CustomButton}"
-                                        Click="Button_OnClick"
-                                        Tag="BombBlink">
-                                    <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsBombBlink}"/>
-                                    </Button.Background>
-                                </Button>
-
-                                <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}"/>
-
-                                <Button Height="40"
-                                        HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource CustomButton}"
-                                        Click="Button_OnClick"
-                                        Tag="FreezeTime">
-                                    <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsFreezeTime}"/>
-                                    </Button.Background>
-                                </Button>
-
-                                <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=Warmup, Source={StaticResource Resources}}"/>
-
-                                <Button Height="40"
-                                        HorizontalAlignment="Stretch"
-                                        Style="{DynamicResource CustomButton}"
-                                        Click="Button_OnClick"
-                                        Tag="Warmup">
-                                    <Button.Background>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsWarmup}"/>
-                                    </Button.Background>
-                                </Button>
-                            </StackPanel>
-                        </TabItem>
-
-                        <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=Tertiary, Source={StaticResource Resources}}"
-                                 Foreground="{DynamicResource SystemBaseHighColorBrush}">
-                            <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
                                            Text="{Binding Path=PlayerGetsKill, Source={StaticResource Resources}}"/>
 
@@ -276,21 +240,51 @@
                         </TabItem>
 
                         <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=Quarternary, Source={StaticResource Resources}}"
+                                 Header="{Binding Path=Bomb, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
                                         Style="{DynamicResource CustomButton}"
                                         Click="Button_OnClick"
-                                        Tag="PlayerGetsFlashed">
+                                        Tag="BombExplodes">
                                     <Button.Background>
                                         <LinearGradientBrush StartPoint="0,0"
                                                              EndPoint="1,0"
-                                                             GradientStops="{Binding GradientStopsPlayerGetsFlashed}"/>
+                                                             GradientStops="{Binding GradientStopsBombExplodes}"/>
+                                    </Button.Background>
+                                </Button>
+
+                                <TextBlock Margin="0 15 0 2"
+                                           Text="{Binding Path=BombBlink, Source={StaticResource Resources}}"/>
+
+                                <Button Height="40"
+                                        HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource CustomButton}"
+                                        Click="Button_OnClick"
+                                        Tag="BombBlink">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,0"
+                                                             GradientStops="{Binding GradientStopsBombBlink}"/>
+                                    </Button.Background>
+                                </Button>
+
+                                <TextBlock Margin="0 15 0 2"
+                                           Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}"/>
+
+                                <Button Height="40"
+                                        HorizontalAlignment="Stretch"
+                                        Style="{DynamicResource CustomButton}"
+                                        Click="Button_OnClick"
+                                        Tag="BombPlanted">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,0"
+                                                             GradientStops="{Binding GradientStopsBombPlanted}"/>
                                     </Button.Background>
                                 </Button>
                             </StackPanel>

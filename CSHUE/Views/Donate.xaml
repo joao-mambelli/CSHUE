@@ -51,21 +51,7 @@
                             HorizontalAlignment="Center"
                             Style="{DynamicResource CustomButton}"
                             Content="{Binding Path=Donate, Source={StaticResource Resources}}"
-                            Click="Donate_OnClick">
-                        <Button.ToolTip>
-                            <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                                     Background="{DynamicResource SystemAltHighColorBrush}">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Path=DonationLink, Source={StaticResource Resources}}"/>
-
-                                    <Separator/>
-
-                                    <TextBlock FontStyle="Italic"
-                                               Text="{Binding Path=DonationDetails, Source={StaticResource Resources}}"/>
-                                </StackPanel>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
+                            Click="Donate_OnClick"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

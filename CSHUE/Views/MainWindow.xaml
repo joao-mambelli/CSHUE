@@ -123,7 +123,7 @@
                               VerticalAlignment="Center"
                               Margin="14"/>
 
-                        <TextBlock Text="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
+                        <TextBlock Text="CS:GO GSI"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -456,7 +456,7 @@
                               Click="MenuNavigate_OnClick"
                               Tag="Home"/>
 
-                    <MenuItem Header="{Binding Path=CSGOGSI, Source={StaticResource Resources}}"
+                    <MenuItem Header="CS:GO GSI"
                               Style="{DynamicResource CustomMenuItemAlertConfig}"
                               Click="MenuNavigate_OnClick"
                               Tag="Config"/>

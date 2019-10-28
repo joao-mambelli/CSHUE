@@ -164,6 +164,11 @@
     <Compile Include="Components\TimeSpanUpDown\TimeSpanUpDown.cs" />
     <Compile Include="Components\ColorWheel\ColorWheel.cs" />
     <Compile Include="Core\Utilities\Version.cs" />
+    <Compile Include="Cultures\Resources.de-DE.Designer.cs">
+      <DependentUpon>Resources.de-DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
@@ -392,6 +397,11 @@
     <EmbeddedResource Include="Cultures\Resources.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cultures\Resources.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Cultures\Resources.pt-BR.resx">

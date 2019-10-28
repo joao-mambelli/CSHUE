@@ -627,7 +627,7 @@ namespace CSHUE.Views
 
             ((ContextMenu)sender).Items[1] = new MenuItem
             {
-                Header = Cultures.Resources.CSGOGSI,
+                Header = "CS:GO GSI",
                 Style = (Style)FindResource("CustomMenuItemAlertConfig"),
                 Tag = "Config"
             };

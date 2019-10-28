@@ -282,7 +282,16 @@
                                VerticalAlignment="Bottom"/>
 
                     <Label Content="{Binding Version}"
-                           Foreground="White"
+                           Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                           Margin="0 2 0 9"/>
+
+                    <TextBlock Margin="0 20 0 2"
+                               FontSize="20"
+                               Text="{Binding Path=TranslationsBy, Source={StaticResource Resources}}"
+                               VerticalAlignment="Bottom"/>
+
+                    <Label Content="Oliver &quot;olikdesign&quot; Kehl"
+                           Foreground="{DynamicResource SystemBaseHighColorBrush}"
                            Margin="0 2 0 9"/>
                 </StackPanel>
             </Grid>

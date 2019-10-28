@@ -128,9 +128,6 @@ Se o botão abaixo for pressionado, o CSHUE vai, automaticamente, tentar encontr
   <data name="CreateCfg" xml:space="preserve">
     <value>Criar .cfg</value>
   </data>
-  <data name="CSGOGSI" xml:space="preserve">
-    <value>CS:GO GSI</value>
-  </data>
   <data name="Donation" xml:space="preserve">
     <value>Doação</value>
   </data>
@@ -139,29 +136,6 @@ Se o botão abaixo for pressionado, o CSHUE vai, automaticamente, tentar encontr
   </data>
   <data name="DonateText" xml:space="preserve">
     <value>Eu não espero muito retorno financeiro desse aplicativo, mas quem sabe, né? Doações são sempre bem vindas.</value>
-  </data>
-  <data name="DonationCountry" xml:space="preserve">
-    <value>BR</value>
-  </data>
-  <data name="DonationCurrency" xml:space="preserve">
-    <value>BRL</value>
-  </data>
-  <data name="DonationDescription" xml:space="preserve">
-    <value>Doa%E7%E3o%20referente%20ao%20CSHUE</value>
-  </data>
-  <data name="DonationDetails" xml:space="preserve">
-    <value>Abre o url acima em um navegador.
-O url é composto por:
-	meu email do PayPal: joao7yt@gmail.com
-	uma descrição: Doação referente ao CSHUE
-	um código de país: BR
-	um cídogo de moeda: BRL</value>
-  </data>
-  <data name="DonationLink" xml:space="preserve">
-    <value>https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;
-business=joao7yt@gmail.com&amp;lc=BR&amp;
-item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
-&amp;currency_code=BRL&amp;bn=PP%2dDonationsBF</value>
   </data>
   <data name="FileCreated" xml:space="preserve">
     <value>Arquivo criado em</value>
@@ -235,12 +209,6 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="PlayerGetsKilled" xml:space="preserve">
     <value>Jogador é Morto</value>
   </data>
-  <data name="Primary" xml:space="preserve">
-    <value>Primários</value>
-  </data>
-  <data name="Quarternary" xml:space="preserve">
-    <value>Quaternários</value>
-  </data>
   <data name="RememberLights" xml:space="preserve">
     <value>Lembrar do estado das luzes</value>
   </data>
@@ -256,17 +224,11 @@ item_name=Doa%E7%E3o%20referente%20ao%20CSHUE
   <data name="RunOnStartup" xml:space="preserve">
     <value>Iniciar o CSHUE ao ligar o computador</value>
   </data>
-  <data name="Secondary" xml:space="preserve">
-    <value>Secundários</value>
-  </data>
   <data name="SecondsAbbreviation" xml:space="preserve">
     <value>s</value>
   </data>
   <data name="TerroristsWin" xml:space="preserve">
     <value>Vitória dos Terroristas</value>
-  </data>
-  <data name="Tertiary" xml:space="preserve">
-    <value>Terciários</value>
   </data>
   <data name="TriggerSpectating" xml:space="preserve">
     <value>Também engatilhar eventos de jogador quando estiver assistindo</value>
@@ -480,5 +442,20 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   </data>
   <data name="SystemColor" xml:space="preserve">
     <value>Cor do sistema</value>
+  </data>
+  <data name="Bomb" xml:space="preserve">
+    <value>Bomba</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Jogador</value>
+  </data>
+  <data name="CountryIso2" xml:space="preserve">
+    <value>BR</value>
+  </data>
+  <data name="TranslationsBy" xml:space="preserve">
+    <value>Traduções por</value>
   </data>
 </root>

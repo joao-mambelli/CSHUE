@@ -103,7 +103,8 @@ namespace CSHUE
 
             exception = tempException;
 
-            errorContent = $"HResult:    {exception.HResult}\n";
+            errorContent = $"Version:    {Core.Utilities.Version.CurrentVersion}\n";
+            errorContent += $"HResult:    {exception.HResult}\n";
             errorContent += $"HelpLink:   {exception.HelpLink}\n";
             errorContent += $"Message:    {exception.Message}\n";
             errorContent += $"Source:     {exception.Source}\n\n";

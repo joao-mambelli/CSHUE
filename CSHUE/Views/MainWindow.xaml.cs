@@ -446,7 +446,7 @@ namespace CSHUE.Views
         private void Control_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (ResourceDictionaryEx.GlobalTheme == ElementTheme.Default)
-                ((Grid)sender).Background = new SolidColorBrush(SystemTheme.Theme == ApplicationTheme.Dark
+                ((Grid)sender).Background = new SolidColorBrush(SystemTheme.AppTheme == ApplicationTheme.Dark
                     ? Color.FromArgb(102, 255, 255, 255)
                     : Color.FromArgb(102, 0, 0, 0));
             else

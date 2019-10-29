@@ -122,7 +122,7 @@
                     Height="31"
                     MinWidth="90"
                     HorizontalAlignment="Right"
-                    Content="{Binding Path=Cancel, Source={StaticResource Resources}}"
+                    Content="{Binding Path=CancelButton, Source={StaticResource Resources}}"
                     Click="ButtonCancel_OnClick"/>
 
             <Button Style="{DynamicResource CustomButton}"
@@ -132,7 +132,7 @@
                     Height="31"
                     MinWidth="90"
                     HorizontalAlignment="Right"
-                    Content="{Binding Path=Ok, Source={StaticResource Resources}}"
+                    Content="{Binding Path=OkButton, Source={StaticResource Resources}}"
                     Click="ButtonOk_OnClick"/>
         </StackPanel>
     </Grid>

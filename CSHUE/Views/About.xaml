@@ -21,7 +21,7 @@
 
         <TextBlock Margin="24 4 0 0"
                    FontSize="28"
-                   Text="{Binding Path=About, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=AboutTitle, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -38,7 +38,7 @@
                 <StackPanel Margin="24 0 20 30">
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=FollowMe, Source={StaticResource Resources}}"
+                               Text="{Binding Path=FollowMeTitle, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
 
                     <StackPanel Orientation="Horizontal"
@@ -278,7 +278,7 @@
 
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=Version, Source={StaticResource Resources}}"
+                               Text="{Binding Path=VersionTitle, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
 
                     <Label Content="{Binding Version}"
@@ -287,12 +287,16 @@
 
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=TranslationsBy, Source={StaticResource Resources}}"
+                               Text="{Binding Path=TranslationsByTitle, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
 
-                    <Label Content="Oliver &quot;olikdesign&quot; Kehl"
+                    <Label Content="Oliver Kehl"
                            Foreground="{DynamicResource SystemBaseHighColorBrush}"
-                           Margin="0 2 0 9"/>
+                           Margin="0 2 0 0"/>
+
+                    <Label Content="Bryan Quiniou"
+                           Foreground="{DynamicResource SystemBaseHighColorBrush}"
+                           Margin="0 0 0 9"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

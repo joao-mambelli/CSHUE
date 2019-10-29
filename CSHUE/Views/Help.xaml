@@ -20,7 +20,7 @@
 
         <TextBlock Margin="24 4 0 0"
                    FontSize="28"
-                   Text="{Binding Path=Help, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=HelpTitle, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -39,7 +39,7 @@
 
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=ReportProblem, Source={StaticResource Resources}}"
+                               Text="{Binding Path=ReportProblemTitle, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"/>
 
                     <TextBlock Margin="0 2 0 9"
@@ -57,7 +57,7 @@
                             MinWidth="90"
                             HorizontalAlignment="Center"
                             Style="{DynamicResource CustomButton}"
-                            Content="{Binding Path=ReportProblem, Source={StaticResource Resources}}"
+                            Content="{Binding Path=ReportProblemButton, Source={StaticResource Resources}}"
                             Click="Report_OnClick">
                         <Button.ToolTip>
                             <ToolTip Foreground="{DynamicResource SystemBaseHighColorBrush}"

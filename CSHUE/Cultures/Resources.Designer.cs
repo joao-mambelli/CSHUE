@@ -63,182 +63,144 @@ namespace CSHUE.Cultures {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a About.
         /// </summary>
-        public static string About {
+        public static string AboutTitle {
             get {
-                return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Accent color.
-        /// </summary>
-        public static string AccentColor {
-            get {
-                return ResourceManager.GetString("AccentColor", resourceCulture);
+                return ResourceManager.GetString("AboutTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Activated.
         /// </summary>
-        public static string Activated {
+        public static string ActivatedOption {
             get {
-                return ResourceManager.GetString("Activated", resourceCulture);
+                return ResourceManager.GetString("ActivatedOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a and.
         /// </summary>
-        public static string And {
+        public static string AndBetweenHours {
             get {
-                return ResourceManager.GetString("And", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Are you sure you want to reset all the settings to default?.
-        /// </summary>
-        public static string AreYouSure {
-            get {
-                return ResourceManager.GetString("AreYouSure", resourceCulture);
+                return ResourceManager.GetString("AndBetweenHours", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Automatically activate between.
         /// </summary>
-        public static string AutomaticallyActivate {
+        public static string AutomaticallyActivateBetweenOption {
             get {
-                return ResourceManager.GetString("AutomaticallyActivate", resourceCulture);
+                return ResourceManager.GetString("AutomaticallyActivateBetweenOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Automatically deactivate if not in the above range.
         /// </summary>
-        public static string AutomaticallyDeactivate {
+        public static string AutomaticallyDeactivateOption {
             get {
-                return ResourceManager.GetString("AutomaticallyDeactivate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Bomb.
-        /// </summary>
-        public static string Bomb {
-            get {
-                return ResourceManager.GetString("Bomb", resourceCulture);
+                return ResourceManager.GetString("AutomaticallyDeactivateOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Bomb Blink.
         /// </summary>
-        public static string BombBlink {
+        public static string BombBlinkEvent {
             get {
-                return ResourceManager.GetString("BombBlink", resourceCulture);
+                return ResourceManager.GetString("BombBlinkEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Bomb Explodes.
         /// </summary>
-        public static string BombExplodes {
+        public static string BombExplodesEvent {
             get {
-                return ResourceManager.GetString("BombExplodes", resourceCulture);
+                return ResourceManager.GetString("BombExplodesEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Bomb Has Been Planted.
         /// </summary>
-        public static string BombHasBeenPlanted {
+        public static string BombHasBeenPlantedEvent {
             get {
-                return ResourceManager.GetString("BombHasBeenPlanted", resourceCulture);
+                return ResourceManager.GetString("BombHasBeenPlantedEvent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Brightness:.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Bomb.
         /// </summary>
-        public static string Brightness {
+        public static string BombTabTitle {
             get {
-                return ResourceManager.GetString("Brightness", resourceCulture);
+                return ResourceManager.GetString("BombTabTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Brightness modifier.
         /// </summary>
-        public static string BrightnessModifier {
+        public static string BrightnessModifierOption {
             get {
-                return ResourceManager.GetString("BrightnessModifier", resourceCulture);
+                return ResourceManager.GetString("BrightnessModifierOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Brightness:.
+        /// </summary>
+        public static string BrightnessOption {
+            get {
+                return ResourceManager.GetString("BrightnessOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a brightness%.
         /// </summary>
-        public static string BrightnessPercentage {
+        public static string BrightnessPercentageFormula {
             get {
-                return ResourceManager.GetString("BrightnessPercentage", resourceCulture);
+                return ResourceManager.GetString("BrightnessPercentageFormula", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Cancel.
         /// </summary>
-        public static string Cancel {
+        public static string CancelButton {
             get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
+                return ResourceManager.GetString("CancelButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Check for updates.
         /// </summary>
-        public static string CheckUpdate {
+        public static string CheckForUpdateButton {
             get {
-                return ResourceManager.GetString("CheckUpdate", resourceCulture);
+                return ResourceManager.GetString("CheckForUpdateButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Color Picker.
         /// </summary>
-        public static string ColorPicker {
+        public static string ColorPickerTitle {
             get {
-                return ResourceManager.GetString("ColorPicker", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game&apos;s cfg folder, a gamestate_integration_cshue.cfg.
-        ///
-        ///If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file..
-        /// </summary>
-        public static string ConfigText {
-            get {
-                return ResourceManager.GetString("ConfigText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t connect to the Hub. Please try again..
-        /// </summary>
-        public static string CouldNotConnect {
-            get {
-                return ResourceManager.GetString("CouldNotConnect", resourceCulture);
+                return ResourceManager.GetString("ColorPickerTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Counter-Terrorists Win.
         /// </summary>
-        public static string CounterTerroristsWin {
+        public static string CounterTerroristsWinEvent {
             get {
-                return ResourceManager.GetString("CounterTerroristsWin", resourceCulture);
+                return ResourceManager.GetString("CounterTerroristsWinEvent", resourceCulture);
             }
         }
         
@@ -266,54 +228,74 @@ namespace CSHUE.Cultures {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Create .cfg.
         /// </summary>
-        public static string CreateCfg {
+        public static string CreateCfgButton {
             get {
-                return ResourceManager.GetString("CreateCfg", resourceCulture);
+                return ResourceManager.GetString("CreateCfgButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Create GitHub issue.
         /// </summary>
-        public static string CreateIssue {
+        public static string CreateIssueButton {
             get {
-                return ResourceManager.GetString("CreateIssue", resourceCulture);
+                return ResourceManager.GetString("CreateIssueButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t find CS:GO path..
+        /// </summary>
+        public static string CSGOFolderNotFoundWarning {
+            get {
+                return ResourceManager.GetString("CSGOFolderNotFoundWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game&apos;s cfg folder, a gamestate_integration_cshue.cfg.
+        ///
+        ///If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file..
+        /// </summary>
+        public static string CSGOGSIText {
+            get {
+                return ResourceManager.GetString("CSGOGSIText", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a current.
         /// </summary>
-        public static string Current {
+        public static string CurrentEvent {
             get {
-                return ResourceManager.GetString("Current", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Custom.
-        /// </summary>
-        public static string Custom {
-            get {
-                return ResourceManager.GetString("Custom", resourceCulture);
+                return ResourceManager.GetString("CurrentEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Default.
         /// </summary>
-        public static string Default {
+        public static string DefaultComboBoxItem {
             get {
-                return ResourceManager.GetString("Default", resourceCulture);
+                return ResourceManager.GetString("DefaultComboBoxItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Default.
+        /// </summary>
+        public static string DefaultOptionsButton {
+            get {
+                return ResourceManager.GetString("DefaultOptionsButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Donate.
         /// </summary>
-        public static string Donate {
+        public static string DonateButton {
             get {
-                return ResourceManager.GetString("Donate", resourceCulture);
+                return ResourceManager.GetString("DonateButton", resourceCulture);
             }
         }
         
@@ -329,207 +311,216 @@ namespace CSHUE.Cultures {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Donation.
         /// </summary>
-        public static string Donation {
+        public static string DonationTitle {
             get {
-                return ResourceManager.GetString("Donation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Duration:.
-        /// </summary>
-        public static string Duration {
-            get {
-                return ResourceManager.GetString("Duration", resourceCulture);
+                return ResourceManager.GetString("DonationTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Events.
         /// </summary>
-        public static string Events {
+        public static string EventsTitle {
             get {
-                return ResourceManager.GetString("Events", resourceCulture);
+                return ResourceManager.GetString("EventsTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Exit.
         /// </summary>
-        public static string Exit {
+        public static string ExitButton {
             get {
-                return ResourceManager.GetString("Exit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Extra information here.
-        /// </summary>
-        public static string ExtraInfo {
-            get {
-                return ResourceManager.GetString("ExtraInfo", resourceCulture);
+                return ResourceManager.GetString("ExitButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a File created at.
         /// </summary>
-        public static string FileCreated {
+        public static string FileCreatedAtMessage {
             get {
-                return ResourceManager.GetString("FileCreated", resourceCulture);
+                return ResourceManager.GetString("FileCreatedAtMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a CS:GO cfg Folder Selection.
         /// </summary>
-        public static string FolderSelection {
+        public static string FolderSelectionTitle {
             get {
-                return ResourceManager.GetString("FolderSelection", resourceCulture);
+                return ResourceManager.GetString("FolderSelectionTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Follow me.
         /// </summary>
-        public static string FollowMe {
+        public static string FollowMeTitle {
             get {
-                return ResourceManager.GetString("FollowMe", resourceCulture);
+                return ResourceManager.GetString("FollowMeTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Freeze Time.
         /// </summary>
-        public static string FreezeTime {
+        public static string FreezeTimeEvent {
             get {
-                return ResourceManager.GetString("FreezeTime", resourceCulture);
+                return ResourceManager.GetString("FreezeTimeEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a General.
         /// </summary>
-        public static string General {
+        public static string GeneralTabTitle {
             get {
-                return ResourceManager.GetString("General", resourceCulture);
+                return ResourceManager.GetString("GeneralTabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a CS:GO Game State Integration file is corrupted..
+        /// </summary>
+        public static string GSIFileCorruptedWarning {
+            get {
+                return ResourceManager.GetString("GSIFileCorruptedWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t find CS:GO Game State Integration file..
+        /// </summary>
+        public static string GSIFileNotFoundWarning {
+            get {
+                return ResourceManager.GetString("GSIFileNotFoundWarning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Help.
         /// </summary>
-        public static string Help {
+        public static string HelpTitle {
             get {
-                return ResourceManager.GetString("Help", resourceCulture);
+                return ResourceManager.GetString("HelpTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Home.
         /// </summary>
-        public static string Home {
+        public static string HomeTitle {
             get {
-                return ResourceManager.GetString("Home", resourceCulture);
+                return ResourceManager.GetString("HomeTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Hub Selector.
         /// </summary>
-        public static string HubSelector {
+        public static string HubSelectorTitle {
             get {
-                return ResourceManager.GetString("HubSelector", resourceCulture);
+                return ResourceManager.GetString("HubSelectorTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Hue.
         /// </summary>
-        public static string Hue {
+        public static string HueOption {
             get {
-                return ResourceManager.GetString("Hue", resourceCulture);
+                return ResourceManager.GetString("HueOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Duration:.
+        /// </summary>
+        public static string KillAndKilledLightEffectDuration {
+            get {
+                return ResourceManager.GetString("KillAndKilledLightEffectDuration", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Language.
         /// </summary>
-        public static string Language {
+        public static string LanguageOption {
             get {
-                return ResourceManager.GetString("Language", resourceCulture);
+                return ResourceManager.GetString("LanguageOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Launch Options.
         /// </summary>
-        public static string LaunchOptions {
+        public static string LaunchOptionsOption {
             get {
-                return ResourceManager.GetString("LaunchOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Off.
-        /// </summary>
-        public static string LightOff {
-            get {
-                return ResourceManager.GetString("LightOff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Lights.
-        /// </summary>
-        public static string Lights {
-            get {
-                return ResourceManager.GetString("Lights", resourceCulture);
+                return ResourceManager.GetString("LaunchOptionsOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Light Selector.
         /// </summary>
-        public static string LightSelector {
+        public static string LightSelectorTitle {
             get {
-                return ResourceManager.GetString("LightSelector", resourceCulture);
+                return ResourceManager.GetString("LightSelectorTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Lights states.
         /// </summary>
-        public static string LightsStates {
+        public static string LightsStatesTitle {
             get {
-                return ResourceManager.GetString("LightsStates", resourceCulture);
+                return ResourceManager.GetString("LightsStatesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Lights.
+        /// </summary>
+        public static string LightsTitle {
+            get {
+                return ResourceManager.GetString("LightsTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Main Menu.
         /// </summary>
-        public static string MainMenu {
+        public static string MainMenuEvent {
             get {
-                return ResourceManager.GetString("MainMenu", resourceCulture);
+                return ResourceManager.GetString("MainMenuEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Minimize CSHUE when CS:GO is detected.
         /// </summary>
-        public static string MinimizeDetected {
+        public static string MinimizeCSHUEWhenCSGODetectedOption {
             get {
-                return ResourceManager.GetString("MinimizeDetected", resourceCulture);
+                return ResourceManager.GetString("MinimizeCSHUEWhenCSGODetectedOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Minimize to system tray.
         /// </summary>
-        public static string MinimizeSystemTray {
+        public static string MinimizeToSystemTrayOption {
             get {
-                return ResourceManager.GetString("MinimizeSystemTray", resourceCulture);
+                return ResourceManager.GetString("MinimizeToSystemTrayOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A new CSHUE version is available at GitHub. Click at the bellow button to open the release post in your browse..
+        /// </summary>
+        public static string NewVersionAvailableText {
+            get {
+                return ResourceManager.GetString("NewVersionAvailableText", resourceCulture);
             }
         }
         
@@ -543,128 +534,166 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A new CSHUE version is available at GitHub. Click at the bellow button to open the release post in your browse..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No.
         /// </summary>
-        public static string NewVersionText {
+        public static string NoButton {
             get {
-                return ResourceManager.GetString("NewVersionText", resourceCulture);
+                return ResourceManager.GetString("NoButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No Hub connection..
         /// </summary>
-        public static string No {
+        public static string NoHubConnectionWarning {
             get {
-                return ResourceManager.GetString("No", resourceCulture);
+                return ResourceManager.GetString("NoHubConnectionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No Hubs found.
+        ///Make sure the Hub is connected to the same network as yours and retry..
+        /// </summary>
+        public static string NoHubsFoundWarning {
+            get {
+                return ResourceManager.GetString("NoHubsFoundWarning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a No lights found..
         /// </summary>
-        public static string NoLightsFound {
+        public static string NoLightsFoundMessage {
             get {
-                return ResourceManager.GetString("NoLightsFound", resourceCulture);
+                return ResourceManager.GetString("NoLightsFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No reachable Hubs found.
+        ///Make sure the Hub is connected to the same network as yours and retry..
+        /// </summary>
+        public static string NoReachableHubsFoundWarning {
+            get {
+                return ResourceManager.GetString("NoReachableHubsFoundWarning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a No updates were found. Click the below button to check for updates..
         /// </summary>
-        public static string NoUpdates {
+        public static string NoUpdatesFound {
             get {
-                return ResourceManager.GetString("NoUpdates", resourceCulture);
+                return ResourceManager.GetString("NoUpdatesFound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Off.
         /// </summary>
-        public static string Off {
+        public static string OffLightState {
             get {
-                return ResourceManager.GetString("Off", resourceCulture);
+                return ResourceManager.GetString("OffLightState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Off.
+        /// </summary>
+        public static string OffState {
+            get {
+                return ResourceManager.GetString("OffState", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a OK.
         /// </summary>
-        public static string Ok {
+        public static string OkButton {
             get {
-                return ResourceManager.GetString("Ok", resourceCulture);
+                return ResourceManager.GetString("OkButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a On.
         /// </summary>
-        public static string On {
+        public static string OnState {
             get {
-                return ResourceManager.GetString("On", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Player.
-        /// </summary>
-        public static string Player {
-            get {
-                return ResourceManager.GetString("Player", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Player Gets Flashed.
-        /// </summary>
-        public static string PlayerGetsFlashed {
-            get {
-                return ResourceManager.GetString("PlayerGetsFlashed", resourceCulture);
+                return ResourceManager.GetString("OnState", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Player Gets a Kill.
         /// </summary>
-        public static string PlayerGetsKill {
+        public static string PlayerGetsAKillEvent {
             get {
-                return ResourceManager.GetString("PlayerGetsKill", resourceCulture);
+                return ResourceManager.GetString("PlayerGetsAKillEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Player Gets Flashed.
+        /// </summary>
+        public static string PlayerGetsFlashedEvent {
+            get {
+                return ResourceManager.GetString("PlayerGetsFlashedEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Player Gets Killed.
         /// </summary>
-        public static string PlayerGetsKilled {
+        public static string PlayerGetsKilledEvent {
             get {
-                return ResourceManager.GetString("PlayerGetsKilled", resourceCulture);
+                return ResourceManager.GetString("PlayerGetsKilledEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Player.
+        /// </summary>
+        public static string PlayerTabTitle {
+            get {
+                return ResourceManager.GetString("PlayerTabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Press the link button on your Hub..
+        /// </summary>
+        public static string PressHubButtonWarning {
+            get {
+                return ResourceManager.GetString("PressHubButtonWarning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Preview lights while changing events settings.
         /// </summary>
-        public static string PreviewLights {
+        public static string PreviewLightsOption {
             get {
-                return ResourceManager.GetString("PreviewLights", resourceCulture);
+                return ResourceManager.GetString("PreviewLightsOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Remember lights states.
         /// </summary>
-        public static string RememberLights {
+        public static string RememberLightsOption {
             get {
-                return ResourceManager.GetString("RememberLights", resourceCulture);
+                return ResourceManager.GetString("RememberLightsOption", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Report a problem.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Report problem.
         /// </summary>
-        public static string ReportProblem {
+        public static string ReportProblemButton {
             get {
-                return ResourceManager.GetString("ReportProblem", resourceCulture);
+                return ResourceManager.GetString("ReportProblemButton", resourceCulture);
             }
         }
         
@@ -678,65 +707,92 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Report a problem.
+        /// </summary>
+        public static string ReportProblemTitle {
+            get {
+                return ResourceManager.GetString("ReportProblemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Are you sure you want to reset all the settings to default?.
+        /// </summary>
+        public static string ResetMessage {
+            get {
+                return ResourceManager.GetString("ResetMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Retry.
         /// </summary>
-        public static string Retry {
+        public static string RetryButton {
             get {
-                return ResourceManager.GetString("Retry", resourceCulture);
+                return ResourceManager.GetString("RetryButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Round Starts.
         /// </summary>
-        public static string RoundStarts {
+        public static string RoundStartsEvent {
             get {
-                return ResourceManager.GetString("RoundStarts", resourceCulture);
+                return ResourceManager.GetString("RoundStartsEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Run CS:GO.
         /// </summary>
-        public static string RunCsgo {
+        public static string RunCSGOButton {
             get {
-                return ResourceManager.GetString("RunCsgo", resourceCulture);
+                return ResourceManager.GetString("RunCSGOButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Run CS:GO on CSHUE startup.
         /// </summary>
-        public static string RunCsgoOnStartup {
+        public static string RunCSGOOnStartupOption {
             get {
-                return ResourceManager.GetString("RunCsgoOnStartup", resourceCulture);
+                return ResourceManager.GetString("RunCSGOOnStartupOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Run minimized.
         /// </summary>
-        public static string RunMinimized {
+        public static string RunOnStartupMinimizedOption {
             get {
-                return ResourceManager.GetString("RunMinimized", resourceCulture);
+                return ResourceManager.GetString("RunOnStartupMinimizedOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Run CSHUE when my computer starts.
         /// </summary>
-        public static string RunOnStartup {
+        public static string RunOnStartupOption {
             get {
-                return ResourceManager.GetString("RunOnStartup", resourceCulture);
+                return ResourceManager.GetString("RunOnStartupOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Saturation.
         /// </summary>
-        public static string Saturation {
+        public static string SaturationOption {
             get {
-                return ResourceManager.GetString("Saturation", resourceCulture);
+                return ResourceManager.GetString("SaturationOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Searching for Hubs..
+        /// </summary>
+        public static string SearchingForHubsWarning {
+            get {
+                return ResourceManager.GetString("SearchingForHubsWarning", resourceCulture);
             }
         }
         
@@ -752,225 +808,9 @@ namespace CSHUE.Cultures {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Please select the CS:GO cfg folder manually..
         /// </summary>
-        public static string SelectFolder {
+        public static string SelectCSGOCfgFolderMessage {
             get {
-                return ResourceManager.GetString("SelectFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Please select the Steam folder manually..
-        /// </summary>
-        public static string SelectSteamFolder {
-            get {
-                return ResourceManager.GetString("SelectSteamFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Settings.
-        /// </summary>
-        public static string Settings {
-            get {
-                return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Show in browser.
-        /// </summary>
-        public static string ShowInBrowser {
-            get {
-                return ResourceManager.GetString("ShowInBrowser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Show in folder.
-        /// </summary>
-        public static string ShowInFolder {
-            get {
-                return ResourceManager.GetString("ShowInFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Show system tray icon.
-        /// </summary>
-        public static string ShowSystemTrayIcon {
-            get {
-                return ResourceManager.GetString("ShowSystemTrayIcon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a System color.
-        /// </summary>
-        public static string SystemColor {
-            get {
-                return ResourceManager.GetString("SystemColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Temperature.
-        /// </summary>
-        public static string Temperature {
-            get {
-                return ResourceManager.GetString("Temperature", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Terrorists Win.
-        /// </summary>
-        public static string TerroristsWin {
-            get {
-                return ResourceManager.GetString("TerroristsWin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Theme.
-        /// </summary>
-        public static string Theme {
-            get {
-                return ResourceManager.GetString("Theme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Dark.
-        /// </summary>
-        public static string ThemeDark {
-            get {
-                return ResourceManager.GetString("ThemeDark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Light.
-        /// </summary>
-        public static string ThemeLight {
-            get {
-                return ResourceManager.GetString("ThemeLight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Translations by.
-        /// </summary>
-        public static string TranslationsBy {
-            get {
-                return ResourceManager.GetString("TranslationsBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Transparency.
-        /// </summary>
-        public static string Transparency {
-            get {
-                return ResourceManager.GetString("Transparency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Also trigger player events when spectating.
-        /// </summary>
-        public static string TriggerSpectating {
-            get {
-                return ResourceManager.GetString("TriggerSpectating", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Turn off.
-        /// </summary>
-        public static string TurnOff {
-            get {
-                return ResourceManager.GetString("TurnOff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Turn on.
-        /// </summary>
-        public static string TurnOn {
-            get {
-                return ResourceManager.GetString("TurnOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Unreachable.
-        /// </summary>
-        public static string Unreachable {
-            get {
-                return ResourceManager.GetString("Unreachable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Update.
-        /// </summary>
-        public static string Update {
-            get {
-                return ResourceManager.GetString("Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Use its color from {0} event.
-        /// </summary>
-        public static string UseMainEventColor {
-            get {
-                return ResourceManager.GetString("UseMainEventColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Version.
-        /// </summary>
-        public static string Version {
-            get {
-                return ResourceManager.GetString("Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Warmup.
-        /// </summary>
-        public static string Warmup {
-            get {
-                return ResourceManager.GetString("Warmup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t find CS:GO path..
-        /// </summary>
-        public static string WarningCSGO {
-            get {
-                return ResourceManager.GetString("WarningCSGO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t find CS:GO Game State Integration file..
-        /// </summary>
-        public static string WarningGSI {
-            get {
-                return ResourceManager.GetString("WarningGSI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a CS:GO Game State Integration file is corrupted..
-        /// </summary>
-        public static string WarningGSICorrupted {
-            get {
-                return ResourceManager.GetString("WarningGSICorrupted", resourceCulture);
+                return ResourceManager.GetString("SelectCSGOCfgFolderMessage", resourceCulture);
             }
         }
         
@@ -978,92 +818,225 @@ namespace CSHUE.Cultures {
         ///   Consulta uma cadeia de caracteres localizada semelhante a The selected Hub is no longer reachable.
         ///Make sure the Hub is connected to the same network as yours and retry..
         /// </summary>
-        public static string WarningHubNotAvailable {
+        public static string SelectedHubNoLongerAvailableWarning {
             get {
-                return ResourceManager.GetString("WarningHubNotAvailable", resourceCulture);
+                return ResourceManager.GetString("SelectedHubNoLongerAvailableWarning", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Press the link button on your Hub..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Please select the Steam folder manually..
         /// </summary>
-        public static string WarningLink {
+        public static string SelectSteamFolderMessage {
             get {
-                return ResourceManager.GetString("WarningLink", resourceCulture);
+                return ResourceManager.GetString("SelectSteamFolderMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No Hubs found.
-        ///Make sure the Hub is connected to the same network as yours and retry..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Settings.
         /// </summary>
-        public static string WarningNoHub {
+        public static string SettingsTitle {
             get {
-                return ResourceManager.GetString("WarningNoHub", resourceCulture);
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No reachable Hubs found.
-        ///Make sure the Hub is connected to the same network as yours and retry..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Show in browser.
         /// </summary>
-        public static string WarningNoReachableHubs {
+        public static string ShowInBrowserButton {
             get {
-                return ResourceManager.GetString("WarningNoReachableHubs", resourceCulture);
+                return ResourceManager.GetString("ShowInBrowserButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No Hub connection..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Show in folder.
         /// </summary>
-        public static string WarningNotConnected {
+        public static string ShowInFolderButton {
             get {
-                return ResourceManager.GetString("WarningNotConnected", resourceCulture);
+                return ResourceManager.GetString("ShowInFolderButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Searching for Hubs..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Show system tray icon.
         /// </summary>
-        public static string WarningSearching {
+        public static string ShowSystemTrayIconOption {
             get {
-                return ResourceManager.GetString("WarningSearching", resourceCulture);
+                return ResourceManager.GetString("ShowSystemTrayIconOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Couldn&apos;t find Steam path..
         /// </summary>
-        public static string WarningSteam {
+        public static string SteamFolderNotFoundWarning {
             get {
-                return ResourceManager.GetString("WarningSteam", resourceCulture);
+                return ResourceManager.GetString("SteamFolderNotFoundWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Temperature.
+        /// </summary>
+        public static string TemperatureOption {
+            get {
+                return ResourceManager.GetString("TemperatureOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Terrorists Win.
+        /// </summary>
+        public static string TerroristsWinEvent {
+            get {
+                return ResourceManager.GetString("TerroristsWinEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dark.
+        /// </summary>
+        public static string ThemeDarkComboBoxItem {
+            get {
+                return ResourceManager.GetString("ThemeDarkComboBoxItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Light.
+        /// </summary>
+        public static string ThemeLightComboBoxItem {
+            get {
+                return ResourceManager.GetString("ThemeLightComboBoxItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Theme.
+        /// </summary>
+        public static string ThemeOption {
+            get {
+                return ResourceManager.GetString("ThemeOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Translations by.
+        /// </summary>
+        public static string TranslationsByTitle {
+            get {
+                return ResourceManager.GetString("TranslationsByTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Transparency.
+        /// </summary>
+        public static string TransparencyOption {
+            get {
+                return ResourceManager.GetString("TransparencyOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Also trigger player events when spectating.
+        /// </summary>
+        public static string TriggerEventsWhenSpectatingOption {
+            get {
+                return ResourceManager.GetString("TriggerEventsWhenSpectatingOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Turn off.
+        /// </summary>
+        public static string TurnOffButton {
+            get {
+                return ResourceManager.GetString("TurnOffButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Turn on.
+        /// </summary>
+        public static string TurnOnButton {
+            get {
+                return ResourceManager.GetString("TurnOnButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Unreachable.
+        /// </summary>
+        public static string UnreachableState {
+            get {
+                return ResourceManager.GetString("UnreachableState", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Update available..
         /// </summary>
-        public static string WarningUpdate {
+        public static string UpdateAvailableWarning {
             get {
-                return ResourceManager.GetString("WarningUpdate", resourceCulture);
+                return ResourceManager.GetString("UpdateAvailableWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Update.
+        /// </summary>
+        public static string UpdateTitle {
+            get {
+                return ResourceManager.GetString("UpdateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Use its color from {0} event.
+        /// </summary>
+        public static string UseMainEventColorOption {
+            get {
+                return ResourceManager.GetString("UseMainEventColorOption", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Validating Hub..
         /// </summary>
-        public static string WarningValidating {
+        public static string ValidatingHubWarning {
             get {
-                return ResourceManager.GetString("WarningValidating", resourceCulture);
+                return ResourceManager.GetString("ValidatingHubWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Version.
+        /// </summary>
+        public static string VersionTitle {
+            get {
+                return ResourceManager.GetString("VersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Warmup.
+        /// </summary>
+        public static string WarmupEvent {
+            get {
+                return ResourceManager.GetString("WarmupEvent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Yes.
         /// </summary>
-        public static string Yes {
+        public static string YesButton {
             get {
-                return ResourceManager.GetString("Yes", resourceCulture);
+                return ResourceManager.GetString("YesButton", resourceCulture);
             }
         }
     }

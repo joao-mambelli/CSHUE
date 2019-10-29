@@ -37,17 +37,17 @@ namespace CSHUE.ViewModels
         {
             new CustomComboBoxItem
             {
-                Text = Resources.Default,
+                Text = Resources.DefaultComboBoxItem,
                 Index = 0
             },
             new CustomComboBoxItem
             {
-                Text = Resources.ThemeDark,
+                Text = Resources.ThemeDarkComboBoxItem,
                 Index = 1
             },
             new CustomComboBoxItem
             {
-                Text = Resources.ThemeLight,
+                Text = Resources.ThemeLightComboBoxItem,
                 Index = 2
             }
         };
@@ -67,7 +67,7 @@ namespace CSHUE.ViewModels
         /// <summary>
         /// Formula back field.
         /// </summary>
-        private string _formula = $"{Resources.BrightnessPercentage} * 0.00";
+        private string _formula = $"{Resources.BrightnessPercentageFormula} * 0.00";
         /// <summary>
         /// Formula property.
         /// </summary>
@@ -105,17 +105,17 @@ namespace CSHUE.ViewModels
         {
             new CustomComboBoxItem
             {
-                Text = Resources.Default,
+                Text = Resources.DefaultComboBoxItem,
                 Index = 0
             },
             new CustomComboBoxItem
             {
-                Text = Resources.Yes,
+                Text = Resources.YesButton,
                 Index = 1
             },
             new CustomComboBoxItem
             {
-                Text = Resources.No,
+                Text = Resources.NoButton,
                 Index = 2
             }
         };
@@ -133,69 +133,6 @@ namespace CSHUE.ViewModels
         }
 
         /// <summary>
-        /// AccentColors list back field.
-        /// </summary>
-        private ObservableCollection<CustomComboBoxItem> _accentColors = new ObservableCollection<CustomComboBoxItem>
-        {
-            new CustomComboBoxItem
-            {
-                Text = Resources.SystemColor,
-                Index = 0
-            },
-            new CustomComboBoxItem
-            {
-                Text = Resources.Custom,
-                Index = 1
-            }
-        };
-        /// <summary>
-        /// AccentColors list property.
-        /// </summary>
-        public ObservableCollection<CustomComboBoxItem> AccentColors
-        {
-            get => _accentColors;
-            set
-            {
-                _accentColors = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// AccentColorPickerVisibility back field.
-        /// </summary>
-        private Visibility _accentColorPickerVisibility = Visibility.Collapsed;
-        /// <summary>
-        /// AccentColorPickerVisibility property.
-        /// </summary>
-        public Visibility AccentColorPickerVisibility
-        {
-            get => _accentColorPickerVisibility;
-            set
-            {
-                _accentColorPickerVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// AccentColor back field.
-        /// </summary>
-        private Color _accentColor;
-        /// <summary>
-        /// AccentColor property.
-        /// </summary>
-        public Color AccentColor
-        {
-            get => _accentColor;
-            set
-            {
-                _accentColor = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// SelectedTransparency back field.
         /// </summary>
         private CustomComboBoxItem _selectedTransparency;
@@ -208,23 +145,6 @@ namespace CSHUE.ViewModels
             set
             {
                 _selectedTransparency = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// SelectedAccentColor back field.
-        /// </summary>
-        private CustomComboBoxItem _selectedAccentColor;
-        /// <summary>
-        /// SelectedAccentColor property.
-        /// </summary>
-        public CustomComboBoxItem SelectedAccentColor
-        {
-            get => _selectedAccentColor;
-            set
-            {
-                _selectedAccentColor = value;
                 OnPropertyChanged();
             }
         }

@@ -20,7 +20,7 @@
 
         <TextBlock Margin="24 4 0 0"
                    FontSize="28"
-                   Text="{Binding Path=Donate, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=DonateButton, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -50,7 +50,7 @@
                             MinWidth="90"
                             HorizontalAlignment="Center"
                             Style="{DynamicResource CustomButton}"
-                            Content="{Binding Path=Donate, Source={StaticResource Resources}}"
+                            Content="{Binding Path=DonateButton, Source={StaticResource Resources}}"
                             Click="Donate_OnClick"/>
                 </StackPanel>
             </Grid>

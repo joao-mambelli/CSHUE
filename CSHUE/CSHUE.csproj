@@ -169,6 +169,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Cultures\Resources.fr-FR.Designer.cs">
+      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
@@ -401,7 +406,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cultures\Resources.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.de-DE1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cultures\Resources.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Cultures\Resources.pt-BR.resx">

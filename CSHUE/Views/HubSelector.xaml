@@ -43,7 +43,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Path=HubSelector, Source={StaticResource Resources}}"
+        <TextBlock Text="{Binding Path=HubSelectorTitle, Source={StaticResource Resources}}"
                    VerticalAlignment="Top"
                    FontSize="15"
                    Margin="12 10 0 0"/>
@@ -101,7 +101,7 @@
                     Height="31"
                     MinWidth="90"
                     HorizontalAlignment="Right"
-                    Content="{Binding Path=Ok, Source={StaticResource Resources}}"
+                    Content="{Binding Path=OkButton, Source={StaticResource Resources}}"
                     Click="ButtonOk_OnClick"/>
         </StackPanel>
     </Grid>

@@ -78,7 +78,7 @@
                               VerticalAlignment="Center"
                               Margin="14"/>
 
-                        <TextBlock Text="{Binding Path=Home, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=HomeTitle, Source={StaticResource Resources}}"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -94,7 +94,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=WarningNotConnected, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=NoHubConnectionWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>
@@ -139,7 +139,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=WarningCSGO, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=CSGOFolderNotFoundWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>
@@ -159,7 +159,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=WarningGSI, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=GSIFileNotFoundWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>
@@ -179,7 +179,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=WarningGSICorrupted, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=GSIFileCorruptedWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>
@@ -199,7 +199,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=WarningSteam, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=SteamFolderNotFoundWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>
@@ -231,7 +231,7 @@
                               Margin="14"/>
 
                         <TextBlock Foreground="Gray"
-                                   Text="{Binding Path=Update, Source={StaticResource Resources}}"
+                                   Text="{Binding Path=UpdateTitle, Source={StaticResource Resources}}"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -247,7 +247,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=WarningUpdate, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=UpdateAvailableWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>
@@ -277,7 +277,7 @@
                               Margin="14"/>
 
                         <TextBlock Foreground="Gray"
-                                   Text="{Binding Path=Donation, Source={StaticResource Resources}}"
+                                   Text="{Binding Path=DonationTitle, Source={StaticResource Resources}}"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -303,7 +303,7 @@
                               Margin="14"/>
 
                         <TextBlock Foreground="Gray"
-                                   Text="{Binding Path=About, Source={StaticResource Resources}}"
+                                   Text="{Binding Path=AboutTitle, Source={StaticResource Resources}}"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -329,7 +329,7 @@
                               Margin="14"/>
 
                         <TextBlock Foreground="Gray"
-                                   Text="{Binding Path=Help, Source={StaticResource Resources}}"
+                                   Text="{Binding Path=HelpTitle, Source={StaticResource Resources}}"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -357,7 +357,7 @@
                               Stretch="Uniform"
                               Margin="14"/>
                         
-                        <TextBlock Text="{Binding Path=Settings, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=SettingsTitle, Source={StaticResource Resources}}"
                                    Margin="2 0 0 0"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -451,7 +451,7 @@
                              Style="{DynamicResource CustomContextMenu}"
                              Opened="ContextMenu_OnOpened"
                              MinWidth="250">
-                    <MenuItem Header="{Binding Path=Home, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=HomeTitle, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertHome}"
                               Click="MenuNavigate_OnClick"
                               Tag="Home"/>
@@ -463,49 +463,49 @@
 
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
 
-                    <MenuItem Header="{Binding Path=Update, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=UpdateTitle, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemAlertUpdate}"
                               Click="MenuNavigate_OnClick"
                               Tag="Update"
                               Foreground="Gray"/>
 
-                    <MenuItem Header="{Binding Path=Donate, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=DonateButton, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_OnClick"
                               Tag="Donate"
                               Foreground="Gray"/>
 
-                    <MenuItem Header="{Binding Path=About, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=AboutTitle, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_OnClick"
                               Tag="About"
                               Foreground="Gray"/>
 
-                    <MenuItem Header="{Binding Path=Help, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=HelpTitle, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_OnClick"
                               Tag="Help"
                               Foreground="Gray"/>
 
-                    <MenuItem Header="{Binding Path=Settings, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=SettingsTitle, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="MenuNavigate_OnClick"
                               Tag="Settings"/>
 
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
 
-                    <MenuItem Header="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=RunCSGOButton, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="RunCsgo_OnClick"
                               Tag="Settings"/>
 
                     <Separator Background="{Binding Path=(fw:AccentColors.ImmersiveSystemAccentBrush)}"/>
 
-                    <MenuItem Header="{Binding Path=Activated, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=ActivatedOption, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItemOn}"
                               Click="MenuActivated_OnClick"/>
 
-                    <MenuItem Header="{Binding Path=Exit, Source={StaticResource Resources}}"
+                    <MenuItem Header="{Binding Path=ExitButton, Source={StaticResource Resources}}"
                               Style="{DynamicResource CustomMenuItem}"
                               Click="MenuExit_OnClick"/>
                 </ContextMenu>

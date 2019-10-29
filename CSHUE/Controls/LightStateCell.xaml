@@ -97,7 +97,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <Grid>
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                    <Label Content="{Binding Path=BrightnessOption, Source={StaticResource Resources}}"
                            Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3">
@@ -107,7 +107,7 @@
                         </Label.Effect>
                     </Label>
 
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                    <Label Content="{Binding Path=BrightnessOption, Source={StaticResource Resources}}"
                            Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3">
@@ -117,7 +117,7 @@
                         </Label.Effect>
                     </Label>
 
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                    <Label Content="{Binding Path=BrightnessOption, Source={StaticResource Resources}}"
                            Foreground="{DynamicResource SystemAltHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3">
@@ -127,7 +127,7 @@
                         </Label.Effect>
                     </Label>
 
-                    <Label Content="{Binding Path=Brightness, Source={StaticResource Resources}}"
+                    <Label Content="{Binding Path=BrightnessOption, Source={StaticResource Resources}}"
                            Foreground="{DynamicResource SystemBaseHighColorBrush}"
                            VerticalAlignment="Bottom"
                            Margin="0 0 0 -3"/>

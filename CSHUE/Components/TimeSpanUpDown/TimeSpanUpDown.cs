@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -239,10 +238,6 @@ namespace CSHUE.Components.TimeSpanUpDown
                     haveMs ? int.Parse(values.Last()) : 0);
 
                 currentValue = result.ToString();
-            }
-            else
-            {
-                Debug.Assert(false, "Something went wrong when parsing TimeSpan.");
             }
 
             // When text is typed, if UpdateValueOnEnterKey is true, 

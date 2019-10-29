@@ -86,7 +86,7 @@ namespace CSHUE.ViewModels
                             Properties.Settings.Default.SteamFolder = o as string;
                         else
                         {
-                            FailText = Resources.WarningSteam;
+                            FailText = Resources.SteamFolderNotFoundWarning;
                             fail = true;
                         }
                     }
@@ -102,7 +102,7 @@ namespace CSHUE.ViewModels
                     }
                     catch
                     {
-                        FailText = Resources.WarningCSGO;
+                        FailText = Resources.CSGOFolderNotFoundWarning;
                         fail = true;
                     }
 
@@ -112,7 +112,7 @@ namespace CSHUE.ViewModels
 
                         if (m.Groups[1].Value == "")
                         {
-                            FailText = Resources.WarningCSGO;
+                            FailText = Resources.CSGOFolderNotFoundWarning;
                             fail = true;
                         }
                         else
@@ -129,15 +129,15 @@ namespace CSHUE.ViewModels
                 {
                     Button1 = new CustomButton
                     {
-                        Text = Resources.Ok
+                        Text = Resources.OkButton
                     },
-                    Message = $"{FailText} {(string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder) ? Resources.SelectSteamFolder : Resources.SelectFolder)}",
+                    Message = $"{FailText} {(string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder) ? Resources.SelectSteamFolderMessage : Resources.SelectCSGOCfgFolderMessage)}",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
 
                 using (var fbd = new CommonOpenFileDialog
                 {
-                    Title = Resources.FolderSelection,
+                    Title = Resources.FolderSelectionTitle,
                     IsFolderPicker = true,
                     InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}",
                     AddToMostRecentlyUsedList = false,
@@ -175,15 +175,15 @@ namespace CSHUE.ViewModels
                     {
                         Button1 = new CustomButton
                         {
-                            Text = Resources.Ok
+                            Text = Resources.OkButton
                         },
                         Button2 = new CustomButton
                         {
-                            Text = Resources.ShowInFolder,
+                            Text = Resources.ShowInFolderButton,
                             Path = cfgpath + "\\gamestate_integration_cshue.cfg",
                             ShowInFolder = true
                         },
-                        Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
+                        Message = $"{Resources.FileCreatedAtMessage}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     }.ShowDialog();
                 }
@@ -200,15 +200,15 @@ namespace CSHUE.ViewModels
                 {
                     Button1 = new CustomButton
                     {
-                        Text = Resources.Ok
+                        Text = Resources.OkButton
                     },
                     Button2 = new CustomButton
                     {
-                        Text = Resources.ShowInFolder,
+                        Text = Resources.ShowInFolderButton,
                         Path = cfgpath + "\\gamestate_integration_cshue.cfg",
                         ShowInFolder = true
                     },
-                    Message = $"{Resources.FileCreated}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
+                    Message = $"{Resources.FileCreatedAtMessage}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
             }

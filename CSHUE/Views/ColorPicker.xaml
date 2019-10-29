@@ -52,7 +52,7 @@
                 <SolidColorBrush Color="{Binding Color}"/>
             </Grid.Background>
 
-            <TextBlock Text="{Binding Path=ColorPicker, Source={StaticResource Resources}}"
+            <TextBlock Text="{Binding Path=ColorPickerTitle, Source={StaticResource Resources}}"
                        VerticalAlignment="Center"
                        FontSize="15"
                        Margin="12 0 0 0"
@@ -64,7 +64,7 @@
                     Height="320"
                     Margin="20 50 0 0">
             <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BooleanToCollapsedConverter}}">
-                <Label Content="{Binding Path=Hue, Source={StaticResource Resources}}"
+                <Label Content="{Binding Path=HueOption, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>
@@ -104,7 +104,7 @@
             </StackPanel>
 
             <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BooleanToCollapsedConverter}}">
-                <Label Content="{Binding Path=Saturation, Source={StaticResource Resources}}"
+                <Label Content="{Binding Path=SaturationOption, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>
@@ -146,7 +146,7 @@
             </StackPanel>
 
             <StackPanel Visibility="{Binding IsColorTemperature, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Label Content="{Binding Path=Temperature, Source={StaticResource Resources}}"
+                <Label Content="{Binding Path=TemperatureOption, Source={StaticResource Resources}}"
                        Foreground="{DynamicResource SystemBaseHighColorBrush}"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 -4"/>

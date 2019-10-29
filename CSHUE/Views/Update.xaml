@@ -26,7 +26,7 @@
 
         <TextBlock Margin="24 4 0 0"
                    FontSize="28"
-                   Text="{Binding Path=Update, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=UpdateTitle, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -52,13 +52,13 @@
                                TextWrapping="Wrap"
                                TextAlignment="Justify"
                                Visibility="{Binding WarningUpdateVisibility}"
-                               Text="{Binding Path=NewVersionText, Source={StaticResource Resources}}"/>
+                               Text="{Binding Path=NewVersionAvailableText, Source={StaticResource Resources}}"/>
 
                     <TextBlock Margin="0 20 0 2"
                                TextWrapping="Wrap"
                                TextAlignment="Justify"
                                Visibility="{Binding WarningUpdateVisibility, Converter={StaticResource VisibilityInverter}}"
-                               Text="{Binding Path=NoUpdates, Source={StaticResource Resources}}"/>
+                               Text="{Binding Path=NoUpdatesFound, Source={StaticResource Resources}}"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -79,7 +79,7 @@
                                 MinWidth="90"
                                 HorizontalAlignment="Center"
                                 Style="{DynamicResource CustomButton}"
-                                Content="{Binding Path=ShowInBrowser, Source={StaticResource Resources}}"
+                                Content="{Binding Path=ShowInBrowserButton, Source={StaticResource Resources}}"
                                 Click="ShowInBrowser_OnClick"
                                 Visibility="{Binding WarningUpdateVisibility}">
                             <Button.ToolTip>
@@ -101,7 +101,7 @@
                                 MinWidth="90"
                                 HorizontalAlignment="Center"
                                 Style="{DynamicResource CustomButton}"
-                                Content="{Binding Path=CheckUpdate, Source={StaticResource Resources}}"
+                                Content="{Binding Path=CheckForUpdateButton, Source={StaticResource Resources}}"
                                 Click="CheckUpdate_OnClick"
                                 IsEnabled="{Binding AllowCheck}"/>
                     </Grid>

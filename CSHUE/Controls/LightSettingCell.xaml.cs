@@ -43,8 +43,8 @@ namespace CSHUE.Controls
             LightSelectorViewModel.IsColorPickerOpened = true;
             var colorPicker = new ColorPicker
             {
-                Text1 = Cultures.Resources.Cancel,
-                Text2 = Cultures.Resources.Ok,
+                Text1 = Cultures.Resources.CancelButton,
+                Text2 = Cultures.Resources.OkButton,
                 Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
                 Color = ((LightSettingCellViewModel) DataContext).Color,
                 Id = ((LightSettingCellViewModel) DataContext).Id,

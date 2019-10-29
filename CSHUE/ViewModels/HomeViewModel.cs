@@ -275,8 +275,8 @@ namespace CSHUE.ViewModels
                         existingElement.Text = l.State.On && l.State.IsReachable.Value
                             ? l.Name
                             : l.Name + " (" + (!l.State.IsReachable.Value
-                                  ? Resources.Unreachable
-                                  : Resources.LightOff) + ")";
+                                  ? Resources.UnreachableState
+                                  : Resources.OffLightState) + ")";
                         existingElement.Color = l.State.On && l.State.IsReachable.Value
                             ? l.Capabilities.Control.ColorGamut == null
                                 ? ColorConverters.HueSaturation((double) l.State.Hue / 65535 * Math.PI * 2,
@@ -294,8 +294,8 @@ namespace CSHUE.ViewModels
                             Text = l.State.On && l.State.IsReachable.Value
                                 ? l.Name
                                 : l.Name + " (" + (!l.State.IsReachable.Value
-                                      ? Resources.Unreachable
-                                      : Resources.LightOff) + ")",
+                                      ? Resources.UnreachableState
+                                      : Resources.OffLightState) + ")",
                             Color = l.State.On && l.State.IsReachable.Value
                                 ? l.Capabilities.Control.ColorGamut == null
                                     ? ColorConverters.HueSaturation((double) l.State.Hue / 65535 * Math.PI * 2,

@@ -24,7 +24,7 @@
 
         <TextBlock Margin="24 4 0 0"
                    FontSize="28"
-                   Text="{Binding Path=Settings, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=SettingsTitle, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -42,16 +42,16 @@
                 <StackPanel Margin="24 0 20 30">
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=Events, Source={StaticResource Resources}}"/>
+                               Text="{Binding Path=EventsTitle, Source={StaticResource Resources}}"/>
 
                     <TabControl Margin="0 2 0 9"
                                 Style="{DynamicResource CustomTabControl}">
                         <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=General, Source={StaticResource Resources}}"
+                                 Header="{Binding Path=GeneralTabTitle, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=MainMenu, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=MainMenuEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -66,7 +66,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=Warmup, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=WarmupEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -81,7 +81,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=FreezeTime, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=FreezeTimeEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -96,7 +96,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=RoundStarts, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=RoundStartsEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -111,7 +111,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=TerroristsWin, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=TerroristsWinEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -126,7 +126,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=CounterTerroristsWin, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=CounterTerroristsWinEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -143,11 +143,11 @@
                         </TabItem>
 
                         <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=Player, Source={StaticResource Resources}}"
+                                 Header="{Binding Path=PlayerTabTitle, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=PlayerGetsFlashed, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=PlayerGetsFlashedEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -162,7 +162,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=PlayerGetsKill, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=PlayerGetsAKillEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -178,7 +178,7 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             Margin="0 5 0 0">
-                                    <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}"/>
+                                    <TextBlock Text="{Binding Path=KillAndKilledLightEffectDuration, Source={StaticResource Resources}}"/>
 
                                     <numericUpDown:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKillDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Background="{DynamicResource SystemAltLowColorBrush}"
@@ -200,7 +200,7 @@
                                 </StackPanel>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=PlayerGetsKilled, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=PlayerGetsKilledEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -216,7 +216,7 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             Margin="0 5 0 0">
-                                    <TextBlock Text="{Binding Path=Duration, Source={StaticResource Resources}}"/>
+                                    <TextBlock Text="{Binding Path=KillAndKilledLightEffectDuration, Source={StaticResource Resources}}"/>
 
                                     <numericUpDown:DecimalUpDown Value="{Binding Source={x:Static p:Settings.Default}, Path=PlayerGetsKilledDuration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Background="{DynamicResource SystemAltLowColorBrush}"
@@ -240,11 +240,11 @@
                         </TabItem>
 
                         <TabItem Style="{DynamicResource CustomTabItem}"
-                                 Header="{Binding Path=Bomb, Source={StaticResource Resources}}"
+                                 Header="{Binding Path=BombTabTitle, Source={StaticResource Resources}}"
                                  Foreground="{DynamicResource SystemBaseHighColorBrush}">
                             <StackPanel>
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=BombExplodes, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=BombExplodesEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -259,7 +259,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=BombBlink, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=BombBlinkEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -274,7 +274,7 @@
                                 </Button>
 
                                 <TextBlock Margin="0 15 0 2"
-                                           Text="{Binding Path=BombHasBeenPlanted, Source={StaticResource Resources}}"/>
+                                           Text="{Binding Path=BombHasBeenPlantedEvent, Source={StaticResource Resources}}"/>
 
                                 <Button Height="40"
                                         HorizontalAlignment="Stretch"
@@ -293,9 +293,9 @@
 
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=Lights, Source={StaticResource Resources}}"/>
+                               Text="{Binding Path=LightsTitle, Source={StaticResource Resources}}"/>
 
-                    <TextBlock Text="{Binding Path=BrightnessModifier, Source={StaticResource Resources}}"
+                    <TextBlock Text="{Binding Path=BrightnessModifierOption, Source={StaticResource Resources}}"
                                Margin="0 15 0 4"/>
 
                     <Slider Width="{Binding Width, RelativeSource={RelativeSource AncestorType=TabControl}}"
@@ -323,7 +323,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="RunOnStartupCheckBox_OnCheckedChanged"
                               Unchecked="RunOnStartupCheckBox_OnCheckedChanged">
-                        <TextBlock Text="{Binding Path=RunOnStartup, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=RunOnStartupOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -334,7 +334,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=RunMinimized, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=RunOnStartupMinimizedOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -344,7 +344,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="ShowSystemTrayIconCheckBox_OnCheckedChanged"
                               Unchecked="ShowSystemTrayIconCheckBox_OnCheckedChanged">
-                        <TextBlock Text="{Binding Path=ShowSystemTrayIcon, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=ShowSystemTrayIconOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -353,7 +353,7 @@
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=ShowSystemTrayIcon}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=MinimizeToSystemTray, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="{Binding Path=MinimizeSystemTray, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=MinimizeToSystemTrayOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -363,7 +363,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoMinimize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=MinimizeDetected, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=MinimizeCSHUEWhenCSGODetectedOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -373,7 +373,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=TriggerSpecEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=TriggerSpectating, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=TriggerEventsWhenSpectatingOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -383,7 +383,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RememberLightsStates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=RememberLights, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=RememberLightsOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -393,7 +393,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=PreviewLights, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=PreviewLights, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=PreviewLightsOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -403,7 +403,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=AutomaticallyActivate, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=AutomaticallyActivateBetweenOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -422,7 +422,7 @@
                                              DisplayDefaultValueOnEmptyText="True"
                                              ValueChanged="Save"/>
 
-                        <TextBlock Text="{Binding Path=And, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=AndBetweenHours, Source={StaticResource Resources}}"
                                    Margin="5 0 5 0"
                                    Style="{DynamicResource DisableTextBlock}"/>
 
@@ -445,11 +445,11 @@
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=AutoActivate}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoDeactivate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock Text="{Binding Path=AutomaticallyDeactivate, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=AutomaticallyDeactivateOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
-                    <TextBlock Text="{Binding Path=Language, Source={StaticResource Resources}}"
+                    <TextBlock Text="{Binding Path=LanguageOption, Source={StaticResource Resources}}"
                                Margin="0 15 0 4"/>
 
                     <ComboBox Margin="0 4 0 9"
@@ -461,7 +461,7 @@
                               Style="{DynamicResource CustomComboBox}"
                               SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=LanguageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <TextBlock Text="{Binding Path=Theme, Source={StaticResource Resources}}"
+                    <TextBlock Text="{Binding Path=ThemeOption, Source={StaticResource Resources}}"
                                Margin="0 15 0 4"/>
 
                     <ComboBox Margin="0 4 0 9"
@@ -475,7 +475,7 @@
                               SelectionChanged="ComboBoxTheme_OnSelectionChanged"
                               DisplayMemberPath="Text"/>
 
-                    <TextBlock Text="{Binding Path=Transparency, Source={StaticResource Resources}}"
+                    <TextBlock Text="{Binding Path=TransparencyOption, Source={StaticResource Resources}}"
                                Margin="0 15 0 4"/>
 
                     <ComboBox Margin="0 4 0 9"
@@ -489,33 +489,6 @@
                               SelectionChanged="ComboBoxTransparency_OnSelectionChanged"
                               DisplayMemberPath="Text"/>
 
-                    <TextBlock Text="{Binding Path=AccentColor, Source={StaticResource Resources}}"
-                               Margin="0 15 0 4"
-                               Visibility="Collapsed"/>
-
-                    <DockPanel Margin="0 4 0 9"
-                               Visibility="Collapsed">
-                        <ComboBox x:Name="ComboBoxAccentColor"
-                                  Width="280"
-                                  HorizontalAlignment="Left"
-                                  MaxDropDownHeight="162"
-                                  ItemsSource="{Binding AccentColors}"
-                                  Style="{DynamicResource CustomComboBox}"
-                                  SelectedItem="{Binding SelectedAccentColor}"
-                                  SelectionChanged="ComboBoxAccentColor_OnSelectionChanged"
-                                  DisplayMemberPath="Text"/>
-
-                        <Button Height="32"
-                                Margin="20 0 0 0"
-                                Style="{DynamicResource CustomButton}"
-                                Click="AccentColor_OnClick"
-                                Visibility="{Binding AccentColorPickerVisibility}">
-                            <Button.Background>
-                                <SolidColorBrush Color="{Binding AccentColor}"/>
-                            </Button.Background>
-                        </Button>
-                    </DockPanel>
-
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
                                Text="CS:GO"/>
@@ -526,7 +499,7 @@
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunCsgo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Checked="Save"
                               Unchecked="Save">
-                        <TextBlock Text="{Binding Path=RunCsgoOnStartup, Source={StaticResource Resources}}"
+                        <TextBlock Text="{Binding Path=RunCSGOOnStartupOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
@@ -534,7 +507,7 @@
                              Margin="0 2 0 9"
                              VerticalContentAlignment="Center"
                              Style="{StaticResource HintTextBox}"
-                             Tag="{Binding Path=LaunchOptions, Source={StaticResource Resources}}"
+                             Tag="{Binding Path=LaunchOptionsOption, Source={StaticResource Resources}}"
                              Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              TextInput="Save"/>
 
@@ -544,7 +517,7 @@
                             MinWidth="90"
                             HorizontalAlignment="Left"
                             Style="{DynamicResource CustomButton}"
-                            Content="{Binding Path=Default, Source={StaticResource Resources}}"
+                            Content="{Binding Path=DefaultOptionsButton, Source={StaticResource Resources}}"
                             Click="Default_OnClick"/>
                 </StackPanel>
             </Grid>

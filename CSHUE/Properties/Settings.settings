@@ -134,11 +134,5 @@
     <Setting Name="BrightnessModifier" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="AccentColorOption" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="AccentColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Magenta</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

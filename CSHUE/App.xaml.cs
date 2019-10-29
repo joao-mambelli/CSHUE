@@ -134,22 +134,22 @@ namespace CSHUE
             var url = "https://github.com/joao7yt/CSHUE/issues/new?title=";
             url += Uri.EscapeDataString($"Crash report. UTC: {DateTime.Now.ToUniversalTime():yyyy/MM/dd HH:mm:ss}");
             url += "&body=";
-            url += Uri.EscapeDataString($"({Cultures.Resources.ExtraInfo})\n```\n{errorContent.Trim()}\n```");
+            url += Uri.EscapeDataString($"(Extra information here)\n```\n{errorContent.Trim()}\n```");
 
             new CustomMessageBox
             {
                 Button1 = new CustomButton
                 {
-                    Text = Cultures.Resources.Ok
+                    Text = Cultures.Resources.OkButton
                 },
                 Button2 = new CustomButton
                 {
-                    Text = Cultures.Resources.CreateIssue,
+                    Text = Cultures.Resources.CreateIssueButton,
                     Path = url
                 },
                 Button3 = new CustomButton
                 {
-                    Text = Cultures.Resources.ShowInFolder,
+                    Text = Cultures.Resources.ShowInFolderButton,
                     Path = $"{file}{sur}.log",
                     ShowInFolder = true,
                     DialogResult = null
@@ -287,12 +287,6 @@ namespace CSHUE
       </setting>
       <setting name=""BrightnessModifier"" serializeAs=""String"">
         <value>100</value>
-      </setting>
-      <setting name=""AccentColorOption"" serializeAs=""String"">
-        <value>0</value>
-      </setting>
-      <setting name=""AccentColor"" serializeAs=""String"">
-        <value>Magenta</value>
       </setting>
     </CSHUE.Properties.Settings>
   </userSettings>

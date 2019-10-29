@@ -118,335 +118,335 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>Über</value>
+    <value>À propos</value>
   </data>
   <data name="CSGOGSIText" xml:space="preserve">
-    <value>Damit CSHUE weiß, was in CS:GO passiert, muss eine spezielle .cfg Datei in deinem Spiele Ordner existieren. (gamestate_integration_cshue.cfg)
+    <value>Afin que CSHUE sache ce qu'il se passe dans votre partie de CS:GO, un fichier spécifique .cfg doit être présent dans le dossier cfg du jeu : gamestate_integration_cshue.cfg.
 
-Beim drücken der unteren Schaltfläche, versucht CSHUE automatisch deinen CS:GO Installationspfad zu finden und die benötigte .cfg Datei zu erstellen.</value>
+En appuyant sur le bouton ci-dessous, CSHUE va automatiquement chercher où CS:GO est installé sur votre ordinateur, et créera le fichier requis.</value>
   </data>
   <data name="CreateCfgButton" xml:space="preserve">
-    <value>.cfg Datei erstellen</value>
+    <value>Créer .cfg</value>
   </data>
   <data name="DonationTitle" xml:space="preserve">
-    <value>Spenden</value>
+    <value>Don</value>
   </data>
   <data name="DonateButton" xml:space="preserve">
-    <value>Spenden</value>
+    <value>Donner</value>
   </data>
   <data name="DonateText" xml:space="preserve">
-    <value>Ich erwarte keine großen Gewinne mit diesem Programm, aber man weiß ja nie, richtig? Spenden sind immer willkommen.</value>
+    <value>Je n'attends pas grand chose financièrement de cette application, mais on ne sait jamais, n'est-ce pas? Un don fait toujours plaisir.</value>
   </data>
   <data name="FileCreatedAtMessage" xml:space="preserve">
-    <value>Datei wurde hier erstellt:</value>
+    <value>Fichier créé dans</value>
   </data>
   <data name="FollowMeTitle" xml:space="preserve">
-    <value>Folge mir</value>
+    <value>Me suivre</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Start</value>
+    <value>Accueil</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>Paramètres</value>
   </data>
   <data name="CSGOFolderNotFoundWarning" xml:space="preserve">
-    <value>Konnte den CS:GO Installationspfad nicht finden.</value>
+    <value>L'emplacement de CS:GO n'a pu être trouvé.</value>
   </data>
   <data name="GSIFileNotFoundWarning" xml:space="preserve">
-    <value>Konnte die CS:GO Game State Integration Datei nicht finden.</value>
+    <value>L'emplacement du fichier Game State Integration de CS:GO n'a pu être trouvé.</value>
   </data>
   <data name="GSIFileCorruptedWarning" xml:space="preserve">
-    <value>Die CS:GO Game State Integration Datei ist beschädigt.</value>
+    <value>Le fichier Game State Integration de CS:GO est corrompu.</value>
   </data>
   <data name="SteamFolderNotFoundWarning" xml:space="preserve">
-    <value>Der Steam Pfad konnte nicht gefunden werden.</value>
+    <value>L'emplacement de Steam n'a pu être trouvé.</value>
   </data>
   <data name="AutomaticallyActivateBetweenOption" xml:space="preserve">
-    <value>Automatisch aktivieren zwischen</value>
+    <value>Activer automatiquement entre</value>
   </data>
   <data name="BombBlinkEvent" xml:space="preserve">
-    <value>Bomben Blinken</value>
+    <value>Clignotement de la Bombe</value>
   </data>
   <data name="BombExplodesEvent" xml:space="preserve">
-    <value>Bomben Explosion</value>
+    <value>Explosion de la Bombe</value>
   </data>
   <data name="BombHasBeenPlantedEvent" xml:space="preserve">
-    <value>Bombe wurde gelegt</value>
+    <value>La Bombe a été Posée</value>
   </data>
   <data name="CounterTerroristsWinEvent" xml:space="preserve">
-    <value>Counter-Terroristen gewinnen</value>
+    <value>Victoire des Anti-Terroristes</value>
   </data>
   <data name="KillAndKilledLightEffectDuration" xml:space="preserve">
-    <value>Länge:</value>
+    <value>Durée:</value>
   </data>
   <data name="EventsTitle" xml:space="preserve">
-    <value>Effekte</value>
+    <value>Événements</value>
   </data>
   <data name="FreezeTimeEvent" xml:space="preserve">
-    <value>Kauf-/Auszeit</value>
+    <value>Période d'Achat</value>
   </data>
   <data name="LanguageOption" xml:space="preserve">
-    <value>Sprache</value>
+    <value>Langue</value>
   </data>
   <data name="LaunchOptionsOption" xml:space="preserve">
-    <value>Startoptionen</value>
+    <value>Options de Lancement</value>
   </data>
   <data name="MainMenuEvent" xml:space="preserve">
-    <value>Hauptmenü</value>
+    <value>Menu Principal</value>
   </data>
   <data name="MinimizeCSHUEWhenCSGODetectedOption" xml:space="preserve">
-    <value>Minimiere CSHUE wenn CS:GO geöffnet ist</value>
+    <value>Minimise CSHUE quand CS:GO est lancé</value>
   </data>
   <data name="MinimizeToSystemTrayOption" xml:space="preserve">
-    <value>In die Taskleiste minimieren</value>
+    <value>Minimiser dans la barre de notification</value>
   </data>
   <data name="PlayerGetsFlashedEvent" xml:space="preserve">
-    <value>Spieler wurde geblendet</value>
+    <value>Le Joueur est Ébloui</value>
   </data>
   <data name="PlayerGetsAKillEvent" xml:space="preserve">
-    <value>Spieler hat Gegner eliminiert</value>
+    <value>Le Joueur Fait un Mort</value>
   </data>
   <data name="PlayerGetsKilledEvent" xml:space="preserve">
-    <value>Spieler wurde eliminiert</value>
+    <value>Le Joueur Meurt</value>
   </data>
   <data name="RememberLightsOption" xml:space="preserve">
-    <value>Vorherigen Lampenstatus merken</value>
+    <value>Enregistrer l'état des lampes</value>
   </data>
   <data name="RoundStartsEvent" xml:space="preserve">
-    <value>Runde startet</value>
+    <value>Début du Round</value>
   </data>
   <data name="RunCSGOOnStartupOption" xml:space="preserve">
-    <value>Öffne CS:GO beim starten von CSHUE</value>
+    <value>Démarrer CS:GO au lancement de CSHUE</value>
   </data>
   <data name="RunOnStartupMinimizedOption" xml:space="preserve">
-    <value>Fenster Minimiert</value>
+    <value>Lancer minimisé</value>
   </data>
   <data name="RunOnStartupOption" xml:space="preserve">
-    <value>CSHUE mit dem Windowsstart ausführen</value>
+    <value>Lancer CSHUE au démarrage de l'ordinateur</value>
   </data>
   <data name="SecondsAbbreviation" xml:space="preserve">
-    <value>sek.</value>
+    <value>s</value>
   </data>
   <data name="TerroristsWinEvent" xml:space="preserve">
-    <value>Terroristen gewinnen</value>
+    <value>Victoire des Terroristes</value>
   </data>
   <data name="TriggerEventsWhenSpectatingOption" xml:space="preserve">
-    <value>Effekte auch beim Zuschauen aktivieren</value>
+    <value>Déclencher les événements quand l'utilisateur est spectateur</value>
   </data>
   <data name="WarmupEvent" xml:space="preserve">
-    <value>Aufwärmphase</value>
+    <value>Échauffement</value>
   </data>
   <data name="DefaultOptionsButton" xml:space="preserve">
-    <value>Standard</value>
+    <value>Par défaut</value>
   </data>
   <data name="SelectCSGOCfgFolderMessage" xml:space="preserve">
-    <value>Bitte wähle den CS:GO cfg Ordner manuell.</value>
+    <value>Merci de sélectionner le dossier cfg de CS:GO manuellement.</value>
   </data>
   <data name="FolderSelectionTitle" xml:space="preserve">
-    <value>CS:GO cfg Ordner Auswahl</value>
+    <value>Sélection du dossier cfg de CS:GO</value>
   </data>
   <data name="AndBetweenHours" xml:space="preserve">
-    <value>und</value>
+    <value>et</value>
   </data>
   <data name="NoButton" xml:space="preserve">
-    <value>Nein</value>
+    <value>Non</value>
   </data>
   <data name="YesButton" xml:space="preserve">
-    <value>Ja</value>
+    <value>Oui</value>
   </data>
   <data name="ResetMessage" xml:space="preserve">
-    <value>Bist du sicher alles auf Standardwerte zurückzusetzen?</value>
+    <value>Êtes vous sûr de vouloir réinitialiser tous les paramètres par défaut?</value>
   </data>
   <data name="OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="PressHubButtonWarning" xml:space="preserve">
-    <value>Betätige den Verbindungsknopf auf deiner Hub.</value>
+    <value>Appuyez sur le bouton central sur votre Pont de Connexion.</value>
   </data>
   <data name="NoHubsFoundWarning" xml:space="preserve">
-    <value>Keine Hub gefunden.
-Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
+    <value>Pas de Pont détecté.
+Assurez vous que votre Pont de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
   </data>
   <data name="ExitButton" xml:space="preserve">
-    <value>Schließen</value>
+    <value>Quitter</value>
   </data>
   <data name="ShowInFolderButton" xml:space="preserve">
-    <value>Im Ordner anzeigen</value>
+    <value>Montrer dans le dossier</value>
   </data>
   <data name="HubSelectorTitle" xml:space="preserve">
-    <value>Hub Auswahl</value>
+    <value>Sélection du Pont</value>
   </data>
   <data name="SelectedHubNoLongerAvailableWarning" xml:space="preserve">
-    <value>Die ausgewählte Hub ist nicht länger erreichbar.
-Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
+    <value>Le Pont de Connexion sélectionné n'est plus joignable.
+Assurez vous que votre Pont de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
   </data>
   <data name="RetryButton" xml:space="preserve">
-    <value>Wiederholen</value>
+    <value>Réessayer</value>
   </data>
   <data name="NoReachableHubsFoundWarning" xml:space="preserve">
-    <value>Keine erreichbare Hub gefunden.
-Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
+    <value>Pas de Pont de Connexion joignable.
+Assurez vous que votre Pont de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
   </data>
   <data name="ValidatingHubWarning" xml:space="preserve">
-    <value>Überprüfe Hub.</value>
+    <value>Valider le Pont de Connexion.</value>
   </data>
   <data name="NoHubConnectionWarning" xml:space="preserve">
-    <value>Keine Hub Verbindung.</value>
+    <value>Pas de Pont de Connexion connecté.</value>
   </data>
   <data name="SelectSteamFolderMessage" xml:space="preserve">
-    <value>Bitte wähle den Steam Ordner manuell.</value>
+    <value>Merci de sélectionner manuellement le dossier Steam.</value>
   </data>
   <data name="SearchingForHubsWarning" xml:space="preserve">
-    <value>Hub wird gesucht.</value>
+    <value>Recherche des Ponts de Connexion.</value>
   </data>
   <data name="NoLightsFoundMessage" xml:space="preserve">
-    <value>Keine Lampen gefunden.</value>
+    <value>Aucune ampoule trouvée.</value>
   </data>
   <data name="LightSelectorTitle" xml:space="preserve">
-    <value>Lampenauswahl</value>
+    <value>Sélection d'Ampoule</value>
   </data>
   <data name="CancelButton" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Annuler</value>
   </data>
   <data name="BrightnessOption" xml:space="preserve">
-    <value>Helligkeit:</value>
+    <value>Luminosité:</value>
   </data>
   <data name="UseMainEventColorOption" xml:space="preserve">
-    <value>Nutze die {0} Farbe</value>
+    <value>Utiliser la couleur de l'évènement {0}</value>
   </data>
   <data name="CurrentEvent" xml:space="preserve">
-    <value>aktuelle</value>
+    <value>actuel</value>
   </data>
   <data name="HueOption" xml:space="preserve">
-    <value>Farbton</value>
+    <value>Teinte</value>
   </data>
   <data name="SaturationOption" xml:space="preserve">
-    <value>Sättigung</value>
+    <value>Saturation</value>
   </data>
   <data name="ColorPickerTitle" xml:space="preserve">
-    <value>Farbwähler</value>
+    <value>Sélection de Couleur</value>
   </data>
   <data name="PreviewLightsOption" xml:space="preserve">
-    <value>Beim ändern der Farben als Vorschau anzeigen</value>
+    <value>Prévisualiser sur les ampoules pendant le paramétrage d'évènement</value>
   </data>
   <data name="RunCSGOButton" xml:space="preserve">
-    <value>Starte CS:GO</value>
+    <value>Lancer CS:GO</value>
   </data>
   <data name="ActivatedOption" xml:space="preserve">
-    <value>Aktiviert</value>
+    <value>Activé</value>
   </data>
   <data name="LightsStatesTitle" xml:space="preserve">
-    <value>Lampenzustand</value>
+    <value>État des ampoules</value>
   </data>
   <data name="OffState" xml:space="preserve">
-    <value>Aus</value>
+    <value>Off</value>
   </data>
   <data name="OnState" xml:space="preserve">
-    <value>An</value>
+    <value>On</value>
   </data>
   <data name="OffLightState" xml:space="preserve">
-    <value>Aus</value>
+    <value>Éteinte</value>
   </data>
   <data name="ShowSystemTrayIconOption" xml:space="preserve">
-    <value>Zeige Taskleistensymbol</value>
+    <value>Montrer l'icône dans la barre de notification</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>Version</value>
   </data>
   <data name="AutomaticallyDeactivateOption" xml:space="preserve">
-    <value>Automatisch deaktivieren, wenn nicht im obigen Bereich</value>
+    <value>Désactiver automatiquement en dehors des horaires ci-dessus</value>
   </data>
   <data name="ShowInBrowserButton" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
+    <value>Afficher dans le navigateur</value>
   </data>
   <data name="NewVersionMessage" xml:space="preserve">
-    <value>Neue Version, "{0}", ist verfügbar.</value>
+    <value>Une nouvelle version, "{0}", est disponible.</value>
   </data>
   <data name="TemperatureOption" xml:space="preserve">
-    <value>Temperatur</value>
+    <value>Température</value>
   </data>
   <data name="UnreachableState" xml:space="preserve">
-    <value>Unerreichbar</value>
+    <value>Injoignable</value>
   </data>
   <data name="CrashMessage" xml:space="preserve">
-    <value>Ein unbekannter Fehler ist aufgetreten. Eine Log-Datei wurde hier erstellt:
+    <value>Une erreur est survenue. Un rapport d'erreur a été créé à
 {0}.
 
-Klicke auf "GitHub Fehlermeldung" um eine neue GitHub-Problemmeldung mit dem bereits für Sie ausgefüllten Text zu erstellen. Sie können dann zusätzliche Informationen zum Absturz hinzufügen, wenn Sie möchten.</value>
+Cliquez sur le bouton "Signaler une erreur sur Github" pour ouvrir un nouveau signalement d'erreur sur Github avec le contenu du message déjà rempli. Vous pouvez y ajouter des informations supplémentaires sur le crash si vous le souhaitez.</value>
   </data>
   <data name="CreateIssueButton" xml:space="preserve">
-    <value>GitHub Fehlermeldung</value>
+    <value>Signaler une erreur sur Github</value>
   </data>
   <data name="UpdateTitle" xml:space="preserve">
-    <value>Aktualisieren</value>
+    <value>Mise à jour</value>
   </data>
   <data name="UpdateAvailableWarning" xml:space="preserve">
-    <value>Aktualisierung verfügbar.</value>
+    <value>Mise à jour disponible.</value>
   </data>
   <data name="NewVersionAvailableText" xml:space="preserve">
-    <value>Eine neue CSHUE-Version ist bei GitHub verfügbar. Klicken Sie auf die folgende Schaltfläche, um den Veröffentlichungsbeitrag in Ihrem Browser zu öffnen.</value>
+    <value>Une nouvelle version de CSHUE est disponible sur Github. Cliquez sur le boutton ci-dessous pour ouvrir la page de téléchargement dans votre navigateur.</value>
   </data>
   <data name="CheckForUpdateButton" xml:space="preserve">
-    <value>Auf Aktualisierungen prüfen</value>
+    <value>Recherche de mise à jour</value>
   </data>
   <data name="NoUpdatesFound" xml:space="preserve">
-    <value>Es wurden keine Aktualisierungen gefunden. Klicken Sie auf die Schaltfläche unten, um nach Aktualisierungen zu suchen.</value>
+    <value>Aucune mise à jour n'a été trouvée. Cliquez sur le bouton ci-dessous pour rechercher une mise à jour.</value>
   </data>
   <data name="ReportProblemTitle" xml:space="preserve">
-    <value>Problem melden</value>
+    <value>Signaler un problème</value>
   </data>
   <data name="ReportProblemText" xml:space="preserve">
-    <value>Wenn Sie Probleme mit der App haben oder ein unerwünschtes Verhalten vermuten, lassen Sie es mich über GitHub wissen.</value>
+    <value>Si vous avez des problèmes pour utiliser l'application ou vous pensez qu'elle se comporte de manière indésirée, prévenez moi sur Github.</value>
   </data>
   <data name="ThemeOption" xml:space="preserve">
-    <value>Theme</value>
+    <value>Thème</value>
   </data>
   <data name="ThemeDarkComboBoxItem" xml:space="preserve">
-    <value>Dunkel</value>
+    <value>Sombre</value>
   </data>
   <data name="ThemeLightComboBoxItem" xml:space="preserve">
-    <value>Hell</value>
+    <value>Clair</value>
   </data>
   <data name="TransparencyOption" xml:space="preserve">
-    <value>Transparenz</value>
+    <value>Transparence</value>
   </data>
   <data name="HelpTitle" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>Aide</value>
   </data>
   <data name="BrightnessModifierOption" xml:space="preserve">
-    <value>Helligkeitsregler</value>
+    <value>Modificateur de luminosité</value>
   </data>
   <data name="BrightnessPercentageFormula" xml:space="preserve">
-    <value>helligkeit%</value>
+    <value>%luminosité</value>
   </data>
   <data name="LightsTitle" xml:space="preserve">
-    <value>Lampen</value>
+    <value>Ampoules</value>
   </data>
   <data name="TurnOffButton" xml:space="preserve">
-    <value>Ausschalten</value>
+    <value>Éteindre</value>
   </data>
   <data name="TurnOnButton" xml:space="preserve">
-    <value>Einschalten</value>
+    <value>Allumer</value>
   </data>
   <data name="BombTabTitle" xml:space="preserve">
     <value>Bombe</value>
   </data>
   <data name="GeneralTabTitle" xml:space="preserve">
-    <value>Allgemein</value>
+    <value>Général</value>
   </data>
   <data name="PlayerTabTitle" xml:space="preserve">
-    <value>Spieler</value>
+    <value>Joueur</value>
   </data>
   <data name="CountryIso2" xml:space="preserve">
-    <value>DE</value>
+    <value>FR</value>
   </data>
   <data name="TranslationsByTitle" xml:space="preserve">
-    <value>Übersetzt von</value>
+    <value>Traduit par</value>
   </data>
   <data name="ReportProblemButton" xml:space="preserve">
-    <value>Problem melden</value>
+    <value>Signaler problème</value>
   </data>
   <data name="DefaultComboBoxItem" xml:space="preserve">
-    <value>Standard</value>
+    <value>Par défaut</value>
   </data>
 </root>

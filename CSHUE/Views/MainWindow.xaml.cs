@@ -276,11 +276,11 @@ namespace CSHUE.Views
                 {
                     Button1 = new CustomButton
                     {
-                        Text = Cultures.Resources.Ok
+                        Text = Cultures.Resources.OkButton
                     },
                     Button2 = new CustomButton
                     {
-                        Text = Cultures.Resources.ShowInBrowser,
+                        Text = Cultures.Resources.ShowInBrowserButton,
                         Path = $"https://github.com/joao7yt/CSHUE/releases/tag/{lastVersion}",
                         DialogResult = null
                     },
@@ -619,7 +619,7 @@ namespace CSHUE.Views
         {
             ((ContextMenu)sender).Items[0] = new MenuItem
             {
-                Header = Cultures.Resources.Home,
+                Header = Cultures.Resources.HomeTitle,
                 Style = (Style)FindResource("CustomMenuItemAlertHome"),
                 Tag = "Home"
             };
@@ -635,7 +635,7 @@ namespace CSHUE.Views
 
             ((ContextMenu)sender).Items[3] = new MenuItem
             {
-                Header = Cultures.Resources.Update,
+                Header = Cultures.Resources.UpdateTitle,
                 Style = (Style)FindResource("CustomMenuItemAlertUpdate"),
                 Tag = "Update"
             };
@@ -644,8 +644,8 @@ namespace CSHUE.Views
             ((ContextMenu)sender).Items[11] = new MenuItem
             {
                 Header = Properties.Settings.Default.Activated
-                    ? Cultures.Resources.TurnOff
-                    : Cultures.Resources.TurnOn,
+                    ? Cultures.Resources.TurnOffButton
+                    : Cultures.Resources.TurnOnButton,
                 Style = Properties.Settings.Default.Activated
                     ? (Style)FindResource("CustomMenuItemOn")
                     : (Style)FindResource("CustomMenuItemOff")

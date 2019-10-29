@@ -88,18 +88,18 @@ namespace CSHUE.Views
                     var mainEvent = "";
                     var singleOption = false;
                     if (BrightnessProperty == Properties.Settings.Default.PlayerGetsKill)
-                        mainEvent = Cultures.Resources.Current;
+                        mainEvent = Cultures.Resources.CurrentEvent;
                     if (BrightnessProperty == Properties.Settings.Default.PlayerGetsKilled)
-                        mainEvent = Cultures.Resources.Current;
+                        mainEvent = Cultures.Resources.CurrentEvent;
                     if (BrightnessProperty == Properties.Settings.Default.FreezeTime)
-                        mainEvent = Cultures.Resources.RoundStarts;
+                        mainEvent = Cultures.Resources.RoundStartsEvent;
                     if (BrightnessProperty == Properties.Settings.Default.Warmup)
-                        mainEvent = Cultures.Resources.RoundStarts;
+                        mainEvent = Cultures.Resources.RoundStartsEvent;
                     if (BrightnessProperty == Properties.Settings.Default.BombExplodes)
-                        mainEvent = Cultures.Resources.BombHasBeenPlanted;
+                        mainEvent = Cultures.Resources.BombHasBeenPlantedEvent;
                     if (BrightnessProperty == Properties.Settings.Default.BombBlink)
                     {
-                        mainEvent = Cultures.Resources.BombHasBeenPlanted;
+                        mainEvent = Cultures.Resources.BombHasBeenPlantedEvent;
                         singleOption = true;
                     }
 
@@ -117,9 +117,9 @@ namespace CSHUE.Views
                             BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId) == null ||
                             BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId).OnlyBrightness,
                         OnlyBrightnessVisibility = Visibility.Visible,
-                        MainEventText = string.Format(Cultures.Resources.UseMainEventColor,
-                            (mainEvent != Cultures.Resources.Current ? "\"" : "") + mainEvent +
-                            (mainEvent != Cultures.Resources.Current ? "\"" : "")),
+                        MainEventText = string.Format(Cultures.Resources.UseMainEventColorOption,
+                            (mainEvent != Cultures.Resources.CurrentEvent ? "\"" : "") + mainEvent +
+                            (mainEvent != Cultures.Resources.CurrentEvent ? "\"" : "")),
                         UniqueId = l.UniqueId,
                         IsColorTemperature = l.Capabilities.Control.ColorGamut == null,
                         ColorTemperature = BrightnessProperty.Lights.Find(x => x.UniqueId == l.UniqueId).ColorTemperature,

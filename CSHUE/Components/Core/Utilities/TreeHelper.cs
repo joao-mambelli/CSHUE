@@ -91,14 +91,11 @@ namespace CSHUE.Components.Core.Utilities
 
             while (parent != null)
             {
-                if (parent is T foundElement)
+                switch (parent)
                 {
-                    if (additionalCheck == null)
-                    {
+                    case T foundElement when additionalCheck == null:
                         return foundElement;
-                    }
-
-                    if (additionalCheck(foundElement))
+                    case T foundElement when additionalCheck(foundElement):
                         return foundElement;
                 }
 
@@ -184,7 +181,7 @@ namespace CSHUE.Components.Core.Utilities
         {
             while (element != null)
             {
-                if (element == parent)
+                if (Equals(element, parent))
                     return true;
 
                 element = GetParent(element, recurseIntoPopup);

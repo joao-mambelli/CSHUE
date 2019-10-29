@@ -34,7 +34,7 @@
 
         <TextBlock Margin="24 4 0 0"
                    FontSize="28"
-                   Text="{Binding Path=Home, Source={StaticResource Resources}}"/>
+                   Text="{Binding Path=HomeTitle, Source={StaticResource Resources}}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -49,7 +49,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="24 0 20 80">
-                    <TextBlock Text="{Binding Path=Activated, Source={StaticResource Resources}}"
+                    <TextBlock Text="{Binding Path=ActivatedOption, Source={StaticResource Resources}}"
                                Margin="0 15 0 4"/>
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=Activated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -58,19 +58,19 @@
                                       Style="{DynamicResource CustomToggleButton}"/>
 
                         <Label Margin="7 0 0 0"
-                               Content="{Binding Path=On, Source={StaticResource Resources}}"
+                               Content="{Binding Path=OnState, Source={StaticResource Resources}}"
                                Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         
                         <Label Margin="7 0 0 0"
-                               Content="{Binding Path=Off, Source={StaticResource Resources}}"
+                               Content="{Binding Path=OffState, Source={StaticResource Resources}}"
                                Foreground="{DynamicResource SystemBaseHighColorBrush}"
                                Visibility="{Binding Source={x:Static p:Settings.Default}, Path=Activated, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToCollapsedConverter}}"/>
                     </StackPanel>
 
                     <TextBlock Margin="0 20 0 2"
                                FontSize="20"
-                               Text="{Binding Path=LightsStates, Source={StaticResource Resources}}"
+                               Text="{Binding Path=LightsStatesTitle, Source={StaticResource Resources}}"
                                VerticalAlignment="Bottom"
                                Visibility="{Binding InProcessVisibility, Converter={StaticResource VisibilityInverter}}"/>
 
@@ -82,7 +82,7 @@
                                                  LoadingColor="{DynamicResource SystemBaseHighColor}"/>
 
                         <Grid Visibility="{Binding LoadingVisibility}">
-                            <TextBlock Text="{Binding Path=WarningLink, Source={StaticResource Resources}}"
+                            <TextBlock Text="{Binding Path=PressHubButtonWarning, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningLink}"
                                        HorizontalAlignment="Center"
                                        Margin="0 30 0 0"
@@ -90,7 +90,7 @@
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
 
-                            <TextBlock Text="{Binding Path=WarningValidating, Source={StaticResource Resources}}"
+                            <TextBlock Text="{Binding Path=ValidatingHubWarning, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningValidating}"
                                        HorizontalAlignment="Center"
                                        Margin="0 30 0 0"
@@ -98,7 +98,7 @@
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
 
-                            <TextBlock Text="{Binding Path=WarningSearching, Source={StaticResource Resources}}"
+                            <TextBlock Text="{Binding Path=SearchingForHubsWarning, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningSearching}"
                                        HorizontalAlignment="Center"
                                        Margin="0 30 0 0"
@@ -109,7 +109,7 @@
 
                         <StackPanel Visibility="{Binding RetryVisibility}">
                             <Grid>
-                                <TextBlock Text="{Binding Path=WarningNoHub, Source={StaticResource Resources}}"
+                                <TextBlock Text="{Binding Path=NoHubsFoundWarning, Source={StaticResource Resources}}"
                                            Visibility="{Binding WarningNoHub}"
                                            HorizontalAlignment="Center"
                                            Margin="0 30 0 0"
@@ -117,7 +117,7 @@
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
 
-                                <TextBlock Text="{Binding Path=WarningNoReachableHubs, Source={StaticResource Resources}}"
+                                <TextBlock Text="{Binding Path=NoReachableHubsFoundWarning, Source={StaticResource Resources}}"
                                     Visibility="{Binding WarningNoReachableHubs}"
                                            HorizontalAlignment="Center"
                                            Margin="0 30 0 0"
@@ -125,7 +125,7 @@
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
 
-                                <TextBlock Text="{Binding Path=WarningHubNotAvailable, Source={StaticResource Resources}}"
+                                <TextBlock Text="{Binding Path=SelectedHubNoLongerAvailableWarning, Source={StaticResource Resources}}"
                                 Visibility="{Binding WarningHubNotAvailable}"
                                            HorizontalAlignment="Center"
                                            Margin="0 30 0 0"
@@ -140,7 +140,7 @@
                                     MinWidth="90"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource CustomButton}"
-                                    Content="{Binding Path=Retry, Source={StaticResource Resources}}"
+                                    Content="{Binding Path=RetryButton, Source={StaticResource Resources}}"
                                     Click="Retry_OnClick"/>
                         </StackPanel>
                     </StackPanel>
@@ -178,7 +178,7 @@
                         MinWidth="90"
                         HorizontalAlignment="Right"
                         Style="{DynamicResource CustomButton}"
-                        Content="{Binding Path=RunCsgo, Source={StaticResource Resources}}"
+                        Content="{Binding Path=RunCSGOButton, Source={StaticResource Resources}}"
                         Click="RunCsgo_OnClick"
                         ToolTipService.InitialShowDelay="100"
                         ToolTipService.HasDropShadow="True"

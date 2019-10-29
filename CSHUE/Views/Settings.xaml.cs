@@ -42,13 +42,8 @@ namespace CSHUE.Views
             ViewModel.SelectedTheme = ViewModel.Themes.First(x => x.Index == Properties.Settings.Default.Theme);
             ViewModel.SelectedTransparency =
                 ViewModel.Transparencies.First(x => x.Index == Properties.Settings.Default.Transparency);
-            ViewModel.SelectedAccentColor =
-                ViewModel.AccentColors.First(x => x.Index == Properties.Settings.Default.AccentColorOption);
 
             ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_OnSelectionChanged;
-
-            ViewModel.AccentColor = Color.FromRgb(Properties.Settings.Default.AccentColor.R,
-                Properties.Settings.Default.AccentColor.G, Properties.Settings.Default.AccentColor.B);
 
             Properties.Settings.Default.PropertyChanged += Default_OnPropertyChanged;
         }
@@ -111,14 +106,14 @@ namespace CSHUE.Views
             {
                 Button1 = new CustomButton
                 {
-                    Text = Cultures.Resources.Yes,
+                    Text = Cultures.Resources.YesButton,
                     DialogResult = true
                 },
                 Button2 = new CustomButton
                 {
-                    Text = Cultures.Resources.No
+                    Text = Cultures.Resources.NoButton
                 },
-                Message = Cultures.Resources.AreYouSure,
+                Message = Cultures.Resources.ResetMessage,
                 Owner = Window.GetWindow(this)
             };
             messageBox.ShowDialog();
@@ -185,76 +180,76 @@ namespace CSHUE.Views
                 {
                     Button1 = new CustomButton
                     {
-                        Text = Cultures.Resources.Ok
+                        Text = Cultures.Resources.OkButton
                     },
-                    Message = Cultures.Resources.NoLightsFound,
+                    Message = Cultures.Resources.NoLightsFoundMessage,
                     Owner = Window.GetWindow(this)
                 }.ShowDialog();
 
                 return;
             }
 
-            var title = Cultures.Resources.LightSelector + " - ";
+            var title = Cultures.Resources.LightSelectorTitle + " - ";
             EventProperty property = null;
             EventBrightnessProperty brightnessProperty = null;
             if (((Button)sender).Tag.ToString() == "MainMenu")
             {
-                title += Cultures.Resources.MainMenu;
+                title += Cultures.Resources.MainMenuEvent;
                 property = Properties.Settings.Default.MainMenu;
             }
             if (((Button)sender).Tag.ToString() == "PlayerGetsFlashed")
             {
-                title += Cultures.Resources.PlayerGetsFlashed;
+                title += Cultures.Resources.PlayerGetsFlashedEvent;
                 property = Properties.Settings.Default.PlayerGetsFlashed;
             }
             if (((Button)sender).Tag.ToString() == "TerroristsWin")
             {
-                title += Cultures.Resources.TerroristsWin;
+                title += Cultures.Resources.TerroristsWinEvent;
                 property = Properties.Settings.Default.TerroristsWin;
             }
             if (((Button)sender).Tag.ToString() == "CounterTerroristsWin")
             {
-                title += Cultures.Resources.CounterTerroristsWin;
+                title += Cultures.Resources.CounterTerroristsWinEvent;
                 property = Properties.Settings.Default.CounterTerroristsWin;
             }
             if (((Button)sender).Tag.ToString() == "RoundStarts")
             {
-                title += Cultures.Resources.RoundStarts;
+                title += Cultures.Resources.RoundStartsEvent;
                 property = Properties.Settings.Default.RoundStarts;
             }
             if (((Button)sender).Tag.ToString() == "BombPlanted")
             {
-                title += Cultures.Resources.BombHasBeenPlanted;
+                title += Cultures.Resources.BombHasBeenPlantedEvent;
                 property = Properties.Settings.Default.BombPlanted;
             }
             if (((Button)sender).Tag.ToString() == "PlayerGetsKill")
             {
-                title += Cultures.Resources.PlayerGetsKill;
+                title += Cultures.Resources.PlayerGetsAKillEvent;
                 brightnessProperty = Properties.Settings.Default.PlayerGetsKill;
             }
             if (((Button)sender).Tag.ToString() == "PlayerGetsKilled")
             {
-                title += Cultures.Resources.PlayerGetsKilled;
+                title += Cultures.Resources.PlayerGetsKilledEvent;
                 brightnessProperty = Properties.Settings.Default.PlayerGetsKilled;
             }
             if (((Button)sender).Tag.ToString() == "FreezeTime")
             {
-                title += Cultures.Resources.FreezeTime;
+                title += Cultures.Resources.FreezeTimeEvent;
                 brightnessProperty = Properties.Settings.Default.FreezeTime;
             }
             if (((Button)sender).Tag.ToString() == "Warmup")
             {
-                title += Cultures.Resources.Warmup;
+                title += Cultures.Resources.WarmupEvent;
                 brightnessProperty = Properties.Settings.Default.Warmup;
             }
             if (((Button)sender).Tag.ToString() == "BombExplodes")
             {
-                title += Cultures.Resources.BombExplodes;
+                title += Cultures.Resources.BombExplodesEvent;
                 brightnessProperty = Properties.Settings.Default.BombExplodes;
             }
             if (((Button)sender).Tag.ToString() == "BombBlink")
             {
-                title += Cultures.Resources.BombBlink;
+                title += Cultures.Resources.BombBlinkEvent;
                 brightnessProperty = Properties.Settings.Default.BombBlink;
             }
 
@@ -305,12 +300,6 @@ namespace CSHUE.Views
             {
                 ComboBoxTransparency.IsDropDownOpen = false;
                 ComboBoxTransparency.IsDropDownOpen = true;
-            }
-
-            if (ComboBoxAccentColor.IsDropDownOpen)
-            {
-                ComboBoxAccentColor.IsDropDownOpen = false;
-                ComboBoxAccentColor.IsDropDownOpen = true;
             }
         }
 
@@ -567,55 +556,11 @@ namespace CSHUE.Views
             }
         }
 
-        private void ComboBoxAccentColor_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (((ComboBox)sender).SelectedItem == null || ((ComboBox)sender).SelectedIndex == 0)
-                return;
-
-            var item = (CustomComboBoxItem)((ComboBox)sender).SelectedItem;
-
-            ViewModel.AccentColors.Remove(item);
-            ViewModel.AccentColors =
-                new ObservableCollection<CustomComboBoxItem>(ViewModel.AccentColors.OrderBy(x => x.Index));
-            ViewModel.AccentColors.Insert(0, item);
-
-            ViewModel.SelectedAccentColor = (CustomComboBoxItem)((ComboBox)sender).Items[0];
-
-            Properties.Settings.Default.AccentColorOption = item.Index;
-
-            ViewModel.AccentColorPickerVisibility = item.Index == 0
-                ? Visibility.Collapsed
-                : Visibility.Visible;
-        }
-
-        /// <summary>
-        /// Button click handler.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AccentColor_OnClick(object sender, RoutedEventArgs e)
-        {
-            var colorPicker = new ColorPicker
-            {
-                Text1 = Cultures.Resources.Cancel,
-                Text2 = Cultures.Resources.Ok,
-                Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(),
-                Color = Color.FromRgb(Properties.Settings.Default.AccentColor.R,
-                    Properties.Settings.Default.AccentColor.G, Properties.Settings.Default.AccentColor.B)
-            };
-            colorPicker.ShowDialog();
-
-            Properties.Settings.Default.AccentColor =
-                System.Drawing.Color.FromArgb(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B);
-
-            ViewModel.AccentColor = colorPicker.Color;
-        }
-
         private void BrightnessModifier_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ViewModel.Formula = e.NewValue <= 100
-                ? $"{Cultures.Resources.BrightnessPercentage} * {e.NewValue / 100:0.00}"
-                : $"{Cultures.Resources.BrightnessPercentage} + (1 - {Cultures.Resources.BrightnessPercentage}) * {e.NewValue / 100 - 1:0.00}";
+                ? $"{Cultures.Resources.BrightnessPercentageFormula} * {e.NewValue / 100:0.00}"
+                : $"{Cultures.Resources.BrightnessPercentageFormula} + (1 - {Cultures.Resources.BrightnessPercentageFormula}) * {e.NewValue / 100 - 1:0.00}";
         }
 
         #endregion

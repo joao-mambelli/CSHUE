@@ -169,11 +169,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Cultures\Resources.de-DE1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.de-DE.resx</DependentUpon>
-    </Compile>
     <Compile Include="Cultures\Resources.fr-FR.Designer.cs">
       <DependentUpon>Resources.fr-FR.resx</DependentUpon>
       <AutoGen>True</AutoGen>

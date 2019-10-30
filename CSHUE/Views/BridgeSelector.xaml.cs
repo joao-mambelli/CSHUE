@@ -7,26 +7,26 @@ using CSHUE.ViewModels;
 namespace CSHUE.Views
 {
     /// <summary>
-    /// Interaction logic for HubSelector.xaml
+    /// Interaction logic for BridgeSelector.xaml
     /// </summary>
-    public partial class HubSelector
+    public partial class BridgeSelector
     {
         #region Fields
 
-        public HubSelectorViewModel ViewModel = new HubSelectorViewModel();
+        public BridgeSelectorViewModel ViewModel = new BridgeSelectorViewModel();
 
         #endregion
 
         #region Initializers
 
-        public HubSelector(List<HubInfoCellViewModel> list)
+        public BridgeSelector(List<BridgeInfoCellViewModel> list)
         {
             InitializeComponent();
             DataContext = ViewModel;
 
             list.ElementAt(0).IsChecked = true;
 
-            ViewModel.List = new ObservableCollection<HubInfoCellViewModel>(list);
+            ViewModel.List = new ObservableCollection<BridgeInfoCellViewModel>(list);
         }
 
         #endregion

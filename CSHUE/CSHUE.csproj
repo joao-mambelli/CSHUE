@@ -169,6 +169,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Cultures\Resources.de-DE1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.de-DE.resx</DependentUpon>
+    </Compile>
     <Compile Include="Cultures\Resources.fr-FR.Designer.cs">
       <DependentUpon>Resources.fr-FR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -177,10 +182,10 @@
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
-    <Compile Include="ViewModels\HubInfoCellViewModel.cs" />
+    <Compile Include="ViewModels\BridgeInfoCellViewModel.cs" />
     <Compile Include="ViewModels\LightSelectorViewModel.cs" />
     <Compile Include="ViewModels\LightSettingCellViewModel.cs" />
-    <Compile Include="ViewModels\HubSelectorViewModel.cs" />
+    <Compile Include="ViewModels\BridgeSelectorViewModel.cs" />
     <Compile Include="Controls\LightStateCell.xaml.cs">
       <DependentUpon>LightStateCell.xaml</DependentUpon>
     </Compile>
@@ -202,8 +207,8 @@
     <Compile Include="Controls\LoadingSpinner.xaml.cs">
       <DependentUpon>LoadingSpinner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HubSelector.xaml.cs">
-      <DependentUpon>HubSelector.xaml</DependentUpon>
+    <Compile Include="Views\BridgeSelector.xaml.cs">
+      <DependentUpon>BridgeSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
@@ -280,7 +285,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HubSelector.xaml">
+    <Page Include="Views\BridgeSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

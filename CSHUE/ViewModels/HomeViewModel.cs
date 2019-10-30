@@ -49,13 +49,13 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private Visibility _warningNoHub = Visibility.Collapsed;
-        public Visibility WarningNoHub
+        private Visibility _warningNoBridge = Visibility.Collapsed;
+        public Visibility WarningNoBridge
         {
-            get => _warningNoHub;
+            get => _warningNoBridge;
             set
             {
-                _warningNoHub = value;
+                _warningNoBridge = value;
                 OnPropertyChanged();
             }
         }
@@ -93,24 +93,24 @@ namespace CSHUE.ViewModels
             }
         }
 
-        private Visibility _warningNoReachableHubs = Visibility.Collapsed;
-        public Visibility WarningNoReachableHubs
+        private Visibility _warningNoReachableBridges = Visibility.Collapsed;
+        public Visibility WarningNoReachableBridges
         {
-            get => _warningNoReachableHubs;
+            get => _warningNoReachableBridges;
             set
             {
-                _warningNoReachableHubs = value;
+                _warningNoReachableBridges = value;
                 OnPropertyChanged();
             }
         }
 
-        private Visibility _warningHubNotAvailable = Visibility.Collapsed;
-        public Visibility WarningHubNotAvailable
+        private Visibility _warningBridgeNotAvailable = Visibility.Collapsed;
+        public Visibility WarningBridgeNotAvailable
         {
-            get => _warningHubNotAvailable;
+            get => _warningBridgeNotAvailable;
             set
             {
-                _warningHubNotAvailable = value;
+                _warningBridgeNotAvailable = value;
                 OnPropertyChanged();
             }
         }
@@ -136,74 +136,74 @@ namespace CSHUE.ViewModels
 
         #region Methods
 
-        public void SetWarningNoHub()
+        public void SetWarningNoBridge()
         {
-            WarningNoHub = Visibility.Visible;
+            WarningNoBridge = Visibility.Visible;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
             WarningSearching = Visibility.Collapsed;
-            WarningNoReachableHubs = Visibility.Collapsed;
-            WarningHubNotAvailable = Visibility.Collapsed;
+            WarningNoReachableBridges = Visibility.Collapsed;
+            WarningBridgeNotAvailable = Visibility.Collapsed;
 
             SetRetry();
         }
 
         public void SetWarningLink()
         {
-            WarningNoHub = Visibility.Collapsed;
+            WarningNoBridge = Visibility.Collapsed;
             WarningLink = Visibility.Visible;
             WarningValidating = Visibility.Collapsed;
             WarningSearching = Visibility.Collapsed;
-            WarningNoReachableHubs = Visibility.Collapsed;
-            WarningHubNotAvailable = Visibility.Collapsed;
+            WarningNoReachableBridges = Visibility.Collapsed;
+            WarningBridgeNotAvailable = Visibility.Collapsed;
 
             SetLoading();
         }
 
         public void SetWarningValidating()
         {
-            WarningNoHub = Visibility.Collapsed;
+            WarningNoBridge = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Visible;
             WarningSearching = Visibility.Collapsed;
-            WarningNoReachableHubs = Visibility.Collapsed;
-            WarningHubNotAvailable = Visibility.Collapsed;
+            WarningNoReachableBridges = Visibility.Collapsed;
+            WarningBridgeNotAvailable = Visibility.Collapsed;
 
             SetLoading();
         }
 
         public void SetWarningSearching()
         {
-            WarningNoHub = Visibility.Collapsed;
+            WarningNoBridge = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
             WarningSearching = Visibility.Visible;
-            WarningNoReachableHubs = Visibility.Collapsed;
-            WarningHubNotAvailable = Visibility.Collapsed;
+            WarningNoReachableBridges = Visibility.Collapsed;
+            WarningBridgeNotAvailable = Visibility.Collapsed;
 
             SetLoading();
         }
 
-        public void SetWarningNoReachableHubs()
+        public void SetWarningNoReachableBridges()
         {
-            WarningNoHub = Visibility.Collapsed;
+            WarningNoBridge = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
             WarningSearching = Visibility.Collapsed;
-            WarningNoReachableHubs = Visibility.Visible;
-            WarningHubNotAvailable = Visibility.Collapsed;
+            WarningNoReachableBridges = Visibility.Visible;
+            WarningBridgeNotAvailable = Visibility.Collapsed;
 
             SetRetry();
         }
 
-        public void SetWarningHubNotAvailable()
+        public void SetWarningBridgeNotAvailable()
         {
-            WarningNoHub = Visibility.Collapsed;
+            WarningNoBridge = Visibility.Collapsed;
             WarningLink = Visibility.Collapsed;
             WarningValidating = Visibility.Collapsed;
             WarningSearching = Visibility.Collapsed;
-            WarningNoReachableHubs = Visibility.Collapsed;
-            WarningHubNotAvailable = Visibility.Visible;
+            WarningNoReachableBridges = Visibility.Collapsed;
+            WarningBridgeNotAvailable = Visibility.Visible;
 
             SetRetry();
         }

@@ -260,12 +260,12 @@ Beim drücken der unteren Schaltfläche, versucht CSHUE automatisch deinen CS:GO
   <data name="OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="PressHubButtonWarning" xml:space="preserve">
-    <value>Betätige den Verbindungsknopf auf deiner Hub.</value>
+  <data name="PressBridgeButtonWarning" xml:space="preserve">
+    <value>Betätige den Verbindungsknopf auf deiner Philips Hue Bridge.</value>
   </data>
-  <data name="NoHubsFoundWarning" xml:space="preserve">
-    <value>Keine Hub gefunden.
-Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
+  <data name="NoBridgesFoundWarning" xml:space="preserve">
+    <value>Keine Philips Hue Bridge gefunden.
+Stelle sicher, dass deine Philips Hue Bridge mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
   </data>
   <data name="ExitButton" xml:space="preserve">
     <value>Schließen</value>
@@ -273,31 +273,31 @@ Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche
   <data name="ShowInFolderButton" xml:space="preserve">
     <value>Im Ordner anzeigen</value>
   </data>
-  <data name="HubSelectorTitle" xml:space="preserve">
-    <value>Hub Auswahl</value>
+  <data name="BridgeSelectorTitle" xml:space="preserve">
+    <value>Philips Hue Bridge Auswahl</value>
   </data>
-  <data name="SelectedHubNoLongerAvailableWarning" xml:space="preserve">
-    <value>Die ausgewählte Hub ist nicht länger erreichbar.
-Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
+  <data name="SelectedBridgeNoLongerAvailableWarning" xml:space="preserve">
+    <value>Die ausgewählte Philips Hue Bridge ist nicht länger erreichbar.
+Stelle sicher, dass deine Philips Hue Bridge mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
   </data>
   <data name="RetryButton" xml:space="preserve">
     <value>Wiederholen</value>
   </data>
-  <data name="NoReachableHubsFoundWarning" xml:space="preserve">
-    <value>Keine erreichbare Hub gefunden.
-Stelle sicher, dass deine Hub mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
+  <data name="NoReachableBridgesFoundWarning" xml:space="preserve">
+    <value>Keine erreichbare Philips Hue Bridge gefunden.
+Stelle sicher, dass deine Philips Hue Bridge mit dem selben Netzwerk verbunden ist und versuche es noch einmal.</value>
   </data>
-  <data name="ValidatingHubWarning" xml:space="preserve">
-    <value>Überprüfe Hub.</value>
+  <data name="ValidatingBridgeWarning" xml:space="preserve">
+    <value>Überprüfe Philips Hue Bridge.</value>
   </data>
-  <data name="NoHubConnectionWarning" xml:space="preserve">
-    <value>Keine Hub Verbindung.</value>
+  <data name="NoBridgeConnectionWarning" xml:space="preserve">
+    <value>Keine Philips Hue Bridge Verbindung.</value>
   </data>
   <data name="SelectSteamFolderMessage" xml:space="preserve">
     <value>Bitte wähle den Steam Ordner manuell.</value>
   </data>
-  <data name="SearchingForHubsWarning" xml:space="preserve">
-    <value>Hub wird gesucht.</value>
+  <data name="SearchingForBridgesWarning" xml:space="preserve">
+    <value>Philips Hue Bridge wird gesucht.</value>
   </data>
   <data name="NoLightsFoundMessage" xml:space="preserve">
     <value>Keine Lampen gefunden.</value>

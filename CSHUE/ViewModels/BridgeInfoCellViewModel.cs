@@ -1,6 +1,6 @@
 ﻿namespace CSHUE.ViewModels
 {
-    public class HubInfoCellViewModel : BaseViewModel
+    public class BridgeInfoCellViewModel : BaseViewModel
     {
         #region Properties
 

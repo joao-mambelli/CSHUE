@@ -407,7 +407,7 @@
     <EmbeddedResource Include="Cultures\Resources.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.de-DE1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Cultures\Resources.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

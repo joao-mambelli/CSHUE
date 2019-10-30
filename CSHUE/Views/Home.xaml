@@ -82,7 +82,7 @@
                                                  LoadingColor="{DynamicResource SystemBaseHighColor}"/>
 
                         <Grid Visibility="{Binding LoadingVisibility}">
-                            <TextBlock Text="{Binding Path=PressHubButtonWarning, Source={StaticResource Resources}}"
+                            <TextBlock Text="{Binding Path=PressBridgeButtonWarning, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningLink}"
                                        HorizontalAlignment="Center"
                                        Margin="0 30 0 0"
@@ -90,7 +90,7 @@
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
 
-                            <TextBlock Text="{Binding Path=ValidatingHubWarning, Source={StaticResource Resources}}"
+                            <TextBlock Text="{Binding Path=ValidatingBridgeWarning, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningValidating}"
                                        HorizontalAlignment="Center"
                                        Margin="0 30 0 0"
@@ -98,7 +98,7 @@
                                        TextWrapping="Wrap"
                                        TextAlignment="Center"/>
 
-                            <TextBlock Text="{Binding Path=SearchingForHubsWarning, Source={StaticResource Resources}}"
+                            <TextBlock Text="{Binding Path=SearchingForBridgesWarning, Source={StaticResource Resources}}"
                                        Visibility="{Binding WarningSearching}"
                                        HorizontalAlignment="Center"
                                        Margin="0 30 0 0"
@@ -109,24 +109,24 @@
 
                         <StackPanel Visibility="{Binding RetryVisibility}">
                             <Grid>
-                                <TextBlock Text="{Binding Path=NoHubsFoundWarning, Source={StaticResource Resources}}"
-                                           Visibility="{Binding WarningNoHub}"
+                                <TextBlock Text="{Binding Path=NoBridgesFoundWarning, Source={StaticResource Resources}}"
+                                           Visibility="{Binding WarningNoBridge}"
                                            HorizontalAlignment="Center"
                                            Margin="0 30 0 0"
                                            MaxWidth="500"
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
 
-                                <TextBlock Text="{Binding Path=NoReachableHubsFoundWarning, Source={StaticResource Resources}}"
-                                    Visibility="{Binding WarningNoReachableHubs}"
+                                <TextBlock Text="{Binding Path=NoReachableBridgesFoundWarning, Source={StaticResource Resources}}"
+                                           Visibility="{Binding WarningNoReachableBridges}"
                                            HorizontalAlignment="Center"
                                            Margin="0 30 0 0"
                                            MaxWidth="500"
                                            TextWrapping="Wrap"
                                            TextAlignment="Center"/>
 
-                                <TextBlock Text="{Binding Path=SelectedHubNoLongerAvailableWarning, Source={StaticResource Resources}}"
-                                Visibility="{Binding WarningHubNotAvailable}"
+                                <TextBlock Text="{Binding Path=SelectedBridgeNoLongerAvailableWarning, Source={StaticResource Resources}}"
+                                           Visibility="{Binding WarningBridgeNotAvailable}"
                                            HorizontalAlignment="Center"
                                            Margin="0 30 0 0"
                                            MaxWidth="500"

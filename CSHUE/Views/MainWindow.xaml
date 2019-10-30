@@ -94,7 +94,7 @@
                           Margin="14">
                         <Grid.ToolTip>
                             <ToolTip Background="{DynamicResource SystemAltHighColorBrush}">
-                                <Label Content="{Binding Path=NoHubConnectionWarning, Source={StaticResource Resources}}"
+                                <Label Content="{Binding Path=NoBridgeConnectionWarning, Source={StaticResource Resources}}"
                                        Foreground="{DynamicResource SystemBaseHighColorBrush}"/>
                             </ToolTip>
                         </Grid.ToolTip>

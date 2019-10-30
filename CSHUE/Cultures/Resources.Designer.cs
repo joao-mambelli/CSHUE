@@ -142,6 +142,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Philips Hue Bridge Selector.
+        /// </summary>
+        public static string BridgeSelectorTitle {
+            get {
+                return ResourceManager.GetString("BridgeSelectorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Brightness modifier.
         /// </summary>
         public static string BrightnessModifierOption {
@@ -417,15 +426,6 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Hub Selector.
-        /// </summary>
-        public static string HubSelectorTitle {
-            get {
-                return ResourceManager.GetString("HubSelectorTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Hue.
         /// </summary>
         public static string HueOption {
@@ -534,30 +534,30 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No Philips Hue Bridge connection..
+        /// </summary>
+        public static string NoBridgeConnectionWarning {
+            get {
+                return ResourceManager.GetString("NoBridgeConnectionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No Philips Hue Bridges found.
+        ///Make sure the Philips Hue Bridge is connected to the same network as yours and retry..
+        /// </summary>
+        public static string NoBridgesFoundWarning {
+            get {
+                return ResourceManager.GetString("NoBridgesFoundWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a No.
         /// </summary>
         public static string NoButton {
             get {
                 return ResourceManager.GetString("NoButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No Hub connection..
-        /// </summary>
-        public static string NoHubConnectionWarning {
-            get {
-                return ResourceManager.GetString("NoHubConnectionWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No Hubs found.
-        ///Make sure the Hub is connected to the same network as yours and retry..
-        /// </summary>
-        public static string NoHubsFoundWarning {
-            get {
-                return ResourceManager.GetString("NoHubsFoundWarning", resourceCulture);
             }
         }
         
@@ -571,12 +571,12 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a No reachable Hubs found.
-        ///Make sure the Hub is connected to the same network as yours and retry..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No reachable Philips Hue Bridges found.
+        ///Make sure the Philips Hue Bridge is connected to the same network as yours and retry..
         /// </summary>
-        public static string NoReachableHubsFoundWarning {
+        public static string NoReachableBridgesFoundWarning {
             get {
-                return ResourceManager.GetString("NoReachableHubsFoundWarning", resourceCulture);
+                return ResourceManager.GetString("NoReachableBridgesFoundWarning", resourceCulture);
             }
         }
         
@@ -662,11 +662,11 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Press the link button on your Hub..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Press the link button on your Philips Hue Bridge..
         /// </summary>
-        public static string PressHubButtonWarning {
+        public static string PressBridgeButtonWarning {
             get {
-                return ResourceManager.GetString("PressHubButtonWarning", resourceCulture);
+                return ResourceManager.GetString("PressBridgeButtonWarning", resourceCulture);
             }
         }
         
@@ -788,11 +788,11 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Searching for Hubs..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Searching for Philips Hue Bridges..
         /// </summary>
-        public static string SearchingForHubsWarning {
+        public static string SearchingForBridgesWarning {
             get {
-                return ResourceManager.GetString("SearchingForHubsWarning", resourceCulture);
+                return ResourceManager.GetString("SearchingForBridgesWarning", resourceCulture);
             }
         }
         
@@ -815,12 +815,12 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a The selected Hub is no longer reachable.
-        ///Make sure the Hub is connected to the same network as yours and retry..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The selected Philips Hue Bridge is no longer reachable.
+        ///Make sure the Philips Hue Bridge is connected to the same network as yours and retry..
         /// </summary>
-        public static string SelectedHubNoLongerAvailableWarning {
+        public static string SelectedBridgeNoLongerAvailableWarning {
             get {
-                return ResourceManager.GetString("SelectedHubNoLongerAvailableWarning", resourceCulture);
+                return ResourceManager.GetString("SelectedBridgeNoLongerAvailableWarning", resourceCulture);
             }
         }
         
@@ -1005,11 +1005,11 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Validating Hub..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Validating Philips Hue Bridge..
         /// </summary>
-        public static string ValidatingHubWarning {
+        public static string ValidatingBridgeWarning {
             get {
-                return ResourceManager.GetString("ValidatingHubWarning", resourceCulture);
+                return ResourceManager.GetString("ValidatingBridgeWarning", resourceCulture);
             }
         }
         

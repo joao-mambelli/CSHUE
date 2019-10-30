@@ -732,14 +732,14 @@ namespace CSHUE.ViewModels
 
             if (bridgeIPs == null || bridgeIPs.Count < 1)
             {
-                Home.ViewModel.SetWarningNoHub();
+                Home.ViewModel.SetWarningNoBridge();
 
                 return "";
             }
 
             if (bridgeIPs.Count > 1)
             {
-                var list = new List<HubInfoCellViewModel>();
+                var list = new List<BridgeInfoCellViewModel>();
 
                 WebRequest request;
 
@@ -753,7 +753,7 @@ namespace CSHUE.ViewModels
                         request.Timeout = 1000;
 
                         if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                            list.Add(new HubInfoCellViewModel
+                            list.Add(new BridgeInfoCellViewModel
                             {
                                 Text = $"ip: {b.IpAddress}, id: {b.BridgeId}",
                                 Ip = b.IpAddress
@@ -767,7 +767,7 @@ namespace CSHUE.ViewModels
 
                 if (list.Count < 1)
                 {
-                    Home.ViewModel.SetWarningNoReachableHubs();
+                    Home.ViewModel.SetWarningNoReachableBridges();
 
                     return "";
                 }
@@ -777,26 +777,26 @@ namespace CSHUE.ViewModels
                     return list.ElementAt(0).Ip;
                 }
 
-                var hubSelector = new HubSelector(list)
+                var bridgeSelector = new BridgeSelector(list)
                 {
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 };
 
-                hubSelector.ShowDialog();
+                bridgeSelector.ShowDialog();
 
                 Home.ViewModel.SetWarningValidating();
 
                 try
                 {
-                    request = WebRequest.Create($"http://{hubSelector.SelectedBridge}/debug/clip.html");
+                    request = WebRequest.Create($"http://{bridgeSelector.SelectedBridge}/debug/clip.html");
                     request.Timeout = 1000;
 
                     if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                        return hubSelector.SelectedBridge;
+                        return bridgeSelector.SelectedBridge;
                 }
                 catch
                 {
-                    Home.ViewModel.SetWarningHubNotAvailable();
+                    Home.ViewModel.SetWarningBridgeNotAvailable();
 
                     return "";
                 }
@@ -816,7 +816,7 @@ namespace CSHUE.ViewModels
             }
             catch
             {
-                Home.ViewModel.SetWarningNoReachableHubs();
+                Home.ViewModel.SetWarningNoReachableBridges();
             }
 
             return "";

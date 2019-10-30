@@ -260,12 +260,12 @@ Se o botão abaixo for pressionado, o CSHUE vai, automaticamente, tentar encontr
   <data name="OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="PressHubButtonWarning" xml:space="preserve">
-    <value>Pressione o link do seu Hub.</value>
+  <data name="PressBridgeButtonWarning" xml:space="preserve">
+    <value>Pressione o link do seu Philips Hue Bridge.</value>
   </data>
-  <data name="NoHubsFoundWarning" xml:space="preserve">
-    <value>Nenhum Hub encontrado.
-Verifique se o Hub está conectado à mesma rede que você e tente novamente.</value>
+  <data name="NoBridgesFoundWarning" xml:space="preserve">
+    <value>Nenhum Philips Hue Bridge encontrado.
+Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tente novamente.</value>
   </data>
   <data name="ExitButton" xml:space="preserve">
     <value>Sair</value>
@@ -273,31 +273,31 @@ Verifique se o Hub está conectado à mesma rede que você e tente novamente.</v
   <data name="ShowInFolderButton" xml:space="preserve">
     <value>Mostrar na pasta</value>
   </data>
-  <data name="HubSelectorTitle" xml:space="preserve">
-    <value>Seletor de Hub</value>
+  <data name="BridgeSelectorTitle" xml:space="preserve">
+    <value>Seletor de Philips Hue Bridge</value>
   </data>
-  <data name="SelectedHubNoLongerAvailableWarning" xml:space="preserve">
-    <value>O Hub selecionada não está mais disponível.
-Verifique se o Hub está conectado à mesma rede que você e tente novamente.</value>
+  <data name="SelectedBridgeNoLongerAvailableWarning" xml:space="preserve">
+    <value>O Philips Hue Bridge selecionada não está mais disponível.
+Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tente novamente.</value>
   </data>
   <data name="RetryButton" xml:space="preserve">
     <value>Tentar Novamente</value>
   </data>
-  <data name="NoReachableHubsFoundWarning" xml:space="preserve">
-    <value>Nenhum Hub accessível encontrado.
-Verifique se o Hub está conectado à mesma rede que você e tente novamente.</value>
+  <data name="NoReachableBridgesFoundWarning" xml:space="preserve">
+    <value>Nenhum Philips Hue Bridge accessível encontrado.
+Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tente novamente.</value>
   </data>
-  <data name="ValidatingHubWarning" xml:space="preserve">
-    <value>Validando Hub.</value>
+  <data name="ValidatingBridgeWarning" xml:space="preserve">
+    <value>Validando Philips Hue Bridge.</value>
   </data>
-  <data name="NoHubConnectionWarning" xml:space="preserve">
-    <value>Sem conexão com um Hub.</value>
+  <data name="NoBridgeConnectionWarning" xml:space="preserve">
+    <value>Sem conexão com um Philips Hue Bridge.</value>
   </data>
   <data name="SelectSteamFolderMessage" xml:space="preserve">
     <value>Por favor, selecione manualmente a pasta da Steam.</value>
   </data>
-  <data name="SearchingForHubsWarning" xml:space="preserve">
-    <value>Buscando Hubs.</value>
+  <data name="SearchingForBridgesWarning" xml:space="preserve">
+    <value>Buscando Philips Hue Bridge.</value>
   </data>
   <data name="NoLightsFoundMessage" xml:space="preserve">
     <value>Nenhuma luz encontrada.</value>

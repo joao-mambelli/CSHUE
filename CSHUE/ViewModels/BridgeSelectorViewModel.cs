@@ -2,18 +2,18 @@
 
 namespace CSHUE.ViewModels
 {
-    public class HubSelectorViewModel : BaseViewModel
+    public class BridgeSelectorViewModel : BaseViewModel
     {
         #region Properties
 
         /// <summary>
         /// List back field.
         /// </summary>
-        private ObservableCollection<HubInfoCellViewModel> _list;
+        private ObservableCollection<BridgeInfoCellViewModel> _list;
         /// <summary>
         /// List property.
         /// </summary>
-        public ObservableCollection<HubInfoCellViewModel> List
+        public ObservableCollection<BridgeInfoCellViewModel> List
         {
             get => _list;
             set

@@ -260,12 +260,12 @@ En appuyant sur le bouton ci-dessous, CSHUE va automatiquement chercher où CS:G
   <data name="OkButton" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="PressHubButtonWarning" xml:space="preserve">
-    <value>Appuyez sur le bouton central sur votre Pont de Connexion.</value>
+  <data name="PressBridgeButtonWarning" xml:space="preserve">
+    <value>Appuyez sur le bouton central sur votre Philips Hue Bridge de Connexion.</value>
   </data>
-  <data name="NoHubsFoundWarning" xml:space="preserve">
-    <value>Pas de Pont détecté.
-Assurez vous que votre Pont de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
+  <data name="NoBridgesFoundWarning" xml:space="preserve">
+    <value>Pas de Philips Hue Bridge détecté.
+Assurez vous que votre Philips Hue Bridge de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
   </data>
   <data name="ExitButton" xml:space="preserve">
     <value>Quitter</value>
@@ -273,31 +273,31 @@ Assurez vous que votre Pont de Connexion soit connecté au même réseau que le 
   <data name="ShowInFolderButton" xml:space="preserve">
     <value>Montrer dans le dossier</value>
   </data>
-  <data name="HubSelectorTitle" xml:space="preserve">
-    <value>Sélection du Pont</value>
+  <data name="BridgeSelectorTitle" xml:space="preserve">
+    <value>Sélection du Philips Hue Bridge</value>
   </data>
-  <data name="SelectedHubNoLongerAvailableWarning" xml:space="preserve">
-    <value>Le Pont de Connexion sélectionné n'est plus joignable.
-Assurez vous que votre Pont de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
+  <data name="SelectedBridgeNoLongerAvailableWarning" xml:space="preserve">
+    <value>Le Philips Hue Bridge de Connexion sélectionné n'est plus joignable.
+Assurez vous que votre Philips Hue Bridge de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
   </data>
   <data name="RetryButton" xml:space="preserve">
     <value>Réessayer</value>
   </data>
-  <data name="NoReachableHubsFoundWarning" xml:space="preserve">
-    <value>Pas de Pont de Connexion joignable.
-Assurez vous que votre Pont de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
+  <data name="NoReachableBridgesFoundWarning" xml:space="preserve">
+    <value>Pas de Philips Hue Bridge de Connexion joignable.
+Assurez vous que votre Philips Hue Bridge de Connexion soit connecté au même réseau que le vôtre et réessayez.</value>
   </data>
-  <data name="ValidatingHubWarning" xml:space="preserve">
-    <value>Valider le Pont de Connexion.</value>
+  <data name="ValidatingBridgeWarning" xml:space="preserve">
+    <value>Valider le Philips Hue Bridge de Connexion.</value>
   </data>
-  <data name="NoHubConnectionWarning" xml:space="preserve">
-    <value>Pas de Pont de Connexion connecté.</value>
+  <data name="NoBridgeConnectionWarning" xml:space="preserve">
+    <value>Pas de Philips Hue Bridge de Connexion connecté.</value>
   </data>
   <data name="SelectSteamFolderMessage" xml:space="preserve">
     <value>Merci de sélectionner manuellement le dossier Steam.</value>
   </data>
-  <data name="SearchingForHubsWarning" xml:space="preserve">
-    <value>Recherche des Ponts de Connexion.</value>
+  <data name="SearchingForBridgesWarning" xml:space="preserve">
+    <value>Recherche des Philips Hue Bridge de Connexion.</value>
   </data>
   <data name="NoLightsFoundMessage" xml:space="preserve">
     <value>Aucune ampoule trouvée.</value>

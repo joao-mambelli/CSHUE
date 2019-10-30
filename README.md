@@ -23,4 +23,8 @@ See the [Wiki](https://github.com/joao7yt/CSHUE/wiki) for full documentation.
 
 I don't expect much finantial return from this application, but who knows, right? Donations are always appreciated.
 
-[Here's a PayPal donation page](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joao7yt@gmail.com&lc=US&item_name=CSHUE%20donation&currency_code=USD&bn=PP-DonationsBF). You will be able to donate from 1 to 9,999,999.99 dolars, any higher than this, please, email me a time and place and we meet there. You will also be able to choose "Make this a monthly donation" if you want to, well, make this a monthly donation.
+[Here's the PayPal donation page](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joao7yt@gmail.com&lc=US&item_name=CSHUE&currency_code=USD&bn=PP-DonationsBF).
+
+## Translations
+
+If you want you can help me translating CSHUE. Just open an issue saying you want to help.

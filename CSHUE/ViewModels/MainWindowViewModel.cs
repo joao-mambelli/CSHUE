@@ -759,8 +759,6 @@ namespace CSHUE.ViewModels
 
                 foreach (var b in bridges)
                 {
-                    Home.ViewModel.SetWarningValidating();
-
                     try
                     {
                         list.Add(new BridgeInfoCellViewModel

@@ -228,6 +228,8 @@ namespace CSHUE.ViewModels
 
         public void SetDone()
         {
+            List = new ObservableCollection<LightStateCell>();
+
             State = LoadingSpinner.SpinnerState.Disabled;
             LoadingVisibility = Visibility.Collapsed;
             RetryVisibility = Visibility.Collapsed;

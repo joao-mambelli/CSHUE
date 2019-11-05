@@ -452,4 +452,7 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="SearchAgainButton" xml:space="preserve">
     <value>Search for Bridges again</value>
   </data>
+  <data name="BridgeText" xml:space="preserve">
+    <value>Bridge:</value>
+  </data>
 </root>

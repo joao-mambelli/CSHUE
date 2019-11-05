@@ -151,6 +151,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bridge:.
+        /// </summary>
+        public static string BridgeText {
+            get {
+                return ResourceManager.GetString("BridgeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brightness modifier.
         /// </summary>
         public static string BrightnessModifierOption {

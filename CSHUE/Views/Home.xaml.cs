@@ -30,7 +30,8 @@ namespace CSHUE.Views
         {
             new Thread(async () =>
                 {
-                    while (!ViewModel.MainWindowViewModel.WindowMinimized)
+                    while (!ViewModel.MainWindowViewModel.WindowMinimized &&
+                           ViewModel.MainWindowViewModel.AllowStartLightsChecking)
                     {
                         await ViewModel.RefreshLights();
 
@@ -38,6 +39,11 @@ namespace CSHUE.Views
                     }
                 })
             { IsBackground = true }.Start();
+        }
+
+        public void StopLightsChecking()
+        {
+            
         }
 
         #endregion

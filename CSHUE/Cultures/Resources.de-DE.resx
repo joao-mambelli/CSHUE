@@ -452,4 +452,7 @@ Klicke auf "GitHub Fehlermeldung" um eine neue GitHub-Problemmeldung mit dem ber
   <data name="SearchAgainButton" xml:space="preserve">
     <value>Erneut nach Bridges suchen</value>
   </data>
+  <data name="BridgeText" xml:space="preserve">
+    <value>Bridge:</value>
+  </data>
 </root>

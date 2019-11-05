@@ -452,4 +452,7 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   <data name="SearchAgainButton" xml:space="preserve">
     <value>Procurar por Bridges de novo</value>
   </data>
+  <data name="BridgeText" xml:space="preserve">
+    <value>Bridge:</value>
+  </data>
 </root>

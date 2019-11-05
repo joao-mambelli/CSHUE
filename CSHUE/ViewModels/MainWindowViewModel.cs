@@ -727,8 +727,6 @@ namespace CSHUE.ViewModels
                 Home.ViewModel.SetWarningSearching();
 
                 bridges = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5.5)).ConfigureAwait(false)).ToList();
-
-                bridges.Add(bridges[0]);
             }
             catch
             {

@@ -692,6 +692,8 @@ namespace CSHUE.ViewModels
 
         public async void HueAsync(bool cleanSearching)
         {
+            AllowStartLightsChecking = false;
+
             _bridgeIp = await GetBridgeIpAsync(cleanSearching).ConfigureAwait(false);
 
             if (_bridgeIp == "")
@@ -725,6 +727,8 @@ namespace CSHUE.ViewModels
                 Home.ViewModel.SetWarningSearching();
 
                 bridges = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5.5)).ConfigureAwait(false)).ToList();
+
+                bridges.Add(bridges[0]);
             }
             catch
             {
@@ -814,8 +818,7 @@ namespace CSHUE.ViewModels
                 {
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        if (string.IsNullOrWhiteSpace(selectedBridgeId) &&
-                            selectedBridgeId != Properties.Settings.Default.BridgeId)
+                        if (selectedBridgeId != Properties.Settings.Default.BridgeId)
                             Properties.Settings.Default.AppKey = "";
 
                         Properties.Settings.Default.BridgeId = selectedBridgeId;

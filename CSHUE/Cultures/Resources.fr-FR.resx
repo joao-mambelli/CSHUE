@@ -452,4 +452,7 @@ Cliquez sur le bouton "Signaler une erreur sur Github" pour ouvrir un nouveau si
   <data name="SearchAgainButton" xml:space="preserve">
     <value>Rechercher des Ponts de Connexion</value>
   </data>
+  <data name="BridgeText" xml:space="preserve">
+    <value>Pont:</value>
+  </data>
 </root>

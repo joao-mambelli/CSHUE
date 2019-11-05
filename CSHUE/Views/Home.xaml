@@ -172,6 +172,15 @@
                     </ListBox>
                 </StackPanel>
 
+                <Button Margin="30 0 0 30"
+                        VerticalAlignment="Bottom"
+                        Height="31"
+                        MinWidth="90"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource CustomButton}"
+                        Content="{Binding Path=SearchAgainButton, Source={StaticResource Resources}}"
+                        Click="SearchAgain_OnClick"/>
+
                 <Button Margin="0 0 30 30"
                         VerticalAlignment="Bottom"
                         Height="31"

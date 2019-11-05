@@ -20,6 +20,7 @@ using CSHUE.Views;
 using Microsoft.Win32;
 using Q42.HueApi;
 using Q42.HueApi.Interfaces;
+using Q42.HueApi.Models.Bridge;
 
 namespace CSHUE.ViewModels
 {
@@ -689,9 +690,9 @@ namespace CSHUE.ViewModels
 
         #region Connection
 
-        public async void HueAsync()
+        public async void HueAsync(bool cleanSearching)
         {
-            _bridgeIp = await GetBridgeIpAsync().ConfigureAwait(false);
+            _bridgeIp = await GetBridgeIpAsync(cleanSearching).ConfigureAwait(false);
 
             if (_bridgeIp == "")
                 return;
@@ -713,51 +714,61 @@ namespace CSHUE.ViewModels
             AllowStartLightsChecking = true;
         }
 
-        public async Task<string> GetBridgeIpAsync()
+        public async Task<string> GetBridgeIpAsync(bool cleanSearching)
         {
             var locator = new HttpBridgeLocator();
 
-            List<Q42.HueApi.Models.Bridge.LocatedBridge> bridgeIPs;
+            List<LocatedBridge> bridges;
 
             try
             {
                 Home.ViewModel.SetWarningSearching();
 
-                bridgeIPs = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5.5)).ConfigureAwait(false)).ToList();
+                bridges = (await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5.5)).ConfigureAwait(false)).ToList();
             }
             catch
             {
-                bridgeIPs = null;
+                bridges = null;
             }
 
-            if (bridgeIPs == null || bridgeIPs.Count < 1)
+            if (bridges == null || bridges.Count < 1)
             {
                 Home.ViewModel.SetWarningNoBridge();
 
                 return "";
             }
 
-            if (bridgeIPs.Count > 1)
+            string selectedBridgeIp;
+            string selectedBridgeId;
+
+            if (!cleanSearching &&
+                Properties.Settings.Default.BridgeId != null &&
+                bridges.Any(x => x.BridgeId == Properties.Settings.Default.BridgeId))
+            {
+                selectedBridgeIp = bridges.Find(x => x.BridgeId == Properties.Settings.Default.BridgeId).IpAddress;
+                selectedBridgeId = bridges.Find(x => x.BridgeId == Properties.Settings.Default.BridgeId).BridgeId;
+            }
+            else if (bridges.Count == 1)
+            {
+                selectedBridgeIp = bridges.First().IpAddress;
+                selectedBridgeId = bridges.First().BridgeId;
+            }
+            else
             {
                 var list = new List<BridgeInfoCellViewModel>();
 
-                WebRequest request;
-
-                foreach (var b in bridgeIPs)
+                foreach (var b in bridges)
                 {
                     Home.ViewModel.SetWarningValidating();
 
                     try
                     {
-                        request = WebRequest.Create($"http://{b.IpAddress}/debug/clip.html");
-                        request.Timeout = 1000;
-
-                        if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                            list.Add(new BridgeInfoCellViewModel
-                            {
-                                Text = $"ip: {b.IpAddress}, id: {b.BridgeId}",
-                                Ip = b.IpAddress
-                            });
+                        list.Add(new BridgeInfoCellViewModel
+                        {
+                            Text = $"ip: {b.IpAddress}, id: {b.BridgeId}",
+                            Ip = b.IpAddress,
+                            Id = b.BridgeId
+                        });
                     }
                     catch
                     {
@@ -777,46 +788,44 @@ namespace CSHUE.ViewModels
                     return list.ElementAt(0).Ip;
                 }
 
-                var bridgeSelector = new BridgeSelector(list)
+                var bridge = Application.Current.Dispatcher?.Invoke(() =>
                 {
-                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
-                };
+                    var bridgeSelector = new BridgeSelector(list)
+                    {
+                        Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+                    };
+                    bridgeSelector.ShowDialog();
 
-                bridgeSelector.ShowDialog();
+                    return bridgeSelector;
+                });
 
-                Home.ViewModel.SetWarningValidating();
-
-                try
-                {
-                    request = WebRequest.Create($"http://{bridgeSelector.SelectedBridge}/debug/clip.html");
-                    request.Timeout = 1000;
-
-                    if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                        return bridgeSelector.SelectedBridge;
-                }
-                catch
-                {
-                    Home.ViewModel.SetWarningBridgeNotAvailable();
-
-                    return "";
-                }
-
-                return "";
+                selectedBridgeIp = bridge?.SelectedBridge.IpAddress;
+                selectedBridgeId = bridge?.SelectedBridge.BridgeId;
             }
 
             Home.ViewModel.SetWarningValidating();
 
             try
             {
-                var request = WebRequest.Create($"http://{bridgeIPs.First().IpAddress}/debug/clip.html");
+                var request = WebRequest.Create($"http://{selectedBridgeIp}/debug/clip.html");
                 request.Timeout = 1000;
 
-                if (((HttpWebResponse)request.GetResponse()).StatusCode == HttpStatusCode.OK)
-                    return bridgeIPs.First().IpAddress;
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        if (string.IsNullOrWhiteSpace(selectedBridgeId) &&
+                            selectedBridgeId != Properties.Settings.Default.BridgeId)
+                            Properties.Settings.Default.AppKey = "";
+
+                        Properties.Settings.Default.BridgeId = selectedBridgeId;
+                        return selectedBridgeIp;
+                    }
+                }
             }
             catch
             {
-                Home.ViewModel.SetWarningNoReachableBridges();
+                Home.ViewModel.SetWarningBridgeNotAvailable();
             }
 
             return "";
@@ -1593,24 +1602,25 @@ namespace CSHUE.ViewModels
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create("https://github.com/joao7yt/CSHUE/tags");
-                var response = (HttpWebResponse)request.GetResponse();
 
-                if (response.StatusCode != HttpStatusCode.OK)
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    if (response.StatusCode != HttpStatusCode.OK)
                     return "";
 
-                var receiveStream = response.GetResponseStream();
+                    using (var receiveStream = response.GetResponseStream())
+                    {
+                        if (receiveStream == null)
+                            return "";
 
-                if (receiveStream == null)
-                    return "";
-
-                var readStream = response.CharacterSet == null
-                    ? new StreamReader(receiveStream)
-                    : new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-
-                data = readStream.ReadToEnd();
-
-                response.Close();
-                readStream.Close();
+                        using (var readStream = response.CharacterSet == null
+                            ? new StreamReader(receiveStream)
+                            : new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet)))
+                        {
+                            data = readStream.ReadToEnd();
+                        }
+                    }
+                }
             }
             catch
             {
@@ -1651,6 +1661,11 @@ namespace CSHUE.ViewModels
                 return;
 
             Process.Start("steam://run/730//" + Properties.Settings.Default.LaunchOptions + "/");
+        }
+
+        public void SearchAgain()
+        {
+            HueAsync(true);
         }
 
         #endregion

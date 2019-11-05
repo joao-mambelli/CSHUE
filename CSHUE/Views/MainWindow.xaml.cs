@@ -219,7 +219,7 @@ namespace CSHUE.Views
                 }
             }
 
-            ViewModel.HueAsync();
+            ViewModel.HueAsync(false);
 
             ViewModel.Csgo();
 

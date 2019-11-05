@@ -261,11 +261,11 @@ Se o botão abaixo for pressionado, o CSHUE vai, automaticamente, tentar encontr
     <value>OK</value>
   </data>
   <data name="PressBridgeButtonWarning" xml:space="preserve">
-    <value>Pressione o link do seu Philips Hue Bridge.</value>
+    <value>Pressione o link da sua Philips Hue Bridge.</value>
   </data>
   <data name="NoBridgesFoundWarning" xml:space="preserve">
-    <value>Nenhum Philips Hue Bridge encontrado.
-Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tente novamente.</value>
+    <value>Nenhuma Philips Hue Bridge encontrada.
+Verifique se a Philips Hue Bridge está conectada à mesma rede que você e tente novamente.</value>
   </data>
   <data name="ExitButton" xml:space="preserve">
     <value>Sair</value>
@@ -277,21 +277,21 @@ Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tent
     <value>Seletor de Philips Hue Bridge</value>
   </data>
   <data name="SelectedBridgeNoLongerAvailableWarning" xml:space="preserve">
-    <value>O Philips Hue Bridge selecionada não está mais disponível.
-Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tente novamente.</value>
+    <value>A Philips Hue Bridge selecionada não está mais disponível.
+Verifique se a Philips Hue Bridge está conectada à mesma rede que você e tente novamente.</value>
   </data>
   <data name="RetryButton" xml:space="preserve">
     <value>Tentar Novamente</value>
   </data>
   <data name="NoReachableBridgesFoundWarning" xml:space="preserve">
-    <value>Nenhum Philips Hue Bridge accessível encontrado.
-Verifique se o Philips Hue Bridge está conectado à mesma rede que você e tente novamente.</value>
+    <value>Nenhuma Philips Hue Bridge accessível encontrada.
+Verifique se a Philips Hue Bridge está conectada à mesma rede que você e tente novamente.</value>
   </data>
   <data name="ValidatingBridgeWarning" xml:space="preserve">
-    <value>Validando Philips Hue Bridge.</value>
+    <value>Validando a Philips Hue Bridge.</value>
   </data>
   <data name="NoBridgeConnectionWarning" xml:space="preserve">
-    <value>Sem conexão com um Philips Hue Bridge.</value>
+    <value>Sem conexão com uma Philips Hue Bridge.</value>
   </data>
   <data name="SelectSteamFolderMessage" xml:space="preserve">
     <value>Por favor, selecione manualmente a pasta da Steam.</value>
@@ -448,5 +448,8 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
   </data>
   <data name="DefaultComboBoxItem" xml:space="preserve">
     <value>Padrão</value>
+  </data>
+  <data name="SearchAgainButton" xml:space="preserve">
+    <value>Procurar por Bridges de novo</value>
   </data>
 </root>

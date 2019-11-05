@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using CSHUE.ViewModels;
+using Q42.HueApi.Models.Bridge;
 
 namespace CSHUE.Views
 {
@@ -33,7 +34,7 @@ namespace CSHUE.Views
 
         #region Properties
 
-        public string SelectedBridge { get; set; }
+        public LocatedBridge SelectedBridge { get; set; }
 
         #endregion
 
@@ -45,7 +46,11 @@ namespace CSHUE.Views
             {
                 if (!c.IsChecked) continue;
 
-                SelectedBridge = c.Ip;
+                SelectedBridge = new LocatedBridge
+                {
+                    IpAddress = c.Ip,
+                    BridgeId = c.Id
+                };
                 break;
             }
 

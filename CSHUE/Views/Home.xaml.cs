@@ -46,12 +46,17 @@ namespace CSHUE.Views
 
         private void Retry_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.MainWindowViewModel.HueAsync();
+            ViewModel.MainWindowViewModel.HueAsync(true);
         }
 
         private void RunCsgo_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.MainWindowViewModel.RunCsgo();
+        }
+
+        private void SearchAgain_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.MainWindowViewModel.SearchAgain();
         }
 
         #endregion

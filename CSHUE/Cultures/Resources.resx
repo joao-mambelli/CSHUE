@@ -449,4 +449,7 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   <data name="DefaultComboBoxItem" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="SearchAgainButton" xml:space="preserve">
+    <value>Search for Bridges again</value>
+  </data>
 </root>

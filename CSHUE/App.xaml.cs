@@ -288,6 +288,9 @@ namespace CSHUE
       <setting name=""BrightnessModifier"" serializeAs=""String"">
         <value>100</value>
       </setting>
+      <setting name=""BridgeId"" serializeAs=""String"">
+        <value />
+      </setting>
     </CSHUE.Properties.Settings>
   </userSettings>
 </configuration>

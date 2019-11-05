@@ -449,4 +449,7 @@ Klicke auf "GitHub Fehlermeldung" um eine neue GitHub-Problemmeldung mit dem ber
   <data name="DefaultComboBoxItem" xml:space="preserve">
     <value>Standard</value>
   </data>
+  <data name="SearchAgainButton" xml:space="preserve">
+    <value>Erneut nach Bridges suchen</value>
+  </data>
 </root>

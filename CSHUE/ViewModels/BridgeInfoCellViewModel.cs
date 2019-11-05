@@ -55,6 +55,23 @@
             }
         }
 
+        /// <summary>
+        /// Id back field.
+        /// </summary>
+        private string _id;
+        /// <summary>
+        /// Id property.
+        /// </summary>
+        public string Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
     }
 }

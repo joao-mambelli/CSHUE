@@ -332,8 +332,8 @@
                               HorizontalAlignment="Left"
                               IsEnabled="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartup}"
                               IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=RunOnStartupMinimized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Checked="Save"
-                              Unchecked="Save">
+                              Checked="RunOnStartupCheckBox_OnCheckedChanged"
+                              Unchecked="RunOnStartupCheckBox_OnCheckedChanged">
                         <TextBlock Text="{Binding Path=RunOnStartupMinimizedOption, Source={StaticResource Resources}}"
                                    TextWrapping="Wrap"/>
                     </CheckBox>

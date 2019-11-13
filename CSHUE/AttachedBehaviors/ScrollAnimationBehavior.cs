@@ -48,7 +48,6 @@ namespace CSHUE.AttachedBehaviors
         private static void OnScrollViewerPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             var tempToValue = _currentToValue;
-
             double mouseWheelChange = e.Delta;
             var scroller = (ScrollViewer) sender;
             var offset = mouseWheelChange * 2 / 3;
@@ -72,7 +71,6 @@ namespace CSHUE.AttachedBehaviors
         {
             var scroller = (ScrollViewer) sender;
             var offset = GetPointsToScroll(scroller);
-
             var keyPressed = e.Key;
             var isKeyHandled = false;
 
@@ -162,7 +160,6 @@ namespace CSHUE.AttachedBehaviors
                 }));
 
             _storyboard = new Storyboard();
-
             _storyboard.Children.Add(verticalAnimation);
             Storyboard.SetTarget(verticalAnimation, scrollViewer);
             Storyboard.SetTargetProperty(verticalAnimation, new PropertyPath(VerticalOffsetProperty));

@@ -16,21 +16,9 @@ namespace CSHUE.Components.Primitives
     {
         #region Members
 
-        /// <summary>
-        /// Name constant for Text template part.
-        /// </summary>
         internal const string PartTextBox = "PART_TextBox";
-
-        /// <summary>
-        /// Name constant for Spinner template part.
-        /// </summary>
         internal const string PartSpinner = "PART_Spinner";
-
         internal bool IsTextChangedFromUi;
-
-        /// <summary>
-        /// Flags if the Text and Value properties are in the process of being sync'd
-        /// </summary>
         private bool _isSyncingTextAndValueProperties;
         private bool _internalValueSet;
 
@@ -51,9 +39,8 @@ namespace CSHUE.Components.Primitives
 
         #region AllowSpin
 
-        public static readonly DependencyProperty AllowSpinProperty = DependencyProperty.Register("AllowSpin", typeof(bool), typeof(UpDownBase<T>),
-
-    new UIPropertyMetadata(true));
+        public static readonly DependencyProperty AllowSpinProperty = DependencyProperty.Register("AllowSpin",
+            typeof(bool), typeof(UpDownBase<T>), new UIPropertyMetadata(true));
         public bool AllowSpin
         {
             get => (bool)GetValue(AllowSpinProperty);
@@ -64,9 +51,9 @@ namespace CSHUE.Components.Primitives
 
         #region ButtonSpinnerLocation
 
-        public static readonly DependencyProperty ButtonSpinnerLocationProperty = DependencyProperty.Register("ButtonSpinnerLocation", typeof(Location
-
-    ), typeof(UpDownBase<T>), new UIPropertyMetadata(Location.Right));
+        public static readonly DependencyProperty ButtonSpinnerLocationProperty =
+            DependencyProperty.Register("ButtonSpinnerLocation", typeof(Location), typeof(UpDownBase<T>),
+                new UIPropertyMetadata(Location.Right));
         public Location ButtonSpinnerLocation
         {
             get => (Location)GetValue(ButtonSpinnerLocationProperty);
@@ -77,9 +64,9 @@ namespace CSHUE.Components.Primitives
 
         #region ClipValueToMinMax
 
-        public static readonly DependencyProperty ClipValueToMinMaxProperty = DependencyProperty.Register("ClipValueToMinMax", typeof(bool), typeof(
-
-    UpDownBase<T>), new UIPropertyMetadata(false));
+        public static readonly DependencyProperty ClipValueToMinMaxProperty =
+            DependencyProperty.Register("ClipValueToMinMax", typeof(bool), typeof(UpDownBase<T>),
+                new UIPropertyMetadata(false));
         public bool ClipValueToMinMax
         {
             get => (bool)GetValue(ClipValueToMinMaxProperty);
@@ -90,16 +77,17 @@ namespace CSHUE.Components.Primitives
 
         #region DisplayDefaultValueOnEmptyText
 
-        public static readonly DependencyProperty DisplayDefaultValueOnEmptyTextProperty = DependencyProperty.Register("DisplayDefaultValueOnEmptyText",
-
-    typeof(bool), typeof(UpDownBase<T>), new UIPropertyMetadata(false, OnDisplayDefaultValueOnEmptyTextChanged));
+        public static readonly DependencyProperty DisplayDefaultValueOnEmptyTextProperty =
+            DependencyProperty.Register("DisplayDefaultValueOnEmptyText", typeof(bool), typeof(UpDownBase<T>),
+                new UIPropertyMetadata(false, OnDisplayDefaultValueOnEmptyTextChanged));
         public bool DisplayDefaultValueOnEmptyText
         {
             get => (bool)GetValue(DisplayDefaultValueOnEmptyTextProperty);
             set => SetValue(DisplayDefaultValueOnEmptyTextProperty, value);
         }
 
-        private static void OnDisplayDefaultValueOnEmptyTextChanged(DependencyObject source, DependencyPropertyChangedEventArgs args)
+        private static void OnDisplayDefaultValueOnEmptyTextChanged(DependencyObject source,
+            DependencyPropertyChangedEventArgs args)
         {
             ((UpDownBase<T>)source).OnDisplayDefaultValueOnEmptyTextChanged();
         }
@@ -107,18 +95,15 @@ namespace CSHUE.Components.Primitives
         private void OnDisplayDefaultValueOnEmptyTextChanged()
         {
             if (IsInitialized && string.IsNullOrEmpty(Text))
-            {
                 SyncTextAndValueProperties(false, Text);
-            }
         }
 
         #endregion
 
         #region DefaultValue
 
-        public static readonly DependencyProperty DefaultValueProperty = DependencyProperty.Register("DefaultValue", typeof(T), typeof(UpDownBase<T>
-
-    ), new UIPropertyMetadata(default(T), OnDefaultValueChanged));
+        public static readonly DependencyProperty DefaultValueProperty = DependencyProperty.Register("DefaultValue",
+            typeof(T), typeof(UpDownBase<T>), new UIPropertyMetadata(default(T), OnDefaultValueChanged));
         public T DefaultValue
         {
             get => (T)GetValue(DefaultValueProperty);
@@ -133,18 +118,15 @@ namespace CSHUE.Components.Primitives
         private void OnDefaultValueChanged()
         {
             if (IsInitialized && string.IsNullOrEmpty(Text))
-            {
                 SyncTextAndValueProperties(true, Text);
-            }
         }
 
         #endregion
 
         #region Maximum
 
-        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(T), typeof(UpDownBase<T>), new
-
-    UIPropertyMetadata(default(T), OnMaximumChanged, OnCoerceMaximum));
+        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(T),
+            typeof(UpDownBase<T>), new UIPropertyMetadata(default(T), OnMaximumChanged, OnCoerceMaximum));
         public T Maximum
         {
             get => (T)GetValue(MaximumProperty);
@@ -160,9 +142,7 @@ namespace CSHUE.Components.Primitives
         protected virtual void OnMaximumChanged(T oldValue, T newValue)
         {
             if (IsInitialized)
-            {
                 SetValidSpinDirection();
-            }
         }
 
         private static object OnCoerceMaximum(DependencyObject d, object baseValue)
@@ -182,9 +162,8 @@ namespace CSHUE.Components.Primitives
 
         #region Minimum
 
-        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(T), typeof(UpDownBase<T>), new
-
-    UIPropertyMetadata(default(T), OnMinimumChanged, OnCoerceMinimum));
+        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(T),
+            typeof(UpDownBase<T>), new UIPropertyMetadata(default(T), OnMinimumChanged, OnCoerceMinimum));
         public T Minimum
         {
             get => (T)GetValue(MinimumProperty);
@@ -200,9 +179,7 @@ namespace CSHUE.Components.Primitives
         protected virtual void OnMinimumChanged(T oldValue, T newValue)
         {
             if (IsInitialized)
-            {
                 SetValidSpinDirection();
-            }
         }
 
         private static object OnCoerceMinimum(DependencyObject d, object baseValue)
@@ -222,16 +199,9 @@ namespace CSHUE.Components.Primitives
 
         #region MouseWheelActiveTrigger
 
-        /// <summary>
-        /// Identifies the MouseWheelActiveTrigger dependency property
-        /// </summary>
-        public static readonly DependencyProperty MouseWheelActiveTriggerProperty = DependencyProperty.Register("MouseWheelActiveTrigger", typeof(
-
-    MouseWheelActiveTrigger), typeof(UpDownBase<T>), new UIPropertyMetadata(MouseWheelActiveTrigger.FocusedMouseOver));
-
-        /// <summary>
-        /// Get or set when the mouse wheel event should affect the value.
-        /// </summary>
+        public static readonly DependencyProperty MouseWheelActiveTriggerProperty =
+            DependencyProperty.Register("MouseWheelActiveTrigger", typeof(MouseWheelActiveTrigger),
+                typeof(UpDownBase<T>), new UIPropertyMetadata(MouseWheelActiveTrigger.FocusedMouseOver));
         public MouseWheelActiveTrigger MouseWheelActiveTrigger
         {
             get => (MouseWheelActiveTrigger)GetValue(MouseWheelActiveTriggerProperty);
@@ -243,42 +213,31 @@ namespace CSHUE.Components.Primitives
         #region MouseWheelActiveOnFocus
 
         [Obsolete("Use MouseWheelActiveTrigger property instead")]
-        public static readonly DependencyProperty MouseWheelActiveOnFocusProperty = DependencyProperty.Register("MouseWheelActiveOnFocus", typeof(bool
-
-    ), typeof(UpDownBase<T>), new UIPropertyMetadata(true, OnMouseWheelActiveOnFocusChanged));
-
+        public static readonly DependencyProperty MouseWheelActiveOnFocusProperty =
+            DependencyProperty.Register("MouseWheelActiveOnFocus", typeof(bool), typeof(UpDownBase<T>),
+                new UIPropertyMetadata(true, OnMouseWheelActiveOnFocusChanged));
         [Obsolete("Use MouseWheelActiveTrigger property instead")]
         public bool MouseWheelActiveOnFocus
         {
-            get
-            {
-#pragma warning disable 618
-                return (bool)GetValue(MouseWheelActiveOnFocusProperty);
-#pragma warning restore 618
-            }
-            set
-            {
-#pragma warning disable 618
-                SetValue(MouseWheelActiveOnFocusProperty, value);
-#pragma warning restore 618
-            }
+            get => (bool)GetValue(MouseWheelActiveOnFocusProperty);
+            set => SetValue(MouseWheelActiveOnFocusProperty, value);
         }
 
         private static void OnMouseWheelActiveOnFocusChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             if (o is UpDownBase<T> upDownBase)
                 upDownBase.MouseWheelActiveTrigger = (bool)e.NewValue
-                  ? MouseWheelActiveTrigger.FocusedMouseOver
-                  : MouseWheelActiveTrigger.MouseOver;
+                    ? MouseWheelActiveTrigger.FocusedMouseOver
+                    : MouseWheelActiveTrigger.MouseOver;
         }
 
         #endregion
 
         #region ShowButtonSpinner
 
-        public static readonly DependencyProperty ShowButtonSpinnerProperty = DependencyProperty.Register("ShowButtonSpinner", typeof(bool), typeof(
-
-    UpDownBase<T>), new UIPropertyMetadata(true));
+        public static readonly DependencyProperty ShowButtonSpinnerProperty =
+            DependencyProperty.Register("ShowButtonSpinner", typeof(bool), typeof(UpDownBase<T>),
+                new UIPropertyMetadata(true));
         public bool ShowButtonSpinner
         {
             get => (bool)GetValue(ShowButtonSpinnerProperty);
@@ -289,8 +248,9 @@ namespace CSHUE.Components.Primitives
 
         #region UpdateValueOnEnterKey
 
-        public static readonly DependencyProperty UpdateValueOnEnterKeyProperty = DependencyProperty.Register("UpdateValueOnEnterKey", typeof(bool), typeof(UpDownBase<T>),
-          new FrameworkPropertyMetadata(false, OnUpdateValueOnEnterKeyChanged));
+        public static readonly DependencyProperty UpdateValueOnEnterKeyProperty =
+            DependencyProperty.Register("UpdateValueOnEnterKey", typeof(bool), typeof(UpDownBase<T>),
+                new FrameworkPropertyMetadata(false, OnUpdateValueOnEnterKeyChanged));
         public bool UpdateValueOnEnterKey
         {
             get => (bool)GetValue(UpdateValueOnEnterKeyProperty);
@@ -305,14 +265,17 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnUpdateValueOnEnterKeyChanged(bool oldValue, bool newValue)
         {
+            // ignored
         }
 
         #endregion
 
         #region Value
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(T), typeof(UpDownBase<T>),
-          new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged, OnCoerceValue, false, UpdateSourceTrigger.PropertyChanged));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(T),
+            typeof(UpDownBase<T>),
+            new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                OnValueChanged, OnCoerceValue, false, UpdateSourceTrigger.PropertyChanged));
         public T Value
         {
             get => (T)GetValue(ValueProperty);
@@ -322,6 +285,7 @@ namespace CSHUE.Components.Primitives
         private void SetValueInternal(T value)
         {
             _internalValueSet = true;
+
             try
             {
                 Value = value;
@@ -368,10 +332,9 @@ namespace CSHUE.Components.Primitives
 
         internal UpDownBase()
         {
+            AddHandler(Mouse.PreviewMouseDownOutsideCapturedElementEvent,
+                new RoutedEventHandler(HandleClickOutsideOfControlWithMouseCapture), true);
 
-            AddHandler(Mouse.PreviewMouseDownOutsideCapturedElementEvent, new RoutedEventHandler(HandleClickOutsideOfControlWithMouseCapture),
-
-      true);
             IsKeyboardFocusWithinChanged += UpDownBase_IsKeyboardFocusWithinChanged;
         }
 
@@ -393,7 +356,8 @@ namespace CSHUE.Components.Primitives
             if (TextBox != null)
             {
                 TextBox.TextChanged -= TextBox_TextChanged;
-                TextBox.RemoveHandler(Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_PreviewMouseDown));
+                TextBox.RemoveHandler(Mouse.PreviewMouseDownEvent,
+                    new MouseButtonEventHandler(TextBox_PreviewMouseDown));
             }
 
             TextBox = GetTemplateChild(PartTextBox) as TextBox;
@@ -402,7 +366,8 @@ namespace CSHUE.Components.Primitives
             {
                 TextBox.Text = Text;
                 TextBox.TextChanged += TextBox_TextChanged;
-                TextBox.AddHandler(Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_PreviewMouseDown), true);
+                TextBox.AddHandler(Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_PreviewMouseDown),
+                    true);
             }
 
             if (Spinner != null)
@@ -421,18 +386,15 @@ namespace CSHUE.Components.Primitives
             switch (e.Key)
             {
                 case Key.Enter:
-                    {
-                        var commitSuccess = CommitInput();
-                        e.Handled = !commitSuccess;
-                        break;
-                    }
+                    var commitSuccess = CommitInput();
+                    e.Handled = !commitSuccess;
+                    break;
             }
         }
 
         protected override void OnTextChanged(string oldValue, string newValue)
         {
             if (IsInitialized)
-            {
                 if (UpdateValueOnEnterKey)
                 {
                     if (!IsTextChangedFromUi)
@@ -442,7 +404,6 @@ namespace CSHUE.Components.Primitives
                 {
                     SyncTextAndValueProperties(true, Text);
                 }
-            }
         }
 
         protected override void OnCultureInfoChanged(CultureInfo oldValue, CultureInfo newValue)
@@ -463,13 +424,7 @@ namespace CSHUE.Components.Primitives
         private void TextBox_PreviewMouseDown(object sender, RoutedEventArgs e)
         {
             if (MouseWheelActiveTrigger == MouseWheelActiveTrigger.Focused && !Equals(Mouse.Captured, Spinner))
-            {
-                Dispatcher?.BeginInvoke(DispatcherPriority.Input, new Action(() =>
-                    {
-                        Mouse.Capture(Spinner);
-                    }
-                ));
-            }
+                Dispatcher?.BeginInvoke(DispatcherPriority.Input, new Action(() => Mouse.Capture(Spinner)));
         }
 
         private void HandleClickOutsideOfControlWithMouseCapture(object sender, RoutedEventArgs e)
@@ -484,6 +439,7 @@ namespace CSHUE.Components.Primitives
             {
                 var activeTrigger = MouseWheelActiveTrigger;
                 var spin = !e.UsingMouseWheel;
+
                 spin |= activeTrigger == MouseWheelActiveTrigger.MouseOver;
                 spin |= TextBox != null && TextBox.IsFocused && activeTrigger == MouseWheelActiveTrigger.FocusedMouseOver;
                 spin |= TextBox != null && TextBox.IsFocused && activeTrigger == MouseWheelActiveTrigger.Focused && Mouse.Captured is Spinner;
@@ -501,12 +457,12 @@ namespace CSHUE.Components.Primitives
         #region Events
 
         public event InputValidationErrorEventHandler InputValidationError;
-
         public event EventHandler<SpinEventArgs> Spinned;
 
         #region ValueChanged Event
 
-        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent("ValueChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UpDownBase<T>));
+        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent("ValueChanged",
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UpDownBase<T>));
         public event RoutedEventHandler ValueChanged
         {
             add => AddHandler(ValueChangedEvent, value);
@@ -525,6 +481,7 @@ namespace CSHUE.Components.Primitives
                 throw new ArgumentNullException(nameof(e));
 
             var handler = Spinned;
+
             handler?.Invoke(this, e);
 
             if (e.Direction == SpinDirection.Increase)
@@ -536,12 +493,14 @@ namespace CSHUE.Components.Primitives
         protected virtual void RaiseValueChangedEvent(T oldValue, T newValue)
         {
             var args = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue) { RoutedEvent = ValueChangedEvent };
+
             RaiseEvent(args);
         }
 
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+
             var updateValueFromText = ReadLocalValue(ValueProperty) == DependencyProperty.UnsetValue &&
                                       BindingOperations.GetBinding(this, ValueProperty) == null && Equals(Value,
                                           ValueProperty.DefaultMetadata.DefaultValue);
@@ -549,26 +508,16 @@ namespace CSHUE.Components.Primitives
             SyncTextAndValueProperties(updateValueFromText, Text, !updateValueFromText);
         }
 
-        /// <summary>
-        /// Performs an increment if conditions allow it.
-        /// </summary>
         internal void DoDecrement()
         {
             if (Spinner == null || (Spinner.ValidSpinDirection & ValidSpinDirections.Decrease) == ValidSpinDirections.Decrease)
-            {
                 OnDecrement();
-            }
         }
-
-        /// <summary>
-        /// Performs a decrement if conditions allow it.
-        /// </summary>
+        
         internal void DoIncrement()
         {
             if (Spinner == null || (Spinner.ValidSpinDirection & ValidSpinDirections.Increase) == ValidSpinDirections.Increase)
-            {
                 OnIncrement();
-            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -590,9 +539,7 @@ namespace CSHUE.Components.Primitives
         private void UpDownBase_IsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (!(bool)e.NewValue)
-            {
                 CommitInput();
-            }
         }
 
         private void RaiseInputValidationError(Exception e)
@@ -600,11 +547,11 @@ namespace CSHUE.Components.Primitives
             if (InputValidationError != null)
             {
                 var args = new InputValidationErrorEventArgs(e);
+
                 InputValidationError(this, args);
+
                 if (args.ThrowException)
-                {
                     throw args.Exception;
-                }
             }
         }
 
@@ -624,24 +571,21 @@ namespace CSHUE.Components.Primitives
                 return true;
 
             _isSyncingTextAndValueProperties = true;
+
             var parsedTextIsValid = true;
+
             try
             {
                 if (updateValueFromText)
-                {
                     if (string.IsNullOrEmpty(text))
-                    {
                         SetValueInternal(DefaultValue);
-                    }
                     else
-                    {
                         try
                         {
                             var newValue = ConvertTextToValue(text);
+
                             if (!Equals(newValue, Value))
-                            {
                                 SetValueInternal(newValue);
-                            }
                         }
                         catch (Exception e)
                         {
@@ -650,19 +594,18 @@ namespace CSHUE.Components.Primitives
                             if (!IsTextChangedFromUi)
                                 RaiseInputValidationError(e);
                         }
-                    }
-                }
 
                 if (!IsTextChangedFromUi)
                 {
-                    var shouldKeepEmpty = !forceTextUpdate && string.IsNullOrEmpty(Text) && Equals(Value, DefaultValue) && !DisplayDefaultValueOnEmptyText;
+                    var shouldKeepEmpty = !forceTextUpdate && string.IsNullOrEmpty(Text) &&
+                                          Equals(Value, DefaultValue) && !DisplayDefaultValueOnEmptyText;
+
                     if (!shouldKeepEmpty)
                     {
                         var newText = ConvertValueToText();
+
                         if (!Equals(Text, newText))
-                        {
                             Text = newText;
-                        }
                     }
 
                     if (TextBox != null)
@@ -675,43 +618,22 @@ namespace CSHUE.Components.Primitives
                         Spinner.ValidSpinDirection = ValidSpinDirections.None;
                 }
                 else
-                {
                     SetValidSpinDirection();
-                }
             }
             finally
             {
                 _isSyncingTextAndValueProperties = false;
             }
+
             return parsedTextIsValid;
         }
 
         #region Abstract
 
-        /// <summary>
-        /// Converts the formatted text to a value.
-        /// </summary>
         protected abstract T ConvertTextToValue(string text);
-
-        /// <summary>
-        /// Converts the value to formatted text.
-        /// </summary>
-        /// <returns></returns>
         protected abstract string ConvertValueToText();
-
-        /// <summary>
-        /// Called by OnSpin when the spin direction is SpinDirection.Increase.
-        /// </summary>
         protected abstract void OnIncrement();
-
-        /// <summary>
-        /// Called by OnSpin when the spin direction is SpinDirection.Descrease.
-        /// </summary>
         protected abstract void OnDecrement();
-
-        /// <summary>
-        /// Sets the valid spin directions.
-        /// </summary>
         protected abstract void SetValidSpinDirection();
 
         #endregion

@@ -7,7 +7,8 @@ namespace CSHUE.Components.DateTimeUpDown
 {
     internal class DateTimeParser
     {
-        public static bool TryParse(string value, string format, DateTime currentDate, CultureInfo cultureInfo, bool autoClipTimeParts, out DateTime result)
+        public static bool TryParse(string value, string format, DateTime currentDate, CultureInfo cultureInfo,
+            bool autoClipTimeParts, out DateTime result)
         {
             var success = false;
             result = currentDate;
@@ -35,9 +36,11 @@ namespace CSHUE.Components.DateTimeUpDown
                 if (format != null)
                 {
                     var quoteStart = format.IndexOf("'", StringComparison.Ordinal);
+
                     if (quoteStart > -1)
                     {
                         var quoteEnd = format.IndexOf("'", quoteStart + 1, StringComparison.Ordinal);
+
                         if (quoteEnd > -1)
                         {
                             var quoteContent = format.Substring(quoteStart + 1, quoteEnd - quoteStart - 1);
@@ -53,7 +56,8 @@ namespace CSHUE.Components.DateTimeUpDown
             }
         }
 
-        private static string ComputeDateTimeString(string dateTime, string format, DateTime currentDate, CultureInfo cultureInfo, bool autoClipTimeParts)
+        private static string ComputeDateTimeString(string dateTime, string format, DateTime currentDate,
+            CultureInfo cultureInfo, bool autoClipTimeParts)
         {
             var dateParts = GetDateParts(currentDate, cultureInfo);
             var timeParts = new[] { currentDate.Hour.ToString(), currentDate.Minute.ToString(), currentDate.Second.ToString() };
@@ -67,6 +71,7 @@ namespace CSHUE.Components.DateTimeUpDown
             var dateTimeParts = new List<string>();
             var formats = new List<string>();
             var isContainingDateTimeSeparators = dateTimeSeparators.Any(s => dateTime.Contains(s));
+
             if (isContainingDateTimeSeparators)
             {
                 dateTimeParts = dateTime.Split(dateTimeSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -77,9 +82,11 @@ namespace CSHUE.Components.DateTimeUpDown
                 var currentformat = "";
                 var currentString = "";
                 var formatArray = format.ToCharArray();
+
                 for (var i = 0; i < formatArray.Length; ++i)
                 {
                     var c = formatArray[i];
+
                     if (!currentformat.Contains(c))
                     {
                         if (!string.IsNullOrEmpty(currentformat))
@@ -87,6 +94,7 @@ namespace CSHUE.Components.DateTimeUpDown
                             formats.Add(currentformat);
                             dateTimeParts.Add(currentString);
                         }
+
                         currentformat = c.ToString();
                         currentString = i < dateTime.Length ? dateTime[i].ToString() : "";
                     }
@@ -96,6 +104,7 @@ namespace CSHUE.Components.DateTimeUpDown
                         currentString = string.Concat(currentString, i < dateTime.Length ? dateTime[i] : '\0');
                     }
                 }
+
                 if (!string.IsNullOrEmpty(currentformat))
                 {
                     formats.Add(currentformat);
@@ -104,12 +113,8 @@ namespace CSHUE.Components.DateTimeUpDown
             }
 
             if (dateTimeParts.Count < formats.Count)
-            {
                 while (dateTimeParts.Count != formats.Count)
-                {
                     dateTimeParts.Add("0");
-                }
-            }
 
             if (dateTimeParts.Count != formats.Count)
                 return string.Empty;
@@ -117,8 +122,8 @@ namespace CSHUE.Components.DateTimeUpDown
             for (var i = 0; i < formats.Count; i++)
             {
                 var f = formats[i];
+
                 if (!f.Contains("ddd") && !f.Contains("GMT"))
-                {
                     if (f.Contains("M"))
                         dateParts["Month"] = dateTimeParts[i];
                     else if (f.Contains("d"))
@@ -133,6 +138,7 @@ namespace CSHUE.Components.DateTimeUpDown
                     else if (f.Contains("hh") || f.Contains("HH"))
                     {
                         var hourValue = Convert.ToInt32(dateTimeParts[i]) % 24;
+
                         timeParts[0] = autoClipTimeParts ? hourValue.ToString() : dateTimeParts[i];
                     }
                     else if (f.Contains("h") || f.Contains("H"))
@@ -140,17 +146,17 @@ namespace CSHUE.Components.DateTimeUpDown
                         if (autoClipTimeParts)
                         {
                             var hourValue = Convert.ToInt32(dateTimeParts[i]) % 24;
+
                             if (hourValue > 11)
                             {
                                 hourValue -= 12;
                                 forcePmDesignator = true;
                             }
+
                             timeParts[0] = hourValue.ToString();
                         }
                         else
-                        {
                             timeParts[0] = dateTimeParts[i];
-                        }
                     }
                     else if (f.Contains("m"))
                     {
@@ -166,17 +172,18 @@ namespace CSHUE.Components.DateTimeUpDown
                         millisecondsPart = dateTimeParts[i];
                     else if (f.Contains("t"))
                         designator = forcePmDesignator ? "PM" : dateTimeParts[i];
-                }
             }
 
             var date = string.Join(cultureInfo.DateTimeFormat.DateSeparator, dateParts.Select(x => x.Value).ToArray());
             var time = string.Join(cultureInfo.DateTimeFormat.TimeSeparator, timeParts);
+
             time += "." + millisecondsPart;
 
             return $"{date} {time} {designator}";
         }
 
-        private static void UpdateSortableDateTimeString(ref string dateTime, ref string format, CultureInfo cultureInfo)
+        private static void UpdateSortableDateTimeString(ref string dateTime, ref string format,
+            CultureInfo cultureInfo)
         {
             if (format == cultureInfo.DateTimeFormat.SortableDateTimePattern)
             {
@@ -193,9 +200,15 @@ namespace CSHUE.Components.DateTimeUpDown
         private static Dictionary<string, string> GetDateParts(DateTime currentDate, CultureInfo cultureInfo)
         {
             var dateParts = new Dictionary<string, string>();
-            var dateTimeSeparators = new[] { ",", " ", "-", ".", "/", cultureInfo.DateTimeFormat.DateSeparator, cultureInfo.DateTimeFormat.TimeSeparator };
-            var dateFormatParts = cultureInfo.DateTimeFormat.ShortDatePattern.Split(dateTimeSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
-            dateFormatParts.ForEach(item =>
+            var dateTimeSeparators = new[]
+            {
+                ",", " ", "-", ".", "/", cultureInfo.DateTimeFormat.DateSeparator,
+                cultureInfo.DateTimeFormat.TimeSeparator
+            };
+            var dateFormatParts = cultureInfo.DateTimeFormat.ShortDatePattern
+                .Split(dateTimeSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            foreach (var item in dateFormatParts)
             {
                 var key = string.Empty;
                 var value = string.Empty;
@@ -215,11 +228,10 @@ namespace CSHUE.Components.DateTimeUpDown
                     key = "Year";
                     value = currentDate.Year.ToString("D4");
                 }
-                if (!dateParts.ContainsKey(key))
-                {
-                    dateParts.Add(key, value);
-                }
-            });
+
+                if (!dateParts.ContainsKey(key)) dateParts.Add(key, value);
+            }
+
             return dateParts;
         }
     }

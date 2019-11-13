@@ -11,7 +11,8 @@ namespace CSHUE.Components.Primitives
 
         #region AllowTextInput
 
-        public static readonly DependencyProperty AllowTextInputProperty = DependencyProperty.Register("AllowTextInput", typeof(bool), typeof(InputBase), new UIPropertyMetadata(true, OnAllowTextInputChanged));
+        public static readonly DependencyProperty AllowTextInputProperty = DependencyProperty.Register("AllowTextInput",
+            typeof(bool), typeof(InputBase), new UIPropertyMetadata(true, OnAllowTextInputChanged));
         public bool AllowTextInput
         {
             get => (bool)GetValue(AllowTextInputProperty);
@@ -26,13 +27,16 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnAllowTextInputChanged(bool oldValue, bool newValue)
         {
+            // ignored
         }
 
         #endregion
 
         #region CultureInfo
 
-        public static readonly DependencyProperty CultureInfoProperty = DependencyProperty.Register("CultureInfo", typeof(CultureInfo), typeof(InputBase), new UIPropertyMetadata(CultureInfo.CurrentCulture, OnCultureInfoChanged));
+        public static readonly DependencyProperty CultureInfoProperty = DependencyProperty.Register("CultureInfo",
+            typeof(CultureInfo), typeof(InputBase),
+            new UIPropertyMetadata(CultureInfo.CurrentCulture, OnCultureInfoChanged));
         public CultureInfo CultureInfo
         {
             get => (CultureInfo)GetValue(CultureInfoProperty);
@@ -47,14 +51,15 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnCultureInfoChanged(CultureInfo oldValue, CultureInfo newValue)
         {
-
+            // ignored
         }
 
         #endregion
 
         #region IsReadOnly
 
-        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(InputBase), new UIPropertyMetadata(false, OnReadOnlyChanged));
+        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register("IsReadOnly",
+            typeof(bool), typeof(InputBase), new UIPropertyMetadata(false, OnReadOnlyChanged));
         public bool IsReadOnly
         {
             get => (bool)GetValue(IsReadOnlyProperty);
@@ -69,13 +74,15 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnReadOnlyChanged(bool oldValue, bool newValue)
         {
+            // ignored
         }
 
         #endregion
 
         #region IsUndoEnabled
 
-        public static readonly DependencyProperty IsUndoEnabledProperty = DependencyProperty.Register("IsUndoEnabled", typeof(bool), typeof(InputBase), new UIPropertyMetadata(true, OnIsUndoEnabledChanged));
+        public static readonly DependencyProperty IsUndoEnabledProperty = DependencyProperty.Register("IsUndoEnabled",
+            typeof(bool), typeof(InputBase), new UIPropertyMetadata(true, OnIsUndoEnabledChanged));
         public bool IsUndoEnabled
         {
             get => (bool)GetValue(IsUndoEnabledProperty);
@@ -90,13 +97,17 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnIsUndoEnabledChanged(bool oldValue, bool newValue)
         {
+            // ignored
         }
 
         #endregion
 
         #region Text
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(InputBase), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTextChanged, null, false, UpdateSourceTrigger.LostFocus));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string),
+            typeof(InputBase),
+            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                OnTextChanged, null, false, UpdateSourceTrigger.LostFocus));
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -111,14 +122,15 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnTextChanged(string oldValue, string newValue)
         {
-
+            // ignored
         }
 
         #endregion
 
         #region TextAlignment
 
-        public static readonly DependencyProperty TextAlignmentProperty = DependencyProperty.Register("TextAlignment", typeof(TextAlignment), typeof(InputBase), new UIPropertyMetadata(TextAlignment.Left));
+        public static readonly DependencyProperty TextAlignmentProperty = DependencyProperty.Register("TextAlignment",
+            typeof(TextAlignment), typeof(InputBase), new UIPropertyMetadata(TextAlignment.Left));
         public TextAlignment TextAlignment
         {
             get => (TextAlignment)GetValue(TextAlignmentProperty);
@@ -130,7 +142,8 @@ namespace CSHUE.Components.Primitives
 
         #region Watermark
 
-        public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register("Watermark", typeof(object), typeof(InputBase), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty WatermarkProperty =
+            DependencyProperty.Register("Watermark", typeof(object), typeof(InputBase), new UIPropertyMetadata(null));
         public object Watermark
         {
             get => GetValue(WatermarkProperty);
@@ -141,7 +154,9 @@ namespace CSHUE.Components.Primitives
 
         #region WatermarkTemplate
 
-        public static readonly DependencyProperty WatermarkTemplateProperty = DependencyProperty.Register("WatermarkTemplate", typeof(DataTemplate), typeof(InputBase), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty WatermarkTemplateProperty =
+            DependencyProperty.Register("WatermarkTemplate", typeof(DataTemplate), typeof(InputBase),
+                new UIPropertyMetadata(null));
         public DataTemplate WatermarkTemplate
         {
             get => (DataTemplate)GetValue(WatermarkTemplateProperty);

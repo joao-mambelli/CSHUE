@@ -7,16 +7,6 @@ namespace CSHUE.Components.Core.Utilities
 {
     internal static class TreeHelper
     {
-        /// <summary>
-        /// Tries its best to return the specified element's parent. It will 
-        /// try to find, in this order, the VisualParent, LogicalParent, LogicalTemplatedParent.
-        /// It only works for Visual, FrameworkElement or FrameworkContentElement.
-        /// </summary>
-        /// <param name="element">The element to which to return the parent. It will only 
-        /// work if element is a Visual, a FrameworkElement or a FrameworkContentElement.</param>
-        /// <remarks>If the logical parent is not found (Parent), we check the TemplatedParent
-        /// (see FrameworkElement.Parent documentation). But, we never actually witnessed
-        /// this situation.</remarks>
         public static DependencyObject GetParent(DependencyObject element)
         {
             return GetParent(element, true);
@@ -45,40 +35,19 @@ namespace CSHUE.Components.Core.Utilities
             return parent;
         }
 
-        /// <summary>
-        /// This will search for a parent of the specified type.
-        /// </summary>
-        /// <typeparam name="T">The type of the element to find</typeparam>
-        /// <param name="startingObject">The node where the search begins. This element is not checked.</param>
-        /// <returns>Returns the found element. Null if nothing is found.</returns>
         public static T FindParent<T>(DependencyObject startingObject) where T : DependencyObject
         {
             return FindParent<T>(startingObject, false, null);
         }
 
-        /// <summary>
-        /// This will search for a parent of the specified type.
-        /// </summary>
-        /// <typeparam name="T">The type of the element to find</typeparam>
-        /// <param name="startingObject">The node where the search begins.</param>
-        /// <param name="checkStartingObject">Should the specified startingObject be checked first.</param>
-        /// <returns>Returns the found element. Null if nothing is found.</returns>
-        public static T FindParent<T>(DependencyObject startingObject, bool checkStartingObject) where T : DependencyObject
+        public static T FindParent<T>(DependencyObject startingObject, bool checkStartingObject)
+            where T : DependencyObject
         {
             return FindParent<T>(startingObject, checkStartingObject, null);
         }
 
-        /// <summary>
-        /// This will search for a parent of the specified type.
-        /// </summary>
-        /// <typeparam name="T">The type of the element to find</typeparam>
-        /// <param name="startingObject">The node where the search begins.</param>
-        /// <param name="checkStartingObject">Should the specified startingObject be checked first.</param>
-        /// <param name="additionalCheck">Provide a callback to check additional properties 
-        /// of the found elements. Can be left Null if no additional criteria are needed.</param>
-        /// <returns>Returns the found element. Null if nothing is found.</returns>
-        /// <example>Button button = TreeHelper.FindParent&lt;Button&gt;( this, foundChild => foundChild.Focusable );</example>
-        public static T FindParent<T>(DependencyObject startingObject, bool checkStartingObject, Func<T, bool> additionalCheck) where T : DependencyObject
+        public static T FindParent<T>(DependencyObject startingObject, bool checkStartingObject,
+            Func<T, bool> additionalCheck) where T : DependencyObject
         {
             var parent = checkStartingObject ? startingObject : GetParent(startingObject, true);
 
@@ -98,28 +67,11 @@ namespace CSHUE.Components.Core.Utilities
             return null;
         }
 
-        /// <summary>
-        /// This will search for a child of the specified type. The search is performed 
-        /// hierarchically, breadth first (as opposed to depth first).
-        /// </summary>
-        /// <typeparam name="T">The type of the element to find</typeparam>
-        /// <param name="parent">The root of the tree to search for. This element itself is not checked.</param>
-        /// <returns>Returns the found element. Null if nothing is found.</returns>
         public static T FindChild<T>(DependencyObject parent) where T : DependencyObject
         {
             return FindChild<T>(parent, null);
         }
 
-        /// <summary>
-        /// This will search for a child of the specified type. The search is performed 
-        /// hierarchically, breadth first (as opposed to depth first).
-        /// </summary>
-        /// <typeparam name="T">The type of the element to find</typeparam>
-        /// <param name="parent">The root of the tree to search for. This element itself is not checked.</param>
-        /// <param name="additionalCheck">Provide a callback to check additional properties 
-        /// of the found elements. Can be left Null if no additional criteria are needed.</param>
-        /// <returns>Returns the found element. Null if nothing is found.</returns>
-        /// <example>Button button = TreeHelper.FindChild&lt;Button&gt;( this, foundChild => foundChild.Focusable );</example>
         public static T FindChild<T>(DependencyObject parent, Func<T, bool> additionalCheck) where T : DependencyObject
         {
             var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
@@ -132,9 +84,7 @@ namespace CSHUE.Components.Core.Utilities
                 if (child != null)
                 {
                     if (additionalCheck == null)
-                    {
                         return child;
-                    }
 
                     if (additionalCheck(child))
                         return child;
@@ -152,24 +102,11 @@ namespace CSHUE.Components.Core.Utilities
             return null;
         }
 
-        /// <summary>
-        /// Returns true if the specified element is a child of parent somewhere in the visual 
-        /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
-        /// </summary>
-        /// <param name="element">The element that is potentially a child of the specified parent.</param>
-        /// <param name="parent">The element that is potentially a parent of the specified element.</param>
         public static bool IsDescendantOf(DependencyObject element, DependencyObject parent)
         {
             return IsDescendantOf(element, parent, true);
         }
 
-        /// <summary>
-        /// Returns true if the specified element is a child of parent somewhere in the visual 
-        /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
-        /// </summary>
-        /// <param name="element">The element that is potentially a child of the specified parent.</param>
-        /// <param name="parent">The element that is potentially a parent of the specified element.</param>
-        /// <param name="recurseIntoPopup"></param>
         public static bool IsDescendantOf(DependencyObject element, DependencyObject parent, bool recurseIntoPopup)
         {
             while (element != null)

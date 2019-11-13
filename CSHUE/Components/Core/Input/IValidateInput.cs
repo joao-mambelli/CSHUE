@@ -3,6 +3,7 @@
     public interface IValidateInput
     {
         event InputValidationErrorEventHandler InputValidationError;
+
         bool CommitInput();
     }
 }

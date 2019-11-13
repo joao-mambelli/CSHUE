@@ -9,7 +9,7 @@ namespace CSHUE.Components.NumericUpDown
         NaN = 1,
         PositiveInfinity = 2,
         NegativeInfinity = 4,
-        AnyInfinity = PositiveInfinity | NegativeInfinity,
-        Any = NaN | AnyInfinity
+        AnyInfinity = 6,
+        Any = 7
     }
 }

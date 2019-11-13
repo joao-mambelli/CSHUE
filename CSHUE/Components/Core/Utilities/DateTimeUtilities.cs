@@ -10,8 +10,8 @@ namespace CSHUE.Components.Core.Utilities
                 return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified);
 
             return kind == DateTimeKind.Utc
-              ? DateTime.UtcNow
-              : DateTime.Now;
+                ? DateTime.UtcNow
+                : DateTime.Now;
         }
 
         public static bool IsSameDate(DateTime? date1, DateTime? date2)

@@ -7,26 +7,24 @@ namespace CSHUE.Components.NumericUpDown
 {
     public abstract class NumericUpDown<T> : UpDownBase<T>
     {
-#pragma warning disable 0618
-
         #region Properties
 
         #region AutoMoveFocus
-
+        
+        public static readonly DependencyProperty AutoMoveFocusProperty = DependencyProperty.Register("AutoMoveFocus",
+            typeof(bool), typeof(NumericUpDown<T>), new UIPropertyMetadata(false));
         public bool AutoMoveFocus
         {
             get => (bool)GetValue(AutoMoveFocusProperty);
             set => SetValue(AutoMoveFocusProperty, value);
         }
 
-        public static readonly DependencyProperty AutoMoveFocusProperty =
-            DependencyProperty.Register("AutoMoveFocus", typeof(bool), typeof(NumericUpDown<T>), new UIPropertyMetadata(false));
-
         #endregion AutoMoveFocus
 
         #region FormatString
 
-        public static readonly DependencyProperty FormatStringProperty = DependencyProperty.Register("FormatString", typeof(string), typeof(NumericUpDown<T>), new UIPropertyMetadata(string.Empty, OnFormatStringChanged));
+        public static readonly DependencyProperty FormatStringProperty = DependencyProperty.Register("FormatString",
+            typeof(string), typeof(NumericUpDown<T>), new UIPropertyMetadata(string.Empty, OnFormatStringChanged));
         public string FormatString
         {
             get => (string)GetValue(FormatStringProperty);
@@ -42,16 +40,16 @@ namespace CSHUE.Components.NumericUpDown
         protected virtual void OnFormatStringChanged(string oldValue, string newValue)
         {
             if (IsInitialized)
-            {
                 SyncTextAndValueProperties(false, null);
-            }
         }
 
         #endregion
 
         #region Increment
 
-        public static readonly DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(T), typeof(NumericUpDown<T>), new PropertyMetadata(default(T), OnIncrementChanged, OnCoerceIncrement));
+        public static readonly DependencyProperty IncrementProperty = DependencyProperty.Register("Increment",
+            typeof(T), typeof(NumericUpDown<T>),
+            new PropertyMetadata(default(T), OnIncrementChanged, OnCoerceIncrement));
         public T Increment
         {
             get => (T)GetValue(IncrementProperty);
@@ -67,9 +65,7 @@ namespace CSHUE.Components.NumericUpDown
         protected virtual void OnIncrementChanged(T oldValue, T newValue)
         {
             if (IsInitialized)
-            {
                 SetValidSpinDirection();
-            }
         }
 
         private static object OnCoerceIncrement(DependencyObject d, object baseValue)
@@ -89,7 +85,8 @@ namespace CSHUE.Components.NumericUpDown
 
         #region MaxLength
 
-        public static readonly DependencyProperty MaxLengthProperty = DependencyProperty.Register("MaxLength", typeof(int), typeof(NumericUpDown<T>), new UIPropertyMetadata(0));
+        public static readonly DependencyProperty MaxLengthProperty =
+            DependencyProperty.Register("MaxLength", typeof(int), typeof(NumericUpDown<T>), new UIPropertyMetadata(0));
         public int MaxLength
         {
             get => (int)GetValue(MaxLengthProperty);
@@ -113,14 +110,11 @@ namespace CSHUE.Components.NumericUpDown
 
             text = text.Replace(info.PercentSymbol, null);
 
-            var result = decimal.Parse(text, NumberStyles.Any, info);
-            result = result / 100;
+            var result = decimal.Parse(text, NumberStyles.Any, info) / 100;
 
             return result;
         }
 
         #endregion
     }
-
-#pragma warning restore 0618
 }

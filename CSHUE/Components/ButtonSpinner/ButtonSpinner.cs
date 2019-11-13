@@ -11,9 +11,6 @@ namespace CSHUE.Components.ButtonSpinner
         Right
     }
 
-    /// <summary>
-    /// Represents a spinner control that includes two Buttons.
-    /// </summary>
     [TemplatePart(Name = PartIncreaseButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PartDecreaseButton, Type = typeof(ButtonBase))]
     [ContentProperty("Content")]
@@ -57,9 +54,6 @@ namespace CSHUE.Components.ButtonSpinner
 
         #region Content
 
-        /// <summary>
-        /// Identifies the Content dependency property.
-        /// </summary>
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content",
             typeof(object), typeof(ButtonSpinner), new PropertyMetadata(null, OnContentPropertyChanged));
         public object Content
@@ -68,11 +62,6 @@ namespace CSHUE.Components.ButtonSpinner
             set => SetValue(ContentProperty, value);
         }
 
-        /// <summary>
-        /// ContentProperty property changed handler.
-        /// </summary>
-        /// <param name="d">ButtonSpinner that changed its Content.</param>
-        /// <param name="e">Event arguments.</param>
         private static void OnContentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var source = d as ButtonSpinner;
@@ -85,9 +74,6 @@ namespace CSHUE.Components.ButtonSpinner
         #region DecreaseButton
 
         private ButtonBase _decreaseButton;
-        /// <summary>
-        /// Gets or sets the DecreaseButton template part.
-        /// </summary>
         private ButtonBase DecreaseButton
         {
             get => _decreaseButton;
@@ -108,9 +94,6 @@ namespace CSHUE.Components.ButtonSpinner
         #region IncreaseButton
 
         private ButtonBase _increaseButton;
-        /// <summary>
-        /// Gets or sets the IncreaseButton template part.
-        /// </summary>
         private ButtonBase IncreaseButton
         {
             get => _increaseButton;
@@ -147,7 +130,8 @@ namespace CSHUE.Components.ButtonSpinner
 
         static ButtonSpinner()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ButtonSpinner), new FrameworkPropertyMetadata(typeof(ButtonSpinner)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ButtonSpinner),
+                new FrameworkPropertyMetadata(typeof(ButtonSpinner)));
         }
 
         #endregion
@@ -164,19 +148,16 @@ namespace CSHUE.Components.ButtonSpinner
             SetButtonUsage();
         }
 
-        /// <summary>
-        /// Cancel LeftMouseButtonUp events originating from a button that has
-        /// been changed to disabled.
-        /// </summary>
-        /// <param name="e">The data for the event.</param>
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonUp(e);
 
             Point mousePosition;
+
             if (IncreaseButton != null && IncreaseButton.IsEnabled == false)
             {
                 mousePosition = e.GetPosition(IncreaseButton);
+
                 if (mousePosition.X > 0 && mousePosition.X < IncreaseButton.ActualWidth &&
                     mousePosition.Y > 0 && mousePosition.Y < IncreaseButton.ActualHeight)
                     e.Handled = true;
@@ -185,6 +166,7 @@ namespace CSHUE.Components.ButtonSpinner
             if (DecreaseButton != null && DecreaseButton.IsEnabled == false)
             {
                 mousePosition = e.GetPosition(DecreaseButton);
+
                 if (mousePosition.X > 0 && mousePosition.X < DecreaseButton.ActualWidth &&
                     mousePosition.Y > 0 && mousePosition.Y < DecreaseButton.ActualHeight)
                     e.Handled = true;
@@ -196,34 +178,26 @@ namespace CSHUE.Components.ButtonSpinner
             switch (e.Key)
             {
                 case Key.Up:
+                    if (AllowSpin)
                     {
-                        if (AllowSpin)
-                        {
-                            OnSpin(new SpinEventArgs(SpinnerSpinEvent, SpinDirection.Increase));
-                            e.Handled = true;
-                        }
-
-                        break;
+                        OnSpin(new SpinEventArgs(SpinnerSpinEvent, SpinDirection.Increase));
+                        e.Handled = true;
                     }
+
+                    break;
                 case Key.Down:
+                    if (AllowSpin)
                     {
-                        if (AllowSpin)
-                        {
-                            OnSpin(new SpinEventArgs(SpinnerSpinEvent, SpinDirection.Decrease));
-                            e.Handled = true;
-                        }
+                        OnSpin(new SpinEventArgs(SpinnerSpinEvent, SpinDirection.Decrease));
+                        e.Handled = true;
+                    }
 
-                        break;
-                    }
+                    break;
                 case Key.Enter:
-                    {
-                        if (IncreaseButton != null && IncreaseButton.IsFocused
-                          || DecreaseButton != null && DecreaseButton.IsFocused)
-                        {
-                            e.Handled = true;
-                        }
-                        break;
-                    }
+                    if (IncreaseButton?.IsFocused == true || DecreaseButton?.IsFocused == true)
+                        e.Handled = true;
+
+                    break;
             }
         }
 
@@ -239,11 +213,6 @@ namespace CSHUE.Components.ButtonSpinner
             }
         }
 
-        /// <summary>
-        /// Called when valid spin direction changed.
-        /// </summary>
-        /// <param name="oldValue">The old value.</param>
-        /// <param name="newValue">The new value.</param>
         protected override void OnValidSpinDirectionChanged(ValidSpinDirections oldValue, ValidSpinDirections newValue)
         {
             SetButtonUsage();
@@ -253,12 +222,6 @@ namespace CSHUE.Components.ButtonSpinner
 
         #region Event Handlers
 
-        /// <summary>
-        /// Handle click event of IncreaseButton and DecreaseButton template parts,
-        /// translating Click to appropriate Spin event.
-        /// </summary>
-        /// <param name="sender">Event sender, should be either IncreaseButton or DecreaseButton template part.</param>
-        /// <param name="e">Event args.</param>
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
             if (AllowSpin)
@@ -272,11 +235,6 @@ namespace CSHUE.Components.ButtonSpinner
 
         #region Methods
 
-        /// <summary>
-        /// Occurs when the Content property value changed.
-        /// </summary>
-        /// <param name="oldValue">The old value of the Content property.</param>
-        /// <param name="newValue">The new value of the Content property.</param>
         protected virtual void OnContentChanged(object oldValue, object newValue)
         {
             // ignored
@@ -287,9 +245,6 @@ namespace CSHUE.Components.ButtonSpinner
             SetButtonUsage();
         }
 
-        /// <summary>
-        /// Disables or enables the buttons based on the valid spin direction.
-        /// </summary>
         private void SetButtonUsage()
         {
             if (IncreaseButton != null)

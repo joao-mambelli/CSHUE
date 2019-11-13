@@ -11,6 +11,7 @@
 
         public DecimalUpDown() : base(decimal.TryParse, d => d, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
         {
+            // ignored
         }
 
         #endregion

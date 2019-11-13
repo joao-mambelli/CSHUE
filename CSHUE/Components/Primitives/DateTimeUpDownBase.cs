@@ -23,8 +23,9 @@ namespace CSHUE.Components.Primitives
 
         #region CurrentDateTimePart
 
-        public static readonly DependencyProperty CurrentDateTimePartProperty = DependencyProperty.Register("CurrentDateTimePart", typeof(DateTimePart)
-          , typeof(DateTimeUpDownBase<T>), new UIPropertyMetadata(DateTimePart.Other, OnCurrentDateTimePartChanged));
+        public static readonly DependencyProperty CurrentDateTimePartProperty =
+            DependencyProperty.Register("CurrentDateTimePart", typeof(DateTimePart), typeof(DateTimeUpDownBase<T>),
+                new UIPropertyMetadata(DateTimePart.Other, OnCurrentDateTimePartChanged));
         public DateTimePart CurrentDateTimePart
         {
             get => (DateTimePart)GetValue(CurrentDateTimePartProperty);
@@ -46,8 +47,8 @@ namespace CSHUE.Components.Primitives
 
         #region Step
 
-        public static readonly DependencyProperty StepProperty = DependencyProperty.Register("Step", typeof(int)
-          , typeof(DateTimeUpDownBase<T>), new UIPropertyMetadata(1, OnStepChanged));
+        public static readonly DependencyProperty StepProperty = DependencyProperty.Register("Step", typeof(int),
+            typeof(DateTimeUpDownBase<T>), new UIPropertyMetadata(1, OnStepChanged));
         public int Step
         {
             get => (int)GetValue(StepProperty);
@@ -62,6 +63,7 @@ namespace CSHUE.Components.Primitives
 
         protected virtual void OnStepChanged(int oldValue, int newValue)
         {
+            // ignored
         }
 
         #endregion
@@ -82,16 +84,12 @@ namespace CSHUE.Components.Primitives
         public override void OnApplyTemplate()
         {
             if (TextBox != null)
-            {
                 TextBox.SelectionChanged -= TextBox_SelectionChanged;
-            }
 
             base.OnApplyTemplate();
 
             if (TextBox != null)
-            {
                 TextBox.SelectionChanged += TextBox_SelectionChanged;
-            }
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -102,22 +100,26 @@ namespace CSHUE.Components.Primitives
             switch (e.Key)
             {
                 case Key.Enter:
+                    if (!IsReadOnly)
                     {
-                        if (!IsReadOnly)
-                        {
-                            FireSelectionChangedEvent = false;
-                            var binding = BindingOperations.GetBindingExpression(TextBox, System.Windows.Controls.TextBox.TextProperty);
-                            binding?.UpdateSource();
-                            FireSelectionChangedEvent = true;
-                        }
-                        return;
+                        FireSelectionChangedEvent = false;
+
+                        var binding =
+                            BindingOperations.GetBindingExpression(TextBox,
+                                System.Windows.Controls.TextBox.TextProperty);
+
+                        binding?.UpdateSource();
+
+                        FireSelectionChangedEvent = true;
                     }
+                    return;
                 case Key.Add:
                     if (AllowSpin && !IsReadOnly)
                     {
                         DoIncrement();
                         e.Handled = true;
                     }
+
                     FireSelectionChangedEvent = false;
                     break;
                 case Key.Subtract:
@@ -126,6 +128,7 @@ namespace CSHUE.Components.Primitives
                         DoDecrement();
                         e.Handled = true;
                     }
+
                     FireSelectionChangedEvent = false;
                     break;
                 case Key.Right:
@@ -134,6 +137,7 @@ namespace CSHUE.Components.Primitives
                         PerformKeyboardSelection(selectionStart + selectionLength);
                         e.Handled = true;
                     }
+
                     FireSelectionChangedEvent = false;
                     break;
                 case Key.Left:
@@ -142,13 +146,12 @@ namespace CSHUE.Components.Primitives
                         PerformKeyboardSelection(selectionStart > 0 ? selectionStart - 1 : 0);
                         e.Handled = true;
                     }
+
                     FireSelectionChangedEvent = false;
                     break;
                 default:
-                    {
-                        FireSelectionChangedEvent = false;
-                        break;
-                    }
+                    FireSelectionChangedEvent = false;
+                    break;
             }
 
             base.OnPreviewKeyDown(e);
@@ -200,7 +203,7 @@ namespace CSHUE.Components.Primitives
         internal DateTimeInfo GetDateTimeInfo(int selectionStart)
         {
             return DateTimeInfoList.FirstOrDefault(info =>
-                                   info.StartPosition <= selectionStart && selectionStart < info.StartPosition + info.Length);
+                info.StartPosition <= selectionStart && selectionStart < info.StartPosition + info.Length);
         }
 
         internal DateTimeInfo GetDateTimeInfo(DateTimePart part)
@@ -210,7 +213,8 @@ namespace CSHUE.Components.Primitives
 
         internal void Select(DateTimeInfo info)
         {
-            if (info != null && !info.Equals(SelectedDateTimeInfo) && TextBox != null && !string.IsNullOrEmpty(TextBox.Text))
+            if (info != null && !info.Equals(SelectedDateTimeInfo) && TextBox != null &&
+                !string.IsNullOrEmpty(TextBox.Text))
             {
                 FireSelectionChangedEvent = false;
                 TextBox.Select(info.StartPosition, info.Length);
@@ -224,8 +228,10 @@ namespace CSHUE.Components.Primitives
         {
             if (IsLowerThan(value, Minimum))
                 return Minimum;
+
             if (IsGreaterThan(value, Maximum))
                 return Maximum;
+
             return value;
         }
 
@@ -235,7 +241,8 @@ namespace CSHUE.Components.Primitives
                 return;
 
             if (IsLowerThan(value, Minimum))
-                throw new ArgumentOutOfRangeException(nameof(value), $@"Value must be greater than MinValue of {Minimum}");
+                throw new ArgumentOutOfRangeException(nameof(value),
+                    $@"Value must be greater than MinValue of {Minimum}");
 
             if (IsGreaterThan(value, Maximum))
                 throw new ArgumentOutOfRangeException(nameof(value), $@"Value must be less than MaxValue of {Maximum}");
@@ -245,8 +252,10 @@ namespace CSHUE.Components.Primitives
         {
             if (IsGreaterThan(value, Maximum))
                 return Maximum;
+
             if (IsLowerThan(value, Minimum))
                 return Minimum;
+
             return value;
         }
 
@@ -255,59 +264,60 @@ namespace CSHUE.Components.Primitives
             TextBox.Focus();
 
             if (!UpdateValueOnEnterKey)
-            {
                 CommitInput();
-            }
 
             var selectedDateStartPosition = SelectedDateTimeInfo?.StartPosition ?? 0;
             var direction = nextSelectionStart - selectedDateStartPosition;
-            Select(direction > 0 ? GetNextDateTimeInfo(nextSelectionStart) : GetPreviousDateTimeInfo(nextSelectionStart - 1));
+
+            Select(direction > 0
+                ? GetNextDateTimeInfo(nextSelectionStart)
+                : GetPreviousDateTimeInfo(nextSelectionStart - 1));
         }
 
         private DateTimeInfo GetNextDateTimeInfo(int nextSelectionStart)
         {
             var nextDateTimeInfo = GetDateTimeInfo(nextSelectionStart) ?? DateTimeInfoList.First();
-
             var initialDateTimeInfo = nextDateTimeInfo;
 
             while (nextDateTimeInfo.Type == DateTimePart.Other)
             {
                 nextDateTimeInfo = GetDateTimeInfo(nextDateTimeInfo.StartPosition + nextDateTimeInfo.Length) ??
                                    DateTimeInfoList.First();
+
                 if (Equals(nextDateTimeInfo, initialDateTimeInfo))
                     throw new InvalidOperationException("Couldn't find a valid DateTimeInfo.");
             }
+
             return nextDateTimeInfo;
         }
 
         private DateTimeInfo GetPreviousDateTimeInfo(int previousSelectionStart)
         {
             var previousDateTimeInfo = GetDateTimeInfo(previousSelectionStart);
-            if (previousDateTimeInfo == null)
-            {
-                if (DateTimeInfoList.Count > 0)
-                {
-                    previousDateTimeInfo = DateTimeInfoList.Last();
-                }
-            }
+
+            if (previousDateTimeInfo == null && DateTimeInfoList.Count > 0)
+                previousDateTimeInfo = DateTimeInfoList.Last();
 
             var initialDateTimeInfo = previousDateTimeInfo;
 
             while (previousDateTimeInfo != null && previousDateTimeInfo.Type == DateTimePart.Other)
             {
-                previousDateTimeInfo = GetDateTimeInfo(previousDateTimeInfo.StartPosition - 1) ?? DateTimeInfoList.Last();
+                previousDateTimeInfo =
+                    GetDateTimeInfo(previousDateTimeInfo.StartPosition - 1) ?? DateTimeInfoList.Last();
+
                 if (Equals(previousDateTimeInfo, initialDateTimeInfo))
                     throw new InvalidOperationException("Couldn't find a valid DateTimeInfo.");
             }
+
             return previousDateTimeInfo;
         }
 
         private void InitSelection()
         {
             if (SelectedDateTimeInfo == null)
-            {
-                Select(CurrentDateTimePart != DateTimePart.Other ? GetDateTimeInfo(CurrentDateTimePart) : GetDateTimeInfo(0));
-            }
+                Select(CurrentDateTimePart != DateTimePart.Other
+                    ? GetDateTimeInfo(CurrentDateTimePart)
+                    : GetDateTimeInfo(0));
         }
 
         #endregion

@@ -15,7 +15,8 @@ namespace CSHUE.Components.TimeSpanUpDown
 
         static TimeSpanUpDown()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(TimeSpanUpDown), new FrameworkPropertyMetadata(typeof(TimeSpanUpDown)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(TimeSpanUpDown),
+                new FrameworkPropertyMetadata(typeof(TimeSpanUpDown)));
             MaximumProperty.OverrideMetadata(typeof(TimeSpanUpDown), new FrameworkPropertyMetadata(TimeSpan.MaxValue));
             MinimumProperty.OverrideMetadata(typeof(TimeSpanUpDown), new FrameworkPropertyMetadata(TimeSpan.MinValue));
             DefaultValueProperty.OverrideMetadata(typeof(TimeSpanUpDown), new FrameworkPropertyMetadata(TimeSpan.Zero));
@@ -32,7 +33,9 @@ namespace CSHUE.Components.TimeSpanUpDown
 
         #region FractionalSecondsDigitsCount
 
-        public static readonly DependencyProperty FractionalSecondsDigitsCountProperty = DependencyProperty.Register("FractionalSecondsDigitsCount", typeof(int), typeof(TimeSpanUpDown), new UIPropertyMetadata(0, OnFractionalSecondsDigitsCountChanged, OnCoerceFractionalSecondsDigitsCount));
+        public static readonly DependencyProperty FractionalSecondsDigitsCountProperty =
+            DependencyProperty.Register("FractionalSecondsDigitsCount", typeof(int), typeof(TimeSpanUpDown),
+                new UIPropertyMetadata(0, OnFractionalSecondsDigitsCountChanged, OnCoerceFractionalSecondsDigitsCount));
         public int FractionalSecondsDigitsCount
         {
             get => (int)GetValue(FractionalSecondsDigitsCountProperty);
@@ -44,9 +47,11 @@ namespace CSHUE.Components.TimeSpanUpDown
             if (o is TimeSpanUpDown)
             {
                 var digitsCount = (int)value;
+
                 if (digitsCount < 0 || digitsCount > 3)
                     throw new ArgumentException("Fractional seconds digits count must be between 0 and 3.");
             }
+
             return value;
         }
 
@@ -65,7 +70,8 @@ namespace CSHUE.Components.TimeSpanUpDown
 
         #region ShowDays
 
-        public static readonly DependencyProperty ShowDaysProperty = DependencyProperty.Register("ShowDays", typeof(bool), typeof(TimeSpanUpDown), new UIPropertyMetadata(true, OnShowDaysChanged));
+        public static readonly DependencyProperty ShowDaysProperty = DependencyProperty.Register("ShowDays",
+            typeof(bool), typeof(TimeSpanUpDown), new UIPropertyMetadata(true, OnShowDaysChanged));
         public bool ShowDays
         {
             get => (bool)GetValue(ShowDaysProperty);
@@ -87,7 +93,8 @@ namespace CSHUE.Components.TimeSpanUpDown
 
         #region ShowSeconds
 
-        public static readonly DependencyProperty ShowSecondsProperty = DependencyProperty.Register("ShowSeconds", typeof(bool), typeof(TimeSpanUpDown), new UIPropertyMetadata(true, OnShowSecondsChanged));
+        public static readonly DependencyProperty ShowSecondsProperty = DependencyProperty.Register("ShowSeconds",
+            typeof(bool), typeof(TimeSpanUpDown), new UIPropertyMetadata(true, OnShowSecondsChanged));
         public bool ShowSeconds
         {
             get => (bool)GetValue(ShowSecondsProperty);
@@ -114,8 +121,9 @@ namespace CSHUE.Components.TimeSpanUpDown
         protected override void OnCultureInfoChanged(CultureInfo oldValue, CultureInfo newValue)
         {
             var value = UpdateValueOnEnterKey
-                        ? TextBox != null ? ConvertTextToValue(TextBox.Text) : null
-                        : Value;
+                ? TextBox != null ? ConvertTextToValue(TextBox.Text) : null
+                : Value;
+
             InitializeDateTimeInfoList(value);
         }
 
@@ -160,14 +168,14 @@ namespace CSHUE.Components.TimeSpanUpDown
                 return null;
 
             var timeSpan = TimeSpan.MinValue;
+
             if (ShowDays)
-            {
                 timeSpan = TimeSpan.Parse(text);
-            }
             else
             {
                 var separators = text.Where(x => x == ':' || x == '.').ToList();
                 var values = text.Split(':', '.');
+
                 if (values.Length >= 2 && !values.Any(string.IsNullOrEmpty))
                 {
                     var haveMs = separators.Count > 1 && separators.Last() == '.';
@@ -182,9 +190,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             }
 
             if (ClipValueToMinMax)
-            {
                 return GetClippedMinMaxValue(timeSpan);
-            }
 
             ValidateDefaultMinMax(timeSpan);
 
@@ -194,15 +200,15 @@ namespace CSHUE.Components.TimeSpanUpDown
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
             e.Handled = !IsNumber(e.Text);
+
             base.OnPreviewTextInput(e);
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
             if (e.Key == Key.Space)
-            {
                 e.Handled = true;
-            }
+
             base.OnPreviewKeyDown(e);
         }
 
@@ -214,19 +220,18 @@ namespace CSHUE.Components.TimeSpanUpDown
             if (string.IsNullOrEmpty(currentValue))
             {
                 if (!UpdateValueOnEnterKey)
-                {
                     Value = null;
-                }
+
                 return;
             }
 
             var separators = currentValue.Where(x => x == ':' || x == '.').ToList();
             var values = currentValue.Split(':', '.');
+
             if (values.Length >= 2 && !values.Any(string.IsNullOrEmpty))
             {
                 var haveDays = separators.First() == '.';
                 var haveMs = separators.Count > 1 && separators.Last() == '.';
-
                 var result = new TimeSpan(haveDays ? int.Parse(values[0]) : 0,
                     haveDays ? int.Parse(values[1]) : int.Parse(values[0]),
                     haveDays ? int.Parse(values[2]) : int.Parse(values[1]),
@@ -261,7 +266,9 @@ namespace CSHUE.Components.TimeSpanUpDown
             var value = UpdateValueOnEnterKey
                         ? TextBox != null ? ConvertTextToValue(TextBox.Text) : null
                         : Value;
+
             InitializeDateTimeInfoList(value);
+
             base.PerformMouseSelection();
         }
 
@@ -287,19 +294,25 @@ namespace CSHUE.Components.TimeSpanUpDown
             }
 
             if (ShowDays)
-            {
                 if (value.HasValue && value.Value.Days != 0)
                 {
                     var dayLength = Math.Abs(value.Value.Days).ToString().Length;
-                    DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Day, Length = dayLength, Format = "dd" });
-                    DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Other, Length = 1, Content = ".", IsReadOnly = true });
+                    DateTimeInfoList.Add(new DateTimeInfo
+                    {
+                        Type = DateTimePart.Day, Length = dayLength, Format = "dd"
+                    });
+                    DateTimeInfoList.Add(new DateTimeInfo
+                    {
+                        Type = DateTimePart.Other, Length = 1, Content = ".", IsReadOnly = true
+                    });
 
                     if (TextBox != null)
                     {
                         if (hasDay && dayLength != lastDayInfo.Length && SelectedDateTimeInfo.Type != DateTimePart.Day)
                         {
                             FireSelectionChangedEvent = false;
-                            TextBox.SelectionStart = Math.Max(0, TextBox.SelectionStart + (dayLength - lastDayInfo.Length));
+                            TextBox.SelectionStart =
+                                Math.Max(0, TextBox.SelectionStart + (dayLength - lastDayInfo.Length));
                             FireSelectionChangedEvent = true;
                         }
                         else if (!hasDay)
@@ -313,15 +326,19 @@ namespace CSHUE.Components.TimeSpanUpDown
                 else if (hasDay)
                 {
                     FireSelectionChangedEvent = false;
+
                     if (TextBox != null)
-                        TextBox.SelectionStart = Math.Max(hasNegative ? 1 : 0, TextBox.SelectionStart - (lastDayInfo.Length + 1));
+                        TextBox.SelectionStart = Math.Max(hasNegative ? 1 : 0,
+                            TextBox.SelectionStart - (lastDayInfo.Length + 1));
+
                     FireSelectionChangedEvent = true;
                 }
-            }
 
             DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Hour24, Length = 2, Format = "hh" });
-            DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Other, Length = 1, Content = ":", IsReadOnly = true });
+            DateTimeInfoList.Add(new DateTimeInfo
+                {Type = DateTimePart.Other, Length = 1, Content = ":", IsReadOnly = true});
             DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Minute, Length = 2, Format = "mm" });
+
             if (ShowSeconds)
             {
                 DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Other, Length = 1, Content = ":", IsReadOnly = true });
@@ -331,19 +348,17 @@ namespace CSHUE.Components.TimeSpanUpDown
             if (FractionalSecondsDigitsCount > 0)
             {
                 DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Other, Length = 1, Content = ".", IsReadOnly = true });
+
                 var fraction = new string('f', FractionalSecondsDigitsCount);
 
                 if (fraction.Length == 1)
-                {
                     fraction = "%" + fraction;
-                }
+
                 DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Millisecond, Length = FractionalSecondsDigitsCount, Format = fraction });
             }
 
             if (value.HasValue)
-            {
                 ParseValueIntoTimeSpanInfo(value, true);
-            }
         }
 
         protected override bool IsLowerThan(TimeSpan? value1, TimeSpan? value2)
@@ -371,41 +386,41 @@ namespace CSHUE.Components.TimeSpanUpDown
         {
             var text = string.Empty;
 
-            DateTimeInfoList.ForEach(info =>
-           {
-               if (info.Format == null)
-               {
-                   if (modifyInfo)
-                   {
-                       info.StartPosition = text.Length;
-                       info.Length = info.Content.Length;
-                   }
-                   text += info.Content;
-               }
-               else
-               {
-                   var span = TimeSpan.Parse(value.ToString());
-                   if (modifyInfo)
-                   {
-                       info.StartPosition = text.Length;
-                   }
+            foreach (var info in DateTimeInfoList)
+            {
+                if (info.Format == null)
+                {
+                    if (modifyInfo)
+                    {
+                        info.StartPosition = text.Length;
+                        info.Length = info.Content.Length;
+                    }
 
-                   var content = !ShowDays && span.Days != 0 && info.Format == "hh"
-                       ? Math.Truncate(Math.Abs(span.TotalHours)).ToString(CultureInfo.InvariantCulture)
-                       : span.ToString(info.Format, CultureInfo.DateTimeFormat);
+                    text += info.Content;
+                }
+                else
+                {
+                    var span = TimeSpan.Parse(value.ToString());
 
-                   if (modifyInfo)
-                   {
-                       if (info.Format == "dd")
-                       {
-                           content = Convert.ToInt32(content).ToString();
-                       }
-                       info.Content = content;
-                       info.Length = info.Content.Length;
-                   }
-                   text += content;
-               }
-           });
+                    if (modifyInfo)
+                        info.StartPosition = text.Length;
+
+                    var content = !ShowDays && span.Days != 0 && info.Format == "hh"
+                        ? Math.Truncate(Math.Abs(span.TotalHours)).ToString(CultureInfo.InvariantCulture)
+                        : span.ToString(info.Format, CultureInfo.DateTimeFormat);
+
+                    if (modifyInfo)
+                    {
+                        if (info.Format == "dd")
+                            content = Convert.ToInt32(content).ToString();
+
+                        info.Content = content;
+                        info.Length = info.Content.Length;
+                    }
+
+                    text += content;
+                }
+            }
 
             return text;
         }
@@ -423,16 +438,20 @@ namespace CSHUE.Components.TimeSpanUpDown
                 switch (info.Type)
                 {
                     case DateTimePart.Day:
-                        if (currentValue != null) result = ((TimeSpan)currentValue).Add(new TimeSpan(value, 0, 0, 0, 0));
+                        if (currentValue != null)
+                            result = ((TimeSpan)currentValue).Add(new TimeSpan(value, 0, 0, 0, 0));
                         break;
                     case DateTimePart.Hour24:
-                        if (currentValue != null) result = ((TimeSpan)currentValue).Add(new TimeSpan(0, value, 0, 0, 0));
+                        if (currentValue != null)
+                            result = ((TimeSpan)currentValue).Add(new TimeSpan(0, value, 0, 0, 0));
                         break;
                     case DateTimePart.Minute:
-                        if (currentValue != null) result = ((TimeSpan)currentValue).Add(new TimeSpan(0, 0, value, 0, 0));
+                        if (currentValue != null)
+                            result = ((TimeSpan)currentValue).Add(new TimeSpan(0, 0, value, 0, 0));
                         break;
                     case DateTimePart.Second:
-                        if (currentValue != null) result = ((TimeSpan)currentValue).Add(new TimeSpan(0, 0, 0, value, 0));
+                        if (currentValue != null)
+                            result = ((TimeSpan)currentValue).Add(new TimeSpan(0, 0, 0, value, 0));
                         break;
                     case DateTimePart.Millisecond:
                         switch (FractionalSecondsDigitsCount)
@@ -448,7 +467,8 @@ namespace CSHUE.Components.TimeSpanUpDown
                                 break;
                         }
 
-                        if (currentValue != null) result = ((TimeSpan)currentValue).Add(new TimeSpan(0, 0, 0, 0, value));
+                        if (currentValue != null)
+                            result = ((TimeSpan)currentValue).Add(new TimeSpan(0, 0, 0, 0, value));
                         break;
                 }
             }
@@ -468,12 +488,13 @@ namespace CSHUE.Components.TimeSpanUpDown
             {
                 var currentValue = ConvertTextToValue(TextBox.Text);
                 var newValue = currentValue.HasValue
-                               ? UpdateTimeSpan(currentValue, step)
-                               : DefaultValue ?? TimeSpan.Zero;
+                    ? UpdateTimeSpan(currentValue, step)
+                    : DefaultValue ?? TimeSpan.Zero;
 
                 if (newValue != null)
                 {
                     InitializeDateTimeInfoList(newValue);
+
                     var selectionStart = TextBox.SelectionStart;
                     var selectionLength = TextBox.SelectionLength;
 
@@ -486,12 +507,16 @@ namespace CSHUE.Components.TimeSpanUpDown
                 if (Value.HasValue)
                 {
                     var newValue = UpdateTimeSpan(Value, step);
+
                     if (newValue != null)
                     {
                         InitializeDateTimeInfoList(newValue);
+
                         var selectionStart = TextBox.SelectionStart;
                         var selectionLength = TextBox.SelectionLength;
+
                         Value = newValue;
+
                         TextBox.Select(selectionStart, selectionLength);
                     }
                 }
@@ -505,10 +530,8 @@ namespace CSHUE.Components.TimeSpanUpDown
         private static bool IsNumber(string str)
         {
             foreach (var c in str)
-            {
                 if (!char.IsNumber(c))
                     return false;
-            }
 
             return true;
         }
@@ -516,8 +539,11 @@ namespace CSHUE.Components.TimeSpanUpDown
         private void UpdateValue()
         {
             var value = UpdateValueOnEnterKey
-                        ? TextBox != null ? ConvertTextToValue(TextBox.Text) : null
-                        : Value;
+                ? TextBox != null
+                    ? ConvertTextToValue(TextBox.Text)
+                    : null
+                : Value;
+
             InitializeDateTimeInfoList(value);
             SyncTextAndValueProperties(false, Text);
         }

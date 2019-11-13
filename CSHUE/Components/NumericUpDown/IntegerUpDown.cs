@@ -11,6 +11,7 @@
 
         public IntegerUpDown() : base(int.TryParse, decimal.ToInt32, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
         {
+            // ignored
         }
 
         #endregion

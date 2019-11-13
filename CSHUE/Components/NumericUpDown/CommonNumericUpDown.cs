@@ -25,7 +25,8 @@ namespace CSHUE.Components.NumericUpDown
 
         #region IsInvalid
 
-        internal static readonly DependencyProperty IsInvalidProperty = DependencyProperty.Register("IsInvalid", typeof(bool), typeof(CommonNumericUpDown<T>), new UIPropertyMetadata(false));
+        internal static readonly DependencyProperty IsInvalidProperty = DependencyProperty.Register("IsInvalid",
+            typeof(bool), typeof(CommonNumericUpDown<T>), new UIPropertyMetadata(false));
         internal bool IsInvalid
         {
             get => (bool)GetValue(IsInvalidProperty);
@@ -37,8 +38,8 @@ namespace CSHUE.Components.NumericUpDown
         #region ParsingNumberStyle
 
         public static readonly DependencyProperty ParsingNumberStyleProperty =
-            DependencyProperty.Register("ParsingNumberStyle", typeof(NumberStyles), typeof(CommonNumericUpDown<T>), new UIPropertyMetadata(NumberStyles.Any));
-
+            DependencyProperty.Register("ParsingNumberStyle", typeof(NumberStyles), typeof(CommonNumericUpDown<T>),
+                new UIPropertyMetadata(NumberStyles.Any));
         public NumberStyles ParsingNumberStyle
         {
             get => (NumberStyles)GetValue(ParsingNumberStyleProperty);
@@ -51,7 +52,8 @@ namespace CSHUE.Components.NumericUpDown
 
         #region Constructors
 
-        protected CommonNumericUpDown(FromText fromText, FromDecimal fromDecimal, Func<T, T, bool> fromLowerThan, Func<T, T, bool> fromGreaterThan)
+        protected CommonNumericUpDown(FromText fromText, FromDecimal fromDecimal, Func<T, T, bool> fromLowerThan,
+            Func<T, T, bool> fromGreaterThan)
         {
             _fromText = fromText ?? throw new ArgumentNullException(nameof(fromText));
             _fromDecimal = fromDecimal ?? throw new ArgumentNullException(nameof(fromDecimal));
@@ -72,7 +74,6 @@ namespace CSHUE.Components.NumericUpDown
         protected void TestInputSpecialValue(AllowedSpecialValues allowedValues, AllowedSpecialValues valueToCompare)
         {
             if ((allowedValues & valueToCompare) != valueToCompare)
-            {
                 switch (valueToCompare)
                 {
                     case AllowedSpecialValues.NaN:
@@ -82,13 +83,9 @@ namespace CSHUE.Components.NumericUpDown
                     case AllowedSpecialValues.NegativeInfinity:
                         throw new InvalidDataException("Value to parse shouldn't be Negative Infinity.");
                 }
-            }
         }
 
-        internal bool IsBetweenMinMax(T? value)
-        {
-            return !IsLowerThan(value, Minimum) && !IsGreaterThan(value, Maximum);
-        }
+        internal bool IsBetweenMinMax(T? value) => !IsLowerThan(value, Minimum) && !IsGreaterThan(value, Maximum);
 
         #endregion
 
@@ -129,9 +126,7 @@ namespace CSHUE.Components.NumericUpDown
             }
 
             if (!Increment.HasValue)
-            {
                 return true;
-            }
 
             return false;
         }
@@ -140,8 +135,10 @@ namespace CSHUE.Components.NumericUpDown
         {
             if (IsLowerThan(value, Minimum))
                 return Minimum;
+
             if (IsGreaterThan(value, Maximum))
                 return Maximum;
+
             return value;
         }
 
@@ -152,54 +149,47 @@ namespace CSHUE.Components.NumericUpDown
         protected override void OnIncrement()
         {
             if (!HandleNullSpin())
-            {
                 if (UpdateValueOnEnterKey)
                 {
                     var currentValue = ConvertTextToValue(TextBox.Text);
+
                     if (currentValue != null && Increment != null)
                     {
                         var result = IncrementValue(currentValue.Value, Increment.Value);
                         var newValue = CoerceValueMinMax(result);
-                        if (newValue != null) TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
+
+                        if (newValue != null)
+                            TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
                     }
                 }
-                else
+                else if (Value != null && Increment != null)
                 {
-                    if (Value != null)
-                    {
-                        if (Increment != null)
-                        {
-                            var result = IncrementValue(Value.Value, Increment.Value);
-                            Value = CoerceValueMinMax(result);
-                        }
-                    }
+                    var result = IncrementValue(Value.Value, Increment.Value);
+                    Value = CoerceValueMinMax(result);
                 }
-            }
         }
 
         protected override void OnDecrement()
         {
             if (!HandleNullSpin())
-            {
                 if (UpdateValueOnEnterKey)
                 {
                     var currentValue = ConvertTextToValue(TextBox.Text);
+
                     if (currentValue != null && Increment != null)
                     {
                         var result = DecrementValue(currentValue.Value, Increment.Value);
                         var newValue = CoerceValueMinMax(result);
-                        if (newValue != null) TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
+
+                        if (newValue != null)
+                            TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
                     }
                 }
-                else
+                else if (Value != null && Increment != null)
                 {
-                    if (Value != null && Increment != null)
-                    {
-                        var result = DecrementValue(Value.Value, Increment.Value);
-                        Value = CoerceValueMinMax(result);
-                    }
+                    var result = DecrementValue(Value.Value, Increment.Value);
+                    Value = CoerceValueMinMax(result);
                 }
-            }
         }
 
         protected override void OnMinimumChanged(T? oldValue, T? newValue)
@@ -207,9 +197,7 @@ namespace CSHUE.Components.NumericUpDown
             base.OnMinimumChanged(oldValue, newValue);
 
             if (Value.HasValue && ClipValueToMinMax)
-            {
                 Value = CoerceValueMinMax(Value.Value);
-            }
         }
 
         protected override void OnMaximumChanged(T? oldValue, T? newValue)
@@ -217,9 +205,7 @@ namespace CSHUE.Components.NumericUpDown
             base.OnMaximumChanged(oldValue, newValue);
 
             if (Value.HasValue && ClipValueToMinMax)
-            {
                 Value = CoerceValueMinMax(Value.Value);
-            }
         }
 
         protected override T? ConvertTextToValue(string text)
@@ -228,9 +214,11 @@ namespace CSHUE.Components.NumericUpDown
                 return null;
 
             var currentValueText = ConvertValueToText();
+
             if (Equals(currentValueText, text))
             {
                 IsInvalid = false;
+
                 return Value;
             }
 
@@ -277,6 +265,7 @@ namespace CSHUE.Components.NumericUpDown
         private bool IsPercent(string stringToTest)
         {
             var pIndex = stringToTest.IndexOf("P", StringComparison.Ordinal);
+
             if (pIndex >= 0)
             {
                 var isText = stringToTest.Substring(0, pIndex).Contains("'") &&
@@ -284,6 +273,7 @@ namespace CSHUE.Components.NumericUpDown
 
                 return !isText;
             }
+
             return false;
         }
 
@@ -292,9 +282,7 @@ namespace CSHUE.Components.NumericUpDown
             T? result;
 
             if (IsPercent(FormatString))
-            {
                 result = _fromDecimal(ParsePercent(text, CultureInfo));
-            }
             else
             {
                 if (!_fromText(text, ParsingNumberStyle, CultureInfo, out var outputValue))
@@ -314,14 +302,10 @@ namespace CSHUE.Components.NumericUpDown
                             if (valueTextSpecialCharacters.Except(specialCharacters).ToList().Count == 0)
                             {
                                 foreach (var character in specialCharacters)
-                                {
                                     text = text.Replace(character.ToString(), string.Empty);
-                                }
 
                                 if (_fromText(text, ParsingNumberStyle, CultureInfo, out outputValue))
-                                {
                                     shouldThrow = false;
-                                }
                             }
                         }
                     }
@@ -335,6 +319,7 @@ namespace CSHUE.Components.NumericUpDown
 
                 result = outputValue;
             }
+
             return result;
         }
 
@@ -342,8 +327,10 @@ namespace CSHUE.Components.NumericUpDown
         {
             if (IsGreaterThan(result, Maximum))
                 return Maximum;
+
             if (IsLowerThan(result, Minimum))
                 return Minimum;
+
             return result;
         }
 
@@ -364,7 +351,6 @@ namespace CSHUE.Components.NumericUpDown
         #region Abstract Methods
 
         protected abstract T IncrementValue(T value, T increment);
-
         protected abstract T DecrementValue(T value, T increment);
 
         #endregion

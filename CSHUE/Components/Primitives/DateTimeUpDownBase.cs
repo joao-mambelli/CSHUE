@@ -17,7 +17,7 @@ namespace CSHUE.Components.Primitives
         internal bool FireSelectionChangedEvent = true;
         internal bool ProcessTextChanged = true;
 
-        #endregion //Members
+        #endregion
 
         #region Properties
 
@@ -42,7 +42,7 @@ namespace CSHUE.Components.Primitives
             Select(GetDateTimeInfo(newValue));
         }
 
-        #endregion //CurrentDateTimePart
+        #endregion
 
         #region Step
 
@@ -64,7 +64,7 @@ namespace CSHUE.Components.Primitives
         {
         }
 
-        #endregion //Step
+        #endregion
 
         #endregion
 
@@ -183,16 +183,6 @@ namespace CSHUE.Components.Primitives
         protected virtual void PerformMouseSelection()
         {
             var dateTimeInfo = GetDateTimeInfo(TextBox.SelectionStart);
-            /*if( (this.TextBox is MaskedTextBox) && ( dateTimeInfo != null) && (dateTimeInfo.Type == DateTimePart.Other) )
-            {
-              this.Dispatcher.BeginInvoke( DispatcherPriority.Background, new Action( () =>
-              {
-                // Select the next dateTime part
-                this.Select( this.GetDateTimeInfo( dateTimeInfo.StartPosition + dateTimeInfo.Length ) );
-              }
-              ) );
-              return;
-            }     */
 
             Select(dateTimeInfo);
         }
@@ -241,12 +231,12 @@ namespace CSHUE.Components.Primitives
 
         internal void ValidateDefaultMinMax(T value)
         {
-            // DefaultValue is always accepted.
             if (Equals(value, DefaultValue))
                 return;
 
             if (IsLowerThan(value, Minimum))
                 throw new ArgumentOutOfRangeException(nameof(value), $@"Value must be greater than MinValue of {Minimum}");
+
             if (IsGreaterThan(value, Maximum))
                 throw new ArgumentOutOfRangeException(nameof(value), $@"Value must be less than MaxValue of {Maximum}");
         }

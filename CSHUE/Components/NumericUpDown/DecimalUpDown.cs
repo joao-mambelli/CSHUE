@@ -13,7 +13,7 @@
         {
         }
 
-        #endregion //Constructors
+        #endregion
 
         #region Base Class Overrides
 
@@ -27,6 +27,6 @@
             return value - increment;
         }
 
-        #endregion //Base Class Overrides
+        #endregion
     }
 }

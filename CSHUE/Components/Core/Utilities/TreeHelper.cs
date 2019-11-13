@@ -24,20 +24,13 @@ namespace CSHUE.Components.Core.Utilities
 
         private static DependencyObject GetParent(DependencyObject element, bool recurseIntoPopup)
         {
-            if (recurseIntoPopup)
-            {
-                // Case 126732 : To correctly detect parent of a popup we must do that exception case
-
-                if (element is Popup popup && popup.PlacementTarget != null)
-                    return popup.PlacementTarget;
-            }
+            if (recurseIntoPopup && element is Popup popup && popup.PlacementTarget != null)
+                return popup.PlacementTarget;
 
             var parent = !(element is Visual visual) ? null : VisualTreeHelper.GetParent(visual);
 
             if (parent == null)
             {
-                // No Visual parent. Check in the logical tree.
-
                 switch (element)
                 {
                     case FrameworkElement fe:

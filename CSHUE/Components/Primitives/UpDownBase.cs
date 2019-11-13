@@ -34,7 +34,7 @@ namespace CSHUE.Components.Primitives
         private bool _isSyncingTextAndValueProperties;
         private bool _internalValueSet;
 
-        #endregion //Members
+        #endregion
 
         #region Properties
 
@@ -60,7 +60,7 @@ namespace CSHUE.Components.Primitives
             set => SetValue(AllowSpinProperty, value);
         }
 
-        #endregion //AllowSpin
+        #endregion
 
         #region ButtonSpinnerLocation
 
@@ -73,7 +73,7 @@ namespace CSHUE.Components.Primitives
             set => SetValue(ButtonSpinnerLocationProperty, value);
         }
 
-        #endregion //ButtonSpinnerLocation
+        #endregion
 
         #region ClipValueToMinMax
 
@@ -86,7 +86,7 @@ namespace CSHUE.Components.Primitives
             set => SetValue(ClipValueToMinMaxProperty, value);
         }
 
-        #endregion //ClipValueToMinMax
+        #endregion
 
         #region DisplayDefaultValueOnEmptyText
 
@@ -112,7 +112,7 @@ namespace CSHUE.Components.Primitives
             }
         }
 
-        #endregion //DisplayDefaultValueOnEmptyText
+        #endregion
 
         #region DefaultValue
 
@@ -138,7 +138,7 @@ namespace CSHUE.Components.Primitives
             }
         }
 
-        #endregion //DefaultValue
+        #endregion
 
         #region Maximum
 
@@ -178,7 +178,7 @@ namespace CSHUE.Components.Primitives
             return baseValue;
         }
 
-        #endregion //Maximum
+        #endregion
 
         #region Minimum
 
@@ -218,7 +218,7 @@ namespace CSHUE.Components.Primitives
             return baseValue;
         }
 
-        #endregion //Minimum
+        #endregion
 
         #region MouseWheelActiveTrigger
 
@@ -238,7 +238,7 @@ namespace CSHUE.Components.Primitives
             set => SetValue(MouseWheelActiveTriggerProperty, value);
         }
 
-        #endregion //MouseWheelActiveTrigger
+        #endregion
 
         #region MouseWheelActiveOnFocus
 
@@ -272,7 +272,7 @@ namespace CSHUE.Components.Primitives
                   : MouseWheelActiveTrigger.MouseOver;
         }
 
-        #endregion //MouseWheelActiveOnFocus
+        #endregion
 
         #region ShowButtonSpinner
 
@@ -285,7 +285,7 @@ namespace CSHUE.Components.Primitives
             set => SetValue(ShowButtonSpinnerProperty, value);
         }
 
-        #endregion //ShowButtonSpinner
+        #endregion
 
         #region UpdateValueOnEnterKey
 
@@ -307,7 +307,7 @@ namespace CSHUE.Components.Primitives
         {
         }
 
-        #endregion //UpdateValueOnEnterKey
+        #endregion
 
         #region Value
 
@@ -360,9 +360,9 @@ namespace CSHUE.Components.Primitives
             RaiseValueChangedEvent(oldValue, newValue);
         }
 
-        #endregion //Value
+        #endregion
 
-        #endregion //Properties
+        #endregion
 
         #region Constructors
 
@@ -375,7 +375,7 @@ namespace CSHUE.Components.Primitives
             IsKeyboardFocusWithinChanged += UpDownBase_IsKeyboardFocusWithinChanged;
         }
 
-        #endregion //Constructors
+        #endregion
 
         #region Base Class Overrides
 
@@ -422,9 +422,7 @@ namespace CSHUE.Components.Primitives
             {
                 case Key.Enter:
                     {
-                        // Commit Text on "Enter" to raise Error event 
                         var commitSuccess = CommitInput();
-                        //Only handle if an exception is detected (Commit fails)
                         e.Handled = !commitSuccess;
                         break;
                     }
@@ -435,14 +433,10 @@ namespace CSHUE.Components.Primitives
         {
             if (IsInitialized)
             {
-                // When text is typed, if UpdateValueOnEnterKey is true, 
-                // Sync Value on Text only when Enter Key is pressed.
                 if (UpdateValueOnEnterKey)
                 {
                     if (!IsTextChangedFromUi)
-                    {
                         SyncTextAndValueProperties(true, Text);
-                    }
                 }
                 else
                 {
@@ -454,9 +448,7 @@ namespace CSHUE.Components.Primitives
         protected override void OnCultureInfoChanged(CultureInfo oldValue, CultureInfo newValue)
         {
             if (IsInitialized)
-            {
                 SyncTextAndValueProperties(false, null);
-            }
         }
 
         protected override void OnReadOnlyChanged(bool oldValue, bool newValue)
@@ -464,34 +456,26 @@ namespace CSHUE.Components.Primitives
             SetValidSpinDirection();
         }
 
-        #endregion //Base Class Overrides
+        #endregion
 
         #region Event Handlers
 
         private void TextBox_PreviewMouseDown(object sender, RoutedEventArgs e)
         {
-            if (MouseWheelActiveTrigger == MouseWheelActiveTrigger.Focused)
+            if (MouseWheelActiveTrigger == MouseWheelActiveTrigger.Focused && !Equals(Mouse.Captured, Spinner))
             {
-                //Capture the spinner when user clicks on the control.
-                if (!Equals(Mouse.Captured, Spinner))
-                {
-                    //Delay the capture to let the DateTimeUpDown select a new DateTime part.
-                    Dispatcher?.BeginInvoke(DispatcherPriority.Input, new Action(() =>
-                  {
-                      Mouse.Capture(Spinner);
-                  }
-                    ));
-                }
+                Dispatcher?.BeginInvoke(DispatcherPriority.Input, new Action(() =>
+                    {
+                        Mouse.Capture(Spinner);
+                    }
+                ));
             }
         }
 
         private void HandleClickOutsideOfControlWithMouseCapture(object sender, RoutedEventArgs e)
         {
             if (Mouse.Captured is Spinner)
-            {
-                //Release the captured spinner when user clicks away from spinner.
                 Spinner.ReleaseMouseCapture();
-            }
         }
 
         private void OnSpinnerSpin(object sender, SpinEventArgs e)
@@ -512,7 +496,7 @@ namespace CSHUE.Components.Primitives
             }
         }
 
-        #endregion //Event Handlers
+        #endregion
 
         #region Events
 
@@ -531,7 +515,7 @@ namespace CSHUE.Components.Primitives
 
         #endregion
 
-        #endregion //Events
+        #endregion
 
         #region Methods
 
@@ -540,7 +524,6 @@ namespace CSHUE.Components.Primitives
             if (e == null)
                 throw new ArgumentNullException(nameof(e));
 
-            // Raise the Spinned event to user
             var handler = Spinned;
             handler?.Invoke(this, e);
 
@@ -559,13 +542,9 @@ namespace CSHUE.Components.Primitives
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            // When both Value and Text are initialized, Value has priority.
-            // To be sure that the value is not initialized, it should
-            // have no local value, no binding, and equal to the default value.
-            var updateValueFromText =
-              ReadLocalValue(ValueProperty) == DependencyProperty.UnsetValue
-              && BindingOperations.GetBinding(this, ValueProperty) == null
-              && Equals(Value, ValueProperty.DefaultMetadata.DefaultValue);
+            var updateValueFromText = ReadLocalValue(ValueProperty) == DependencyProperty.UnsetValue &&
+                                      BindingOperations.GetBinding(this, ValueProperty) == null && Equals(Value,
+                                          ValueProperty.DefaultMetadata.DefaultValue);
 
             SyncTextAndValueProperties(updateValueFromText, Text, !updateValueFromText);
         }
@@ -652,7 +631,6 @@ namespace CSHUE.Components.Primitives
                 {
                     if (string.IsNullOrEmpty(text))
                     {
-                        // An empty input sets the value to the default value.
                         SetValueInternal(DefaultValue);
                     }
                     else
@@ -669,21 +647,14 @@ namespace CSHUE.Components.Primitives
                         {
                             parsedTextIsValid = false;
 
-                            // From the UI, just allow any input.
                             if (!IsTextChangedFromUi)
-                            {
-                                // This call may throw an exception. 
-                                // See RaiseInputValidationError() implementation.
                                 RaiseInputValidationError(e);
-                            }
                         }
                     }
                 }
 
-                // Do not touch the ongoing text input from user.
                 if (!IsTextChangedFromUi)
                 {
-                    // Don't replace the empty Text with the non-empty representation of DefaultValue.
                     var shouldKeepEmpty = !forceTextUpdate && string.IsNullOrEmpty(Text) && Equals(Value, DefaultValue) && !DisplayDefaultValueOnEmptyText;
                     if (!shouldKeepEmpty)
                     {
@@ -694,20 +665,14 @@ namespace CSHUE.Components.Primitives
                         }
                     }
 
-                    // Sync Text and textBox
                     if (TextBox != null)
                         TextBox.Text = Text;
                 }
 
                 if (IsTextChangedFromUi && !parsedTextIsValid)
                 {
-                    // Text input was made from the user and the text
-                    // repesents an invalid value. Disable the spinner
-                    // in this case.
                     if (Spinner != null)
-                    {
                         Spinner.ValidSpinDirection = ValidSpinDirections.None;
-                    }
                 }
                 else
                 {
@@ -749,8 +714,8 @@ namespace CSHUE.Components.Primitives
         /// </summary>
         protected abstract void SetValidSpinDirection();
 
-        #endregion //Abstract
+        #endregion
 
-        #endregion //Methods
+        #endregion
     }
 }

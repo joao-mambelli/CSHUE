@@ -32,7 +32,7 @@ namespace CSHUE.Components.NumericUpDown
             private set => SetValue(IsInvalidProperty, value);
         }
 
-        #endregion //IsInvalid
+        #endregion
 
         #region ParsingNumberStyle
 
@@ -45,7 +45,7 @@ namespace CSHUE.Components.NumericUpDown
             set => SetValue(ParsingNumberStyleProperty, value);
         }
 
-        #endregion //ParsingNumberStyle
+        #endregion
 
         #endregion
 
@@ -153,19 +153,14 @@ namespace CSHUE.Components.NumericUpDown
         {
             if (!HandleNullSpin())
             {
-                // if UpdateValueOnEnterKey is true, 
-                // Sync Value on Text only when Enter Key is pressed.
                 if (UpdateValueOnEnterKey)
                 {
                     var currentValue = ConvertTextToValue(TextBox.Text);
-                    if (currentValue != null)
+                    if (currentValue != null && Increment != null)
                     {
-                        if (Increment != null)
-                        {
-                            var result = IncrementValue(currentValue.Value, Increment.Value);
-                            var newValue = CoerceValueMinMax(result);
-                            if (newValue != null) TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
-                        }
+                        var result = IncrementValue(currentValue.Value, Increment.Value);
+                        var newValue = CoerceValueMinMax(result);
+                        if (newValue != null) TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
                     }
                 }
                 else
@@ -186,30 +181,22 @@ namespace CSHUE.Components.NumericUpDown
         {
             if (!HandleNullSpin())
             {
-                // if UpdateValueOnEnterKey is true, 
-                // Sync Value on Text only when Enter Key is pressed.
                 if (UpdateValueOnEnterKey)
                 {
                     var currentValue = ConvertTextToValue(TextBox.Text);
-                    if (currentValue != null)
+                    if (currentValue != null && Increment != null)
                     {
-                        if (Increment != null)
-                        {
-                            var result = DecrementValue(currentValue.Value, Increment.Value);
-                            var newValue = CoerceValueMinMax(result);
-                            if (newValue != null) TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
-                        }
+                        var result = DecrementValue(currentValue.Value, Increment.Value);
+                        var newValue = CoerceValueMinMax(result);
+                        if (newValue != null) TextBox.Text = newValue.Value.ToString(FormatString, CultureInfo);
                     }
                 }
                 else
                 {
-                    if (Value != null)
+                    if (Value != null && Increment != null)
                     {
-                        if (Increment != null)
-                        {
-                            var result = DecrementValue(Value.Value, Increment.Value);
-                            Value = CoerceValueMinMax(result);
-                        }
+                        var result = DecrementValue(Value.Value, Increment.Value);
+                        Value = CoerceValueMinMax(result);
                     }
                 }
             }
@@ -240,8 +227,6 @@ namespace CSHUE.Components.NumericUpDown
             if (string.IsNullOrEmpty(text))
                 return null;
 
-            // Since the conversion from Value to text using a FormartString may not be parsable,
-            // we verify that the already existing text is not the exact same value.
             var currentValueText = ConvertValueToText();
             if (Equals(currentValueText, text))
             {
@@ -252,9 +237,7 @@ namespace CSHUE.Components.NumericUpDown
             var result = ConvertTextToValueCore(currentValueText, text);
 
             if (ClipValueToMinMax)
-            {
                 return GetClippedMinMaxValue(result);
-            }
 
             ValidateDefaultMinMax(result);
 
@@ -268,7 +251,6 @@ namespace CSHUE.Components.NumericUpDown
 
             IsInvalid = false;
 
-            //Manage FormatString of type "{}{0:N2} °" (in xaml) or "{0:N2} °" in code-behind.
             if (FormatString.Contains("{0"))
                 return string.Format(CultureInfo, FormatString, Value.Value);
 
@@ -279,7 +261,6 @@ namespace CSHUE.Components.NumericUpDown
         {
             var validDirections = ValidSpinDirections.None;
 
-            // Null increment always prevents spin.
             if (Increment != null && !IsReadOnly)
             {
                 if (IsLowerThan(Value, Maximum) || !Value.HasValue || !Maximum.HasValue)
@@ -298,9 +279,8 @@ namespace CSHUE.Components.NumericUpDown
             var pIndex = stringToTest.IndexOf("P", StringComparison.Ordinal);
             if (pIndex >= 0)
             {
-                //stringToTest contains a "P" between 2 "'", it's considered as text, not percent
-                var isText = stringToTest.Substring(0, pIndex).Contains("'")
-                              && stringToTest.Substring(pIndex, FormatString.Length - pIndex).Contains("'");
+                var isText = stringToTest.Substring(0, pIndex).Contains("'") &&
+                             stringToTest.Substring(pIndex, FormatString.Length - pIndex).Contains("'");
 
                 return !isText;
             }
@@ -317,30 +297,27 @@ namespace CSHUE.Components.NumericUpDown
             }
             else
             {
-                // Problem while converting new text
                 if (!_fromText(text, ParsingNumberStyle, CultureInfo, out var outputValue))
                 {
                     var shouldThrow = true;
 
-                    // case 164198: Throw when replacing only the digit part of 99° through UI.
-                    // Check if CurrentValueText is also failing => it also contains special characters. ex : 90°
                     if (!_fromText(currentValueText, ParsingNumberStyle, CultureInfo, out _))
                     {
-                        // extract non-digit characters
                         var currentValueTextSpecialCharacters = currentValueText.Where(c => !char.IsDigit(c));
                         var valueTextSpecialCharacters = currentValueTextSpecialCharacters.ToList();
+
                         if (valueTextSpecialCharacters.Any())
                         {
                             var textSpecialCharacters = text.Where(c => !char.IsDigit(c));
-                            // same non-digit characters on currentValueText and new text => remove them on new Text to parse it again.
                             var specialCharacters = textSpecialCharacters.ToList();
+
                             if (valueTextSpecialCharacters.Except(specialCharacters).ToList().Count == 0)
                             {
                                 foreach (var character in specialCharacters)
                                 {
                                     text = text.Replace(character.ToString(), string.Empty);
                                 }
-                                // if without the special characters, parsing is good, do not throw
+
                                 if (_fromText(text, ParsingNumberStyle, CultureInfo, out outputValue))
                                 {
                                     shouldThrow = false;
@@ -355,6 +332,7 @@ namespace CSHUE.Components.NumericUpDown
                         throw new InvalidDataException("Input string was not in a correct format.");
                     }
                 }
+
                 result = outputValue;
             }
             return result;
@@ -371,17 +349,17 @@ namespace CSHUE.Components.NumericUpDown
 
         private void ValidateDefaultMinMax(T? value)
         {
-            // DefaultValue is always accepted.
             if (Equals(value, DefaultValue))
                 return;
 
             if (IsLowerThan(value, Minimum))
                 throw new ArgumentOutOfRangeException(nameof(value), $@"Value must be greater than MinValue of {Minimum}");
+
             if (IsGreaterThan(value, Maximum))
                 throw new ArgumentOutOfRangeException(nameof(value), $@"Value must be less than MaxValue of {Maximum}");
         }
 
-        #endregion //Base Class Overrides
+        #endregion
 
         #region Abstract Methods
 

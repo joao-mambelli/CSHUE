@@ -44,7 +44,6 @@ namespace CSHUE.Components.DateTimeUpDown
                             value = value.Replace(quoteContent, "");
                             format = format.Remove(quoteStart, quoteEnd - quoteStart + 1);
 
-                            // Use recursive calls for many quote text. 
                             continue;
                         }
                     }
@@ -104,7 +103,6 @@ namespace CSHUE.Components.DateTimeUpDown
                 }
             }
 
-            //Auto-complete missing date parts
             if (dateTimeParts.Count < formats.Count)
             {
                 while (dateTimeParts.Count != formats.Count)
@@ -113,7 +111,6 @@ namespace CSHUE.Components.DateTimeUpDown
                 }
             }
 
-            //something went wrong
             if (dateTimeParts.Count != formats.Count)
                 return string.Empty;
 

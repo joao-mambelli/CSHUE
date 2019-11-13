@@ -47,7 +47,7 @@ namespace CSHUE.Components.NumericUpDown
             }
         }
 
-        #endregion //FormatString
+        #endregion
 
         #region Increment
 
@@ -96,9 +96,9 @@ namespace CSHUE.Components.NumericUpDown
             set => SetValue(MaxLengthProperty, value);
         }
 
-        #endregion //MaxLength
+        #endregion
 
-        #endregion //Properties
+        #endregion
 
         #region Overrides
 
@@ -119,7 +119,7 @@ namespace CSHUE.Components.NumericUpDown
             return result;
         }
 
-        #endregion //Methods
+        #endregion
     }
 
 #pragma warning restore 0618

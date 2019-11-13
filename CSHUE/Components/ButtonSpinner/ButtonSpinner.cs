@@ -26,7 +26,8 @@ namespace CSHUE.Components.ButtonSpinner
 
         #region AllowSpin
 
-        public static readonly DependencyProperty AllowSpinProperty = DependencyProperty.Register("AllowSpin", typeof(bool), typeof(ButtonSpinner), new UIPropertyMetadata(true, AllowSpinPropertyChanged));
+        public static readonly DependencyProperty AllowSpinProperty = DependencyProperty.Register("AllowSpin",
+            typeof(bool), typeof(ButtonSpinner), new UIPropertyMetadata(true, AllowSpinPropertyChanged));
         public bool AllowSpin
         {
             get => (bool)GetValue(AllowSpinProperty);
@@ -39,25 +40,28 @@ namespace CSHUE.Components.ButtonSpinner
             source?.OnAllowSpinChanged((bool)e.OldValue, (bool)e.NewValue);
         }
 
-        #endregion //AllowSpin
+        #endregion
 
         #region ButtonSpinnerLocation
 
-        public static readonly DependencyProperty ButtonSpinnerLocationProperty = DependencyProperty.Register("ButtonSpinnerLocation", typeof(Location), typeof(ButtonSpinner), new UIPropertyMetadata(Location.Right));
+        public static readonly DependencyProperty ButtonSpinnerLocationProperty =
+            DependencyProperty.Register("ButtonSpinnerLocation", typeof(Location), typeof(ButtonSpinner),
+                new UIPropertyMetadata(Location.Right));
         public Location ButtonSpinnerLocation
         {
             get => (Location)GetValue(ButtonSpinnerLocationProperty);
             set => SetValue(ButtonSpinnerLocationProperty, value);
         }
 
-        #endregion //ButtonSpinnerLocation
+        #endregion
 
         #region Content
 
         /// <summary>
         /// Identifies the Content dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object), typeof(ButtonSpinner), new PropertyMetadata(null, OnContentPropertyChanged));
+        public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content",
+            typeof(object), typeof(ButtonSpinner), new PropertyMetadata(null, OnContentPropertyChanged));
         public object Content
         {
             get => GetValue(ContentProperty);
@@ -72,10 +76,11 @@ namespace CSHUE.Components.ButtonSpinner
         private static void OnContentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var source = d as ButtonSpinner;
+
             source?.OnContentChanged(e.OldValue, e.NewValue);
         }
 
-        #endregion //Content
+        #endregion
 
         #region DecreaseButton
 
@@ -89,20 +94,16 @@ namespace CSHUE.Components.ButtonSpinner
             set
             {
                 if (_decreaseButton != null)
-                {
                     _decreaseButton.Click -= OnButtonClick;
-                }
 
                 _decreaseButton = value;
 
                 if (_decreaseButton != null)
-                {
                     _decreaseButton.Click += OnButtonClick;
-                }
             }
         }
 
-        #endregion //DecreaseButton
+        #endregion
 
         #region IncreaseButton
 
@@ -116,33 +117,31 @@ namespace CSHUE.Components.ButtonSpinner
             set
             {
                 if (_increaseButton != null)
-                {
                     _increaseButton.Click -= OnButtonClick;
-                }
 
                 _increaseButton = value;
 
                 if (_increaseButton != null)
-                {
                     _increaseButton.Click += OnButtonClick;
-                }
             }
         }
 
-        #endregion //IncreaseButton
+        #endregion
 
         #region ShowButtonSpinner
 
-        public static readonly DependencyProperty ShowButtonSpinnerProperty = DependencyProperty.Register("ShowButtonSpinner", typeof(bool), typeof(ButtonSpinner), new UIPropertyMetadata(true));
+        public static readonly DependencyProperty ShowButtonSpinnerProperty =
+            DependencyProperty.Register("ShowButtonSpinner", typeof(bool), typeof(ButtonSpinner),
+                new UIPropertyMetadata(true));
         public bool ShowButtonSpinner
         {
             get => (bool)GetValue(ShowButtonSpinnerProperty);
             set => SetValue(ShowButtonSpinnerProperty, value);
         }
 
-        #endregion //ShowButtonSpinner
+        #endregion
 
-        #endregion //Properties
+        #endregion
 
         #region Constructors
 
@@ -151,7 +150,7 @@ namespace CSHUE.Components.ButtonSpinner
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ButtonSpinner), new FrameworkPropertyMetadata(typeof(ButtonSpinner)));
         }
 
-        #endregion //Constructors
+        #endregion
 
         #region Base Class Overrides
 
@@ -180,9 +179,7 @@ namespace CSHUE.Components.ButtonSpinner
                 mousePosition = e.GetPosition(IncreaseButton);
                 if (mousePosition.X > 0 && mousePosition.X < IncreaseButton.ActualWidth &&
                     mousePosition.Y > 0 && mousePosition.Y < IncreaseButton.ActualHeight)
-                {
                     e.Handled = true;
-                }
             }
 
             if (DecreaseButton != null && DecreaseButton.IsEnabled == false)
@@ -190,9 +187,7 @@ namespace CSHUE.Components.ButtonSpinner
                 mousePosition = e.GetPosition(DecreaseButton);
                 if (mousePosition.X > 0 && mousePosition.X < DecreaseButton.ActualWidth &&
                     mousePosition.Y > 0 && mousePosition.Y < DecreaseButton.ActualHeight)
-                {
                     e.Handled = true;
-                }
             }
         }
 
@@ -222,7 +217,6 @@ namespace CSHUE.Components.ButtonSpinner
                     }
                 case Key.Enter:
                     {
-                        //Do not Spin on enter Key when spinners have focus
                         if (IncreaseButton != null && IncreaseButton.IsFocused
                           || DecreaseButton != null && DecreaseButton.IsFocused)
                         {
@@ -237,14 +231,11 @@ namespace CSHUE.Components.ButtonSpinner
         {
             base.OnMouseWheel(e);
 
-            if (!e.Handled && AllowSpin)
+            if (!e.Handled && AllowSpin && e.Delta != 0)
             {
-                if (e.Delta != 0)
-                {
-                    var spinnerEventArgs = new SpinEventArgs(SpinnerSpinEvent, e.Delta < 0 ? SpinDirection.Decrease : SpinDirection.Increase, true);
-                    OnSpin(spinnerEventArgs);
-                    e.Handled = spinnerEventArgs.Handled;
-                }
+                var spinnerEventArgs = new SpinEventArgs(SpinnerSpinEvent, e.Delta < 0 ? SpinDirection.Decrease : SpinDirection.Increase, true);
+                OnSpin(spinnerEventArgs);
+                e.Handled = spinnerEventArgs.Handled;
             }
         }
 
@@ -258,8 +249,7 @@ namespace CSHUE.Components.ButtonSpinner
             SetButtonUsage();
         }
 
-
-        #endregion //Base Class Overrides
+        #endregion
 
         #region Event Handlers
 
@@ -278,7 +268,7 @@ namespace CSHUE.Components.ButtonSpinner
             }
         }
 
-        #endregion //Event Handlers
+        #endregion
 
         #region Methods
 
@@ -289,6 +279,7 @@ namespace CSHUE.Components.ButtonSpinner
         /// <param name="newValue">The new value of the Content property.</param>
         protected virtual void OnContentChanged(object oldValue, object newValue)
         {
+            // ignored
         }
 
         protected virtual void OnAllowSpinChanged(bool oldValue, bool newValue)
@@ -301,18 +292,13 @@ namespace CSHUE.Components.ButtonSpinner
         /// </summary>
         private void SetButtonUsage()
         {
-            // buttonspinner adds buttons that spin, so disable accordingly.
             if (IncreaseButton != null)
-            {
                 IncreaseButton.IsEnabled = AllowSpin && (ValidSpinDirection & ValidSpinDirections.Increase) == ValidSpinDirections.Increase;
-            }
 
             if (DecreaseButton != null)
-            {
                 DecreaseButton.IsEnabled = AllowSpin && (ValidSpinDirection & ValidSpinDirections.Decrease) == ValidSpinDirections.Decrease;
-            }
         }
 
-        #endregion //Methods
+        #endregion
     }
 }

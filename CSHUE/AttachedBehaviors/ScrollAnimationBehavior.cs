@@ -12,13 +12,18 @@ namespace CSHUE.AttachedBehaviors
 
         public static DependencyProperty VerticalOffsetProperty = DependencyProperty.RegisterAttached("VerticalOffset",
             typeof(double), typeof(ScrollAnimationBehavior), new UIPropertyMetadata(0.0, OnVerticalOffsetChanged));
+
         public static DependencyProperty TimeDurationProperty = DependencyProperty.RegisterAttached("TimeDuration",
             typeof(TimeSpan), typeof(ScrollAnimationBehavior), new PropertyMetadata(new TimeSpan(0, 0, 0, 0, 0)));
+
         public static DependencyProperty PointsToScrollProperty = DependencyProperty.RegisterAttached("PointsToScroll",
             typeof(double), typeof(ScrollAnimationBehavior), new PropertyMetadata(0.0));
+
         public static DependencyProperty IsEnabledProperty = DependencyProperty.RegisterAttached("IsEnabled",
             typeof(bool), typeof(ScrollAnimationBehavior), new UIPropertyMetadata(false, OnIsEnabledChanged));
+
         private static double _currentToValue;
+
         private static Storyboard _storyboard;
 
         #endregion

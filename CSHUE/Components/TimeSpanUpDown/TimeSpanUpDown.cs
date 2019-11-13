@@ -26,7 +26,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             DataObject.AddPastingHandler(this, OnPasting);
         }
 
-        #endregion //Constructors
+        #endregion
 
         #region Properties
 
@@ -61,7 +61,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             UpdateValue();
         }
 
-        #endregion //FractionalSecondsDigitsCount
+        #endregion
 
         #region ShowDays
 
@@ -83,7 +83,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             UpdateValue();
         }
 
-        #endregion //ShowDays
+        #endregion
 
         #region ShowSeconds
 
@@ -105,7 +105,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             UpdateValue();
         }
 
-        #endregion //ShowSeconds
+        #endregion
 
         #endregion
 
@@ -172,15 +172,12 @@ namespace CSHUE.Components.TimeSpanUpDown
                 {
                     var haveMs = separators.Count > 1 && separators.Last() == '.';
 
-                    timeSpan = new TimeSpan(0,  //Days
-                                             int.Parse(values[0].Replace("-", "")),  //Hours
-                                             int.Parse(values[1].Replace("-", "")),  //Minutes
-                                             ShowSeconds ? int.Parse(values[2].Replace("-", "")) : 0,  //Seconds
-                                             haveMs ? int.Parse(values.Last().Replace("-", "")) : 0);  //Milliseconds
+                    timeSpan = new TimeSpan(0, int.Parse(values[0].Replace("-", "")),
+                        int.Parse(values[1].Replace("-", "")), ShowSeconds ? int.Parse(values[2].Replace("-", "")) : 0,
+                        haveMs ? int.Parse(values.Last().Replace("-", "")) : 0);
+
                     if (text.StartsWith("-"))
-                    {
                         timeSpan = timeSpan.Negate();
-                    }
                 }
             }
 
@@ -223,7 +220,6 @@ namespace CSHUE.Components.TimeSpanUpDown
                 return;
             }
 
-            // Validate when more than 60 seconds (or more than 60 minutes, or more than 24 hours) are entered.
             var separators = currentValue.Where(x => x == ':' || x == '.').ToList();
             var values = currentValue.Split(':', '.');
             if (values.Length >= 2 && !values.Any(string.IsNullOrEmpty))
@@ -231,35 +227,32 @@ namespace CSHUE.Components.TimeSpanUpDown
                 var haveDays = separators.First() == '.';
                 var haveMs = separators.Count > 1 && separators.Last() == '.';
 
-                var result = new TimeSpan(haveDays ? int.Parse(values[0]) : 0,  //Days
-                    haveDays ? int.Parse(values[1]) : int.Parse(values[0]),  //Hours
-                    haveDays ? int.Parse(values[2]) : int.Parse(values[1]),  //Minutes
-                    haveDays && ShowSeconds ? int.Parse(values[3]) : ShowSeconds ? int.Parse(values[2]) : 0,  //Seconds
+                var result = new TimeSpan(haveDays ? int.Parse(values[0]) : 0,
+                    haveDays ? int.Parse(values[1]) : int.Parse(values[0]),
+                    haveDays ? int.Parse(values[2]) : int.Parse(values[1]),
+                    haveDays && ShowSeconds ? int.Parse(values[3]) : ShowSeconds ? int.Parse(values[2]) : 0,
                     haveMs ? int.Parse(values.Last()) : 0);
 
                 currentValue = result.ToString();
             }
 
-            // When text is typed, if UpdateValueOnEnterKey is true, 
-            // Sync Value on Text only when Enter Key is pressed.
-            if (IsTextChangedFromUi && !UpdateValueOnEnterKey
-              || !IsTextChangedFromUi)
-            {
+            if (IsTextChangedFromUi && !UpdateValueOnEnterKey || !IsTextChangedFromUi)
                 SyncTextAndValueProperties(true, currentValue);
-            }
         }
 
         protected override void OnValueChanged(TimeSpan? oldValue, TimeSpan? newValue)
         {
-            //whenever the value changes we need to parse out the value into out DateTimeInfo segments so we can keep track of the individual pieces
-            //but only if it is not null
             if (newValue != null)
             {
                 var value = UpdateValueOnEnterKey
-                          ? TextBox != null ? ConvertTextToValue(TextBox.Text) : null
-                          : Value;
+                    ? TextBox != null
+                        ? ConvertTextToValue(TextBox.Text)
+                        : null
+                    : Value;
+
                 InitializeDateTimeInfoList(value);
             }
+
             base.OnValueChanged(oldValue, newValue);
         }
 
@@ -284,7 +277,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             if (value.HasValue && value.Value.TotalMilliseconds < 0)
             {
                 DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Other, Length = 1, Content = "-", IsReadOnly = true });
-                // Negative has been added, move TextBox.Selection to keep it on current DateTimeInfo
+                
                 if (!hasNegative && TextBox != null)
                 {
                     FireSelectionChangedEvent = false;
@@ -303,14 +296,12 @@ namespace CSHUE.Components.TimeSpanUpDown
 
                     if (TextBox != null)
                     {
-                        //number of digits for days has changed when selection is not on date part, move TextBox.Selection to keep it on current DateTimeInfo
                         if (hasDay && dayLength != lastDayInfo.Length && SelectedDateTimeInfo.Type != DateTimePart.Day)
                         {
                             FireSelectionChangedEvent = false;
                             TextBox.SelectionStart = Math.Max(0, TextBox.SelectionStart + (dayLength - lastDayInfo.Length));
                             FireSelectionChangedEvent = true;
                         }
-                        // Day has been added, move TextBox.Selection to keep it on current DateTimeInfo
                         else if (!hasDay)
                         {
                             FireSelectionChangedEvent = false;
@@ -319,7 +310,6 @@ namespace CSHUE.Components.TimeSpanUpDown
                         }
                     }
                 }
-                // Day has been removed, move TextBox.Selection to keep it on current DateTimeInfo
                 else if (hasDay)
                 {
                     FireSelectionChangedEvent = false;
@@ -342,7 +332,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             {
                 DateTimeInfoList.Add(new DateTimeInfo { Type = DateTimePart.Other, Length = 1, Content = ".", IsReadOnly = true });
                 var fraction = new string('f', FractionalSecondsDigitsCount);
-                //If the "f" custom format specifier is used alone, specify "%f" so that it is not misinterpreted as a standard format string.
+
                 if (fraction.Length == 1)
                 {
                     fraction = "%" + fraction;
@@ -400,7 +390,6 @@ namespace CSHUE.Components.TimeSpanUpDown
                        info.StartPosition = text.Length;
                    }
 
-                   // Display days and hours or totalHours
                    var content = !ShowDays && span.Days != 0 && info.Format == "hh"
                        ? Math.Truncate(Math.Abs(span.TotalHours)).ToString(CultureInfo.InvariantCulture)
                        : span.ToString(info.Format, CultureInfo.DateTimeFormat);
@@ -426,8 +415,6 @@ namespace CSHUE.Components.TimeSpanUpDown
             var info = SelectedDateTimeInfo ?? (CurrentDateTimePart != DateTimePart.Other
                            ? GetDateTimeInfo(CurrentDateTimePart)
                            : DateTimeInfoList[0].Content != "-" ? DateTimeInfoList[0] : DateTimeInfoList[1]);
-
-            //this only occurs when the user manually type in a value for the Value Property
 
             TimeSpan? result = null;
 
@@ -467,9 +454,7 @@ namespace CSHUE.Components.TimeSpanUpDown
             }
             catch
             {
-                //this can occur if the date/time = 1/1/0001 12:00:00 AM which is the smallest date allowed.
-                //I could write code that would validate the date each and everytime but I think that it would be more
-                //efficient if I just handle the edge case and allow an exeption to occur and swallow it instead.
+                // ignored
             }
 
             result = CoerceValueMinMax(result);
@@ -479,8 +464,6 @@ namespace CSHUE.Components.TimeSpanUpDown
 
         private void Increment(int step)
         {
-            // if UpdateValueOnEnterKey is true, 
-            // Sync Value on Text only when Enter Key is pressed.
             if (UpdateValueOnEnterKey)
             {
                 var currentValue = ConvertTextToValue(TextBox.Text);
@@ -547,13 +530,11 @@ namespace CSHUE.Components.TimeSpanUpDown
         {
             if (e.DataObject.GetDataPresent(typeof(string)))
             {
-                // Allow pasting only TimeSpan values
                 var pasteText = e.DataObject.GetData(typeof(string)) as string;
                 var success = TimeSpan.TryParse(pasteText, out _);
+
                 if (!success)
-                {
                     e.CancelCommand();
-                }
             }
         }
 

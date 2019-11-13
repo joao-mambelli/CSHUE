@@ -28,7 +28,7 @@ namespace CSHUE.Components.Primitives
         {
         }
 
-        #endregion //AllowTextInput
+        #endregion
 
         #region CultureInfo
 
@@ -50,7 +50,7 @@ namespace CSHUE.Components.Primitives
 
         }
 
-        #endregion //CultureInfo
+        #endregion
 
         #region IsReadOnly
 
@@ -71,7 +71,7 @@ namespace CSHUE.Components.Primitives
         {
         }
 
-        #endregion //IsReadOnly
+        #endregion
 
         #region IsUndoEnabled
 
@@ -92,7 +92,7 @@ namespace CSHUE.Components.Primitives
         {
         }
 
-        #endregion //IsUndoEnabled
+        #endregion
 
         #region Text
 
@@ -114,7 +114,7 @@ namespace CSHUE.Components.Primitives
 
         }
 
-        #endregion //Text
+        #endregion
 
         #region TextAlignment
 
@@ -126,7 +126,7 @@ namespace CSHUE.Components.Primitives
         }
 
 
-        #endregion //TextAlignment
+        #endregion
 
         #region Watermark
 
@@ -137,7 +137,7 @@ namespace CSHUE.Components.Primitives
             set => SetValue(WatermarkProperty, value);
         }
 
-        #endregion //Watermark
+        #endregion
 
         #region WatermarkTemplate
 
@@ -148,8 +148,8 @@ namespace CSHUE.Components.Primitives
             set => SetValue(WatermarkTemplateProperty, value);
         }
 
-        #endregion //WatermarkTemplate
+        #endregion
 
-        #endregion //Properties
+        #endregion
     }
 }

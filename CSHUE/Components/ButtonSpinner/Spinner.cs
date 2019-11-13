@@ -34,7 +34,7 @@ namespace CSHUE.Components.ButtonSpinner
             source.OnValidSpinDirectionChanged(oldvalue, newvalue);
         }
 
-        #endregion //Properties
+        #endregion
 
         /// <summary>
         /// Occurs when spinning is initiated by the end-user.
@@ -61,7 +61,6 @@ namespace CSHUE.Components.ButtonSpinner
         {
             var valid = e.Direction == SpinDirection.Increase ? ValidSpinDirections.Increase : ValidSpinDirections.Decrease;
 
-            //Only raise the event if spin is allowed.
             if ((ValidSpinDirection & valid) == valid)
             {
                 var handler = Spin;

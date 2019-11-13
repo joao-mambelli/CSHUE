@@ -12,7 +12,7 @@ namespace CSHUE.Components.DateTimeUpDown
     {
         #region Members
 
-        private DateTime? _lastValidDate; //null
+        private DateTime? _lastValidDate;
         private bool _setKindInternal;
 
         #endregion
@@ -28,7 +28,7 @@ namespace CSHUE.Components.DateTimeUpDown
             set => SetValue(AutoClipTimePartsProperty, value);
         }
 
-        #endregion //AutoClipTimeParts
+        #endregion
 
         #region Format
 
@@ -50,7 +50,7 @@ namespace CSHUE.Components.DateTimeUpDown
             FormatUpdated();
         }
 
-        #endregion //Format
+        #endregion
 
         #region FormatString
 
@@ -65,7 +65,6 @@ namespace CSHUE.Components.DateTimeUpDown
         {
             try
             {
-                // Test the format string if it is used.
                 var unused = CultureInfo.CurrentCulture.DateTimeFormat.Calendar.MinSupportedDateTime.ToString((string)value, CultureInfo.CurrentCulture);
             }
             catch
@@ -87,7 +86,7 @@ namespace CSHUE.Components.DateTimeUpDown
             FormatUpdated();
         }
 
-        #endregion //FormatString
+        #endregion
 
         #region Kind
 
@@ -107,7 +106,6 @@ namespace CSHUE.Components.DateTimeUpDown
 
         protected virtual void OnKindChanged(DateTimeKind oldValue, DateTimeKind newValue)
         {
-            //Upate the value based on kind. (Postpone to EndInit if not yet initialized)
             if (!_setKindInternal
               && Value != null
               && IsInitialized)
@@ -129,7 +127,7 @@ namespace CSHUE.Components.DateTimeUpDown
             }
         }
 
-        #endregion //Kind
+        #endregion
 
         #region ContextNow (Private)
 
@@ -137,7 +135,7 @@ namespace CSHUE.Components.DateTimeUpDown
 
         #endregion
 
-        #endregion //Properties
+        #endregion
 
         #region Constructors
 
@@ -154,7 +152,7 @@ namespace CSHUE.Components.DateTimeUpDown
             Loaded += DateTimeUpDown_Loaded;
         }
 
-        #endregion //Constructors
+        #endregion
 
         #region Base Class Overrides
 
@@ -201,25 +199,11 @@ namespace CSHUE.Components.DateTimeUpDown
 
             TryParseDateTime(text, out var result);
 
-            //Do not force "unspecified" to a time-zone specific
-            //parsed text value. This would result in a lost of precision and
-            //corrupt data. Let the value impose the Kind to the
-            //DateTimePicker. 
             if (Kind != DateTimeKind.Unspecified)
-            {
-
-                //Keep the current kind (Local or Utc) 
-                //by imposing it to the parsed text value.
-                //
-                //Note: A parsed UTC text value may be
-                //      adjusted with a Local kind and time.
                 result = ConvertToKind(result, Kind);
-            }
 
             if (ClipValueToMinMax)
-            {
                 return GetClippedMinMaxValue(result);
-            }
 
             ValidateDefaultMinMax(result);
 
@@ -253,18 +237,10 @@ namespace CSHUE.Components.DateTimeUpDown
 
         protected override object OnCoerceValue(object newValue)
         {
-            //Since only changing the "kind" of a date
-            //Ex. "2001-01-01 12:00 AM, Kind=Utc" to "2001-01-01 12:00 AM Kind=Local"
-            //by setting the "Value" property won't trigger a property changed,
-            //but will call this callback (coerce), we update the Kind here.
             var value = (DateTime?)base.OnCoerceValue(newValue);
 
-            //Let the initialized determine the final "kind" value.
             if (value != null && IsInitialized)
-            {
-                //Update kind based on value kind
                 SetKindInternal(value.Value.Kind);
-            }
 
             return value;
         }
@@ -273,10 +249,6 @@ namespace CSHUE.Components.DateTimeUpDown
         {
             var info = SelectedDateTimeInfo ?? (CurrentDateTimePart != DateTimePart.Other ? GetDateTimeInfo(CurrentDateTimePart) : DateTimeInfoList[0]);
 
-            //this only occurs when the user manually type in a value for the Value Property
-
-            //whenever the value changes we need to parse out the value into out DateTimeInfo segments so we can keep track of the individual pieces
-            //but only if it is not null
             if (newValue != null)
                 ParseValueIntoDateTimeInfo(Value);
 
@@ -289,7 +261,6 @@ namespace CSHUE.Components.DateTimeUpDown
 
             if (TextBox != null)
             {
-                //we loose our selection when the Value is set so we need to reselect it without firing the selection changed event
                 FireSelectionChangedEvent = false;
                 TextBox.Select(info.StartPosition, info.Length);
                 FireSelectionChangedEvent = true;
@@ -313,16 +284,10 @@ namespace CSHUE.Components.DateTimeUpDown
 
                 if (valueKind != Kind)
                 {
-                    //Conflit between "Kind" property and the "Value.Kind" value.
-                    //Priority to the one that is not "Unspecified".
                     if (Kind == DateTimeKind.Unspecified)
-                    {
                         SetKindInternal(valueKind);
-                    }
                     else
-                    {
                         Value = ConvertToKind(Value.Value, Kind);
-                    }
                 }
             }
         }
@@ -631,7 +596,7 @@ namespace CSHUE.Components.DateTimeUpDown
         }
 
 
-        #endregion //Base Class Overrides
+        #endregion
 
         #region Methods
 
@@ -645,10 +610,10 @@ namespace CSHUE.Components.DateTimeUpDown
         private void FormatUpdated()
         {
             InitializeDateTimeInfoList(Value);
+
             if (Value != null)
                 ParseValueIntoDateTimeInfo(Value);
 
-            // Update the Text representation of the value.
             ProcessTextChanged = false;
 
             SyncTextAndValueProperties(false, null);
@@ -691,12 +656,9 @@ namespace CSHUE.Components.DateTimeUpDown
             if (TextBox != null)
             {
                 var info = SelectedDateTimeInfo ?? (CurrentDateTimePart != DateTimePart.Other ? GetDateTimeInfo(CurrentDateTimePart) : DateTimeInfoList[0]);
-                //this only occurs when the user manually type in a value for the Value Property
 
-                //whenever the value changes we need to parse out the value into out DateTimeInfo segments so we can keep track of the individual pieces
                 ParseValueIntoDateTimeInfo(ConvertTextToValue(TextBox.Text));
 
-                //we loose our selection when the Value is set so we need to reselect it without firing the selection changed event
                 TextBox.Select(info.StartPosition, info.Length);
             }
             FireSelectionChangedEvent = true;
@@ -794,8 +756,6 @@ namespace CSHUE.Components.DateTimeUpDown
         {
             var info = SelectedDateTimeInfo ?? (CurrentDateTimePart != DateTimePart.Other ? GetDateTimeInfo(CurrentDateTimePart) : DateTimeInfoList[0]);
 
-            //this only occurs when the user manually type in a value for the Value Property
-
             DateTime? result = null;
 
             try
@@ -849,9 +809,7 @@ namespace CSHUE.Components.DateTimeUpDown
             }
             catch
             {
-                //this can occur if the date/time = 1/1/0001 12:00:00 AM which is the smallest date allowed.
-                //I could write code that would validate the date each and everytime but I think that it would be more
-                //efficient if I just handle the edge case and allow an exeption to occur and swallow it instead.
+                // ignored
             }
 
             return CoerceValueMinMax(result);
@@ -889,15 +847,10 @@ namespace CSHUE.Components.DateTimeUpDown
 
         private static DateTime ConvertToKind(DateTime dateTime, DateTimeKind kind)
         {
-            //Same kind, just return same value.
             if (kind == dateTime.Kind)
                 return dateTime;
 
-            //"ToLocalTime()" from an unspecified will assume
-            // That the time was originaly Utc and affect the datetime value. 
-            // Just "Force" the "Kind" instead.
-            if (dateTime.Kind == DateTimeKind.Unspecified
-              || kind == DateTimeKind.Unspecified)
+            if (dateTime.Kind == DateTimeKind.Unspecified || kind == DateTimeKind.Unspecified)
                 return DateTime.SpecifyKind(dateTime, kind);
 
             return kind == DateTimeKind.Local
@@ -905,7 +858,7 @@ namespace CSHUE.Components.DateTimeUpDown
                : dateTime.ToUniversalTime();
         }
 
-        #endregion //Methods
+        #endregion
 
         #region Event Handlers
 

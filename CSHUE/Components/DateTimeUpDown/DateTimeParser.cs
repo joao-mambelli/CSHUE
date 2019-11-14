@@ -11,6 +11,7 @@ namespace CSHUE.Components.DateTimeUpDown
             bool autoClipTimeParts, out DateTime result)
         {
             var success = false;
+
             result = currentDate;
 
             if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(format))
@@ -44,6 +45,7 @@ namespace CSHUE.Components.DateTimeUpDown
                         if (quoteEnd > -1)
                         {
                             var quoteContent = format.Substring(quoteStart + 1, quoteEnd - quoteStart - 1);
+
                             value = value.Replace(quoteContent, "");
                             format = format.Remove(quoteStart, quoteEnd - quoteStart + 1);
 

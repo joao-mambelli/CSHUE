@@ -117,6 +117,7 @@ namespace CSHUE.Components.Primitives
                     if (AllowSpin && !IsReadOnly)
                     {
                         DoIncrement();
+
                         e.Handled = true;
                     }
 
@@ -126,6 +127,7 @@ namespace CSHUE.Components.Primitives
                     if (AllowSpin && !IsReadOnly)
                     {
                         DoDecrement();
+
                         e.Handled = true;
                     }
 
@@ -135,6 +137,7 @@ namespace CSHUE.Components.Primitives
                     if (IsCurrentValueValid())
                     {
                         PerformKeyboardSelection(selectionStart + selectionLength);
+
                         e.Handled = true;
                     }
 
@@ -144,6 +147,7 @@ namespace CSHUE.Components.Primitives
                     if (IsCurrentValueValid())
                     {
                         PerformKeyboardSelection(selectionStart > 0 ? selectionStart - 1 : 0);
+
                         e.Handled = true;
                     }
 
@@ -217,9 +221,12 @@ namespace CSHUE.Components.Primitives
                 !string.IsNullOrEmpty(TextBox.Text))
             {
                 FireSelectionChangedEvent = false;
+
                 TextBox.Select(info.StartPosition, info.Length);
+
                 FireSelectionChangedEvent = true;
                 SelectedDateTimeInfo = info;
+
                 SetCurrentValue(CurrentDateTimePartProperty, info.Type);
             }
         }

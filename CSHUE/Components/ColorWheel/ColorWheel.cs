@@ -28,10 +28,12 @@ namespace CSHUE.Components.ColorWheel
                 return ColorConverters.ColorTemperatue((int)Math.Round((1 - (double)y / (2 * radius)) * 4500 + 2000));
 
             var distanceFromCenter = Math.Sqrt(Math.Pow(x - radius, 2) + Math.Pow(y - radius, 2));
+
             if (distanceFromCenter > radius)
                 return Colors.Transparent;
 
             var angle = Math.Atan2(y - radius, x - radius) + Math.PI / 2;
+
             if (angle < 0)
                 angle += 2 * Math.PI;
 

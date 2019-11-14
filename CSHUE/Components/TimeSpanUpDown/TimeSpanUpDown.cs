@@ -288,7 +288,9 @@ namespace CSHUE.Components.TimeSpanUpDown
                 if (!hasNegative && TextBox != null)
                 {
                     FireSelectionChangedEvent = false;
+
                     TextBox.SelectionStart++;
+
                     FireSelectionChangedEvent = true;
                 }
             }
@@ -297,6 +299,7 @@ namespace CSHUE.Components.TimeSpanUpDown
                 if (value.HasValue && value.Value.Days != 0)
                 {
                     var dayLength = Math.Abs(value.Value.Days).ToString().Length;
+
                     DateTimeInfoList.Add(new DateTimeInfo
                     {
                         Type = DateTimePart.Day, Length = dayLength, Format = "dd"
@@ -311,14 +314,18 @@ namespace CSHUE.Components.TimeSpanUpDown
                         if (hasDay && dayLength != lastDayInfo.Length && SelectedDateTimeInfo.Type != DateTimePart.Day)
                         {
                             FireSelectionChangedEvent = false;
+
                             TextBox.SelectionStart =
                                 Math.Max(0, TextBox.SelectionStart + (dayLength - lastDayInfo.Length));
+
                             FireSelectionChangedEvent = true;
                         }
                         else if (!hasDay)
                         {
                             FireSelectionChangedEvent = false;
+
                             TextBox.SelectionStart += dayLength + 1;
+
                             FireSelectionChangedEvent = true;
                         }
                     }
@@ -457,13 +464,10 @@ namespace CSHUE.Components.TimeSpanUpDown
                         switch (FractionalSecondsDigitsCount)
                         {
                             case 1:
-                                value = value * 100;
+                                value *= 100;
                                 break;
                             case 2:
-                                value = value * 10;
-                                break;
-                            default:
-                                value = value * 1;
+                                value *= 10;
                                 break;
                         }
 
@@ -499,6 +503,7 @@ namespace CSHUE.Components.TimeSpanUpDown
                     var selectionLength = TextBox.SelectionLength;
 
                     TextBox.Text = ParseValueIntoTimeSpanInfo(newValue, false);
+
                     TextBox.Select(selectionStart, selectionLength);
                 }
             }

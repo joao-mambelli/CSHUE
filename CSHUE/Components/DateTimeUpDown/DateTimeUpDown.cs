@@ -339,7 +339,6 @@ namespace CSHUE.Components.DateTimeUpDown
                             Length = 1,
                             Content = format.Substring(1, Math.Max(1, closingQuotePosition - 1))
                         };
-
                         elementLength = Math.Max(1, closingQuotePosition + 1);
                         break;
                     case 'D':
@@ -487,10 +486,8 @@ namespace CSHUE.Components.DateTimeUpDown
                                 Length = 1,
                                 Type = DateTimePart.Other
                             };
-
                             elementLength = 2;
                         }
-
                         break;
                     case 'g':
                         var g = format.Substring(0, elementLength);
@@ -665,14 +662,17 @@ namespace CSHUE.Components.DateTimeUpDown
                 {
                     info.StartPosition = text.Length;
                     info.Length = info.Content.Length;
+
                     text += info.Content;
                 }
                 else if (newDate != null)
                 {
                     var date = newDate.Value;
+
                     info.StartPosition = text.Length;
                     info.Content = date.ToString(info.Format, CultureInfo.DateTimeFormat);
                     info.Length = info.Content.Length;
+
                     text += info.Content;
                 }
         }

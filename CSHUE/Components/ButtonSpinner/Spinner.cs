@@ -23,6 +23,7 @@ namespace CSHUE.Components.ButtonSpinner
             var source = (Spinner)d;
             var oldvalue = (ValidSpinDirections)e.OldValue;
             var newvalue = (ValidSpinDirections)e.NewValue;
+
             source.OnValidSpinDirectionChanged(oldvalue, newvalue);
         }
 

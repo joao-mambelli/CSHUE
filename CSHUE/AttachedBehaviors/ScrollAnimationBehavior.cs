@@ -12,18 +12,13 @@ namespace CSHUE.AttachedBehaviors
 
         public static DependencyProperty VerticalOffsetProperty = DependencyProperty.RegisterAttached("VerticalOffset",
             typeof(double), typeof(ScrollAnimationBehavior), new UIPropertyMetadata(0.0, OnVerticalOffsetChanged));
-
         public static DependencyProperty TimeDurationProperty = DependencyProperty.RegisterAttached("TimeDuration",
             typeof(TimeSpan), typeof(ScrollAnimationBehavior), new PropertyMetadata(new TimeSpan(0, 0, 0, 0, 0)));
-
         public static DependencyProperty PointsToScrollProperty = DependencyProperty.RegisterAttached("PointsToScroll",
             typeof(double), typeof(ScrollAnimationBehavior), new PropertyMetadata(0.0));
-
         public static DependencyProperty IsEnabledProperty = DependencyProperty.RegisterAttached("IsEnabled",
             typeof(bool), typeof(ScrollAnimationBehavior), new UIPropertyMetadata(false, OnIsEnabledChanged));
-
         private static double _currentToValue;
-
         private static Storyboard _storyboard;
 
         #endregion
@@ -82,13 +77,11 @@ namespace CSHUE.AttachedBehaviors
                 case Key.Down:
                 case Key.PageDown:
                     offset = offset * -1;
-
                     _currentToValue = offset > _currentToValue
                         ? 0
                         : _currentToValue - offset > scroller.ScrollableHeight
                             ? scroller.ScrollableHeight
                             : _currentToValue - offset;
-
                     isKeyHandled = true;
                     break;
                 case Key.Up:
@@ -98,7 +91,6 @@ namespace CSHUE.AttachedBehaviors
                         : _currentToValue - offset > scroller.ScrollableHeight
                             ? scroller.ScrollableHeight
                             : _currentToValue - offset;
-
                     isKeyHandled = true;
                     break;
             }
@@ -160,9 +152,12 @@ namespace CSHUE.AttachedBehaviors
                 }));
 
             _storyboard = new Storyboard();
+
             _storyboard.Children.Add(verticalAnimation);
+
             Storyboard.SetTarget(verticalAnimation, scrollViewer);
             Storyboard.SetTargetProperty(verticalAnimation, new PropertyPath(VerticalOffsetProperty));
+
             _storyboard.Begin();
         }
 

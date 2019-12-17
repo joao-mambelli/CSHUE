@@ -208,7 +208,9 @@ namespace CSHUE.Components.ButtonSpinner
             if (!e.Handled && AllowSpin && e.Delta != 0)
             {
                 var spinnerEventArgs = new SpinEventArgs(SpinnerSpinEvent, e.Delta < 0 ? SpinDirection.Decrease : SpinDirection.Increase, true);
+
                 OnSpin(spinnerEventArgs);
+
                 e.Handled = spinnerEventArgs.Handled;
             }
         }

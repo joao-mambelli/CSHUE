@@ -68,6 +68,7 @@ namespace CSHUE.Components.NumericUpDown
         protected static void UpdateMetadata(Type type, T? increment, T? minValue, T? maxValue)
         {
             DefaultStyleKeyProperty.OverrideMetadata(type, new FrameworkPropertyMetadata(type));
+
             UpdateMetadataCommon(type, increment, minValue, maxValue);
         }
 
@@ -165,6 +166,7 @@ namespace CSHUE.Components.NumericUpDown
                 else if (Value != null && Increment != null)
                 {
                     var result = IncrementValue(Value.Value, Increment.Value);
+
                     Value = CoerceValueMinMax(result);
                 }
         }
@@ -188,6 +190,7 @@ namespace CSHUE.Components.NumericUpDown
                 else if (Value != null && Increment != null)
                 {
                     var result = DecrementValue(Value.Value, Increment.Value);
+
                     Value = CoerceValueMinMax(result);
                 }
         }

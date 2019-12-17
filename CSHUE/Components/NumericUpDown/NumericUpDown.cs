@@ -97,11 +97,6 @@ namespace CSHUE.Components.NumericUpDown
 
         #endregion
 
-        #region Overrides
-
-
-        #endregion
-
         #region Methods
 
         protected static decimal ParsePercent(string text, IFormatProvider cultureInfo)

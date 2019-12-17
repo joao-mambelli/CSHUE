@@ -315,12 +315,9 @@ namespace CSHUE.Components.Primitives
         protected virtual void OnValueChanged(T oldValue, T newValue)
         {
             if (!_internalValueSet && IsInitialized)
-            {
                 SyncTextAndValueProperties(false, null, true);
-            }
 
             SetValidSpinDirection();
-
             RaiseValueChangedEvent(oldValue, newValue);
         }
 
@@ -356,6 +353,7 @@ namespace CSHUE.Components.Primitives
             if (TextBox != null)
             {
                 TextBox.TextChanged -= TextBox_TextChanged;
+
                 TextBox.RemoveHandler(Mouse.PreviewMouseDownEvent,
                     new MouseButtonEventHandler(TextBox_PreviewMouseDown));
             }
@@ -365,7 +363,9 @@ namespace CSHUE.Components.Primitives
             if (TextBox != null)
             {
                 TextBox.Text = Text;
+
                 TextBox.TextChanged += TextBox_TextChanged;
+
                 TextBox.AddHandler(Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_PreviewMouseDown),
                     true);
             }
@@ -401,9 +401,7 @@ namespace CSHUE.Components.Primitives
                         SyncTextAndValueProperties(true, Text);
                 }
                 else
-                {
                     SyncTextAndValueProperties(true, Text);
-                }
         }
 
         protected override void OnCultureInfoChanged(CultureInfo oldValue, CultureInfo newValue)
@@ -441,12 +439,15 @@ namespace CSHUE.Components.Primitives
                 var spin = !e.UsingMouseWheel;
 
                 spin |= activeTrigger == MouseWheelActiveTrigger.MouseOver;
-                spin |= TextBox != null && TextBox.IsFocused && activeTrigger == MouseWheelActiveTrigger.FocusedMouseOver;
-                spin |= TextBox != null && TextBox.IsFocused && activeTrigger == MouseWheelActiveTrigger.Focused && Mouse.Captured is Spinner;
+                spin |= TextBox != null && TextBox.IsFocused &&
+                        activeTrigger == MouseWheelActiveTrigger.FocusedMouseOver;
+                spin |= TextBox != null && TextBox.IsFocused && activeTrigger == MouseWheelActiveTrigger.Focused &&
+                        Mouse.Captured is Spinner;
 
                 if (spin)
                 {
                     e.Handled = true;
+
                     OnSpin(e);
                 }
             }

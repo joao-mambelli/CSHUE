@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,48 +26,49 @@ namespace CSHUE.Views
     {
         #region Low Level Window Hook
 
-        private IntPtr WindowProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        #region Enums
+
+        private enum MonitorOptions
         {
-            if (msg == 0x0024)
-                WmGetMinMaxInfo(lParam);
-
-            if (msg == NativeMethods.WmShowme)
-                ShowMe();
-
-            return IntPtr.Zero;
+            MonitorDefaulttonull,
+            MonitorDefaulttoprimary,
+            MonitorDefaulttonearest
         }
 
-        private void WmGetMinMaxInfo(IntPtr lParam)
+        private enum AbMsg
         {
-            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle).WorkingArea.Height;
-            GetCursorPos(out var lMousePosition);
-
-            var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
-            var lPrimaryScreenInfo = new Monitorinfo();
-
-            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false)
-                return;
-
-            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
-            var lMmi = (Minmaxinfo)Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
-
-            if (lPrimaryScreen.Equals(lCurrentScreen))
-            {
-                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
-                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcWork.Top;
-                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcWork.Right - lPrimaryScreenInfo.rcWork.Left;
-                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcWork.Bottom - lPrimaryScreenInfo.rcWork.Top;
-            }
-            else
-            {
-                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcMonitor.Left;
-                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcMonitor.Top;
-                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcMonitor.Right - lPrimaryScreenInfo.rcMonitor.Left;
-                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcMonitor.Bottom - lPrimaryScreenInfo.rcMonitor.Top;
-            }
-
-            Marshal.StructureToPtr(lMmi, lParam, true);
+            AbmNew,
+            AbmRemove,
+            AbmQuerypos,
+            AbmSetpos,
+            AbmGetstate,
+            AbmGettaskbarpos,
+            AbmActivate,
+            AbmGetautohidebar,
+            AbmSetautohidebar,
+            AbmWindowposchanged,
+            AbmSetstate
         }
+
+        private enum AbNotify
+        {
+            AbnStatechange,
+            AbnPoschanged,
+            AbnFullscreenapp,
+            AbnWindowarrange
+        }
+
+        private enum AbEdge
+        {
+            AbeLeft,
+            AbeTop,
+            AbeRight,
+            AbeBottom
+        }
+
+        #endregion
+
+        #region Dlls
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -75,15 +77,18 @@ namespace CSHUE.Views
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr MonitorFromPoint(Point pt, MonitorOptions dwFlags);
 
-        private enum MonitorOptions : uint
-        {
-            //MonitorDefaulttonull = 0x00000000,
-            MonitorDefaulttoprimary = 0x00000001,
-            MonitorDefaulttonearest = 0x00000002
-        }
-
         [DllImport("user32.dll")]
         private static extern bool GetMonitorInfo(IntPtr hMonitor, Monitorinfo lpmi);
+
+        [DllImport("SHELL32", CallingConvention = CallingConvention.StdCall)]
+        private static extern uint SHAppBarMessage(int dwMessage, ref Appbardata pData);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        private static extern int RegisterWindowMessage(string msg);
+
+        #endregion
+
+        #region Structs and Classes
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Point
@@ -127,6 +132,114 @@ namespace CSHUE.Views
             public int Left, Top, Right, Bottom;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Appbardata
+        {
+            public int cbSize;
+            public IntPtr hWnd;
+            public int uCallbackMessage;
+            public int uEdge;
+            public Rect rc;
+            public IntPtr lParam;
+        }
+
+        #endregion
+
+        #region Methods
+
+        private IntPtr WindowProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (msg == 0x0024)
+                WmGetMinMaxInfo(lParam);
+
+            if (msg == NativeMethods.WmShowme)
+                ShowMe();
+
+            if (msg == _appBarId)
+            {
+                if (wParam.ToInt32() == (int)AbNotify.AbnPoschanged)
+                {
+                    if (_appBarTimer != null && _appBarTimer.Enabled)
+                    {
+                        _appBarTimer.Stop();
+                        _appBarTimer.Start();
+                    }
+                    else
+                    {
+                        if (WindowState == WindowState.Maximized)
+                        {
+                            WindowState = WindowState.Normal;
+                            WindowState = WindowState.Maximized;
+                        }
+
+                        _appBarTimer = new System.Timers.Timer(100);
+                        _appBarTimer.Elapsed += OnAppBarTimerElapsed;
+                        _appBarTimer.Start();
+                    }
+                }
+            }
+
+            return IntPtr.Zero;
+        }
+
+        private static void OnAppBarTimerElapsed(object source, ElapsedEventArgs e)
+        {
+            _appBarTimer.Stop();
+        }
+
+        private void WmGetMinMaxInfo(IntPtr lParam)
+        {
+            MaxHeight = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle).WorkingArea.Height;
+            GetCursorPos(out var lMousePosition);
+
+            var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
+            var lPrimaryScreenInfo = new Monitorinfo();
+
+            if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false)
+                return;
+
+            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
+            var lMmi = (Minmaxinfo)Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
+
+            if (lPrimaryScreen.Equals(lCurrentScreen))
+            {
+                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
+                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcWork.Top;
+                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcWork.Right - lPrimaryScreenInfo.rcWork.Left;
+                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcWork.Bottom - lPrimaryScreenInfo.rcWork.Top;
+            }
+            else
+            {
+                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcMonitor.Left;
+                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcMonitor.Top;
+                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcMonitor.Right - lPrimaryScreenInfo.rcMonitor.Left;
+                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcMonitor.Bottom - lPrimaryScreenInfo.rcMonitor.Top;
+            }
+
+            Marshal.StructureToPtr(lMmi, lParam, true);
+        }
+
+        private void RegisterBar(bool register)
+        {
+            var abd = new Appbardata();
+            abd.cbSize = Marshal.SizeOf(abd);
+            abd.hWnd = new WindowInteropHelper(this).Handle;
+
+            if (register)
+            {
+                _appBarId = RegisterWindowMessage("AppBarMessage");
+                abd.uCallbackMessage = _appBarId;
+
+                SHAppBarMessage((int)AbMsg.AbmNew, ref abd);
+            }
+            else
+            {
+                SHAppBarMessage((int)AbMsg.AbmRemove, ref abd);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Fields
@@ -135,6 +248,9 @@ namespace CSHUE.Views
 
         private bool _buttonClickable;
         private SplashScreen _splashScreen;
+
+        private int _appBarId;
+        private static System.Timers.Timer _appBarTimer;
 
         #endregion
 
@@ -312,6 +428,8 @@ namespace CSHUE.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            RegisterBar(true);
+
             if (Properties.Settings.Default.Maximized)
                 WindowState = WindowState.Maximized;
 
@@ -560,6 +678,8 @@ namespace CSHUE.Views
 
         private void OnClosing(object sender, CancelEventArgs e)
         {
+            RegisterBar(false);
+
             ViewModel.RestoreLights();
             ViewModel.NotifyIconVisibility = Visibility.Collapsed;
 

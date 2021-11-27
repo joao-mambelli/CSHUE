@@ -137,5 +137,8 @@
     <Setting Name="BridgeId" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3010</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

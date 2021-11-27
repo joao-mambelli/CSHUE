@@ -30,9 +30,14 @@ namespace CSHUE.Views
 
         #region Events Handlers
 
-        private void Button_OnClick(object sender, EventArgs e)
+        private void CreateCfg_OnClick(object sender, EventArgs e)
         {
             ViewModel.CreateConfigFile();
+        }
+
+        private void ChangeFolder_OnClick(object sender, EventArgs e)
+        {
+            ViewModel.ChangeFolder();
         }
 
         #endregion

@@ -123,7 +123,7 @@
   <data name="CSGOGSIText" xml:space="preserve">
     <value>So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game's cfg folder, a gamestate_integration_cshue.cfg.
 
-If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file.</value>
+If the "Create .cfg" button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file.</value>
   </data>
   <data name="CreateCfgButton" xml:space="preserve">
     <value>Create .cfg</value>
@@ -454,5 +454,17 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
   </data>
   <data name="BridgeText" xml:space="preserve">
     <value>Bridge:</value>
+  </data>
+  <data name="ChangeFolderButton" xml:space="preserve">
+    <value>Change folder</value>
+  </data>
+  <data name="FolderChangedMessage" xml:space="preserve">
+    <value>Folder changed successfully.</value>
+  </data>
+  <data name="PortOption" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="PortText" xml:space="preserve">
+    <value>* Note that if you change this option, you will need to recreate the GSI .cfg file.</value>
   </data>
 </root>

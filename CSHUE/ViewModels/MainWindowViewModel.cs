@@ -867,7 +867,7 @@ namespace CSHUE.ViewModels
 
         public void Csgo()
         {
-            var gsl = new GameStateListener(3000);
+            var gsl = new GameStateListener(int.Parse(Properties.Settings.Default.Port));
             gsl.NewGameState += OnNewGameState;
             gsl.Start();
 

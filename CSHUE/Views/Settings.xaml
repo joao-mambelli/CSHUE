@@ -449,6 +449,23 @@
                                    TextWrapping="Wrap"/>
                     </CheckBox>
 
+                    <TextBlock Text="{Binding Path=PortOption, Source={StaticResource Resources}}"
+                               Margin="0 15 0 4"/>
+
+                    <TextBox Height="35"
+                             Margin="0 2 0 9"
+                             VerticalContentAlignment="Center"
+                             Style="{StaticResource HintTextBox}"
+                             Text="{Binding Source={x:Static p:Settings.Default}, Path=Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             TextInput="Save"
+                             PreviewTextInput="TextBox_OnlyNumbers"
+                             MaxLength="5"/>
+
+                    <TextBlock Text="{Binding Path=PortText, Source={StaticResource Resources}}"
+                               Margin="15 0 0 4"
+                               TextWrapping="Wrap"
+                               Opacity=".50"/>
+
                     <TextBlock Text="{Binding Path=LanguageOption, Source={StaticResource Resources}}"
                                Margin="0 15 0 4"/>
 

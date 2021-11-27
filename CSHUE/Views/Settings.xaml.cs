@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using CSHUE.Controls;
 using CSHUE.Core;
@@ -51,6 +53,11 @@ namespace CSHUE.Views
         #endregion
 
         #region Events Handlers
+
+        private void TextBox_OnlyNumbers(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+        }
 
         private void Default_OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

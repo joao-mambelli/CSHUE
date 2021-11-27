@@ -19,6 +19,17 @@ namespace CSHUE.ViewModels
         /// </summary>
         private string FailText { get; set; }
 
+        private bool _isCfgFolderSet = true;
+        public bool IsCfgFolderSet
+        {
+            get => _isCfgFolderSet;
+            set
+            {
+                _isCfgFolderSet = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Fields
@@ -27,32 +38,6 @@ namespace CSHUE.ViewModels
         /// Main window viewmodel field.
         /// </summary>
         public MainWindowViewModel MainWindowViewModel = null;
-
-        /// <summary>
-        /// Config lines field.
-        /// </summary>
-        private readonly string[] _lines =
-        {
-            "\"CSHUE\"",
-            "{",
-            "\t\"uri\" \"http://localhost:3000\"",
-            "\t\"timeout\" \"5.0\"",
-            "\t\"throttle\" \"0.1\"",
-            "\t\"data\"",
-            "\t{",
-            "\t\t\"provider\"\t\t\t\t\t\"1\"",
-            "\t\t\"map\"\t\t\t\t\t\t\"1\"",
-            "\t\t\"round\"\t\t\t\t\t\t\"1\"",
-            "\t\t\"player_id\"\t\t\t\t\t\"1\"",
-            "\t\t\"player_state\"\t\t\t\t\"1\"",
-            "\t\t\"player_weapons\"\t\t\t\"1\"",
-            "\t\t\"player_match_stats\"\t\t\"1\"",
-            "\t\t\"allplayers_match_stats\"\t\"1\"",
-            "\t\t\"allplayers_id\"\t\t\t\t\"1\"",
-            "\t\t\"allplayers_state\"\t\t\t\"1\"",
-            "\t}",
-            "}"
-        };
 
         #endregion
 
@@ -83,7 +68,9 @@ namespace CSHUE.ViewModels
                             o = key32.GetValue("InstallPath");
 
                         if (o != null)
+                        {
                             Properties.Settings.Default.SteamFolder = o as string;
+                        }
                         else
                         {
                             FailText = Resources.SteamFolderNotFoundWarning;
@@ -154,12 +141,16 @@ namespace CSHUE.ViewModels
                     var result = fbd.ShowDialog();
 
                     if (result != CommonFileDialogResult.Ok || string.IsNullOrWhiteSpace(fbd.FileName))
+                    {
+                        Properties.Settings.Default.Save();
                         return;
+                    }
 
                     if (string.IsNullOrEmpty(Properties.Settings.Default.SteamFolder))
                     {
                         Properties.Settings.Default.SteamFolder = fbd.FileName;
                         CreateConfigFile();
+                        Properties.Settings.Default.Save();
                         return;
                     }
 
@@ -167,7 +158,7 @@ namespace CSHUE.ViewModels
 
                     cfgpath = fbd.FileName;
 
-                    File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
+                    File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", GetCfgLines());
 
                     CheckConfigFile();
 
@@ -192,7 +183,7 @@ namespace CSHUE.ViewModels
             {
                 Directory.CreateDirectory(cfgpath);
 
-                File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", _lines);
+                File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", GetCfgLines());
 
                 CheckConfigFile();
 
@@ -212,6 +203,87 @@ namespace CSHUE.ViewModels
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
             }
+
+            Properties.Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Returns the .cfg lines.
+        /// </summary>
+        public string[] GetCfgLines()
+        {
+            string[] lines =
+            {
+                "\"CSHUE\"",
+                "{"
+            };
+
+            lines = lines.Append("\t\"uri\" \"http://localhost:" + Properties.Settings.Default.Port + "\"").ToArray();
+
+            string[] rest =
+            {
+                "\t\"timeout\" \"5.0\"",
+                "\t\"throttle\" \"0.1\"",
+                "\t\"data\"",
+                "\t{",
+                "\t\t\"provider\"\t\t\t\t\t\"1\"",
+                "\t\t\"map\"\t\t\t\t\t\t\"1\"",
+                "\t\t\"round\"\t\t\t\t\t\t\"1\"",
+                "\t\t\"player_id\"\t\t\t\t\t\"1\"",
+                "\t\t\"player_state\"\t\t\t\t\"1\"",
+                "\t\t\"player_weapons\"\t\t\t\"1\"",
+                "\t\t\"player_match_stats\"\t\t\"1\"",
+                "\t\t\"allplayers_match_stats\"\t\"1\"",
+                "\t\t\"allplayers_id\"\t\t\t\t\"1\"",
+                "\t\t\"allplayers_state\"\t\t\t\"1\"",
+                "\t}",
+                "}"
+            };
+
+            lines = lines.Concat(rest).ToArray();
+
+            return lines;
+        }
+
+        /// <summary>
+        /// Changes the .cfg folder.
+        /// </summary>
+        public void ChangeFolder()
+        {
+            using (var fbd = new CommonOpenFileDialog
+            {
+                Title = Resources.FolderSelectionTitle,
+                IsFolderPicker = true,
+                InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}",
+                AddToMostRecentlyUsedList = false,
+                AllowNonFileSystemItems = false,
+                DefaultDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}",
+                EnsureFileExists = true,
+                EnsurePathExists = true,
+                EnsureReadOnly = false,
+                EnsureValidNames = true,
+                Multiselect = false,
+                ShowPlacesList = true
+            })
+            {
+                var result = fbd.ShowDialog();
+
+                if (result != CommonFileDialogResult.Ok || string.IsNullOrWhiteSpace(fbd.FileName))
+                    return;
+
+                Properties.Settings.Default.CsgoFolder = fbd.FileName;
+                Properties.Settings.Default.Save();
+
+                new CustomMessageBox
+                {
+                    Button1 = new CustomButton
+                    {
+                        Text = Resources.OkButton
+                    },
+                    Message = $"{Resources.FolderChangedMessage}",
+                    Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
+                }.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -224,6 +296,8 @@ namespace CSHUE.ViewModels
             var path = "";
             var cfgpath = Properties.Settings.Default.CsgoFolder;
             var file = "";
+
+            IsCfgFolderSet = !string.IsNullOrEmpty(cfgpath);
 
             if (string.IsNullOrEmpty(cfgpath))
             {
@@ -297,7 +371,7 @@ namespace CSHUE.ViewModels
                 fail = true;
             }
 
-            if (!fail && !_lines.SequenceEqual(File.ReadAllLines(cfgpath + "\\gamestate_integration_cshue.cfg")))
+            if (!fail && !GetCfgLines().SequenceEqual(File.ReadAllLines(cfgpath + "\\gamestate_integration_cshue.cfg")))
             {
                 MainWindowViewModel.WarningGsiVisibility = Visibility.Collapsed;
                 MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;

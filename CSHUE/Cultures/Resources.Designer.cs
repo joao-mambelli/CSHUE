@@ -19,7 +19,7 @@ namespace CSHUE.Cultures {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -196,6 +196,15 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change folder.
+        /// </summary>
+        public static string ChangeFolderButton {
+            get {
+                return ResourceManager.GetString("ChangeFolderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string CheckForUpdateButton {
@@ -273,7 +282,7 @@ namespace CSHUE.Cultures {
         /// <summary>
         ///   Looks up a localized string similar to So that CSHUE can know what is going on in your CS:GO, a specific .cfg file must exist in the game&apos;s cfg folder, a gamestate_integration_cshue.cfg.
         ///
-        ///If the bellow button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file..
+        ///If the &quot;Create .cfg&quot; button is pressed, CSHUE will automatically try to find where CS:GO is installed in your machine, creating then the required file..
         /// </summary>
         public static string CSGOGSIText {
             get {
@@ -359,6 +368,15 @@ namespace CSHUE.Cultures {
         public static string FileCreatedAtMessage {
             get {
                 return ResourceManager.GetString("FileCreatedAtMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder changed successfully..
+        /// </summary>
+        public static string FolderChangedMessage {
+            get {
+                return ResourceManager.GetString("FolderChangedMessage", resourceCulture);
             }
         }
         
@@ -667,6 +685,24 @@ namespace CSHUE.Cultures {
         public static string PlayerTabTitle {
             get {
                 return ResourceManager.GetString("PlayerTabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        public static string PortOption {
+            get {
+                return ResourceManager.GetString("PortOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * Note that if you change this option, you will need to recreate the GSI .cfg file..
+        /// </summary>
+        public static string PortText {
+            get {
+                return ResourceManager.GetString("PortText", resourceCulture);
             }
         }
         

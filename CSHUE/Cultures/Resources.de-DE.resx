@@ -123,7 +123,7 @@
   <data name="CSGOGSIText" xml:space="preserve">
     <value>Damit CSHUE weiß, was in CS:GO passiert, muss eine spezielle .cfg Datei in deinem Spiele Ordner existieren. (gamestate_integration_cshue.cfg)
 
-Beim drücken der unteren Schaltfläche, versucht CSHUE automatisch deinen CS:GO Installationspfad zu finden und die benötigte .cfg Datei zu erstellen.</value>
+Wenn Sie auf die Schaltfläche ".cfg Datei erstellen" klicken, versucht CSHUE automatisch deinen CS:GO Installationspfad zu finden und die benötigte .cfg Datei zu erstellen.</value>
   </data>
   <data name="CreateCfgButton" xml:space="preserve">
     <value>.cfg Datei erstellen</value>
@@ -454,5 +454,17 @@ Klicke auf "GitHub Fehlermeldung" um eine neue GitHub-Problemmeldung mit dem ber
   </data>
   <data name="BridgeText" xml:space="preserve">
     <value>Bridge:</value>
+  </data>
+  <data name="ChangeFolderButton" xml:space="preserve">
+    <value>Ändere den Ordner</value>
+  </data>
+  <data name="FolderChangedMessage" xml:space="preserve">
+    <value>Ordner geändert.</value>
+  </data>
+  <data name="PortOption" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="PortText" xml:space="preserve">
+    <value>* Beachten Sie, dass Sie die GSI .cfg-Datei erneut erstellen müssen, wenn Sie diese Option ändern.</value>
   </data>
 </root>

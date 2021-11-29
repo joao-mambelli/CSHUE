@@ -457,7 +457,7 @@
                              VerticalContentAlignment="Center"
                              Style="{StaticResource HintTextBox}"
                              Text="{Binding Source={x:Static p:Settings.Default}, Path=Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             TextInput="Save"
+                             TextChanged="Save"
                              PreviewTextInput="TextBox_OnlyNumbers"
                              MaxLength="5"/>
 
@@ -526,7 +526,7 @@
                              Style="{StaticResource HintTextBox}"
                              Tag="{Binding Path=LaunchOptionsOption, Source={StaticResource Resources}}"
                              Text="{Binding Source={x:Static p:Settings.Default}, Path=LaunchOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             TextInput="Save"/>
+                             TextChanged="Save"/>
 
                     <Button Margin="0 20 0 9"
                             VerticalAlignment="Top"

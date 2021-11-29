@@ -377,6 +377,7 @@ namespace CSHUE.ViewModels
                 MainWindowViewModel.WarningSteamVisibility = Visibility.Collapsed;
                 MainWindowViewModel.WarningCsgoVisibility = Visibility.Collapsed;
                 MainWindowViewModel.WarningGsiCorruptedVisibility = Visibility.Visible;
+                fail = true;
             }
 
             if (!fail)

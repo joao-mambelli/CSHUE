@@ -698,7 +698,7 @@ namespace CSHUE.Cultures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Note that if you change this option, you will need to recreate the GSI .cfg file..
+        ///   Looks up a localized string similar to * Note that if you change this option, you will need to recreate the GSI .cfg file and restart both CSHUE and CS:GO..
         /// </summary>
         public static string PortText {
             get {
@@ -766,6 +766,15 @@ namespace CSHUE.Cultures {
         public static string ResetMessage {
             get {
                 return ResourceManager.GetString("ResetMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, restart CS:GO to guarantee that this change will take effect..
+        /// </summary>
+        public static string RestartCSGOMessage {
+            get {
+                return ResourceManager.GetString("RestartCSGOMessage", resourceCulture);
             }
         }
         

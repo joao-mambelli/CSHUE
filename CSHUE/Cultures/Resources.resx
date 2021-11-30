@@ -465,6 +465,9 @@ Click on the "Create GitHub issue" button to open a GitHub new issue page with t
     <value>Port</value>
   </data>
   <data name="PortText" xml:space="preserve">
-    <value>* Note that if you change this option, you will need to recreate the GSI .cfg file.</value>
+    <value>* Note that if you change this option, you will need to recreate the GSI .cfg file and restart both CSHUE and CS:GO.</value>
+  </data>
+  <data name="RestartCSGOMessage" xml:space="preserve">
+    <value>Please, restart CS:GO to guarantee that this change will take effect.</value>
   </data>
 </root>

@@ -465,6 +465,9 @@ Klicke auf "GitHub Fehlermeldung" um eine neue GitHub-Problemmeldung mit dem ber
     <value>Port</value>
   </data>
   <data name="PortText" xml:space="preserve">
-    <value>* Beachten Sie, dass Sie die GSI .cfg-Datei erneut erstellen müssen, wenn Sie diese Option ändern.</value>
+    <value>* Beachten Sie, dass Sie beim Ändern dieser Option die GSI .cfg-Datei neu erstellen und sowohl CSHUE als auch CS:GO neu starten müssen.</value>
+  </data>
+  <data name="RestartCSGOMessage" xml:space="preserve">
+    <value>Bitte starten Sie CS:GO neu, um sicherzustellen, dass diese Änderung wirksam wird.</value>
   </data>
 </root>

@@ -41,6 +41,7 @@ namespace CSHUE.ViewModels
         public Home Home;
         public Settings Settings;
 
+        private GameStateListener _gameStateListener;
         public List<Light> GlobalLightsBackup;
         private bool _alreadySetLights;
         private bool _alreadyMinimized;
@@ -867,9 +868,9 @@ namespace CSHUE.ViewModels
 
         public void Csgo()
         {
-            var gsl = new GameStateListener(int.Parse(Properties.Settings.Default.Port));
-            gsl.NewGameState += OnNewGameState;
-            gsl.Start();
+            _gameStateListener = new GameStateListener(int.Parse(Properties.Settings.Default.Port));
+            _gameStateListener.NewGameState += OnNewGameState;
+            _gameStateListener.Start();
 
             if (Properties.Settings.Default.RunCsgo)
                 RunCsgo();

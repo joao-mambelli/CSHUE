@@ -7,6 +7,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using CSHUE.Cultures;
 using CSHUE.Views;
 using CSHUE.Controls;
+using System.Diagnostics;
 
 namespace CSHUE.ViewModels
 {
@@ -162,6 +163,11 @@ namespace CSHUE.ViewModels
 
                     CheckConfigFile();
 
+                    var message = $"{Resources.FileCreatedAtMessage}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg";
+
+                    if (Process.GetProcessesByName("csgo").Length > 0)
+                        message += $"\n\n{Resources.RestartCSGOMessage}";
+
                     new CustomMessageBox
                     {
                         Button1 = new CustomButton
@@ -174,7 +180,7 @@ namespace CSHUE.ViewModels
                             Path = cfgpath + "\\gamestate_integration_cshue.cfg",
                             ShowInFolder = true
                         },
-                        Message = $"{Resources.FileCreatedAtMessage}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
+                        Message = message,
                         Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                     }.ShowDialog();
                 }
@@ -186,6 +192,11 @@ namespace CSHUE.ViewModels
                 File.WriteAllLines(cfgpath + "\\gamestate_integration_cshue.cfg", GetCfgLines());
 
                 CheckConfigFile();
+
+                var message = $"{Resources.FileCreatedAtMessage}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg";
+
+                if (Process.GetProcessesByName("csgo").Length > 0)
+                    message += $"\n\n{Resources.RestartCSGOMessage}";
 
                 new CustomMessageBox
                 {
@@ -199,7 +210,7 @@ namespace CSHUE.ViewModels
                         Path = cfgpath + "\\gamestate_integration_cshue.cfg",
                         ShowInFolder = true
                     },
-                    Message = $"{Resources.FileCreatedAtMessage}:\n" + cfgpath + "\\gamestate_integration_cshue.cfg",
+                    Message = message,
                     Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()
                 }.ShowDialog();
             }

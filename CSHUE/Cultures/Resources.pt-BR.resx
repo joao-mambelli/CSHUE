@@ -465,6 +465,9 @@ Clique no botão "Reportar erro no GitHub" para abrir uma página de novo relat�
     <value>Porta</value>
   </data>
   <data name="PortText" xml:space="preserve">
-    <value>* Note que se você alterar esta opção, você terá que criar o arquivo .cfg do GSI novamente.</value>
+    <value>* Note que se você alterar esta opção, você terá que criar o arquivo .cfg do GSI novamente e reiniciar tanto o CSHUE quanto o CS:GO.</value>
+  </data>
+  <data name="RestartCSGOMessage" xml:space="preserve">
+    <value>Por favor, reinicie o CS:GO para garantir que essa alteração terá efeito.</value>
   </data>
 </root>

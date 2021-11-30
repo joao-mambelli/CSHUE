@@ -286,9 +286,12 @@ namespace CSHUE.Views
 
         private void Save(object sender, RoutedEventArgs routedEventArgs)
         {
-            Properties.Settings.Default.Save();
             if (ViewModel.MainWindowViewModel != null)
+            {
                 ViewModel.MainWindowViewModel.Config.ViewModel.CheckConfigFile();
+            }
+
+            Properties.Settings.Default.Save();
         }
 
         private void ScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)

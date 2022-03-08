@@ -23,4 +23,4 @@ I don't expect much finantial return from this application, but who knows, right
 
 ## Translations
 
-If you want you can help me translating CSHUE. Just open an issue saying you want to help..
+If you want you can help me translating CSHUE. Just open an issue saying you want to help.
